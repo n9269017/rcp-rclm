@@ -1,0 +1,18 @@
+.lake/
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.synctex.gz
+*.toc
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# Keep Lean proof-certificate build logs even though generic *.log is ignored.
+!lean/rcp_rclm_can_lean4/cert/build_logs/
+!lean/rcp_rclm_can_lean4/cert/build_logs/*.log

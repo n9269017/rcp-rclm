@@ -1,0 +1,6 @@
+name = "rcp_rclm_can_lean4"
+version = "0.1.0"
+defaultTargets = ["RcpRclmMech"]
+
+[[lean_lib]]
+name = "RcpRclmMech"

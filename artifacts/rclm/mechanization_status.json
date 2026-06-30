@@ -1,0 +1,18 @@
+{
+  "proof_assistant": "Lean 4",
+  "lean_version_reported_by_user": "4.31.0",
+  "lake_version_reported_by_user": "5.0.0-src+68218e8",
+  "build_status": "success",
+  "verified_commands": [
+    "lake env lean .\\RcpRclmMech\\RCP.lean",
+    "lake build RcpRclmMech.RCP",
+    "lake env lean .\\RcpRclmMech\\RCLM.lean",
+    "lake build RcpRclmMech.RCLM",
+    "lake env lean .\\RcpRclmMech.lean",
+    "lake build"
+  ],
+  "scope": "canonical finite RCP/RCLM witness, finite checker core, and RCLM-to-RCP refinement module",
+  "not_scope": "full 219-page math stack; full 187-page architecture stack; arbitrary learned-system entry; empirical deployment claims",
+  "notes": "Generated from the successful user-run Lean 4 v5 root-module project transcript.",
+  "module": "RCLM refinement"
+}

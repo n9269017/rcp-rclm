@@ -1,0 +1,222 @@
+{
+  "abilities": [
+    [
+      "a0"
+    ],
+    [
+      "a0",
+      "a1"
+    ],
+    [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ]
+  ],
+  "artifact_type": "RCP-Batch13R-B-controlled-canonical-reference-artifact",
+  "description": "Controlled executable canonical appended-module RCP reference artifact for Batch 13R-B Milestone 1/2A.",
+  "external_mechanization": {
+    "certificate_supplied": false,
+    "required_for_machine_checked_claim": "MechCert_{0:N}^{RCP,can}",
+    "status": "not_proof_assistant_mechanized_in_this_artifact"
+  },
+  "goal_object": "constant U_can with identity transport",
+  "horizon_N": 3,
+  "pcs": [
+    {
+      "checker_result": 1,
+      "cost": {
+        "checker_steps": 18,
+        "residual_checks": 12
+      },
+      "goal_identity_drift": 0,
+      "phi": "append_alpha_1",
+      "reality_containment": {
+        "beta_env": 0,
+        "contained": true,
+        "envelope": "singleton_true_law",
+        "epsilon_env": 0
+      },
+      "recovery": "trace_last_qubit",
+      "residuals": {
+        "budget": 0,
+        "cand": 0,
+        "goal": 0,
+        "persist": 0,
+        "proof": 0,
+        "seed": 0,
+        "sound": 0,
+        "trans": 0,
+        "trust": 0,
+        "unc": 0,
+        "ver": 0,
+        "world": 0
+      },
+      "t": 0,
+      "update": "AppendMem(a1)"
+    },
+    {
+      "checker_result": 1,
+      "cost": {
+        "checker_steps": 18,
+        "residual_checks": 12
+      },
+      "goal_identity_drift": 0,
+      "phi": "append_alpha_1",
+      "reality_containment": {
+        "beta_env": 0,
+        "contained": true,
+        "envelope": "singleton_true_law",
+        "epsilon_env": 0
+      },
+      "recovery": "trace_last_qubit",
+      "residuals": {
+        "budget": 0,
+        "cand": 0,
+        "goal": 0,
+        "persist": 0,
+        "proof": 0,
+        "seed": 0,
+        "sound": 0,
+        "trans": 0,
+        "trust": 0,
+        "unc": 0,
+        "ver": 0,
+        "world": 0
+      },
+      "t": 1,
+      "update": "AppendMem(a2)"
+    },
+    {
+      "checker_result": 1,
+      "cost": {
+        "checker_steps": 18,
+        "residual_checks": 12
+      },
+      "goal_identity_drift": 0,
+      "phi": "append_alpha_1",
+      "reality_containment": {
+        "beta_env": 0,
+        "contained": true,
+        "envelope": "singleton_true_law",
+        "epsilon_env": 0
+      },
+      "recovery": "trace_last_qubit",
+      "residuals": {
+        "budget": 0,
+        "cand": 0,
+        "goal": 0,
+        "persist": 0,
+        "proof": 0,
+        "seed": 0,
+        "sound": 0,
+        "trans": 0,
+        "trust": 0,
+        "unc": 0,
+        "ver": 0,
+        "world": 0
+      },
+      "t": 2,
+      "update": "AppendMem(a3)"
+    }
+  ],
+  "states": {
+    "rho": [
+      [
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ]
+    ],
+    "sigma": [
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      [
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666
+      ]
+    ]
+  },
+  "tractability": {
+    "dense_cost_bound": 12288,
+    "diagonal_table_cost_bound": 48
+  },
+  "true_environment": "deterministic finite append_alpha_1 transition law",
+  "trust_anchor": "frozen checker node C_star, not modified by updates",
+  "updates": [
+    "AppendMem(a1)",
+    "AppendMem(a2)",
+    "AppendMem(a3)"
+  ]
+}

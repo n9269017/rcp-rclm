@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the two companion papers and this repository release."
+title: "RCP/RCLM Robust Reflective Successor Verification: Papers, Lean Proofs, and Controlled Artifacts"
+version: "v1.0-preprint"
+date-released: "2026-06-29"
+authors:
+  - family-names: "TODO-FAMILY-NAME"
+    given-names: "TODO-GIVEN-NAME"
+url: "https://github.com/TODO-USERNAME/rcp-rclm-successor-verification"
+license: "MIT AND CC-BY-4.0"
+keywords:
+  - recursive self-improvement
+  - robust reflective successor theorem
+  - AI safety
+  - formal verification
+  - Lean 4
+  - proof-carrying successor packets
+  - recursive coherence preservation
+preferred-citation:
+  type: article
+  title: "Recursive Coherence Preservation / RCP-II: A Domain-Relative Robust Reflective Successor Theorem for Certified RCP Seed-Library Classes"
+  authors:
+    - family-names: "TODO-FAMILY-NAME"
+      given-names: "TODO-GIVEN-NAME"
+  year: 2026
+  notes: "Paper I of a two-paper package; companion architecture paper and Lean/artifact repository included in the release."

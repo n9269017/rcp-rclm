@@ -1,0 +1,11 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0) notice
+
+Papers and documentation in this repository are intended to be distributed under CC BY 4.0.
+The canonical legal code is available from Creative Commons at:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Required attribution should include:
+- the two companion paper titles,
+- the repository release version,
+- the authors,
+- and the release DOI or URL once available.

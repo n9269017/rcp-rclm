@@ -1,0 +1,13 @@
+# License
+
+This repository uses a dual-license structure:
+
+- Papers and documentation: Creative Commons Attribution 4.0 International (CC BY 4.0).
+- Lean code, Python checkers, scripts, and artifact utilities: MIT License.
+
+See:
+
+- `LICENSES/MIT.txt`
+- `LICENSES/CC-BY-4.0-NOTICE.txt`
+
+If you reuse material from the papers or documentation, cite the two companion papers and the repository release. If you reuse code or scripts, preserve the MIT notice.

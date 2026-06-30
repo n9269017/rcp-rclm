@@ -1,0 +1,50 @@
+﻿{
+    "certificate":  "MechCert_RCP_RCLM_can",
+    "proof_assistant":  "Lean 4",
+    "scope":  "canonical finite Batch-13R/M3-Min reference witness and checker/refinement core",
+    "not_scope":  "entire RCP/RCLM theorem stack; arbitrary trained-system RSI; empirical deployment validation",
+    "build_status":  "success",
+    "build_command":  "lake build",
+    "individual_check_commands":  [
+                                      "lake env lean .\\\\RcpRclmMech\\\\RCP.lean",
+                                      "lake build RcpRclmMech.RCP",
+                                      "lake env lean .\\\\RcpRclmMech\\\\RCLM.lean",
+                                      "lake build RcpRclmMech.RCLM",
+                                      "lake env lean .\\\\RcpRclmMech.lean",
+                                      "lake build"
+                                  ],
+    "theorems_checked":  [
+                             "RcpRclmMech.RCP.relative_entropy_append_same",
+                             "RcpRclmMech.RCP.canonical_recovery_exact",
+                             "RcpRclmMech.RCP.strict_ability_expansion",
+                             "RcpRclmMech.RCP.canonical_residuals_nonpositive",
+                             "RcpRclmMech.RCP.checker_soundness_rcp",
+                             "RcpRclmMech.RCP.build_refsv_entry",
+                             "RcpRclmMech.RCP.checked_packet_implies_sv_domain",
+                             "RcpRclmMech.RCP.artifact_theorem",
+                             "RcpRclmMech.RCLM.checker_soundness_rclm",
+                             "RcpRclmMech.RCLM.rclm_forget_refines_rcp",
+                             "RcpRclmMech.RCLM.build_refsv_entry",
+                             "RcpRclmMech.RCLM.checked_packet_implies_sv_domain",
+                             "RcpRclmMech.RCLM.artifact_theorem"
+                         ],
+    "source_hashes":  {
+                          "RcpRclmMech.lean":  "b20270dc499f179f3f3830bd6b98ce6bf5d3ce3fc0f1c3f62a46d3e758dd5d9f",
+                          "RcpRclmMech/RCP.lean":  "992e609c27b9eefd67b33db3116d79957a13b381de023eb039f7e7845e978ff4",
+                          "RcpRclmMech/RCLM.lean":  "a8956c09f86a7a90978b95f940e73c1918edc7ada05a6dd08b67bf6bb0361e72",
+                          "lakefile.toml":  "e89c1c248eafb0bac362d3dee401bc4f05dd36c560a55d4b8f71ec3df567a3c3",
+                          "lean-toolchain":  "55fd3a6a977cf9896df7a6aef25a2abeaceaa7dd7b85ec74340ecaecaf9e9415"
+                      },
+    "artifact_hashes":  {
+                            "artifacts/rcp_batch13rB_controlled_artifact.json":  "b4b7fcd794fddd9726b8893665263e739384d6164780da496ef2ab3b787616bb",
+                            "artifacts/rclm_batch13rB_controlled_artifact.json":  "6190bdd429b5ebd4f9a6d0b5da78121ae2daaf486d2f9e07c3f8ef971b7d3124"
+                        },
+    "build_log_hashes":  {
+                             "cert/build_logs/RCP_build.log":  null,
+                             "cert/build_logs/RCP_module_build.log":  "a82354575a0b175f09a0518280f78161b42e487970f10d43e0959e22d5b6c1d3",
+                             "cert/build_logs/RCLM_build.log":  null,
+                             "cert/build_logs/RCLM_module_build.log":  "389798f35a1f30e660cf1fd4353547ed0811a11211c2f02d9d05fab37c309270",
+                             "cert/build_logs/Root_build.log":  null,
+                             "cert/build_logs/lake_build_library.log":  "bc80e35e5201f743e734f8f00d169b81f0f67184aab02ca9cca693ce6dc1cf7f"
+                         }
+}

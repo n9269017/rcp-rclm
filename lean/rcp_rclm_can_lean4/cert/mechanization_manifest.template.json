@@ -1,0 +1,51 @@
+{
+  "certificate": "MechCert_RCP_RCLM_can",
+  "proof_assistant": "Lean 4",
+  "build_status": "pending_external_library_build",
+  "build_command": "lake build (library-only; no executable target)",
+  "scope": "canonical finite Batch-13R-A/B/C reference witness, checker soundness, controlled-artifact theorem, and RCLM-to-RCP refinement",
+  "not_scope": [
+    "entire RCP/RCLM theorem stack",
+    "arbitrary trained-system RSI",
+    "full Lobian or Vingean reflection",
+    "frontier-scale empirical validation",
+    "general quantum relative entropy over matrices"
+  ],
+  "theorems_checked": {
+    "RCP": [
+      "relative_entropy_append_same",
+      "canonical_recovery_exact",
+      "strict_ability_expansion",
+      "canonical_residuals_nonpositive",
+      "checker_soundness_rcp",
+      "build_refsv_entry",
+      "checked_packet_implies_sv_domain",
+      "artifact_theorem",
+      "canonical_reality_containment"
+    ],
+    "RCLM": [
+      "checker_soundness_rclm",
+      "rclm_forget_refines_rcp",
+      "build_refsv_entry",
+      "checked_packet_implies_sv_domain",
+      "artifact_theorem",
+      "canonical_rclm_reality_containment"
+    ]
+  },
+  "source_hashes_sha256": {
+    "RcpRclmMech/RCP.lean": "992e609c27b9eefd67b33db3116d79957a13b381de023eb039f7e7845e978ff4",
+    "RcpRclmMech/RCLM.lean": "a8956c09f86a7a90978b95f940e73c1918edc7ada05a6dd08b67bf6bb0361e72",
+    "RcpRclmMech/Main.lean": "0b0fa16fd60be44b423868796625055713f0c9763fc51d97d422178d2ca0ffaa",
+    "lakefile.toml": "e89c1c248eafb0bac362d3dee401bc4f05dd36c560a55d4b8f71ec3df567a3c3",
+    "lean-toolchain": "55fd3a6a977cf9896df7a6aef25a2abeaceaa7dd7b85ec74340ecaecaf9e9415",
+    "cert/theorem_map.md": "f6c5193eac61bb05cf5a2eb492ea4a5f1c0af8fd8b17492aad66d7507c0922c6"
+  },
+  "artifact_hashes_sha256": {
+    "artifacts/rcp_batch13rB_controlled_artifact.json": "b4b7fcd794fddd9726b8893665263e739384d6164780da496ef2ab3b787616bb",
+    "artifacts/rcp_batch13rB_controlled_artifact_runlog.json": "64cf0eae1ff37709385ebbcf5d6ebe6e25f459d385ae7653738a69715e6ea07f",
+    "artifacts/rclm_batch13rB_controlled_artifact.json": "6190bdd429b5ebd4f9a6d0b5da78121ae2daaf486d2f9e07c3f8ef971b7d3124",
+    "artifacts/rclm_batch13rB_controlled_artifact_runlog.json": "99d4b5c2791958c16358292502c68b53c164fb0848e0e6ab532a108ac93761a8"
+  },
+  "paper_mapping_file": "cert/theorem_map.md",
+  "build_transcript_hash_sha256": null
+}

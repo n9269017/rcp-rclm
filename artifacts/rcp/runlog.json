@@ -1,0 +1,14 @@
+{
+  "N": 3,
+  "artifact_hash": "f6d150801f94292ab20fbb74305e9259531039ce38dea0fbe0a92da5057016f8",
+  "explicit_residuals_checked": true,
+  "external_mechanization_certificate_supplied": false,
+  "final_dimension": 16,
+  "mechanization_status": "not_proof_assistant_mechanized_in_this_artifact",
+  "non_noop_updates": true,
+  "ok": true,
+  "relative_entropy_base2": 0.3333333333333333,
+  "singleton_reality_containment": true,
+  "steps_checked": 3,
+  "strict_ability_expansion": true
+}

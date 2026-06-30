@@ -1,0 +1,15 @@
+{
+  "N": 3,
+  "artifact_hash": "48c8764085230d4a79adf222592758695c85f6befa8fa09527e78ac09ebcf157",
+  "artifact_type": "RCLM-Batch13R-B-controlled-executable-reference-system",
+  "explicit_rclm_residuals_checked": true,
+  "external_mechanization_certificate_supplied": false,
+  "final_dimension": 16,
+  "mechanization_status": "not_proof_assistant_mechanized_in_this_artifact",
+  "non_noop_updates": true,
+  "ok": true,
+  "relative_entropy_base2": 0.3333333333333333,
+  "singleton_reality_containment": true,
+  "steps_checked": 3,
+  "strict_ability_expansion": true
+}
