@@ -1,0 +1,10 @@
+{
+  "N": 5,
+  "benchmark": "local-mini-terminal-v0",
+  "certificate_preserved": true,
+  "mode": "rclm",
+  "ok": true,
+  "scores_hash": "cfe96068358d36535e6857d757cf9d34d82e1a8275b47d4b4cc0b21b7ef3c0cf",
+  "seed": 0,
+  "sidecar_hash": "273a01498bae019b52dfb84e2e9f9415b7c4a9f11fd1a3a29bfac677e432d427"
+}

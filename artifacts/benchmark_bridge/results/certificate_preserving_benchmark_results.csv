@@ -1,0 +1,3 @@
+benchmark,benchmark_version,mode,N,seed,baseline_score,successor_score,delta,certificate_preserved,accepted_updates,generated_candidates,rejected_candidates,all_pcs_checked,checker_passed,LECert_status,benchmark_status,ok
+local-mini-terminal-v0,0.1.0,rcp,5,0,0.2857142857142857,0.6428571428571429,0.3571428571428572,True,5,45,40,True,True,FullPass,FullPass,True
+local-mini-terminal-v0,0.1.0,rclm,5,0,0.2857142857142857,0.6428571428571429,0.3571428571428572,True,5,45,40,True,True,FullPass,FullPass,True

@@ -1,0 +1,17 @@
+{
+  "all_cases_ok": true,
+  "benchmark": "local-mini-terminal-v0",
+  "benchmark_version": "0.1.0",
+  "certificate_preservation_rate": 1.0,
+  "certificate_preserved_cases": 2,
+  "improved_cases": 2,
+  "improvement_rate": 1.0,
+  "max_delta": 0.3571428571428572,
+  "mean_delta": 0.3571428571428572,
+  "min_delta": 0.3571428571428572,
+  "ok_cases": 2,
+  "pass_rate": 1.0,
+  "suite_name": "B9-Bridge Phase 3: certificate-preserving local benchmark bridge",
+  "suite_scope": "Controlled local benchmark sidecar for certificate-preserving score deltas; not a public external benchmark.",
+  "total_cases": 2
+}

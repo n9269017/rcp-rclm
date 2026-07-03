@@ -1,0 +1,294 @@
+{
+  "baseline": {
+    "abilities": [
+      "a0"
+    ],
+    "benchmark": "local-mini-terminal-v0",
+    "benchmark_version": "0.1.0",
+    "score": 0.2857142857142857,
+    "solved_count": 4,
+    "solved_weight": 4.0,
+    "task_results": [
+      {
+        "available_abilities_contains_required": true,
+        "description": "Load the canonical diagonal state and report its protected-pair role.",
+        "required_ability": "a0",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "base-000",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Replay the predecessor verifier identity check.",
+        "required_ability": "a0",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "base-001",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Read the baseline ability ledger and report a0.",
+        "required_ability": "a0",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "base-002",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Confirm the no-hidden-update baseline condition.",
+        "required_ability": "a0",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "base-003",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a1) to satisfy a memory-extension query.",
+        "required_ability": "a1",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-001",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a2) to retrieve the second extension witness.",
+        "required_ability": "a2",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-002",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a3) to reconstruct a recovery-ledger step.",
+        "required_ability": "a3",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-003",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a4) to emit a certificate-sidecar hash.",
+        "required_ability": "a4",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-004",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a5) to summarize a closed-loop runlog.",
+        "required_ability": "a5",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-005",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a6) to summarize an additional successor packet.",
+        "required_ability": "a6",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-006",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a7) to enumerate an added witness-library item.",
+        "required_ability": "a7",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-007",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a8) to report an added rejection-test class.",
+        "required_ability": "a8",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-008",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a9) to report an added tractability row.",
+        "required_ability": "a9",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-009",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a10) to solve the final local successor task.",
+        "required_ability": "a10",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-010",
+        "weight": 1.0
+      }
+    ],
+    "tasks": 14,
+    "total_weight": 14.0
+  },
+  "delta": {
+    "baseline_score": 0.2857142857142857,
+    "delta": 0.3571428571428572,
+    "delta_positive": true,
+    "relative_improvement": 1.2500000000000002,
+    "successor_score": 0.6428571428571429
+  },
+  "successor": {
+    "abilities": [
+      "a0",
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+    ],
+    "benchmark": "local-mini-terminal-v0",
+    "benchmark_version": "0.1.0",
+    "score": 0.6428571428571429,
+    "solved_count": 9,
+    "solved_weight": 9.0,
+    "task_results": [
+      {
+        "available_abilities_contains_required": true,
+        "description": "Load the canonical diagonal state and report its protected-pair role.",
+        "required_ability": "a0",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "base-000",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Replay the predecessor verifier identity check.",
+        "required_ability": "a0",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "base-001",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Read the baseline ability ledger and report a0.",
+        "required_ability": "a0",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "base-002",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Confirm the no-hidden-update baseline condition.",
+        "required_ability": "a0",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "base-003",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Use AppendMem(a1) to satisfy a memory-extension query.",
+        "required_ability": "a1",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "succ-001",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Use AppendMem(a2) to retrieve the second extension witness.",
+        "required_ability": "a2",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "succ-002",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Use AppendMem(a3) to reconstruct a recovery-ledger step.",
+        "required_ability": "a3",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "succ-003",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Use AppendMem(a4) to emit a certificate-sidecar hash.",
+        "required_ability": "a4",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "succ-004",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": true,
+        "description": "Use AppendMem(a5) to summarize a closed-loop runlog.",
+        "required_ability": "a5",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": true,
+        "task_id": "succ-005",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a6) to summarize an additional successor packet.",
+        "required_ability": "a6",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-006",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a7) to enumerate an added witness-library item.",
+        "required_ability": "a7",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-007",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a8) to report an added rejection-test class.",
+        "required_ability": "a8",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-008",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a9) to report an added tractability row.",
+        "required_ability": "a9",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-009",
+        "weight": 1.0
+      },
+      {
+        "available_abilities_contains_required": false,
+        "description": "Use AppendMem(a10) to solve the final local successor task.",
+        "required_ability": "a10",
+        "scope": "controlled-local-certificate-preserving-mini-task",
+        "solved": false,
+        "task_id": "succ-010",
+        "weight": 1.0
+      }
+    ],
+    "tasks": 14,
+    "total_weight": 14.0
+  }
+}
