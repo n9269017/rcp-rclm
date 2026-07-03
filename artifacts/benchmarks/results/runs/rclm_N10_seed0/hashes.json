@@ -1,0 +1,8 @@
+{
+  "accepted_trajectory_sha256": "60829c561990b426c8fc456c6b0774e10877612dbfa53d37cb2bac96aa4af934",
+  "artifact_sha256": "cd1492f5503ded7b05d17453072d1e056c68d53c534084e645b7b1692e50d09c",
+  "pcs_sha256": "d9602ad5ba395d906bebd0fa45a40f3935b3db13edaaa01edad77218296c3c77",
+  "rejected_candidates_sha256": "abeadbd777b8a5c24a9f255e1d28c6b2bd56b25dd67a1f5a7ea4c41bfb967c31",
+  "runlog_sha256": "7ea27ae5190c29475df7c3f4c4e8ae2dfa5cc6b70e31bd4c046bfe870d8031c0",
+  "states_sha256": "ba58e5dd4d5420f01fd898fc5d88c3ee013c8f5eef42b89ce15c39ef2999e6f6"
+}

@@ -1,0 +1,120 @@
+{
+  "N": 10,
+  "accepted_candidates": 10,
+  "all_accepted_steps_checked": true,
+  "all_residuals_nonpositive": true,
+  "artifact_hash": "1035ab4d30e640774c026ddd81ed8301c52d6f2e2bb3c1b281129aa3ab412830",
+  "claim_boundary": {
+    "broad_learned_agent_entry": false,
+    "empirical_deployment_validation": false,
+    "finite_closed_loop_certified_reference_instance": true,
+    "full_autonomous_rsi": false
+  },
+  "closed_loop_candidate_search": true,
+  "final_dimension": 2048,
+  "generated_candidates": 90,
+  "goal_identity_drift": 0.0,
+  "loop_type": "closed_loop_certified_successor_generation",
+  "mode": "rcp",
+  "non_loss_recovery_preserved_each_step": true,
+  "ok": true,
+  "rejected_candidates": 80,
+  "seed": 0,
+  "singleton_reality_containment": true,
+  "static_predeclared_json_path": false,
+  "step_summaries": [
+    {
+      "accepted_candidate_hash": "c014472ed52bc7241239a6e4fa88726cd4114c3ccd2503a28feb40b8cb87de68",
+      "accepted_update": "AppendMem(a1)",
+      "candidates_generated": 9,
+      "new_ability": "a1",
+      "rejected_count": 8,
+      "successor_dimension": 4,
+      "t": 0
+    },
+    {
+      "accepted_candidate_hash": "8d1debb3a140280981018c3f6b63de3c8e9e72e8f4448941164096ef3f93f95e",
+      "accepted_update": "AppendMem(a2)",
+      "candidates_generated": 9,
+      "new_ability": "a2",
+      "rejected_count": 8,
+      "successor_dimension": 8,
+      "t": 1
+    },
+    {
+      "accepted_candidate_hash": "08920d363cc1d338d61ec0cc7bd7ccfaefc55068760699fdb79445edd1e75dec",
+      "accepted_update": "AppendMem(a3)",
+      "candidates_generated": 9,
+      "new_ability": "a3",
+      "rejected_count": 8,
+      "successor_dimension": 16,
+      "t": 2
+    },
+    {
+      "accepted_candidate_hash": "b2ae4e1335bd9277732eb8fa160d893e1345b83e3338c4b5498182eff4fc81f5",
+      "accepted_update": "AppendMem(a4)",
+      "candidates_generated": 9,
+      "new_ability": "a4",
+      "rejected_count": 8,
+      "successor_dimension": 32,
+      "t": 3
+    },
+    {
+      "accepted_candidate_hash": "86bd7a76eee29705c95f1a6255d2b76cb2a0e4400ed238373893f79652551ae2",
+      "accepted_update": "AppendMem(a5)",
+      "candidates_generated": 9,
+      "new_ability": "a5",
+      "rejected_count": 8,
+      "successor_dimension": 64,
+      "t": 4
+    },
+    {
+      "accepted_candidate_hash": "73f2a6955e0d71121b3d340993b8dfaf7be39905e462850a7bb19ff6ede3b0cf",
+      "accepted_update": "AppendMem(a6)",
+      "candidates_generated": 9,
+      "new_ability": "a6",
+      "rejected_count": 8,
+      "successor_dimension": 128,
+      "t": 5
+    },
+    {
+      "accepted_candidate_hash": "e703b3a54ac8b474f6f9fb44ab2a05a4ba98742fec887f7765794e0e0773e39c",
+      "accepted_update": "AppendMem(a7)",
+      "candidates_generated": 9,
+      "new_ability": "a7",
+      "rejected_count": 8,
+      "successor_dimension": 256,
+      "t": 6
+    },
+    {
+      "accepted_candidate_hash": "872508dc176925c7625aff2353d107b821a79cc67f123c88390639b7203d613a",
+      "accepted_update": "AppendMem(a8)",
+      "candidates_generated": 9,
+      "new_ability": "a8",
+      "rejected_count": 8,
+      "successor_dimension": 512,
+      "t": 7
+    },
+    {
+      "accepted_candidate_hash": "1a4bc3a5a2c084a8dbb3826182a89300a1dc49e54c9e715d5a6a6de3f8939cdf",
+      "accepted_update": "AppendMem(a9)",
+      "candidates_generated": 9,
+      "new_ability": "a9",
+      "rejected_count": 8,
+      "successor_dimension": 1024,
+      "t": 8
+    },
+    {
+      "accepted_candidate_hash": "bc5e2d5cf7664405a463d261b88e676761e67afd10a3e1be34ffe3739ec932b6",
+      "accepted_update": "AppendMem(a10)",
+      "candidates_generated": 9,
+      "new_ability": "a10",
+      "rejected_count": 8,
+      "successor_dimension": 2048,
+      "t": 9
+    }
+  ],
+  "strict_ability_expansion_each_step": true,
+  "timestamp_utc": "2026-07-03T03:48:26.070942+00:00",
+  "trajectory_hash": "5907030ea409224cbecb409cf99291549ed63950591e9aa02e0223e04d36ba17"
+}

@@ -1,0 +1,36 @@
+{
+  "acceptance_rate": 0.1111111111111111,
+  "accepted_candidates": 120,
+  "all_cases_ok": true,
+  "by_mode": {
+    "rclm": {
+      "acceptance_rate": 0.1111111111111111,
+      "accepted": 60,
+      "cases": 12,
+      "generated": 540,
+      "mean_internal_certification_score": 1.0,
+      "pass_rate": 1.0,
+      "passed": 12,
+      "rejected": 480
+    },
+    "rcp": {
+      "acceptance_rate": 0.1111111111111111,
+      "accepted": 60,
+      "cases": 12,
+      "generated": 540,
+      "mean_internal_certification_score": 1.0,
+      "pass_rate": 1.0,
+      "passed": 12,
+      "rejected": 480
+    }
+  },
+  "failed_cases": 0,
+  "generated_candidates": 1080,
+  "mean_internal_certification_score": 1.0,
+  "pass_rate": 1.0,
+  "passed_cases": 24,
+  "rejected_candidates": 960,
+  "suite_name": "B9-Bridge Phase 1: internal closed-loop RSI benchmark suite",
+  "suite_scope": "Internal RCP/RCLM closed-loop certification benchmark, not an external public AI-agent benchmark.",
+  "total_cases": 24
+}
