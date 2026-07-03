@@ -1,0 +1,3 @@
+benchmark,benchmark_version,benchmark_kind,mode,N,seed,baseline_score,successor_score,delta,delta_positive,certificate_preserved,LECert_status,checker_passed,ok,benchmark_status
+local-terminal-public-subset-v0,0.1.0,controlled_public_style_terminal_subset,rcp,5,0,0.14285714285714285,0.8571428571428571,0.7142857142857142,True,True,FullPass,True,True,ControlledPublicStyleSubsetCertificatePreservingImprovement
+local-terminal-public-subset-v0,0.1.0,controlled_public_style_terminal_subset,rclm,5,0,0.14285714285714285,0.8571428571428571,0.7142857142857142,True,True,FullPass,True,True,ControlledPublicStyleSubsetCertificatePreservingImprovement

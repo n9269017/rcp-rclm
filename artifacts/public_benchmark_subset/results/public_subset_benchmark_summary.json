@@ -1,0 +1,16 @@
+{
+  "all_cases_ok": true,
+  "certificate_preservation_rate": 1.0,
+  "certificate_preserved_cases": 2,
+  "improved_cases": 2,
+  "improvement_rate": 1.0,
+  "max_delta": 0.7142857142857142,
+  "mean_delta": 0.7142857142857142,
+  "min_delta": 0.7142857142857142,
+  "official_public_benchmark_cases": 0,
+  "ok_cases": 2,
+  "pass_rate": 1.0,
+  "suite_name": "B9-Bridge Phase 4: public benchmark subset adapter",
+  "suite_scope": "Certificate-preserving public-subset-compatible sidecars; default local-terminal-public-subset-v0 is controlled, not official public benchmark.",
+  "total_cases": 2
+}

@@ -1,0 +1,21 @@
+{
+  "benchmark": "SWE-bench-Verified-subset-example",
+  "benchmark_version": "fill-me",
+  "benchmark_kind": "official_public_subset_score_manifest",
+  "official_public_benchmark": true,
+  "mode": "rclm",
+  "N": 5,
+  "seed": 0,
+  "baseline_score": 0.0,
+  "successor_score": 0.0,
+  "accepted_updates": 5,
+  "task_ids": [
+    "fill-task-id-1"
+  ],
+  "scoring_harness": "fill-official-harness-and-version",
+  "score_artifact_paths": [
+    "path/to/official_score_output.json"
+  ],
+  "certificate_bundle_path": "artifacts/benchmark_bridge/results/rclm_N5_seed0_local-mini-terminal-v0/certificate_bundle.json",
+  "runlog_hash": "fill-runlog-hash"
+}

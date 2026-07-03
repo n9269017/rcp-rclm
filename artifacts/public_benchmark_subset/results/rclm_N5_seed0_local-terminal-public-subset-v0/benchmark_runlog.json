@@ -1,0 +1,8 @@
+{
+  "N": 5,
+  "benchmark": "local-terminal-public-subset-v0",
+  "mode": "rclm",
+  "ok": true,
+  "phase": "B9-Bridge Phase 4: public benchmark subset adapter",
+  "seed": 0
+}

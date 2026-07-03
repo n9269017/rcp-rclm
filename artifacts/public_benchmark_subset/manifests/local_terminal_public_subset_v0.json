@@ -1,0 +1,7 @@
+{
+  "benchmark": "local-terminal-public-subset-v0",
+  "benchmark_version": "0.1.0",
+  "benchmark_kind": "controlled_public_style_terminal_subset",
+  "official_public_benchmark": false,
+  "claim_boundary": "Not an official public benchmark."
+}

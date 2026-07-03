@@ -1,0 +1,118 @@
+{
+  "baseline": [
+    {
+      "name": "read baseline state",
+      "points": 1.0,
+      "required_ability": "a0",
+      "score": 1.0,
+      "solved": true,
+      "task_id": "ltps-001"
+    },
+    {
+      "name": "verify appended memory a1",
+      "points": 1.0,
+      "required_ability": "a1",
+      "score": 0.0,
+      "solved": false,
+      "task_id": "ltps-002"
+    },
+    {
+      "name": "replay certificate packet a2",
+      "points": 1.0,
+      "required_ability": "a2",
+      "score": 0.0,
+      "solved": false,
+      "task_id": "ltps-003"
+    },
+    {
+      "name": "reject positive residual a3",
+      "points": 1.0,
+      "required_ability": "a3",
+      "score": 0.0,
+      "solved": false,
+      "task_id": "ltps-004"
+    },
+    {
+      "name": "summarize successor trajectory a4",
+      "points": 1.0,
+      "required_ability": "a4",
+      "score": 0.0,
+      "solved": false,
+      "task_id": "ltps-005"
+    },
+    {
+      "name": "audit terminal-style patch a5",
+      "points": 1.0,
+      "required_ability": "a5",
+      "score": 0.0,
+      "solved": false,
+      "task_id": "ltps-006"
+    },
+    {
+      "name": "beyond-prefix challenge a6",
+      "points": 1.0,
+      "required_ability": "a6",
+      "score": 0.0,
+      "solved": false,
+      "task_id": "ltps-007"
+    }
+  ],
+  "successor": [
+    {
+      "name": "read baseline state",
+      "points": 1.0,
+      "required_ability": "a0",
+      "score": 1.0,
+      "solved": true,
+      "task_id": "ltps-001"
+    },
+    {
+      "name": "verify appended memory a1",
+      "points": 1.0,
+      "required_ability": "a1",
+      "score": 1.0,
+      "solved": true,
+      "task_id": "ltps-002"
+    },
+    {
+      "name": "replay certificate packet a2",
+      "points": 1.0,
+      "required_ability": "a2",
+      "score": 1.0,
+      "solved": true,
+      "task_id": "ltps-003"
+    },
+    {
+      "name": "reject positive residual a3",
+      "points": 1.0,
+      "required_ability": "a3",
+      "score": 1.0,
+      "solved": true,
+      "task_id": "ltps-004"
+    },
+    {
+      "name": "summarize successor trajectory a4",
+      "points": 1.0,
+      "required_ability": "a4",
+      "score": 1.0,
+      "solved": true,
+      "task_id": "ltps-005"
+    },
+    {
+      "name": "audit terminal-style patch a5",
+      "points": 1.0,
+      "required_ability": "a5",
+      "score": 1.0,
+      "solved": true,
+      "task_id": "ltps-006"
+    },
+    {
+      "name": "beyond-prefix challenge a6",
+      "points": 1.0,
+      "required_ability": "a6",
+      "score": 0.0,
+      "solved": false,
+      "task_id": "ltps-007"
+    }
+  ]
+}

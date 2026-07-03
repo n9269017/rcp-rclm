@@ -1,0 +1,94 @@
+{
+  "LECert_status": "FullPass",
+  "N": 5,
+  "accepted_updates": 5,
+  "all_pcs_checked": true,
+  "artifact_hash": "b31af864575ada5f00cac19675f26d9d1d09ecc74f3a015002fee635ad04a2da",
+  "baseline_score": 0.14285714285714285,
+  "benchmark": "local-terminal-public-subset-v0",
+  "benchmark_kind": "controlled_public_style_terminal_subset",
+  "benchmark_status": "ControlledPublicStyleSubsetCertificatePreservingImprovement",
+  "benchmark_version": "0.1.0",
+  "certificate_hash": "e8a3d98314af56d6f98b5da94082a0d7446b669efe501ab77a3030453fb4b6dc",
+  "certificate_preserved": true,
+  "checker_passed": true,
+  "checker_summary": {
+    "N": 5,
+    "artifact_hash": "32718b4742e291007373683ede91152e8e63382baffb74c065b5e3ce6abe4f7b",
+    "checker_exit_code_phase4": 0,
+    "checker_stderr_phase4": "",
+    "explicit_residuals_checked": true,
+    "external_mechanization_certificate_supplied": false,
+    "final_dimension": 64,
+    "mechanization_status": "not_proof_assistant_mechanized_in_this_artifact",
+    "non_noop_updates": true,
+    "ok": true,
+    "relative_entropy_base2": 0.3333333333333333,
+    "singleton_reality_containment": true,
+    "steps_checked": 5,
+    "strict_ability_expansion": true
+  },
+  "claim_boundary": {
+    "arbitrary_trained_system_entry": false,
+    "b10_external_public_benchmark_full_pass": false,
+    "certificate_preserving_score_delta": true,
+    "controlled_public_style_subset": true,
+    "frontier_scale_validation": false,
+    "full_autonomous_rsi": false,
+    "mle_bench_full_run": false,
+    "official_public_benchmark_claim": false,
+    "phase4_public_subset_adapter": true,
+    "re_bench_full_run": false,
+    "swe_bench_verified_full_run": false,
+    "terminal_bench_full_run": false,
+    "webarena_full_run": false
+  },
+  "delta": 0.7142857142857142,
+  "delta_positive": true,
+  "generated_candidates": 45,
+  "learned_entry_fullpass": true,
+  "mode": "rcp",
+  "official_public_benchmark": false,
+  "ok": true,
+  "paths": {
+    "accepted_trajectory": "artifacts/learned_entry/results/rcp_N5_seed0/closed_loop_run/accepted_trajectory.json",
+    "closed_loop_runlog": "artifacts/learned_entry/results/rcp_N5_seed0/closed_loop_run/closed_loop_runlog.json",
+    "generated_artifact": "artifacts/learned_entry/results/rcp_N5_seed0/closed_loop_run/generated_artifact.json",
+    "hashes": "artifacts/learned_entry/results/rcp_N5_seed0/closed_loop_run/hashes.json",
+    "lecert": "artifacts/learned_entry/results/rcp_N5_seed0/lecert.json"
+  },
+  "phase": "B9-Bridge Phase 4: public benchmark subset adapter",
+  "public_benchmark_notes": [
+    "Controlled public-style subset only; not an official SWE-bench/Terminal-Bench/RE-Bench/MLE-bench/WebArena run.",
+    "Use external-manifest mode to wrap official subset scores after running official harnesses."
+  ],
+  "rejected_candidates": 40,
+  "relative_delta": 5.0,
+  "runlog_hash": "e499b34c782944b69a96df1ac3db5532945e4bbe60469c5046ba6eab24d40dba",
+  "schema": "RCP/RCLM-B9-Bridge-Phase4-public-benchmark-subset-sidecar-v0.1",
+  "schema_errors": [],
+  "schema_valid": true,
+  "score_trace": {
+    "M_0": 0.14285714285714285,
+    "M_5": 0.8571428571428571
+  },
+  "seed": 0,
+  "sidecar_created_utc": "2026-07-03T10:57:56.398199+00:00",
+  "successor_score": 0.8571428571428571,
+  "task_summary": {
+    "baseline": {
+      "max_points": 7.0,
+      "raw_points": 1.0,
+      "score": 0.14285714285714285,
+      "tasks_solved": 1,
+      "tasks_total": 7
+    },
+    "successor": {
+      "max_points": 7.0,
+      "raw_points": 6.0,
+      "score": 0.8571428571428571,
+      "tasks_solved": 6,
+      "tasks_total": 7
+    }
+  }
+}
