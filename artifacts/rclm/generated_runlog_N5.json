@@ -1,0 +1,25 @@
+{
+  "artifact_hash": "50951ad57376a92be17f9bb5c7a1797f50a9bfb6335a851fe9804a7f5a81d38b",
+  "closed_loop_candidate_search": false,
+  "explicit_residuals_generated": true,
+  "final_dimension": 64,
+  "generated_at_utc": "2026-07-03T00:12:33.207419+00:00",
+  "generator": "open_loop_arbitrary_horizon_generator_v1",
+  "horizon_N": 5,
+  "mode": "rclm",
+  "non_loss_recovery_preserved_by_construction": true,
+  "ok": true,
+  "output_artifact": "artifacts\\rclm\\generated_artifact_N5.json",
+  "relative_entropy_base2_initial": 0.3333333333333333,
+  "result": "arbitrary_finite_prefix_reference_construction",
+  "singleton_reality_containment": true,
+  "steps_generated": 5,
+  "strict_ability_expansion_each_step": true,
+  "updates_generated": [
+    "AppendMem(a1)",
+    "AppendMem(a2)",
+    "AppendMem(a3)",
+    "AppendMem(a4)",
+    "AppendMem(a5)"
+  ]
+}
