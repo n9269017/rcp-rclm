@@ -1,0 +1,32 @@
+{
+  "benchmark_backend": "direct_evalplus_micro",
+  "dataset": "humaneval",
+  "task_ids": [
+    "HumanEval/0"
+  ],
+  "samples_path": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_leaderboard\\results\\rclm_N5_seed0_humaneval_1tasks\\baseline_samples.jsonl",
+  "mini": true,
+  "base_only": false,
+  "per_test_timeout": 2.0,
+  "max_plus_tests": 50,
+  "passed_tasks": 0,
+  "total_tasks": 1,
+  "score": 0.0,
+  "task_results": [
+    {
+      "task_id": "HumanEval/0",
+      "entry_point": "has_close_elements",
+      "passed": false,
+      "num_base_inputs": 7,
+      "num_plus_inputs_used": 50,
+      "tests_run_until_first_failure": 1,
+      "first_failure": {
+        "ok": false,
+        "got_repr": "None",
+        "expected_repr": "True",
+        "input_repr": "[[1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3]",
+        "kind": "base"
+      }
+    }
+  ]
+}

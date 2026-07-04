@@ -1,0 +1,66 @@
+{
+  "benchmark_backend": "direct_evalplus_micro",
+  "dataset": "humaneval",
+  "task_ids": [
+    "HumanEval/0",
+    "HumanEval/1",
+    "HumanEval/2",
+    "HumanEval/3",
+    "HumanEval/4"
+  ],
+  "samples_path": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_leaderboard\\results\\rclm_N5_seed0_humaneval_5tasks\\successor_samples.jsonl",
+  "mini": true,
+  "base_only": false,
+  "per_test_timeout": 2.0,
+  "max_plus_tests": 50,
+  "passed_tasks": 5,
+  "total_tasks": 5,
+  "score": 1.0,
+  "task_results": [
+    {
+      "task_id": "HumanEval/0",
+      "entry_point": "has_close_elements",
+      "passed": true,
+      "num_base_inputs": 7,
+      "num_plus_inputs_used": 50,
+      "tests_run_until_first_failure": 57,
+      "first_failure": null
+    },
+    {
+      "task_id": "HumanEval/1",
+      "entry_point": "separate_paren_groups",
+      "passed": true,
+      "num_base_inputs": 4,
+      "num_plus_inputs_used": 50,
+      "tests_run_until_first_failure": 54,
+      "first_failure": null
+    },
+    {
+      "task_id": "HumanEval/2",
+      "entry_point": "truncate_number",
+      "passed": true,
+      "num_base_inputs": 3,
+      "num_plus_inputs_used": 50,
+      "tests_run_until_first_failure": 53,
+      "first_failure": null
+    },
+    {
+      "task_id": "HumanEval/3",
+      "entry_point": "below_zero",
+      "passed": true,
+      "num_base_inputs": 6,
+      "num_plus_inputs_used": 50,
+      "tests_run_until_first_failure": 56,
+      "first_failure": null
+    },
+    {
+      "task_id": "HumanEval/4",
+      "entry_point": "mean_absolute_deviation",
+      "passed": true,
+      "num_base_inputs": 3,
+      "num_plus_inputs_used": 50,
+      "tests_run_until_first_failure": 53,
+      "first_failure": null
+    }
+  ]
+}
