@@ -1,0 +1,560 @@
+{
+  "baseline": {
+    "benchmark_backend": "direct_evalplus_micro",
+    "dataset": "humaneval",
+    "task_ids": [
+      "HumanEval/0",
+      "HumanEval/1",
+      "HumanEval/2",
+      "HumanEval/3",
+      "HumanEval/4",
+      "HumanEval/5",
+      "HumanEval/6",
+      "HumanEval/7",
+      "HumanEval/8",
+      "HumanEval/9",
+      "HumanEval/10",
+      "HumanEval/11",
+      "HumanEval/12",
+      "HumanEval/13",
+      "HumanEval/14",
+      "HumanEval/15",
+      "HumanEval/16",
+      "HumanEval/17",
+      "HumanEval/18",
+      "HumanEval/19"
+    ],
+    "samples_path": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_leaderboard\\results\\rclm_N5_seed0_humaneval_20tasks\\baseline_samples.jsonl",
+    "mini": true,
+    "base_only": false,
+    "per_test_timeout": 2.0,
+    "max_plus_tests": 50,
+    "passed_tasks": 0,
+    "total_tasks": 20,
+    "score": 0.0,
+    "task_results": [
+      {
+        "task_id": "HumanEval/0",
+        "entry_point": "has_close_elements",
+        "passed": false,
+        "num_base_inputs": 7,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "True",
+          "input_repr": "[[1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/1",
+        "entry_point": "separate_paren_groups",
+        "passed": false,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "['(()())', '((()))', '()', '((())()())']",
+          "input_repr": "['(()()) ((())) () ((())()())']",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/2",
+        "entry_point": "truncate_number",
+        "passed": false,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "0.5",
+          "input_repr": "[3.5]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/3",
+        "entry_point": "below_zero",
+        "passed": false,
+        "num_base_inputs": 6,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "False",
+          "input_repr": "[[]]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/4",
+        "entry_point": "mean_absolute_deviation",
+        "passed": false,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "0.6666666666666666",
+          "input_repr": "[[1.0, 2.0, 3.0]]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/5",
+        "entry_point": "intersperse",
+        "passed": false,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "[]",
+          "input_repr": "[[], 7]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/6",
+        "entry_point": "parse_nested_parens",
+        "passed": false,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "[2, 3, 1, 3]",
+          "input_repr": "['(()()) ((())) () ((())()())']",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/7",
+        "entry_point": "filter_by_substring",
+        "passed": false,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "[]",
+          "input_repr": "[[], 'john']",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/8",
+        "entry_point": "sum_product",
+        "passed": false,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "(0, 1)",
+          "input_repr": "[[]]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/9",
+        "entry_point": "rolling_max",
+        "passed": false,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "[]",
+          "input_repr": "[[]]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/10",
+        "entry_point": "make_palindrome",
+        "passed": false,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "''",
+          "input_repr": "['']",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/11",
+        "entry_point": "string_xor",
+        "passed": false,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "'010010'",
+          "input_repr": "['111000', '101010']",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/12",
+        "entry_point": "longest",
+        "passed": false,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 2,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "'x'",
+          "input_repr": "[['x', 'y', 'z']]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/13",
+        "entry_point": "greatest_common_divisor",
+        "passed": false,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "1",
+          "input_repr": "[3, 7]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/14",
+        "entry_point": "all_prefixes",
+        "passed": false,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "[]",
+          "input_repr": "['']",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/15",
+        "entry_point": "string_sequence",
+        "passed": false,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "'0'",
+          "input_repr": "[0]",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/16",
+        "entry_point": "count_distinct_characters",
+        "passed": false,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "0",
+          "input_repr": "['']",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/17",
+        "entry_point": "parse_music",
+        "passed": false,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "[]",
+          "input_repr": "['']",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/18",
+        "entry_point": "how_many_times",
+        "passed": false,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "0",
+          "input_repr": "['', 'x']",
+          "kind": "base"
+        }
+      },
+      {
+        "task_id": "HumanEval/19",
+        "entry_point": "sort_numbers",
+        "passed": false,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 1,
+        "first_failure": {
+          "ok": false,
+          "got_repr": "None",
+          "expected_repr": "''",
+          "input_repr": "['']",
+          "kind": "base"
+        }
+      }
+    ]
+  },
+  "successor": {
+    "benchmark_backend": "direct_evalplus_micro",
+    "dataset": "humaneval",
+    "task_ids": [
+      "HumanEval/0",
+      "HumanEval/1",
+      "HumanEval/2",
+      "HumanEval/3",
+      "HumanEval/4",
+      "HumanEval/5",
+      "HumanEval/6",
+      "HumanEval/7",
+      "HumanEval/8",
+      "HumanEval/9",
+      "HumanEval/10",
+      "HumanEval/11",
+      "HumanEval/12",
+      "HumanEval/13",
+      "HumanEval/14",
+      "HumanEval/15",
+      "HumanEval/16",
+      "HumanEval/17",
+      "HumanEval/18",
+      "HumanEval/19"
+    ],
+    "samples_path": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_leaderboard\\results\\rclm_N5_seed0_humaneval_20tasks\\successor_samples.jsonl",
+    "mini": true,
+    "base_only": false,
+    "per_test_timeout": 2.0,
+    "max_plus_tests": 50,
+    "passed_tasks": 20,
+    "total_tasks": 20,
+    "score": 1.0,
+    "task_results": [
+      {
+        "task_id": "HumanEval/0",
+        "entry_point": "has_close_elements",
+        "passed": true,
+        "num_base_inputs": 7,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 57,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/1",
+        "entry_point": "separate_paren_groups",
+        "passed": true,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 54,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/2",
+        "entry_point": "truncate_number",
+        "passed": true,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 53,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/3",
+        "entry_point": "below_zero",
+        "passed": true,
+        "num_base_inputs": 6,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 56,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/4",
+        "entry_point": "mean_absolute_deviation",
+        "passed": true,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 53,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/5",
+        "entry_point": "intersperse",
+        "passed": true,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 53,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/6",
+        "entry_point": "parse_nested_parens",
+        "passed": true,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 53,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/7",
+        "entry_point": "filter_by_substring",
+        "passed": true,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 54,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/8",
+        "entry_point": "sum_product",
+        "passed": true,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 55,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/9",
+        "entry_point": "rolling_max",
+        "passed": true,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 54,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/10",
+        "entry_point": "make_palindrome",
+        "passed": true,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 55,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/11",
+        "entry_point": "string_xor",
+        "passed": true,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 53,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/12",
+        "entry_point": "longest",
+        "passed": true,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 53,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/13",
+        "entry_point": "greatest_common_divisor",
+        "passed": true,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 54,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/14",
+        "entry_point": "all_prefixes",
+        "passed": true,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 53,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/15",
+        "entry_point": "string_sequence",
+        "passed": true,
+        "num_base_inputs": 3,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 53,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/16",
+        "entry_point": "count_distinct_characters",
+        "passed": true,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 55,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/17",
+        "entry_point": "parse_music",
+        "passed": true,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 55,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/18",
+        "entry_point": "how_many_times",
+        "passed": true,
+        "num_base_inputs": 4,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 54,
+        "first_failure": null
+      },
+      {
+        "task_id": "HumanEval/19",
+        "entry_point": "sort_numbers",
+        "passed": true,
+        "num_base_inputs": 5,
+        "num_plus_inputs_used": 50,
+        "tests_run_until_first_failure": 55,
+        "first_failure": null
+      }
+    ]
+  },
+  "delta": {
+    "baseline_score": 0.0,
+    "successor_score": 1.0,
+    "delta": 1.0,
+    "improved": true
+  }
+}
