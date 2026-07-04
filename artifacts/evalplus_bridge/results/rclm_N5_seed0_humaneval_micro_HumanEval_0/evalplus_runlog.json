@@ -1,0 +1,30 @@
+{
+  "created_utc": "2026-07-04T01:55:57.801823+00:00",
+  "suite_name": "Phase 4B-alt: Docker-free EvalPlus/HumanEval+ certificate-preserving benchmark sidecar",
+  "mode": "rclm",
+  "N": 5,
+  "seed": 0,
+  "dataset": "humaneval",
+  "task_ids": [
+    "HumanEval/0"
+  ],
+  "mini": true,
+  "base_only": false,
+  "diagnostic_oracle": true,
+  "no_run": false,
+  "evaluation_backend": "direct_evalplus_micro",
+  "per_test_timeout": 2.0,
+  "max_plus_tests": 50,
+  "baseline_run": {
+    "returncode": 0,
+    "backend": "direct_evalplus_micro",
+    "result_file": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_bridge\\results\\rclm_N5_seed0_humaneval_micro_HumanEval_0\\baseline_direct_eval_results.json",
+    "score": 0.0
+  },
+  "successor_run": {
+    "returncode": 0,
+    "backend": "direct_evalplus_micro",
+    "result_file": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_bridge\\results\\rclm_N5_seed0_humaneval_micro_HumanEval_0\\successor_direct_eval_results.json",
+    "score": 1.0
+  }
+}

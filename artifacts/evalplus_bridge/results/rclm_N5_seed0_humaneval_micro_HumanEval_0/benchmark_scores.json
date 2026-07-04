@@ -1,0 +1,16 @@
+{
+  "baseline": {
+    "samples": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_bridge\\results\\rclm_N5_seed0_humaneval_micro_HumanEval_0\\baseline_samples.jsonl",
+    "score": 0.0
+  },
+  "successor": {
+    "samples": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_bridge\\results\\rclm_N5_seed0_humaneval_micro_HumanEval_0\\successor_samples.jsonl",
+    "score": 1.0
+  },
+  "delta": {
+    "baseline_score": 0.0,
+    "successor_score": 1.0,
+    "delta": 1.0,
+    "improved": true
+  }
+}

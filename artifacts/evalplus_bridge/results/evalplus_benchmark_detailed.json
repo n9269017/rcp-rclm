@@ -1,0 +1,22 @@
+[
+  {
+    "case_dir": "artifacts/evalplus_bridge/results/rclm_N5_seed0_humaneval_micro_HumanEval_0",
+    "benchmark": "EvalPlus-HumanEval+-micro",
+    "dataset": "humaneval",
+    "task_ids": [
+      "HumanEval/0"
+    ],
+    "mode": "rclm",
+    "N": 5,
+    "seed": 0,
+    "baseline_score": 0.0,
+    "successor_score": 1.0,
+    "delta": 1.0,
+    "improved": true,
+    "certificate_preserved": true,
+    "diagnostic_oracle": true,
+    "claimable_non_oracle_improvement": false,
+    "evaluation_backend": "direct_evalplus_micro",
+    "ok": true
+  }
+]

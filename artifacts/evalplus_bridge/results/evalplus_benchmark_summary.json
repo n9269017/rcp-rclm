@@ -1,0 +1,13 @@
+{
+  "suite_name": "Phase 4B-alt: Docker-free EvalPlus/HumanEval+ certificate-preserving benchmark sidecar",
+  "suite_scope": "Public HumanEval+/EvalPlus-data micro sidecar. Direct backend is Docker-free and local; not an official leaderboard score.",
+  "total_cases": 1,
+  "ok_cases": 1,
+  "pass_rate": 1.0,
+  "improved_cases": 1,
+  "certificate_preserved_cases": 1,
+  "claimable_non_oracle_improvement_cases": 0,
+  "diagnostic_oracle_cases": 1,
+  "mean_delta": 1.0,
+  "all_cases_ok": true
+}
