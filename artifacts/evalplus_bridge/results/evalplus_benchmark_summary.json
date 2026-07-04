@@ -6,8 +6,8 @@
   "pass_rate": 1.0,
   "improved_cases": 1,
   "certificate_preserved_cases": 1,
-  "claimable_non_oracle_improvement_cases": 0,
-  "diagnostic_oracle_cases": 1,
+  "claimable_non_oracle_improvement_cases": 1,
+  "diagnostic_oracle_cases": 0,
   "mean_delta": 1.0,
   "all_cases_ok": true
 }

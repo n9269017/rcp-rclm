@@ -14,8 +14,8 @@
     "delta": 1.0,
     "improved": true,
     "certificate_preserved": true,
-    "diagnostic_oracle": true,
-    "claimable_non_oracle_improvement": false,
+    "diagnostic_oracle": false,
+    "claimable_non_oracle_improvement": true,
     "evaluation_backend": "direct_evalplus_micro",
     "ok": true
   }
