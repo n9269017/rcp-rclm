@@ -98,7 +98,8 @@ def read_jsonl(path: Path) -> List[Dict[str, Any]]:
 
 
 RUNNER = """
-import json, pickle, sys, traceback
+import json, math, pickle, sys, traceback
+
 
 def call(fn, inp):
     if isinstance(inp, dict):
@@ -107,28 +108,73 @@ def call(fn, inp):
         return fn(*inp)
     return fn(inp)
 
+
+def humaneval32_semantic_check(got, inp):
+    # HumanEval/32 asks for any root x such that poly(xs, x) = 0.
+    # Exact equality against the canonical solution's floating output is too
+    # strict for this task, because many valid numerical solvers return a
+    # different approximation to the same root.  Use the public semantic root
+    # predicate: finite real x and |poly(xs, x)| < 1e-4.
+    if not isinstance(got, (int, float)) or not math.isfinite(float(got)):
+        return {
+            'ok': False,
+            'semantic_predicate': 'HumanEval/32 root residual < 1e-4',
+            'reason': 'returned value is not a finite real number',
+            'got_repr': repr(got),
+        }
+
+    if isinstance(inp, (list, tuple)) and len(inp) == 1 and isinstance(inp[0], (list, tuple)):
+        xs = list(inp[0])
+    elif isinstance(inp, (list, tuple)):
+        xs = list(inp)
+    else:
+        return {
+            'ok': False,
+            'semantic_predicate': 'HumanEval/32 root residual < 1e-4',
+            'reason': 'input is not a coefficient list or singleton coefficient-list argument',
+            'input_repr': repr(inp)[:500],
+            'got_repr': repr(got),
+        }
+
+    residual = abs(sum(coeff * math.pow(float(got), i) for i, coeff in enumerate(xs)))
+    ok = residual < 1e-4
+    return {
+        'ok': ok,
+        'semantic_predicate': 'HumanEval/32 root residual < 1e-4',
+        'got_repr': repr(got),
+        'residual': residual,
+        'residual_bound': 1e-4,
+    }
+
+
 payload = pickle.loads(sys.stdin.buffer.read())
 solution = payload['solution']
 canonical = payload['canonical']
 entry_point = payload['entry_point']
 inp = payload['input']
+task_id = payload.get('task_id')
 try:
-    ns_c = {}
-    exec(canonical, ns_c)
-    expected = call(ns_c[entry_point], inp)
     ns_s = {}
     exec(solution, ns_s)
     got = call(ns_s[entry_point], inp)
-    ok = (got == expected)
-    print(json.dumps({'ok': ok, 'got_repr': repr(got), 'expected_repr': repr(expected)}))
+
+    if task_id == 'HumanEval/32' and entry_point == 'find_zero':
+        result = humaneval32_semantic_check(got, inp)
+        print(json.dumps(result))
+    else:
+        ns_c = {}
+        exec(canonical, ns_c)
+        expected = call(ns_c[entry_point], inp)
+        ok = (got == expected)
+        print(json.dumps({'ok': ok, 'got_repr': repr(got), 'expected_repr': repr(expected)}))
 except BaseException as e:
     print(json.dumps({'ok': False, 'error': repr(e), 'traceback': traceback.format_exc()[-2000:]}))
     sys.exit(0)
 """
 
 
-def run_one_test(solution: str, canonical: str, entry_point: str, inp: Any, timeout: float) -> Dict[str, Any]:
-    payload = pickle.dumps({"solution": solution, "canonical": canonical, "entry_point": entry_point, "input": inp})
+def run_one_test(solution: str, canonical: str, entry_point: str, inp: Any, timeout: float, task_id: Optional[str] = None) -> Dict[str, Any]:
+    payload = pickle.dumps({"solution": solution, "canonical": canonical, "entry_point": entry_point, "input": inp, "task_id": task_id})
     try:
         proc = subprocess.run([sys.executable, "-c", RUNNER], input=payload, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
     except subprocess.TimeoutExpired:
@@ -181,7 +227,7 @@ def direct_eval_samples(*, dataset: str, samples_path: Path, task_ids: List[str]
         task_ok = True
         test_details = []
         for kind, inp in all_inputs:
-            r = run_one_test(solution, canonical, entry_point, inp, per_test_timeout)
+            r = run_one_test(solution, canonical, entry_point, inp, per_test_timeout, task_id=task_id)
             r["kind"] = kind
             test_details.append(r)
             if not r.get("ok"):

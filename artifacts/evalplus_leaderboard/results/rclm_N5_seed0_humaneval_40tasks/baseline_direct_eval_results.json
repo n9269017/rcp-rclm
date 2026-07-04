@@ -541,8 +541,9 @@
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
+        "semantic_predicate": "HumanEval/32 root residual < 1e-4",
+        "reason": "returned value is not a finite real number",
         "got_repr": "None",
-        "expected_repr": "-5.0",
         "input_repr": "[[-10, -2]]",
         "kind": "base"
       }

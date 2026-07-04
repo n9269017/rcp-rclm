@@ -12,8 +12,8 @@
   "N": 5,
   "seed": 0,
   "baseline_score": 0.0,
-  "successor_score": 0.925,
-  "delta": 0.925,
+  "successor_score": 1.0,
+  "delta": 1.0,
   "improved": true,
   "certificate_preserved": true,
   "accepted_updates": 5,
@@ -31,12 +31,12 @@
   ],
   "score_artifact_hashes": {
     "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_40tasks/baseline_samples.jsonl": "d696530cfd5e55a0a5b15582152ae1c7922d84cc01f9aa9cd9ca59eefa10dcc7",
-    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_40tasks/successor_samples.jsonl": "09dbffaf4f418864a12703428c268d2d6d03c503bfb43570912982387ae48cb5",
+    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_40tasks/successor_samples.jsonl": "ba87631baf9eb73bfa02df40b00364a269b684759872419bc279ac79448ef6da",
     "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_40tasks/task_ids.txt": "b40aa274dd3b9c890fc72ae3b1543872a011f94087049f08d8b41ae3d51759d7",
-    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_40tasks/baseline_direct_eval_results.json": "57cbabc9f8ce1bc6c9545dce4923ef2c2ad7996cb1dcd4231c61fe3afd10a5dc",
-    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_40tasks/successor_direct_eval_results.json": "9613688bb971cc5455394a25d050d47e6f9d0d154108ada652927a92f6553b04"
+    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_40tasks/baseline_direct_eval_results.json": "afa2f9e2b47b788ac47e40d5b97eea64b201f5b48cea8e76e6438293f304113a",
+    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_40tasks/successor_direct_eval_results.json": "03016f63e6d49544a52e12ef4e8d30478bed1635a5f94dc373b6d9773dc27a39"
   },
-  "runlog_hash": "9613688bb971cc5455394a25d050d47e6f9d0d154108ada652927a92f6553b04",
+  "runlog_hash": "03016f63e6d49544a52e12ef4e8d30478bed1635a5f94dc373b6d9773dc27a39",
   "certificate_hash": "d0ce1862760190caed165d08c0269d362121133b4bd1f3dabf47bba23dbfab52",
   "diagnostic_oracle": false,
   "claimable_non_oracle_improvement": true,
@@ -62,7 +62,7 @@
   "mini": true,
   "base_only": false,
   "max_plus_tests": 50,
-  "created_utc": "2026-07-04T05:22:39.754031+00:00",
+  "created_utc": "2026-07-04T16:30:18.697916+00:00",
   "ok": true,
   "schema_errors": [],
   "schema_valid": true
