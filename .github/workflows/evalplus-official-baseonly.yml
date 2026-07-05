@@ -1,0 +1,131 @@
+name: Phase 4C-E Official EvalPlus Base HumanEval
+
+on:
+  workflow_dispatch:
+
+jobs:
+  evalplus-base-human-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install EvalPlus
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install evalplus
+
+      - name: Validate successor samples
+        run: |
+          python artifacts/evalplus_leaderboard/validate_evalplus_samples.py \
+            --dataset humaneval \
+            --samples artifacts/evalplus_leaderboard/successor_samples_non_oracle_HumanEval_164.jsonl \
+            --task-list artifacts/evalplus_leaderboard/tasks/humaneval/humaneval_task_ids_164.txt
+
+      - name: Rebuild direct base-only sidecar for certificate link
+        run: |
+          python artifacts/evalplus_leaderboard/certified_evalplus_suite_harness.py \
+            --dataset humaneval \
+            --mode rclm \
+            --N 5 \
+            --seed 0 \
+            --task-list artifacts/evalplus_leaderboard/tasks/humaneval/humaneval_task_ids_164.txt \
+            --successor-samples artifacts/evalplus_leaderboard/successor_samples_non_oracle_HumanEval_164.jsonl \
+            --base-only \
+            --mini
+
+          rm -rf artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks_baseonly
+          cp -r artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks \
+                artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks_baseonly
+
+      - name: Build official EvalPlus samples
+        run: |
+          python artifacts/evalplus_official/build_official_evalplus_samples.py \
+            --dataset humaneval \
+            --successor-source artifacts/evalplus_leaderboard/successor_samples_non_oracle_HumanEval_164.jsonl \
+            --task-list artifacts/evalplus_leaderboard/tasks/humaneval/humaneval_task_ids_164.txt
+
+      - name: Run official EvalPlus base-only baseline
+        run: |
+          python artifacts/evalplus_official/run_evalplus_official.py \
+            --dataset humaneval \
+            --samples artifacts/evalplus_official/samples/humaneval_164_baseline_empty.jsonl \
+            --label humaneval164_baseline_baseonly \
+            --base-only
+
+      - name: Run official EvalPlus base-only successor
+        run: |
+          python artifacts/evalplus_official/run_evalplus_official.py \
+            --dataset humaneval \
+            --samples artifacts/evalplus_official/samples/humaneval_164_successor.jsonl \
+            --label humaneval164_successor_baseonly \
+            --base-only
+
+      - name: Wrap official EvalPlus base-only result
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          def parse_pass_at_1(stdout_path: str) -> float:
+              text = Path(stdout_path).read_text(encoding="utf-8", errors="replace")
+              matches = re.findall(r"pass@1\s*:\s*([0-9]+(?:\.[0-9]+)?)", text)
+              if not matches:
+                  print(text)
+                  raise SystemExit(f"Could not parse pass@1 from {stdout_path}")
+              return float(matches[-1])
+
+          baseline_stdout = "artifacts/evalplus_official/results/humaneval164_baseline_baseonly/evalplus_stdout.txt"
+          successor_stdout = "artifacts/evalplus_official/results/humaneval164_successor_baseonly/evalplus_stdout.txt"
+
+          baseline_score = parse_pass_at_1(baseline_stdout)
+          successor_score = parse_pass_at_1(successor_stdout)
+
+          print("baseline_score =", baseline_score)
+          print("successor_score =", successor_score)
+          print("delta =", successor_score - baseline_score)
+
+          if successor_score < 1.0:
+              print("Successor official base-only score is not 1.0; dumping successor stderr.")
+              print(Path("artifacts/evalplus_official/results/humaneval164_successor_baseonly/evalplus_stderr.txt").read_text(encoding="utf-8", errors="replace")[-4000:])
+              raise SystemExit(1)
+
+          cmd = [
+              sys.executable,
+              "artifacts/evalplus_official/wrap_official_evalplus_results.py",
+              "--dataset", "humaneval",
+              "--mode", "rclm",
+              "--N", "5",
+              "--seed", "0",
+              "--label", "humaneval164_official_baseonly",
+              "--score-kind", "base",
+              "--baseline-score", str(baseline_score),
+              "--successor-score", str(successor_score),
+              "--baseline-run", "artifacts/evalplus_official/results/humaneval164_baseline_baseonly/official_evalplus_runlog.json",
+              "--successor-run", "artifacts/evalplus_official/results/humaneval164_successor_baseonly/official_evalplus_runlog.json",
+              "--direct-sidecar", "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks_baseonly/leaderboard_prep_sidecar.json",
+          ]
+          subprocess.run(cmd, check=True)
+
+          sidecar = Path("artifacts/evalplus_official/results/humaneval164_official_baseonly/official_evalplus_certificate_sidecar.json")
+          print(sidecar.read_text(encoding="utf-8"))
+          PY
+
+      - name: Upload official EvalPlus artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase4c-e-official-evalplus-baseonly-results
+          path: |
+            artifacts/evalplus_official/results/**
+            artifacts/evalplus_official/samples/**
+            artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks_baseonly/**
