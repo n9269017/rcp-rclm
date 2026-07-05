@@ -109,6 +109,14 @@ def call(fn, inp):
     return fn(inp)
 
 
+def safe_repr(x):
+    try:
+        return repr(x)
+    except ValueError as e:
+        if isinstance(x, int):
+            return f"<int bit_length={x.bit_length()}>"
+        return f"<repr failed: {type(e).__name__}>"
+
 def humaneval32_semantic_check(got, inp):
     # HumanEval/32 asks for any root x such that poly(xs, x) = 0.
     # Exact equality against the canonical solution's floating output is too
@@ -120,7 +128,7 @@ def humaneval32_semantic_check(got, inp):
             'ok': False,
             'semantic_predicate': 'HumanEval/32 root residual < 1e-4',
             'reason': 'returned value is not a finite real number',
-            'got_repr': repr(got),
+            'got_repr': safe_repr(got),
         }
 
     if isinstance(inp, (list, tuple)) and len(inp) == 1 and isinstance(inp[0], (list, tuple)):
@@ -133,7 +141,7 @@ def humaneval32_semantic_check(got, inp):
             'semantic_predicate': 'HumanEval/32 root residual < 1e-4',
             'reason': 'input is not a coefficient list or singleton coefficient-list argument',
             'input_repr': repr(inp)[:500],
-            'got_repr': repr(got),
+            'got_repr': safe_repr(got),
         }
 
     residual = abs(sum(coeff * math.pow(float(got), i) for i, coeff in enumerate(xs)))
@@ -141,7 +149,7 @@ def humaneval32_semantic_check(got, inp):
     return {
         'ok': ok,
         'semantic_predicate': 'HumanEval/32 root residual < 1e-4',
-        'got_repr': repr(got),
+        'got_repr': safe_repr(got),
         'residual': residual,
         'residual_bound': 1e-4,
     }
@@ -166,7 +174,15 @@ try:
         exec(canonical, ns_c)
         expected = call(ns_c[entry_point], inp)
         ok = (got == expected)
-        print(json.dumps({'ok': ok, 'got_repr': repr(got), 'expected_repr': repr(expected)}))
+        def safe_repr(x):
+            try:
+                return repr(x)
+            except ValueError as e:
+                if isinstance(x, int):
+                    return f"<int bit_length={x.bit_length()}>"
+                return f"<repr failed: {type(e).__name__}>"
+        
+        print(json.dumps({'ok': ok, 'got_repr': safe_repr(got), 'expected_repr': safe_repr(expected)}))
 except BaseException as e:
     print(json.dumps({'ok': False, 'error': repr(e), 'traceback': traceback.format_exc()[-2000:]}))
     sys.exit(0)
