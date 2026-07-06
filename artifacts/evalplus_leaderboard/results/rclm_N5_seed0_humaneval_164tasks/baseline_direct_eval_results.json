@@ -169,7 +169,7 @@
   ],
   "samples_path": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_leaderboard\\results\\rclm_N5_seed0_humaneval_164tasks\\baseline_samples.jsonl",
   "mini": true,
-  "base_only": false,
+  "base_only": true,
   "per_test_timeout": 2.0,
   "max_plus_tests": 50,
   "passed_tasks": 0,
@@ -181,7 +181,7 @@
       "entry_point": "has_close_elements",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -196,7 +196,7 @@
       "entry_point": "separate_paren_groups",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -211,7 +211,7 @@
       "entry_point": "truncate_number",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -226,7 +226,7 @@
       "entry_point": "below_zero",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -241,7 +241,7 @@
       "entry_point": "mean_absolute_deviation",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -256,7 +256,7 @@
       "entry_point": "intersperse",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -271,7 +271,7 @@
       "entry_point": "parse_nested_parens",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -286,7 +286,7 @@
       "entry_point": "filter_by_substring",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -301,7 +301,7 @@
       "entry_point": "sum_product",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -316,7 +316,7 @@
       "entry_point": "rolling_max",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -331,7 +331,7 @@
       "entry_point": "make_palindrome",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -346,7 +346,7 @@
       "entry_point": "string_xor",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -361,7 +361,7 @@
       "entry_point": "longest",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 2,
       "first_failure": {
         "ok": false,
@@ -376,7 +376,7 @@
       "entry_point": "greatest_common_divisor",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -391,7 +391,7 @@
       "entry_point": "all_prefixes",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -406,7 +406,7 @@
       "entry_point": "string_sequence",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -421,7 +421,7 @@
       "entry_point": "count_distinct_characters",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -436,7 +436,7 @@
       "entry_point": "parse_music",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -451,7 +451,7 @@
       "entry_point": "how_many_times",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -466,7 +466,7 @@
       "entry_point": "sort_numbers",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -481,7 +481,7 @@
       "entry_point": "find_closest_elements",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -496,7 +496,7 @@
       "entry_point": "rescale_to_unit",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -511,7 +511,7 @@
       "entry_point": "filter_integers",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -526,7 +526,7 @@
       "entry_point": "strlen",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -541,7 +541,7 @@
       "entry_point": "largest_divisor",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -556,7 +556,7 @@
       "entry_point": "factorize",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -571,7 +571,7 @@
       "entry_point": "remove_duplicates",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -586,7 +586,7 @@
       "entry_point": "flip_case",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -601,7 +601,7 @@
       "entry_point": "concatenate",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -616,7 +616,7 @@
       "entry_point": "filter_by_prefix",
       "passed": false,
       "num_base_inputs": 2,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -631,7 +631,7 @@
       "entry_point": "get_positive",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -646,7 +646,7 @@
       "entry_point": "is_prime",
       "passed": false,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -661,7 +661,7 @@
       "entry_point": "find_zero",
       "passed": false,
       "num_base_inputs": 100,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -677,7 +677,7 @@
       "entry_point": "sort_third",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -692,7 +692,7 @@
       "entry_point": "unique",
       "passed": false,
       "num_base_inputs": 1,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -707,7 +707,7 @@
       "entry_point": "max_element",
       "passed": false,
       "num_base_inputs": 2,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -722,7 +722,7 @@
       "entry_point": "fizz_buzz",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -737,7 +737,7 @@
       "entry_point": "sort_even",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -752,7 +752,7 @@
       "entry_point": "decode_cyclic",
       "passed": false,
       "num_base_inputs": 100,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -767,7 +767,7 @@
       "entry_point": "prime_fib",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 2,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -782,7 +782,7 @@
       "entry_point": "triples_sum_to_zero",
       "passed": false,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -797,7 +797,7 @@
       "entry_point": "car_race_collision",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -812,7 +812,7 @@
       "entry_point": "incr_list",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -827,7 +827,7 @@
       "entry_point": "pairs_sum_to_zero",
       "passed": false,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -842,7 +842,7 @@
       "entry_point": "change_base",
       "passed": false,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -857,7 +857,7 @@
       "entry_point": "triangle_area",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -872,7 +872,7 @@
       "entry_point": "fib4",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -887,7 +887,7 @@
       "entry_point": "median",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -902,7 +902,7 @@
       "entry_point": "is_palindrome",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -917,7 +917,7 @@
       "entry_point": "modp",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -932,7 +932,7 @@
       "entry_point": "decode_shift",
       "passed": false,
       "num_base_inputs": 100,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -947,7 +947,7 @@
       "entry_point": "remove_vowels",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -962,7 +962,7 @@
       "entry_point": "below_threshold",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -977,7 +977,7 @@
       "entry_point": "add",
       "passed": false,
       "num_base_inputs": 105,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -992,7 +992,7 @@
       "entry_point": "same_chars",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1007,7 +1007,7 @@
       "entry_point": "fib",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 45,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1022,7 +1022,7 @@
       "entry_point": "correct_bracketing",
       "passed": false,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1037,7 +1037,7 @@
       "entry_point": "monotonic",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1052,7 +1052,7 @@
       "entry_point": "common",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1067,7 +1067,7 @@
       "entry_point": "largest_prime_factor",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1082,7 +1082,7 @@
       "entry_point": "sum_to_n",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1097,7 +1097,7 @@
       "entry_point": "correct_bracketing",
       "passed": false,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1112,7 +1112,7 @@
       "entry_point": "derivative",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1127,7 +1127,7 @@
       "entry_point": "fibfib",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1142,7 +1142,7 @@
       "entry_point": "vowels_count",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1157,7 +1157,7 @@
       "entry_point": "circular_shift",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1172,7 +1172,7 @@
       "entry_point": "digitSum",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1187,7 +1187,7 @@
       "entry_point": "fruit_distribution",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1202,7 +1202,7 @@
       "entry_point": "pluck",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1217,7 +1217,7 @@
       "entry_point": "search",
       "passed": false,
       "num_base_inputs": 25,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1232,7 +1232,7 @@
       "entry_point": "strange_sort_list",
       "passed": false,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1247,7 +1247,7 @@
       "entry_point": "triangle_area",
       "passed": false,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1262,7 +1262,7 @@
       "entry_point": "will_it_fly",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1277,7 +1277,7 @@
       "entry_point": "smallest_change",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1292,7 +1292,7 @@
       "entry_point": "total_match",
       "passed": false,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1307,7 +1307,7 @@
       "entry_point": "is_multiply_prime",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1322,7 +1322,7 @@
       "entry_point": "is_simple_power",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1337,7 +1337,7 @@
       "entry_point": "iscube",
       "passed": false,
       "num_base_inputs": 16,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1352,7 +1352,7 @@
       "entry_point": "hex_key",
       "passed": false,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1367,7 +1367,7 @@
       "entry_point": "decimal_to_binary",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1382,7 +1382,7 @@
       "entry_point": "is_happy",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1397,7 +1397,7 @@
       "entry_point": "numerical_letter_grade",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1412,7 +1412,7 @@
       "entry_point": "prime_length",
       "passed": false,
       "num_base_inputs": 16,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1427,7 +1427,7 @@
       "entry_point": "starts_one_ends",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1442,7 +1442,7 @@
       "entry_point": "solve",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1457,7 +1457,7 @@
       "entry_point": "add",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1472,7 +1472,7 @@
       "entry_point": "anti_shuffle",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1487,7 +1487,7 @@
       "entry_point": "get_row",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1502,7 +1502,7 @@
       "entry_point": "sort_array",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1517,7 +1517,7 @@
       "entry_point": "encrypt",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1532,7 +1532,7 @@
       "entry_point": "next_smallest",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1547,7 +1547,7 @@
       "entry_point": "is_bored",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1562,7 +1562,7 @@
       "entry_point": "any_int",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1577,7 +1577,7 @@
       "entry_point": "encode",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1592,7 +1592,7 @@
       "entry_point": "skjkasdkd",
       "passed": false,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1607,7 +1607,7 @@
       "entry_point": "check_dict_case",
       "passed": false,
       "num_base_inputs": 14,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1622,7 +1622,7 @@
       "entry_point": "count_up_to",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1637,7 +1637,7 @@
       "entry_point": "multiply",
       "passed": false,
       "num_base_inputs": 16,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1652,7 +1652,7 @@
       "entry_point": "count_upper",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1667,7 +1667,7 @@
       "entry_point": "closest_integer",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1682,7 +1682,7 @@
       "entry_point": "make_a_pile",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1697,7 +1697,7 @@
       "entry_point": "words_string",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1712,7 +1712,7 @@
       "entry_point": "choose_num",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1727,7 +1727,7 @@
       "entry_point": "rounded_avg",
       "passed": false,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1742,7 +1742,7 @@
       "entry_point": "unique_digits",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1757,7 +1757,7 @@
       "entry_point": "by_length",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1772,7 +1772,7 @@
       "entry_point": "f",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1787,7 +1787,7 @@
       "entry_point": "even_odd_palindrome",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1802,7 +1802,7 @@
       "entry_point": "count_nums",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1817,7 +1817,7 @@
       "entry_point": "move_one_ball",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1832,7 +1832,7 @@
       "entry_point": "exchange",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1847,7 +1847,7 @@
       "entry_point": "histogram",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1862,7 +1862,7 @@
       "entry_point": "reverse_delete",
       "passed": false,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1877,7 +1877,7 @@
       "entry_point": "odd_count",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1892,7 +1892,7 @@
       "entry_point": "minSubArraySum",
       "passed": false,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1907,7 +1907,7 @@
       "entry_point": "max_fill",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1922,7 +1922,7 @@
       "entry_point": "sort_array",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1937,7 +1937,7 @@
       "entry_point": "select_words",
       "passed": false,
       "num_base_inputs": 14,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1952,7 +1952,7 @@
       "entry_point": "get_closest_vowel",
       "passed": false,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1967,7 +1967,7 @@
       "entry_point": "match_parens",
       "passed": false,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1982,7 +1982,7 @@
       "entry_point": "maximum",
       "passed": false,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -1997,7 +1997,7 @@
       "entry_point": "solution",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2012,7 +2012,7 @@
       "entry_point": "add_elements",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2027,7 +2027,7 @@
       "entry_point": "get_odd_collatz",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2042,7 +2042,7 @@
       "entry_point": "valid_date",
       "passed": false,
       "num_base_inputs": 16,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2057,7 +2057,7 @@
       "entry_point": "split_words",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2072,7 +2072,7 @@
       "entry_point": "is_sorted",
       "passed": false,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2087,7 +2087,7 @@
       "entry_point": "intersection",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2102,7 +2102,7 @@
       "entry_point": "prod_signs",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2117,7 +2117,7 @@
       "entry_point": "minPath",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2132,7 +2132,7 @@
       "entry_point": "tri",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2147,7 +2147,7 @@
       "entry_point": "digits",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2162,7 +2162,7 @@
       "entry_point": "is_nested",
       "passed": false,
       "num_base_inputs": 14,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2177,7 +2177,7 @@
       "entry_point": "sum_squares",
       "passed": false,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2192,7 +2192,7 @@
       "entry_point": "check_if_last_char_is_a_letter",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2207,7 +2207,7 @@
       "entry_point": "can_arrange",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2222,7 +2222,7 @@
       "entry_point": "largest_smallest_integers",
       "passed": false,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2237,7 +2237,7 @@
       "entry_point": "compare_one",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2252,7 +2252,7 @@
       "entry_point": "is_equal_to_sum_even",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2267,7 +2267,7 @@
       "entry_point": "special_factorial",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2282,7 +2282,7 @@
       "entry_point": "fix_spaces",
       "passed": false,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2297,7 +2297,7 @@
       "entry_point": "file_name_check",
       "passed": false,
       "num_base_inputs": 26,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2312,7 +2312,7 @@
       "entry_point": "sum_squares",
       "passed": false,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2327,7 +2327,7 @@
       "entry_point": "words_in_sentence",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2342,7 +2342,7 @@
       "entry_point": "simplify",
       "passed": false,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2357,7 +2357,7 @@
       "entry_point": "order_by_points",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2372,7 +2372,7 @@
       "entry_point": "specialFilter",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2387,7 +2387,7 @@
       "entry_point": "get_max_triples",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2402,7 +2402,7 @@
       "entry_point": "bf",
       "passed": false,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2417,7 +2417,7 @@
       "entry_point": "sorted_list_sum",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2432,7 +2432,7 @@
       "entry_point": "x_or_y",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2447,7 +2447,7 @@
       "entry_point": "double_the_difference",
       "passed": false,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2462,7 +2462,7 @@
       "entry_point": "compare",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2477,7 +2477,7 @@
       "entry_point": "Strongest_Extension",
       "passed": false,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2492,7 +2492,7 @@
       "entry_point": "cycpattern_check",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2507,7 +2507,7 @@
       "entry_point": "even_odd_count",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2522,7 +2522,7 @@
       "entry_point": "int_to_mini_roman",
       "passed": false,
       "num_base_inputs": 14,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2537,7 +2537,7 @@
       "entry_point": "right_angle_triangle",
       "passed": false,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2552,7 +2552,7 @@
       "entry_point": "find_max",
       "passed": false,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2567,7 +2567,7 @@
       "entry_point": "eat",
       "passed": false,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2582,7 +2582,7 @@
       "entry_point": "do_algebra",
       "passed": false,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2597,7 +2597,7 @@
       "entry_point": "solve",
       "passed": false,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2612,7 +2612,7 @@
       "entry_point": "string_to_md5",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,
@@ -2627,7 +2627,7 @@
       "entry_point": "generate_integers",
       "passed": false,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
+      "num_plus_inputs_used": 0,
       "tests_run_until_first_failure": 1,
       "first_failure": {
         "ok": false,

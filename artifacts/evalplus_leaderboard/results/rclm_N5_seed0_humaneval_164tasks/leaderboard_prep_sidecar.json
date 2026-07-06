@@ -31,12 +31,12 @@
   ],
   "score_artifact_hashes": {
     "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks/baseline_samples.jsonl": "2ff2673a80beea9793ea37a602ca321199a310a43e7aee5c5e92033dd9f74609",
-    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks/successor_samples.jsonl": "254092197a71c77a84068db8b0b17bab4dbfd8df493e72fa6bd1e8d3a241d8c1",
+    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks/successor_samples.jsonl": "5a89765e2c289b49192d0916a5cc346de24f58c361d0fc0148969f6599cd5aed",
     "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks/task_ids.txt": "2a4244bc90a90c8dfb56e4d4456e558473c537114d35f1c7774457b2fad14629",
-    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks/baseline_direct_eval_results.json": "c5645946abe81d9c39df152f4f0b2b65f4766c3ccc289932940e1d8ce919579c",
-    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks/successor_direct_eval_results.json": "9ac291da095832948664f8b397ba3b99f851fb8adc5bf71c0cf1d2afefd15155"
+    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks/baseline_direct_eval_results.json": "bef57f45ee9aa9b003a102ecb140b5582a6e17329b671a39718b310935917fd4",
+    "artifacts/evalplus_leaderboard/results/rclm_N5_seed0_humaneval_164tasks/successor_direct_eval_results.json": "8023b4d481bfda565b435e32cb4411b73cc8317d522c666d31c41cf0db6786fc"
   },
-  "runlog_hash": "9ac291da095832948664f8b397ba3b99f851fb8adc5bf71c0cf1d2afefd15155",
+  "runlog_hash": "8023b4d481bfda565b435e32cb4411b73cc8317d522c666d31c41cf0db6786fc",
   "certificate_hash": "d0ce1862760190caed165d08c0269d362121133b4bd1f3dabf47bba23dbfab52",
   "diagnostic_oracle": false,
   "claimable_non_oracle_improvement": true,
@@ -60,9 +60,9 @@
   },
   "evaluation_backend": "direct_evalplus_suite",
   "mini": true,
-  "base_only": false,
+  "base_only": true,
   "max_plus_tests": 50,
-  "created_utc": "2026-07-05T21:47:45.496673+00:00",
+  "created_utc": "2026-07-06T04:18:03.863185+00:00",
   "ok": true,
   "schema_errors": [],
   "schema_valid": true

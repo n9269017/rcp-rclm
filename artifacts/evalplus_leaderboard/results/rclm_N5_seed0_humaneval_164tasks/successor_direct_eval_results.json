@@ -169,7 +169,7 @@
   ],
   "samples_path": "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\evalplus_leaderboard\\results\\rclm_N5_seed0_humaneval_164tasks\\successor_samples.jsonl",
   "mini": true,
-  "base_only": false,
+  "base_only": true,
   "per_test_timeout": 2.0,
   "max_plus_tests": 50,
   "passed_tasks": 164,
@@ -181,8 +181,8 @@
       "entry_point": "has_close_elements",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -190,8 +190,8 @@
       "entry_point": "separate_paren_groups",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -199,8 +199,8 @@
       "entry_point": "truncate_number",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -208,8 +208,8 @@
       "entry_point": "below_zero",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -217,8 +217,8 @@
       "entry_point": "mean_absolute_deviation",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -226,8 +226,8 @@
       "entry_point": "intersperse",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -235,8 +235,8 @@
       "entry_point": "parse_nested_parens",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -244,8 +244,8 @@
       "entry_point": "filter_by_substring",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -253,8 +253,8 @@
       "entry_point": "sum_product",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -262,8 +262,8 @@
       "entry_point": "rolling_max",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -271,8 +271,8 @@
       "entry_point": "make_palindrome",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -280,8 +280,8 @@
       "entry_point": "string_xor",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -289,8 +289,8 @@
       "entry_point": "longest",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -298,8 +298,8 @@
       "entry_point": "greatest_common_divisor",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -307,8 +307,8 @@
       "entry_point": "all_prefixes",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -316,8 +316,8 @@
       "entry_point": "string_sequence",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -325,8 +325,8 @@
       "entry_point": "count_distinct_characters",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -334,8 +334,8 @@
       "entry_point": "parse_music",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -343,8 +343,8 @@
       "entry_point": "how_many_times",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -352,8 +352,8 @@
       "entry_point": "sort_numbers",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -361,8 +361,8 @@
       "entry_point": "find_closest_elements",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -370,8 +370,8 @@
       "entry_point": "rescale_to_unit",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -379,8 +379,8 @@
       "entry_point": "filter_integers",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -388,8 +388,8 @@
       "entry_point": "strlen",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -397,8 +397,8 @@
       "entry_point": "largest_divisor",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -406,8 +406,8 @@
       "entry_point": "factorize",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -415,8 +415,8 @@
       "entry_point": "remove_duplicates",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -424,8 +424,8 @@
       "entry_point": "flip_case",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -433,8 +433,8 @@
       "entry_point": "concatenate",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -442,8 +442,8 @@
       "entry_point": "filter_by_prefix",
       "passed": true,
       "num_base_inputs": 2,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 52,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 2,
       "first_failure": null
     },
     {
@@ -451,8 +451,8 @@
       "entry_point": "get_positive",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -460,8 +460,8 @@
       "entry_point": "is_prime",
       "passed": true,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 63,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 13,
       "first_failure": null
     },
     {
@@ -469,8 +469,8 @@
       "entry_point": "find_zero",
       "passed": true,
       "num_base_inputs": 100,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 150,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 100,
       "first_failure": null
     },
     {
@@ -478,8 +478,8 @@
       "entry_point": "sort_third",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 60,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -487,8 +487,8 @@
       "entry_point": "unique",
       "passed": true,
       "num_base_inputs": 1,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 51,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 1,
       "first_failure": null
     },
     {
@@ -496,8 +496,8 @@
       "entry_point": "max_element",
       "passed": true,
       "num_base_inputs": 2,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 52,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 2,
       "first_failure": null
     },
     {
@@ -505,8 +505,8 @@
       "entry_point": "fizz_buzz",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -514,8 +514,8 @@
       "entry_point": "sort_even",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -523,8 +523,8 @@
       "entry_point": "decode_cyclic",
       "passed": true,
       "num_base_inputs": 100,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 150,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 100,
       "first_failure": null
     },
     {
@@ -532,8 +532,8 @@
       "entry_point": "prime_fib",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 2,
-      "tests_run_until_first_failure": 12,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -541,8 +541,8 @@
       "entry_point": "triples_sum_to_zero",
       "passed": true,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 59,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 9,
       "first_failure": null
     },
     {
@@ -550,8 +550,8 @@
       "entry_point": "car_race_collision",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -559,8 +559,8 @@
       "entry_point": "incr_list",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -568,8 +568,8 @@
       "entry_point": "pairs_sum_to_zero",
       "passed": true,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 59,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 9,
       "first_failure": null
     },
     {
@@ -577,8 +577,8 @@
       "entry_point": "change_base",
       "passed": true,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 62,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 12,
       "first_failure": null
     },
     {
@@ -586,8 +586,8 @@
       "entry_point": "triangle_area",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -595,8 +595,8 @@
       "entry_point": "fib4",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -604,8 +604,8 @@
       "entry_point": "median",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -613,8 +613,8 @@
       "entry_point": "is_palindrome",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -622,8 +622,8 @@
       "entry_point": "modp",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -631,8 +631,8 @@
       "entry_point": "decode_shift",
       "passed": true,
       "num_base_inputs": 100,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 150,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 100,
       "first_failure": null
     },
     {
@@ -640,8 +640,8 @@
       "entry_point": "remove_vowels",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -649,8 +649,8 @@
       "entry_point": "below_threshold",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -658,8 +658,8 @@
       "entry_point": "add",
       "passed": true,
       "num_base_inputs": 105,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 155,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 105,
       "first_failure": null
     },
     {
@@ -667,8 +667,8 @@
       "entry_point": "same_chars",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -676,8 +676,8 @@
       "entry_point": "fib",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 45,
-      "tests_run_until_first_failure": 50,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -685,8 +685,8 @@
       "entry_point": "correct_bracketing",
       "passed": true,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 62,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 12,
       "first_failure": null
     },
     {
@@ -694,8 +694,8 @@
       "entry_point": "monotonic",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -703,8 +703,8 @@
       "entry_point": "common",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -712,8 +712,8 @@
       "entry_point": "largest_prime_factor",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -721,8 +721,8 @@
       "entry_point": "sum_to_n",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -730,8 +730,8 @@
       "entry_point": "correct_bracketing",
       "passed": true,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 62,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 12,
       "first_failure": null
     },
     {
@@ -739,8 +739,8 @@
       "entry_point": "derivative",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -748,8 +748,8 @@
       "entry_point": "fibfib",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -757,8 +757,8 @@
       "entry_point": "vowels_count",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -766,8 +766,8 @@
       "entry_point": "circular_shift",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -775,8 +775,8 @@
       "entry_point": "digitSum",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -784,8 +784,8 @@
       "entry_point": "fruit_distribution",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -793,8 +793,8 @@
       "entry_point": "pluck",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -802,8 +802,8 @@
       "entry_point": "search",
       "passed": true,
       "num_base_inputs": 25,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 75,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 25,
       "first_failure": null
     },
     {
@@ -811,8 +811,8 @@
       "entry_point": "strange_sort_list",
       "passed": true,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 59,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 9,
       "first_failure": null
     },
     {
@@ -820,8 +820,8 @@
       "entry_point": "triangle_area",
       "passed": true,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 59,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 9,
       "first_failure": null
     },
     {
@@ -829,8 +829,8 @@
       "entry_point": "will_it_fly",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -838,8 +838,8 @@
       "entry_point": "smallest_change",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -847,8 +847,8 @@
       "entry_point": "total_match",
       "passed": true,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 59,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 9,
       "first_failure": null
     },
     {
@@ -856,8 +856,8 @@
       "entry_point": "is_multiply_prime",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -865,8 +865,8 @@
       "entry_point": "is_simple_power",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 60,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -874,8 +874,8 @@
       "entry_point": "iscube",
       "passed": true,
       "num_base_inputs": 16,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 66,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 16,
       "first_failure": null
     },
     {
@@ -883,8 +883,8 @@
       "entry_point": "hex_key",
       "passed": true,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 63,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 13,
       "first_failure": null
     },
     {
@@ -892,8 +892,8 @@
       "entry_point": "decimal_to_binary",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -901,8 +901,8 @@
       "entry_point": "is_happy",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -910,8 +910,8 @@
       "entry_point": "numerical_letter_grade",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -919,8 +919,8 @@
       "entry_point": "prime_length",
       "passed": true,
       "num_base_inputs": 16,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 66,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 16,
       "first_failure": null
     },
     {
@@ -928,8 +928,8 @@
       "entry_point": "starts_one_ends",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -937,8 +937,8 @@
       "entry_point": "solve",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -946,8 +946,8 @@
       "entry_point": "add",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -955,8 +955,8 @@
       "entry_point": "anti_shuffle",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -964,8 +964,8 @@
       "entry_point": "get_row",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -973,8 +973,8 @@
       "entry_point": "sort_array",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -982,8 +982,8 @@
       "entry_point": "encrypt",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -991,8 +991,8 @@
       "entry_point": "next_smallest",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -1000,8 +1000,8 @@
       "entry_point": "is_bored",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -1009,8 +1009,8 @@
       "entry_point": "any_int",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 60,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -1018,8 +1018,8 @@
       "entry_point": "encode",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -1027,8 +1027,8 @@
       "entry_point": "skjkasdkd",
       "passed": true,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 59,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 9,
       "first_failure": null
     },
     {
@@ -1036,8 +1036,8 @@
       "entry_point": "check_dict_case",
       "passed": true,
       "num_base_inputs": 14,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 64,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 14,
       "first_failure": null
     },
     {
@@ -1045,8 +1045,8 @@
       "entry_point": "count_up_to",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 60,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -1054,8 +1054,8 @@
       "entry_point": "multiply",
       "passed": true,
       "num_base_inputs": 16,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 66,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 16,
       "first_failure": null
     },
     {
@@ -1063,8 +1063,8 @@
       "entry_point": "count_upper",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -1072,8 +1072,8 @@
       "entry_point": "closest_integer",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -1081,8 +1081,8 @@
       "entry_point": "make_a_pile",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -1090,8 +1090,8 @@
       "entry_point": "words_string",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -1099,8 +1099,8 @@
       "entry_point": "choose_num",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1108,8 +1108,8 @@
       "entry_point": "rounded_avg",
       "passed": true,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 62,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 12,
       "first_failure": null
     },
     {
@@ -1117,8 +1117,8 @@
       "entry_point": "unique_digits",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -1126,8 +1126,8 @@
       "entry_point": "by_length",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -1135,8 +1135,8 @@
       "entry_point": "f",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -1144,8 +1144,8 @@
       "entry_point": "even_odd_palindrome",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1153,8 +1153,8 @@
       "entry_point": "count_nums",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1162,8 +1162,8 @@
       "entry_point": "move_one_ball",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -1171,8 +1171,8 @@
       "entry_point": "exchange",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -1180,8 +1180,8 @@
       "entry_point": "histogram",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1189,8 +1189,8 @@
       "entry_point": "reverse_delete",
       "passed": true,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 59,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 9,
       "first_failure": null
     },
     {
@@ -1198,8 +1198,8 @@
       "entry_point": "odd_count",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -1207,8 +1207,8 @@
       "entry_point": "minSubArraySum",
       "passed": true,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 62,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 12,
       "first_failure": null
     },
     {
@@ -1216,8 +1216,8 @@
       "entry_point": "max_fill",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -1225,8 +1225,8 @@
       "entry_point": "sort_array",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1234,8 +1234,8 @@
       "entry_point": "select_words",
       "passed": true,
       "num_base_inputs": 14,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 64,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 14,
       "first_failure": null
     },
     {
@@ -1243,8 +1243,8 @@
       "entry_point": "get_closest_vowel",
       "passed": true,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 63,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 13,
       "first_failure": null
     },
     {
@@ -1252,8 +1252,8 @@
       "entry_point": "match_parens",
       "passed": true,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 62,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 12,
       "first_failure": null
     },
     {
@@ -1261,8 +1261,8 @@
       "entry_point": "maximum",
       "passed": true,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 61,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 11,
       "first_failure": null
     },
     {
@@ -1270,8 +1270,8 @@
       "entry_point": "solution",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -1279,8 +1279,8 @@
       "entry_point": "add_elements",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -1288,8 +1288,8 @@
       "entry_point": "get_odd_collatz",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -1297,8 +1297,8 @@
       "entry_point": "valid_date",
       "passed": true,
       "num_base_inputs": 16,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 66,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 16,
       "first_failure": null
     },
     {
@@ -1306,8 +1306,8 @@
       "entry_point": "split_words",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1315,8 +1315,8 @@
       "entry_point": "is_sorted",
       "passed": true,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 63,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 13,
       "first_failure": null
     },
     {
@@ -1324,8 +1324,8 @@
       "entry_point": "intersection",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1333,8 +1333,8 @@
       "entry_point": "prod_signs",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1342,8 +1342,8 @@
       "entry_point": "minPath",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 60,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -1351,8 +1351,8 @@
       "entry_point": "tri",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 60,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -1360,8 +1360,8 @@
       "entry_point": "digits",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -1369,8 +1369,8 @@
       "entry_point": "is_nested",
       "passed": true,
       "num_base_inputs": 14,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 64,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 14,
       "first_failure": null
     },
     {
@@ -1378,8 +1378,8 @@
       "entry_point": "sum_squares",
       "passed": true,
       "num_base_inputs": 12,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 62,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 12,
       "first_failure": null
     },
     {
@@ -1387,8 +1387,8 @@
       "entry_point": "check_if_last_char_is_a_letter",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 60,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -1396,8 +1396,8 @@
       "entry_point": "can_arrange",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -1405,8 +1405,8 @@
       "entry_point": "largest_smallest_integers",
       "passed": true,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 61,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 11,
       "first_failure": null
     },
     {
@@ -1414,8 +1414,8 @@
       "entry_point": "compare_one",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1423,8 +1423,8 @@
       "entry_point": "is_equal_to_sum_even",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1432,8 +1432,8 @@
       "entry_point": "special_factorial",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -1441,8 +1441,8 @@
       "entry_point": "fix_spaces",
       "passed": true,
       "num_base_inputs": 5,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 55,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 5,
       "first_failure": null
     },
     {
@@ -1450,8 +1450,8 @@
       "entry_point": "file_name_check",
       "passed": true,
       "num_base_inputs": 26,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 76,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 26,
       "first_failure": null
     },
     {
@@ -1459,8 +1459,8 @@
       "entry_point": "sum_squares",
       "passed": true,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 61,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 11,
       "first_failure": null
     },
     {
@@ -1468,8 +1468,8 @@
       "entry_point": "words_in_sentence",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -1477,8 +1477,8 @@
       "entry_point": "simplify",
       "passed": true,
       "num_base_inputs": 13,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 63,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 13,
       "first_failure": null
     },
     {
@@ -1486,8 +1486,8 @@
       "entry_point": "order_by_points",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -1495,8 +1495,8 @@
       "entry_point": "specialFilter",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -1504,8 +1504,8 @@
       "entry_point": "get_max_triples",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -1513,8 +1513,8 @@
       "entry_point": "bf",
       "passed": true,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 61,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 11,
       "first_failure": null
     },
     {
@@ -1522,8 +1522,8 @@
       "entry_point": "sorted_list_sum",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -1531,8 +1531,8 @@
       "entry_point": "x_or_y",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 60,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -1540,8 +1540,8 @@
       "entry_point": "double_the_difference",
       "passed": true,
       "num_base_inputs": 7,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 57,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 7,
       "first_failure": null
     },
     {
@@ -1549,8 +1549,8 @@
       "entry_point": "compare",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -1558,8 +1558,8 @@
       "entry_point": "Strongest_Extension",
       "passed": true,
       "num_base_inputs": 9,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 59,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 9,
       "first_failure": null
     },
     {
@@ -1567,8 +1567,8 @@
       "entry_point": "cycpattern_check",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -1576,8 +1576,8 @@
       "entry_point": "even_odd_count",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1585,8 +1585,8 @@
       "entry_point": "int_to_mini_roman",
       "passed": true,
       "num_base_inputs": 14,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 64,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 14,
       "first_failure": null
     },
     {
@@ -1594,8 +1594,8 @@
       "entry_point": "right_angle_triangle",
       "passed": true,
       "num_base_inputs": 11,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 61,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 11,
       "first_failure": null
     },
     {
@@ -1603,8 +1603,8 @@
       "entry_point": "find_max",
       "passed": true,
       "num_base_inputs": 10,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 60,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 10,
       "first_failure": null
     },
     {
@@ -1612,8 +1612,8 @@
       "entry_point": "eat",
       "passed": true,
       "num_base_inputs": 6,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 56,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 6,
       "first_failure": null
     },
     {
@@ -1621,8 +1621,8 @@
       "entry_point": "do_algebra",
       "passed": true,
       "num_base_inputs": 3,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 53,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 3,
       "first_failure": null
     },
     {
@@ -1630,8 +1630,8 @@
       "entry_point": "solve",
       "passed": true,
       "num_base_inputs": 8,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 58,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 8,
       "first_failure": null
     },
     {
@@ -1639,8 +1639,8 @@
       "entry_point": "string_to_md5",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     },
     {
@@ -1648,8 +1648,8 @@
       "entry_point": "generate_integers",
       "passed": true,
       "num_base_inputs": 4,
-      "num_plus_inputs_used": 50,
-      "tests_run_until_first_failure": 54,
+      "num_plus_inputs_used": 0,
+      "tests_run_until_first_failure": 4,
       "first_failure": null
     }
   ]
