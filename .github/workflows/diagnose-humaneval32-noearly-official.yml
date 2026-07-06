@@ -1,0 +1,155 @@
+name: Diagnose Official EvalPlus HumanEval32 No-Early-Exit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  humaneval32-official-no-early-exit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install EvalPlus
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install evalplus
+
+      - name: Build official EvalPlus base samples
+        run: |
+          python artifacts/evalplus_official/build_official_evalplus_samples.py \
+            --dataset humaneval \
+            --successor-source artifacts/evalplus_leaderboard/successor_samples_non_oracle_HumanEval_164.jsonl \
+            --task-list artifacts/evalplus_leaderboard/tasks/humaneval/humaneval_task_ids_164.txt
+
+      - name: Build full-swap no-early-exit HumanEval32 sample
+        run: |
+          mkdir -p artifacts/evalplus_official/humaneval32_noearly_diag/samples
+          python - <<'PY'
+          import json
+          import textwrap
+          from pathlib import Path
+
+          base_successor = Path("artifacts/evalplus_official/samples/humaneval_164_successor.jsonl")
+          outdir = Path("artifacts/evalplus_official/humaneval32_noearly_diag/samples")
+          outdir.mkdir(parents=True, exist_ok=True)
+
+          rows = [json.loads(line) for line in base_successor.read_text(encoding="utf-8").splitlines() if line.strip()]
+          if len(rows) != 164:
+              raise SystemExit(f"Expected 164 rows, got {len(rows)}")
+
+          candidate = textwrap.dedent(r'''
+              import math
+
+              def poly(xs: list, x: float):
+                  return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+              def find_zero(xs: list):
+                  lo, hi = -1.0, 1.0
+
+                  while poly(xs, lo) * poly(xs, hi) > 0:
+                      lo *= 2.0
+                      hi *= 2.0
+
+                  for _ in range(100):
+                      mid = (lo + hi) / 2.0
+                      if poly(xs, mid) * poly(xs, lo) > 0:
+                          lo = mid
+                      else:
+                          hi = mid
+
+                  return (lo + hi) / 2.0
+          ''').lstrip()
+
+          found = False
+          out_rows = []
+          for row in rows:
+              row = dict(row)
+              if row["task_id"] == "HumanEval/32":
+                  row["solution"] = candidate
+                  found = True
+              out_rows.append(row)
+
+          if not found:
+              raise SystemExit("HumanEval/32 not found")
+
+          out = outdir / "humaneval_164_successor_noearly_bisection.jsonl"
+          out.write_text("\n".join(json.dumps(r) for r in out_rows) + "\n", encoding="utf-8")
+          print("wrote", out)
+          PY
+
+      - name: Run official EvalPlus base-only full-swap no-early-exit candidate
+        run: |
+          mkdir -p artifacts/evalplus_official/humaneval32_noearly_diag/results
+          python - <<'PY'
+          import json
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          sample_path = Path("artifacts/evalplus_official/humaneval32_noearly_diag/samples/humaneval_164_successor_noearly_bisection.jsonl")
+          result_dir = Path("artifacts/evalplus_official/humaneval32_noearly_diag/results")
+          result_dir.mkdir(parents=True, exist_ok=True)
+
+          stdout_path = result_dir / "noearly_bisection_stdout.txt"
+          stderr_path = result_dir / "noearly_bisection_stderr.txt"
+
+          cmd = [
+              sys.executable,
+              "-m",
+              "evalplus.evaluate",
+              "--dataset",
+              "humaneval",
+              "--samples",
+              str(sample_path),
+              "--base-only",
+          ]
+
+          print("RUN", " ".join(cmd))
+          proc = subprocess.run(cmd, text=True, encoding="utf-8", errors="replace", capture_output=True)
+
+          stdout_path.write_text(proc.stdout, encoding="utf-8")
+          stderr_path.write_text(proc.stderr, encoding="utf-8")
+
+          matches = re.findall(r"pass@1\s*:\s*([0-9]+(?:\.[0-9]+)?)", proc.stdout)
+          score = float(matches[-1]) if matches else None
+
+          cache = sample_path.with_name(sample_path.stem + "_eval_results.json")
+          he32 = None
+          if cache.exists():
+              data = json.loads(cache.read_text(encoding="utf-8"))
+              rec = data.get("eval", {}).get("HumanEval/32")
+              if isinstance(rec, list) and rec:
+                  he32 = rec[0]
+              else:
+                  he32 = rec
+
+          summary = {
+              "candidate": "noearly_bisection",
+              "returncode": proc.returncode,
+              "score": score,
+              "cache_exists": cache.exists(),
+              "human_eval_32_record": he32,
+              "stdout_tail": proc.stdout[-3000:],
+              "stderr_tail": proc.stderr[-3000:],
+          }
+
+          summary_path = result_dir / "humaneval32_noearly_bisection_summary.json"
+          summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+          print(summary_path.read_text(encoding="utf-8"))
+          PY
+
+      - name: Upload HumanEval32 no-early-exit diagnostic artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: humaneval32-noearly-bisection-diagnostics
+          path: artifacts/evalplus_official/humaneval32_noearly_diag/**
