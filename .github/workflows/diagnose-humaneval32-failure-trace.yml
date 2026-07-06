@@ -1,0 +1,200 @@
+name: Diagnose Official EvalPlus HumanEval32 Failure Trace
+
+on:
+  workflow_dispatch:
+
+jobs:
+  humaneval32-official-failure-trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install EvalPlus
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install evalplus
+
+      - name: Build official EvalPlus base samples
+        run: |
+          python artifacts/evalplus_official/build_official_evalplus_samples.py \
+            --dataset humaneval \
+            --successor-source artifacts/evalplus_leaderboard/successor_samples_non_oracle_HumanEval_164.jsonl \
+            --task-list artifacts/evalplus_leaderboard/tasks/humaneval/humaneval_task_ids_164.txt
+
+      - name: Trace HumanEval32 official behavior
+        run: |
+          mkdir -p artifacts/evalplus_official/humaneval32_trace_diag/results
+          python - <<'PY'
+          import json
+          import math
+          import pickle
+          import re
+          import subprocess
+          import sys
+          import traceback
+          from pathlib import Path
+
+          from evalplus.data import get_human_eval_plus
+
+          outdir = Path("artifacts/evalplus_official/humaneval32_trace_diag/results")
+          outdir.mkdir(parents=True, exist_ok=True)
+
+          sample_path = Path("artifacts/evalplus_official/samples/humaneval_164_successor.jsonl")
+          rows = [json.loads(line) for line in sample_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+          he32_row = next(r for r in rows if r["task_id"] == "HumanEval/32")
+          solution = he32_row["solution"]
+
+          problems = get_human_eval_plus()
+          p = problems["HumanEval/32"]
+
+          prompt = p["prompt"]
+          canonical = prompt + p["canonical_solution"]
+          entry_point = p["entry_point"]
+
+          base_inputs = list(p.get("base_input", []) or [])
+          plus_inputs = list(p.get("plus_input", []) or [])
+
+          runner = r'''
+          import json, pickle, sys, traceback, math
+
+          def call(fn, inp):
+              if isinstance(inp, dict):
+                  return fn(**inp)
+              if isinstance(inp, (list, tuple)):
+                  return fn(*inp)
+              return fn(inp)
+
+          payload = pickle.loads(sys.stdin.buffer.read())
+          code = payload["code"]
+          entry = payload["entry"]
+          inp = payload["input"]
+
+          try:
+              ns = {}
+              exec(code, ns)
+              got = call(ns[entry], inp)
+              print(json.dumps({
+                  "ok": True,
+                  "value_repr": repr(got),
+                  "value_type": type(got).__name__,
+              }))
+          except BaseException as e:
+              print(json.dumps({
+                  "ok": False,
+                  "error": repr(e),
+                  "traceback": traceback.format_exc()[-2000:],
+              }))
+          '''
+
+          def run_code(code, inp, timeout=5.0):
+              payload = pickle.dumps({"code": code, "entry": entry_point, "input": inp})
+              try:
+                  proc = subprocess.run(
+                      [sys.executable, "-c", runner],
+                      input=payload,
+                      stdout=subprocess.PIPE,
+                      stderr=subprocess.PIPE,
+                      timeout=timeout,
+                  )
+              except subprocess.TimeoutExpired:
+                  return {"ok": False, "timeout": True}
+              lines = proc.stdout.decode("utf-8", errors="replace").strip().splitlines()
+              if not lines:
+                  return {"ok": False, "empty_output": True, "stderr": proc.stderr.decode("utf-8", errors="replace")[-1000:]}
+              try:
+                  return json.loads(lines[-1])
+              except Exception:
+                  return {"ok": False, "parse_error": True, "stdout": "\n".join(lines)[-1000:]}
+
+          def residual(xs, x):
+              try:
+                  return sum(coeff * (x ** i) for i, coeff in enumerate(xs))
+              except Exception as e:
+                  return f"residual_error:{repr(e)}"
+
+          trace = {
+              "task_id": "HumanEval/32",
+              "entry_point": entry_point,
+              "base_input_count": len(base_inputs),
+              "plus_input_count": len(plus_inputs),
+              "solution": solution,
+              "cases": [],
+          }
+
+          for idx, inp in enumerate(base_inputs):
+              can = run_code(canonical, inp)
+              sol = run_code(solution, inp)
+
+              case = {
+                  "kind": "base",
+                  "index": idx,
+                  "input_repr": repr(inp),
+                  "canonical": can,
+                  "solution": sol,
+              }
+
+              # If both are numeric, print exact comparison and residuals.
+              try:
+                  cx = eval(can.get("value_repr", "None"))
+                  sx = eval(sol.get("value_repr", "None"))
+                  xs = inp[0] if isinstance(inp, (list, tuple)) and inp else inp
+                  case["exact_equal"] = (cx == sx)
+                  case["canonical_residual"] = residual(xs, cx)
+                  case["solution_residual"] = residual(xs, sx)
+                  case["abs_value_diff"] = abs(cx - sx)
+              except Exception as e:
+                  case["numeric_compare_error"] = repr(e)
+
+              trace["cases"].append(case)
+
+          # Also run official EvalPlus for the full 164 sample to capture cache/status.
+          cmd = [
+              sys.executable,
+              "-m",
+              "evalplus.evaluate",
+              "--dataset",
+              "humaneval",
+              "--samples",
+              str(sample_path),
+              "--base-only",
+          ]
+          proc = subprocess.run(cmd, text=True, encoding="utf-8", errors="replace", capture_output=True)
+
+          trace["official_stdout_tail"] = proc.stdout[-4000:]
+          trace["official_stderr_tail"] = proc.stderr[-4000:]
+          matches = re.findall(r"pass@1\s*:\s*([0-9]+(?:\.[0-9]+)?)", proc.stdout)
+          trace["official_score"] = float(matches[-1]) if matches else None
+
+          cache = sample_path.with_name(sample_path.stem + "_eval_results.json")
+          trace["cache_exists"] = cache.exists()
+          if cache.exists():
+              data = json.loads(cache.read_text(encoding="utf-8"))
+              rec = data.get("eval", {}).get("HumanEval/32")
+              trace["official_cache_humaneval32_record"] = rec[0] if isinstance(rec, list) and rec else rec
+
+          # Identify cases where exact output differs or solution errors.
+          trace["suspicious_cases"] = [
+              c for c in trace["cases"]
+              if (not c["solution"].get("ok")) or (c.get("exact_equal") is False)
+          ]
+
+          out = outdir / "humaneval32_failure_trace.json"
+          out.write_text(json.dumps(trace, indent=2), encoding="utf-8")
+
+          print(out.read_text(encoding="utf-8")[:20000])
+          PY
+
+      - name: Upload HumanEval32 failure trace artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: humaneval32-official-failure-trace
+          path: artifacts/evalplus_official/humaneval32_trace_diag/**
