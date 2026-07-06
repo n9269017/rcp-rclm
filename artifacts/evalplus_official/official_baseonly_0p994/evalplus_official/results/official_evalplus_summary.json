@@ -1,0 +1,18 @@
+[
+  {
+    "label": "humaneval164_official_baseonly",
+    "dataset": "humaneval",
+    "task_count": 164,
+    "score_kind": "base",
+    "baseline_score": 0.0,
+    "successor_score": 0.994,
+    "delta": 0.994,
+    "improved": true,
+    "certificate_preserved": true,
+    "official_evalplus_cli_result": true,
+    "evalplus_leaderboard_result": false,
+    "leaderboard_style_candidate": false,
+    "ok": true,
+    "sidecar": "artifacts/evalplus_official/results/humaneval164_official_baseonly/official_evalplus_certificate_sidecar.json"
+  }
+]

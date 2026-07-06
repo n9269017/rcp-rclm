@@ -16,3 +16,6 @@ Thumbs.db
 # Keep Lean proof-certificate build logs even though generic *.log is ignored.
 !lean/rcp_rclm_can_lean4/cert/build_logs/
 !lean/rcp_rclm_can_lean4/cert/build_logs/*.log
+artifacts/evalplus_leaderboard/full_164_workspace/
+artifacts/evalplus_official/gha_run_*/
+diagnostics/

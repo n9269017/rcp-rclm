@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "created_utc": "2026-07-06T05:53:58.740478+00:00",
+  "dataset": "humaneval",
+  "label": "humaneval164_baseline_baseonly",
+  "samples_path": "/home/runner/work/rcp-rclm/rcp-rclm/artifacts/evalplus_official/samples/humaneval_164_baseline_empty.jsonl",
+  "samples_hash": "e6163a1e7789e493f078ae2fef9f07b8079d6f1251dcebc163aa58f2d3c36c20",
+  "base_only": true,
+  "mini": false,
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.15/x64/bin/evalplus.evaluate",
+    "--dataset",
+    "humaneval",
+    "--samples",
+    "/home/runner/work/rcp-rclm/rcp-rclm/artifacts/evalplus_official/samples/humaneval_164_baseline_empty.jsonl",
+    "--base-only"
+  ],
+  "returncode": 0,
+  "stdout_path": "/home/runner/work/rcp-rclm/rcp-rclm/artifacts/evalplus_official/results/humaneval164_baseline_baseonly/evalplus_stdout.txt",
+  "stderr_path": "/home/runner/work/rcp-rclm/rcp-rclm/artifacts/evalplus_official/results/humaneval164_baseline_baseonly/evalplus_stderr.txt",
+  "stdout": "Computing expected output...\nExpected outputs computed in 15.99s\nReading samples...\nhumaneval (base tests)\npass@1:\t0.000\n",
+  "stderr": "\n0it [00:00, ?it/s]\n164it [00:00, 5561.07it/s]\n\n  0%|          | 0/164 [00:00<?, ?it/s]\n  3%|▎         | 5/164 [00:00<00:03, 48.73it/s]\n  8%|▊         | 13/164 [00:00<00:02, 58.06it/s]\n 12%|█▏        | 19/164 [00:00<00:05, 26.68it/s]\n 16%|█▋        | 27/164 [00:00<00:03, 37.34it/s]\n 21%|██▏       | 35/164 [00:00<00:02, 46.33it/s]\n 26%|██▌       | 43/164 [00:00<00:02, 53.68it/s]\n 31%|███       | 51/164 [00:01<00:01, 59.52it/s]\n 36%|███▌      | 59/164 [00:01<00:01, 64.05it/s]\n 41%|████      | 67/164 [00:01<00:01, 67.42it/s]\n 46%|████▌     | 75/164 [00:01<00:01, 69.56it/s]\n 51%|█████     | 83/164 [00:01<00:01, 71.59it/s]\n 55%|█████▌    | 91/164 [00:01<00:01, 72.55it/s]\n 60%|██████    | 99/164 [00:01<00:00, 65.54it/s]\n 65%|██████▍   | 106/164 [00:01<00:00, 63.61it/s]\n 70%|██████▉   | 114/164 [00:01<00:00, 66.58it/s]\n 74%|███████▍  | 122/164 [00:02<00:00, 69.06it/s]\n 79%|███████▉  | 130/164 [00:02<00:01, 32.77it/s]\n 83%|████████▎ | 136/164 [00:02<00:00, 28.18it/s]\n 86%|████████▌ | 141/164 [00:03<00:00, 29.62it/s]\n 89%|████████▉ | 146/164 [00:03<00:00, 32.22it/s]\n 92%|█████████▏| 151/164 [00:03<00:00, 33.10it/s]\n 96%|█████████▋| 158/164 [00:03<00:00, 39.75it/s]\n100%|██████████| 164/164 [00:03<00:00, 47.12it/s]\n",
+  "parsed_scores": {
+    "base": null,
+    "plus": null,
+    "base_pass_at_1": null,
+    "plus_pass_at_1": null
+  },
+  "eval_cache_paths": [
+    "/home/runner/work/rcp-rclm/rcp-rclm/artifacts/evalplus_official/samples/humaneval_164_baseline_empty_eval_results.json"
+  ],
+  "runlog_path": "/home/runner/work/rcp-rclm/rcp-rclm/artifacts/evalplus_official/results/humaneval164_baseline_baseonly/official_evalplus_runlog.json"
+}
