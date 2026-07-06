@@ -1,0 +1,265 @@
+name: Diagnose Official EvalPlus HumanEval32
+
+on:
+  workflow_dispatch:
+
+jobs:
+  humaneval32-official-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install EvalPlus
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install evalplus
+
+      - name: Build HumanEval32 candidate samples
+        run: |
+          mkdir -p artifacts/evalplus_official/humaneval32_candidate_diag/samples
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import textwrap
+
+          outdir = Path("artifacts/evalplus_official/humaneval32_candidate_diag/samples")
+          outdir.mkdir(parents=True, exist_ok=True)
+
+          candidates = {
+              "current_newton_1e4": r'''
+                  import math
+
+                  def poly(xs: list, x: float):
+                      return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+                  def find_zero(xs: list):
+                      x = 0
+                      while abs(poly(xs, x)) > 1e-4:
+                          derivative = sum([i * coeff * math.pow(x, i - 1) for i, coeff in enumerate(xs) if i != 0])
+                          x = x - poly(xs, x) / derivative
+                      return x
+              ''',
+
+              "bracket_bisection": r'''
+                  import math
+
+                  def poly(xs: list, x: float):
+                      return sum([coeff * (x ** i) for i, coeff in enumerate(xs)])
+
+                  def find_zero(xs: list):
+                      lo, hi = -1.0, 1.0
+                      flo, fhi = poly(xs, lo), poly(xs, hi)
+
+                      for _ in range(200):
+                          if flo == 0:
+                              return lo
+                          if fhi == 0:
+                              return hi
+                          if flo * fhi <= 0:
+                              break
+                          lo *= 2.0
+                          hi *= 2.0
+                          flo, fhi = poly(xs, lo), poly(xs, hi)
+
+                      for _ in range(200):
+                          mid = (lo + hi) / 2.0
+                          fm = poly(xs, mid)
+                          if abs(fm) < 1e-4:
+                              return mid
+                          if flo * fm <= 0:
+                              hi = mid
+                              fhi = fm
+                          else:
+                              lo = mid
+                              flo = fm
+
+                      return (lo + hi) / 2.0
+              ''',
+
+              "scan_then_bisect": r'''
+                  import math
+
+                  def poly(xs: list, x: float):
+                      return sum([coeff * (x ** i) for i, coeff in enumerate(xs)])
+
+                  def find_zero(xs: list):
+                      # Search a broad finite interval for a sign change, then bisect.
+                      step = 0.05
+                      x_prev = -100.0
+                      f_prev = poly(xs, x_prev)
+
+                      x = x_prev + step
+                      while x <= 100.0:
+                          f = poly(xs, x)
+                          if abs(f) < 1e-4:
+                              return x
+                          if f_prev * f <= 0:
+                              lo, hi = x_prev, x
+                              flo = f_prev
+                              for _ in range(200):
+                                  mid = (lo + hi) / 2.0
+                                  fm = poly(xs, mid)
+                                  if abs(fm) < 1e-4:
+                                      return mid
+                                  if flo * fm <= 0:
+                                      hi = mid
+                                  else:
+                                      lo = mid
+                                      flo = fm
+                              return (lo + hi) / 2.0
+                          x_prev, f_prev = x, f
+                          x += step
+
+                      # Fallback: bracket expansion around zero.
+                      lo, hi = -1.0, 1.0
+                      flo, fhi = poly(xs, lo), poly(xs, hi)
+                      while flo * fhi > 0:
+                          lo *= 2.0
+                          hi *= 2.0
+                          flo, fhi = poly(xs, lo), poly(xs, hi)
+                      for _ in range(200):
+                          mid = (lo + hi) / 2.0
+                          fm = poly(xs, mid)
+                          if abs(fm) < 1e-4:
+                              return mid
+                          if flo * fm <= 0:
+                              hi = mid
+                          else:
+                              lo = mid
+                              flo = fm
+                      return (lo + hi) / 2.0
+              ''',
+
+              "hybrid_newton_bisect": r'''
+                  import math
+
+                  def poly(xs: list, x: float):
+                      return sum([coeff * (x ** i) for i, coeff in enumerate(xs)])
+
+                  def dpoly(xs: list, x: float):
+                      return sum([i * coeff * (x ** (i - 1)) for i, coeff in enumerate(xs) if i > 0])
+
+                  def find_zero(xs: list):
+                      x = 0.0
+                      for _ in range(50):
+                          fx = poly(xs, x)
+                          if abs(fx) < 1e-4:
+                              return x
+                          dfx = dpoly(xs, x)
+                          if dfx == 0 or not math.isfinite(dfx):
+                              break
+                          nx = x - fx / dfx
+                          if not math.isfinite(nx):
+                              break
+                          x = nx
+
+                      lo, hi = -1.0, 1.0
+                      flo, fhi = poly(xs, lo), poly(xs, hi)
+                      while flo * fhi > 0:
+                          lo *= 2.0
+                          hi *= 2.0
+                          flo, fhi = poly(xs, lo), poly(xs, hi)
+
+                      for _ in range(200):
+                          mid = (lo + hi) / 2.0
+                          fm = poly(xs, mid)
+                          if abs(fm) < 1e-4:
+                              return mid
+                          if flo * fm <= 0:
+                              hi = mid
+                              fhi = fm
+                          else:
+                              lo = mid
+                              flo = fm
+                      return (lo + hi) / 2.0
+              '''
+          }
+
+          for name, code in candidates.items():
+              sample = {
+                  "task_id": "HumanEval/32",
+                  "solution": textwrap.dedent(code).lstrip()
+              }
+              path = outdir / f"{name}.jsonl"
+              path.write_text(json.dumps(sample) + "\n", encoding="utf-8")
+              print("wrote", path)
+          PY
+
+      - name: Run official EvalPlus base-only for HumanEval32 candidates
+        run: |
+          mkdir -p artifacts/evalplus_official/humaneval32_candidate_diag/results
+          python - <<'PY'
+          import json
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          sample_dir = Path("artifacts/evalplus_official/humaneval32_candidate_diag/samples")
+          result_dir = Path("artifacts/evalplus_official/humaneval32_candidate_diag/results")
+          result_dir.mkdir(parents=True, exist_ok=True)
+
+          summary = []
+
+          for sample_path in sorted(sample_dir.glob("*.jsonl")):
+              name = sample_path.stem
+              out = result_dir / f"{name}_stdout.txt"
+              err = result_dir / f"{name}_stderr.txt"
+
+              cmd = [
+                  sys.executable,
+                  "-m",
+                  "evalplus.evaluate",
+                  "--dataset",
+                  "humaneval",
+                  "--samples",
+                  str(sample_path),
+                  "--base-only",
+              ]
+
+              print("RUN", " ".join(cmd))
+              proc = subprocess.run(cmd, text=True, encoding="utf-8", errors="replace", capture_output=True)
+              out.write_text(proc.stdout, encoding="utf-8")
+              err.write_text(proc.stderr, encoding="utf-8")
+
+              matches = re.findall(r"pass@1\s*:\s*([0-9]+(?:\.[0-9]+)?)", proc.stdout)
+              score = float(matches[-1]) if matches else None
+
+              cache = sample_path.with_name(sample_path.stem + "_eval_results.json")
+              record = None
+              if cache.exists():
+                  data = json.loads(cache.read_text(encoding="utf-8"))
+                  record = data.get("eval", {}).get("HumanEval/32")
+
+              entry = {
+                  "candidate": name,
+                  "returncode": proc.returncode,
+                  "score": score,
+                  "stdout_tail": proc.stdout[-2000:],
+                  "stderr_tail": proc.stderr[-2000:],
+                  "cache_exists": cache.exists(),
+                  "record": record,
+              }
+              summary.append(entry)
+              print(json.dumps(entry, indent=2)[:6000])
+
+          summary_path = result_dir / "humaneval32_official_candidate_summary.json"
+          summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+          print("\nSUMMARY")
+          print(summary_path.read_text(encoding="utf-8"))
+          PY
+
+      - name: Upload HumanEval32 diagnostic artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: humaneval32-official-candidate-diagnostics
+          path: artifacts/evalplus_official/humaneval32_candidate_diag/**
