@@ -1,0 +1,11 @@
+{
+  "errors": [],
+  "ok": true,
+  "package_count": 6,
+  "report_hash": "c735078cead9ccc1be756a6911f66edb12715d1d13f0fb63fa55283a88875b3e",
+  "schema_version": "crsi-core-v1",
+  "suite_name": "RCLM-CRSI-Core: Certified Recursive Successor Improvement Core Test",
+  "summary_chain_id": "rclm_crsi_core_k5_baseN2_seed0",
+  "transition_count": 5,
+  "verified_at_utc": "2026-07-08T23:25:15.023007+00:00"
+}

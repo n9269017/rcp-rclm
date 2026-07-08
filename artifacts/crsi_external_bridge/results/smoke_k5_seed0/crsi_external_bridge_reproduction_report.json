@@ -1,0 +1,11 @@
+{
+  "benchmark_id": "re_metr_bridge_smoke",
+  "benchmark_kind": "synthetic_bridge_smoke_fixture",
+  "errors": [],
+  "ok": true,
+  "report_hash": "b9ab09932e5a145b16760bea3bc804ee4b63670f0cf90e4cde27f593a97503e5",
+  "schema_version": "crsi-external-bridge-v1",
+  "sidecar_path": "artifacts/crsi_external_bridge/results/smoke_k5_seed0/crsi_external_bridge_sidecar.json",
+  "suite_name": "CRSI-RE/METR Bridge: Certificate-preserving external AI-R&D benchmark adapter",
+  "verified_at_utc": "2026-07-08T23:25:58.227161+00:00"
+}

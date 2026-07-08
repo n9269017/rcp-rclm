@@ -1,0 +1,23 @@
+{
+  "benchmark_answers_in_prompt": false,
+  "benchmark_id": "re_metr_bridge_smoke",
+  "benchmark_kind": "synthetic_bridge_smoke_fixture",
+  "created_utc": "2026-07-08T23:25:13.350544+00:00",
+  "diagnostic_oracle": false,
+  "hidden_tests_exposed": false,
+  "human_patch_inside_chain": false,
+  "manual_repair_inside_chain": false,
+  "private_solution_material_used": false,
+  "schema_version": "crsi-external-bridge-v1",
+  "task_count": 2,
+  "tasks": [
+    {
+      "description": "Synthetic adapter smoke task; not an external benchmark.",
+      "task_id": "bridge-smoke/research-engineering-0"
+    },
+    {
+      "description": "Synthetic adapter smoke task; not an external benchmark.",
+      "task_id": "bridge-smoke/research-engineering-1"
+    }
+  ]
+}
