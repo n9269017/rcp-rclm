@@ -1,0 +1,13 @@
+{
+  "acceptance_conditions": {
+    "core_score_improved": true,
+    "hash_chain_valid": true,
+    "protected_invariants_preserved": true
+  },
+  "accepted": true,
+  "candidate_successor_id": "RCLM_1_3e5bc01f0f6692a4db59",
+  "created_utc": "2026-07-08T04:58:48.727035+00:00",
+  "schema_version": "crsi-core-v1",
+  "transition_id": "RCLM_0_to_RCLM_1",
+  "verifier_successor_id": "RCLM_0_f2a4b746eda2d3ba670a"
+}

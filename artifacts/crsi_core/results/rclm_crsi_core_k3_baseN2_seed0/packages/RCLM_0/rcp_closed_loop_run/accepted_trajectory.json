@@ -1,0 +1,136 @@
+[
+  {
+    "accepted": true,
+    "candidate_hash": "c014472ed52bc7241239a6e4fa88726cd4114c3ccd2503a28feb40b8cb87de68",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 64,
+      "diagonal_table_bound_units": 4,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "valid_append_mem",
+    "new_abilities": [
+      "a0",
+      "a1"
+    ],
+    "old_abilities": [
+      "a0"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "valid_append_mem",
+      "closed_loop_step": 0,
+      "mode": "rcp",
+      "new_ability": "a1",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 0,
+    "trust_anchor_valid": true,
+    "update": "AppendMem(a1)"
+  },
+  {
+    "accepted": true,
+    "candidate_hash": "8d1debb3a140280981018c3f6b63de3c8e9e72e8f4448941164096ef3f93f95e",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 512,
+      "diagonal_table_bound_units": 8,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "valid_append_mem",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "valid_append_mem",
+      "closed_loop_step": 1,
+      "mode": "rcp",
+      "new_ability": "a2",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 1,
+    "trust_anchor_valid": true,
+    "update": "AppendMem(a2)"
+  }
+]

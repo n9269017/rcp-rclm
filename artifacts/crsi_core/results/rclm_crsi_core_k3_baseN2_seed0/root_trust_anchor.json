@@ -1,0 +1,32 @@
+{
+  "claim_boundary": {
+    "arbitrary_trained_system_entry": false,
+    "evalplus_leaderboard_result": false,
+    "external_public_benchmark": false,
+    "finite_executable_crsi_witness": true,
+    "frontier_scale_validation": false,
+    "full_autonomous_rsi": false,
+    "internal_core_score_improvement": true,
+    "mle_bench_result": false,
+    "official_evalplus_cli_result": false,
+    "re_bench_result": false,
+    "swe_bench_result": false,
+    "unbounded_horizon_empirical_proof": false
+  },
+  "created_utc": "2026-07-08T04:58:47.086571+00:00",
+  "files": {
+    "artifacts/common/closed_loop_reference_engine.py": "624cb98d0424e34d5023144fe70468d0d2aade47096662cb66b9c8659e970b24",
+    "artifacts/crsi_core/crsi_core_schema.py": "77ba3a1749f5f781f09b828fb3d525f92be80a771cd1adbdf6f32f9214fcbcdb",
+    "artifacts/crsi_core/rclm_crsi_core_harness.py": "f7a18d19e1f2f2d922b8dae27a365d5840eee3212cb3c8902daab686f0f59e14",
+    "artifacts/learned_entry/learned_entry_audit.py": "858b4a8de92c476112fa53c61a4cf53ec3db6339a0d7854fbe4c7ac367c6005f",
+    "artifacts/rclm/checker.py": "06cde95b95de90e9a25d48b3796eeeb2202b443e0568e3b8dfa0d589fad950cd",
+    "artifacts/rcp/checker.py": "0ea66c0deba8dfbeb1e870528e7342692418b2f9c2e749a14f239f6032879296",
+    "lean/rcp_rclm_can_lean4/RcpRclmMech/RCLM.lean": "a8956c09f86a7a90978b95f940e73c1918edc7ada05a6dd08b67bf6bb0361e72",
+    "lean/rcp_rclm_can_lean4/RcpRclmMech/RCP.lean": "992e609c27b9eefd67b33db3116d79957a13b381de023eb039f7e7845e978ff4"
+  },
+  "kind": "immutable_root_trust_anchor",
+  "root_trust_anchor_hash": "59af600fc803feeda0b522d03eacdf22d60966a6c3edc3408fcb48b6bb46821e",
+  "schema_version": "crsi-core-v1",
+  "source_commit_or_tree_hash": "b242e9da0da8db278038a3ef0ca9e38769fa81cd",
+  "suite_name": "RCLM-CRSI-Core: Certified Recursive Successor Improvement Core Test"
+}

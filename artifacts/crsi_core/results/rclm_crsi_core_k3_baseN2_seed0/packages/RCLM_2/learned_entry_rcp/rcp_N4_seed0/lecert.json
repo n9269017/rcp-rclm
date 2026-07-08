@@ -1,0 +1,206 @@
+{
+  "CoverageCert": true,
+  "GoalId": true,
+  "N": 4,
+  "PCS": true,
+  "Q_SV_A_nonpositive": true,
+  "RealCont": true,
+  "RegSemCert": true,
+  "ReplayTrace": true,
+  "SVBuilderTrace": true,
+  "SVTract": true,
+  "SVWitLib": true,
+  "TrustRef": true,
+  "TypeCert": true,
+  "audit_status": "FullPass",
+  "certificate_hash": "f4ce5ec0cc159049987c903f50bff80378c906d0fc82662b966ded41fbeeb1e7",
+  "claim_boundary": {
+    "arbitrary_trained_system_entry": false,
+    "b10_external_public_benchmark": false,
+    "b9_learned_entry_fullpass": true,
+    "frontier_scale_validation": false,
+    "full_autonomous_rsi": false,
+    "m3_min_learned_entry_boundary": true
+  },
+  "components": {
+    "CoverageCert": {
+      "evidence": {
+        "generated_candidates": 36,
+        "rejected_candidates": 32,
+        "rejection_kinds_present": [
+          "bad_cost_bound",
+          "bad_goal_transport",
+          "bad_reality_containment",
+          "bad_trust_anchor",
+          "noop_no_ability_expansion",
+          "recovery_breaking",
+          "residual_positive",
+          "wrong_dimension_append"
+        ]
+      },
+      "failure_reasons": [],
+      "name": "CoverageCert",
+      "passed": true
+    },
+    "GoalId": {
+      "evidence": {
+        "goal_identity_drift": 0.0
+      },
+      "failure_reasons": [],
+      "name": "GoalId",
+      "passed": true
+    },
+    "PCS": {
+      "evidence": {
+        "accepted_count": 4,
+        "pcs_count": 4,
+        "pcs_sha256": "7a9d37d0961972f47f0b2518c4effba85515afc400c8becbb9eb4c9a3ad66c02"
+      },
+      "failure_reasons": [],
+      "name": "PCS",
+      "passed": true
+    },
+    "Q_SV_A_nonpositive": {
+      "evidence": {
+        "runlog_all_residuals_nonpositive": true
+      },
+      "failure_reasons": [],
+      "name": "Q_SV_A_nonpositive",
+      "passed": true
+    },
+    "RealCont": {
+      "evidence": {
+        "singleton_reality_containment": true
+      },
+      "failure_reasons": [],
+      "name": "RealCont",
+      "passed": true
+    },
+    "RegSemCert": {
+      "evidence": {
+        "artifact_description_present": true,
+        "system_architecture": "controlled-rcp-closed-loop-canonical"
+      },
+      "failure_reasons": [],
+      "name": "RegSemCert",
+      "passed": true
+    },
+    "ReplayTrace": {
+      "evidence": {
+        "checker_passed": true,
+        "hash_keys": [
+          "accepted_trajectory_sha256",
+          "artifact_sha256",
+          "pcs_sha256",
+          "rejected_candidates_sha256",
+          "runlog_sha256",
+          "states_sha256"
+        ],
+        "steps_checked": 4
+      },
+      "failure_reasons": [],
+      "name": "ReplayTrace",
+      "passed": true
+    },
+    "SVBuilderTrace": {
+      "evidence": {
+        "closed_loop_candidate_search": true,
+        "closed_loop_ok": true,
+        "static_predeclared_json_path": false
+      },
+      "failure_reasons": [],
+      "name": "SVBuilderTrace",
+      "passed": true
+    },
+    "SVTract": {
+      "evidence": {
+        "cost_records": [
+          {
+            "checker_steps": 18,
+            "dense_matrix_bound_units": 64,
+            "diagonal_table_bound_units": 4,
+            "residual_checks": 12
+          },
+          {
+            "checker_steps": 18,
+            "dense_matrix_bound_units": 512,
+            "diagonal_table_bound_units": 8,
+            "residual_checks": 12
+          },
+          {
+            "checker_steps": 18,
+            "dense_matrix_bound_units": 4096,
+            "diagonal_table_bound_units": 16,
+            "residual_checks": 12
+          },
+          {
+            "checker_steps": 18,
+            "dense_matrix_bound_units": 32768,
+            "diagonal_table_bound_units": 32,
+            "residual_checks": 12
+          }
+        ],
+        "final_dimension": 32,
+        "max_final_dimension": 1048576
+      },
+      "failure_reasons": [],
+      "name": "SVTract",
+      "passed": true
+    },
+    "SVWitLib": {
+      "evidence": {
+        "accepted_candidates": 4,
+        "accepted_kinds": [
+          "valid_append_mem",
+          "valid_append_mem",
+          "valid_append_mem",
+          "valid_append_mem"
+        ]
+      },
+      "failure_reasons": [],
+      "name": "SVWitLib",
+      "passed": true
+    },
+    "TrustRef": {
+      "evidence": {
+        "accepted_trust_anchor_valid": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "failure_reasons": [],
+      "name": "TrustRef",
+      "passed": true
+    },
+    "TypeCert": {
+      "evidence": {
+        "expected_states": 5,
+        "final_dimension": 32,
+        "states": 5
+      },
+      "failure_reasons": [],
+      "name": "TypeCert",
+      "passed": true
+    }
+  },
+  "learned_system_id": "e749d67e98c274a10ae85e9f",
+  "missing_fields": [],
+  "mode": "rcp",
+  "notes": [
+    "FullPass means every finite learned-entry certificate component is supplied for this controlled run.",
+    "This does not prove arbitrary trained-system entry or any external public benchmark improvement."
+  ],
+  "seed": 0,
+  "source_paths": {
+    "accepted_trajectory": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_2/rcp_closed_loop_run/accepted_trajectory.json",
+    "case_dir": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_2/learned_entry_rcp/rcp_N4_seed0",
+    "checker": "artifacts/rcp/checker.py",
+    "closed_loop_run_dir": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_2/rcp_closed_loop_run",
+    "closed_loop_runlog": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_2/rcp_closed_loop_run/closed_loop_runlog.json",
+    "generated_artifact": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_2/rcp_closed_loop_run/generated_artifact.json",
+    "hashes": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_2/rcp_closed_loop_run/hashes.json",
+    "rejected_candidates": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_2/rcp_closed_loop_run/rejected_candidates.json"
+  }
+}
