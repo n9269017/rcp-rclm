@@ -1,0 +1,27 @@
+{
+  "N": 3,
+  "benchmark_answers_used": false,
+  "claim_boundary": {
+    "arbitrary_trained_system_entry": false,
+    "evalplus_leaderboard_result": false,
+    "external_public_benchmark": false,
+    "finite_executable_crsi_witness": true,
+    "frontier_scale_validation": false,
+    "full_autonomous_rsi": false,
+    "internal_core_score_improvement": true,
+    "mle_bench_result": false,
+    "official_evalplus_cli_result": false,
+    "re_bench_result": false,
+    "swe_bench_result": false,
+    "unbounded_horizon_empirical_proof": false
+  },
+  "created_utc": "2026-07-08T04:58:48.013009+00:00",
+  "diagnostic_oracle": false,
+  "external_benchmark_attached": false,
+  "generated_by_successor_id": "RCLM_0_f2a4b746eda2d3ba670a",
+  "human_patch_inside_chain": false,
+  "manual_repair_inside_chain": false,
+  "package_index": 1,
+  "schema_version": "crsi-core-v1",
+  "seed": 0
+}

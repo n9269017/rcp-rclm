@@ -1,0 +1,23 @@
+{
+  "cmd": [
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm-external-bench\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\learned_entry\\learned_entry_audit.py",
+    "--mode",
+    "rcp",
+    "--N",
+    "3",
+    "--seed",
+    "0",
+    "--outdir",
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\crsi_core\\results\\rclm_crsi_core_k3_baseN2_seed0\\packages\\RCLM_1\\learned_entry_rcp",
+    "--existing-run-dir",
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\crsi_core\\results\\rclm_crsi_core_k3_baseN2_seed0\\packages\\RCLM_1\\rcp_closed_loop_run",
+    "--no-run-closed-loop",
+    "--max-final-dimension",
+    "1048576"
+  ],
+  "created_utc": "2026-07-08T04:58:48.680836+00:00",
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"LECert\": {\n    \"CoverageCert\": true,\n    \"GoalId\": true,\n    \"PCS\": true,\n    \"Q_SV_A_nonpositive\": true,\n    \"RealCont\": true,\n    \"RegSemCert\": true,\n    \"ReplayTrace\": true,\n    \"SVBuilderTrace\": true,\n    \"SVTract\": true,\n    \"SVWitLib\": true,\n    \"TrustRef\": true,\n    \"TypeCert\": true\n  },\n  \"N\": 3,\n  \"audit_status\": \"FullPass\",\n  \"checker_exit_code\": 0,\n  \"checker_passed\": true,\n  \"checker_stderr\": \"\",\n  \"claim_boundary\": {\n    \"arbitrary_trained_system_entry\": false,\n    \"b10_external_public_benchmark\": false,\n    \"b9_learned_entry_fullpass\": true,\n    \"frontier_scale_validation\": false,\n    \"full_autonomous_rsi\": false,\n    \"m3_min_learned_entry_boundary\": true\n  },\n  \"closed_loop_ok\": true,\n  \"component_summary\": {\n    \"component_pass_rate\": 1.0,\n    \"failed_components\": 0,\n    \"missing_fields\": [],\n    \"passed_components\": 12,\n    \"total_components\": 12\n  },\n  \"created_utc\": \"2026-07-08T04:58:48.671335+00:00\",\n  \"engine_exit_code\": 0,\n  \"engine_stderr\": \"\",\n  \"learned_system_id\": \"668eb4e6d520cdf85a385c83\",\n  \"mode\": \"rcp\",\n  \"ok\": true,\n  \"paths\": {\n    \"accepted_trajectory\": \"artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_1/rcp_closed_loop_run/accepted_trajectory.json\",\n    \"case_dir\": \"artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_1/learned_entry_rcp/rcp_N3_seed0\",\n    \"checker\": \"artifacts/rcp/checker.py\",\n    \"closed_loop_run_dir\": \"artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_1/rcp_closed_loop_run\",\n    \"closed_loop_runlog\": \"artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_1/rcp_closed_loop_run/closed_loop_runlog.json\",\n    \"generated_artifact\": \"artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_1/rcp_closed_loop_run/generated_artifact.json\",\n    \"hashes\": \"artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_1/rcp_closed_loop_run/hashes.json\",\n    \"rejected_candidates\": \"artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_1/rcp_closed_loop_run/rejected_candidates.json\"\n  },\n  \"schema_errors\": [],\n  \"schema_valid\": true,\n  \"seed\": 0,\n  \"suite_name\": \"B9-Bridge Phase 2: M3-Min learned-entry audit harness\"\n}\n"
+}

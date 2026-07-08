@@ -1,0 +1,11 @@
+{
+  "cmd": [
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm-external-bench\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\rcp\\checker.py",
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\crsi_core\\results\\rclm_crsi_core_k3_baseN2_seed0\\packages\\RCLM_2\\rcp_closed_loop_run\\generated_artifact.json"
+  ],
+  "created_utc": "2026-07-08T04:58:49.271333+00:00",
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"N\": 4,\n  \"artifact_hash\": \"f9ffc2b870c56a699eff6cd345fd4f554f4e6db2f6c69462e5925735a03c062c\",\n  \"explicit_residuals_checked\": true,\n  \"external_mechanization_certificate_supplied\": false,\n  \"final_dimension\": 32,\n  \"mechanization_status\": \"not_proof_assistant_mechanized_in_this_artifact\",\n  \"non_noop_updates\": true,\n  \"ok\": true,\n  \"relative_entropy_base2\": 0.3333333333333333,\n  \"singleton_reality_containment\": true,\n  \"steps_checked\": 4,\n  \"strict_ability_expansion\": true\n}\n"
+}

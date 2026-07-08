@@ -1,0 +1,57 @@
+{
+  "LECert": {
+    "CoverageCert": true,
+    "GoalId": true,
+    "PCS": true,
+    "Q_SV_A_nonpositive": true,
+    "RealCont": true,
+    "RegSemCert": true,
+    "ReplayTrace": true,
+    "SVBuilderTrace": true,
+    "SVTract": true,
+    "SVWitLib": true,
+    "TrustRef": true,
+    "TypeCert": true
+  },
+  "N": 2,
+  "audit_status": "FullPass",
+  "checker_exit_code": 0,
+  "checker_passed": true,
+  "checker_stderr": "",
+  "claim_boundary": {
+    "arbitrary_trained_system_entry": false,
+    "b10_external_public_benchmark": false,
+    "b9_learned_entry_fullpass": true,
+    "frontier_scale_validation": false,
+    "full_autonomous_rsi": false,
+    "m3_min_learned_entry_boundary": true
+  },
+  "closed_loop_ok": true,
+  "component_summary": {
+    "component_pass_rate": 1.0,
+    "failed_components": 0,
+    "missing_fields": [],
+    "passed_components": 12,
+    "total_components": 12
+  },
+  "created_utc": "2026-07-08T04:58:47.521393+00:00",
+  "engine_exit_code": 0,
+  "engine_stderr": "",
+  "learned_system_id": "b62f38f672827610e24def7d",
+  "mode": "rclm",
+  "ok": true,
+  "paths": {
+    "accepted_trajectory": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_0/rclm_closed_loop_run/accepted_trajectory.json",
+    "case_dir": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_0/learned_entry/rclm_N2_seed0",
+    "checker": "artifacts/rclm/checker.py",
+    "closed_loop_run_dir": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_0/rclm_closed_loop_run",
+    "closed_loop_runlog": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_0/rclm_closed_loop_run/closed_loop_runlog.json",
+    "generated_artifact": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_0/rclm_closed_loop_run/generated_artifact.json",
+    "hashes": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_0/rclm_closed_loop_run/hashes.json",
+    "rejected_candidates": "artifacts/crsi_core/results/rclm_crsi_core_k3_baseN2_seed0/packages/RCLM_0/rclm_closed_loop_run/rejected_candidates.json"
+  },
+  "schema_errors": [],
+  "schema_valid": true,
+  "seed": 0,
+  "suite_name": "B9-Bridge Phase 2: M3-Min learned-entry audit harness"
+}
