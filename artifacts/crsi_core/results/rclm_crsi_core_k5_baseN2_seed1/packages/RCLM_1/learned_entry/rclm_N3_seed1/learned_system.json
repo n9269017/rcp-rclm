@@ -1,0 +1,45 @@
+{
+  "N": 3,
+  "architecture": "controlled-rclm-closed-loop-canonical",
+  "bounded_update_grammar": [
+    "valid_append_mem",
+    "wrong_dimension_append",
+    "noop_no_ability_expansion",
+    "residual_positive",
+    "recovery_breaking",
+    "bad_goal_transport",
+    "bad_trust_anchor",
+    "bad_cost_bound",
+    "bad_reality_containment"
+  ],
+  "certificate_gate": "M3-Min learned-entry audit",
+  "claim_boundary": {
+    "arbitrary_trained_system_entry": false,
+    "controlled_learned_system_surrogate": true,
+    "external_public_benchmark_result": false,
+    "frontier_scale_validation": false
+  },
+  "created_utc": "2026-07-08T05:23:09.052592+00:00",
+  "excluded_capabilities": [
+    "unrestricted_code_rewriting",
+    "unbounded_tool_use",
+    "hidden_self_modification",
+    "unbounded_environment_interaction",
+    "arbitrary_trained_system_generalization"
+  ],
+  "learned_origin": "controlled synthetic learned-system surrogate",
+  "mode": "rclm",
+  "seed": 1,
+  "system_id": "8446982b8935c19a8d6bfecd",
+  "theta": [
+    0.614124,
+    0.621822,
+    0.758907,
+    -0.570377,
+    0.445503,
+    0.838954,
+    -0.011862,
+    -0.604067
+  ],
+  "theta_hash": "2c3f2cc24a1deb59b2dd4263340bd9559d4f890231be51c570cf5ad3e1a263a6"
+}

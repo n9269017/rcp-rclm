@@ -1,0 +1,66 @@
+{
+  "N": 4,
+  "accepted_candidates": 4,
+  "all_accepted_steps_checked": true,
+  "all_residuals_nonpositive": true,
+  "artifact_hash": "2d659d437161fac4ca6147bf5405691d1d3ba3423612dd315268ad2777c718c0",
+  "claim_boundary": {
+    "broad_learned_agent_entry": false,
+    "empirical_deployment_validation": false,
+    "finite_closed_loop_certified_reference_instance": true,
+    "full_autonomous_rsi": false
+  },
+  "closed_loop_candidate_search": true,
+  "final_dimension": 32,
+  "generated_candidates": 36,
+  "goal_identity_drift": 0.0,
+  "loop_type": "closed_loop_certified_successor_generation",
+  "mode": "rcp",
+  "non_loss_recovery_preserved_each_step": true,
+  "ok": true,
+  "rejected_candidates": 32,
+  "seed": 2,
+  "singleton_reality_containment": true,
+  "static_predeclared_json_path": false,
+  "step_summaries": [
+    {
+      "accepted_candidate_hash": "c014472ed52bc7241239a6e4fa88726cd4114c3ccd2503a28feb40b8cb87de68",
+      "accepted_update": "AppendMem(a1)",
+      "candidates_generated": 9,
+      "new_ability": "a1",
+      "rejected_count": 8,
+      "successor_dimension": 4,
+      "t": 0
+    },
+    {
+      "accepted_candidate_hash": "8d1debb3a140280981018c3f6b63de3c8e9e72e8f4448941164096ef3f93f95e",
+      "accepted_update": "AppendMem(a2)",
+      "candidates_generated": 9,
+      "new_ability": "a2",
+      "rejected_count": 8,
+      "successor_dimension": 8,
+      "t": 1
+    },
+    {
+      "accepted_candidate_hash": "08920d363cc1d338d61ec0cc7bd7ccfaefc55068760699fdb79445edd1e75dec",
+      "accepted_update": "AppendMem(a3)",
+      "candidates_generated": 9,
+      "new_ability": "a3",
+      "rejected_count": 8,
+      "successor_dimension": 16,
+      "t": 2
+    },
+    {
+      "accepted_candidate_hash": "b2ae4e1335bd9277732eb8fa160d893e1345b83e3338c4b5498182eff4fc81f5",
+      "accepted_update": "AppendMem(a4)",
+      "candidates_generated": 9,
+      "new_ability": "a4",
+      "rejected_count": 8,
+      "successor_dimension": 32,
+      "t": 3
+    }
+  ],
+  "strict_ability_expansion_each_step": true,
+  "timestamp_utc": "2026-07-08T05:23:15.317534+00:00",
+  "trajectory_hash": "8b9ee7e36cf044213a2cb488948240a82e2928def53019c8a7784318af2aac83"
+}

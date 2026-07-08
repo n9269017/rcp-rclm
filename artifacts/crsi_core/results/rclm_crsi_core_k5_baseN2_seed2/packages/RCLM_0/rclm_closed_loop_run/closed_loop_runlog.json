@@ -1,0 +1,48 @@
+{
+  "N": 2,
+  "accepted_candidates": 2,
+  "all_accepted_steps_checked": true,
+  "all_residuals_nonpositive": true,
+  "artifact_hash": "6e6df9479a99e967f7124c066f34a1e316d47b112429afc902fc28d4693f6fc3",
+  "claim_boundary": {
+    "broad_learned_agent_entry": false,
+    "empirical_deployment_validation": false,
+    "finite_closed_loop_certified_reference_instance": true,
+    "full_autonomous_rsi": false
+  },
+  "closed_loop_candidate_search": true,
+  "final_dimension": 8,
+  "generated_candidates": 18,
+  "goal_identity_drift": 0.0,
+  "loop_type": "closed_loop_certified_successor_generation",
+  "mode": "rclm",
+  "non_loss_recovery_preserved_each_step": true,
+  "ok": true,
+  "rejected_candidates": 16,
+  "seed": 2,
+  "singleton_reality_containment": true,
+  "static_predeclared_json_path": false,
+  "step_summaries": [
+    {
+      "accepted_candidate_hash": "876a41504909522ea1ef85a958e918f7c87783a9f83b3fb6ad0e0645c823b0e8",
+      "accepted_update": "AppendMem(a1)",
+      "candidates_generated": 9,
+      "new_ability": "a1",
+      "rejected_count": 8,
+      "successor_dimension": 4,
+      "t": 0
+    },
+    {
+      "accepted_candidate_hash": "e4069ce2aa19be6ba7d8320dfe5643e64e4324d38c8aba432f2ae6db63a954cf",
+      "accepted_update": "AppendMem(a2)",
+      "candidates_generated": 9,
+      "new_ability": "a2",
+      "rejected_count": 8,
+      "successor_dimension": 8,
+      "t": 1
+    }
+  ],
+  "strict_ability_expansion_each_step": true,
+  "timestamp_utc": "2026-07-08T05:23:13.023883+00:00",
+  "trajectory_hash": "dc1cf380ff822e0eeb896d15b5d91454f685dfd1b982652da2b7fa902a3b8870"
+}

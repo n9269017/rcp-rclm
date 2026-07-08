@@ -1,0 +1,54 @@
+{
+  "core_score_improved": true,
+  "created_utc": "2026-07-08T05:23:04.656752+00:00",
+  "hash_chain_valid": true,
+  "no_oracle_or_manual_repair": true,
+  "nontrivial_package_level_improvement": true,
+  "ok": true,
+  "predecessor_checker_accepts_successor": true,
+  "predecessor_core_score": {
+    "adversarial_rejection_coverage": 8,
+    "certified_ability_count": 3,
+    "generator_self_hosting_depth": 0,
+    "lexicographic_tuple": [
+      3,
+      2,
+      12,
+      8,
+      0,
+      1,
+      -16
+    ],
+    "negative_normalized_cost": -16,
+    "reproducibility_score": 1,
+    "verified_horizon_capacity": 2,
+    "verifier_obligation_coverage": 12
+  },
+  "predecessor_successor_id": "RCLM_0_09cfa0962b7c0dd834a4",
+  "protected_invariants_preserved": true,
+  "schema_errors": [],
+  "schema_valid": true,
+  "schema_version": "crsi-core-v1",
+  "successor_core_score": {
+    "adversarial_rejection_coverage": 8,
+    "certified_ability_count": 4,
+    "generator_self_hosting_depth": 1,
+    "lexicographic_tuple": [
+      4,
+      3,
+      12,
+      8,
+      1,
+      1,
+      -48
+    ],
+    "negative_normalized_cost": -48,
+    "reproducibility_score": 1,
+    "verified_horizon_capacity": 3,
+    "verifier_obligation_coverage": 12
+  },
+  "successor_successor_id": "RCLM_1_4932d326a9f4be179ebc",
+  "suite_name": "RCLM-CRSI-Core: Certified Recursive Successor Improvement Core Test",
+  "transition_id": "RCLM_0_to_RCLM_1",
+  "transition_path": "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed0/transitions/transition_0_to_1.json"
+}

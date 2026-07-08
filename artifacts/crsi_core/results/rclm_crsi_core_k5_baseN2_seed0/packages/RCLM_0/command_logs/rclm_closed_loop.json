@@ -1,0 +1,18 @@
+{
+  "cmd": [
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm-external-bench\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\common\\closed_loop_reference_engine.py",
+    "--mode",
+    "rclm",
+    "--N",
+    "2",
+    "--seed",
+    "0",
+    "--run-dir",
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\crsi_core\\results\\rclm_crsi_core_k5_baseN2_seed0\\packages\\RCLM_0\\rclm_closed_loop_run"
+  ],
+  "created_utc": "2026-07-08T05:23:03.225771+00:00",
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"N\": 2,\n  \"accepted_candidates\": 2,\n  \"all_accepted_steps_checked\": true,\n  \"all_residuals_nonpositive\": true,\n  \"artifact_hash\": \"ffe6ab31337b38f1948690db58dd84a3062f5c93c06d700b578fcb9ff76de512\",\n  \"claim_boundary\": {\n    \"broad_learned_agent_entry\": false,\n    \"empirical_deployment_validation\": false,\n    \"finite_closed_loop_certified_reference_instance\": true,\n    \"full_autonomous_rsi\": false\n  },\n  \"closed_loop_candidate_search\": true,\n  \"final_dimension\": 8,\n  \"generated_candidates\": 18,\n  \"goal_identity_drift\": 0.0,\n  \"loop_type\": \"closed_loop_certified_successor_generation\",\n  \"mode\": \"rclm\",\n  \"non_loss_recovery_preserved_each_step\": true,\n  \"ok\": true,\n  \"paths\": {\n    \"accepted_trajectory\": \"C:\\\\Users\\\\Nicolas.n926\\\\Desktop\\\\rcp-rclm\\\\artifacts\\\\crsi_core\\\\results\\\\rclm_crsi_core_k5_baseN2_seed0\\\\packages\\\\RCLM_0\\\\rclm_closed_loop_run\\\\accepted_trajectory.json\",\n    \"closed_loop_runlog\": \"C:\\\\Users\\\\Nicolas.n926\\\\Desktop\\\\rcp-rclm\\\\artifacts\\\\crsi_core\\\\results\\\\rclm_crsi_core_k5_baseN2_seed0\\\\packages\\\\RCLM_0\\\\rclm_closed_loop_run\\\\closed_loop_runlog.json\",\n    \"generated_artifact\": \"C:\\\\Users\\\\Nicolas.n926\\\\Desktop\\\\rcp-rclm\\\\artifacts\\\\crsi_core\\\\results\\\\rclm_crsi_core_k5_baseN2_seed0\\\\packages\\\\RCLM_0\\\\rclm_closed_loop_run\\\\generated_artifact.json\",\n    \"hashes\": \"C:\\\\Users\\\\Nicolas.n926\\\\Desktop\\\\rcp-rclm\\\\artifacts\\\\crsi_core\\\\results\\\\rclm_crsi_core_k5_baseN2_seed0\\\\packages\\\\RCLM_0\\\\rclm_closed_loop_run\\\\hashes.json\",\n    \"rejected_candidates\": \"C:\\\\Users\\\\Nicolas.n926\\\\Desktop\\\\rcp-rclm\\\\artifacts\\\\crsi_core\\\\results\\\\rclm_crsi_core_k5_baseN2_seed0\\\\packages\\\\RCLM_0\\\\rclm_closed_loop_run\\\\rejected_candidates.json\"\n  },\n  \"rejected_candidates\": 16,\n  \"seed\": 0,\n  \"singleton_reality_containment\": true,\n  \"static_predeclared_json_path\": false,\n  \"step_summaries\": [\n    {\n      \"accepted_candidate_hash\": \"876a41504909522ea1ef85a958e918f7c87783a9f83b3fb6ad0e0645c823b0e8\",\n      \"accepted_update\": \"AppendMem(a1)\",\n      \"candidates_generated\": 9,\n      \"new_ability\": \"a1\",\n      \"rejected_count\": 8,\n      \"successor_dimension\": 4,\n      \"t\": 0\n    },\n    {\n      \"accepted_candidate_hash\": \"e4069ce2aa19be6ba7d8320dfe5643e64e4324d38c8aba432f2ae6db63a954cf\",\n      \"accepted_update\": \"AppendMem(a2)\",\n      \"candidates_generated\": 9,\n      \"new_ability\": \"a2\",\n      \"rejected_count\": 8,\n      \"successor_dimension\": 8,\n      \"t\": 1\n    }\n  ],\n  \"strict_ability_expansion_each_step\": true,\n  \"timestamp_utc\": \"2026-07-08T05:23:03.214646+00:00\",\n  \"trajectory_hash\": \"dc1cf380ff822e0eeb896d15b5d91454f685dfd1b982652da2b7fa902a3b8870\"\n}\n"
+}

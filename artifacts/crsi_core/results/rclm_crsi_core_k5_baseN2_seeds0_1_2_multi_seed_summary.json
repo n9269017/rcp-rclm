@@ -1,0 +1,34 @@
+{
+  "aggregate_hash": "25d2cbfa4313e01b293a97c02e9a6bcac5c4ded99d7eeb263e7f392dac2dc2f9",
+  "all_chains_ok": true,
+  "base_N": 2,
+  "chains": [
+    "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed0/rclm_crsi_core_chain_summary.json",
+    "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed1/rclm_crsi_core_chain_summary.json",
+    "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed2/rclm_crsi_core_chain_summary.json"
+  ],
+  "claim_boundary": {
+    "arbitrary_trained_system_entry": false,
+    "evalplus_leaderboard_result": false,
+    "external_public_benchmark": false,
+    "finite_executable_crsi_witness": true,
+    "frontier_scale_validation": false,
+    "full_autonomous_rsi": false,
+    "internal_core_score_improvement": true,
+    "mle_bench_result": false,
+    "official_evalplus_cli_result": false,
+    "re_bench_result": false,
+    "swe_bench_result": false,
+    "unbounded_horizon_empirical_proof": false
+  },
+  "created_utc": "2026-07-08T05:23:18.463119+00:00",
+  "failed_chains": [],
+  "schema_version": "crsi-core-v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "successor_cycles": 5,
+  "suite_name": "RCLM-CRSI-Core: Certified Recursive Successor Improvement Core Test"
+}
