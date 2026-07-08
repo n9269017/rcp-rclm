@@ -1,0 +1,30 @@
+{
+  "adapter_smoke_test_only": true,
+  "benchmark_id": "re_metr_bridge_smoke",
+  "benchmark_kind": "synthetic_bridge_smoke_fixture",
+  "created_utc": "2026-07-08T23:25:15.035951+00:00",
+  "crsi_chain_id": "rclm_crsi_core_k5_baseN2_seed0",
+  "external_public_benchmark_result": false,
+  "external_score_summary": {
+    "baseline_score": 3.0,
+    "delta": 5.0,
+    "final_score": 8.0,
+    "has_scores": true,
+    "monotone_non_decreasing": true,
+    "scores": [
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0
+    ],
+    "strictly_improved": true
+  },
+  "official_re_bench_result": false,
+  "ok": true,
+  "schema_version": "crsi-external-bridge-v1",
+  "sidecar_hash": "ec55c5977b78e0709161968b29ef030c56e5c5c94b3e42bcf7ef2dfa85e8803d",
+  "sidecar_path": "artifacts/crsi_external_bridge/results/smoke_k5_seed0/crsi_external_bridge_sidecar.json",
+  "suite_name": "CRSI-RE/METR Bridge: Certificate-preserving external AI-R&D benchmark adapter"
+}

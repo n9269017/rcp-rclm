@@ -1,0 +1,56 @@
+{
+  "benchmark_answers_in_prompt": false,
+  "benchmark_id": "re_metr_bridge_smoke",
+  "benchmark_kind": "synthetic_bridge_smoke_fixture",
+  "created_utc": "2026-07-08T23:25:13.350560+00:00",
+  "diagnostic_oracle": false,
+  "hidden_tests_exposed": false,
+  "human_patch_inside_chain": false,
+  "manual_repair_inside_chain": false,
+  "private_solution_material_used": false,
+  "schema_version": "crsi-external-bridge-v1",
+  "scores": [
+    {
+      "note": "Adapter smoke score derived from recorded CRSI package metadata; not an external benchmark score.",
+      "package_index": 0,
+      "score": 3.0,
+      "score_units": "synthetic_smoke_score",
+      "successor_id": "RCLM_0_09cfa0962b7c0dd834a4"
+    },
+    {
+      "note": "Adapter smoke score derived from recorded CRSI package metadata; not an external benchmark score.",
+      "package_index": 1,
+      "score": 4.0,
+      "score_units": "synthetic_smoke_score",
+      "successor_id": "RCLM_1_4932d326a9f4be179ebc"
+    },
+    {
+      "note": "Adapter smoke score derived from recorded CRSI package metadata; not an external benchmark score.",
+      "package_index": 2,
+      "score": 5.0,
+      "score_units": "synthetic_smoke_score",
+      "successor_id": "RCLM_2_cc0b4f34e5af30c52786"
+    },
+    {
+      "note": "Adapter smoke score derived from recorded CRSI package metadata; not an external benchmark score.",
+      "package_index": 3,
+      "score": 6.0,
+      "score_units": "synthetic_smoke_score",
+      "successor_id": "RCLM_3_c90f8809992317d137a1"
+    },
+    {
+      "note": "Adapter smoke score derived from recorded CRSI package metadata; not an external benchmark score.",
+      "package_index": 4,
+      "score": 7.0,
+      "score_units": "synthetic_smoke_score",
+      "successor_id": "RCLM_4_94f532980709a8503062"
+    },
+    {
+      "note": "Adapter smoke score derived from recorded CRSI package metadata; not an external benchmark score.",
+      "package_index": 5,
+      "score": 8.0,
+      "score_units": "synthetic_smoke_score",
+      "successor_id": "RCLM_5_c00150acda6c9a63cf74"
+    }
+  ]
+}
