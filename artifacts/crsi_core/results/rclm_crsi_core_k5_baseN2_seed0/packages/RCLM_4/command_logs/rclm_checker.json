@@ -1,0 +1,11 @@
+{
+  "cmd": [
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm-external-bench\\.venv\\Scripts\\python.exe",
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\rclm\\checker.py",
+    "C:\\Users\\Nicolas.n926\\Desktop\\rcp-rclm\\artifacts\\crsi_core\\results\\rclm_crsi_core_k5_baseN2_seed0\\packages\\RCLM_4\\rclm_closed_loop_run\\generated_artifact.json"
+  ],
+  "created_utc": "2026-07-08T05:23:06.601718+00:00",
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"N\": 6,\n  \"artifact_hash\": \"9524daba75b999d0737b7c05ccca4ac3a45f66dee91a8c4d428b6e3c60b510d3\",\n  \"artifact_type\": \"RCLM-Batch13R-B-controlled-executable-reference-system\",\n  \"explicit_rclm_residuals_checked\": true,\n  \"external_mechanization_certificate_supplied\": false,\n  \"final_dimension\": 128,\n  \"mechanization_status\": \"not_proof_assistant_mechanized_in_this_artifact\",\n  \"non_noop_updates\": true,\n  \"ok\": true,\n  \"relative_entropy_base2\": 0.3333333333333333,\n  \"singleton_reality_containment\": true,\n  \"steps_checked\": 6,\n  \"strict_ability_expansion\": true\n}\n"
+}

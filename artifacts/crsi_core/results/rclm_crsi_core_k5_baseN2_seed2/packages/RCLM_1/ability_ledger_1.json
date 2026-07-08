@@ -1,0 +1,25 @@
+{
+  "abilities": [
+    [
+      "a0"
+    ],
+    [
+      "a0",
+      "a1"
+    ],
+    [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ]
+  ],
+  "certified_ability_count": 4,
+  "package_index": 1,
+  "schema_version": "crsi-core-v1"
+}

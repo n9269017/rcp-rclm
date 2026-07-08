@@ -1,0 +1,166 @@
+{
+  "audit_summary": {
+    "LECert": {
+      "CoverageCert": true,
+      "GoalId": true,
+      "PCS": true,
+      "Q_SV_A_nonpositive": true,
+      "RealCont": true,
+      "RegSemCert": true,
+      "ReplayTrace": true,
+      "SVBuilderTrace": true,
+      "SVTract": true,
+      "SVWitLib": true,
+      "TrustRef": true,
+      "TypeCert": true
+    },
+    "N": 2,
+    "audit_status": "FullPass",
+    "checker_exit_code": 0,
+    "checker_passed": true,
+    "checker_stderr": "",
+    "claim_boundary": {
+      "arbitrary_trained_system_entry": false,
+      "b10_external_public_benchmark": false,
+      "b9_learned_entry_fullpass": true,
+      "frontier_scale_validation": false,
+      "full_autonomous_rsi": false,
+      "m3_min_learned_entry_boundary": true
+    },
+    "closed_loop_ok": true,
+    "component_summary": {
+      "component_pass_rate": 1.0,
+      "failed_components": 0,
+      "missing_fields": [],
+      "passed_components": 12,
+      "total_components": 12
+    },
+    "created_utc": "2026-07-08T05:23:03.876532+00:00",
+    "engine_exit_code": 0,
+    "engine_stderr": "",
+    "learned_system_id": "18b1e0160cdbe06201a17a39",
+    "mode": "rcp",
+    "ok": true,
+    "paths": {
+      "accepted_trajectory": "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed0/packages/RCLM_0/rcp_closed_loop_run/accepted_trajectory.json",
+      "case_dir": "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed0/packages/RCLM_0/learned_entry_rcp/rcp_N2_seed0",
+      "checker": "artifacts/rcp/checker.py",
+      "closed_loop_run_dir": "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed0/packages/RCLM_0/rcp_closed_loop_run",
+      "closed_loop_runlog": "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed0/packages/RCLM_0/rcp_closed_loop_run/closed_loop_runlog.json",
+      "generated_artifact": "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed0/packages/RCLM_0/rcp_closed_loop_run/generated_artifact.json",
+      "hashes": "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed0/packages/RCLM_0/rcp_closed_loop_run/hashes.json",
+      "rejected_candidates": "artifacts/crsi_core/results/rclm_crsi_core_k5_baseN2_seed0/packages/RCLM_0/rcp_closed_loop_run/rejected_candidates.json"
+    },
+    "schema_errors": [],
+    "schema_valid": true,
+    "seed": 0,
+    "suite_name": "B9-Bridge Phase 2: M3-Min learned-entry audit harness"
+  },
+  "checker_summary": {
+    "N": 2,
+    "artifact_hash": "e8738b75f9af86af92c5ce323a26ca3d07b1ec4ce86ba2e555133bf6c81a5092",
+    "explicit_residuals_checked": true,
+    "external_mechanization_certificate_supplied": false,
+    "final_dimension": 8,
+    "mechanization_status": "not_proof_assistant_mechanized_in_this_artifact",
+    "non_noop_updates": true,
+    "ok": true,
+    "relative_entropy_base2": 0.3333333333333333,
+    "singleton_reality_containment": true,
+    "steps_checked": 2,
+    "strict_ability_expansion": true
+  },
+  "engine_summary": {
+    "N": 2,
+    "accepted_candidates": 2,
+    "all_accepted_steps_checked": true,
+    "all_residuals_nonpositive": true,
+    "artifact_hash": "e8738b75f9af86af92c5ce323a26ca3d07b1ec4ce86ba2e555133bf6c81a5092",
+    "claim_boundary": {
+      "broad_learned_agent_entry": false,
+      "empirical_deployment_validation": false,
+      "finite_closed_loop_certified_reference_instance": true,
+      "full_autonomous_rsi": false
+    },
+    "closed_loop_candidate_search": true,
+    "final_dimension": 8,
+    "generated_candidates": 18,
+    "goal_identity_drift": 0.0,
+    "loop_type": "closed_loop_certified_successor_generation",
+    "mode": "rcp",
+    "non_loss_recovery_preserved_each_step": true,
+    "ok": true,
+    "rejected_candidates": 16,
+    "seed": 0,
+    "singleton_reality_containment": true,
+    "static_predeclared_json_path": false,
+    "step_summaries": [
+      {
+        "accepted_candidate_hash": "c014472ed52bc7241239a6e4fa88726cd4114c3ccd2503a28feb40b8cb87de68",
+        "accepted_update": "AppendMem(a1)",
+        "candidates_generated": 9,
+        "new_ability": "a1",
+        "rejected_count": 8,
+        "successor_dimension": 4,
+        "t": 0
+      },
+      {
+        "accepted_candidate_hash": "8d1debb3a140280981018c3f6b63de3c8e9e72e8f4448941164096ef3f93f95e",
+        "accepted_update": "AppendMem(a2)",
+        "candidates_generated": 9,
+        "new_ability": "a2",
+        "rejected_count": 8,
+        "successor_dimension": 8,
+        "t": 1
+      }
+    ],
+    "strict_ability_expansion_each_step": true,
+    "timestamp_utc": "2026-07-08T05:23:03.644807+00:00",
+    "trajectory_hash": "2f360079ed8a50b8b278ce1d800b2717bfdf65d0da8131346b3f7c66aed23c62"
+  },
+  "system": {
+    "N": 2,
+    "architecture": "controlled-rcp-closed-loop-canonical",
+    "bounded_update_grammar": [
+      "valid_append_mem",
+      "wrong_dimension_append",
+      "noop_no_ability_expansion",
+      "residual_positive",
+      "recovery_breaking",
+      "bad_goal_transport",
+      "bad_trust_anchor",
+      "bad_cost_bound",
+      "bad_reality_containment"
+    ],
+    "certificate_gate": "M3-Min learned-entry audit",
+    "claim_boundary": {
+      "arbitrary_trained_system_entry": false,
+      "controlled_learned_system_surrogate": true,
+      "external_public_benchmark_result": false,
+      "frontier_scale_validation": false
+    },
+    "created_utc": "2026-07-08T05:23:03.796185+00:00",
+    "excluded_capabilities": [
+      "unrestricted_code_rewriting",
+      "unbounded_tool_use",
+      "hidden_self_modification",
+      "unbounded_environment_interaction",
+      "arbitrary_trained_system_generalization"
+    ],
+    "learned_origin": "controlled synthetic learned-system surrogate",
+    "mode": "rcp",
+    "seed": 0,
+    "system_id": "18b1e0160cdbe06201a17a39",
+    "theta": [
+      0.293456,
+      0.0591,
+      0.951965,
+      -0.612652,
+      -0.384317,
+      0.724586,
+      -0.830521,
+      -0.315503
+    ],
+    "theta_hash": "76617240ff4612393461e295f9e812ac3abaa386232d25e32e76c83ebc5bc05a"
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "abilities": [
+    [
+      "a0"
+    ],
+    [
+      "a0",
+      "a1"
+    ],
+    [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ]
+  ],
+  "artifact_type": "RCP-Batch13R-B-controlled-canonical-reference-artifact",
+  "closed_loop_generation_status": {
+    "N": 3,
+    "accepted_candidates": 3,
+    "all_accepted_steps_checked": true,
+    "all_residuals_nonpositive": true,
+    "closed_loop_candidate_search": true,
+    "final_dimension": 16,
+    "generated_candidates": 27,
+    "goal_identity_drift": 0.0,
+    "loop_type": "closed_loop_certified_successor_generation",
+    "mode": "rcp",
+    "non_loss_recovery_preserved_each_step": true,
+    "rejected_candidates": 24,
+    "seed": 1,
+    "singleton_reality_containment": true,
+    "static_predeclared_json_path": false,
+    "strict_ability_expansion_each_step": true
+  },
+  "description": "Closed-loop canonical RCP reference artifact. Successors are selected by a finite candidate-generation/check/accept-reject loop, not prewritten as a static JSON trajectory.",
+  "external_mechanization": {
+    "certificate_supplied": false,
+    "required_for_machine_checked_claim": "MechCert_{0:N}^{RCP,can}",
+    "scope_if_supplied": "canonical finite RCP non-loss/recovery/ability/residual/checker core only",
+    "status": "not_proof_assistant_mechanized_in_this_artifact"
+  },
+  "generator": "closed_loop_certified_successor_generator_v1",
+  "goal_object": "constant U_can with identity transport",
+  "hash_manifest": {
+    "abilities_sha256": "574d87590fa6c9cc8ba6f2c5465805153306226c219913a31c60633ac10475d1",
+    "artifact_without_hash_manifest_sha256": "f43826c5796cec8c83ff01669f8925140f55aa8f392a7cc2fdbd66a843d64608",
+    "pcs_sha256": "485b2c3ef3968c298dd2e4c447318820ad7a547cc4745a15e9db6712334eaca6",
+    "states_sha256": "103e9416d8d8d5f3b5ad18e4d41f573427ae372b2d1c7090616802e187ad202f"
+  },
+  "horizon_N": 3,
+  "pcs": [
+    {
+      "checker_result": 1,
+      "closed_loop_trace": {
+        "candidate_hash": "c014472ed52bc7241239a6e4fa88726cd4114c3ccd2503a28feb40b8cb87de68",
+        "candidate_kind": "valid_append_mem",
+        "proof_trace": {
+          "candidate_grammar_kind": "valid_append_mem",
+          "closed_loop_step": 0,
+          "mode": "rcp",
+          "new_ability": "a1",
+          "transition_rule": "candidate_generated_from_current_state_not_static_json"
+        },
+        "selected_by_closed_loop_verification": true,
+        "trust_anchor_valid": true
+      },
+      "cost": {
+        "checker_steps": 18,
+        "residual_checks": 12
+      },
+      "goal_identity_drift": 0.0,
+      "phi": "append_alpha_1",
+      "reality_containment": {
+        "beta_env": 0.0,
+        "contained": true,
+        "envelope": "singleton_true_law",
+        "epsilon_env": 0.0
+      },
+      "recovery": "trace_last_qubit",
+      "residuals": {
+        "budget": 0.0,
+        "cand": 0.0,
+        "goal": 0.0,
+        "persist": 0.0,
+        "proof": 0.0,
+        "seed": 0.0,
+        "sound": 0.0,
+        "trans": 0.0,
+        "trust": 0.0,
+        "unc": 0.0,
+        "ver": 0.0,
+        "world": 0.0
+      },
+      "t": 0,
+      "update": "AppendMem(a1)"
+    },
+    {
+      "checker_result": 1,
+      "closed_loop_trace": {
+        "candidate_hash": "8d1debb3a140280981018c3f6b63de3c8e9e72e8f4448941164096ef3f93f95e",
+        "candidate_kind": "valid_append_mem",
+        "proof_trace": {
+          "candidate_grammar_kind": "valid_append_mem",
+          "closed_loop_step": 1,
+          "mode": "rcp",
+          "new_ability": "a2",
+          "transition_rule": "candidate_generated_from_current_state_not_static_json"
+        },
+        "selected_by_closed_loop_verification": true,
+        "trust_anchor_valid": true
+      },
+      "cost": {
+        "checker_steps": 18,
+        "residual_checks": 12
+      },
+      "goal_identity_drift": 0.0,
+      "phi": "append_alpha_1",
+      "reality_containment": {
+        "beta_env": 0.0,
+        "contained": true,
+        "envelope": "singleton_true_law",
+        "epsilon_env": 0.0
+      },
+      "recovery": "trace_last_qubit",
+      "residuals": {
+        "budget": 0.0,
+        "cand": 0.0,
+        "goal": 0.0,
+        "persist": 0.0,
+        "proof": 0.0,
+        "seed": 0.0,
+        "sound": 0.0,
+        "trans": 0.0,
+        "trust": 0.0,
+        "unc": 0.0,
+        "ver": 0.0,
+        "world": 0.0
+      },
+      "t": 1,
+      "update": "AppendMem(a2)"
+    },
+    {
+      "checker_result": 1,
+      "closed_loop_trace": {
+        "candidate_hash": "08920d363cc1d338d61ec0cc7bd7ccfaefc55068760699fdb79445edd1e75dec",
+        "candidate_kind": "valid_append_mem",
+        "proof_trace": {
+          "candidate_grammar_kind": "valid_append_mem",
+          "closed_loop_step": 2,
+          "mode": "rcp",
+          "new_ability": "a3",
+          "transition_rule": "candidate_generated_from_current_state_not_static_json"
+        },
+        "selected_by_closed_loop_verification": true,
+        "trust_anchor_valid": true
+      },
+      "cost": {
+        "checker_steps": 18,
+        "residual_checks": 12
+      },
+      "goal_identity_drift": 0.0,
+      "phi": "append_alpha_1",
+      "reality_containment": {
+        "beta_env": 0.0,
+        "contained": true,
+        "envelope": "singleton_true_law",
+        "epsilon_env": 0.0
+      },
+      "recovery": "trace_last_qubit",
+      "residuals": {
+        "budget": 0.0,
+        "cand": 0.0,
+        "goal": 0.0,
+        "persist": 0.0,
+        "proof": 0.0,
+        "seed": 0.0,
+        "sound": 0.0,
+        "trans": 0.0,
+        "trust": 0.0,
+        "unc": 0.0,
+        "ver": 0.0,
+        "world": 0.0
+      },
+      "t": 2,
+      "update": "AppendMem(a3)"
+    }
+  ],
+  "states": {
+    "rho": [
+      [
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ]
+    ],
+    "sigma": [
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      [
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666
+      ]
+    ]
+  },
+  "tractability": {
+    "dense_cost_bound": 12288,
+    "diagonal_table_cost_bound": 48,
+    "final_dimension": 16
+  },
+  "true_environment": "deterministic finite append_alpha_1 transition law",
+  "trust_anchor": "frozen checker node C_star, not modified by updates",
+  "updates": [
+    "AppendMem(a1)",
+    "AppendMem(a2)",
+    "AppendMem(a3)"
+  ]
+}

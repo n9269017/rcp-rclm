@@ -1,0 +1,36 @@
+{
+  "core_score": {
+    "adversarial_rejection_coverage": 8,
+    "certified_ability_count": 8,
+    "generator_self_hosting_depth": 5,
+    "lexicographic_tuple": [
+      8,
+      7,
+      12,
+      8,
+      5,
+      1,
+      -1792
+    ],
+    "negative_normalized_cost": -1792,
+    "reproducibility_score": 1,
+    "verified_horizon_capacity": 7,
+    "verifier_obligation_coverage": 12
+  },
+  "package_index": 5,
+  "protected_invariants": {
+    "all_pcs_checked": true,
+    "certificate_preserved": true,
+    "goal_identity_drift_zero": true,
+    "hash_chain_valid": true,
+    "invalid_adversarial_candidates_rejected": true,
+    "no_oracle_or_manual_repair": true,
+    "non_loss_recovery_preserved": true,
+    "predecessor_checker_accepts_successor": true,
+    "reality_containment": true,
+    "residuals_nonpositive": true,
+    "strict_ability_expansion": true,
+    "trust_anchor_unchanged": true
+  },
+  "schema_version": "crsi-core-v1"
+}

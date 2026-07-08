@@ -1,0 +1,1838 @@
+[
+  {
+    "accepted": false,
+    "candidate_hash": "8b36f66e4a7ef651d9ce9b33f481966b47a729d188169ed9b0729363fe857567",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 64,
+      "diagonal_table_bound_units": 4,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.1,
+    "kind": "bad_goal_transport",
+    "new_abilities": [
+      "a0",
+      "a1"
+    ],
+    "old_abilities": [
+      "a0"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_goal_transport",
+      "closed_loop_step": 0,
+      "mode": "rcp",
+      "new_ability": "a1",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "goal_identity_failure: nonzero goal drift"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 0,
+    "trust_anchor_valid": true,
+    "update": "AppendMemBadGoal(a1)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "94791c5217b1e852b3556fb85583ee8dd6e396bcc7a9a87f4df85cc0d35e72a5",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 8,
+      "diagonal_table_bound_units": 2,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "noop_no_ability_expansion",
+    "new_abilities": [
+      "a0"
+    ],
+    "old_abilities": [
+      "a0"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "noop_no_ability_expansion",
+      "closed_loop_step": 0,
+      "mode": "rcp",
+      "new_ability": "a1",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "wrong_dimension: rho successor dimension is not 2 * predecessor dimension",
+      "wrong_dimension: sigma successor dimension is not 2 * predecessor dimension",
+      "no_op: candidate does not perform a non-noop successor construction",
+      "recovery_failure: recovered rho does not equal predecessor",
+      "recovery_failure: recovered sigma does not equal predecessor",
+      "strict_ability_expansion_failure: expected new ability absent"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.6666666666666666,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.3333333333333333,
+      0.6666666666666666
+    ],
+    "t": 0,
+    "trust_anchor_valid": true,
+    "update": "NoOp"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "a4d8ebec5a0b70e37aa1b4d1253a5ae412ca2a1792a34a66860bb7b8ecbe64e8",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 64,
+      "diagonal_table_bound_units": 4,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "bad_trust_anchor",
+    "new_abilities": [
+      "a0",
+      "a1"
+    ],
+    "old_abilities": [
+      "a0"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_trust_anchor",
+      "closed_loop_step": 0,
+      "mode": "rcp",
+      "new_ability": "a1",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "trust_failure: checker/trust anchor modified or invalid"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 0,
+    "trust_anchor_valid": false,
+    "update": "AppendMemBadTrust(a1)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "b52aff40dd45dd8e987774e3618c12bbc94d8d1b4109f174f4bf36bf923519bd",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 64,
+      "diagonal_table_bound_units": 4,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "residual_positive",
+    "new_abilities": [
+      "a0",
+      "a1"
+    ],
+    "old_abilities": [
+      "a0"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "residual_positive",
+      "closed_loop_step": 0,
+      "mode": "rcp",
+      "new_ability": "a1",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "positive_residual:budget=1.0"
+    ],
+    "residuals": {
+      "budget": 1.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 0,
+    "trust_anchor_valid": true,
+    "update": "AppendMemPositiveResidual(a1)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "684d793c085fd00e78e724f435745d1244a25b3d375c60f5b71f63643885c1f8",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 125,
+      "diagonal_table_bound_units": 5,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "wrong_dimension_append",
+    "new_abilities": [
+      "a0",
+      "a1"
+    ],
+    "old_abilities": [
+      "a0"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "wrong_dimension_append",
+      "closed_loop_step": 0,
+      "mode": "rcp",
+      "new_ability": "a1",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "wrong_dimension: rho successor dimension is not 2 * predecessor dimension",
+      "wrong_dimension: sigma successor dimension is not 2 * predecessor dimension"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.3333333333333333,
+      0.0
+    ],
+    "sigma_after": [
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.6666666666666666,
+      0.0
+    ],
+    "t": 0,
+    "trust_anchor_valid": true,
+    "update": "BadAppendWrongDim(a1)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "f9f2c2696fb7321fcb00e79112089c0418e85a52e969b78b46e16984f164e89c",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 64,
+      "diagonal_table_bound_units": 4,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "recovery_breaking",
+    "new_abilities": [
+      "a0",
+      "a1"
+    ],
+    "old_abilities": [
+      "a0"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "recovery_breaking",
+      "closed_loop_step": 0,
+      "mode": "rcp",
+      "new_ability": "a1",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "recovery_failure: recovered rho does not equal predecessor",
+      "non_loss_failure: relative entropy infinite: q has zero where p is positive"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.125,
+      0.6666666666666666,
+      0.0,
+      0.20833333333333331
+    ],
+    "sigma_after": [
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 0,
+    "trust_anchor_valid": true,
+    "update": "AppendMemRecoveryBreaking(a1)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "7f834882c0b12c848ae7dfb04cfed2983a5e1f3647a99f1d218216ba8d218e65",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 64,
+      "diagonal_table_bound_units": 4,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "bad_reality_containment",
+    "new_abilities": [
+      "a0",
+      "a1"
+    ],
+    "old_abilities": [
+      "a0"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_reality_containment",
+      "closed_loop_step": 0,
+      "mode": "rcp",
+      "new_ability": "a1",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": false,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "reality_containment_failure: true environment not contained"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 0,
+    "trust_anchor_valid": true,
+    "update": "AppendMemBadReality(a1)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "25d8991aad854e24ea8fc3dd5e728d7ea293673c3a6b0e2530e35f9f1e5230f5",
+    "cost_record": {
+      "dense_matrix_bound_units": 0,
+      "diagonal_table_bound_units": 0,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "bad_cost_bound",
+    "new_abilities": [
+      "a0",
+      "a1"
+    ],
+    "old_abilities": [
+      "a0"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_cost_bound",
+      "closed_loop_step": 0,
+      "mode": "rcp",
+      "new_ability": "a1",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "cost_failure: dense bound underestimates declared cost",
+      "cost_failure: diagonal bound underestimates declared cost"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 0,
+    "trust_anchor_valid": true,
+    "update": "AppendMemBadCost(a1)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "5d53f98a669bb88f2688ecb8ee98940bd01cf65a46cc9ae9d4a18b14b894dc2b",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 64,
+      "diagonal_table_bound_units": 4,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "noop_no_ability_expansion",
+    "new_abilities": [
+      "a0",
+      "a1"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "noop_no_ability_expansion",
+      "closed_loop_step": 1,
+      "mode": "rcp",
+      "new_ability": "a2",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "wrong_dimension: rho successor dimension is not 2 * predecessor dimension",
+      "wrong_dimension: sigma successor dimension is not 2 * predecessor dimension",
+      "no_op: candidate does not perform a non-noop successor construction",
+      "recovery_failure: recovered rho does not equal predecessor",
+      "recovery_failure: recovered sigma does not equal predecessor",
+      "strict_ability_expansion_failure: expected new ability absent"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 1,
+    "trust_anchor_valid": true,
+    "update": "NoOp"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "3482279f41023879c76b414955e999991a0abe5573c93e02dda2cef37657ca2b",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 729,
+      "diagonal_table_bound_units": 9,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "wrong_dimension_append",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "wrong_dimension_append",
+      "closed_loop_step": 1,
+      "mode": "rcp",
+      "new_ability": "a2",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "wrong_dimension: rho successor dimension is not 2 * predecessor dimension",
+      "wrong_dimension: sigma successor dimension is not 2 * predecessor dimension"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0
+    ],
+    "t": 1,
+    "trust_anchor_valid": true,
+    "update": "BadAppendWrongDim(a2)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "4e6ff8d9549d27082437e01b2913efd04b8c04aee5e43deb321d2e3096451faf",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 512,
+      "diagonal_table_bound_units": 8,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.1,
+    "kind": "bad_goal_transport",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_goal_transport",
+      "closed_loop_step": 1,
+      "mode": "rcp",
+      "new_ability": "a2",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "goal_identity_failure: nonzero goal drift"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 1,
+    "trust_anchor_valid": true,
+    "update": "AppendMemBadGoal(a2)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "51fe98aa2b4dfb05ef3b2b836ce4ffd48c22099e72c45e89dace8e116a5eec91",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 512,
+      "diagonal_table_bound_units": 8,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "bad_trust_anchor",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_trust_anchor",
+      "closed_loop_step": 1,
+      "mode": "rcp",
+      "new_ability": "a2",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "trust_failure: checker/trust anchor modified or invalid"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 1,
+    "trust_anchor_valid": false,
+    "update": "AppendMemBadTrust(a2)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "069ff48d8a6df71684c7058c73c1bfb4257841eaaaae6821ab7fccd861aed032",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 512,
+      "diagonal_table_bound_units": 8,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "recovery_breaking",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "recovery_breaking",
+      "closed_loop_step": 1,
+      "mode": "rcp",
+      "new_ability": "a2",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "recovery_failure: recovered rho does not equal predecessor",
+      "non_loss_failure: relative entropy infinite: q has zero where p is positive"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.125,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.20833333333333331
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 1,
+    "trust_anchor_valid": true,
+    "update": "AppendMemRecoveryBreaking(a2)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "2e8f748d59e0dd05c60821c932de9d55b24b82a199f02526338039a38d91cc7e",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 512,
+      "diagonal_table_bound_units": 8,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "residual_positive",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "residual_positive",
+      "closed_loop_step": 1,
+      "mode": "rcp",
+      "new_ability": "a2",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "positive_residual:budget=1.0"
+    ],
+    "residuals": {
+      "budget": 1.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 1,
+    "trust_anchor_valid": true,
+    "update": "AppendMemPositiveResidual(a2)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "440b2a878f0153a2500b484b68b9ff842f765c773414ef55a20e353ac32ec843",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 512,
+      "diagonal_table_bound_units": 8,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "bad_reality_containment",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_reality_containment",
+      "closed_loop_step": 1,
+      "mode": "rcp",
+      "new_ability": "a2",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": false,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "reality_containment_failure: true environment not contained"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 1,
+    "trust_anchor_valid": true,
+    "update": "AppendMemBadReality(a2)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "b44978420bf96a205cd470622bc378b37c5b133d46580670abe8752a56c2f9b6",
+    "cost_record": {
+      "dense_matrix_bound_units": 0,
+      "diagonal_table_bound_units": 0,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "bad_cost_bound",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_cost_bound",
+      "closed_loop_step": 1,
+      "mode": "rcp",
+      "new_ability": "a2",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "cost_failure: dense bound underestimates declared cost",
+      "cost_failure: diagonal bound underestimates declared cost"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 1,
+    "trust_anchor_valid": true,
+    "update": "AppendMemBadCost(a2)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "a94a12e5c98257e5900cc52e087b8a1e14117c27454810300bb774dfaa89994f",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 4096,
+      "diagonal_table_bound_units": 16,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "bad_trust_anchor",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_trust_anchor",
+      "closed_loop_step": 2,
+      "mode": "rcp",
+      "new_ability": "a3",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "trust_failure: checker/trust anchor modified or invalid"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 2,
+    "trust_anchor_valid": false,
+    "update": "AppendMemBadTrust(a3)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "a7908a75311b73a8ff82ce5e53c2e537ea0dba1c7ab97b5035e893fe716aac60",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 4096,
+      "diagonal_table_bound_units": 16,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.1,
+    "kind": "bad_goal_transport",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_goal_transport",
+      "closed_loop_step": 2,
+      "mode": "rcp",
+      "new_ability": "a3",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "goal_identity_failure: nonzero goal drift"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 2,
+    "trust_anchor_valid": true,
+    "update": "AppendMemBadGoal(a3)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "d3d8dcda185edd26e7ec1d32326730035b9ec9514e48f8bcc26d3174fe0975d2",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 4096,
+      "diagonal_table_bound_units": 16,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "recovery_breaking",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "recovery_breaking",
+      "closed_loop_step": 2,
+      "mode": "rcp",
+      "new_ability": "a3",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "recovery_failure: recovered rho does not equal predecessor",
+      "non_loss_failure: relative entropy infinite: q has zero where p is positive"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.125,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.20833333333333331
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 2,
+    "trust_anchor_valid": true,
+    "update": "AppendMemRecoveryBreaking(a3)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "458297d851649414e5057d4c588ad3e1a11fc6ff57479dfd80c8e82468c88f88",
+    "cost_record": {
+      "dense_matrix_bound_units": 0,
+      "diagonal_table_bound_units": 0,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "bad_cost_bound",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_cost_bound",
+      "closed_loop_step": 2,
+      "mode": "rcp",
+      "new_ability": "a3",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "cost_failure: dense bound underestimates declared cost",
+      "cost_failure: diagonal bound underestimates declared cost"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 2,
+    "trust_anchor_valid": true,
+    "update": "AppendMemBadCost(a3)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "dab72c20174119e624baefd81c5b493daa378f533569ae55fb2db15c7412bf5c",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 4913,
+      "diagonal_table_bound_units": 17,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "wrong_dimension_append",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "wrong_dimension_append",
+      "closed_loop_step": 2,
+      "mode": "rcp",
+      "new_ability": "a3",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "wrong_dimension: rho successor dimension is not 2 * predecessor dimension",
+      "wrong_dimension: sigma successor dimension is not 2 * predecessor dimension"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0
+    ],
+    "t": 2,
+    "trust_anchor_valid": true,
+    "update": "BadAppendWrongDim(a3)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "1a06adeb67eba448db5d395e26b8e9fd06d90f2086861881bc9d8e42b49b592c",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 512,
+      "diagonal_table_bound_units": 8,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "noop_no_ability_expansion",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "noop_no_ability_expansion",
+      "closed_loop_step": 2,
+      "mode": "rcp",
+      "new_ability": "a3",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "wrong_dimension: rho successor dimension is not 2 * predecessor dimension",
+      "wrong_dimension: sigma successor dimension is not 2 * predecessor dimension",
+      "no_op: candidate does not perform a non-noop successor construction",
+      "recovery_failure: recovered rho does not equal predecessor",
+      "recovery_failure: recovered sigma does not equal predecessor",
+      "strict_ability_expansion_failure: expected new ability absent"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 2,
+    "trust_anchor_valid": true,
+    "update": "NoOp"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "5248855bc0c3b30f8df0e51c6c0385d85cead607b412601c52d331934ff32c8f",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 4096,
+      "diagonal_table_bound_units": 16,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "bad_reality_containment",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "bad_reality_containment",
+      "closed_loop_step": 2,
+      "mode": "rcp",
+      "new_ability": "a3",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": false,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "reality_containment_failure: true environment not contained"
+    ],
+    "residuals": {
+      "budget": 0.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 2,
+    "trust_anchor_valid": true,
+    "update": "AppendMemBadReality(a3)"
+  },
+  {
+    "accepted": false,
+    "candidate_hash": "9b6ffcff8d47f91c0f5c0069b843fc3252f7334793e45957bc1261e74349ded9",
+    "cost_record": {
+      "checker_steps": 18,
+      "dense_matrix_bound_units": 4096,
+      "diagonal_table_bound_units": 16,
+      "residual_checks": 12
+    },
+    "goal_identity_drift": 0.0,
+    "kind": "residual_positive",
+    "new_abilities": [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ],
+    "old_abilities": [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    "proof_trace": {
+      "candidate_grammar_kind": "residual_positive",
+      "closed_loop_step": 2,
+      "mode": "rcp",
+      "new_ability": "a3",
+      "transition_rule": "candidate_generated_from_current_state_not_static_json"
+    },
+    "reality_containment": {
+      "beta_env": 0.0,
+      "contained": true,
+      "envelope": "singleton_true_law",
+      "epsilon_env": 0.0
+    },
+    "rejection_reasons": [
+      "positive_residual:budget=1.0"
+    ],
+    "residuals": {
+      "budget": 1.0,
+      "cand": 0.0,
+      "goal": 0.0,
+      "persist": 0.0,
+      "proof": 0.0,
+      "seed": 0.0,
+      "sound": 0.0,
+      "trans": 0.0,
+      "trust": 0.0,
+      "unc": 0.0,
+      "ver": 0.0,
+      "world": 0.0
+    },
+    "rho_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333
+    ],
+    "sigma_after": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.3333333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.6666666666666666
+    ],
+    "t": 2,
+    "trust_anchor_valid": true,
+    "update": "AppendMemPositiveResidual(a3)"
+  }
+]

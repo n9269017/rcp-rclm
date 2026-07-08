@@ -1,0 +1,441 @@
+{
+  "abilities": [
+    [
+      "a0"
+    ],
+    [
+      "a0",
+      "a1"
+    ],
+    [
+      "a0",
+      "a1",
+      "a2"
+    ],
+    [
+      "a0",
+      "a1",
+      "a2",
+      "a3"
+    ]
+  ],
+  "artifact_type": "RCLM-Batch13R-B-controlled-executable-reference-system",
+  "closed_loop_generation_status": {
+    "N": 3,
+    "accepted_candidates": 3,
+    "all_accepted_steps_checked": true,
+    "all_residuals_nonpositive": true,
+    "closed_loop_candidate_search": true,
+    "final_dimension": 16,
+    "generated_candidates": 27,
+    "goal_identity_drift": 0.0,
+    "loop_type": "closed_loop_certified_successor_generation",
+    "mode": "rclm",
+    "non_loss_recovery_preserved_each_step": true,
+    "rejected_candidates": 24,
+    "seed": 0,
+    "singleton_reality_containment": true,
+    "static_predeclared_json_path": false,
+    "strict_ability_expansion_each_step": true
+  },
+  "controlled_executable_conditions": {
+    "N_ge_2": true,
+    "all_updates_non_noop": true,
+    "explicit_residuals_present": true,
+    "singleton_reality_containment": true,
+    "strict_ability_expansion_each_step": true,
+    "zero_goal_drift": true
+  },
+  "description": "Closed-loop canonical RCLM reference artifact. Successors are selected by a finite candidate-generation/check/accept-reject loop, not prewritten as a static JSON trajectory.",
+  "external_mechanization": {
+    "certificate_supplied": false,
+    "required_certificate": "MechCert_0_N_RCLM_can",
+    "scope_if_supplied": "canonical finite RCLM non-loss/recovery/ability/residual/checker/replay/refinement core only",
+    "status": "not_proof_assistant_mechanized_in_this_artifact"
+  },
+  "generator": "closed_loop_certified_successor_generator_v1",
+  "hash_manifest": {
+    "abilities_sha256": "574d87590fa6c9cc8ba6f2c5465805153306226c219913a31c60633ac10475d1",
+    "artifact_without_hash_manifest_sha256": "1fa0e1c87bffdde3e7ff347172ab9a3012cd84260fa2f04cca13c043b6965661",
+    "pcs_sha256": "7ac6fe308636df9a13bd969d021ecbf9aef3ee437d574595c4cece867a0a2206",
+    "states_sha256": "103e9416d8d8d5f3b5ad18e4d41f573427ae372b2d1c7090616802e187ad202f"
+  },
+  "horizon_N": 3,
+  "pcs": [
+    {
+      "candidate": "AppendMem(a1)",
+      "checker_result": 1,
+      "closed_loop_trace": {
+        "candidate_hash": "876a41504909522ea1ef85a958e918f7c87783a9f83b3fb6ad0e0645c823b0e8",
+        "candidate_kind": "valid_append_mem",
+        "proof_trace": {
+          "candidate_grammar_kind": "valid_append_mem",
+          "closed_loop_step": 0,
+          "mode": "rclm",
+          "new_ability": "a1",
+          "transition_rule": "candidate_generated_from_current_state_not_static_json"
+        },
+        "selected_by_closed_loop_verification": true,
+        "trust_anchor_valid": true
+      },
+      "cost_record": {
+        "dense_matrix_bound_units": 64,
+        "diagonal_table_bound_units": 4
+      },
+      "explicit_rclm_sv_residuals": {
+        "budget": -1.0,
+        "cand": -1.0,
+        "goal": -1.0,
+        "persist": -1.0,
+        "proof": -1.0,
+        "seed": -1.0,
+        "sound": -1.0,
+        "trans": -1.0,
+        "trust": -1.0,
+        "unc": -1.0,
+        "ver": -1.0,
+        "world": -1.0
+      },
+      "goal_identity_drift": 0.0,
+      "new_abilities": [
+        "a0",
+        "a1"
+      ],
+      "new_ability": "a1",
+      "old_abilities": [
+        "a0"
+      ],
+      "proof_carrying_packet_kind": "RCLM-closed-loop-certified-PCS",
+      "reality_containment": {
+        "beta_env": 0.0,
+        "contained": true,
+        "epsilon_env": 0.0,
+        "kind": "singleton_simulated_world"
+      },
+      "recovery": "partial_trace_last_appended_register",
+      "relative_entropy_after": 0.3333333333333333,
+      "relative_entropy_before": 0.3333333333333333,
+      "rho_after": [
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333
+      ],
+      "rho_before": [
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      "sigma_after": [
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666
+      ],
+      "sigma_before": [
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      "t": 0,
+      "transition": "X -> X tensor alpha_t where alpha_t is deterministic |1><1|",
+      "transition_kind": "canonical_append_only_non_noop",
+      "trust": "immutable_predecessor_checker_anchor_not_modified"
+    },
+    {
+      "candidate": "AppendMem(a2)",
+      "checker_result": 1,
+      "closed_loop_trace": {
+        "candidate_hash": "e4069ce2aa19be6ba7d8320dfe5643e64e4324d38c8aba432f2ae6db63a954cf",
+        "candidate_kind": "valid_append_mem",
+        "proof_trace": {
+          "candidate_grammar_kind": "valid_append_mem",
+          "closed_loop_step": 1,
+          "mode": "rclm",
+          "new_ability": "a2",
+          "transition_rule": "candidate_generated_from_current_state_not_static_json"
+        },
+        "selected_by_closed_loop_verification": true,
+        "trust_anchor_valid": true
+      },
+      "cost_record": {
+        "dense_matrix_bound_units": 512,
+        "diagonal_table_bound_units": 8
+      },
+      "explicit_rclm_sv_residuals": {
+        "budget": -1.0,
+        "cand": -1.0,
+        "goal": -1.0,
+        "persist": -1.0,
+        "proof": -1.0,
+        "seed": -1.0,
+        "sound": -1.0,
+        "trans": -1.0,
+        "trust": -1.0,
+        "unc": -1.0,
+        "ver": -1.0,
+        "world": -1.0
+      },
+      "goal_identity_drift": 0.0,
+      "new_abilities": [
+        "a0",
+        "a1",
+        "a2"
+      ],
+      "new_ability": "a2",
+      "old_abilities": [
+        "a0",
+        "a1"
+      ],
+      "proof_carrying_packet_kind": "RCLM-closed-loop-certified-PCS",
+      "reality_containment": {
+        "beta_env": 0.0,
+        "contained": true,
+        "epsilon_env": 0.0,
+        "kind": "singleton_simulated_world"
+      },
+      "recovery": "partial_trace_last_appended_register",
+      "relative_entropy_after": 0.3333333333333333,
+      "relative_entropy_before": 0.3333333333333333,
+      "rho_after": [
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ],
+      "rho_before": [
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333
+      ],
+      "sigma_after": [
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666
+      ],
+      "sigma_before": [
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666
+      ],
+      "t": 1,
+      "transition": "X -> X tensor alpha_t where alpha_t is deterministic |1><1|",
+      "transition_kind": "canonical_append_only_non_noop",
+      "trust": "immutable_predecessor_checker_anchor_not_modified"
+    },
+    {
+      "candidate": "AppendMem(a3)",
+      "checker_result": 1,
+      "closed_loop_trace": {
+        "candidate_hash": "9547725c20020053892e7a7609286312590943ec8dd6f04145d5d4960d162ef7",
+        "candidate_kind": "valid_append_mem",
+        "proof_trace": {
+          "candidate_grammar_kind": "valid_append_mem",
+          "closed_loop_step": 2,
+          "mode": "rclm",
+          "new_ability": "a3",
+          "transition_rule": "candidate_generated_from_current_state_not_static_json"
+        },
+        "selected_by_closed_loop_verification": true,
+        "trust_anchor_valid": true
+      },
+      "cost_record": {
+        "dense_matrix_bound_units": 4096,
+        "diagonal_table_bound_units": 16
+      },
+      "explicit_rclm_sv_residuals": {
+        "budget": -1.0,
+        "cand": -1.0,
+        "goal": -1.0,
+        "persist": -1.0,
+        "proof": -1.0,
+        "seed": -1.0,
+        "sound": -1.0,
+        "trans": -1.0,
+        "trust": -1.0,
+        "unc": -1.0,
+        "ver": -1.0,
+        "world": -1.0
+      },
+      "goal_identity_drift": 0.0,
+      "new_abilities": [
+        "a0",
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "new_ability": "a3",
+      "old_abilities": [
+        "a0",
+        "a1",
+        "a2"
+      ],
+      "proof_carrying_packet_kind": "RCLM-closed-loop-certified-PCS",
+      "reality_containment": {
+        "beta_env": 0.0,
+        "contained": true,
+        "epsilon_env": 0.0,
+        "kind": "singleton_simulated_world"
+      },
+      "recovery": "partial_trace_last_appended_register",
+      "relative_entropy_after": 0.3333333333333333,
+      "relative_entropy_before": 0.3333333333333333,
+      "rho_after": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ],
+      "rho_before": [
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ],
+      "sigma_after": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666
+      ],
+      "sigma_before": [
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666
+      ],
+      "t": 2,
+      "transition": "X -> X tensor alpha_t where alpha_t is deterministic |1><1|",
+      "transition_kind": "canonical_append_only_non_noop",
+      "trust": "immutable_predecessor_checker_anchor_not_modified"
+    }
+  ],
+  "states": {
+    "rho": [
+      [
+        0.6666666666666666,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333
+      ]
+    ],
+    "sigma": [
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ],
+      [
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.6666666666666666
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3333333333333333,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6666666666666666
+      ]
+    ]
+  },
+  "tractability": {
+    "dense_cost_bound": 12288,
+    "diagonal_table_cost_bound": 48,
+    "final_dimension": 16
+  }
+}

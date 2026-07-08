@@ -1,0 +1,12 @@
+{
+  "N": 2,
+  "certificate_bundle_hash": "e2dc7dbe3aee6d4cee24d9120c030d5d51ab1eb53ef7f35496dabb95d6bcf803",
+  "certificate_preserved": true,
+  "rclm_LECert_status": "FullPass",
+  "rclm_checker_passed": true,
+  "rcp_LECert_status": "FullPass",
+  "rcp_checker_passed": true,
+  "root_trust_anchor_hash": "59af600fc803feeda0b522d03eacdf22d60966a6c3edc3408fcb48b6bb46821e",
+  "schema_version": "crsi-core-v1",
+  "seed": 2
+}
