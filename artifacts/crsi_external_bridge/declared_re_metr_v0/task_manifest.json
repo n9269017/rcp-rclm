@@ -1,0 +1,52 @@
+{
+  "benchmark_answers_in_prompt": false,
+  "benchmark_id": "declared_re_metr_ai_rd_v0",
+  "benchmark_kind": "declared_re_metr_external_ai_rd_adapter",
+  "created_utc": "2026-07-08T00:00:00+00:00",
+  "diagnostic_oracle": false,
+  "hidden_tests_exposed": false,
+  "human_patch_inside_chain": false,
+  "manual_repair_inside_chain": false,
+  "private_solution_material_used": false,
+  "schema_version": "crsi-external-bridge-v1",
+  "scope_boundary": {
+    "adapter_smoke_test_only": false,
+    "declared_external_fixture": true,
+    "official_metr_result": false,
+    "official_re_bench_result": false,
+    "public_benchmark_result": false
+  },
+  "task_count": 5,
+  "tasks": [
+    {
+      "description": "Reproduce the referenced CRSI-Core chain summary and verify that the recorded successor-package hash chain is internally consistent.",
+      "measurement": "offline reproduction report ok flag and hash consistency evidence",
+      "task_id": "declared-re-metr-v0/reproduce-crsi-chain",
+      "weight": 0.2
+    },
+    {
+      "description": "Audit that RCP and RCLM certificate bundles are preserved for every package in the recorded chain.",
+      "measurement": "certificate_preserved, rcp_checker_passed, rclm_checker_passed, and LECert FullPass evidence",
+      "task_id": "declared-re-metr-v0/certificate-preservation-audit",
+      "weight": 0.25
+    },
+    {
+      "description": "Verify no-leakage, no-oracle, and no-manual-repair flags for the external bridge and the underlying CRSI packages.",
+      "measurement": "benchmark_answers_in_prompt=false, hidden_tests_exposed=false, diagnostic_oracle=false, manual_repair_inside_chain=false",
+      "task_id": "declared-re-metr-v0/no-leakage-redteam",
+      "weight": 0.2
+    },
+    {
+      "description": "Check that the external score ledger entries match the CRSI successor IDs in order and that the score sequence is monotone non-decreasing with strict improvement.",
+      "measurement": "successor_ids_match_chain=true, monotone_non_decreasing=true, strictly_improved=true",
+      "task_id": "declared-re-metr-v0/score-ledger-consistency",
+      "weight": 0.2
+    },
+    {
+      "description": "Produce a compact research-engineering evidence package that binds task manifest, scorer artifact, score ledger, CRSI chain hash, and bridge sidecar hash.",
+      "measurement": "presence and hashes of task_manifest, scorer_artifact, score_ledger, sidecar, reproduction report",
+      "task_id": "declared-re-metr-v0/evidence-package-report",
+      "weight": 0.15
+    }
+  ]
+}
