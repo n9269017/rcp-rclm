@@ -1,0 +1,49 @@
+{
+  "schema_version": "crsi-re-bench-v1-integration-v1",
+  "suite_name": "CRSI-RE-Bench v1: Certified Recursive Successor Improvement over the Official RE-Bench v1 Environments",
+  "release_kind": "independent_official_environment_integration",
+  "official_re_bench": {
+    "repository": "https://github.com/METR/RE-Bench.git",
+    "repository_full_name": "METR/RE-Bench",
+    "commit": "93b98062e55f6945d4a7e213a3226dd419896170",
+    "commit_message": "Stage suite (#39)",
+    "default_branch": "main",
+    "suite_manifest_path": "suite_manifest.yaml",
+    "suite_manifest_git_blob_sha1": "eb9d27d972b09c4c03beaac0821f1e4b6bd6d392",
+    "readme_path": "README.md",
+    "readme_git_blob_sha1": "275bdc895fdb26790534b8d2c9d442e918aa19e1",
+    "setup_readme_path": "setup/README.md",
+    "setup_readme_git_blob_sha1": "20c80e6b1152fa9ed90d151cf8d317f8f8b49e63",
+    "task_standard": "METR Task Standard",
+    "task_count": 7
+  },
+  "vivaria": {
+    "repository": "https://github.com/METR/vivaria.git",
+    "repository_full_name": "METR/vivaria",
+    "commit": "20a6c290c3c11f701af95a559d9d0c64dd6105d4",
+    "role": "official evaluation orchestration substrate",
+    "compatibility_status": "must_be_runtime_validated_against_pinned_re_bench_commit"
+  },
+  "agent_scaffold": {
+    "repository": "https://github.com/poking-agents/modular-public.git",
+    "repository_full_name": "poking-agents/modular-public",
+    "commit": "a00b7cae3cf9f176fcffe790ef22f4f9da892f9a",
+    "version": "v1.2.2",
+    "role": "actual executable base agent scaffold with package-specific settings packs"
+  },
+  "required_claim_language": {
+    "before_execution": "RE-Bench v1 official-environment integration scaffold",
+    "after_independent_execution": "independent run on the official RE-Bench v1 environments",
+    "metr_validated_only_if_explicitly_confirmed_by_metr": "official METR-validated RE-Bench result"
+  },
+  "claim_boundary": {
+    "official_environment_code_pinned": true,
+    "official_scorer_code_pinned": true,
+    "independent_official_environment_run": false,
+    "official_metr_validated_result": false,
+    "full_seven_environment_result": false,
+    "human_comparable_eight_hour_result": false,
+    "full_autonomous_rsi": false,
+    "unbounded_horizon_empirical_proof": false
+  }
+}
