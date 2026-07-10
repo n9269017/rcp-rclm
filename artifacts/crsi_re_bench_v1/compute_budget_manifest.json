@@ -1,0 +1,34 @@
+{
+  "schema_version": "crsi-re-bench-v1-integration-v1",
+  "budget_equivalence_rule": "For a fixed environment, every RCLM package must receive the same wall-clock limit, task resources, model/API budget, network policy, and scorer configuration.",
+  "profiles": {
+    "pilot_rust_60m": {
+      "description": "Official-environment integration pilot using the CPU-only Rust Codecontest task.",
+      "environments": ["rust_codecontest_scaffolding"],
+      "wall_time_seconds_per_run": 3600,
+      "packages": "all_recorded_crsi_packages",
+      "seeds": [0],
+      "human_comparable": false,
+      "full_suite": false
+    },
+    "full_suite_60m": {
+      "description": "Shortened all-seven-environment integration run.",
+      "environments": ["optimize_llm_foundry", "optimize_kernel", "fix_embedding", "scaling_law_experiment", "restricted_architecture_mlm", "finetune_gpt2_qa", "rust_codecontest_scaffolding"],
+      "wall_time_seconds_per_run": 3600,
+      "packages": "all_recorded_crsi_packages",
+      "seeds": [0],
+      "human_comparable": false,
+      "full_suite": true
+    },
+    "full_suite_480m": {
+      "description": "Eight-hour all-seven-environment target for comparison with the human-expert horizon described by RE-Bench.",
+      "environments": ["optimize_llm_foundry", "optimize_kernel", "fix_embedding", "scaling_law_experiment", "restricted_architecture_mlm", "finetune_gpt2_qa", "rust_codecontest_scaffolding"],
+      "wall_time_seconds_per_run": 28800,
+      "packages": "all_recorded_crsi_packages",
+      "seeds": [0, 1, 2],
+      "human_comparable": true,
+      "full_suite": true
+    }
+  },
+  "required_usage_fields": ["wall_time_seconds", "model_api_cost_usd", "model_tokens_in", "model_tokens_out", "gpu_model", "gpu_count", "cpu_count", "memory_gb", "vivaria_run_id"]
+}
