@@ -1,0 +1,11 @@
+{
+  "benchmark_id": "declared_re_metr_ai_rd_v0",
+  "benchmark_kind": "declared_re_metr_external_ai_rd_adapter",
+  "errors": [],
+  "ok": true,
+  "report_hash": "f382a9192f170418b2105a36a6b882bcd5ae7a11f1fb5e6239b5221e615689a7",
+  "schema_version": "crsi-external-bridge-v1",
+  "sidecar_path": "artifacts/crsi_external_bridge/results/declared_re_metr_v0_k5_seed0/crsi_external_bridge_sidecar.json",
+  "suite_name": "CRSI-RE/METR Bridge: Certificate-preserving external AI-R&D benchmark adapter",
+  "verified_at_utc": "2026-07-09T23:44:38.066396+00:00"
+}
