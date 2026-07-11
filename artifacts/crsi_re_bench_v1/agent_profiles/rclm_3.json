@@ -1,0 +1,8 @@
+{
+  "actor": "_prompt_to_search",
+  "autosubmit": true,
+  "discriminator": "_compare_options_4o",
+  "generator": "_gpt_basic_2x4o",
+  "prompter": "_context_and_usage_aware",
+  "toolkit": "_basic"
+}
