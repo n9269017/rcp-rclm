@@ -1,0 +1,68 @@
+{
+  "schema_version": "crsi-re-bench-v1-integration-v1",
+  "suite_name": "CRSI-RE-Bench v1: Certified Recursive Successor Improvement over the Official RE-Bench v1 Environments",
+  "agent_repository": {
+    "repository": "https://github.com/poking-agents/modular-public.git",
+    "repository_full_name": "poking-agents/modular-public",
+    "commit": "a00b7cae3cf9f176fcffe790ef22f4f9da892f9a",
+    "generate_manifest_path": "generate_manifest.py",
+    "generate_manifest_git_blob_sha1": "942e05db853d6b917021ce156a95e142c8e2245c",
+    "vivaria_interface": "--agent-path plus --agent_settings_override",
+    "runtime_requirement": "The pinned agent repository must be checked out at the declared commit and its generated manifest must accept the selected override profile."
+  },
+  "successor_policy_rule": "Every evaluated RCLM package must use a distinct content-addressed agent settings profile. The profile hash and the CRSI successor package ID are bound into the run plan before launch.",
+  "budget_rule": "All packages compared within an environment and seed receive the same declared wall-clock, task resources, model access policy, token/API-cost caps, scorer, and network policy. Agent profiles may allocate that fixed budget differently.",
+  "profiles": [
+    {
+      "package_index": 0,
+      "profile_id": "rclm_0_single_proposal_basic",
+      "path": "agent_profiles/rclm_0.json",
+      "improvement_axis": "baseline single-proposal scaffold"
+    },
+    {
+      "package_index": 1,
+      "profile_id": "rclm_1_context_aware_prompting",
+      "path": "agent_profiles/rclm_1.json",
+      "improvement_axis": "context- and usage-aware prompting"
+    },
+    {
+      "package_index": 2,
+      "profile_id": "rclm_2_two_proposal_generation",
+      "path": "agent_profiles/rclm_2.json",
+      "improvement_axis": "two candidate proposals per decision"
+    },
+    {
+      "package_index": 3,
+      "profile_id": "rclm_3_option_comparison",
+      "path": "agent_profiles/rclm_3.json",
+      "improvement_axis": "explicit candidate comparison discriminator"
+    },
+    {
+      "package_index": 4,
+      "profile_id": "rclm_4_four_proposal_persistent",
+      "path": "agent_profiles/rclm_4.json",
+      "improvement_axis": "four proposals and persistent save policy"
+    },
+    {
+      "package_index": 5,
+      "profile_id": "rclm_5_regenerative_verification",
+      "path": "agent_profiles/rclm_5.json",
+      "improvement_axis": "multi-proposal generation with compare-and-regenerate verification"
+    }
+  ],
+  "acceptance_requirements": {
+    "all_profiles_present": true,
+    "all_profile_hashes_distinct": true,
+    "profile_schema_matches_pinned_agent": true,
+    "profile_bound_to_actual_crsi_successor_id": true,
+    "same_external_model_access_policy_within_comparison": true,
+    "same_compute_budget_id_within_environment_seed": true,
+    "unchanged_official_environment_and_scorer_hashes": true
+  },
+  "claim_boundary": {
+    "profiles_are_real_executable_scaffold_changes": true,
+    "profiles_are_model_weight_updates": false,
+    "official_re_bench_run_completed": false,
+    "official_metr_validated_result": false
+  }
+}
