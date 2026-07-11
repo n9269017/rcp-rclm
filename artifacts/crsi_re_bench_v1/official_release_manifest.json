@@ -1,9 +1,11 @@
 {
   "agent_scaffold": {
     "commit": "a00b7cae3cf9f176fcffe790ef22f4f9da892f9a",
+    "generate_manifest_git_blob_sha1": "942e05db853d6b917021ce156a95e142c8e2245c",
+    "generate_manifest_path": "generate_manifest.py",
     "repository": "https://github.com/poking-agents/modular-public.git",
     "repository_full_name": "poking-agents/modular-public",
-    "role": "actual executable base agent scaffold with package-specific settings packs",
+    "role": "actual executable base agent scaffold with package-specific settings profiles",
     "version": "v1.2.2"
   },
   "claim_boundary": {
@@ -20,6 +22,7 @@
     "commit": "93b98062e55f6945d4a7e213a3226dd419896170",
     "commit_message": "Stage suite (#39)",
     "default_branch": "main",
+    "evaluation_variant_policy": "hidden scorer variant where available",
     "readme_git_blob_sha1": "275bdc895fdb26790534b8d2c9d442e918aa19e1",
     "readme_path": "README.md",
     "repository": "https://github.com/METR/RE-Bench.git",
