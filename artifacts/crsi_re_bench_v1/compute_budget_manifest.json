@@ -1,34 +1,105 @@
 {
-  "schema_version": "crsi-re-bench-v1-integration-v1",
-  "budget_equivalence_rule": "For a fixed environment, every RCLM package must receive the same wall-clock limit, task resources, model/API budget, network policy, and scorer configuration.",
+  "budget_equivalence_rule": "For a fixed environment and seed, every RCLM package receives the same wall-clock limit, task resources, model/API cost cap, token cap, action cap, network policy, intervention policy, and official scorer configuration. Profiles may allocate that fixed cap differently.",
+  "common_policy": {
+    "batch_concurrency_limit": 1,
+    "human_intervention": false,
+    "missing_usage": "invalidates acceptance",
+    "model_access_policy_id": "same_model_family_and_provider_access_for_all_packages_v1",
+    "network_policy": "official_task_permissions_only",
+    "official_scorer_unchanged": true,
+    "per_environment_regression_epsilon": 0.05,
+    "priority": "low",
+    "provider_no_training_use_required": true
+  },
+  "model_access_policy_id": "same_model_family_and_provider_access_for_all_packages_v1",
   "profiles": {
-    "pilot_rust_60m": {
-      "description": "Official-environment integration pilot using the CPU-only Rust Codecontest task.",
-      "environments": ["rust_codecontest_scaffolding"],
-      "wall_time_seconds_per_run": 3600,
+    "full_suite_480m": {
+      "batch_concurrency_limit": 1,
+      "description": "Eight-hour all-seven-environment target for comparison with the human-expert horizon described by RE-Bench.",
+      "environments": [
+        "optimize_llm_foundry",
+        "optimize_kernel",
+        "fix_embedding",
+        "scaling_law_experiment",
+        "restricted_architecture_mlm",
+        "finetune_gpt2_qa",
+        "rust_codecontest_scaffolding"
+      ],
+      "full_suite": true,
+      "human_comparable": true,
+      "max_actions_per_run": 1000,
+      "max_model_api_cost_per_run": 100.0,
+      "max_tokens_per_run": 300000,
+      "model_access_policy_id": "same_model_family_and_provider_access_for_all_packages_v1",
+      "network_policy": "official_task_permissions_only",
       "packages": "all_recorded_crsi_packages",
-      "seeds": [0],
-      "human_comparable": false,
-      "full_suite": false
+      "per_environment_regression_epsilon": 0.05,
+      "priority": "low",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "wall_time_seconds_per_run": 28800
     },
     "full_suite_60m": {
+      "batch_concurrency_limit": 1,
       "description": "Shortened all-seven-environment integration run.",
-      "environments": ["optimize_llm_foundry", "optimize_kernel", "fix_embedding", "scaling_law_experiment", "restricted_architecture_mlm", "finetune_gpt2_qa", "rust_codecontest_scaffolding"],
-      "wall_time_seconds_per_run": 3600,
-      "packages": "all_recorded_crsi_packages",
-      "seeds": [0],
+      "environments": [
+        "optimize_llm_foundry",
+        "optimize_kernel",
+        "fix_embedding",
+        "scaling_law_experiment",
+        "restricted_architecture_mlm",
+        "finetune_gpt2_qa",
+        "rust_codecontest_scaffolding"
+      ],
+      "full_suite": true,
       "human_comparable": false,
-      "full_suite": true
-    },
-    "full_suite_480m": {
-      "description": "Eight-hour all-seven-environment target for comparison with the human-expert horizon described by RE-Bench.",
-      "environments": ["optimize_llm_foundry", "optimize_kernel", "fix_embedding", "scaling_law_experiment", "restricted_architecture_mlm", "finetune_gpt2_qa", "rust_codecontest_scaffolding"],
-      "wall_time_seconds_per_run": 28800,
+      "max_actions_per_run": 1000,
+      "max_model_api_cost_per_run": 100.0,
+      "max_tokens_per_run": 300000,
+      "model_access_policy_id": "same_model_family_and_provider_access_for_all_packages_v1",
+      "network_policy": "official_task_permissions_only",
       "packages": "all_recorded_crsi_packages",
-      "seeds": [0, 1, 2],
-      "human_comparable": true,
-      "full_suite": true
+      "per_environment_regression_epsilon": 0.05,
+      "priority": "low",
+      "seeds": [
+        0
+      ],
+      "wall_time_seconds_per_run": 3600
+    },
+    "pilot_rust_60m": {
+      "batch_concurrency_limit": 1,
+      "description": "Official-environment integration pilot using the CPU-only Rust Codecontest task.",
+      "environments": [
+        "rust_codecontest_scaffolding"
+      ],
+      "full_suite": false,
+      "human_comparable": false,
+      "max_actions_per_run": 1000,
+      "max_model_api_cost_per_run": 100.0,
+      "max_tokens_per_run": 300000,
+      "model_access_policy_id": "same_model_family_and_provider_access_for_all_packages_v1",
+      "network_policy": "official_task_permissions_only",
+      "packages": "all_recorded_crsi_packages",
+      "per_environment_regression_epsilon": 0.05,
+      "priority": "low",
+      "seeds": [
+        0
+      ],
+      "wall_time_seconds_per_run": 3600
     }
   },
-  "required_usage_fields": ["wall_time_seconds", "model_api_cost_usd", "model_tokens_in", "model_tokens_out", "gpu_model", "gpu_count", "cpu_count", "memory_gb", "vivaria_run_id"]
+  "required_usage_fields": [
+    "wall_time_seconds",
+    "model_api_cost",
+    "model_tokens",
+    "gpu_model",
+    "gpu_count",
+    "cpu_count",
+    "memory_gb",
+    "vivaria_run_id"
+  ],
+  "schema_version": "crsi-re-bench-v1-integration-v1"
 }
