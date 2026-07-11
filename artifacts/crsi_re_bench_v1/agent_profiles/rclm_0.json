@@ -1,0 +1,8 @@
+{
+  "actor": "_basic",
+  "autosubmit": true,
+  "discriminator": "_basic",
+  "generator": "_gpt_basic_1x4o",
+  "prompter": "_basic",
+  "toolkit": "_basic"
+}
