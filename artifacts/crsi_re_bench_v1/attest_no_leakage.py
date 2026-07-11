@@ -1,120 +1,117 @@
 #!/usr/bin/env python3
-"""Create an auditable run-specific no-leakage/no-oracle/no-manual-repair attestation."""
+"""Create an auditable no-leakage/no-oracle/no-manual-repair attestation.
+
+This is a signed-by-hash operator declaration plus evidence index, not a magical
+proof. The runner still requires official scorer exports, immutable source pins,
+trajectories, submissions, and usage records.
+"""
 from __future__ import annotations
 
 import argparse
 import json
-import sys
+import platform
+import socket
 from pathlib import Path
-from typing import Any, Dict, Optional, Sequence
-
-THIS = Path(__file__).resolve().parent
-if str(THIS) not in sys.path:
-    sys.path.insert(0, str(THIS))
+from typing import Any, Dict, List, Optional, Sequence
 
 from crsi_re_bench_schema import (
-    NO_LEAKAGE_CONFIRMATION,
+    ATTESTATION_CONFIRMATION,
+    NO_LEAKAGE_FALSE_FLAGS,
+    NO_LEAKAGE_TRUE_FLAGS,
     SCHEMA_VERSION,
     SUITE_NAME,
-    hash_file_or_tree,
-    safe_rel,
-    sha256_obj,
+    path_hash,
+    self_hash,
     utc_now,
-    validate_no_leakage_manifest,
     write_json,
 )
 
 
-def parse_evidence(values: Sequence[str], repo_root: Path) -> Dict[str, str]:
-    hashes: Dict[str, str] = {}
-    for value in values:
-        path = Path(value)
-        path = path if path.is_absolute() else repo_root / path
+def parse_key_value(value: str) -> tuple[str, str]:
+    if "=" not in value:
+        raise argparse.ArgumentTypeError("evidence labels must use LABEL=PATH")
+    label, path = value.split("=", 1)
+    if not label.strip() or not path.strip():
+        raise argparse.ArgumentTypeError("evidence labels and paths must be non-empty")
+    return label.strip(), path.strip()
+
+
+def build_attestation(
+    operator: str,
+    notes: str,
+    confirmation: str,
+    evidence_items: Sequence[tuple[str, str]],
+    execution_host_id: Optional[str],
+) -> Dict[str, Any]:
+    errors: List[str] = []
+    if confirmation != ATTESTATION_CONFIRMATION:
+        errors.append("explicit_attestation_confirmation_missing")
+    evidence = []
+    for label, raw_path in evidence_items:
+        path = Path(raw_path).expanduser().resolve()
         if not path.exists():
-            raise FileNotFoundError(f"evidence path does not exist: {path}")
-        hashes[safe_rel(path, repo_root)] = hash_file_or_tree(path)
-    return hashes
+            errors.append(f"evidence_missing:{label}:{path}")
+            continue
+        evidence.append({
+            "label": label,
+            "path": str(path),
+            "kind": "directory" if path.is_dir() else "file",
+            "sha256": path_hash(path),
+        })
 
-
-def create_attestation(args: argparse.Namespace) -> Dict[str, Any]:
-    if args.confirm_attestation != NO_LEAKAGE_CONFIRMATION:
-        raise ValueError(f"--confirm-attestation must equal {NO_LEAKAGE_CONFIRMATION}")
-    if not args.confirm_provider_no_training_use:
-        raise ValueError("--confirm-provider-no-training-use is required")
-    repo_root = args.repo_root.resolve()
-    evidence_hashes = parse_evidence(args.evidence, repo_root)
-    manifest: Dict[str, Any] = {
+    declarations: Dict[str, Any] = {key: False for key in NO_LEAKAGE_FALSE_FLAGS}
+    declarations.update({key: True for key in NO_LEAKAGE_TRUE_FLAGS})
+    attestation = {
         "schema_version": SCHEMA_VERSION,
         "suite_name": SUITE_NAME,
-        "kind": "run_specific_no_leakage_attestation",
-        "attested": True,
-        "operator": args.operator,
-        "benchmark_answers_in_prompt": False,
-        "hidden_tests_exposed": False,
-        "hidden_reference_solution_access": False,
-        "protected_solution_material_access": False,
-        "private_solution_material_used": False,
-        "benchmark_training_use": False,
-        "diagnostic_oracle": False,
-        "manual_repair_inside_run": False,
-        "manual_repair_inside_chain": False,
-        "human_patch_inside_run": False,
-        "human_patch_inside_chain": False,
-        "human_intervention_enabled": False,
-        "scorer_modified": False,
-        "task_environment_modified_outside_agent_submission": False,
-        "post_hoc_score_selection": False,
-        "results_manually_declared": False,
-        "provider_no_training_use_confirmed": True,
-        "official_scorer_outputs_required": True,
-        "all_operator_interventions_logged": True,
-        "provider_data_policy_id": args.provider_data_policy_id,
-        "service_or_model_access_policy_id": args.model_access_policy_id,
-        "official_task_material_storage_policy": "outside_public_rcp_rclm_repository",
-        "protected_solution_publication_prohibited": True,
-        "secrets_committed_to_repository": False,
-        "evidence_hashes": evidence_hashes,
-        "notes": args.notes,
+        "resolved": True,
+        "operator": operator,
+        "notes": notes,
+        "confirmation_token": confirmation,
+        "declarations": declarations,
+        "evidence": evidence,
+        "execution_host": {
+            "host_id": execution_host_id or socket.gethostname(),
+            "platform": platform.platform(),
+            "python": platform.python_version(),
+        },
+        "claim_boundary": {
+            "attestation_is_operator_declaration": True,
+            "attestation_is_cryptographic_proof_of_no_leakage": False,
+            "official_re_bench_result": False,
+            "official_metr_validated_result": False,
+        },
         "created_utc": utc_now(),
+        "errors": errors,
+        "ok": not errors,
     }
-    manifest["attestation_hash"] = sha256_obj({k: v for k, v in manifest.items() if k != "attestation_hash"})
-    errors = validate_no_leakage_manifest(manifest)
-    manifest["errors"] = errors
-    manifest["ok"] = not errors
-    manifest["attestation_hash"] = sha256_obj({k: v for k, v in manifest.items() if k != "attestation_hash"})
-    return manifest
+    attestation["attestation_hash"] = self_hash(attestation, "attestation_hash")
+    return attestation
 
 
 def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Create a run-specific no-leakage/no-oracle/no-manual-repair attestation.")
-    p.add_argument("--repo-root", type=Path, default=Path.cwd())
-    p.add_argument("--operator", required=True)
-    p.add_argument("--provider-data-policy-id", required=True)
-    p.add_argument("--model-access-policy-id", default="same_model_family_and_provider_access_for_all_packages_v1")
-    p.add_argument("--confirm-provider-no-training-use", action="store_true")
-    p.add_argument("--confirm-attestation", required=True)
-    p.add_argument("--evidence", action="append", default=[], help="Optional evidence file or directory; may be repeated.")
-    p.add_argument("--notes", default="")
-    p.add_argument("--out", type=Path, required=True)
-    return p.parse_args(argv)
+    parser = argparse.ArgumentParser(description="Create a CRSI-RE-Bench no-leakage/no-oracle attestation.")
+    parser.add_argument("--operator", required=True)
+    parser.add_argument("--notes", default="")
+    parser.add_argument("--confirm", required=True, help=f"Must equal {ATTESTATION_CONFIRMATION}")
+    parser.add_argument("--evidence", action="append", type=parse_key_value, default=[], help="Repeatable LABEL=PATH evidence item.")
+    parser.add_argument("--execution-host-id", default=None)
+    parser.add_argument("--out", type=Path, required=True)
+    return parser.parse_args(argv)
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parse_args(argv)
-    try:
-        manifest = create_attestation(args)
-    except Exception as exc:  # noqa: BLE001
-        print(json.dumps({"ok": False, "errors": [str(exc)]}, indent=2, sort_keys=True))
-        return 1
-    write_json(args.out, manifest)
+    result = build_attestation(args.operator, args.notes, args.confirm, args.evidence, args.execution_host_id)
+    write_json(args.out.resolve(), result)
     print(json.dumps({
-        "ok": manifest["ok"],
-        "attestation": str(args.out),
-        "attestation_hash": manifest["attestation_hash"],
-        "evidence_count": len(manifest["evidence_hashes"]),
-        "errors": manifest["errors"],
+        "ok": result["ok"],
+        "out": str(args.out.resolve()),
+        "attestation_hash": result["attestation_hash"],
+        "evidence_count": len(result["evidence"]),
+        "errors": result["errors"],
     }, indent=2, sort_keys=True))
-    return 0 if manifest["ok"] else 1
+    return 0 if result["ok"] else 1
 
 
 if __name__ == "__main__":
