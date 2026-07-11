@@ -1,0 +1,8 @@
+{
+  "actor": "_always_save",
+  "autosubmit": true,
+  "discriminator": "_compare_and_regenerate_2_rounds_gpt_4o",
+  "generator": "_gpt_basic_4x4o",
+  "prompter": "_context_and_usage_aware",
+  "toolkit": "_basic"
+}
