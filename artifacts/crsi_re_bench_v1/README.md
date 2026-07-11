@@ -81,7 +81,7 @@ ai_rd_rust_codecontests_inference/main
 ```
 
 The pilot uses the real official task family and scorer code but a shortened
-30-minute/token-limited budget. Its allowed label is:
+60-minute/token-limited budget. Its allowed label is:
 
 ```text
 RE-Bench v1 official-environment integration pilot
@@ -225,6 +225,7 @@ repair or oracle access.
 ```powershell
 python .\artifacts\crsi_re_bench_v1\attest_no_leakage.py `
   --operator "Nicolas.n926" `
+  --confirm "NO_LEAKAGE_NO_ORACLE_NO_MANUAL_REPAIR" `
   --notes "Independent official-environment pilot; no hidden reference solution access, no manual patching, no benchmark training use." `
   --out "$RUN_ROOT\no_leakage_manifest.json"
 ```
@@ -285,6 +286,7 @@ For every run, configure three operator-specific export command templates:
 score exporter      -> writes raw_score_log.json
 trajectory exporter -> writes agent_trajectory.json
 submission exporter -> copies the final submission tree into final_submission/
+usage exporter       -> writes usage.json with actual run usage and resource fields
 ```
 
 Vivaria's HTTP/CLI interfaces are deployment-specific and unstable, so the
@@ -310,7 +312,8 @@ python .\artifacts\crsi_re_bench_v1\crsi_re_bench_runner.py `
   --confirm-execute OFFICIAL_RE_BENCH_V1 `
   --score-export-command-template '<YOUR_EXPORTER> score --run-id {run_id} --out "{out}"' `
   --trajectory-export-command-template '<YOUR_EXPORTER> trajectory --run-id {run_id} --out "{out}"' `
-  --submission-export-command-template '<YOUR_EXPORTER> submission --run-id {run_id} --out "{out}"'
+  --submission-export-command-template '<YOUR_EXPORTER> submission --run-id {run_id} --out "{out}"' `
+  --usage-export-command-template '<YOUR_EXPORTER> usage --run-id {run_id} --out "{out}"'
 ```
 
 The execution report is not `ok` unless all agent runs succeed and all three
