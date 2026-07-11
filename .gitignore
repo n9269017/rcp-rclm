@@ -21,3 +21,4 @@ artifacts/evalplus_official/gha_run_*/
 diagnostics/
 artifacts/crsi_core/results/
 artifacts/crsi_external_bridge/results/
+artifacts/crsi_re_bench_v1/results/
