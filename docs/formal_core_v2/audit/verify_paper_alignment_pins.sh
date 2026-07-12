@@ -29,83 +29,37 @@ require_text() {
   printf 'PASS mapped surface: %s :: %s\n' "$path" "$text"
 }
 
-check_blob \
-  papers/paper-I-rcp-math/main.tex \
-  084eae21d252d205d2012b62744c1506644e3e58
+check_blob papers/paper-I-rcp-math/main.tex 084eae21d252d205d2012b62744c1506644e3e58
+check_blob papers/paper-II-rclm-architecture/main.tex 9b51be8294ad79fd4f63522b01e0f617f0bf2ffd
 
-check_blob \
-  papers/paper-II-rclm-architecture/main.tex \
-  9b51be8294ad79fd4f63522b01e0f617f0bf2ffd
+require_text papers/paper-I-rcp-math/main.tex '\label{thm:main_rcp}'
+require_text papers/paper-I-rcp-math/main.tex '\label{thm:finite_horizon_constructive_recovery}'
+require_text papers/paper-I-rcp-math/main.tex '\label{thm:batch12b_combined_domain_relative_rrst}'
+require_text papers/paper-I-rcp-math/main.tex '\label{thm:batch13ra_canonical_checker_soundness}'
 
-# Paper I theorem surfaces used by the alignment audit.
-require_text papers/paper-I-rcp-math/main.tex \
-  '\label{thm:main_rcp}'
-require_text papers/paper-I-rcp-math/main.tex \
-  '\label{thm:finite_horizon_constructive_recovery}'
-require_text papers/paper-I-rcp-math/main.tex \
-  '\label{thm:batch12b_combined_domain_relative_rrst}'
-require_text papers/paper-I-rcp-math/main.tex \
-  '\label{thm:batch13ra_canonical_checker_soundness}'
+require_text papers/paper-II-rclm-architecture/main.tex '\label{thm:rclm-constructive-direct-nl-rsi-engine}'
+require_text papers/paper-II-rclm-architecture/main.tex '\label{thm:rclm-batch13r-checker-soundness}'
+require_text papers/paper-II-rclm-architecture/main.tex '\label{thm:rclm-batch13r-proof-carrying-finite-trajectory}'
+require_text papers/paper-II-rclm-architecture/main.tex '\label{thm:rclm-batch12b-combined-domain-relative-rrst}'
+require_text papers/paper-II-rclm-architecture/main.tex '\label{thm:rclm-batch12b-domain-relative-infinite-rrst}'
 
-# Paper II theorem surfaces used by the alignment audit.
-require_text papers/paper-II-rclm-architecture/main.tex \
-  '\label{thm:rclm-constructive-direct-nl-rsi-engine}'
-require_text papers/paper-II-rclm-architecture/main.tex \
-  '\label{thm:rclm-batch13r-checker-soundness}'
-require_text papers/paper-II-rclm-architecture/main.tex \
-  '\label{thm:rclm-batch13r-proof-carrying-finite-trajectory}'
-require_text papers/paper-II-rclm-architecture/main.tex \
-  '\label{thm:rclm-batch12b-combined-domain-relative-rrst}'
-require_text papers/paper-II-rclm-architecture/main.tex \
-  '\label{thm:rclm-batch12b-domain-relative-infinite-rrst}'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Checker.lean 'theorem accepted_step_sound'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean 'theorem finite_trajectory_closure'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean 'theorem finite_progress_monotone'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean 'theorem finite_composed_nonloss_bound'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean 'theorem finite_endpoint_recovery_bound'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean 'theorem finite_lyapunov_motion_bound'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean 'theorem finite_ambiguity_collapse_bound'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean 'theorem finite_self_model_relevance_bound'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/InfiniteHorizon.lean 'theorem conditional_infinite_trajectory_exists'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Summability.lean 'theorem infinite_monitor_bounds_of_summable'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean 'theorem finite_paper_preservation'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean 'theorem conditional_infinite_paper_trajectory_exists'
 
-# Compiled Gate A declarations to which the paper surfaces are compared.
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Checker.lean \
-  'theorem accepted_step_sound'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean \
-  'theorem finite_trajectory_closure'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean \
-  'theorem finite_progress_monotone'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean \
-  'theorem finite_composed_nonloss_bound'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean \
-  'theorem finite_endpoint_recovery_bound'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean \
-  'theorem finite_lyapunov_motion_bound'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean \
-  'theorem finite_ambiguity_collapse_bound'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean \
-  'theorem finite_self_model_relevance_bound'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/InfiniteHorizon.lean \
-  'theorem conditional_infinite_trajectory_exists'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Summability.lean \
-  'theorem infinite_monitor_bounds_of_summable'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean \
-  'theorem finite_paper_preservation'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean \
-  'theorem conditional_infinite_paper_trajectory_exists'
+require_text docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md 'Paper I thm:main_rcp versus current Lean bundle: NOT EXACT'
+require_text docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md 'Paper II architecture successor theorem: NOT IMPLEMENTED'
+require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md 'ALIGN-06 typed endpoint recovery composition: resolved at abstract Gate A level'
+require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md 'Abstract Gate A theorem kernel: complete'
+require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md 'Exact Paper I theorem equivalence: still false'
 
-# Preserve honest claim boundaries from the initial audit and resolution log.
-require_text docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md \
-  'Paper I thm:main_rcp versus current Lean bundle: NOT EXACT'
-require_text docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md \
-  'Paper II architecture successor theorem: NOT IMPLEMENTED'
-require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md \
-  'ALIGN-06 typed endpoint recovery composition: resolved at abstract Gate A level'
-require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md \
-  'Gate A paper-alignment closure: not yet passed'
-
-printf '%s\n' \
-  'PASS: paper blobs, theorem labels, complete abstract Gate A declarations, and claim boundaries are pinned.'
+printf '%s\n' 'PASS: paper blobs, theorem labels, complete abstract Gate A declarations, and claim boundaries are pinned.'
