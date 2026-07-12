@@ -23,13 +23,33 @@
   },
   "active_gate": "Gate A — abstract theorem kernel",
   "gate_status": {
-    "gate_a_abstract_kernel": "contract_frozen_implementation_started",
-    "gate_b_classical_finite": "not_yet_claimed",
+    "gate_a_abstract_kernel": "composition_closure_clean_ci_audited_paper_alignment_pending",
+    "gate_b_classical_finite": "definitions_started_not_yet_claimed",
     "gate_c_quantum_finite": "not_yet_claimed",
     "rclm_refinement": "contract_only"
   },
+  "gate_a_validation": {
+    "validated_source_commit": "2b68a0048482ad481dfe6b05ce3c5a3262c7a08a",
+    "workflow_run_id": 29184258470,
+    "workflow_conclusion": "success",
+    "clean_build_job_count": 1938,
+    "no_sorry_or_admit": true,
+    "no_project_local_axiom_declarations": true,
+    "no_sorry_ax_in_public_theorems": true,
+    "audited_public_theorem_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "audit_artifact_name": "formal-core-v2-gate-a-audit-29184258470-1",
+    "audit_artifact_sha256": "3a4654e730c6ee5d1c87c723fc66a2b79d74e9642e380e9eb8dce95ac7053470",
+    "paper_assumption_alignment_complete": false
+  },
   "claim_boundary": {
     "full_paper_mechanized": false,
+    "gate_a_composition_closure_implemented": true,
+    "gate_a_clean_ci_built": true,
+    "gate_a_proof_admission_audited": true,
     "gate_a_complete": false,
     "gate_b_complete": false,
     "gate_c_complete": false,
