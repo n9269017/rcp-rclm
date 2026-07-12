@@ -10,7 +10,8 @@ is satisfied.
   agree.
   - [x] The line-by-line comparison audit is complete.
   - [x] Every abstract Gate A mismatch has been represented or resolved.
-  - [ ] Concrete Gate B/C and RCLM refinements resolve the remaining semantic
+  - [x] Gate B resolves the declared finite classical/KL reference obligations.
+  - [ ] Gate C and substantive RCLM refinements resolve the remaining semantic
     mismatches.
 - [x] Every assumption used by the abstract Gate A theorem surface is explicit in
   a structure, proposition, or theorem parameter.
@@ -26,8 +27,9 @@ is satisfied.
 - [x] Recovery is constructive and tied to the actual accepted update.
 - [x] The composed endpoint recovery theorem is proved under explicit
   zero-distance, triangle, and nonexpansiveness laws.
-- [ ] Strict improvement is non-vacuous in a concrete instance and is not merely
-  the introduction of a fresh index.
+- [x] Strict improvement is non-vacuous in a concrete instance and is not merely
+  the introduction of a fresh index. The Gate B witness strictly reduces actual
+  KL distance to the target distribution.
 - [x] Abstract finite accepted-trajectory composition is proved.
 - [x] Abstract infinite-horizon closure is proved only under explicit successor
   availability.
@@ -39,19 +41,20 @@ is satisfied.
   to uniform finite-prefix bounds.
 - [ ] RCLM-to-RCP refinement is proved for substantive states, updates,
   certificates, monitor/recovery laws, and checker acceptance.
-- [ ] Gate B includes a nontrivial finite classical/diagonal model with actual
+- [x] Gate B includes a nontrivial finite classical/diagonal model with actual
   entropy/divergence, conservative extension, recovery, strict progress, and a
   concrete checker refinement.
-- [x] The claimed abstract Gate A theorem source contains no `sorry` or `admit`.
-- [x] No project-local `axiom` declaration or `sorryAx` occurs in the claimed
-  abstract Gate A surface.
+- [x] The claimed Gate A and Gate B theorem source contains no `sorry` or `admit`.
+- [x] No project-local `axiom` declaration or `sorryAx` occurs in the audited Gate
+  A or Gate B surface.
 - [x] Lean and mathlib are pinned to exact immutable revisions.
 - [x] `lake-manifest.json` is committed.
-- [x] Clean GitHub CI builds the abstract Gate A project.
+- [x] Clean GitHub CI builds the Gate A and Gate B project.
 - [x] Source-admission and theorem-axiom audits are uploaded as workflow
   artifacts.
-- [x] The theorem map, assumption register, and formalization manifest separate
-  abstract Gate A completion from concrete paper mechanization.
+- [x] The theorem map, assumption register, closure records, and formalization
+  manifest separate abstract Gate A, finite Gate B, and remaining paper/RCLM
+  obligations.
 
 ## Gate-specific release conditions
 
@@ -79,24 +82,42 @@ Implemented:
 
 ```text
 Abstract Gate A theorem kernel: COMPLETE
-Concrete Paper I theorem identification: DEFERRED TO GATES B/C
+Concrete Paper I theorem identification: PARTIALLY DISCHARGED BY GATE B
 Paper II architecture theorem: DEFERRED TO SUBSTANTIVE RCLM REFINEMENT
 ```
 
 ### Gate B — concrete finite classical/diagonal instantiation
 
-Required:
+Delivered:
 
-- actual finite probability distributions;
-- actual Shannon entropy and KL divergence or an explicitly equivalent finite
-  information quantity;
-- support and zero-mass conditions;
-- KL/non-loss laws;
-- conservative extension and constructive recovery;
-- a nonconstant worked example;
-- a semantically meaningful strict-progress witness;
-- concrete paper-monitor meanings where the classical instance claims them;
-- concrete checker refinement for the declared finite packet grammar.
+- [x] actual finite probability distributions;
+- [x] actual Shannon entropy and finite KL divergence;
+- [x] explicit support and zero-mass conditions;
+- [x] support-aware KL nonnegativity and self-divergence zero;
+- [x] a proved nonconstant positive binary KL witness;
+- [x] zero-coordinate conservative extension;
+- [x] exact preservation of support, Shannon entropy, and KL for that extension;
+- [x] exact constructive recovery of the predecessor distribution;
+- [x] a substantive finite state/update/certificate/residual model;
+- [x] a semantically meaningful strict-progress witness based on KL reduction;
+- [x] concrete finite monitor meanings for the claims made by the binary instance;
+- [x] explicit documentation that those monitor meanings are not Paper I
+  expectation, semantic ambiguity, or mutual information;
+- [x] a concrete Boolean packet grammar;
+- [x] a proof that Boolean acceptance refines to complete `StepObligations`;
+- [x] explicit invalid-candidate rejection;
+- [x] discrete recovery composition laws and an endpoint theorem instance;
+- [x] a nontrivial accepted finite trajectory `initial → target → target`;
+- [x] dedicated Gate B theorem-axiom audit.
+
+```text
+Gate B finite classical reference scope: COMPLETE
+Exact Paper I main theorem: NOT YET COMPLETE
+Substantive RCLM refinement: NEXT
+```
+
+The closure boundary and non-claims are fixed in
+`docs/formal_core_v2/GATE_B_CLOSURE.md`.
 
 ### Gate C — finite-dimensional quantum extension
 
@@ -109,11 +130,32 @@ Required:
 - non-loss and recovery theorem;
 - explicit imported matrix-analysis assumptions.
 
+### Substantive RCLM refinement
+
+Required after Gate B and strengthened after Gate C:
+
+- every theorem-relevant RCLM state field has a substantive type and invariant;
+- RCLM updates refine the selected RCP update semantics;
+- RCLM certificates refine the RCP packet grammar and monitor evidence;
+- recovery, protected transport, progress, trust, resource, and reality fields are
+  preserved by forgetting;
+- RCLM checker acceptance implies the concrete RCP checker obligations;
+- the architecture successor theorem keeps generator/certifier/selector/realizer
+  premises explicit.
+
 ## Licensing the executable phase
 
-The first executable checker remains unlicensed until Gate B and the concrete
-checker refinement are complete and the checker input schema has a one-to-one
-theorem map. The first successor generator and fail-closed loop remain
-unlicensed until substantive RCLM refinement is defined. External benchmark
-work resumes only after a genuine predecessor-generated successor chain exists
-under that checker.
+Gate B completion alone does not license Python execution. The first executable
+checker remains unlicensed until the substantive RCLM checker refinement is
+proved and its input schema has a one-to-one theorem map. The first successor
+generator and fail-closed loop remain unlicensed until the architecture-level
+refinement and generation premises are formalized. External benchmark work
+resumes only after a genuine predecessor-generated successor chain exists under
+that checker.
+
+```text
+Python checker licensed: false
+Python generator licensed: false
+Closed-loop runtime licensed: false
+External benchmark phase licensed: false
+```
