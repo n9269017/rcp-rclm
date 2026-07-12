@@ -74,19 +74,38 @@ require_text \
   'theorem finite_composed_nonloss_bound'
 require_text \
   lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean \
-  'theorem finite_composed_recovery_bound'
-require_text \
-  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean \
   'theorem finite_endpoint_recovery_bound'
+require_text \
+  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean \
+  'theorem finite_lyapunov_motion_bound'
+require_text \
+  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean \
+  'theorem finite_ambiguity_collapse_bound'
+require_text \
+  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean \
+  'theorem finite_self_model_relevance_bound'
 require_text \
   lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/InfiniteHorizon.lean \
   'theorem conditional_infinite_trajectory_exists'
+require_text \
+  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Summability.lean \
+  'theorem infinite_monitor_bounds_of_summable'
+require_text \
+  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean \
+  'theorem finite_paper_preservation'
+require_text \
+  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean \
+  'theorem conditional_infinite_paper_trajectory_exists'
 
-# Ensure the audit preserves the two central non-equivalence findings.
+# Preserve honest claim boundaries from the initial audit and resolution log.
 require_text docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md \
   'Paper I thm:main_rcp versus current Lean bundle: NOT EXACT'
 require_text docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md \
   'Paper II architecture successor theorem: NOT IMPLEMENTED'
+require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md \
+  'ALIGN-06 typed endpoint recovery composition: resolved at abstract Gate A level'
+require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md \
+  'Gate A paper-alignment closure: not yet passed'
 
 printf '%s\n' \
-  'PASS: paper blobs, theorem labels, mapped Lean declarations, and alignment findings are pinned.'
+  'PASS: paper blobs, theorem labels, complete abstract Gate A declarations, and claim boundaries are pinned.'
