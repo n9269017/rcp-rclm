@@ -1,4 +1,4 @@
-import RcpRclmFormalCoreV2.RCP.Trajectory
+import RcpRclmFormalCoreV2.RCP.Monitors
 
 namespace RcpRclmFormalCoreV2
 namespace RCP
@@ -90,6 +90,21 @@ structure InfiniteAcceptedTrajectory
   admissible : ∀ n, K.admissible (state n)
   invariant : ∀ n, K.protectedInvariant (state n)
 
+/-- Restrict an infinite accepted trajectory to any finite prefix. -/
+def finitePrefixOfInfinite
+    {State Update Certificate Protected ResidualIndex : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    {checker : TrustedChecker K}
+    (trajectory : InfiniteAcceptedTrajectory checker)
+    (horizon : Nat) : FiniteAcceptedTrajectory checker horizon where
+  state := trajectory.state
+  candidate := trajectory.candidate
+  certificate := trajectory.certificate
+  initialAdmissible := trajectory.admissible 0
+  initialInvariant := trajectory.invariant 0
+  accepted := fun t _ => trajectory.accepted t
+  linked := fun t _ => trajectory.linked t
+
 noncomputable def buildInfiniteAcceptedTrajectory
     {State Update Certificate Protected ResidualIndex : Type*}
     {K : Kernel State Update Certificate Protected ResidualIndex}
@@ -124,6 +139,164 @@ theorem conditional_infinite_trajectory_exists
     ∃ trajectory : InfiniteAcceptedTrajectory checker,
       trajectory.state 0 = initial.state := by
   exact ⟨buildInfiniteAcceptedTrajectory checker availability initial, rfl⟩
+
+/-- Every finite prefix of an infinite accepted path satisfies endpoint recovery. -/
+theorem infinite_endpoint_recovery_prefix_bound
+    {State Update Certificate Protected ResidualIndex : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    (checker : TrustedChecker K)
+    (laws : RecoveryCompositionLaws K)
+    (trajectory : InfiniteAcceptedTrajectory checker)
+    (t : Nat) :
+    K.stateDistance
+        (composedRecovery
+          (finitePrefixOfInfinite trajectory t)
+          t
+          (trajectory.state t))
+        (trajectory.state 0) ≤
+      cumulativeRecoveryBudget (finitePrefixOfInfinite trajectory t) t := by
+  simpa [finitePrefixOfInfinite] using
+    (finite_endpoint_recovery_bound checker laws
+      (finitePrefixOfInfinite trajectory t) t (Nat.le_refl t))
+
+/-- Every finite prefix of an infinite accepted path satisfies the Lyapunov bound. -/
+theorem infinite_lyapunov_motion_prefix_bound
+    {State Update Certificate Protected ResidualIndex Relevance : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    (checker : TrustedChecker K)
+    (monitors : PreservationMonitors K (Relevance := Relevance))
+    (trajectory : InfiniteAcceptedTrajectory checker)
+    (t : Nat) :
+    monitors.lyapunovValue (trajectory.state t) +
+        cumulativeMotionCharge monitors (finitePrefixOfInfinite trajectory t) t ≤
+      monitors.lyapunovValue (trajectory.state 0) +
+        cumulativeLyapunovError monitors (finitePrefixOfInfinite trajectory t) t := by
+  simpa [finitePrefixOfInfinite] using
+    (finite_lyapunov_motion_bound checker monitors
+      (finitePrefixOfInfinite trajectory t) t (Nat.le_refl t))
+
+/-- Every finite prefix of an infinite accepted path satisfies the ambiguity bound. -/
+theorem infinite_ambiguity_collapse_prefix_bound
+    {State Update Certificate Protected ResidualIndex Relevance : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    (checker : TrustedChecker K)
+    (monitors : PreservationMonitors K (Relevance := Relevance))
+    (trajectory : InfiniteAcceptedTrajectory checker)
+    (t : Nat) :
+    cumulativeUnsupportedCollapse monitors (finitePrefixOfInfinite trajectory t) t ≤
+      cumulativeAmbiguityError monitors (finitePrefixOfInfinite trajectory t) t := by
+  exact finite_ambiguity_collapse_bound checker monitors
+    (finitePrefixOfInfinite trajectory t) t (Nat.le_refl t)
+
+/-- Every finite prefix preserves transported self-model relevance within budget. -/
+theorem infinite_self_model_relevance_prefix_bound
+    {State Update Certificate Protected ResidualIndex Relevance : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    (checker : TrustedChecker K)
+    (monitors : PreservationMonitors K (Relevance := Relevance))
+    (trajectory : InfiniteAcceptedTrajectory checker)
+    (t : Nat)
+    (relevance : Relevance) :
+    monitors.relevanceValue (trajectory.state 0) relevance ≤
+      monitors.relevanceValue (trajectory.state t)
+          (transportedRelevance monitors
+            (finitePrefixOfInfinite trajectory t) t relevance) +
+        cumulativeRelevanceError monitors
+          (finitePrefixOfInfinite trajectory t) t := by
+  simpa [finitePrefixOfInfinite] using
+    (finite_self_model_relevance_bound checker monitors
+      (finitePrefixOfInfinite trajectory t) t (Nat.le_refl t) relevance)
+
+/--
+Uniform caps on all finite partial error budgets of an infinite accepted path.
+For nonnegative series, a concrete standard `Summable` proof may be used to
+construct these caps.  Gate A keeps the bounded-partial-sum premise explicit
+rather than silently assuming analytic convergence.
+-/
+structure UniformMonitorBudgetCaps
+    {State Update Certificate Protected ResidualIndex Relevance : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    {checker : TrustedChecker K}
+    (monitors : PreservationMonitors K (Relevance := Relevance))
+    (trajectory : InfiniteAcceptedTrajectory checker) where
+  lyapunovCap : ℝ
+  ambiguityCap : ℝ
+  relevanceCap : ℝ
+  lyapunovBound : ∀ t,
+    cumulativeLyapunovError monitors (finitePrefixOfInfinite trajectory t) t ≤
+      lyapunovCap
+  ambiguityBound : ∀ t,
+    cumulativeAmbiguityError monitors (finitePrefixOfInfinite trajectory t) t ≤
+      ambiguityCap
+  relevanceBound : ∀ t,
+    cumulativeRelevanceError monitors (finitePrefixOfInfinite trajectory t) t ≤
+      relevanceCap
+
+/--
+Bounded partial error budgets yield uniform finite-prefix Lyapunov, ambiguity,
+and transported self-model-relevance bounds along the infinite accepted path.
+-/
+theorem infinite_monitor_uniform_bounds
+    {State Update Certificate Protected ResidualIndex Relevance : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    (checker : TrustedChecker K)
+    (monitors : PreservationMonitors K (Relevance := Relevance))
+    (trajectory : InfiniteAcceptedTrajectory checker)
+    (caps : UniformMonitorBudgetCaps monitors trajectory)
+    (t : Nat)
+    (relevance : Relevance) :
+    (monitors.lyapunovValue (trajectory.state t) +
+        cumulativeMotionCharge monitors (finitePrefixOfInfinite trajectory t) t ≤
+      monitors.lyapunovValue (trajectory.state 0) + caps.lyapunovCap) ∧
+    (cumulativeUnsupportedCollapse monitors
+        (finitePrefixOfInfinite trajectory t) t ≤ caps.ambiguityCap) ∧
+    (monitors.relevanceValue (trajectory.state 0) relevance ≤
+      monitors.relevanceValue (trajectory.state t)
+          (transportedRelevance monitors
+            (finitePrefixOfInfinite trajectory t) t relevance) +
+        caps.relevanceCap) := by
+  have lyapunovPrefix :=
+    infinite_lyapunov_motion_prefix_bound checker monitors trajectory t
+  have lyapunovCapped := le_trans lyapunovPrefix
+    (add_le_add_right (caps.lyapunovBound t)
+      (monitors.lyapunovValue (trajectory.state 0)))
+  have ambiguityCapped := le_trans
+    (infinite_ambiguity_collapse_prefix_bound checker monitors trajectory t)
+    (caps.ambiguityBound t)
+  have relevancePrefix :=
+    infinite_self_model_relevance_prefix_bound
+      checker monitors trajectory t relevance
+  have relevanceCapped := le_trans relevancePrefix
+    (add_le_add_right (caps.relevanceBound t)
+      (monitors.relevanceValue (trajectory.state t)
+        (transportedRelevance monitors
+          (finitePrefixOfInfinite trajectory t) t relevance)))
+  exact ⟨lyapunovCapped, ambiguityCapped, relevanceCapped⟩
+
+/-- The accumulated nonnegative motion charge is uniformly bounded on every prefix. -/
+theorem infinite_cumulative_motion_bounded
+    {State Update Certificate Protected ResidualIndex Relevance : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    (checker : TrustedChecker K)
+    (monitors : PreservationMonitors K (Relevance := Relevance))
+    (trajectory : InfiniteAcceptedTrajectory checker)
+    (caps : UniformMonitorBudgetCaps monitors trajectory)
+    (t : Nat) :
+    cumulativeMotionCharge monitors (finitePrefixOfInfinite trajectory t) t ≤
+      monitors.lyapunovValue (trajectory.state 0) + caps.lyapunovCap := by
+  have motionBelowChargedValue :
+      cumulativeMotionCharge monitors (finitePrefixOfInfinite trajectory t) t ≤
+        monitors.lyapunovValue (trajectory.state t) +
+          cumulativeMotionCharge monitors
+            (finitePrefixOfInfinite trajectory t) t := by
+    have lifted := add_le_add_left
+      (monitors.lyapunovValue_nonnegative (trajectory.state t))
+      (cumulativeMotionCharge monitors (finitePrefixOfInfinite trajectory t) t)
+    simpa using lifted
+  exact le_trans motionBelowChargedValue
+    (infinite_monitor_uniform_bounds
+      checker monitors trajectory caps t
+      (Classical.choice (Classical.propComplete (Nonempty Relevance)))).1
 
 end RCP
 end RcpRclmFormalCoreV2
