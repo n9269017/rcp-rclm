@@ -3,3 +3,4 @@ import RcpRclmFormalCoreV2.RCLM.Update
 import RcpRclmFormalCoreV2.RCLM.CertificatePacket
 import RcpRclmFormalCoreV2.RCLM.Refinement
 import RcpRclmFormalCoreV2.RCLM.ArchitectureTheorem
+import RcpRclmFormalCoreV2.RCLM.ClassicalBinary
