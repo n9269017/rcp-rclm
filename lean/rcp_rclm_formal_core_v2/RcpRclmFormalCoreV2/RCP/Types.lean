@@ -14,8 +14,13 @@ Abstract data required by the conditional successor theorem.
 Every field is theorem-relevant. In particular, protected values, residuals,
 recovery, trust, resources, and reality containment are supplied by an
 instantiation rather than replaced by constants or booleans set true by
-construction. `protectedValue_nonconstant` prevents the theorem kernel itself
-from being instantiated with a globally constant distinguishability quantity.
+construction.
+
+The three anti-vacuity witnesses prevent a claimed Gate A kernel from using a
+globally constant protected quantity, a globally constant residual evaluator,
+or a reality-containment predicate that is definitionally true for every packet.
+Concrete instances must exhibit the relevant distinguishing and rejected
+inputs.
 -/
 structure Kernel
     (State Update Certificate Protected ResidualIndex : Type*) where
@@ -42,9 +47,17 @@ structure Kernel
   strictWitness : State → Candidate State Update → Certificate → Prop
 
   residual : State → Candidate State Update → Certificate → ResidualIndex → ℝ
+  residual_nonconstant :
+    ∃ state₁ candidate₁ certificate₁ index₁
+      state₂ candidate₂ certificate₂ index₂,
+      residual state₁ candidate₁ certificate₁ index₁ ≠
+        residual state₂ candidate₂ certificate₂ index₂
   trustValid : State → Candidate State Update → Certificate → Prop
   resourceValid : State → Candidate State Update → Certificate → Prop
   realityContained : State → Candidate State Update → Certificate → Prop
+  realityContained_not_universal :
+    ∃ state candidate certificate,
+      ¬ realityContained state candidate certificate
 
 /-- The candidate's claimed successor agrees with the typed update semantics. -/
 def TypedSuccessor
