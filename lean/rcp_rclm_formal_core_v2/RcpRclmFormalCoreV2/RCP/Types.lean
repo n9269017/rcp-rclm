@@ -17,10 +17,10 @@ instantiation rather than replaced by constants or booleans set true by
 construction.
 
 The three anti-vacuity witnesses prevent a claimed Gate A kernel from using a
-globally constant protected quantity, a globally constant residual evaluator,
-or a reality-containment predicate that is definitionally true for every packet.
-Concrete instances must exhibit the relevant distinguishing and rejected
-inputs.
+globally constant protected quantity, a residual evaluator that is constant in
+all state/candidate/evidence inputs at every fixed obligation index, or a
+reality-containment predicate that is true for every packet. Concrete instances
+must exhibit the relevant distinguishing and rejected inputs.
 -/
 structure Kernel
     (State Update Certificate Protected ResidualIndex : Type*) where
@@ -48,10 +48,10 @@ structure Kernel
 
   residual : State → Candidate State Update → Certificate → ResidualIndex → ℝ
   residual_nonconstant :
-    ∃ state₁ candidate₁ certificate₁ index₁
-      state₂ candidate₂ certificate₂ index₂,
-      residual state₁ candidate₁ certificate₁ index₁ ≠
-        residual state₂ candidate₂ certificate₂ index₂
+    ∃ state₁ candidate₁ certificate₁
+      state₂ candidate₂ certificate₂ index,
+      residual state₁ candidate₁ certificate₁ index ≠
+        residual state₂ candidate₂ certificate₂ index
   trustValid : State → Candidate State Update → Certificate → Prop
   resourceValid : State → Candidate State Update → Certificate → Prop
   realityContained : State → Candidate State Update → Certificate → Prop
