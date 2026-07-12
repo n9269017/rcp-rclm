@@ -6,4 +6,6 @@ import RcpRclmFormalCoreV2.MainTheorem
 #print axioms RcpRclmFormalCoreV2.RCP.finite_progress_monotone
 #print axioms RcpRclmFormalCoreV2.RCP.finite_composed_nonloss_bound
 #print axioms RcpRclmFormalCoreV2.RCP.finite_composed_recovery_bound
+#print axioms RcpRclmFormalCoreV2.RCP.composedRecovery_nonexpansive
+#print axioms RcpRclmFormalCoreV2.RCP.finite_endpoint_recovery_bound
 #print axioms RcpRclmFormalCoreV2.RCP.conditional_infinite_trajectory_exists
