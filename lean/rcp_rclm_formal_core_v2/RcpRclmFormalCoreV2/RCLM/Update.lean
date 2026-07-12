@@ -4,11 +4,6 @@ namespace RCLM
 universe uCoreUpdate uParameterUpdate uArchitectureUpdate uMemoryUpdate
   uVerifierUpdate uSemanticUpdate uToolUpdate uResourceUpdate
 
-/--
-A typed architecture update. Concrete instantiations decide which components
-are changed and must prove the corresponding realization and preservation
-obligations.
--/
 structure Update
     (CoreUpdate : Type uCoreUpdate)
     (ParameterUpdate : Type uParameterUpdate)
@@ -26,6 +21,7 @@ structure Update
   semantics : SemanticUpdate
   tools : ToolUpdate
   resources : ResourceUpdate
+  deriving DecidableEq
 
 end RCLM
 end RcpRclmFormalCoreV2
