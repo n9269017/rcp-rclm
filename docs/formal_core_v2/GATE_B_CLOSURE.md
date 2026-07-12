@@ -11,7 +11,7 @@ Gate B non-vacuous KL-derived strict progress: complete
 Gate B concrete packet grammar and trusted checker: complete
 Gate B finite worked trajectory: complete
 Gate B concrete monitor instance: complete at the scoped binary meanings below
-Gate B clean CI and proof-admission audit: required before merge
+Gate B clean CI and proof-admission audit: passed
 Exact Paper I main-theorem equivalence: not claimed
 Paper II substantive RCLM refinement: not claimed
 Gate C finite-dimensional quantum theorem: not claimed
@@ -100,7 +100,7 @@ channel.
 ```text
 outside
 initial
- target
+target
 ```
 
 The admissible trajectory uses the latter two. Updates, certificates, and
@@ -228,11 +228,34 @@ It is accepted by the concrete checker at both transitions, linked to the
 actual update semantics, and strictly improves at the first step. It also
 instantiates the endpoint-recovery and monitor-composition theorems.
 
-## Proof and claim boundary
+## Authoritative validation
 
-Gate B closure requires the pinned clean-CI build, the whole-source no-admission
-scan, the project-local-axiom scan, and the expanded `GateBAxiomAudit.lean`
-report to pass on the synchronized branch head.
+The synchronized finite-reference theorem source at branch head
+`c33087041a8588f11f85c0c108046701269f291f` passed the pinned Linux workflow:
+
+```text
+Workflow run:       29208133524
+PR merge-test SHA:  fb57537f2bb141987fcd10a8621876a034b15915
+Build:              1942 jobs, success
+No sorry/admit:     pass
+Project-local axiom scan: pass
+Gate A axiom audit: pass
+Gate B axiom audit: pass
+Artifact:           formal-core-v2-audit-29208133524-1
+Artifact SHA-256:   dd718909eb0e683e7e92fabf76eb773f8368a1437148f2c65ccfa10d3570930c
+```
+
+The Gate B audit covers 22 public declarations. No declaration reports
+`sorryAx`. The axiom union reported by Lean is:
+
+```lean
+[propext, Classical.choice, Quot.sound]
+```
+
+`binaryCheck_eq_true_iff` reports only `[propext]`, and
+`binaryCheck_rejects_invalidCandidate` reports no axioms.
+
+## Proof and claim boundary
 
 Gate B closure does not imply:
 
