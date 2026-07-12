@@ -21,3 +21,4 @@ artifacts/evalplus_official/gha_run_*/
 diagnostics/
 artifacts/crsi_core/results/
 artifacts/crsi_external_bridge/results/
+lean/rcp_rclm_formal_core_v2/audit-results/
