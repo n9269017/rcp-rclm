@@ -23,10 +23,10 @@
   },
   "active_gate": "Gate A — abstract theorem kernel",
   "gate_status": {
-    "gate_a_abstract_kernel": "composition_closure_clean_ci_audited_paper_alignment_pending",
+    "gate_a_abstract_kernel": "composition_closure_clean_ci_audited_alignment_comparison_complete_resolution_open",
     "gate_b_classical_finite": "definitions_started_not_yet_claimed",
     "gate_c_quantum_finite": "not_yet_claimed",
-    "rclm_refinement": "contract_only"
+    "rclm_refinement": "typed_interfaces_and_partial_structural_contract_only"
   },
   "gate_a_validation": {
     "validated_source_commit": "2b68a0048482ad481dfe6b05ce3c5a3262c7a08a",
@@ -43,16 +43,41 @@
     ],
     "audit_artifact_name": "formal-core-v2-gate-a-audit-29184258470-1",
     "audit_artifact_sha256": "3a4654e730c6ee5d1c87c723fc66a2b79d74e9642e380e9eb8dce95ac7053470",
+    "paper_alignment_comparison_complete": true,
     "paper_assumption_alignment_complete": false
+  },
+  "paper_alignment_audit": {
+    "path": "docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md",
+    "initial_audit_commit": "de639f73f833ac7e06582c0ef85d02105c18219f",
+    "paper_i_exact_equivalence": false,
+    "paper_ii_exact_equivalence": false,
+    "mismatch_resolution_complete": false,
+    "open_obligations": [
+      "ALIGN-01-paper-safe-set-and-admissibility-refinement",
+      "ALIGN-02-no-op-feasibility-wrapper-or-paper-narrowing",
+      "ALIGN-03-lyapunov-expectation-squared-motion-and-summability",
+      "ALIGN-04-ambiguity-and-self-model-monitor-composition",
+      "ALIGN-05-finite-KL-and-quantum-relative-entropy-refinement",
+      "ALIGN-06-typed-endpoint-recovery-composition",
+      "ALIGN-08-full-RCLM-field-preserving-refinement",
+      "ALIGN-09-RCLM-checker-refinement",
+      "ALIGN-10-RCLM-architecture-successor-theorem",
+      "ALIGN-11-final-paper-facing-wrapper"
+    ],
+    "next_selected_obligation": "ALIGN-06-typed-endpoint-recovery-composition"
   },
   "claim_boundary": {
     "full_paper_mechanized": false,
     "gate_a_composition_closure_implemented": true,
     "gate_a_clean_ci_built": true,
     "gate_a_proof_admission_audited": true,
+    "gate_a_alignment_comparison_complete": true,
+    "gate_a_paper_aligned": false,
     "gate_a_complete": false,
     "gate_b_complete": false,
     "gate_c_complete": false,
+    "rclm_checker_refinement_complete": false,
+    "rclm_architecture_theorem_complete": false,
     "python_checker_licensed": false,
     "python_generator_licensed": false,
     "closed_loop_runtime_licensed": false,
