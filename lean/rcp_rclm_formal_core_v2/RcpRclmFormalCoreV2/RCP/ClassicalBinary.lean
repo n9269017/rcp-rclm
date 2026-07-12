@@ -145,7 +145,7 @@ theorem binaryStateDistance_triangle (x y z : BinaryState) :
     binaryStateDistance x z ≤
       binaryStateDistance x y + binaryStateDistance y z := by
   cases x <;> cases y <;> cases z <;>
-    norm_num [binaryStateDistance]
+    simp [binaryStateDistance]
 
 def binaryResidual
     (state : BinaryState)
@@ -422,7 +422,7 @@ inductive BinaryRelevance where
   | normalization
   deriving DecidableEq
 
-def binaryRelevanceValue
+noncomputable def binaryRelevanceValue
     (state : BinaryState) : BinaryRelevance → ℝ
   | BinaryRelevance.targetFit => binaryProgress state
   | BinaryRelevance.normalization => 1
@@ -538,21 +538,12 @@ noncomputable def binaryPreservationMonitors :
     exact le_rfl
   lyapunovStep := by
     intro state candidate certificate obligations
-    change
-      binaryLyapunovValue candidate.next +
-          binaryMotionCharge state candidate ≤
-        binaryLyapunovValue state + 0
     simpa using binaryLyapunov_motion_step obligations
   ambiguityStep := by
     intro state candidate certificate obligations
-    change binaryUnsupportedCollapse state candidate certificate ≤ 0
     exact binaryUnsupportedCollapse_step obligations
   relevanceStep := by
     intro state candidate certificate obligations relevance
-    change
-      binaryRelevanceValue state relevance ≤
-        binaryRelevanceValue candidate.next
-            (binaryTransportRelevance state candidate relevance) + 0
     simpa using binaryRelevance_step obligations relevance
 
 def binaryTrajectoryState : Nat → BinaryState
