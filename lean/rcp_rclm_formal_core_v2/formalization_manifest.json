@@ -21,59 +21,82 @@
     "paper_ii_path": "papers/paper-II-rclm-architecture/main.tex",
     "paper_ii_git_blob_sha": "9b51be8294ad79fd4f63522b01e0f617f0bf2ffd"
   },
-  "active_gate": "Gate A — abstract theorem kernel",
+  "active_gate": "Gate B — concrete finite classical/diagonal instantiation",
   "gate_status": {
-    "gate_a_abstract_kernel": "composition_closure_clean_ci_audited_alignment_comparison_complete_resolution_open",
-    "gate_b_classical_finite": "definitions_started_not_yet_claimed",
+    "gate_a_abstract_kernel": "complete_clean_ci_built_and_axiom_audited",
+    "gate_b_classical_finite": "definitions_started_not_yet_complete",
     "gate_c_quantum_finite": "not_yet_claimed",
     "rclm_refinement": "typed_interfaces_and_partial_structural_contract_only"
   },
   "gate_a_validation": {
-    "validated_source_commit": "2b68a0048482ad481dfe6b05ce3c5a3262c7a08a",
-    "workflow_run_id": 29184258470,
+    "validated_source_commit": "9ce0502f121b1576ae0d3834d876ea2d523b9ead",
+    "workflow_run_id": 29187176872,
     "workflow_conclusion": "success",
-    "clean_build_job_count": 1938,
+    "clean_build_job_count": 1941,
     "no_sorry_or_admit": true,
     "no_project_local_axiom_declarations": true,
     "no_sorry_ax_in_public_theorems": true,
+    "audited_public_theorem_count": 22,
     "audited_public_theorem_axioms": [
       "propext",
       "Classical.choice",
       "Quot.sound"
     ],
-    "audit_artifact_name": "formal-core-v2-gate-a-audit-29184258470-1",
-    "audit_artifact_sha256": "3a4654e730c6ee5d1c87c723fc66a2b79d74e9642e380e9eb8dce95ac7053470",
+    "audit_artifact_name": "formal-core-v2-gate-a-audit-29187176872-1",
+    "audit_artifact_sha256": "32d46d1469e27e10e60255ae7be8c4d2c22db9f3dc1e75c342d49d70e0c22661",
+    "lake_manifest_sha256": "c17842b8da89c8c84beed4e8b33892616ef75c15475133a07aca97c16d853b0a",
     "paper_alignment_comparison_complete": true,
-    "paper_assumption_alignment_complete": false
+    "abstract_gate_a_resolution_complete": true,
+    "concrete_paper_equivalence_complete": false
+  },
+  "gate_a_delivered": {
+    "nonconstant_protected_value_required": true,
+    "nonconstant_residual_evaluator_required": true,
+    "reality_containment_not_universal_required": true,
+    "accepted_step_soundness": true,
+    "finite_trajectory_closure": true,
+    "finite_progress_composition": true,
+    "finite_protected_nonloss_composition": true,
+    "finite_endpoint_recovery_composition": true,
+    "finite_lyapunov_motion_composition": true,
+    "finite_ambiguity_composition": true,
+    "finite_self_model_relevance_composition": true,
+    "conditional_infinite_trajectory": true,
+    "infinite_prefix_preservation": true,
+    "summable_budget_bridge": true,
+    "paper_semantics_refinement_boundary": true,
+    "no_op_feasibility_premise": true,
+    "finite_paper_wrapper": true,
+    "conditional_infinite_paper_wrapper": true
   },
   "paper_alignment_audit": {
-    "path": "docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md",
-    "initial_audit_commit": "de639f73f833ac7e06582c0ef85d02105c18219f",
+    "initial_audit_path": "docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md",
+    "resolution_log_path": "docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md",
     "paper_i_exact_equivalence": false,
     "paper_ii_exact_equivalence": false,
-    "mismatch_resolution_complete": false,
-    "open_obligations": [
-      "ALIGN-01-paper-safe-set-and-admissibility-refinement",
-      "ALIGN-02-no-op-feasibility-wrapper-or-paper-narrowing",
-      "ALIGN-03-lyapunov-expectation-squared-motion-and-summability",
+    "abstract_gate_a_mismatch_resolution_complete": true,
+    "resolved_at_abstract_gate_a": [
+      "ALIGN-01-paper-safe-set-and-admissibility-refinement-boundary",
+      "ALIGN-02-no-op-feasibility-premise",
+      "ALIGN-03-lyapunov-motion-and-summability-composition",
       "ALIGN-04-ambiguity-and-self-model-monitor-composition",
+      "ALIGN-06-typed-endpoint-recovery-composition"
+    ],
+    "open_cross_gate_obligations": [
       "ALIGN-05-finite-KL-and-quantum-relative-entropy-refinement",
-      "ALIGN-06-typed-endpoint-recovery-composition",
       "ALIGN-08-full-RCLM-field-preserving-refinement",
       "ALIGN-09-RCLM-checker-refinement",
       "ALIGN-10-RCLM-architecture-successor-theorem",
-      "ALIGN-11-final-paper-facing-wrapper"
+      "ALIGN-11-final-concrete-paper-facing-wrapper"
     ],
-    "next_selected_obligation": "ALIGN-06-typed-endpoint-recovery-composition"
+    "next_selected_obligation": "GATE-B-finite-classical-KL-conservative-extension-and-checker-instance"
   },
   "claim_boundary": {
     "full_paper_mechanized": false,
-    "gate_a_composition_closure_implemented": true,
+    "gate_a_abstract_complete": true,
     "gate_a_clean_ci_built": true,
     "gate_a_proof_admission_audited": true,
-    "gate_a_alignment_comparison_complete": true,
-    "gate_a_paper_aligned": false,
-    "gate_a_complete": false,
+    "gate_a_paper_aligned_concretely": false,
     "gate_b_complete": false,
     "gate_c_complete": false,
     "rclm_checker_refinement_complete": false,
