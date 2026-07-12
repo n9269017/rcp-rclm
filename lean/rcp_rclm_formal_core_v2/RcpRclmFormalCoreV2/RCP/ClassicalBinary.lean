@@ -198,6 +198,9 @@ noncomputable def binaryKernel :
   strictWitness := binaryStrictWitness
   residual := binaryResidual
   residual_nonconstant := by
+    have initial_ne_target :
+        BinaryState.initial ≠ BinaryState.target := by
+      decide
     refine
       ⟨BinaryState.initial,
         improvementCandidate,
@@ -208,7 +211,7 @@ noncomputable def binaryKernel :
         BinaryResidualIndex.typed,
         ?_⟩
     norm_num [binaryResidual, binaryApply,
-      improvementCandidate, invalidCandidate]
+      improvementCandidate, invalidCandidate, initial_ne_target]
   trustValid := binaryTrustValid
   resourceValid := binaryResourceValid
   realityContained := binaryRealityContained
@@ -256,7 +259,7 @@ theorem initial_improvement_obligations :
       binaryProgress BinaryState.initial ≤
         binaryProgress BinaryState.target + 0
     rw [binaryProgress_initial, binaryProgress_target]
-    exact binaryGap_pos.le
+    simpa using binaryGap_pos.le
   · unfold ConstructiveRecovery
     simp [binaryKernel, binaryStateDistance]
   · simp [binaryKernel, improvementCandidate]
@@ -307,7 +310,7 @@ theorem target_stability_obligations :
     change
       binaryProgress BinaryState.target ≤
         binaryProgress BinaryState.target + 0
-    exact le_rfl
+    simp
   · unfold ConstructiveRecovery
     simp [binaryKernel, binaryStateDistance]
   · simp [binaryKernel, stabilityCandidate]
