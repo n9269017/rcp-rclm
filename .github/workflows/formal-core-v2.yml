@@ -150,11 +150,31 @@ jobs:
             'PASS: all audited Gate A declarations elaborate and no report contains sorryAx.' \
             > audit-results/gate_a_axiom_audit_summary.txt
 
-      - name: Upload Gate A audit artifacts
+      - name: Print and validate Gate B theorem axioms
+        working-directory: lean/rcp_rclm_formal_core_v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results
+
+          lake env lean \
+            ../../docs/formal_core_v2/audit/GateBAxiomAudit.lean \
+            2>&1 | tee audit-results/gate_b_axioms.txt
+
+          if grep -Fq 'sorryAx' audit-results/gate_b_axioms.txt; then
+            echo "sorryAx appears in the Gate B theorem axiom report." >&2
+            exit 1
+          fi
+
+          printf '%s\n' \
+            'PASS: all audited Gate B declarations elaborate and no report contains sorryAx.' \
+            > audit-results/gate_b_axiom_audit_summary.txt
+
+      - name: Upload Gate A and Gate B audit artifacts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: formal-core-v2-gate-a-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          name: formal-core-v2-audit-${{ github.run_id }}-${{ github.run_attempt }}
           path: lean/rcp_rclm_formal_core_v2/audit-results
           if-no-files-found: warn
           retention-days: 90
