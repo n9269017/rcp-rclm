@@ -56,10 +56,21 @@ require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Summability.le
 require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean 'theorem finite_paper_preservation'
 require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean 'theorem conditional_infinite_paper_trajectory_exists'
 
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalFinite.lean 'theorem klDivergence_nonnegative'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalFinite.lean 'theorem shannonEntropy_extendByZero'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalFinite.lean 'theorem conservative_extension_recovery'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalBinary.lean 'theorem binary_checker_refines_kernel'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalBinary.lean 'theorem binaryLyapunov_motion_step'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalBinary.lean 'theorem binaryWorkedTrajectory_endpoint_recovery'
+require_text lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalBinary.lean 'theorem binaryWorkedTrajectory_first_step_strict'
+
 require_text docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md 'Paper I thm:main_rcp versus current Lean bundle: NOT EXACT'
 require_text docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md 'Paper II architecture successor theorem: NOT IMPLEMENTED'
 require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md 'ALIGN-06 typed endpoint recovery composition: resolved at abstract Gate A level'
 require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md 'Abstract Gate A theorem kernel: complete'
 require_text docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md 'Exact Paper I theorem equivalence: still false'
+require_text docs/formal_core_v2/GATE_B_CLOSURE.md 'Gate B is complete at the declared finite classical reference scope.'
+require_text docs/formal_core_v2/GATE_B_CLOSURE.md 'Exact Paper I main-theorem equivalence: not claimed'
+require_text docs/formal_core_v2/GATE_B_CLOSURE.md 'Executable RSI: not licensed'
 
-printf '%s\n' 'PASS: paper blobs, theorem labels, complete abstract Gate A declarations, and claim boundaries are pinned.'
+printf '%s\n' 'PASS: paper blobs, theorem labels, Gate A declarations, Gate B finite-reference declarations, and claim boundaries are pinned.'
