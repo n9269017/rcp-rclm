@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - agent/rcp-rclm-formal-core-v2
+      - agent/rcp-rclm-formal-core-v2-rclm-refinement
     paths:
       - "lean/rcp_rclm_formal_core_v2/**"
       - "docs/formal_core_v2/**"
@@ -170,7 +171,27 @@ jobs:
             'PASS: all audited Gate B declarations elaborate and no report contains sorryAx.' \
             > audit-results/gate_b_axiom_audit_summary.txt
 
-      - name: Upload Gate A and Gate B audit artifacts
+      - name: Print and validate RCLM refinement theorem axioms
+        working-directory: lean/rcp_rclm_formal_core_v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results
+
+          lake env lean \
+            ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean \
+            2>&1 | tee audit-results/rclm_refinement_axioms.txt
+
+          if grep -Fq 'sorryAx' audit-results/rclm_refinement_axioms.txt; then
+            echo "sorryAx appears in the RCLM refinement theorem axiom report." >&2
+            exit 1
+          fi
+
+          printf '%s\n' \
+            'PASS: all audited RCLM refinement declarations elaborate and no report contains sorryAx.' \
+            > audit-results/rclm_refinement_axiom_audit_summary.txt
+
+      - name: Upload Gate A, Gate B, and RCLM refinement audit artifacts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
