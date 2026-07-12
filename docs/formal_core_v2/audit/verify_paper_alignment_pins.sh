@@ -76,6 +76,9 @@ require_text \
   lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean \
   'theorem finite_composed_recovery_bound'
 require_text \
+  lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean \
+  'theorem finite_endpoint_recovery_bound'
+require_text \
   lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/InfiniteHorizon.lean \
   'theorem conditional_infinite_trajectory_exists'
 
