@@ -8,4 +8,13 @@ import RcpRclmFormalCoreV2.MainTheorem
 #print axioms RcpRclmFormalCoreV2.RCP.finite_composed_recovery_bound
 #print axioms RcpRclmFormalCoreV2.RCP.composedRecovery_nonexpansive
 #print axioms RcpRclmFormalCoreV2.RCP.finite_endpoint_recovery_bound
+#print axioms RcpRclmFormalCoreV2.RCP.finite_lyapunov_motion_bound
+#print axioms RcpRclmFormalCoreV2.RCP.finite_ambiguity_collapse_bound
+#print axioms RcpRclmFormalCoreV2.RCP.finite_self_model_relevance_bound
 #print axioms RcpRclmFormalCoreV2.RCP.conditional_infinite_trajectory_exists
+#print axioms RcpRclmFormalCoreV2.RCP.infinite_endpoint_recovery_prefix_bound
+#print axioms RcpRclmFormalCoreV2.RCP.infinite_lyapunov_motion_prefix_bound
+#print axioms RcpRclmFormalCoreV2.RCP.infinite_ambiguity_collapse_prefix_bound
+#print axioms RcpRclmFormalCoreV2.RCP.infinite_self_model_relevance_prefix_bound
+#print axioms RcpRclmFormalCoreV2.RCP.infinite_monitor_uniform_bounds
+#print axioms RcpRclmFormalCoreV2.RCP.infinite_cumulative_motion_bounded
