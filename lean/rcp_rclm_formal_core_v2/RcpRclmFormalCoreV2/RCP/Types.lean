@@ -11,10 +11,11 @@ structure Candidate (State Update : Type*) where
 /--
 Abstract data required by the conditional successor theorem.
 
-Every field is theorem-relevant. In particular, divergence/protected values,
-residuals, recovery, trust, resources, and reality containment are supplied by
-an instantiation rather than replaced by constants or booleans set true by
-construction.
+Every field is theorem-relevant. In particular, protected values, residuals,
+recovery, trust, resources, and reality containment are supplied by an
+instantiation rather than replaced by constants or booleans set true by
+construction. `protectedValue_nonconstant` prevents the theorem kernel itself
+from being instantiated with a globally constant distinguishability quantity.
 -/
 structure Kernel
     (State Update Certificate Protected ResidualIndex : Type*) where
@@ -23,6 +24,10 @@ structure Kernel
   protectedInvariant : State → Prop
 
   protectedValue : State → Protected → ℝ
+  protectedValue_nonconstant :
+    ∃ state₁ distinction₁ state₂ distinction₂,
+      protectedValue state₁ distinction₁ ≠
+        protectedValue state₂ distinction₂
   transportProtected : State → Candidate State Update → Protected → Protected
   lossBudget : State → Candidate State Update → ℝ
   lossBudget_nonnegative : ∀ s candidate, 0 ≤ lossBudget s candidate
