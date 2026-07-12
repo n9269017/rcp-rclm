@@ -16,11 +16,15 @@ structure Refinement
   forgetCandidate : RCP.Candidate RclmState RclmUpdate →
     RCP.Candidate CoreState CoreUpdate
   forgetCertificate : RclmCertificate → CoreCertificate
+
+  rclmAdmissible : RclmState → Prop
   admissiblePreserved : ∀ state,
+    rclmAdmissible state →
     coreKernel.admissible (forgetState state)
-  candidateSourceCompatible : ∀ state candidate,
-    (forgetCandidate candidate).next =
-      forgetState candidate.next
+
+  candidateNextCompatible : ∀ candidate,
+    (forgetCandidate candidate).next = forgetState candidate.next
+
   invariantTransport : RclmState → Prop
   invariantPreserved : ∀ state,
     invariantTransport state →
