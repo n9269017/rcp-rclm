@@ -1,6 +1,9 @@
 # Paper-to-Lean theorem map — formal core v2
 
-This map pins the theorem-facing source versions before implementation.
+This map pins the theorem-facing source versions before implementation and records
+which declarations have actually been implemented. A declaration is marked
+`implemented` only when its Lean source exists; it is marked `clean-CI-built`
+only after the pinned Formal Core v2 workflow succeeds for the containing commit.
 
 ## Source pins
 
@@ -24,19 +27,36 @@ Historical Lean v1 RCLM:
 
 ## Named-claim mapping
 
-| Paper claim surface | Formal-core v2 target | Gate | Initial status |
+| Paper claim surface | Formal-core v2 target | Gate | Current status |
 |---|---|---:|---|
-| Conditional Non-Lossy Self-Update Preservation Theorem | `RCP.accepted_step_sound`, finite non-loss/recovery composition | A | contract frozen |
-| direct-engine construction claim | explicit `SuccessorAvailability` / generator-completeness interface; no existence claim from checker soundness | A | assumption boundary frozen |
-| robust reflective successor/domain-invariance claim | accepted-step obligations plus `successorAdmissible` | A | contract frozen |
-| finite proof-carrying trajectory claim | `RCP.finite_trajectory_closure` | A | not yet proved |
-| infinite seed-library closure claim | `RCP.conditional_infinite_trajectory_exists` with explicit availability hypothesis | A | not yet proved |
-| Batch-13R classical/diagonal reference entry | actual finite distributions and nonconstant Shannon/KL divergence | B | not yet implemented |
-| constructive recovery / rollback | `RCP.ConstructiveRecovery` tied to the actual candidate update | A/B | interface started |
-| strict ability/progress expansion | non-vacuous `StrictWitness` implying strict increase of a declared progress functional | A/B | interface started |
+| Conditional Non-Lossy Self-Update Preservation Theorem | `RCP.accepted_step_sound`, `RCP.finite_composed_nonloss_bound`, `RCP.finite_composed_recovery_bound` | A | one-step theorem clean-CI-built; finite composition declarations implemented and CI/audit enforced |
+| direct-engine construction claim | explicit `RCP.SuccessorAvailability`; no existence claim from checker soundness | A | assumption boundary implemented and remains explicit in the public infinite theorem |
+| robust reflective successor/domain-invariance claim | accepted-step obligations plus `successorAdmissible` | A | implemented in `RCP.StepObligations`, `RCP.accepted_step_sound`, and finite/infinite closure constructions; clean-CI-built |
+| finite proof-carrying trajectory claim | `RCP.finite_trajectory_closure`, `RCP.finite_trajectory_step_sound` | A | implemented and clean-CI-built |
+| finite progress composition claim | `RCP.finite_progress_monotone` | A | implemented; CI/audit enforced |
+| finite protected-loss composition claim | transported distinctions plus `RCP.finite_composed_nonloss_bound` | A | implemented; bounds the initial protected value by the transported endpoint value plus the sum of declared per-step loss budgets |
+| finite recovery composition claim | local recovery errors plus `RCP.finite_composed_recovery_bound` | A | implemented; aggregate local-error bound only, not an undeclared endpoint rollback theorem |
+| infinite seed-library closure claim | `RCP.conditional_infinite_trajectory_exists` with explicit availability hypothesis | A | implemented and clean-CI-built; successor availability is not inferred from checker soundness |
+| Batch-13R classical/diagonal reference entry | actual finite distributions and nonconstant Shannon/KL divergence | B | definitions started; required laws, conservative extension, recovery theorem, and worked example not yet implemented |
+| constructive recovery / rollback | `RCP.ConstructiveRecovery` tied to the actual candidate update | A/B | one-step interface and finite aggregate local-error theorem implemented; concrete Gate B recovery remains pending |
+| strict ability/progress expansion | `RCP.StrictProgressWhenWitness` and per-step soundness, with `RCP.finite_progress_monotone` for nondecrease | A/B | abstract implication implemented; a concrete non-vacuous Gate B witness remains pending |
 | RCLM-to-RCP refinement | `RCLM.rclm_checker_refines_rcp` for substantive states, updates, and certificates | RCLM after A/B | contract only |
 | architecture-level successor theorem | `RCLM.rclm_architecture_successor_theorem` | RCLM after A/B | contract only |
 | finite-dimensional quantum non-loss claim | density matrices, admissible channels, von Neumann/quantum relative entropy, recovery theorem | C | not yet implemented |
+
+## Gate A audit boundary
+
+The CI workflow must preserve both:
+
+```text
+no-sorry / no-admit source audit
+#print axioms output for every public Gate A theorem
+```
+
+The audit is described in `AXIOM_AUDIT.md`. A successful build alone does not
+license a claim that Gate A is assumption-free: the generated axiom report is the
+source of truth for foundational dependencies, and the theorem statements retain
+all model-specific assumptions through their explicit kernel/checker arguments.
 
 ## Mapping discipline
 
@@ -51,3 +71,6 @@ Historical Lean v1 RCLM:
    existence or completeness result must expose its own assumptions.
 5. Historical v1 files remain valid only for their declared canonical finite
    scope and are not treated as proofs of the v2 theorem.
+6. `RCP.finite_composed_recovery_bound` is deliberately an aggregate theorem over
+   certified local recovery errors. A stronger endpoint rollback theorem requires
+   additional composition structure and may not be inferred from this result.
