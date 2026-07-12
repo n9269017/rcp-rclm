@@ -7,7 +7,7 @@ namespace RCP
 namespace ClassicalFinite
 
 inductive BinaryState where
-  | unsafe
+  | outside
   | initial
   | target
   deriving DecidableEq
@@ -36,72 +36,79 @@ theorem binaryGap_pos : 0 < binaryGap :=
 
 noncomputable def binaryStateDistribution :
     BinaryState → PositiveDistribution 2
-  | .unsafe => uniformBinary
-  | .initial => uniformBinary
-  | .target => biasedBinary
+  | BinaryState.outside => uniformBinary
+  | BinaryState.initial => uniformBinary
+  | BinaryState.target => biasedBinary
 
 noncomputable def binaryProgress (state : BinaryState) : ℝ :=
   binaryGap -
     positiveKLDivergence (binaryStateDistribution state) biasedBinary
 
 theorem binaryProgress_initial :
-    binaryProgress .initial = 0 := by
+    binaryProgress BinaryState.initial = 0 := by
   simp [binaryProgress, binaryGap, binaryStateDistribution]
 
 theorem binaryProgress_target :
-    binaryProgress .target = binaryGap := by
+    binaryProgress BinaryState.target = binaryGap := by
   simp [binaryProgress, binaryStateDistribution,
     positiveKLDivergence_self]
 
 theorem binaryProgress_initial_lt_target :
-    binaryProgress .initial < binaryProgress .target := by
+    binaryProgress BinaryState.initial <
+      binaryProgress BinaryState.target := by
   rw [binaryProgress_initial, binaryProgress_target]
   exact binaryGap_pos
 
 def binaryApply : BinaryState → BinaryUpdate → BinaryState
-  | .unsafe, .stay => .unsafe
-  | .unsafe, .improve => .unsafe
-  | .initial, .stay => .initial
-  | .initial, .improve => .target
-  | .target, .stay => .target
-  | .target, .improve => .target
+  | BinaryState.outside, BinaryUpdate.stay => BinaryState.outside
+  | BinaryState.outside, BinaryUpdate.improve => BinaryState.outside
+  | BinaryState.initial, BinaryUpdate.stay => BinaryState.initial
+  | BinaryState.initial, BinaryUpdate.improve => BinaryState.target
+  | BinaryState.target, BinaryUpdate.stay => BinaryState.target
+  | BinaryState.target, BinaryUpdate.improve => BinaryState.target
 
 def improvementCandidate : Candidate BinaryState BinaryUpdate where
-  update := .improve
-  next := .target
+  update := BinaryUpdate.improve
+  next := BinaryState.target
 
 def stabilityCandidate : Candidate BinaryState BinaryUpdate where
-  update := .stay
-  next := .target
+  update := BinaryUpdate.stay
+  next := BinaryState.target
 
 def invalidCandidate : Candidate BinaryState BinaryUpdate where
-  update := .improve
-  next := .initial
+  update := BinaryUpdate.improve
+  next := BinaryState.initial
 
 def ImprovementPacket
     (state : BinaryState)
     (candidate : Candidate BinaryState BinaryUpdate)
     (certificate : BinaryCertificate) : Prop :=
-  state = .initial ∧
-    candidate.update = .improve ∧
-    candidate.next = .target ∧
-    certificate = .improvement
+  state = BinaryState.initial ∧
+    candidate.update = BinaryUpdate.improve ∧
+    candidate.next = BinaryState.target ∧
+    certificate = BinaryCertificate.improvement
 
 def StabilityPacket
     (state : BinaryState)
     (candidate : Candidate BinaryState BinaryUpdate)
     (certificate : BinaryCertificate) : Prop :=
-  state = .target ∧
-    candidate.update = .stay ∧
-    candidate.next = .target ∧
-    certificate = .stability
+  state = BinaryState.target ∧
+    candidate.update = BinaryUpdate.stay ∧
+    candidate.next = BinaryState.target ∧
+    certificate = BinaryCertificate.stability
 
 def binaryCheck
     (state : BinaryState)
     (candidate : Candidate BinaryState BinaryUpdate)
     (certificate : BinaryCertificate) : Bool :=
-  decide (ImprovementPacket state candidate certificate) ||
-    decide (StabilityPacket state candidate certificate)
+  (decide (state = BinaryState.initial) &&
+      decide (candidate.update = BinaryUpdate.improve) &&
+      decide (candidate.next = BinaryState.target) &&
+      decide (certificate = BinaryCertificate.improvement)) ||
+    (decide (state = BinaryState.target) &&
+      decide (candidate.update = BinaryUpdate.stay) &&
+      decide (candidate.next = BinaryState.target) &&
+      decide (certificate = BinaryCertificate.stability))
 
 theorem binaryCheck_eq_true_iff
     (state : BinaryState)
@@ -110,7 +117,8 @@ theorem binaryCheck_eq_true_iff
     binaryCheck state candidate certificate = true ↔
       ImprovementPacket state candidate certificate ∨
         StabilityPacket state candidate certificate := by
-  simp [binaryCheck]
+  simp [binaryCheck, ImprovementPacket, StabilityPacket,
+    and_assoc]
 
 def binaryStateDistance (x y : BinaryState) : ℝ :=
   if x = y then 0 else 1
@@ -126,9 +134,9 @@ def binaryResidual
     (candidate : Candidate BinaryState BinaryUpdate)
     (certificate : BinaryCertificate) :
     BinaryResidualIndex → ℝ
-  | .typed =>
+  | BinaryResidualIndex.typed =>
       if candidate.next = binaryApply state candidate.update then -1 else 1
-  | .packet =>
+  | BinaryResidualIndex.packet =>
       if binaryCheck state candidate certificate = true then -1 else 1
 
 def binaryStrictWitness
@@ -141,21 +149,24 @@ def binaryTrustValid
     (state : BinaryState)
     (_candidate : Candidate BinaryState BinaryUpdate)
     (certificate : BinaryCertificate) : Prop :=
-  state ≠ .unsafe ∧ certificate ≠ .malformed
+  state ≠ BinaryState.outside ∧
+    certificate ≠ BinaryCertificate.malformed
 
 def binaryResourceValid
     (_state : BinaryState)
     (candidate : Candidate BinaryState BinaryUpdate)
     (certificate : BinaryCertificate) : Prop :=
-  (certificate = .improvement → candidate.update = .improve) ∧
-    (certificate = .stability → candidate.update = .stay) ∧
-    certificate ≠ .malformed
+  (certificate = BinaryCertificate.improvement →
+      candidate.update = BinaryUpdate.improve) ∧
+    (certificate = BinaryCertificate.stability →
+      candidate.update = BinaryUpdate.stay) ∧
+    certificate ≠ BinaryCertificate.malformed
 
 def binaryRealityContained
     (state : BinaryState)
     (candidate : Candidate BinaryState BinaryUpdate)
     (_certificate : BinaryCertificate) : Prop :=
-  candidate.next ≠ .unsafe ∧
+  candidate.next ≠ BinaryState.outside ∧
     candidate.next = binaryApply state candidate.update
 
 noncomputable def binaryKernel :
@@ -166,18 +177,20 @@ noncomputable def binaryKernel :
       Unit
       BinaryResidualIndex where
   apply := binaryApply
-  admissible := fun state => state ≠ .unsafe
-  protectedInvariant := fun state => state ≠ .unsafe
+  admissible := fun state => state ≠ BinaryState.outside
+  protectedInvariant := fun state => state ≠ BinaryState.outside
   protectedValue := fun state _ => binaryProgress state
   protectedValue_nonconstant := by
-    refine ⟨.initial, (), .target, (), ?_⟩
+    refine
+      ⟨BinaryState.initial, (), BinaryState.target, (), ?_⟩
     rw [binaryProgress_initial, binaryProgress_target]
     exact ne_of_lt binaryGap_pos
   transportProtected := fun _ _ distinction => distinction
   lossBudget := fun _ _ => 0
   lossBudget_nonnegative := fun _ _ => le_rfl
   stateDistance := binaryStateDistance
-  stateDistance_nonnegative := binaryStateDistance_nonnegative
+  stateDistance_nonnegative := fun x y =>
+    binaryStateDistance_nonnegative x y
   recover := fun state _ _ => state
   recoveryBudget := fun _ _ => 0
   recoveryBudget_nonnegative := fun _ _ => le_rfl
@@ -186,8 +199,14 @@ noncomputable def binaryKernel :
   residual := binaryResidual
   residual_nonconstant := by
     refine
-      ⟨.initial, improvementCandidate, .improvement,
-        .initial, invalidCandidate, .improvement, .typed, ?_⟩
+      ⟨BinaryState.initial,
+        improvementCandidate,
+        BinaryCertificate.improvement,
+        BinaryState.initial,
+        invalidCandidate,
+        BinaryCertificate.improvement,
+        BinaryResidualIndex.typed,
+        ?_⟩
     norm_num [binaryResidual, binaryApply,
       improvementCandidate, invalidCandidate]
   trustValid := binaryTrustValid
@@ -195,18 +214,20 @@ noncomputable def binaryKernel :
   realityContained := binaryRealityContained
   realityContained_not_universal := by
     refine
-      ⟨.unsafe,
-        { update := .stay, next := .unsafe },
-        .malformed,
+      ⟨BinaryState.outside,
+        ({ update := BinaryUpdate.stay
+           next := BinaryState.outside } :
+          Candidate BinaryState BinaryUpdate),
+        BinaryCertificate.malformed,
         ?_⟩
     simp [binaryRealityContained]
 
 theorem initial_improvement_obligations :
     StepObligations
       binaryKernel
-      .initial
+      BinaryState.initial
       improvementCandidate
-      .improvement := by
+      BinaryCertificate.improvement := by
   refine
     { typedSuccessor := ?_
       residualsNonpositive := ?_
@@ -227,21 +248,25 @@ theorem initial_improvement_obligations :
           binaryApply, improvementCandidate]
     | packet =>
         norm_num [binaryKernel, binaryResidual, binaryCheck,
-          ImprovementPacket, StabilityPacket, improvementCandidate]
+          improvementCandidate]
   · unfold ProtectedNonLoss
     intro distinction
     cases distinction
-    change binaryProgress .initial ≤ binaryProgress .target + 0
+    change
+      binaryProgress BinaryState.initial ≤
+        binaryProgress BinaryState.target + 0
     rw [binaryProgress_initial, binaryProgress_target]
     exact binaryGap_pos.le
   · unfold ConstructiveRecovery
     simp [binaryKernel, binaryStateDistance]
   · simp [binaryKernel, improvementCandidate]
   · unfold ProgressNondecreasing
-    change binaryProgress .initial ≤ binaryProgress .target
+    change
+      binaryProgress BinaryState.initial ≤
+        binaryProgress BinaryState.target
     exact binaryProgress_initial_lt_target.le
   · unfold StrictProgressWhenWitness
-    intro _
+    intro _strictWitness
     exact binaryProgress_initial_lt_target
   · simp [binaryKernel, binaryTrustValid]
   · simp [binaryKernel, binaryResourceValid, improvementCandidate]
@@ -252,9 +277,9 @@ theorem initial_improvement_obligations :
 theorem target_stability_obligations :
     StepObligations
       binaryKernel
-      .target
+      BinaryState.target
       stabilityCandidate
-      .stability := by
+      BinaryCertificate.stability := by
   refine
     { typedSuccessor := ?_
       residualsNonpositive := ?_
@@ -275,11 +300,13 @@ theorem target_stability_obligations :
           binaryApply, stabilityCandidate]
     | packet =>
         norm_num [binaryKernel, binaryResidual, binaryCheck,
-          ImprovementPacket, StabilityPacket, stabilityCandidate]
+          stabilityCandidate]
   · unfold ProtectedNonLoss
     intro distinction
     cases distinction
-    change binaryProgress .target ≤ binaryProgress .target + 0
+    change
+      binaryProgress BinaryState.target ≤
+        binaryProgress BinaryState.target + 0
     exact le_rfl
   · unfold ConstructiveRecovery
     simp [binaryKernel, binaryStateDistance]
@@ -299,7 +326,8 @@ theorem target_stability_obligations :
 noncomputable def binaryChecker : TrustedChecker binaryKernel where
   check := binaryCheck
   sound := by
-    intro state candidate certificate _stateAdmissible _stateInvariant accepted
+    intro state candidate certificate
+      _stateAdmissible _stateInvariant accepted
     have acceptedCases :
         ImprovementPacket state candidate certificate ∨
           StabilityPacket state candidate certificate :=
@@ -327,8 +355,8 @@ noncomputable def binaryChecker : TrustedChecker binaryKernel where
           exact target_stability_obligations
 
 def binaryTrajectoryState : Nat → BinaryState
-  | 0 => .initial
-  | _ + 1 => .target
+  | 0 => BinaryState.initial
+  | _ + 1 => BinaryState.target
 
 def binaryTrajectoryCandidate :
     Nat → Candidate BinaryState BinaryUpdate
@@ -336,8 +364,8 @@ def binaryTrajectoryCandidate :
   | _ + 1 => stabilityCandidate
 
 def binaryTrajectoryCertificate : Nat → BinaryCertificate
-  | 0 => .improvement
-  | _ + 1 => .stability
+  | 0 => BinaryCertificate.improvement
+  | _ + 1 => BinaryCertificate.stability
 
 noncomputable def binaryWorkedTrajectory :
     FiniteAcceptedTrajectory binaryChecker 2 where
@@ -366,6 +394,9 @@ noncomputable def binaryWorkedTrajectory :
 theorem binaryWorkedTrajectory_first_step_strict :
     binaryKernel.progress (binaryWorkedTrajectory.state 0) <
       binaryKernel.progress (binaryWorkedTrajectory.state 1) := by
+  change
+    binaryProgress BinaryState.initial <
+      binaryProgress BinaryState.target
   exact binaryProgress_initial_lt_target
 
 end ClassicalFinite
