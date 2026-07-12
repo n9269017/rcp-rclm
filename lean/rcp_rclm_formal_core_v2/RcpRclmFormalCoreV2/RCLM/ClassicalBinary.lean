@@ -462,7 +462,7 @@ noncomputable def kernel :
         canonicalCertificate certificate₂,
         index,
         ?_⟩
-    simpa [residual] using different
+    simpa [kernel, residual] using different
   trustValid := trustValid
   resourceValid := resourceValid
   realityContained := realityContained
@@ -474,7 +474,7 @@ noncomputable def kernel :
         liftCandidate candidate,
         canonicalCertificate certificate,
         ?_⟩
-    simpa [realityContained] using rejected
+    simpa [kernel, realityContained] using rejected
 
 
 noncomputable def kernelRefinement :
@@ -501,7 +501,8 @@ noncomputable def kernelRefinement :
     rfl
   applyPreserved := by
     intro state update
-    rfl
+    simpa [kernel, apply, binaryKernel] using
+      canonicalState_core (binaryApply state.core update.core)
   admissiblePreserved := by
     intro state stateAdmissible
     exact stateAdmissible.1
@@ -522,7 +523,8 @@ noncomputable def kernelRefinement :
     rfl
   recoverPreserved := by
     intro state candidate endpoint
-    rfl
+    simpa [kernel, recover, binaryKernel] using
+      canonicalState_core state.core
   recoveryBudgetPreserved := by
     intro state candidate
     rfl
@@ -647,7 +649,8 @@ noncomputable def checker : TrustedChecker kernel where
       unfold ProtectedNonLoss
       intro distinction
       cases distinction
-      simpa [kernel, protectedValue, forgetCandidate] using coreNonLoss ()
+      simpa [kernel, binaryKernel, protectedValue, forgetCandidate] using
+        coreNonLoss ()
     · unfold ConstructiveRecovery
       simp [kernel, stateDistance, recover, binaryStateDistance]
     · change candidate.next.core ≠ .outside ∧
@@ -682,10 +685,8 @@ noncomputable def recoveryCompositionLaws :
     exact binaryStateDistance_triangle x.core y.core z.core
   recoverNonexpansive := by
     intro state candidate x y
-    change binaryStateDistance state.core state.core ≤
-      binaryStateDistance x.core y.core
-    rw [binaryStateDistance_self]
-    exact binaryStateDistance_nonnegative x.core y.core
+    simpa [kernel, stateDistance, recover] using
+      binaryStateDistance_nonnegative x.core y.core
 
 
 noncomputable def preservationMonitors :
@@ -826,9 +827,9 @@ theorem improvement_check_accepts :
 theorem improvement_refines_gate_b :
     StepObligations
       binaryKernel
-      BinaryState.initial
-      RCP.ClassicalFinite.improvementCandidate
-      BinaryCertificate.improvement := by
+      (kernelRefinement.forgetState initialState)
+      (kernelRefinement.forgetCandidate improvementCandidate)
+      (kernelRefinement.forgetCertificate improvementCertificate) := by
   have initialAdmissible : kernel.admissible initialState := by
     constructor
     · decide
@@ -837,14 +838,12 @@ theorem improvement_refines_gate_b :
     constructor
     · decide
     · rfl
-  have refined := rclm_checker_refines_rcp
+  exact rclm_checker_refines_rcp
     kernelRefinement
     checker
     initialAdmissible
     initialInvariant
     improvement_check_accepts
-  simpa [initialState, improvementCandidate, improvementUpdate,
-    improvementCertificate, forgetCandidate] using refined
 
 
 theorem improvement_architecture_evidence :
