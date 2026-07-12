@@ -1,0 +1,21 @@
+import RcpRclmFormalCoreV2.MainTheorem
+
+#print axioms RcpRclmFormalCoreV2.RCLM.KernelRefinement.forgetLiftCandidate
+#print axioms RcpRclmFormalCoreV2.RCLM.KernelRefinement.stepObligationsPreserved
+#print axioms RcpRclmFormalCoreV2.RCLM.KernelRefinement.recoveryCompositionLawsPreserved
+#print axioms RcpRclmFormalCoreV2.RCLM.rclm_step_obligations_refine_rcp
+#print axioms RcpRclmFormalCoreV2.RCLM.rclm_checker_refines_rcp
+#print axioms RcpRclmFormalCoreV2.RCLM.rclm_checker_acceptance_preserved
+#print axioms RcpRclmFormalCoreV2.RCLM.rclm_checker_pair_refines_rcp
+#print axioms RcpRclmFormalCoreV2.RCLM.rclm_recovery_laws_refine_rcp
+#print axioms RcpRclmFormalCoreV2.RCLM.rclm_monitor_refinement_valid
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.canonicalState_core
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.canonicalUpdate_core
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.canonicalCertificate_core
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.forget_lift_candidate
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.check_eq_true_iff
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.architectureEvidence_of_check
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.accepted_architecture_successor
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.improvement_check_accepts
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.improvement_refines_gate_b
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.improvement_architecture_evidence
