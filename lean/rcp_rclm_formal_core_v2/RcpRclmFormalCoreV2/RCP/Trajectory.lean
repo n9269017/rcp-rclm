@@ -418,7 +418,7 @@ theorem finite_endpoint_recovery_bound
               (trajectory.state t)
               (trajectory.candidate t) +
             cumulativeRecoveryBudget trajectory t :=
-          add_le_add_right localBound _
+          add_le_add_left localBound _
         _ = cumulativeRecoveryBudget trajectory (t + 1) := by
           simp only [cumulativeRecoveryBudget]
           ac_rfl
