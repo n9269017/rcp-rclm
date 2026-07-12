@@ -1,4 +1,0 @@
-Load from ground-truth from /home/runner/.cache/evalplus/fe585eb4df8c88d844eeb463ea4d0302.pkl
-Reading samples...
-humaneval (base tests)
-pass@1:	0.994
