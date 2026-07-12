@@ -132,6 +132,72 @@ def cumulativeRecoveryBudget
       cumulativeRecoveryBudget trajectory t +
         K.recoveryBudget (trajectory.state t) (trajectory.candidate t)
 
+/--
+Compose the candidate-tied recovery maps in rollback order.  For `steps = t`,
+this is `R₀ ∘ R₁ ∘ ... ∘ Rₜ₋₁`, so it maps an endpoint state at time `t`
+back into the common abstract state type used by the Gate A kernel.
+-/
+def composedRecovery
+    {State Update Certificate Protected ResidualIndex : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    {checker : TrustedChecker K}
+    {horizon : Nat}
+    (trajectory : FiniteAcceptedTrajectory checker horizon) : Nat → State → State
+  | 0, endpoint => endpoint
+  | t + 1, endpoint =>
+      composedRecovery trajectory t
+        (K.recover
+          (trajectory.state t)
+          (trajectory.candidate t)
+          endpoint)
+
+/-- A finite composition of nonexpansive recovery maps remains nonexpansive. -/
+theorem composedRecovery_nonexpansive
+    {State Update Certificate Protected ResidualIndex : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    {checker : TrustedChecker K}
+    {horizon : Nat}
+    (laws : RecoveryCompositionLaws K)
+    (trajectory : FiniteAcceptedTrajectory checker horizon) :
+    ∀ t x y,
+      K.stateDistance
+          (composedRecovery trajectory t x)
+          (composedRecovery trajectory t y) ≤
+        K.stateDistance x y := by
+  intro t
+  induction t with
+  | zero =>
+      intro x y
+      exact le_rfl
+  | succ t inductionHypothesis =>
+      intro x y
+      calc
+        K.stateDistance
+            (composedRecovery trajectory (t + 1) x)
+            (composedRecovery trajectory (t + 1) y) =
+          K.stateDistance
+            (composedRecovery trajectory t
+              (K.recover
+                (trajectory.state t)
+                (trajectory.candidate t)
+                x))
+            (composedRecovery trajectory t
+              (K.recover
+                (trajectory.state t)
+                (trajectory.candidate t)
+                y)) := by rfl
+        _ ≤ K.stateDistance
+              (K.recover
+                (trajectory.state t)
+                (trajectory.candidate t)
+                x)
+              (K.recover
+                (trajectory.state t)
+                (trajectory.candidate t)
+                y) := inductionHypothesis _ _
+        _ ≤ K.stateDistance x y :=
+          laws.recoverNonexpansive _ _ _ _
+
 /-- Progress is monotone between any two in-horizon states of an accepted trajectory. -/
 theorem finite_progress_monotone
     {State Update Certificate Protected ResidualIndex : Type*}
@@ -231,8 +297,8 @@ theorem finite_composed_nonloss_bound
 
 /--
 The sum of actual certified local recovery errors is bounded by the sum of the
-per-step recovery budgets. This is an aggregate local-recovery theorem; it does
-not silently assert an endpoint rollback map stronger than the kernel supplies.
+per-step recovery budgets. This aggregate theorem remains useful independently
+of the stronger endpoint rollback theorem below.
 -/
 theorem finite_composed_recovery_bound
     {State Update Certificate Protected ResidualIndex : Type*}
@@ -258,6 +324,104 @@ theorem finite_composed_recovery_bound
       have combined := add_le_add previous localBound
       simpa [cumulativeRecoveryError, cumulativeRecoveryBudget,
         localRecoveryError, ConstructiveRecovery] using combined
+
+/--
+The composed rollback map recovers the initial state from every accepted finite
+endpoint within the sum of the declared one-step recovery budgets.
+
+Unlike `finite_composed_recovery_bound`, this theorem is an actual endpoint
+statement.  Its metric and nonexpansiveness assumptions are explicit in
+`RecoveryCompositionLaws`; checker soundness alone is not used to infer them.
+-/
+theorem finite_endpoint_recovery_bound
+    {State Update Certificate Protected ResidualIndex : Type*}
+    {K : Kernel State Update Certificate Protected ResidualIndex}
+    (checker : TrustedChecker K)
+    (laws : RecoveryCompositionLaws K)
+    {horizon : Nat}
+    (trajectory : FiniteAcceptedTrajectory checker horizon) :
+    ∀ t, t ≤ horizon →
+      K.stateDistance
+          (composedRecovery trajectory t (trajectory.state t))
+          (trajectory.state 0) ≤
+        cumulativeRecoveryBudget trajectory t := by
+  intro t
+  induction t with
+  | zero =>
+      intro _
+      simpa [composedRecovery, cumulativeRecoveryBudget] using
+        (le_of_eq (laws.selfDistanceZero (trajectory.state 0)))
+  | succ t inductionHypothesis =>
+      intro bound
+      have stepBound : t < horizon := Nat.lt_of_succ_le bound
+      have previousBound : t ≤ horizon := Nat.le_of_lt stepBound
+      have previous := inductionHypothesis previousBound
+      have localBound :
+          K.stateDistance
+              (K.recover
+                (trajectory.state t)
+                (trajectory.candidate t)
+                (trajectory.state (t + 1)))
+              (trajectory.state t) ≤
+            K.recoveryBudget
+              (trajectory.state t)
+              (trajectory.candidate t) := by
+        simpa [trajectory.linked t stepBound, ConstructiveRecovery] using
+          (finite_trajectory_step_sound checker trajectory t stepBound).constructiveRecovery
+      have prefixNonexpansive :
+          K.stateDistance
+              (composedRecovery trajectory t
+                (K.recover
+                  (trajectory.state t)
+                  (trajectory.candidate t)
+                  (trajectory.state (t + 1))))
+              (composedRecovery trajectory t (trajectory.state t)) ≤
+            K.stateDistance
+              (K.recover
+                (trajectory.state t)
+                (trajectory.candidate t)
+                (trajectory.state (t + 1)))
+              (trajectory.state t) :=
+        composedRecovery_nonexpansive laws trajectory t _ _
+      calc
+        K.stateDistance
+            (composedRecovery trajectory (t + 1)
+              (trajectory.state (t + 1)))
+            (trajectory.state 0) =
+          K.stateDistance
+            (composedRecovery trajectory t
+              (K.recover
+                (trajectory.state t)
+                (trajectory.candidate t)
+                (trajectory.state (t + 1))))
+            (trajectory.state 0) := by rfl
+        _ ≤ K.stateDistance
+              (composedRecovery trajectory t
+                (K.recover
+                  (trajectory.state t)
+                  (trajectory.candidate t)
+                  (trajectory.state (t + 1))))
+              (composedRecovery trajectory t (trajectory.state t)) +
+            K.stateDistance
+              (composedRecovery trajectory t (trajectory.state t))
+              (trajectory.state 0) :=
+          laws.triangle _ _ _
+        _ ≤ K.stateDistance
+              (K.recover
+                (trajectory.state t)
+                (trajectory.candidate t)
+                (trajectory.state (t + 1)))
+              (trajectory.state t) +
+            cumulativeRecoveryBudget trajectory t :=
+          add_le_add prefixNonexpansive previous
+        _ ≤ K.recoveryBudget
+              (trajectory.state t)
+              (trajectory.candidate t) +
+            cumulativeRecoveryBudget trajectory t :=
+          add_le_add_right localBound _
+        _ = cumulativeRecoveryBudget trajectory (t + 1) := by
+          simp only [cumulativeRecoveryBudget]
+          ac_rfl
 
 end RCP
 end RcpRclmFormalCoreV2
