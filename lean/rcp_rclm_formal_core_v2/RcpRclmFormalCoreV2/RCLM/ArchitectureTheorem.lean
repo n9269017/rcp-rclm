@@ -116,5 +116,73 @@ theorem rclm_recovery_laws_refine_rcp
     RCP.RecoveryCompositionLaws coreKernel :=
   refinement.recoveryCompositionLawsPreserved laws
 
+
+theorem rclm_monitor_refinement_valid
+    {CoreRelevance RclmRelevance : Type*}
+    (refinement : KernelRefinement rclmKernel coreKernel)
+    (rclmMonitors :
+      RCP.PreservationMonitors rclmKernel (Relevance := RclmRelevance))
+    (coreMonitors :
+      RCP.PreservationMonitors coreKernel (Relevance := CoreRelevance))
+    (monitorRefinement :
+      MonitorRefinement refinement rclmMonitors coreMonitors) :
+    (∀ relevance,
+      monitorRefinement.forgetRelevance
+          (monitorRefinement.liftRelevance relevance) = relevance) ∧
+    (∀ state,
+      rclmMonitors.lyapunovValue state =
+        coreMonitors.lyapunovValue (refinement.forgetState state)) ∧
+    (∀ state candidate certificate,
+      rclmMonitors.motionCharge state candidate certificate =
+        coreMonitors.motionCharge
+          (refinement.forgetState state)
+          (refinement.forgetCandidate candidate)
+          (refinement.forgetCertificate certificate)) ∧
+    (∀ state candidate certificate,
+      rclmMonitors.lyapunovError state candidate certificate =
+        coreMonitors.lyapunovError
+          (refinement.forgetState state)
+          (refinement.forgetCandidate candidate)
+          (refinement.forgetCertificate certificate)) ∧
+    (∀ state candidate certificate,
+      rclmMonitors.unsupportedCollapse state candidate certificate =
+        coreMonitors.unsupportedCollapse
+          (refinement.forgetState state)
+          (refinement.forgetCandidate candidate)
+          (refinement.forgetCertificate certificate)) ∧
+    (∀ state candidate certificate,
+      rclmMonitors.ambiguityError state candidate certificate =
+        coreMonitors.ambiguityError
+          (refinement.forgetState state)
+          (refinement.forgetCandidate candidate)
+          (refinement.forgetCertificate certificate)) ∧
+    (∀ state relevance,
+      rclmMonitors.relevanceValue state relevance =
+        coreMonitors.relevanceValue
+          (refinement.forgetState state)
+          (monitorRefinement.forgetRelevance relevance)) ∧
+    (∀ state candidate relevance,
+      monitorRefinement.forgetRelevance
+          (rclmMonitors.transportRelevance state candidate relevance) =
+        coreMonitors.transportRelevance
+          (refinement.forgetState state)
+          (refinement.forgetCandidate candidate)
+          (monitorRefinement.forgetRelevance relevance)) ∧
+    (∀ state candidate certificate,
+      rclmMonitors.relevanceError state candidate certificate =
+        coreMonitors.relevanceError
+          (refinement.forgetState state)
+          (refinement.forgetCandidate candidate)
+          (refinement.forgetCertificate certificate)) := by
+  refine ⟨monitorRefinement.forgetLiftRelevance, ?_⟩
+  refine ⟨monitorRefinement.lyapunovValuePreserved, ?_⟩
+  refine ⟨monitorRefinement.motionChargePreserved, ?_⟩
+  refine ⟨monitorRefinement.lyapunovErrorPreserved, ?_⟩
+  refine ⟨monitorRefinement.unsupportedCollapsePreserved, ?_⟩
+  refine ⟨monitorRefinement.ambiguityErrorPreserved, ?_⟩
+  refine ⟨monitorRefinement.relevanceValuePreserved, ?_⟩
+  refine ⟨monitorRefinement.transportRelevancePreserved, ?_⟩
+  exact monitorRefinement.relevanceErrorPreserved
+
 end RCLM
 end RcpRclmFormalCoreV2
