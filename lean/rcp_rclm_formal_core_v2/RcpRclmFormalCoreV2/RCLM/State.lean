@@ -4,11 +4,6 @@ namespace RCLM
 universe uCore uLanguage uWorldReference uHumanReference uDefinitiveness
   uAmbiguity uMemory uVerifier uResources uSelfModel
 
-/--
-A typed RCLM architecture state. The registers are genuine data types supplied
-by an instantiation; validity is expressed separately as propositions and is not
-hardcoded into Boolean fields.
--/
 structure State
     (Core : Type uCore)
     (Language : Type uLanguage)
@@ -30,6 +25,7 @@ structure State
   verifier : Verifier
   resources : Resources
   selfModel : SelfModel
+  deriving DecidableEq
 
 end RCLM
 end RcpRclmFormalCoreV2
