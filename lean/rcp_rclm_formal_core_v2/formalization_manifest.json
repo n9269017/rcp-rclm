@@ -1,5 +1,5 @@
 {
-  "schema_version": "rcp-rclm-formal-core-v2-manifest-v2",
+  "schema_version": "rcp-rclm-formal-core-v2-manifest-v3",
   "phase_name": "RCP/RCLM Formal Core v2 — Mechanized Conditional Successor Theorem Closure",
   "base_repository_commit": "df88c8ed95aec4b0a38b45e74664f62e9405b0c5",
   "toolchain": {
@@ -21,12 +21,13 @@
     "paper_ii_path": "papers/paper-II-rclm-architecture/main.tex",
     "paper_ii_git_blob_sha": "9b51be8294ad79fd4f63522b01e0f617f0bf2ffd"
   },
-  "active_gate": "Substantive RCLM-to-RCP refinement at the completed Gate B classical scope",
+  "active_gate": "Paper II architecture-level successor theorem after substantive Gate B classical RCLM-to-RCP refinement",
   "gate_status": {
     "gate_a_abstract_kernel": "complete_clean_ci_built_and_axiom_audited",
     "gate_b_classical_finite": "complete_at_declared_finite_reference_scope_clean_ci_built_and_axiom_audited",
     "gate_c_quantum_finite": "not_yet_claimed",
-    "rclm_refinement": "typed_interfaces_and_partial_structural_contract_only"
+    "rclm_refinement": "substantive_gate_b_classical_field_monitor_recovery_and_checker_refinement_clean_ci_built_and_axiom_audited",
+    "rclm_architecture_theorem": "not_yet_complete"
   },
   "gate_a_validation": {
     "validated_source_commit": "dd71e12438fd1f8e3508061981ab11b5e7fa7028",
@@ -72,6 +73,24 @@
     "exit_criteria_synchronized": true,
     "concrete_paper_equivalence_complete": false
   },
+  "rclm_refinement_validation": {
+    "validated_source_commit": "8483cdc3ae53843c6d3294b8b73ef3397393a958",
+    "workflow_run_id": 29212558655,
+    "workflow_conclusion": "success",
+    "no_sorry_or_admit": true,
+    "no_project_local_axiom_declarations": true,
+    "no_sorry_ax_in_public_theorems": true,
+    "audited_public_theorem_count": 19,
+    "audit_artifact_name": "formal-core-v2-audit-29212558655-1",
+    "audit_artifact_sha256": "4a2dfe1e3ef30112f7b1c30ee111255654b890de7a42774b11006b9d1536a914",
+    "status_record_path": "docs/formal_core_v2/RCLM_GATE_B_REFINEMENT_STATUS.md",
+    "generic_kernel_refinement_complete": true,
+    "generic_monitor_refinement_complete": true,
+    "generic_recovery_law_transport_complete": true,
+    "generic_checker_acceptance_refinement_complete": true,
+    "concrete_gate_b_classical_instantiation_complete": true,
+    "paper_ii_architecture_theorem_complete": false
+  },
   "gate_a_delivered": {
     "nonconstant_protected_value_required": true,
     "fixed_index_residual_input_sensitivity_required": true,
@@ -116,14 +135,36 @@
     "nontrivial_two_transition_trajectory": true,
     "gate_b_axiom_audit": true
   },
+  "rclm_refinement_delivered": {
+    "typed_architecture_state_fields": true,
+    "typed_architecture_update_fields": true,
+    "typed_certificate_evidence_fields": true,
+    "field_maps_with_core_right_inverses": true,
+    "typed_update_semantics_preserved": true,
+    "admissibility_and_invariants_preserved": true,
+    "protected_values_transports_and_budgets_preserved": true,
+    "state_distance_recovery_and_budgets_preserved": true,
+    "progress_and_strict_witnesses_preserved": true,
+    "computed_residuals_preserved": true,
+    "trust_resource_and_reality_propositions_preserved": true,
+    "complete_step_obligations_preserved": true,
+    "recovery_composition_laws_preserved": true,
+    "lyapunov_motion_ambiguity_and_relevance_monitors_preserved": true,
+    "boolean_checker_acceptance_preserved": true,
+    "canonical_architecture_evidence_checked": true,
+    "concrete_gate_b_classical_successor_packet_refined": true,
+    "rclm_refinement_axiom_audit": true
+  },
   "paper_alignment_audit": {
     "initial_audit_path": "docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md",
     "gate_a_resolution_log_path": "docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md",
     "gate_b_closure_path": "docs/formal_core_v2/GATE_B_CLOSURE.md",
+    "rclm_gate_b_refinement_path": "docs/formal_core_v2/RCLM_GATE_B_REFINEMENT_STATUS.md",
     "paper_i_exact_equivalence": false,
     "paper_ii_exact_equivalence": false,
     "abstract_gate_a_mismatch_resolution_complete": true,
     "gate_b_finite_classical_component_complete": true,
+    "rclm_gate_b_classical_refinement_complete": true,
     "resolved_at_abstract_gate_a": [
       "ALIGN-01-paper-safe-set-and-admissibility-refinement-boundary",
       "ALIGN-02-no-op-feasibility-premise",
@@ -136,17 +177,21 @@
       "ALIGN-03-finite-KL-Lyapunov-reference",
       "ALIGN-04-scoped-packet-and-relevance-monitor-reference"
     ],
+    "partially_resolved_at_rclm_gate_b_refinement": [
+      "ALIGN-08-theorem-relevant-field-monitor-recovery-refinement",
+      "ALIGN-09-concrete-Gate-B-checker-acceptance-refinement"
+    ],
     "open_cross_gate_obligations": [
       "ALIGN-05-finite-dimensional-quantum-relative-entropy-refinement",
       "ALIGN-01-exact-paper-safe-set-refinement",
       "ALIGN-03-conditional-expectation-and-squared-motion-identification",
       "ALIGN-04-semantic-ambiguity-and-mutual-information-identification",
-      "ALIGN-08-full-RCLM-field-preserving-refinement",
-      "ALIGN-09-RCLM-checker-refinement",
+      "ALIGN-08-general-Paper-II-field-refinement-beyond-Gate-B-reference",
+      "ALIGN-09-Paper-II-architecture-wide-checker-and-compiler-refinement",
       "ALIGN-10-RCLM-architecture-successor-theorem",
       "ALIGN-11-final-concrete-paper-facing-wrapper"
     ],
-    "next_selected_obligation": "RCLM-substantive-field-monitor-recovery-and-checker-refinement-at-Gate-B-classical-scope"
+    "next_selected_obligation": "Paper-II-architecture-level-successor-theorem-with-explicit-generator-certifier-selector-realizer-trust-resource-and-availability-premises"
   },
   "claim_boundary": {
     "full_paper_mechanized": false,
@@ -157,6 +202,7 @@
     "gate_b_complete": true,
     "gate_b_scope": "finite_classical_binary_reference_only",
     "gate_c_complete": false,
+    "rclm_gate_b_classical_refinement_complete": true,
     "rclm_checker_refinement_complete": false,
     "rclm_architecture_theorem_complete": false,
     "python_checker_licensed": false,
