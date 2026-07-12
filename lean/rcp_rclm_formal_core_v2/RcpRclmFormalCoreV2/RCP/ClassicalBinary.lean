@@ -1,6 +1,7 @@
 import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
 import RcpRclmFormalCoreV2.RCP.ClassicalFinite
-import RcpRclmFormalCoreV2.RCP.Trajectory
+import RcpRclmFormalCoreV2.RCP.Monitors
 
 namespace RcpRclmFormalCoreV2
 namespace RCP
@@ -120,6 +121,13 @@ theorem binaryCheck_eq_true_iff
   simp [binaryCheck, ImprovementPacket, StabilityPacket,
     and_assoc]
 
+theorem binaryCheck_rejects_invalidCandidate :
+    binaryCheck
+      BinaryState.initial
+      invalidCandidate
+      BinaryCertificate.improvement = false := by
+  rfl
+
 def binaryStateDistance (x y : BinaryState) : ℝ :=
   if x = y then 0 else 1
 
@@ -128,6 +136,16 @@ theorem binaryStateDistance_nonnegative (x y : BinaryState) :
   by_cases hxy : x = y
   · simp [binaryStateDistance, hxy]
   · simp [binaryStateDistance, hxy]
+
+theorem binaryStateDistance_self (state : BinaryState) :
+    binaryStateDistance state state = 0 := by
+  simp [binaryStateDistance]
+
+theorem binaryStateDistance_triangle (x y z : BinaryState) :
+    binaryStateDistance x z ≤
+      binaryStateDistance x y + binaryStateDistance y z := by
+  cases x <;> cases y <;> cases z <;>
+    norm_num [binaryStateDistance]
 
 def binaryResidual
     (state : BinaryState)
@@ -224,6 +242,20 @@ noncomputable def binaryKernel :
         BinaryCertificate.malformed,
         ?_⟩
     simp [binaryRealityContained]
+
+noncomputable def binaryRecoveryCompositionLaws :
+    RecoveryCompositionLaws binaryKernel where
+  selfDistanceZero := by
+    intro state
+    exact binaryStateDistance_self state
+  triangle := by
+    intro x y z
+    exact binaryStateDistance_triangle x y z
+  recoverNonexpansive := by
+    intro state candidate x y
+    change binaryStateDistance state state ≤ binaryStateDistance x y
+    rw [binaryStateDistance_self]
+    exact binaryStateDistance_nonnegative x y
 
 theorem initial_improvement_obligations :
     StepObligations
@@ -357,6 +389,172 @@ noncomputable def binaryChecker : TrustedChecker binaryKernel where
           subst next
           exact target_stability_obligations
 
+theorem binary_checker_refines_kernel
+    {state : BinaryState}
+    {candidate : Candidate BinaryState BinaryUpdate}
+    {certificate : BinaryCertificate}
+    (stateAdmissible : binaryKernel.admissible state)
+    (stateInvariant : binaryKernel.protectedInvariant state)
+    (accepted : binaryChecker.check state candidate certificate = true) :
+    StepObligations binaryKernel state candidate certificate := by
+  exact accepted_step_sound
+    binaryChecker stateAdmissible stateInvariant accepted
+
+noncomputable def binaryLyapunovValue (state : BinaryState) : ℝ :=
+  positiveKLDivergence (binaryStateDistribution state) biasedBinary
+
+noncomputable def binaryMotionCharge
+    (state : BinaryState)
+    (candidate : Candidate BinaryState BinaryUpdate) : ℝ :=
+  if binaryProgress state ≤ binaryProgress candidate.next then
+    binaryProgress candidate.next - binaryProgress state
+  else
+    0
+
+def binaryUnsupportedCollapse
+    (_state : BinaryState)
+    (_candidate : Candidate BinaryState BinaryUpdate)
+    (certificate : BinaryCertificate) : ℝ :=
+  if certificate = BinaryCertificate.malformed then 1 else 0
+
+inductive BinaryRelevance where
+  | targetFit
+  | normalization
+  deriving DecidableEq
+
+def binaryRelevanceValue
+    (state : BinaryState) : BinaryRelevance → ℝ
+  | BinaryRelevance.targetFit => binaryProgress state
+  | BinaryRelevance.normalization => 1
+
+def binaryTransportRelevance
+    (_state : BinaryState)
+    (_candidate : Candidate BinaryState BinaryUpdate)
+    (relevance : BinaryRelevance) : BinaryRelevance :=
+  relevance
+
+theorem binaryLyapunovValue_nonnegative (state : BinaryState) :
+    0 ≤ binaryLyapunovValue state := by
+  exact positiveKLDivergence_nonnegative
+    (binaryStateDistribution state) biasedBinary
+
+theorem binaryMotionCharge_nonnegative
+    (state : BinaryState)
+    (candidate : Candidate BinaryState BinaryUpdate) :
+    0 ≤ binaryMotionCharge state candidate := by
+  by_cases hProgress :
+      binaryProgress state ≤ binaryProgress candidate.next
+  · rw [binaryMotionCharge, if_pos hProgress]
+    exact sub_nonneg.mpr hProgress
+  · rw [binaryMotionCharge, if_neg hProgress]
+
+theorem binaryLyapunov_motion_step
+    {state : BinaryState}
+    {candidate : Candidate BinaryState BinaryUpdate}
+    {certificate : BinaryCertificate}
+    (obligations :
+      StepObligations binaryKernel state candidate certificate) :
+    binaryLyapunovValue candidate.next +
+        binaryMotionCharge state candidate ≤
+      binaryLyapunovValue state := by
+  have hProgress :
+      binaryProgress state ≤ binaryProgress candidate.next := by
+    exact obligations.progressNondecreasing
+  rw [binaryMotionCharge, if_pos hProgress]
+  calc
+    binaryLyapunovValue candidate.next +
+        (binaryProgress candidate.next - binaryProgress state) =
+      binaryLyapunovValue state := by
+        unfold binaryProgress binaryLyapunovValue
+        ring
+    _ ≤ binaryLyapunovValue state := le_rfl
+
+theorem binaryUnsupportedCollapse_nonnegative
+    (state : BinaryState)
+    (candidate : Candidate BinaryState BinaryUpdate)
+    (certificate : BinaryCertificate) :
+    0 ≤ binaryUnsupportedCollapse state candidate certificate := by
+  by_cases hMalformed : certificate = BinaryCertificate.malformed
+  · simp [binaryUnsupportedCollapse, hMalformed]
+  · simp [binaryUnsupportedCollapse, hMalformed]
+
+theorem binaryUnsupportedCollapse_step
+    {state : BinaryState}
+    {candidate : Candidate BinaryState BinaryUpdate}
+    {certificate : BinaryCertificate}
+    (obligations :
+      StepObligations binaryKernel state candidate certificate) :
+    binaryUnsupportedCollapse state candidate certificate ≤ 0 := by
+  have trustEvidence :
+      binaryTrustValid state candidate certificate := by
+    exact obligations.trustValid
+  have certificateNotMalformed :
+      certificate ≠ BinaryCertificate.malformed :=
+    trustEvidence.2
+  simp [binaryUnsupportedCollapse, certificateNotMalformed]
+
+theorem binaryRelevance_step
+    {state : BinaryState}
+    {candidate : Candidate BinaryState BinaryUpdate}
+    {certificate : BinaryCertificate}
+    (obligations :
+      StepObligations binaryKernel state candidate certificate)
+    (relevance : BinaryRelevance) :
+    binaryRelevanceValue state relevance ≤
+      binaryRelevanceValue candidate.next
+        (binaryTransportRelevance state candidate relevance) := by
+  cases relevance with
+  | targetFit =>
+      change binaryProgress state ≤ binaryProgress candidate.next
+      exact obligations.progressNondecreasing
+  | normalization =>
+      exact le_rfl
+
+noncomputable def binaryPreservationMonitors :
+    PreservationMonitors binaryKernel (Relevance := BinaryRelevance) where
+  lyapunovValue := binaryLyapunovValue
+  motionCharge := fun state candidate _certificate =>
+    binaryMotionCharge state candidate
+  lyapunovError := fun _state _candidate _certificate => 0
+  unsupportedCollapse := binaryUnsupportedCollapse
+  ambiguityError := fun _state _candidate _certificate => 0
+  relevanceValue := binaryRelevanceValue
+  transportRelevance := binaryTransportRelevance
+  relevanceError := fun _state _candidate _certificate => 0
+  lyapunovValue_nonnegative := binaryLyapunovValue_nonnegative
+  motionCharge_nonnegative := by
+    intro state candidate certificate
+    exact binaryMotionCharge_nonnegative state candidate
+  lyapunovError_nonnegative := by
+    intro state candidate certificate
+    exact le_rfl
+  unsupportedCollapse_nonnegative :=
+    binaryUnsupportedCollapse_nonnegative
+  ambiguityError_nonnegative := by
+    intro state candidate certificate
+    exact le_rfl
+  relevanceError_nonnegative := by
+    intro state candidate certificate
+    exact le_rfl
+  lyapunovStep := by
+    intro state candidate certificate obligations
+    change
+      binaryLyapunovValue candidate.next +
+          binaryMotionCharge state candidate ≤
+        binaryLyapunovValue state + 0
+    simpa using binaryLyapunov_motion_step obligations
+  ambiguityStep := by
+    intro state candidate certificate obligations
+    change binaryUnsupportedCollapse state candidate certificate ≤ 0
+    exact binaryUnsupportedCollapse_step obligations
+  relevanceStep := by
+    intro state candidate certificate obligations relevance
+    change
+      binaryRelevanceValue state relevance ≤
+        binaryRelevanceValue candidate.next
+            (binaryTransportRelevance state candidate relevance) + 0
+    simpa using binaryRelevance_step obligations relevance
+
 def binaryTrajectoryState : Nat → BinaryState
   | 0 => BinaryState.initial
   | _ + 1 => BinaryState.target
@@ -401,6 +599,65 @@ theorem binaryWorkedTrajectory_first_step_strict :
     binaryProgress BinaryState.initial <
       binaryProgress BinaryState.target
   exact binaryProgress_initial_lt_target
+
+theorem binaryWorkedTrajectory_endpoint_recovery :
+    binaryKernel.stateDistance
+        (composedRecovery binaryWorkedTrajectory 2
+          (binaryWorkedTrajectory.state 2))
+        (binaryWorkedTrajectory.state 0) ≤
+      cumulativeRecoveryBudget binaryWorkedTrajectory 2 := by
+  exact finite_endpoint_recovery_bound
+    binaryChecker
+    binaryRecoveryCompositionLaws
+    binaryWorkedTrajectory
+    2
+    le_rfl
+
+theorem binaryWorkedTrajectory_lyapunov_motion_bound :
+    binaryPreservationMonitors.lyapunovValue
+          (binaryWorkedTrajectory.state 2) +
+        cumulativeMotionCharge
+          binaryPreservationMonitors binaryWorkedTrajectory 2 ≤
+      binaryPreservationMonitors.lyapunovValue
+          (binaryWorkedTrajectory.state 0) +
+        cumulativeLyapunovError
+          binaryPreservationMonitors binaryWorkedTrajectory 2 := by
+  exact finite_lyapunov_motion_bound
+    binaryChecker
+    binaryPreservationMonitors
+    binaryWorkedTrajectory
+    2
+    le_rfl
+
+theorem binaryWorkedTrajectory_ambiguity_bound :
+    cumulativeUnsupportedCollapse
+        binaryPreservationMonitors binaryWorkedTrajectory 2 ≤
+      cumulativeAmbiguityError
+        binaryPreservationMonitors binaryWorkedTrajectory 2 := by
+  exact finite_ambiguity_collapse_bound
+    binaryChecker
+    binaryPreservationMonitors
+    binaryWorkedTrajectory
+    2
+    le_rfl
+
+theorem binaryWorkedTrajectory_relevance_bound
+    (relevance : BinaryRelevance) :
+    binaryPreservationMonitors.relevanceValue
+        (binaryWorkedTrajectory.state 0) relevance ≤
+      binaryPreservationMonitors.relevanceValue
+          (binaryWorkedTrajectory.state 2)
+          (transportedRelevance
+            binaryPreservationMonitors binaryWorkedTrajectory 2 relevance) +
+        cumulativeRelevanceError
+          binaryPreservationMonitors binaryWorkedTrajectory 2 := by
+  exact finite_self_model_relevance_bound
+    binaryChecker
+    binaryPreservationMonitors
+    binaryWorkedTrajectory
+    2
+    le_rfl
+    relevance
 
 end ClassicalFinite
 end RCP
