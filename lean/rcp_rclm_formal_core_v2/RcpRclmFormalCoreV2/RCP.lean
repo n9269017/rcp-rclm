@@ -8,5 +8,6 @@ import RcpRclmFormalCoreV2.RCP.Checker
 import RcpRclmFormalCoreV2.RCP.Trajectory
 import RcpRclmFormalCoreV2.RCP.Monitors
 import RcpRclmFormalCoreV2.RCP.InfiniteHorizon
+import RcpRclmFormalCoreV2.RCP.PaperContract
 import RcpRclmFormalCoreV2.RCP.ClassicalFinite
 import RcpRclmFormalCoreV2.RCP.QuantumFinite
