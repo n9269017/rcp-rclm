@@ -30,6 +30,15 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
+      - name: Verify paper alignment pins and mapped theorem surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p lean/rcp_rclm_formal_core_v2/audit-results
+          bash docs/formal_core_v2/audit/verify_paper_alignment_pins.sh \
+            2>&1 | tee \
+            lean/rcp_rclm_formal_core_v2/audit-results/paper_alignment_pin_audit.txt
+
       - name: Install pinned Lean toolchain
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
@@ -83,6 +92,8 @@ jobs:
             echo "commit=${GITHUB_SHA}"
             echo "toolchain=$(cat lean-toolchain)"
             echo "lake_manifest_sha256=$(sha256sum lake-manifest.json | cut -d' ' -f1)"
+            echo "paper_i_blob=$(git -C ../.. hash-object papers/paper-I-rcp-math/main.tex)"
+            echo "paper_ii_blob=$(git -C ../.. hash-object papers/paper-II-rclm-architecture/main.tex)"
           } > audit-results/audit_metadata.txt
 
           if grep -RInE \
