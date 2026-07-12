@@ -29,8 +29,8 @@
     "rclm_refinement": "typed_interfaces_and_partial_structural_contract_only"
   },
   "gate_a_validation": {
-    "validated_source_commit": "9ce0502f121b1576ae0d3834d876ea2d523b9ead",
-    "workflow_run_id": 29187176872,
+    "validated_source_commit": "dd71e12438fd1f8e3508061981ab11b5e7fa7028",
+    "workflow_run_id": 29187317488,
     "workflow_conclusion": "success",
     "clean_build_job_count": 1941,
     "no_sorry_or_admit": true,
@@ -42,8 +42,8 @@
       "Classical.choice",
       "Quot.sound"
     ],
-    "audit_artifact_name": "formal-core-v2-gate-a-audit-29187176872-1",
-    "audit_artifact_sha256": "32d46d1469e27e10e60255ae7be8c4d2c22db9f3dc1e75c342d49d70e0c22661",
+    "audit_artifact_name": "formal-core-v2-gate-a-audit-29187317488-1",
+    "audit_artifact_sha256": "1082c28af4911b4b9e8c0fcd1a8b2c288c55a44a5c8947de5b172b2633eb39d5",
     "lake_manifest_sha256": "c17842b8da89c8c84beed4e8b33892616ef75c15475133a07aca97c16d853b0a",
     "paper_alignment_comparison_complete": true,
     "abstract_gate_a_resolution_complete": true,
@@ -51,7 +51,7 @@
   },
   "gate_a_delivered": {
     "nonconstant_protected_value_required": true,
-    "nonconstant_residual_evaluator_required": true,
+    "fixed_index_residual_input_sensitivity_required": true,
     "reality_containment_not_universal_required": true,
     "accepted_step_soundness": true,
     "finite_trajectory_closure": true,
