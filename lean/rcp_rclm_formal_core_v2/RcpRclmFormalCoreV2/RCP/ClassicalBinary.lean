@@ -1,5 +1,4 @@
 import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Omega
 import RcpRclmFormalCoreV2.RCP.ClassicalFinite
 import RcpRclmFormalCoreV2.RCP.Trajectory
 
@@ -350,16 +349,12 @@ noncomputable def binaryWorkedTrajectory :
   initialInvariant := by
     simp [binaryKernel, binaryTrajectoryState]
   accepted := by
-    intro t bound
+    intro t _bound
     cases t with
     | zero =>
         rfl
     | succ t =>
-        cases t with
-        | zero =>
-            rfl
-        | succ t =>
-            omega
+        rfl
   linked := by
     intro t _bound
     cases t with
