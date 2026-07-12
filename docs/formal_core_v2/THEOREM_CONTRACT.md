@@ -2,11 +2,10 @@
 
 ## Contract status
 
-This document freezes the **complete abstract Gate A successor and preservation
-kernel**. It is not, by itself, the exact concrete statement of Paper I's
-`thm:main_rcp` or any Paper II architecture theorem. The initial comparison is
-in `GATE_A_PAPER_ALIGNMENT_AUDIT.md`; later resolutions are recorded in
-`GATE_A_ALIGNMENT_RESOLUTION_LOG.md`.
+This document freezes the complete abstract Gate A successor/preservation kernel
+and the declared finite classical Gate B reference instance. It is not, by
+itself, the exact concrete statement of Paper I's `thm:main_rcp` or any Paper II
+architecture theorem.
 
 ```text
 abstract one-step contract: implemented
@@ -19,6 +18,9 @@ no-op-feasibility premise: implemented
 conditional infinite trajectory construction: implemented
 paper-facing finite and infinite abstract wrappers: implemented
 abstract Gate A theorem kernel: complete
+finite classical/diagonal Gate B reference: complete
+substantive RCLM refinement: not yet complete
+finite-dimensional quantum Gate C: not yet complete
 exact Paper I/Paper II agreement: not yet achieved
 ```
 
@@ -85,7 +87,7 @@ RCP.finite_endpoint_recovery_bound
 The extra laws are visible: zero self-distance, triangle inequality, and
 nonexpansiveness of each candidate-tied recovery map.
 
-## Quantitative Paper I monitor contract
+## Quantitative monitor contract
 
 `RCP.PreservationMonitors` explicitly names:
 
@@ -100,11 +102,9 @@ cross-time relevance transport
 relevance error budget
 ```
 
-A concrete instance may set the motion charge to
-`κ * E[d(M_{t+1},M_t)^2]`, but this interpretation must be proved. A generic
-residual is never silently treated as a named monitor.
-
-Finite composition is provided by:
+A concrete instance must prove every one-step inequality from
+`StepObligations`; a generic residual is never silently reinterpreted as a named
+monitor. Finite composition is provided by:
 
 ```lean
 RCP.finite_lyapunov_motion_bound
@@ -120,9 +120,8 @@ premise, `RCP.conditional_infinite_trajectory_exists` constructs an infinite
 accepted path.
 
 Every finite prefix inherits endpoint recovery and the monitor bounds through
-`RCP.finitePrefixOfInfinite` and the infinite-prefix theorems.
-
-The analytic summability surface is:
+`RCP.finitePrefixOfInfinite` and the infinite-prefix theorems. Standard
+`Summable` hypotheses are bridged to uniform partial-sum caps by:
 
 ```lean
 RCP.SummableMonitorBudgets
@@ -131,32 +130,16 @@ RCP.infinite_monitor_bounds_of_summable
 RCP.infinite_cumulative_motion_bounded_of_summable
 ```
 
-The three concrete nonnegative error sequences are assumed `Summable`. Their
-finite partial sums are bounded by their `tsum`s, supplying the uniform caps
-used by the infinite-prefix preservation theorems.
-
 ## Paper-safe predicates and no-op premise
 
-`RCP.PaperSemantics` carries paper-facing predicates
-
-```text
-StateSafe(M)
-UpdateAdmissible(M,u,M',c)
-```
-
-together with explicit equivalences to
-
-```text
-K.admissible M ∧ K.protectedInvariant M
-StepObligations K M candidate c.
-```
-
-The equivalences are concrete refinement obligations, not consequences of the
-names.
+`RCP.PaperSemantics` carries paper-facing `StateSafe` and `UpdateAdmissible`
+predicates with explicit equivalences to the kernel domain/invariant and
+`StepObligations`. The equivalences are concrete refinement obligations, not
+consequences of the names.
 
 `RCP.AcceptedNoOp` and `RCP.NoOpFeasible` represent the no-op premise as an
-accepted unchanged-successor packet for every paper-safe state. No-op
-feasibility is separate from general successor availability.
+accepted unchanged-successor packet for every paper-safe state. No-op feasibility
+is separate from general successor availability.
 
 ## Paper-facing abstract wrappers
 
@@ -178,44 +161,169 @@ transported self-model-relevance bound
 accepted path with paper-safe states, paper-update-admissible steps, and no-op
 availability, under both explicit `SuccessorAvailability` and `NoOpFeasible`.
 
+## Gate B finite classical contract
+
+### Distributions and information quantities
+
+For `Distribution n`:
+
+```text
+mass_i ≥ 0
+Σ_i mass_i = 1
+```
+
+The actual finite quantities are:
+
+```text
+H(p)       = - Σ_i p_i log p_i
+D_KL(p||q) =   Σ_i p_i log(p_i/q_i).
+```
+
+`SupportedBy p q` requires every positive numerator mass to have a positive
+denominator mass. Under that premise:
+
+```lean
+RCP.ClassicalFinite.klDivergence_nonnegative
+```
+
+proves `0 ≤ D_KL(p||q)`, and `klDivergence_self` proves self-divergence zero.
+
+### Nonconstant binary witness
+
+The concrete distributions
+
+```text
+uniformBinary = (1/2, 1/2)
+biasedBinary  = (3/4, 1/4)
+```
+
+satisfy:
+
+```text
+D_KL(uniformBinary || biasedBinary)
+  = (1/2) log(4/3)
+  > 0.
+```
+
+They therefore define a nonconstant `LawfulDivergence` instance.
+
+### Conservative extension and exact recovery
+
+The declared embedding adds one zero-mass head coordinate. The project proves:
+
+```text
+support is preserved
+Shannon entropy is preserved exactly
+KL divergence is preserved exactly
+dropping the new coordinate recovers the predecessor exactly
+```
+
+through:
+
+```lean
+RCP.ClassicalFinite.shannonEntropy_extendByZero
+RCP.ClassicalFinite.klDivergence_extendByZero
+RCP.ClassicalFinite.recover_extendByZero
+RCP.ClassicalFinite.conservative_extension_recovery
+```
+
+No claim is made here about every stochastic channel.
+
+### Concrete binary kernel and checker
+
+The finite state, update, certificate, and residual types define a concrete
+`RCP.Kernel`. The checker accepts exactly the improvement and stability packet
+grammar. Its refinement theorem is:
+
+```lean
+RCP.ClassicalFinite.binary_checker_refines_kernel
+```
+
+so accepted concrete packets yield the complete abstract `StepObligations`.
+The invalid claimed successor is explicitly rejected.
+
+### KL-derived strict progress
+
+The progress functional is:
+
+```text
+Progress(state)
+  = D_KL(uniformBinary || biasedBinary)
+      - D_KL(distribution(state) || biasedBinary).
+```
+
+The accepted improvement step strictly raises this functional because the
+initial KL gap is positive and target self-divergence is zero. Strict progress
+is therefore not index growth.
+
+### Concrete recovery and monitor refinement
+
+The binary state distance is the discrete metric. `binaryRecoveryCompositionLaws`
+proves the exact laws needed by `finite_endpoint_recovery_bound`.
+
+`binaryPreservationMonitors` uses:
+
+```text
+KL-to-target as Lyapunov value
+accepted KL-derived progress increase as motion charge
+zero Lyapunov error
+malformed-certificate indicator as unsupported collapse
+zero ambiguity error on valid packets
+target-fit progress and normalization evidence as relevance labels
+identity relevance transport
+zero relevance error
+```
+
+These meanings are exact for the finite binary reference. They are not claimed
+to be conditional expectation, semantic ambiguity, or mutual information.
+
+### Worked trajectory
+
+`binaryWorkedTrajectory` is the accepted finite path:
+
+```text
+initial → target → target
+```
+
+Its first transition has strict KL-derived progress and it instantiates endpoint
+recovery plus all three finite monitor bounds.
+
 ## Concrete obligations still open
 
 Exact Paper I mechanization still requires:
 
-1. concrete refinement of `PaperSemantics` to the pinned `K_RCP^state` and
-   `A_RCP` definitions;
-2. conditional-expectation semantics for the Lyapunov monitor and identification
-   of the motion charge;
-3. concrete ambiguity and mutual-information definitions and transports;
-4. finite KL and quantum-relative-entropy interpretations with support laws; and
+1. concrete refinement of `PaperSemantics` to the pinned state-safe and
+   update-admissibility definitions;
+2. conditional-expectation and squared-motion semantics beyond the finite KL
+   reference;
+3. semantic ambiguity and mutual-information definitions and transports;
+4. finite-dimensional quantum relative entropy and channel recovery; and
 5. a final paper-facing wrapper after those identifications.
 
 Exact Paper II mechanization still requires substantive RCLM state, update,
 certificate, checker, monitor, and recovery semantics and a proof that forgetting
 an accepted RCLM packet preserves every theorem-relevant RCP object.
 
-## Implemented public Gate A declarations
+## Implemented public declarations
+
+Gate A public declarations are audited in `GateAAxiomAudit.lean`. Gate B public
+declarations are audited in `GateBAxiomAudit.lean`, including:
 
 ```lean
-RCP.accepted_step_sound
-RCP.finite_trajectory_closure
-RCP.finite_trajectory_step_sound
-RCP.finite_progress_monotone
-RCP.finite_composed_nonloss_bound
-RCP.finite_composed_recovery_bound
-RCP.composedRecovery_nonexpansive
-RCP.finite_endpoint_recovery_bound
-RCP.finite_lyapunov_motion_bound
-RCP.finite_ambiguity_collapse_bound
-RCP.finite_self_model_relevance_bound
-RCP.conditional_infinite_trajectory_exists
-RCP.infinite_endpoint_recovery_prefix_bound
-RCP.infinite_monitor_uniform_bounds
-RCP.infinite_cumulative_motion_bounded
-RCP.infinite_monitor_bounds_of_summable
-RCP.infinite_cumulative_motion_bounded_of_summable
-RCP.finite_paper_preservation
-RCP.conditional_infinite_paper_trajectory_exists
+RCP.ClassicalFinite.klDivergence_nonnegative
+RCP.ClassicalFinite.shannonEntropy_extendByZero
+RCP.ClassicalFinite.klDivergence_extendByZero
+RCP.ClassicalFinite.conservative_extension_recovery
+RCP.ClassicalFinite.binaryCheck_eq_true_iff
+RCP.ClassicalFinite.binary_checker_refines_kernel
+RCP.ClassicalFinite.binaryLyapunov_motion_step
+RCP.ClassicalFinite.binaryUnsupportedCollapse_step
+RCP.ClassicalFinite.binaryRelevance_step
+RCP.ClassicalFinite.binaryWorkedTrajectory_first_step_strict
+RCP.ClassicalFinite.binaryWorkedTrajectory_endpoint_recovery
+RCP.ClassicalFinite.binaryWorkedTrajectory_lyapunov_motion_bound
+RCP.ClassicalFinite.binaryWorkedTrajectory_ambiguity_bound
+RCP.ClassicalFinite.binaryWorkedTrajectory_relevance_bound
 ```
 
 Reserved for later gates:

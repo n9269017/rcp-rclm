@@ -11,4 +11,5 @@ import RcpRclmFormalCoreV2.RCP.InfiniteHorizon
 import RcpRclmFormalCoreV2.RCP.Summability
 import RcpRclmFormalCoreV2.RCP.PaperContract
 import RcpRclmFormalCoreV2.RCP.ClassicalFinite
+import RcpRclmFormalCoreV2.RCP.ClassicalBinary
 import RcpRclmFormalCoreV2.RCP.QuantumFinite

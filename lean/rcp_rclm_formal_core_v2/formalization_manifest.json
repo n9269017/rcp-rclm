@@ -1,5 +1,5 @@
 {
-  "schema_version": "rcp-rclm-formal-core-v2-manifest-v1",
+  "schema_version": "rcp-rclm-formal-core-v2-manifest-v2",
   "phase_name": "RCP/RCLM Formal Core v2 — Mechanized Conditional Successor Theorem Closure",
   "base_repository_commit": "df88c8ed95aec4b0a38b45e74664f62e9405b0c5",
   "toolchain": {
@@ -21,10 +21,10 @@
     "paper_ii_path": "papers/paper-II-rclm-architecture/main.tex",
     "paper_ii_git_blob_sha": "9b51be8294ad79fd4f63522b01e0f617f0bf2ffd"
   },
-  "active_gate": "Gate B — concrete finite classical/diagonal instantiation",
+  "active_gate": "Substantive RCLM-to-RCP refinement at the completed Gate B classical scope",
   "gate_status": {
     "gate_a_abstract_kernel": "complete_clean_ci_built_and_axiom_audited",
-    "gate_b_classical_finite": "definitions_started_not_yet_complete",
+    "gate_b_classical_finite": "complete_at_declared_finite_reference_scope_clean_ci_built_and_axiom_audited",
     "gate_c_quantum_finite": "not_yet_claimed",
     "rclm_refinement": "typed_interfaces_and_partial_structural_contract_only"
   },
@@ -49,6 +49,29 @@
     "abstract_gate_a_resolution_complete": true,
     "concrete_paper_equivalence_complete": false
   },
+  "gate_b_validation": {
+    "validated_source_commit": "c33087041a8588f11f85c0c108046701269f291f",
+    "workflow_run_id": 29208133524,
+    "workflow_conclusion": "success",
+    "clean_build_job_count": 1942,
+    "no_sorry_or_admit": true,
+    "no_project_local_axiom_declarations": true,
+    "no_sorry_ax_in_public_theorems": true,
+    "audited_public_theorem_count": 22,
+    "audited_public_theorem_axiom_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "some_audited_theorems_axiom_free": true,
+    "audit_artifact_name": "formal-core-v2-audit-29208133524-1",
+    "audit_artifact_sha256": "dd718909eb0e683e7e92fabf76eb773f8368a1437148f2c65ccfa10d3570930c",
+    "closure_record_path": "docs/formal_core_v2/GATE_B_CLOSURE.md",
+    "theorem_map_synchronized": true,
+    "assumption_register_synchronized": true,
+    "exit_criteria_synchronized": true,
+    "concrete_paper_equivalence_complete": false
+  },
   "gate_a_delivered": {
     "nonconstant_protected_value_required": true,
     "fixed_index_residual_input_sensitivity_required": true,
@@ -69,12 +92,38 @@
     "finite_paper_wrapper": true,
     "conditional_infinite_paper_wrapper": true
   },
+  "gate_b_delivered": {
+    "finite_normalized_distributions": true,
+    "actual_shannon_entropy": true,
+    "actual_finite_kl_divergence": true,
+    "support_aware_kl_nonnegativity": true,
+    "kl_self_zero": true,
+    "nonconstant_binary_kl_witness": true,
+    "zero_coordinate_conservative_extension": true,
+    "support_preserved_under_extension": true,
+    "shannon_entropy_preserved_under_extension": true,
+    "kl_preserved_under_extension": true,
+    "exact_constructive_recovery": true,
+    "substantive_finite_state_update_certificate_types": true,
+    "computed_nonconstant_residuals": true,
+    "nonuniversal_reality_containment": true,
+    "kl_derived_nonvacuous_strict_progress": true,
+    "concrete_boolean_checker": true,
+    "checker_acceptance_refines_step_obligations": true,
+    "invalid_candidate_rejection": true,
+    "binary_recovery_composition_laws": true,
+    "scoped_classical_monitor_refinement": true,
+    "nontrivial_two_transition_trajectory": true,
+    "gate_b_axiom_audit": true
+  },
   "paper_alignment_audit": {
     "initial_audit_path": "docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md",
-    "resolution_log_path": "docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md",
+    "gate_a_resolution_log_path": "docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md",
+    "gate_b_closure_path": "docs/formal_core_v2/GATE_B_CLOSURE.md",
     "paper_i_exact_equivalence": false,
     "paper_ii_exact_equivalence": false,
     "abstract_gate_a_mismatch_resolution_complete": true,
+    "gate_b_finite_classical_component_complete": true,
     "resolved_at_abstract_gate_a": [
       "ALIGN-01-paper-safe-set-and-admissibility-refinement-boundary",
       "ALIGN-02-no-op-feasibility-premise",
@@ -82,14 +131,22 @@
       "ALIGN-04-ambiguity-and-self-model-monitor-composition",
       "ALIGN-06-typed-endpoint-recovery-composition"
     ],
+    "partially_resolved_at_gate_b": [
+      "ALIGN-05-finite-KL-component",
+      "ALIGN-03-finite-KL-Lyapunov-reference",
+      "ALIGN-04-scoped-packet-and-relevance-monitor-reference"
+    ],
     "open_cross_gate_obligations": [
-      "ALIGN-05-finite-KL-and-quantum-relative-entropy-refinement",
+      "ALIGN-05-finite-dimensional-quantum-relative-entropy-refinement",
+      "ALIGN-01-exact-paper-safe-set-refinement",
+      "ALIGN-03-conditional-expectation-and-squared-motion-identification",
+      "ALIGN-04-semantic-ambiguity-and-mutual-information-identification",
       "ALIGN-08-full-RCLM-field-preserving-refinement",
       "ALIGN-09-RCLM-checker-refinement",
       "ALIGN-10-RCLM-architecture-successor-theorem",
       "ALIGN-11-final-concrete-paper-facing-wrapper"
     ],
-    "next_selected_obligation": "GATE-B-finite-classical-KL-conservative-extension-and-checker-instance"
+    "next_selected_obligation": "RCLM-substantive-field-monitor-recovery-and-checker-refinement-at-Gate-B-classical-scope"
   },
   "claim_boundary": {
     "full_paper_mechanized": false,
@@ -97,7 +154,8 @@
     "gate_a_clean_ci_built": true,
     "gate_a_proof_admission_audited": true,
     "gate_a_paper_aligned_concretely": false,
-    "gate_b_complete": false,
+    "gate_b_complete": true,
+    "gate_b_scope": "finite_classical_binary_reference_only",
     "gate_c_complete": false,
     "rclm_checker_refinement_complete": false,
     "rclm_architecture_theorem_complete": false,
