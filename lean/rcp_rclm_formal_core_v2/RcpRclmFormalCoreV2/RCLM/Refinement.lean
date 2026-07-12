@@ -213,12 +213,17 @@ theorem stepObligationsPreserved
       resourceValid := ?_
       realityContained := ?_
       successorAdmissible := ?_ }
-  · unfold RCP.TypedSuccessor at obligations ⊢
+  · have typedSuccessor := obligations.typedSuccessor
+    unfold RCP.TypedSuccessor at typedSuccessor
+    change refinement.forgetState candidate.next =
+      coreKernel.apply
+        (refinement.forgetState state)
+        (refinement.forgetUpdate candidate.update)
     have mappedEquality :
         refinement.forgetState candidate.next =
           refinement.forgetState
             (rclmKernel.apply state candidate.update) :=
-      congrArg refinement.forgetState obligations.typedSuccessor
+      congrArg refinement.forgetState typedSuccessor
     calc
       refinement.forgetState candidate.next =
           refinement.forgetState
@@ -233,39 +238,42 @@ theorem stepObligationsPreserved
         (refinement.liftResidualIndex index)
     rw [refinement.residualPreserved,
       refinement.forgetLiftResidualIndex] at localBound
-    exact localBound
-  · unfold RCP.ProtectedNonLoss at obligations ⊢
+    simpa [forgetCandidate] using localBound
+  · have nonLoss := obligations.protectedNonLoss
+    unfold RCP.ProtectedNonLoss at nonLoss
+    unfold RCP.ProtectedNonLoss
     intro distinction
-    have localBound :=
-      obligations.protectedNonLoss
-        (refinement.liftProtected distinction)
+    have localBound := nonLoss (refinement.liftProtected distinction)
     rw [refinement.protectedValuePreserved,
       refinement.protectedValuePreserved,
       refinement.transportProtectedPreserved,
       refinement.lossBudgetPreserved,
       refinement.forgetLiftProtected] at localBound
-    exact localBound
-  · unfold RCP.ConstructiveRecovery at obligations ⊢
-    have localBound := obligations.constructiveRecovery
+    simpa [forgetCandidate] using localBound
+  · have recovery := obligations.constructiveRecovery
+    unfold RCP.ConstructiveRecovery at recovery
+    unfold RCP.ConstructiveRecovery
     rw [refinement.stateDistancePreserved,
       refinement.recoverPreserved,
-      refinement.recoveryBudgetPreserved] at localBound
-    exact localBound
+      refinement.recoveryBudgetPreserved] at recovery
+    simpa [forgetCandidate] using recovery
   · exact refinement.invariantPreserved candidate.next
       obligations.invariantPreserved
-  · unfold RCP.ProgressNondecreasing at obligations ⊢
-    have localBound := obligations.progressNondecreasing
+  · have progress := obligations.progressNondecreasing
+    unfold RCP.ProgressNondecreasing at progress
+    unfold RCP.ProgressNondecreasing
     rw [refinement.progressPreserved,
-      refinement.progressPreserved] at localBound
-    exact localBound
-  · unfold RCP.StrictProgressWhenWitness at obligations ⊢
+      refinement.progressPreserved] at progress
+    exact progress
+  · have strictProgress := obligations.strictProgressWhenWitness
+    unfold RCP.StrictProgressWhenWitness at strictProgress
+    unfold RCP.StrictProgressWhenWitness
     intro coreWitness
     have rclmWitness :
         rclmKernel.strictWitness state candidate certificate :=
       (refinement.strictWitnessPreserved state candidate certificate).2
         coreWitness
-    have localStrict :=
-      obligations.strictProgressWhenWitness rclmWitness
+    have localStrict := strictProgress rclmWitness
     rw [refinement.progressPreserved,
       refinement.progressPreserved] at localStrict
     exact localStrict
@@ -292,32 +300,26 @@ theorem recoveryCompositionLawsPreserved
       recoverNonexpansive := ?_ }
   · intro state
     have localZero := laws.selfDistanceZero (refinement.liftState state)
-    rw [refinement.stateDistancePreserved,
-      refinement.forgetLiftState] at localZero
-    exact localZero
+    simpa only [refinement.stateDistancePreserved,
+      refinement.forgetLiftState] using localZero
   · intro x y z
     have localTriangle := laws.triangle
       (refinement.liftState x)
       (refinement.liftState y)
       (refinement.liftState z)
-    rw [refinement.stateDistancePreserved,
-      refinement.stateDistancePreserved,
-      refinement.stateDistancePreserved,
-      refinement.forgetLiftState] at localTriangle
-    exact localTriangle
+    simpa only [refinement.stateDistancePreserved,
+      refinement.forgetLiftState] using localTriangle
   · intro state candidate x y
     have localNonexpansive := laws.recoverNonexpansive
       (refinement.liftState state)
       (refinement.liftCandidate candidate)
       (refinement.liftState x)
       (refinement.liftState y)
-    rw [refinement.stateDistancePreserved,
+    simpa only [refinement.stateDistancePreserved,
       refinement.recoverPreserved,
-      refinement.recoverPreserved,
-      refinement.stateDistancePreserved,
+      liftCandidate,
       refinement.forgetLiftState,
-      refinement.forgetLiftUpdate] at localNonexpansive
-    exact localNonexpansive
+      refinement.forgetLiftUpdate] using localNonexpansive
 
 end KernelRefinement
 
