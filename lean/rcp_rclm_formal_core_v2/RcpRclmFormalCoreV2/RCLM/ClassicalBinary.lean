@@ -6,7 +6,8 @@ namespace RcpRclmFormalCoreV2
 namespace RCLM
 namespace ClassicalBinary
 
-namespace Core := RCP.ClassicalFinite
+open RCP
+open RCP.ClassicalFinite
 
 inductive LanguageRegister where
   | symbolicBinary
@@ -143,7 +144,7 @@ inductive ProgressEvidence where
 
 abbrev ClassicalState :=
   State
-    Core.BinaryState
+    BinaryState
     LanguageRegister
     WorldReferenceRegister
     HumanReferenceRegister
@@ -156,7 +157,7 @@ abbrev ClassicalState :=
 
 abbrev ClassicalUpdate :=
   Update
-    Core.BinaryUpdate
+    BinaryUpdate
     ParameterUpdateRegister
     ArchitectureUpdateRegister
     MemoryUpdateRegister
@@ -167,7 +168,7 @@ abbrev ClassicalUpdate :=
 
 abbrev ClassicalCertificate :=
   CertificatePacket
-    Core.BinaryCertificate
+    BinaryCertificate
     SemanticEvidence
     TypeEvidence
     LedgerEvidence
@@ -179,237 +180,258 @@ abbrev ClassicalCertificate :=
     ProgressEvidence
 
 
-def canonicalState : Core.BinaryState → ClassicalState
-  | Core.BinaryState.outside =>
-      { core := Core.BinaryState.outside
-        language := LanguageRegister.invalid
-        worldReference := WorldReferenceRegister.absent
-        humanReference := HumanReferenceRegister.absent
-        definitiveness := DefinitivenessRegister.invalid
-        ambiguity := AmbiguityRegister.uncontrolled
-        memory := MemoryRegister.outside
-        verifier := VerifierRegister.untrusted
+def canonicalState : BinaryState → ClassicalState
+  | .outside =>
+      { core := .outside
+        language := .invalid
+        worldReference := .absent
+        humanReference := .absent
+        definitiveness := .invalid
+        ambiguity := .uncontrolled
+        memory := .outside
+        verifier := .untrusted
         resources := { used := 2, limit := 1 }
-        selfModel := SelfModelRegister.outside }
-  | Core.BinaryState.initial =>
-      { core := Core.BinaryState.initial
-        language := LanguageRegister.symbolicBinary
-        worldReference := WorldReferenceRegister.biasedTarget
-        humanReference := HumanReferenceRegister.declaredBinaryTask
-        definitiveness := DefinitivenessRegister.provisional
-        ambiguity := AmbiguityRegister.bounded
-        memory := MemoryRegister.initial
-        verifier := VerifierRegister.trustedBinaryChecker
+        selfModel := .outside }
+  | .initial =>
+      { core := .initial
+        language := .symbolicBinary
+        worldReference := .biasedTarget
+        humanReference := .declaredBinaryTask
+        definitiveness := .provisional
+        ambiguity := .bounded
+        memory := .initial
+        verifier := .trustedBinaryChecker
         resources := { used := 0, limit := 1 }
-        selfModel := SelfModelRegister.initial }
-  | Core.BinaryState.target =>
-      { core := Core.BinaryState.target
-        language := LanguageRegister.symbolicBinary
-        worldReference := WorldReferenceRegister.biasedTarget
-        humanReference := HumanReferenceRegister.declaredBinaryTask
-        definitiveness := DefinitivenessRegister.certified
-        ambiguity := AmbiguityRegister.resolved
-        memory := MemoryRegister.target
-        verifier := VerifierRegister.trustedBinaryChecker
+        selfModel := .initial }
+  | .target =>
+      { core := .target
+        language := .symbolicBinary
+        worldReference := .biasedTarget
+        humanReference := .declaredBinaryTask
+        definitiveness := .certified
+        ambiguity := .resolved
+        memory := .target
+        verifier := .trustedBinaryChecker
         resources := { used := 1, limit := 1 }
-        selfModel := SelfModelRegister.target }
+        selfModel := .target }
 
 
-def canonicalUpdate : Core.BinaryUpdate → ClassicalUpdate
-  | Core.BinaryUpdate.stay =>
-      { core := Core.BinaryUpdate.stay
-        parameters := ParameterUpdateRegister.unchanged
-        architecture := ArchitectureUpdateRegister.preserved
-        memory := MemoryUpdateRegister.retained
-        verifier := VerifierUpdateRegister.retained
-        semantics := SemanticUpdateRegister.preserved
-        tools := ToolUpdateRegister.none
-        resources := ResourceUpdateRegister.bounded }
-  | Core.BinaryUpdate.improve =>
-      { core := Core.BinaryUpdate.improve
-        parameters := ParameterUpdateRegister.targetAligned
-        architecture := ArchitectureUpdateRegister.preserved
-        memory := MemoryUpdateRegister.advanced
-        verifier := VerifierUpdateRegister.retained
-        semantics := SemanticUpdateRegister.targetAligned
-        tools := ToolUpdateRegister.none
-        resources := ResourceUpdateRegister.bounded }
+def canonicalUpdate : BinaryUpdate → ClassicalUpdate
+  | .stay =>
+      { core := .stay
+        parameters := .unchanged
+        architecture := .preserved
+        memory := .retained
+        verifier := .retained
+        semantics := .preserved
+        tools := .none
+        resources := .bounded }
+  | .improve =>
+      { core := .improve
+        parameters := .targetAligned
+        architecture := .preserved
+        memory := .advanced
+        verifier := .retained
+        semantics := .targetAligned
+        tools := .none
+        resources := .bounded }
 
 
-def canonicalCertificate : Core.BinaryCertificate → ClassicalCertificate
-  | Core.BinaryCertificate.improvement =>
-      { core := Core.BinaryCertificate.improvement
-        semantics := SemanticEvidence.coherent
-        typing := TypeEvidence.typed
-        ledger := LedgerEvidence.withinBudget
-        goalTransport := GoalTransportEvidence.targetFixed
-        trust := TrustEvidence.predecessorVerified
-        resources := ResourceEvidence.bounded
-        reality := RealityEvidence.contained
-        recovery := RecoveryEvidence.exact
-        progress := ProgressEvidence.strict }
-  | Core.BinaryCertificate.stability =>
-      { core := Core.BinaryCertificate.stability
-        semantics := SemanticEvidence.coherent
-        typing := TypeEvidence.typed
-        ledger := LedgerEvidence.withinBudget
-        goalTransport := GoalTransportEvidence.targetFixed
-        trust := TrustEvidence.predecessorVerified
-        resources := ResourceEvidence.bounded
-        reality := RealityEvidence.contained
-        recovery := RecoveryEvidence.exact
-        progress := ProgressEvidence.stable }
-  | Core.BinaryCertificate.malformed =>
-      { core := Core.BinaryCertificate.malformed
-        semantics := SemanticEvidence.rejected
-        typing := TypeEvidence.rejected
-        ledger := LedgerEvidence.rejected
-        goalTransport := GoalTransportEvidence.rejected
-        trust := TrustEvidence.rejected
-        resources := ResourceEvidence.rejected
-        reality := RealityEvidence.rejected
-        recovery := RecoveryEvidence.rejected
-        progress := ProgressEvidence.rejected }
+def canonicalCertificate : BinaryCertificate → ClassicalCertificate
+  | .improvement =>
+      { core := .improvement
+        semantics := .coherent
+        typing := .typed
+        ledger := .withinBudget
+        goalTransport := .targetFixed
+        trust := .predecessorVerified
+        resources := .bounded
+        reality := .contained
+        recovery := .exact
+        progress := .strict }
+  | .stability =>
+      { core := .stability
+        semantics := .coherent
+        typing := .typed
+        ledger := .withinBudget
+        goalTransport := .targetFixed
+        trust := .predecessorVerified
+        resources := .bounded
+        reality := .contained
+        recovery := .exact
+        progress := .stable }
+  | .malformed =>
+      { core := .malformed
+        semantics := .rejected
+        typing := .rejected
+        ledger := .rejected
+        goalTransport := .rejected
+        trust := .rejected
+        resources := .rejected
+        reality := .rejected
+        recovery := .rejected
+        progress := .rejected }
+
+
+@[simp] theorem canonicalState_core (state : BinaryState) :
+    (canonicalState state).core = state := by
+  cases state <;> rfl
+
+
+@[simp] theorem canonicalUpdate_core (update : BinaryUpdate) :
+    (canonicalUpdate update).core = update := by
+  cases update <;> rfl
+
+
+@[simp] theorem canonicalCertificate_core (certificate : BinaryCertificate) :
+    (canonicalCertificate certificate).core = certificate := by
+  cases certificate <;> rfl
 
 
 def forgetCandidate
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate) :
-    RCP.Candidate Core.BinaryState Core.BinaryUpdate where
+    (candidate : Candidate ClassicalState ClassicalUpdate) :
+    Candidate BinaryState BinaryUpdate where
   update := candidate.update.core
   next := candidate.next.core
 
 
 def liftCandidate
-    (candidate : RCP.Candidate Core.BinaryState Core.BinaryUpdate) :
-    RCP.Candidate ClassicalState ClassicalUpdate where
+    (candidate : Candidate BinaryState BinaryUpdate) :
+    Candidate ClassicalState ClassicalUpdate where
   update := canonicalUpdate candidate.update
   next := canonicalState candidate.next
 
 
+@[simp] theorem forget_lift_candidate
+    (candidate : Candidate BinaryState BinaryUpdate) :
+    forgetCandidate (liftCandidate candidate) = candidate := by
+  cases candidate
+  simp [forgetCandidate, liftCandidate]
+
+
 def apply (state : ClassicalState) (update : ClassicalUpdate) : ClassicalState :=
-  canonicalState (Core.binaryApply state.core update.core)
+  canonicalState (binaryApply state.core update.core)
 
 
 def admissible (state : ClassicalState) : Prop :=
-  state.core ≠ Core.BinaryState.outside ∧
-    state = canonicalState state.core
+  state.core ≠ .outside ∧ state = canonicalState state.core
 
 
 def protectedInvariant (state : ClassicalState) : Prop :=
-  state.core ≠ Core.BinaryState.outside ∧
-    state = canonicalState state.core
+  state.core ≠ .outside ∧ state = canonicalState state.core
 
 
-noncomputable def protectedValue (state : ClassicalState) (_distinction : Unit) : ℝ :=
-  Core.binaryProgress state.core
+noncomputable def protectedValue
+    (state : ClassicalState)
+    (_distinction : Unit) : ℝ :=
+  binaryProgress state.core
 
 
 def stateDistance (x y : ClassicalState) : ℝ :=
-  Core.binaryStateDistance x.core y.core
+  binaryStateDistance x.core y.core
 
 
 def recover
     (state : ClassicalState)
-    (_candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (_candidate : Candidate ClassicalState ClassicalUpdate)
     (_endpoint : ClassicalState) : ClassicalState :=
   canonicalState state.core
 
 
 noncomputable def progress (state : ClassicalState) : ℝ :=
-  Core.binaryProgress state.core
+  binaryProgress state.core
 
 
 def strictWitness
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate) : Prop :=
-  Core.binaryStrictWitness state.core (forgetCandidate candidate) certificate.core
+  binaryStrictWitness state.core (forgetCandidate candidate) certificate.core
 
 
 def residual
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate)
-    (index : Core.BinaryResidualIndex) : ℝ :=
-  Core.binaryResidual state.core (forgetCandidate candidate) certificate.core index
+    (index : BinaryResidualIndex) : ℝ :=
+  binaryResidual state.core (forgetCandidate candidate) certificate.core index
 
 
 def trustValid
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate) : Prop :=
-  Core.binaryTrustValid state.core (forgetCandidate candidate) certificate.core
+  binaryTrustValid state.core (forgetCandidate candidate) certificate.core
 
 
 def resourceValid
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate) : Prop :=
-  Core.binaryResourceValid state.core (forgetCandidate candidate) certificate.core
+  binaryResourceValid state.core (forgetCandidate candidate) certificate.core
 
 
 def realityContained
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate) : Prop :=
-  Core.binaryRealityContained state.core (forgetCandidate candidate) certificate.core
+  binaryRealityContained state.core (forgetCandidate candidate) certificate.core
 
 
-def initialState : ClassicalState := canonicalState Core.BinaryState.initial
+def initialState : ClassicalState := canonicalState .initial
 
-def targetState : ClassicalState := canonicalState Core.BinaryState.target
+def targetState : ClassicalState := canonicalState .target
 
-def outsideState : ClassicalState := canonicalState Core.BinaryState.outside
+def outsideState : ClassicalState := canonicalState .outside
 
 
-def improvementUpdate : ClassicalUpdate := canonicalUpdate Core.BinaryUpdate.improve
+def improvementUpdate : ClassicalUpdate := canonicalUpdate .improve
 
-def stabilityUpdate : ClassicalUpdate := canonicalUpdate Core.BinaryUpdate.stay
+def stabilityUpdate : ClassicalUpdate := canonicalUpdate .stay
 
 
 def improvementCertificate : ClassicalCertificate :=
-  canonicalCertificate Core.BinaryCertificate.improvement
+  canonicalCertificate .improvement
 
 
 def stabilityCertificate : ClassicalCertificate :=
-  canonicalCertificate Core.BinaryCertificate.stability
+  canonicalCertificate .stability
 
 
 def malformedCertificate : ClassicalCertificate :=
-  canonicalCertificate Core.BinaryCertificate.malformed
+  canonicalCertificate .malformed
 
 
-def improvementCandidate : RCP.Candidate ClassicalState ClassicalUpdate where
+def improvementCandidate : Candidate ClassicalState ClassicalUpdate where
   update := improvementUpdate
   next := targetState
 
 
-def stabilityCandidate : RCP.Candidate ClassicalState ClassicalUpdate where
+def stabilityCandidate : Candidate ClassicalState ClassicalUpdate where
   update := stabilityUpdate
   next := targetState
 
 
-def invalidCandidate : RCP.Candidate ClassicalState ClassicalUpdate where
+def invalidCandidate : Candidate ClassicalState ClassicalUpdate where
   update := improvementUpdate
   next := initialState
 
 
 noncomputable def kernel :
-    RCP.Kernel
+    Kernel
       ClassicalState
       ClassicalUpdate
       ClassicalCertificate
       Unit
-      Core.BinaryResidualIndex where
+      BinaryResidualIndex where
   apply := apply
   admissible := admissible
   protectedInvariant := protectedInvariant
   protectedValue := protectedValue
   protectedValue_nonconstant := by
     refine ⟨initialState, (), targetState, (), ?_⟩
-    change Core.binaryProgress Core.BinaryState.initial ≠
-      Core.binaryProgress Core.BinaryState.target
-    exact ne_of_lt Core.binaryProgress_initial_lt_target
+    change binaryProgress .initial ≠ binaryProgress .target
+    exact ne_of_lt binaryProgress_initial_lt_target
   transportProtected := fun _state _candidate distinction => distinction
   lossBudget := fun _state _candidate => 0
   lossBudget_nonnegative := by
@@ -418,7 +440,7 @@ noncomputable def kernel :
   stateDistance := stateDistance
   stateDistance_nonnegative := by
     intro x y
-    exact Core.binaryStateDistance_nonnegative x.core y.core
+    exact binaryStateDistance_nonnegative x.core y.core
   recover := recover
   recoveryBudget := fun _state _candidate => 0
   recoveryBudget_nonnegative := by
@@ -428,54 +450,44 @@ noncomputable def kernel :
   strictWitness := strictWitness
   residual := residual
   residual_nonconstant := by
+    rcases binaryKernel.residual_nonconstant with
+      ⟨state₁, candidate₁, certificate₁,
+        state₂, candidate₂, certificate₂, index, different⟩
     refine
-      ⟨initialState,
-        improvementCandidate,
-        improvementCertificate,
-        initialState,
-        invalidCandidate,
-        improvementCertificate,
-        Core.BinaryResidualIndex.typed,
+      ⟨canonicalState state₁,
+        liftCandidate candidate₁,
+        canonicalCertificate certificate₁,
+        canonicalState state₂,
+        liftCandidate candidate₂,
+        canonicalCertificate certificate₂,
+        index,
         ?_⟩
-    norm_num [residual, forgetCandidate, Core.binaryResidual,
-      Core.binaryApply, improvementCandidate, invalidCandidate,
-      improvementUpdate, improvementCertificate, initialState,
-      targetState, canonicalState, canonicalUpdate,
-      canonicalCertificate]
+    simpa [residual] using different
   trustValid := trustValid
   resourceValid := resourceValid
   realityContained := realityContained
   realityContained_not_universal := by
+    rcases binaryKernel.realityContained_not_universal with
+      ⟨state, candidate, certificate, rejected⟩
     refine
-      ⟨outsideState,
-        ({ update := stabilityUpdate
-           next := outsideState } :
-          RCP.Candidate ClassicalState ClassicalUpdate),
-        malformedCertificate,
+      ⟨canonicalState state,
+        liftCandidate candidate,
+        canonicalCertificate certificate,
         ?_⟩
-    simp [realityContained, forgetCandidate,
-      Core.binaryRealityContained, Core.binaryApply,
-      outsideState, stabilityUpdate, malformedCertificate,
-      canonicalState, canonicalUpdate, canonicalCertificate]
+    simpa [realityContained] using rejected
 
 
 noncomputable def kernelRefinement :
-    KernelRefinement kernel Core.binaryKernel where
+    KernelRefinement kernel binaryKernel where
   forgetState := fun state => state.core
   liftState := canonicalState
-  forgetLiftState := by
-    intro state
-    cases state <;> rfl
+  forgetLiftState := canonicalState_core
   forgetUpdate := fun update => update.core
   liftUpdate := canonicalUpdate
-  forgetLiftUpdate := by
-    intro update
-    cases update <;> rfl
+  forgetLiftUpdate := canonicalUpdate_core
   forgetCertificate := fun certificate => certificate.core
   liftCertificate := canonicalCertificate
-  forgetLiftCertificate := by
-    intro certificate
-    cases certificate <;> rfl
+  forgetLiftCertificate := canonicalCertificate_core
   forgetProtected := fun distinction => distinction
   liftProtected := fun distinction => distinction
   forgetLiftProtected := by
@@ -536,7 +548,7 @@ noncomputable def kernelRefinement :
 
 def ArchitectureEvidenceValid
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate) : Prop :=
   state = canonicalState state.core ∧
     candidate.update = canonicalUpdate candidate.update.core ∧
@@ -546,17 +558,17 @@ def ArchitectureEvidenceValid
 
 def PacketAccepted
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate) : Prop :=
-  Core.binaryCheck state.core (forgetCandidate candidate) certificate.core = true ∧
+  binaryCheck state.core (forgetCandidate candidate) certificate.core = true ∧
     ArchitectureEvidenceValid state candidate certificate
 
 
 def check
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate) : Bool :=
-  Core.binaryCheck state.core (forgetCandidate candidate) certificate.core &&
+  binaryCheck state.core (forgetCandidate candidate) certificate.core &&
     decide (state = canonicalState state.core) &&
     decide (candidate.update = canonicalUpdate candidate.update.core) &&
     decide (candidate.next = canonicalState candidate.next.core) &&
@@ -565,7 +577,7 @@ def check
 
 theorem check_eq_true_iff
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate) :
     check state candidate certificate = true ↔
       PacketAccepted state candidate certificate := by
@@ -574,14 +586,16 @@ theorem check_eq_true_iff
 
 theorem architectureEvidence_of_check
     {state : ClassicalState}
-    {candidate : RCP.Candidate ClassicalState ClassicalUpdate}
+    {candidate : Candidate ClassicalState ClassicalUpdate}
     {certificate : ClassicalCertificate}
     (accepted : check state candidate certificate = true) :
     ArchitectureEvidenceValid state candidate certificate := by
-  exact (check_eq_true_iff state candidate certificate).1 accepted |>.2
+  have packet : PacketAccepted state candidate certificate :=
+    (check_eq_true_iff state candidate certificate).1 accepted
+  exact packet.2
 
 
-noncomputable def checker : RCP.TrustedChecker kernel where
+noncomputable def checker : TrustedChecker kernel where
   check := check
   sound := by
     intro state candidate certificate
@@ -595,12 +609,12 @@ noncomputable def checker : RCP.TrustedChecker kernel where
         nextCanonical,
         certificateCanonical⟩
     have coreObligations :
-        RCP.StepObligations
-          Core.binaryKernel
+        StepObligations
+          binaryKernel
           state.core
           (forgetCandidate candidate)
           certificate.core :=
-      Core.binaryChecker.sound
+      binaryChecker.sound
         stateAdmissible.1
         stateInvariant.1
         coreAccepted
@@ -617,26 +631,26 @@ noncomputable def checker : RCP.TrustedChecker kernel where
         realityContained := ?_
         successorAdmissible := ?_ }
     · have coreTyped := coreObligations.typedSuccessor
-      unfold RCP.TypedSuccessor at coreTyped
-      unfold RCP.TypedSuccessor
+      unfold TypedSuccessor at coreTyped
+      unfold TypedSuccessor
       calc
         candidate.next = canonicalState candidate.next.core := nextCanonical
         _ = canonicalState
-              (Core.binaryApply state.core candidate.update.core) :=
+              (binaryApply state.core candidate.update.core) :=
           congrArg canonicalState coreTyped
         _ = kernel.apply state candidate.update := by
           rfl
     · intro index
       exact coreObligations.residualsNonpositive index
     · have coreNonLoss := coreObligations.protectedNonLoss
-      unfold RCP.ProtectedNonLoss at coreNonLoss
-      unfold RCP.ProtectedNonLoss
+      unfold ProtectedNonLoss at coreNonLoss
+      unfold ProtectedNonLoss
       intro distinction
       cases distinction
       simpa [kernel, protectedValue, forgetCandidate] using coreNonLoss ()
-    · unfold RCP.ConstructiveRecovery
-      simp [kernel, stateDistance, recover, Core.binaryStateDistance]
-    · change candidate.next.core ≠ Core.BinaryState.outside ∧
+    · unfold ConstructiveRecovery
+      simp [kernel, stateDistance, recover, binaryStateDistance]
+    · change candidate.next.core ≠ .outside ∧
         candidate.next = canonicalState candidate.next.core
       exact ⟨coreObligations.invariantPreserved, nextCanonical⟩
     · exact coreObligations.progressNondecreasing
@@ -644,61 +658,63 @@ noncomputable def checker : RCP.TrustedChecker kernel where
     · exact coreObligations.trustValid
     · exact coreObligations.resourceValid
     · exact coreObligations.realityContained
-    · change candidate.next.core ≠ Core.BinaryState.outside ∧
+    · change candidate.next.core ≠ .outside ∧
         candidate.next = canonicalState candidate.next.core
       exact ⟨coreObligations.successorAdmissible, nextCanonical⟩
 
 
 noncomputable def checkerRefinement :
-    CheckerRefinement kernelRefinement checker Core.binaryChecker where
+    CheckerRefinement kernelRefinement checker binaryChecker where
   acceptancePreserved := by
     intro state candidate certificate accepted
-    exact (check_eq_true_iff state candidate certificate).1 accepted |>.1
+    have packet : PacketAccepted state candidate certificate :=
+      (check_eq_true_iff state candidate certificate).1 accepted
+    exact packet.1
 
 
 noncomputable def recoveryCompositionLaws :
-    RCP.RecoveryCompositionLaws kernel where
+    RecoveryCompositionLaws kernel where
   selfDistanceZero := by
     intro state
-    exact Core.binaryStateDistance_self state.core
+    exact binaryStateDistance_self state.core
   triangle := by
     intro x y z
-    exact Core.binaryStateDistance_triangle x.core y.core z.core
+    exact binaryStateDistance_triangle x.core y.core z.core
   recoverNonexpansive := by
     intro state candidate x y
-    change Core.binaryStateDistance state.core state.core ≤
-      Core.binaryStateDistance x.core y.core
-    rw [Core.binaryStateDistance_self]
-    exact Core.binaryStateDistance_nonnegative x.core y.core
+    change binaryStateDistance state.core state.core ≤
+      binaryStateDistance x.core y.core
+    rw [binaryStateDistance_self]
+    exact binaryStateDistance_nonnegative x.core y.core
 
 
 noncomputable def preservationMonitors :
-    RCP.PreservationMonitors kernel (Relevance := Core.BinaryRelevance) where
-  lyapunovValue := fun state => Core.binaryLyapunovValue state.core
+    PreservationMonitors kernel (Relevance := BinaryRelevance) where
+  lyapunovValue := fun state => binaryLyapunovValue state.core
   motionCharge := fun state candidate certificate =>
-    Core.binaryMotionCharge state.core (forgetCandidate candidate)
+    binaryMotionCharge state.core (forgetCandidate candidate)
   lyapunovError := fun state candidate certificate => 0
   unsupportedCollapse := fun state candidate certificate =>
-    Core.binaryUnsupportedCollapse
+    binaryUnsupportedCollapse
       state.core (forgetCandidate candidate) certificate.core
   ambiguityError := fun state candidate certificate => 0
   relevanceValue := fun state relevance =>
-    Core.binaryRelevanceValue state.core relevance
+    binaryRelevanceValue state.core relevance
   transportRelevance := fun state candidate relevance =>
-    Core.binaryTransportRelevance state.core (forgetCandidate candidate) relevance
+    binaryTransportRelevance state.core (forgetCandidate candidate) relevance
   relevanceError := fun state candidate certificate => 0
   lyapunovValue_nonnegative := by
     intro state
-    exact Core.binaryLyapunovValue_nonnegative state.core
+    exact binaryLyapunovValue_nonnegative state.core
   motionCharge_nonnegative := by
     intro state candidate certificate
-    exact Core.binaryMotionCharge_nonnegative state.core (forgetCandidate candidate)
+    exact binaryMotionCharge_nonnegative state.core (forgetCandidate candidate)
   lyapunovError_nonnegative := by
     intro state candidate certificate
     exact le_rfl
   unsupportedCollapse_nonnegative := by
     intro state candidate certificate
-    exact Core.binaryUnsupportedCollapse_nonnegative
+    exact binaryUnsupportedCollapse_nonnegative
       state.core (forgetCandidate candidate) certificate.core
   ambiguityError_nonnegative := by
     intro state candidate certificate
@@ -709,22 +725,22 @@ noncomputable def preservationMonitors :
   lyapunovStep := by
     intro state candidate certificate obligations
     have coreObligations := kernelRefinement.stepObligationsPreserved obligations
-    exact Core.binaryPreservationMonitors.lyapunovStep coreObligations
+    exact binaryPreservationMonitors.lyapunovStep coreObligations
   ambiguityStep := by
     intro state candidate certificate obligations
     have coreObligations := kernelRefinement.stepObligationsPreserved obligations
-    exact Core.binaryPreservationMonitors.ambiguityStep coreObligations
+    exact binaryPreservationMonitors.ambiguityStep coreObligations
   relevanceStep := by
     intro state candidate certificate obligations relevance
     have coreObligations := kernelRefinement.stepObligationsPreserved obligations
-    exact Core.binaryPreservationMonitors.relevanceStep coreObligations relevance
+    exact binaryPreservationMonitors.relevanceStep coreObligations relevance
 
 
 noncomputable def monitorRefinement :
     MonitorRefinement
       kernelRefinement
       preservationMonitors
-      Core.binaryPreservationMonitors where
+      binaryPreservationMonitors where
   forgetRelevance := fun relevance => relevance
   liftRelevance := fun relevance => relevance
   forgetLiftRelevance := by
@@ -758,13 +774,13 @@ noncomputable def monitorRefinement :
 
 structure ArchitectureSuccessorObligations
     (state : ClassicalState)
-    (candidate : RCP.Candidate ClassicalState ClassicalUpdate)
+    (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate : ClassicalCertificate) : Prop where
   architectureEvidence : ArchitectureEvidenceValid state candidate certificate
-  rclmObligations : RCP.StepObligations kernel state candidate certificate
+  rclmObligations : StepObligations kernel state candidate certificate
   coreObligations :
-    RCP.StepObligations
-      Core.binaryKernel
+    StepObligations
+      binaryKernel
       state.core
       (forgetCandidate candidate)
       certificate.core
@@ -772,7 +788,7 @@ structure ArchitectureSuccessorObligations
 
 theorem accepted_architecture_successor
     {state : ClassicalState}
-    {candidate : RCP.Candidate ClassicalState ClassicalUpdate}
+    {candidate : Candidate ClassicalState ClassicalUpdate}
     {certificate : ClassicalCertificate}
     (stateAdmissible : kernel.admissible state)
     (stateInvariant : kernel.protectedInvariant state)
@@ -782,11 +798,11 @@ theorem accepted_architecture_successor
       ArchitectureEvidenceValid state candidate certificate :=
     architectureEvidence_of_check accepted
   have rclmObligations :
-      RCP.StepObligations kernel state candidate certificate :=
+      StepObligations kernel state candidate certificate :=
     checker.sound stateAdmissible stateInvariant accepted
   have coreObligations :
-      RCP.StepObligations
-        Core.binaryKernel
+      StepObligations
+        binaryKernel
         state.core
         (forgetCandidate candidate)
         certificate.core :=
@@ -802,120 +818,39 @@ theorem accepted_architecture_successor
       coreObligations := coreObligations }
 
 
-def trajectoryState : Nat → ClassicalState
-  | 0 => initialState
-  | _ + 1 => targetState
+theorem improvement_check_accepts :
+    checker.check initialState improvementCandidate improvementCertificate = true := by
+  rfl
 
 
-def trajectoryCandidate :
-    Nat → RCP.Candidate ClassicalState ClassicalUpdate
-  | 0 => improvementCandidate
-  | _ + 1 => stabilityCandidate
-
-
-def trajectoryCertificate : Nat → ClassicalCertificate
-  | 0 => improvementCertificate
-  | _ + 1 => stabilityCertificate
-
-
-noncomputable def workedTrajectory :
-    RCP.FiniteAcceptedTrajectory checker 2 where
-  state := trajectoryState
-  candidate := trajectoryCandidate
-  certificate := trajectoryCertificate
-  initialAdmissible := by
+theorem improvement_refines_gate_b :
+    StepObligations
+      binaryKernel
+      BinaryState.initial
+      RCP.ClassicalFinite.improvementCandidate
+      BinaryCertificate.improvement := by
+  have initialAdmissible : kernel.admissible initialState := by
     constructor
     · decide
     · rfl
-  initialInvariant := by
+  have initialInvariant : kernel.protectedInvariant initialState := by
     constructor
     · decide
     · rfl
-  accepted := by
-    intro t bound
-    cases t with
-    | zero =>
-        rfl
-    | succ t =>
-        rfl
-  linked := by
-    intro t bound
-    cases t with
-    | zero =>
-        rfl
-    | succ t =>
-        rfl
-
-
-theorem workedTrajectory_first_step_strict :
-    kernel.progress (workedTrajectory.state 0) <
-      kernel.progress (workedTrajectory.state 1) := by
-  change Core.binaryProgress Core.BinaryState.initial <
-    Core.binaryProgress Core.BinaryState.target
-  exact Core.binaryProgress_initial_lt_target
-
-
-theorem workedTrajectory_endpoint_recovery :
-    kernel.stateDistance
-        (RCP.composedRecovery workedTrajectory 2
-          (workedTrajectory.state 2))
-        (workedTrajectory.state 0) ≤
-      RCP.cumulativeRecoveryBudget workedTrajectory 2 := by
-  exact RCP.finite_endpoint_recovery_bound
+  have refined := rclm_checker_refines_rcp
+    kernelRefinement
     checker
-    recoveryCompositionLaws
-    workedTrajectory
-    2
-    le_rfl
+    initialAdmissible
+    initialInvariant
+    improvement_check_accepts
+  simpa [initialState, improvementCandidate, improvementUpdate,
+    improvementCertificate, forgetCandidate] using refined
 
 
-theorem workedTrajectory_lyapunov_motion_bound :
-    preservationMonitors.lyapunovValue
-          (workedTrajectory.state 2) +
-        RCP.cumulativeMotionCharge
-          preservationMonitors workedTrajectory 2 ≤
-      preservationMonitors.lyapunovValue
-          (workedTrajectory.state 0) +
-        RCP.cumulativeLyapunovError
-          preservationMonitors workedTrajectory 2 := by
-  exact RCP.finite_lyapunov_motion_bound
-    checker
-    preservationMonitors
-    workedTrajectory
-    2
-    le_rfl
-
-
-theorem workedTrajectory_ambiguity_bound :
-    RCP.cumulativeUnsupportedCollapse
-        preservationMonitors workedTrajectory 2 ≤
-      RCP.cumulativeAmbiguityError
-        preservationMonitors workedTrajectory 2 := by
-  exact RCP.finite_ambiguity_collapse_bound
-    checker
-    preservationMonitors
-    workedTrajectory
-    2
-    le_rfl
-
-
-theorem workedTrajectory_relevance_bound
-    (relevance : Core.BinaryRelevance) :
-    preservationMonitors.relevanceValue
-        (workedTrajectory.state 0) relevance ≤
-      preservationMonitors.relevanceValue
-          (workedTrajectory.state 2)
-          (RCP.transportedRelevance
-            preservationMonitors workedTrajectory 2 relevance) +
-        RCP.cumulativeRelevanceError
-          preservationMonitors workedTrajectory 2 := by
-  exact RCP.finite_self_model_relevance_bound
-    checker
-    preservationMonitors
-    workedTrajectory
-    2
-    le_rfl
-    relevance
+theorem improvement_architecture_evidence :
+    ArchitectureEvidenceValid
+      initialState improvementCandidate improvementCertificate := by
+  exact architectureEvidence_of_check improvement_check_accepts
 
 end ClassicalBinary
 end RCLM
