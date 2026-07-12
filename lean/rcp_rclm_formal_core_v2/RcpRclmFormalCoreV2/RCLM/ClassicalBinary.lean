@@ -462,7 +462,7 @@ noncomputable def kernel :
         canonicalCertificate certificate₂,
         index,
         ?_⟩
-    simpa [kernel, residual] using different
+    simpa [residual, binaryKernel] using different
   trustValid := trustValid
   resourceValid := resourceValid
   realityContained := realityContained
@@ -474,7 +474,7 @@ noncomputable def kernel :
         liftCandidate candidate,
         canonicalCertificate certificate,
         ?_⟩
-    simpa [kernel, realityContained] using rejected
+    simpa [realityContained, binaryKernel] using rejected
 
 
 noncomputable def kernelRefinement :
@@ -685,8 +685,10 @@ noncomputable def recoveryCompositionLaws :
     exact binaryStateDistance_triangle x.core y.core z.core
   recoverNonexpansive := by
     intro state candidate x y
-    simpa [kernel, stateDistance, recover] using
-      binaryStateDistance_nonnegative x.core y.core
+    change binaryStateDistance state.core state.core ≤
+      binaryStateDistance x.core y.core
+    rw [binaryStateDistance_self]
+    exact binaryStateDistance_nonnegative x.core y.core
 
 
 noncomputable def preservationMonitors :
