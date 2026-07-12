@@ -1,0 +1,13 @@
+import RcpRclmFormalCoreV2.MainTheorem
+
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.klDivergence_nonnegative
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.klDivergence_self
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.uniformBinary_kl_biasedBinary
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.uniformBinary_kl_biasedBinary_pos
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.klDivergence_extendByZero
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.recover_extendByZero
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.conservative_extension_recovery
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.binaryCheck_eq_true_iff
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.initial_improvement_obligations
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.target_stability_obligations
+#print axioms RcpRclmFormalCoreV2.RCP.ClassicalFinite.binaryWorkedTrajectory_first_step_strict
