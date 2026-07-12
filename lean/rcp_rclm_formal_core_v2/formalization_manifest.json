@@ -1,0 +1,42 @@
+{
+  "schema_version": "rcp-rclm-formal-core-v2-manifest-v1",
+  "phase_name": "RCP/RCLM Formal Core v2 — Mechanized Conditional Successor Theorem Closure",
+  "base_repository_commit": "df88c8ed95aec4b0a38b45e74664f62e9405b0c5",
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.31.0",
+    "mathlib_repository": "https://github.com/leanprover-community/mathlib4.git",
+    "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+    "mathlib_release_tag_reference": "v4.31.0"
+  },
+  "historical_v1_reference": {
+    "retained_unchanged": true,
+    "rcp_path": "lean/rcp_rclm_can_lean4/RcpRclmMech/RCP.lean",
+    "rcp_git_blob_sha": "56e0da83578bfffd4ec4cc56f3a48280c3098730",
+    "rclm_path": "lean/rcp_rclm_can_lean4/RcpRclmMech/RCLM.lean",
+    "rclm_git_blob_sha": "151b5d6216c8abefc16528f2a9ed6c0b6319060f"
+  },
+  "paper_sources": {
+    "paper_i_path": "papers/paper-I-rcp-math/main.tex",
+    "paper_i_git_blob_sha": "084eae21d252d205d2012b62744c1506644e3e58",
+    "paper_ii_path": "papers/paper-II-rclm-architecture/main.tex",
+    "paper_ii_git_blob_sha": "9b51be8294ad79fd4f63522b01e0f617f0bf2ffd"
+  },
+  "active_gate": "Gate A — abstract theorem kernel",
+  "gate_status": {
+    "gate_a_abstract_kernel": "contract_frozen_implementation_started",
+    "gate_b_classical_finite": "not_yet_claimed",
+    "gate_c_quantum_finite": "not_yet_claimed",
+    "rclm_refinement": "contract_only"
+  },
+  "claim_boundary": {
+    "full_paper_mechanized": false,
+    "gate_a_complete": false,
+    "gate_b_complete": false,
+    "gate_c_complete": false,
+    "python_checker_licensed": false,
+    "python_generator_licensed": false,
+    "closed_loop_runtime_licensed": false,
+    "external_benchmark_claim": false,
+    "unbounded_empirical_rsi": false
+  }
+}
