@@ -12,10 +12,10 @@ def ProtectedNonLoss
     (K : Kernel State Update Certificate Protected ResidualIndex)
     (state : State)
     (candidate : Candidate State Update) : Prop :=
-  ∀ protected,
-    K.protectedValue state protected ≤
+  ∀ distinction,
+    K.protectedValue state distinction ≤
       K.protectedValue candidate.next
-        (K.transportProtected state candidate protected) +
+        (K.transportProtected state candidate distinction) +
       K.lossBudget state candidate
 
 end RCP
