@@ -16,6 +16,16 @@ structure Distribution (n : Nat) where
   nonnegative : ∀ i, 0 ≤ mass i
   normalized : (∑ i, mass i) = 1
 
+@[ext] theorem Distribution.ext
+    {n : Nat}
+    {p q : Distribution n}
+    (mass_eq : p.mass = q.mass) :
+    p = q := by
+  cases p
+  cases q
+  cases mass_eq
+  rfl
+
 def SupportedBy {n : Nat} (p q : Distribution n) : Prop :=
   ∀ i, 0 < p.mass i → 0 < q.mass i
 
@@ -37,7 +47,7 @@ private theorem mass_sub_mass_le_klTerm
     simp only [zero_div, Real.log_zero, zero_mul, zero_sub]
     exact neg_nonpos.mpr (q.nonnegative i)
   · have hpPositive : 0 < p.mass i :=
-      lt_of_le_of_ne (p.nonnegative i) hpZero.symm
+      lt_of_le_of_ne (p.nonnegative i) (Ne.symm hpZero)
     have hqPositive : 0 < q.mass i :=
       support i hpPositive
     have hratioPositive : 0 < q.mass i / p.mass i :=
@@ -132,6 +142,7 @@ noncomputable def uniformBinary : PositiveDistribution 2 where
           norm_num
       normalized := by
         rw [Fin.sum_univ_two]
+        change (1 / 2 : ℝ) + 1 / 2 = 1
         norm_num }
   positive := by
     intro i
@@ -151,6 +162,7 @@ noncomputable def biasedBinary : PositiveDistribution 2 where
           norm_num
       normalized := by
         rw [Fin.sum_univ_two]
+        change (3 / 4 : ℝ) + 1 / 4 = 1
         norm_num }
   positive := by
     intro i
@@ -173,8 +185,14 @@ theorem uniformBinary_kl_biasedBinary :
     positiveKLDivergence uniformBinary biasedBinary =
         (1 / 2 : ℝ) * Real.log (2 / 3) +
           (1 / 2 : ℝ) * Real.log 2 := by
-      norm_num [positiveKLDivergence, klDivergence,
-        uniformBinary, biasedBinary, Fin.sum_univ_two]
+      unfold positiveKLDivergence klDivergence
+      rw [Fin.sum_univ_two]
+      change
+        (1 / 2 : ℝ) * Real.log ((1 / 2 : ℝ) / (3 / 4 : ℝ)) +
+            (1 / 2 : ℝ) * Real.log ((1 / 2 : ℝ) / (1 / 4 : ℝ)) =
+          (1 / 2 : ℝ) * Real.log (2 / 3) +
+            (1 / 2 : ℝ) * Real.log 2
+      norm_num
     _ = (1 / 2 : ℝ) *
         (Real.log (2 / 3) + Real.log 2) := by
       ring
@@ -243,10 +261,11 @@ theorem supportedBy_extendByZero
     SupportedBy
       (extendByZero p).distribution
       (extendByZero q).distribution := by
-  intro i hi
+  intro i
   refine Fin.cases ?_ ?_ i
-  · simp [extendByZero] at hi
-  · intro j
+  · intro hi
+    simp [extendByZero] at hi
+  · intro j hi
     have hp : 0 < p.mass j := by
       simpa [extendByZero] using hi
     have hq : 0 < q.mass j :=
