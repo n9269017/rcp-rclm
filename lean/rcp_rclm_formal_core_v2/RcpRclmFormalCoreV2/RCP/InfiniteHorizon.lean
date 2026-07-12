@@ -293,10 +293,12 @@ theorem infinite_cumulative_motion_bounded
       (monitors.lyapunovValue_nonnegative (trajectory.state t))
       (cumulativeMotionCharge monitors (finitePrefixOfInfinite trajectory t) t)
     simpa using lifted
-  exact le_trans motionBelowChargedValue
-    (infinite_monitor_uniform_bounds
-      checker monitors trajectory caps t
-      (Classical.choice (Classical.propComplete (Nonempty Relevance)))).1
+  have prefixBound :=
+    infinite_lyapunov_motion_prefix_bound checker monitors trajectory t
+  have cappedPrefix := le_trans prefixBound
+    (add_le_add_right (caps.lyapunovBound t)
+      (monitors.lyapunovValue (trajectory.state 0)))
+  exact le_trans motionBelowChargedValue cappedPrefix
 
 end RCP
 end RcpRclmFormalCoreV2
