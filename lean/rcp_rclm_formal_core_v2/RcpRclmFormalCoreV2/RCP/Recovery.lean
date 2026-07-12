@@ -17,5 +17,32 @@ def ConstructiveRecovery
       state ≤
     K.recoveryBudget state candidate
 
+/--
+The laws needed to compose one-step recovery maps into an endpoint rollback
+bound.  They are kept separate from `Kernel` so that the basic checker theorem
+does not silently assume metric or channel-like structure that an
+instantiation has not supplied.
+
+Only the laws used by the finite endpoint theorem are required:
+
+* zero self-distance;
+* a triangle inequality; and
+* nonexpansiveness of every candidate-tied recovery map.
+
+No symmetry or point-separation law is assumed because neither is needed for
+the paper's telescoping rollback argument.
+-/
+structure RecoveryCompositionLaws
+    {State Update Certificate Protected ResidualIndex : Type*}
+    (K : Kernel State Update Certificate Protected ResidualIndex) : Prop where
+  selfDistanceZero : ∀ state, K.stateDistance state state = 0
+  triangle : ∀ x y z,
+    K.stateDistance x z ≤ K.stateDistance x y + K.stateDistance y z
+  recoverNonexpansive : ∀ state candidate x y,
+    K.stateDistance
+        (K.recover state candidate x)
+        (K.recover state candidate y) ≤
+      K.stateDistance x y
+
 end RCP
 end RcpRclmFormalCoreV2
