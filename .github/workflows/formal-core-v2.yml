@@ -6,12 +6,14 @@ on:
       - agent/rcp-rclm-formal-core-v2
     paths:
       - "lean/rcp_rclm_formal_core_v2/**"
+      - "docs/formal_core_v2/**"
       - ".github/workflows/formal-core-v2.yml"
   pull_request:
     branches:
       - main
     paths:
       - "lean/rcp_rclm_formal_core_v2/**"
+      - "docs/formal_core_v2/**"
       - ".github/workflows/formal-core-v2.yml"
   workflow_dispatch:
 
@@ -20,7 +22,7 @@ permissions:
 
 jobs:
   build:
-    name: Build pinned Formal Core v2 project
+    name: Build and audit pinned Formal Core v2 project
     runs-on: ubuntu-latest
     timeout-minutes: 180
 
@@ -52,3 +54,79 @@ jobs:
       - name: Build Formal Core v2
         working-directory: lean/rcp_rclm_formal_core_v2
         run: lake build
+
+      - name: Audit source for admitted proofs and local axioms
+        working-directory: lean/rcp_rclm_formal_core_v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results
+
+          {
+            echo "commit=${GITHUB_SHA}"
+            echo "toolchain=$(cat lean-toolchain)"
+            echo "lake_manifest_sha256=$(sha256sum lake-manifest.json | cut -d' ' -f1)"
+          } > audit-results/audit_metadata.txt
+
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              '(^|[^[:alnum:]_])(sorry|admit)([^[:alnum:]_]|$)' \
+              RcpRclmFormalCoreV2 RcpRclmFormalCoreV2.lean \
+              > audit-results/forbidden_proof_tokens.txt; then
+            cat audit-results/forbidden_proof_tokens.txt
+            echo "Forbidden admitted proof token found in Formal Core v2 source." >&2
+            exit 1
+          fi
+
+          : > audit-results/forbidden_proof_tokens.txt
+          printf '%s\n' \
+            'PASS: no sorry or admit token occurs in the Formal Core v2 Lean source.' \
+            > audit-results/no_sorry_audit.txt
+
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              '^[[:space:]]*axiom[[:space:]]' \
+              RcpRclmFormalCoreV2 RcpRclmFormalCoreV2.lean \
+              > audit-results/project_axiom_declarations.txt; then
+            cat audit-results/project_axiom_declarations.txt
+            echo "Project-local axiom declaration found in Formal Core v2 source." >&2
+            exit 1
+          fi
+
+          : > audit-results/project_axiom_declarations.txt
+          printf '%s\n' \
+            'PASS: no project-local axiom declaration occurs in the Formal Core v2 Lean source.' \
+            > audit-results/project_axiom_audit.txt
+
+      - name: Print and validate Gate A theorem axioms
+        working-directory: lean/rcp_rclm_formal_core_v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results
+
+          lake env lean \
+            ../../docs/formal_core_v2/audit/GateAAxiomAudit.lean \
+            2>&1 | tee audit-results/gate_a_axioms.txt
+
+          if grep -Fq 'sorryAx' audit-results/gate_a_axioms.txt; then
+            echo "sorryAx appears in the Gate A theorem axiom report." >&2
+            exit 1
+          fi
+
+          printf '%s\n' \
+            'PASS: all audited Gate A declarations elaborate and no report contains sorryAx.' \
+            > audit-results/gate_a_axiom_audit_summary.txt
+
+      - name: Upload Gate A audit artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: formal-core-v2-gate-a-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: lean/rcp_rclm_formal_core_v2/audit-results
+          if-no-files-found: warn
+          retention-days: 90
