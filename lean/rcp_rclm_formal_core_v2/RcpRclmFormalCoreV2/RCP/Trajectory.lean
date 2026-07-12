@@ -221,7 +221,7 @@ theorem finite_composed_nonloss_bound
                   (transportedDistinction trajectory t distinction)) +
               K.lossBudget (trajectory.state t) (trajectory.candidate t)) +
             cumulativeLossBudget trajectory t :=
-          add_le_add_right stepNonLossAtState
+          add_le_add_left stepNonLossAtState
             (cumulativeLossBudget trajectory t)
         _ = K.protectedValue (trajectory.state (t + 1))
                 (transportedDistinction trajectory (t + 1) distinction) +
