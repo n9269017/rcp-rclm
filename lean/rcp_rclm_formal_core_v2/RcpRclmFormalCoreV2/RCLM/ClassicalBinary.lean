@@ -685,10 +685,8 @@ noncomputable def recoveryCompositionLaws :
     exact binaryStateDistance_triangle x.core y.core z.core
   recoverNonexpansive := by
     intro state candidate x y
-    change binaryStateDistance state.core state.core ≤
-      binaryStateDistance x.core y.core
-    rw [binaryStateDistance_self]
-    exact binaryStateDistance_nonnegative x.core y.core
+    simpa [kernel, stateDistance, recover, binaryStateDistance_self] using
+      binaryStateDistance_nonnegative x.core y.core
 
 
 noncomputable def preservationMonitors :
