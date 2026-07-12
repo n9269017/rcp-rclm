@@ -53,13 +53,13 @@ artifact.
 
 ```text
 Source head:
-  9ce0502f121b1576ae0d3834d876ea2d523b9ead
+  dd71e12438fd1f8e3508061981ab11b5e7fa7028
 
 GitHub Actions run:
-  29187176872
+  29187317488
 
 PR merge-test commit used by the runner:
-  3266891d90596fc664f7be2bcc1009a8c7e5b980
+  80811f1fa4102841688a97ead6591fd0f41301aa
 
 Toolchain:
   leanprover/lean4:v4.31.0
@@ -74,10 +74,10 @@ Paper II blob:
   9b51be8294ad79fd4f63522b01e0f617f0bf2ffd
 
 Audit artifact:
-  formal-core-v2-gate-a-audit-29187176872-1
+  formal-core-v2-gate-a-audit-29187317488-1
 
 Artifact digest:
-  sha256:32d46d1469e27e10e60255ae7be8c4d2c22db9f3dc1e75c342d49d70e0c22661
+  sha256:1082c28af4911b4b9e8c0fcd1a8b2c288c55a44a5c8947de5b172b2633eb39d5
 ```
 
 The preserved reports establish:
