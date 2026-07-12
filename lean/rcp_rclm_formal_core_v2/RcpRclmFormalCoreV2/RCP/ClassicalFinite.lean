@@ -272,6 +272,13 @@ theorem supportedBy_extendByZero
       support j hp
     simpa [extendByZero] using hq
 
+theorem shannonEntropy_extendByZero
+    {n : Nat}
+    (p : Distribution n) :
+    shannonEntropy (extendByZero p).distribution =
+      shannonEntropy p := by
+  simp [shannonEntropy, extendByZero, Fin.sum_univ_succ]
+
 theorem klDivergence_extendByZero
     {n : Nat}
     (p q : Distribution n) :
@@ -288,6 +295,7 @@ theorem conservative_extension_recovery
     SupportedBy
         (extendByZero p).distribution
         (extendByZero q).distribution ∧
+      shannonEntropy (extendByZero p).distribution = shannonEntropy p ∧
       klDivergence
           (extendByZero p).distribution
           (extendByZero q).distribution =
@@ -295,6 +303,7 @@ theorem conservative_extension_recovery
       recoverZeroExtension (extendByZero p) = p := by
   exact
     ⟨supportedBy_extendByZero p q support,
+      shannonEntropy_extendByZero p,
       klDivergence_extendByZero p q,
       recover_extendByZero p⟩
 
