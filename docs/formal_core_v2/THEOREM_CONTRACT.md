@@ -2,45 +2,36 @@
 
 ## Contract status
 
-This document freezes the **abstract Gate A successor and preservation kernel**.
-It is not, by itself, the exact statement of Paper I's `thm:main_rcp` or any
-Paper II architecture theorem. The initial comparison is in
-`GATE_A_PAPER_ALIGNMENT_AUDIT.md`; later resolutions are recorded in
+This document freezes the **complete abstract Gate A successor and preservation
+kernel**. It is not, by itself, the exact concrete statement of Paper I's
+`thm:main_rcp` or any Paper II architecture theorem. The initial comparison is
+in `GATE_A_PAPER_ALIGNMENT_AUDIT.md`; later resolutions are recorded in
 `GATE_A_ALIGNMENT_RESOLUTION_LOG.md`.
-
-Current status:
 
 ```text
 abstract one-step contract: implemented
 abstract finite trajectory composition: implemented
 abstract endpoint recovery composition: implemented
-abstract finite paper-monitor composition: implemented
-abstract conditional infinite trajectory construction: implemented
-uniform finite-prefix monitor bounds under explicit budget caps: implemented
-clean build and proof-admission audit: passed
+abstract quantitative monitor composition: implemented
+standard Summable-to-uniform-prefix bridge: implemented
+paper-safe/update-admissibility refinement boundary: implemented
+no-op-feasibility premise: implemented
+conditional infinite trajectory construction: implemented
+paper-facing finite and infinite abstract wrappers: implemented
+abstract Gate A theorem kernel: complete
 exact Paper I/Paper II agreement: not yet achieved
 ```
 
-## Ordinary abstract mathematical statement
+## Ordinary one-step mathematical contract
 
-Let `M_t` be an admissible predecessor system state at recursive time `t`. Let
-`u_t` be a proposed typed update, let `M_{t+1}` be the candidate's claimed
-successor state, and let `c_t` be a certificate packet. Let the formal kernel
-supply:
+Let `M_t` be an admissible predecessor state, `u_t` a proposed typed update,
+`M_{t+1}` the claimed successor, and `c_t` a certificate packet. The kernel
+supplies typed update semantics, protected distinctions and transports,
+quantitative loss and recovery budgets, a candidate-tied recovery map, progress
+and strict-witness predicates, computed residuals, trust/resource/reality
+predicates, and an admissible successor domain.
 
-- typed successor semantics `Apply(M_t,u_t)`;
-- protected distinctions and explicit cross-time transport;
-- a nonconstant divergence/information interface;
-- declared quantitative loss budgets;
-- a constructive recovery map tied to the candidate update;
-- a state distance and one-step recovery budget;
-- a protected-invariant predicate;
-- a progress functional and strict-witness predicate;
-- computed certificate residuals;
-- trust/verifier, resource, and reality/uncertainty predicates; and
-- an admissible successor domain.
-
-For a trusted checker `Check`, the abstract one-step target is:
+For a trusted checker:
 
 ```text
 Admissible(M_t)
@@ -51,40 +42,35 @@ Admissible(M_t)
 
 M_{t+1} = Apply(M_t,u_t)
 ∧ every computed residual is nonpositive
-∧ every declared protected distinction is preserved within the loss budget
-∧ Recover(M_t,u_t,M_{t+1}) returns within the recovery budget of M_t
+∧ every protected distinction is preserved within its loss budget
+∧ recovery returns within the one-step recovery budget
 ∧ ProtectedInvariant(M_{t+1})
 ∧ Progress(M_t) ≤ Progress(M_{t+1})
-∧ (StrictWitness(M_t,u_t,M_{t+1},c_t)
-    ⇒ Progress(M_t) < Progress(M_{t+1}))
-∧ TrustValid(M_t,u_t,M_{t+1},c_t)
-∧ ResourceValid(M_t,u_t,M_{t+1},c_t)
-∧ RealityContained(M_t,u_t,M_{t+1},c_t)
+∧ (StrictWitness(...) ⇒ Progress(M_t) < Progress(M_{t+1}))
+∧ TrustValid(...)
+∧ ResourceValid(...)
+∧ RealityContained(...)
 ∧ Admissible(M_{t+1}).
 ```
 
-The checker theorem is a soundness theorem. It is not, by itself, a theorem that
-an improving candidate exists, that a generator covers a witness, or that a
-paper-specific packet can be constructed.
+This is checker soundness, not successor existence or generator completeness.
 
-## Abstract finite composition contract
+## Finite composition contract
 
-For a finite sequence
+For an accepted finite path
 
 ```text
 M_0 --(u_0,c_0)--> M_1 -- ... --> M_N
 ```
 
-whose initial state is admissible and invariant-preserving and whose transitions
-are accepted, the project proves:
+the project proves:
 
 1. every in-horizon state remains admissible and invariant-preserving;
 2. every transition satisfies the complete one-step obligations;
-3. progress is monotone;
-4. transported protected values satisfy the additive loss-budget bound;
-5. actual local recovery errors satisfy the aggregate local-budget bound;
-6. strict progress follows at each step carrying a strict witness; and
-7. under explicit recovery-composition laws, the rollback-order composed map
+3. progress is monotone and each strict witness yields strict progress;
+4. transported protected values satisfy an additive loss-budget bound;
+5. actual local recovery errors satisfy the aggregate local-budget bound; and
+6. under explicit recovery composition laws, the rollback-order composed map
    recovers the initial state from the endpoint within the cumulative budget.
 
 The endpoint theorem uses:
@@ -96,19 +82,17 @@ RCP.composedRecovery_nonexpansive
 RCP.finite_endpoint_recovery_bound
 ```
 
-The required laws are exactly zero self-distance, the triangle inequality, and
-nonexpansiveness of every candidate-tied recovery map. They are not inferred
-from checker soundness.
+The extra laws are visible: zero self-distance, triangle inequality, and
+nonexpansiveness of each candidate-tied recovery map.
 
-## Explicit Paper I monitor contract
+## Quantitative Paper I monitor contract
 
-`RCP.PreservationMonitors` supplies named data and laws for the quantitative
-Paper I conclusions:
+`RCP.PreservationMonitors` explicitly names:
 
 ```text
-lyapunov value
+Lyapunov value
 charged motion term
-lyapunov error budget
+Lyapunov error budget
 unsupported ambiguity collapse
 ambiguity error budget
 self-model relevance value
@@ -116,11 +100,11 @@ cross-time relevance transport
 relevance error budget
 ```
 
-The intended concrete interpretation may set the motion charge to
-`κ * E[d(M_{t+1},M_t)^2]`, but Gate A treats it as an explicit nonnegative
-quantity whose one-step inequality must be proved from `StepObligations`.
+A concrete instance may set the motion charge to
+`κ * E[d(M_{t+1},M_t)^2]`, but this interpretation must be proved. A generic
+residual is never silently treated as a named monitor.
 
-The finite theorems are:
+Finite composition is provided by:
 
 ```lean
 RCP.finite_lyapunov_motion_bound
@@ -128,93 +112,89 @@ RCP.finite_ambiguity_collapse_bound
 RCP.finite_self_model_relevance_bound
 ```
 
-A generic residual index is not silently identified with any of these monitors.
-Concrete probability, ambiguity, and mutual-information meanings require later
-refinement theorems.
+## Infinite trajectory and summability contract
 
-## Abstract conditional infinite-horizon contract
+`RCP.SuccessorAvailability` remains an explicit premise: every admissible,
+invariant-preserving state has a nonempty accepted successor packet. Under this
+premise, `RCP.conditional_infinite_trajectory_exists` constructs an infinite
+accepted path.
 
-The availability assumption remains explicit:
+Every finite prefix inherits endpoint recovery and the monitor bounds through
+`RCP.finitePrefixOfInfinite` and the infinite-prefix theorems.
 
-```text
-SuccessorAvailability:
-  for every admissible invariant-preserving state M,
-  there exists a candidate and certificate accepted by the trusted checker.
-```
-
-Under this assumption and an initial domain state,
-`RCP.conditional_infinite_trajectory_exists` constructs an infinite accepted
-trajectory. Checker soundness does not imply this availability hypothesis.
-
-Every finite prefix can be converted to `RCP.FiniteAcceptedTrajectory` by
-`RCP.finitePrefixOfInfinite`, so it inherits endpoint recovery and all monitor
-bounds. The public prefix and uniform-bound declarations include:
+The analytic summability surface is:
 
 ```lean
-RCP.infinite_endpoint_recovery_prefix_bound
-RCP.infinite_lyapunov_motion_prefix_bound
-RCP.infinite_ambiguity_collapse_prefix_bound
-RCP.infinite_self_model_relevance_prefix_bound
-RCP.UniformMonitorBudgetCaps
-RCP.infinite_monitor_uniform_bounds
-RCP.infinite_cumulative_motion_bounded
+RCP.SummableMonitorBudgets
+RCP.SummableMonitorBudgets.toUniformMonitorBudgetCaps
+RCP.infinite_monitor_bounds_of_summable
+RCP.infinite_cumulative_motion_bounded_of_summable
 ```
 
-`UniformMonitorBudgetCaps` is the explicit bounded-partial-sum premise. A
-paper-facing theorem that retains standard analytic `Summable` wording must
-prove that the concrete nonnegative error series supplies these caps.
+The three concrete nonnegative error sequences are assumed `Summable`. Their
+finite partial sums are bounded by their `tsum`s, supplying the uniform caps
+used by the infinite-prefix preservation theorems.
 
-## Exact Paper I wrapper obligations still open
+## Paper-safe predicates and no-op premise
 
-An exact wrapper for Paper I `thm:main_rcp` must still provide:
-
-1. a refinement between `Admissible ∧ ProtectedInvariant` and the paper's
-   `K_RCP^state`;
-2. a refinement between accepted `StepObligations` and the paper's
-   `A_RCP(t,rho,Phi)` relation;
-3. the no-op-feasibility premise, or a documented paper narrowing;
-4. concrete conditional-expectation semantics for the Lyapunov monitor and
-   concrete identification of the motion charge;
-5. concrete ambiguity and self-model mutual-information semantics with valid
-   transports;
-6. a standard `Summable`-to-partial-sum-cap bridge if exact summability wording
-   is retained;
-7. finite KL and quantum-relative-entropy interpretations with support/domain
-   laws; and
-8. the final paper-facing theorem declaration with every assumption visible.
-
-The endpoint recovery inference itself is no longer an open Gate A mismatch.
-Concrete trace-distance/channel instances remain Gate B/C obligations.
-
-## Exact Paper II refinement obligations
-
-The RCLM architecture layer must define substantive state, update, certificate,
-and checker semantics and prove that forgetting an accepted RCLM packet to RCP
-preserves every theorem-relevant object:
+`RCP.PaperSemantics` carries paper-facing predicates
 
 ```text
-update application and typed successor
-protected values and transports
-loss and recovery budgets
-state distance, recovery map, and recovery composition laws
-progress and strict witnesses
-paper monitor data and laws
-residual evaluator
-trust, resource, and reality predicates
-predecessor/successor admissibility and invariants
-checker result and checker soundness
+StateSafe(M)
+UpdateAdmissible(M,u,M',c)
 ```
 
-Only after this refinement exists may the project introduce:
+together with explicit equivalences to
 
-```lean
-RCLM.rclm_checker_refines_rcp
-RCLM.rclm_architecture_successor_theorem
+```text
+K.admissible M ∧ K.protectedInvariant M
+StepObligations K M candidate c.
 ```
 
-## Lean-facing declarations
+The equivalences are concrete refinement obligations, not consequences of the
+names.
 
-Implemented Gate A declarations include:
+`RCP.AcceptedNoOp` and `RCP.NoOpFeasible` represent the no-op premise as an
+accepted unchanged-successor packet for every paper-safe state. No-op
+feasibility is separate from general successor availability.
+
+## Paper-facing abstract wrappers
+
+`RCP.finite_paper_preservation` combines, with all assumptions visible:
+
+```text
+paper-safe endpoint membership
+accepted-prefix update admissibility
+initial no-op availability
+monotone and strict-witness progress
+transported protected non-loss
+composed endpoint recovery
+Lyapunov/motion bound
+ambiguity-collapse bound
+transported self-model-relevance bound
+```
+
+`RCP.conditional_infinite_paper_trajectory_exists` constructs an infinite
+accepted path with paper-safe states, paper-update-admissible steps, and no-op
+availability, under both explicit `SuccessorAvailability` and `NoOpFeasible`.
+
+## Concrete obligations still open
+
+Exact Paper I mechanization still requires:
+
+1. concrete refinement of `PaperSemantics` to the pinned `K_RCP^state` and
+   `A_RCP` definitions;
+2. conditional-expectation semantics for the Lyapunov monitor and identification
+   of the motion charge;
+3. concrete ambiguity and mutual-information definitions and transports;
+4. finite KL and quantum-relative-entropy interpretations with support laws; and
+5. a final paper-facing wrapper after those identifications.
+
+Exact Paper II mechanization still requires substantive RCLM state, update,
+certificate, checker, monitor, and recovery semantics and a proof that forgetting
+an accepted RCLM packet preserves every theorem-relevant RCP object.
+
+## Implemented public Gate A declarations
 
 ```lean
 RCP.accepted_step_sound
@@ -232,15 +212,16 @@ RCP.conditional_infinite_trajectory_exists
 RCP.infinite_endpoint_recovery_prefix_bound
 RCP.infinite_monitor_uniform_bounds
 RCP.infinite_cumulative_motion_bounded
+RCP.infinite_monitor_bounds_of_summable
+RCP.infinite_cumulative_motion_bounded_of_summable
+RCP.finite_paper_preservation
+RCP.conditional_infinite_paper_trajectory_exists
 ```
 
-Reserved but not yet delivered:
+Reserved for later gates:
 
 ```lean
 RCLM.rclm_checker_refines_rcp
 RCLM.rclm_architecture_successor_theorem
 MainTheorem.mechanized_conditional_successor_closure
 ```
-
-Implementation, build/audit status, paper alignment, and any narrowing are
-recorded in the formalization manifest and theorem map.
