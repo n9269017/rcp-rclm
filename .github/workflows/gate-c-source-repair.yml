@@ -31,28 +31,22 @@ jobs:
           path = Path("lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/QuantumBinary.lean")
           text = path.read_text(encoding="utf-8")
 
-          old = '''  · have channelEntropy := selectedChannel_vonNeumannEntropy_preserving
-              candidate.update.core (densityOf state).density
-            have forwardAction :
-                (forwardChannelOf candidate.update).apply (densityOf state).density =
-                  (densityOf candidate.next).density := by
-              calc
-                (forwardChannelOf candidate.update).apply (densityOf state).density =
-                    (stateDensity
-                      (quantumApply state.core candidate.update.core)).density := by
-                  exact selectedChannel_state_action state.core candidate.update.core
-                _ = (densityOf candidate.next).density := by
-                  exact congrArg (fun coreState => (stateDensity coreState).density) coreTyped.symm
-            rw [forwardAction] at channelEntropy
-            exact channelEntropy
-          · intro reference
-            exact selectedChannel_quantumRelativeEntropy_preserving
-              candidate.update.core
-              (densityOf state).density
-              (densityOf reference).density
-          '''
+          start_marker = (
+              "  · have channelEntropy := "
+              "selectedChannel_vonNeumannEntropy_preserving\n"
+          )
+          end_marker = "      (densityOf reference).density\n"
 
-          new = '''  · have channelEntropy :
+          start = text.find(start_marker)
+          if start < 0:
+              raise SystemExit("The entropy-proof start marker was not found.")
+
+          end_start = text.find(end_marker, start)
+          if end_start < 0:
+              raise SystemExit("The entropy-proof end marker was not found.")
+          end = end_start + len(end_marker)
+
+          replacement = '''  · have channelEntropy :
                 vonNeumannEntropy
                     ((forwardChannelOf candidate.update).apply (densityOf state).density) =
                   vonNeumannEntropy (densityOf state).density := by
@@ -85,10 +79,9 @@ jobs:
                 (densityOf reference).density
           '''
 
-          if old not in text:
-              raise SystemExit("Expected Gate C proof block was not found; refusing to modify the file.")
-
-          updated = text.replace(old, new, 1)
+          updated = text[:start] + replacement + text[end:]
+          if updated == text:
+              raise SystemExit("The structural replacement produced no source change.")
           if any(token in updated for token in ("sorry", "sorryAx", "admit")):
               raise SystemExit("Forbidden proof placeholder detected after replacement.")
 
