@@ -19,12 +19,9 @@ lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/**/*.lean
 Generated dependencies under `.lake/` are excluded. The scan fails on `sorry`,
 `admit`, or a project-local declaration beginning with `axiom`.
 
-## Gate A public theorem audit
+## Gate A audit
 
-The abstract Gate A audit covers 22 public declarations, including checker
-soundness, finite composition, endpoint recovery, monitor composition,
-conditional infinite trajectories, summability, and the paper-facing abstract
-wrappers. Its source list is fixed in:
+The abstract Gate A audit covers 22 public declarations in:
 
 ```text
 docs/formal_core_v2/audit/GateAAxiomAudit.lean
@@ -40,56 +37,27 @@ Audit artifact:       formal-core-v2-gate-a-audit-29187317488-1
 Artifact SHA-256:     1082c28af4911b4b9e8c0fcd1a8b2c288c55a44a5c8947de5b172b2633eb39d5
 ```
 
-Every audited Gate A theorem reported exactly:
+Every audited Gate A theorem reported:
 
 ```lean
 [propext, Classical.choice, Quot.sound]
 ```
 
-The use of classical choice remains visible because the conditional infinite
-trajectory selects successors from the explicit `SuccessorAvailability`
-`Nonempty` premise. Availability is never derived from checker soundness.
+Classical choice remains visible because an infinite trajectory selects
+successors from an explicit `Nonempty` availability premise.
 
-## Gate B public theorem audit
+## Gate B audit
 
-The finite classical Gate B audit covers 22 public declarations in:
+The finite classical Gate B audit covers 22 declarations in:
 
 ```text
 docs/formal_core_v2/audit/GateBAxiomAudit.lean
 ```
 
-The audited surface includes:
-
-```lean
-RCP.ClassicalFinite.klDivergence_nonnegative
-RCP.ClassicalFinite.klDivergence_self
-RCP.ClassicalFinite.uniformBinary_kl_biasedBinary
-RCP.ClassicalFinite.uniformBinary_kl_biasedBinary_pos
-RCP.ClassicalFinite.shannonEntropy_extendByZero
-RCP.ClassicalFinite.klDivergence_extendByZero
-RCP.ClassicalFinite.recover_extendByZero
-RCP.ClassicalFinite.conservative_extension_recovery
-RCP.ClassicalFinite.binaryCheck_eq_true_iff
-RCP.ClassicalFinite.binaryCheck_rejects_invalidCandidate
-RCP.ClassicalFinite.binaryStateDistance_triangle
-RCP.ClassicalFinite.initial_improvement_obligations
-RCP.ClassicalFinite.target_stability_obligations
-RCP.ClassicalFinite.binary_checker_refines_kernel
-RCP.ClassicalFinite.binaryLyapunov_motion_step
-RCP.ClassicalFinite.binaryUnsupportedCollapse_step
-RCP.ClassicalFinite.binaryRelevance_step
-RCP.ClassicalFinite.binaryWorkedTrajectory_first_step_strict
-RCP.ClassicalFinite.binaryWorkedTrajectory_endpoint_recovery
-RCP.ClassicalFinite.binaryWorkedTrajectory_lyapunov_motion_bound
-RCP.ClassicalFinite.binaryWorkedTrajectory_ambiguity_bound
-RCP.ClassicalFinite.binaryWorkedTrajectory_relevance_bound
-```
-
 The authoritative Gate B validation record is:
 
 ```text
-Branch source head:   c33087041a8588f11f85c0c108046701269f291f
-PR merge-test SHA:    fb57537f2bb141987fcd10a8621876a034b15915
+Source head:          c33087041a8588f11f85c0c108046701269f291f
 Workflow run:         29208133524
 Build:                1942 jobs, success
 No sorry/admit:       pass
@@ -99,26 +67,69 @@ Audit artifact:       formal-core-v2-audit-29208133524-1
 Artifact SHA-256:     dd718909eb0e683e7e92fabf76eb773f8368a1437148f2c65ccfa10d3570930c
 ```
 
-For 20 of the 22 Gate B declarations, Lean reported:
+Most Gate B declarations report the standard union:
 
 ```lean
 [propext, Classical.choice, Quot.sound]
 ```
 
-The two narrower reports are:
+Narrower computational theorems use only `propext` or no axioms.
+
+## RCLM refinement and architecture-engine audit
+
+The RCLM audit file is:
 
 ```text
-binaryCheck_eq_true_iff:
-  [propext]
-
-binaryCheck_rejects_invalidCandidate:
-  no axioms
+docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
 ```
 
-Thus the audited Gate B theorem set is not globally axiom-free: it uses standard
-Lean/mathlib foundational principles transitively through real analysis,
-finite sums, structure extensionality, and the abstract composition theorems. It
-introduces no project-local axiom and contains no admitted proof.
+It covers 27 generic and concrete declarations, including:
+
+```lean
+RCLM.KernelRefinement.stepObligationsPreserved
+RCLM.KernelRefinement.recoveryCompositionLawsPreserved
+RCLM.rclm_checker_refines_rcp
+RCLM.rclm_checker_acceptance_preserved
+RCLM.rclm_monitor_refinement_valid
+RCLM.rclm_architecture_successor_theorem
+RCLM.conditional_infinite_architecture_trajectory_exists
+RCLM.infinite_architecture_step_result
+RCLM.ClassicalBinary.accepted_architecture_successor
+RCLM.ClassicalBinary.engine_relations_accept
+RCLM.ClassicalBinary.architectureSuccessorAvailability
+RCLM.ClassicalBinary.improvement_direct_engine_successor
+RCLM.ClassicalBinary.classical_infinite_architecture_trajectory_exists
+RCLM.ClassicalBinary.classical_infinite_architecture_step_result
+```
+
+The validated architecture-engine audit record is:
+
+```text
+Branch source head:   0731abfdf0edb940312a48051a3ca527c086af5b
+Workflow run:         29215941083
+Build:                1945 jobs, success
+No sorry/admit:       pass
+Project-local axioms: none
+No sorryAx:           pass
+Audited declarations: 27
+Audit artifact:       formal-core-v2-audit-29215941083-1
+Artifact SHA-256:     9d4d3d5a38e2bfefbb641950131c8a10dbec20fc90b89c165a08ef4f4b98fff4
+```
+
+The generic refinement and architecture theorems report:
+
+```lean
+[propext, Classical.choice, Quot.sound]
+```
+
+The concrete canonical projection theorems are axiom-free; several concrete
+Boolean/equality theorems report only `propext`. No audited declaration reports
+`sorryAx`.
+
+The classical-choice dependency in the architecture infinite theorem is
+expected and explicit: `ArchitectureSuccessorAvailability` supplies a `Nonempty`
+engine step for every valid predecessor, and the construction selects one. The
+availability proposition is not inferred from checker soundness.
 
 ## Combined acceptance rule
 
@@ -130,6 +141,7 @@ no project source contains sorry or admit
 no project-local axiom declaration is present
 all Gate A audit declarations elaborate
 all Gate B audit declarations elaborate
+all RCLM refinement and architecture-engine declarations elaborate
 no axiom report contains sorryAx
 a clean pinned build succeeds
 audit artifacts are uploaded even on failure
@@ -139,12 +151,13 @@ audit artifacts are uploaded even on failure
 
 ```text
 clean build ⇒ exact Paper I or Paper II theorem equivalence
-Gate B finite KL ⇒ arbitrary stochastic-channel data processing
+no project-local axioms ⇒ no standard Lean/mathlib foundational dependencies
+checker soundness ⇒ successor availability
+architecture availability ⇒ strict useful improvement at every step
+concrete binary infinite path ⇒ unbounded empirical RSI
 Gate B finite KL ⇒ quantum relative entropy
 binary monitor semantics ⇒ Paper I expectation, ambiguity, or mutual information
-checker soundness ⇒ successor availability
-finite accepted trajectory ⇒ executable or empirical RSI
-no project-local axioms ⇒ no standard Lean/mathlib foundational dependencies
+conditional architecture theorem ⇒ executable generator correctness
 ```
 
 ## Reproduction
@@ -154,6 +167,7 @@ After a successful build, run from `lean/rcp_rclm_formal_core_v2`:
 ```text
 lake env lean ../../docs/formal_core_v2/audit/GateAAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/GateBAxiomAudit.lean
+lake env lean ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
 ```
 
 The GitHub workflow additionally performs the source scans and uploads all
