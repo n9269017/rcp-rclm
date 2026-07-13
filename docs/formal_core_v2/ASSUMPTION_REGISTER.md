@@ -47,7 +47,15 @@ not an axiom that may silently be used by a public theorem.
 | A29 | accepted generated successors remain in the declared architecture theorem domain | architecture recursion | `ArchitectureEngine.successorDomain` | represented; concrete binary domain discharged |
 | A30 | every valid architecture predecessor has a generated, certified, selected, realized, resource-authorized, checker-accepted step | conditional infinite architecture theorem | explicit `RCLM.ArchitectureSuccessorAvailability` | intentionally assumed generically; discharged only for the declared binary reference engine |
 | A31 | every recursive architecture step is strictly beneficial rather than merely accepted and non-lossy | indefinitely strict RSI claim | no current generic theorem | **open and not inferred**; the concrete reference path becomes stable after the first strict step |
-| A32 | engine relations and RCLM fields have the exact pinned Paper II semantics | exact Paper II theorem equivalence | future line-by-line refinement | open |
+| A32 | engine relations and RCLM fields have the exact pinned Paper II semantics | exact Paper II theorem equivalence | line-by-line semantic identification and later Gate C refinement | partially discharged by explicit interfaces; full identity open |
+| A33 | the bounded Paper II seed domain refines to the compiled architecture theorem domain | bounded seed-library entry | `PaperIIBoundedSeedLibrary.seedDomain_to_engineDomain` | explicit generic field; concrete binary instance discharged |
+| A34 | the declared witness library and certificate-word grammar are finite and the grammar is nonempty on every seed-domain state | bounded packet construction | `witnesses`, `grammar`, `grammarNonempty` | explicit generic fields; concrete singleton grammars discharged |
+| A35 | every active grammar word maps to a covered witness and satisfies declared update-word and proof-word bounds | bounded coverage/tractability boundary | `wordWitnessMember`, `witnessMemberCovered`, `wordDepthBound`, `proofLengthBound` | explicit generic fields; concrete bounds equal one |
+| A36 | every active grammar word actually supplies proposal, certificate, candidate, realization, resource, and checker evidence | bounded packet-builder soundness | relational fields of `PaperIIBoundedSeedLibrary`; `PaperIIBoundedSeedPacket.toEngineStep` | explicit generic fields; concrete binary instance discharged |
+| A37 | the selected bounded-library successor remains in the next bounded seed domain | finite or infinite seed-library recursion | `PaperIIBoundedSeedLibrary.successorSeedDomain` | explicit completeness premise; concrete binary instance discharged |
+| A38 | the declared verifier schemas, uncertainty envelopes, goals, transports, refinement relations, distances, and drift budgets equal the compiled Paper II interfaces | exact bounded-class semantic bridge | `PaperIISeedSemanticIdentification` | explicit equality refinement; concrete binary identification discharged |
+| A39 | the finite grammar is complete only for the declared bounded witness class | claim discipline | bounded library interface and phase record | explicit limitation; arbitrary proof-search and learned-generator completeness remain open |
+| A40 | an infinite bounded seed-library trajectory requires grammar nonemptiness and successor seed-domain closure at every selected state | conditional infinite seed-library theorem | `conditional_infinite_paper_ii_bounded_seed_trajectory_exists` | represented constructively; not derived from checker soundness |
 
 ## Gate B finite-reference premises
 
@@ -63,18 +71,29 @@ not an axiom that may silently be used by a public theorem.
 | B8 | binary monitor semantics are the scoped meanings in `GATE_B_CLOSURE.md` | `binaryPreservationMonitors` | proved; no expectation/MI identity claimed |
 | B9 | concrete RCLM architecture states and packets are canonical lifts of the Gate B core | `RCLM.ClassicalBinary.ArchitectureEvidenceValid` | checked by the RCLM checker |
 | B10 | concrete engine coverage contains an improvement witness at `initial` and a stability witness at `target` | `ClassicalBinary.architectureSuccessorAvailability` | proved for the declared binary domain |
+| B11 | the active bounded packet grammar is exactly `{improve}` at `initial` and `{stabilize}` at `target` | `ClassicalBinary.boundedPacketGrammar`, `boundedPacketGrammar_cases` | proved by exhaustive cases |
+| B12 | every active bounded word and proof trace has depth at most one | `boundedWordDepth`, `boundedProofLength`, `boundedSeedLibrary` | proved |
+| B13 | the rejected word is absent from every active grammar | `boundedPacketGrammar_cases` | proved |
+| B14 | the bounded packet decoders reproduce the concrete engine proposal, certificate, candidate, resource, and successor relations | `ClassicalBinary.boundedSeedLibrary` | proved |
+| B15 | the concrete declared verifier, uncertainty, and goal objects are definitionally identified with the compiled Paper II reference interfaces | `boundedSeedSemanticIdentification` | proved |
+| B16 | the bounded seed-library path performs strict improvement once and then remains on the accepted stable target continuation | concrete seed packets and trajectory | proved at the reference scope; not indefinitely strict RSI |
 
 ## Current verdict
 
 Every assumption used by the abstract Gate A, finite Gate B, substantive RCLM
-refinement, and conditional architecture-engine theorem surfaces is represented
-as a structure field, proposition, theorem parameter, or explicit availability
-premise.
+refinement, conditional architecture engine, and bounded seed-library packet-builder
+theorem surfaces is represented as a structure field, proposition, theorem
+parameter, equality refinement, or explicit availability/completeness premise.
 
-The direct-engine theorem proves a conditional inference from actual engine-stage
-evidence and checker acceptance. It does not turn checker soundness into generator
-coverage. The concrete binary instance supplies coverage only for its declared
-two-state architecture domain and does not prove indefinite strict improvement.
+The bounded packet-builder theorem turns a finite grammar word with construction
+and checker evidence into complete RCLM, forgotten RCP, and Paper II
+successor-verification obligations. It does not infer grammar nonemptiness,
+generator coverage, or successor seed-domain closure from checker soundness.
+
+The concrete binary instance supplies a complete finite library only for its
+declared two-state architecture domain. It proves one strict KL-derived
+improvement followed by stable accepted continuation, not indefinite strict
+improvement or arbitrary learned-system entry.
 
 ## Foundational proof dependencies
 
@@ -86,7 +105,11 @@ separate audit files under `docs/formal_core_v2/audit/`.
 
 ```text
 checker soundness ⇒ successor existence
+checker soundness ⇒ grammar nonemptiness
 checker soundness ⇒ generator coverage or direct-engine construction
+checker soundness ⇒ successor seed-domain persistence
+finite grammar completeness ⇒ unbounded proof-search completeness
+bounded seed-library closure ⇒ arbitrary learned-system seed-domain entry
 architecture successor availability ⇒ strict improvement at every step
 accepted stability continuation ⇒ recursive capability growth
 finite or infinite formal trajectory ⇒ unbounded empirical RSI
