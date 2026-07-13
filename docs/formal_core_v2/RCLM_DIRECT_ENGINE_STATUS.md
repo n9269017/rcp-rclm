@@ -180,7 +180,8 @@ admitted proof occurs.
 
 ## Claim boundary
 
-This layer does not establish:
+This phase establishes a conditional architecture successor/direct-engine
+closure theorem and a concrete finite reference instance. It does not establish:
 
 ```text
 exact identity with every object in the pinned Paper II direct-engine theorem
