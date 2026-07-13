@@ -57,7 +57,7 @@ theorem classical_infinite_bounded_seed_step_refines_architecture
         kernelRefinement
         RCP.ClassicalFinite.binaryChecker
         preservationMonitors
-        binaryPreservationMonitors
+        RCP.ClassicalFinite.binaryPreservationMonitors
         (infinitePaperIIBoundedSeedPredecessor
           boundedSeedLibrary initialBoundedSeedPredecessor n).predecessor
         (infinitePaperIIBoundedSeedPacket
@@ -81,7 +81,7 @@ theorem classical_infinite_bounded_seed_step_refines_architecture
     checkerRefinement
     recoveryCompositionLaws
     preservationMonitors
-    binaryPreservationMonitors
+    RCP.ClassicalFinite.binaryPreservationMonitors
     monitorRefinement
     initialBoundedSeedPredecessor
     n
