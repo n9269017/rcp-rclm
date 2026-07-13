@@ -63,8 +63,8 @@ lake exe cache get
 lake build
 ```
 
-A successful build should finish without an admitted-proof or local-axiom audit;
-those are separate checks below.
+A successful build does not replace the separate source-admission and theorem-
+axiom checks below.
 
 ## Paper/source pin audit
 
@@ -74,20 +74,10 @@ From the repository root:
 bash docs/formal_core_v2/audit/verify_paper_alignment_pins.sh
 ```
 
-This checks:
-
-```text
-Paper I blob hash
-Paper II blob hash
-required paper theorem labels
-required Gate A theorem surfaces
-required Gate B theorem surfaces
-required RCLM/refinement/engine theorem surfaces
-closure-record claim-boundary text
-```
-
-A passing pin audit means the audited sources and mapped declaration names have
-not drifted. It does not prove semantic equivalence by itself.
+This checks the pinned paper blobs, required theorem labels, mapped Gate A/Gate B/
+RCLM surfaces, and closure-record claim-boundary text. A passing pin audit means
+the audited sources and mapped declaration names have not drifted; it does not
+prove semantic equivalence by itself.
 
 ## Theorem-axiom audits
 
@@ -97,6 +87,7 @@ From `lean/rcp_rclm_formal_core_v2`:
 lake env lean ../../docs/formal_core_v2/audit/GateAAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/GateBAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
+lake env lean ../../docs/formal_core_v2/audit/GateCAxiomAudit.lean
 ```
 
 Each audit elaborates named public declarations and prints the kernel axioms used
@@ -112,7 +103,7 @@ if grep -RInE \
     --include='*.lean' \
     --exclude-dir='.lake' \
     --exclude-dir='audit-results' \
-    '(^|[^[:alnum:]_])(sorry|admit)([^[:alnum:]_]|$)' \
+    '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
     RcpRclmFormalCoreV2 RcpRclmFormalCoreV2.lean; then
   exit 1
 fi
@@ -127,9 +118,9 @@ if grep -RInE \
 fi
 ```
 
-These scans answer whether the project source contains admitted proofs or
-project-local axiom declarations. They do not remove standard Lean/mathlib
-foundational dependencies.
+These scans answer whether the project source contains admitted proofs or project-
+local axiom declarations. They do not remove standard Lean/mathlib foundational
+dependencies.
 
 # Clean reproduction on Windows PowerShell
 
@@ -214,12 +205,13 @@ The authoritative workflow performs these steps in order:
 4. Pinned dependency resolution with cache-on-update disabled
 5. Official mathlib cache retrieval
 6. Full Lean build
-7. Source scan for sorry/admit
+7. Source scan for sorry/sorryAx/admit
 8. Project-local axiom scan
 9. Gate A theorem-axiom audit
 10. Gate B theorem-axiom audit
 11. RCLM/refinement/engine/bounded-seed theorem-axiom audit
-12. Artifact upload even if an earlier validation step fails
+12. Gate C selected quantum theorem-axiom audit
+13. Artifact upload even if an earlier validation step fails
 ```
 
 The workflow records:
@@ -288,8 +280,8 @@ A complete reproduction distinguishes:
 | Source identity | Git commit plus paper and historical-source blob pins |
 | Dependency identity | `lean-toolchain`, `lakefile.toml`, `lake-manifest.json` |
 | Elaboration | Successful clean `lake build` |
-| Admission policy | No `sorry`/`admit`; no project-local `axiom` declaration |
-| Public theorem dependencies | Saved `#print axioms` reports |
+| Admission policy | No `sorry`/`sorryAx`/`admit`; no project-local `axiom` declaration |
+| Public theorem dependencies | Saved Gate A, Gate B, RCLM, and Gate C `#print axioms` reports |
 | Paper mapping | Passing pin/surface audit plus theorem map and assumption register |
 | Claim boundary | Gate closure record, exit criteria, and formalization manifest |
 
