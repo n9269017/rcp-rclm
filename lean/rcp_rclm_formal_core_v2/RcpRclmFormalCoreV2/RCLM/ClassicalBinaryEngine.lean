@@ -181,8 +181,14 @@ noncomputable def architectureEngine :
       rcases selected with selected | selected
       · rcases selected with ⟨proposalEq, candidateEq⟩
         subst candidate
-        simpa [kernel, resourceValid, forgetCandidate] using
-          initial_improvement_obligations.resourceValid
+        change
+          binaryResourceValid
+            state.core
+            ({ update := BinaryUpdate.improve
+               next := BinaryState.target } :
+              Candidate BinaryState BinaryUpdate)
+            BinaryCertificate.improvement
+        simp [binaryResourceValid]
       · rcases selected with ⟨proposalContradiction, candidateEq⟩
         cases proposalContradiction
     · rcases constructed with ⟨proposalEq, certificateEq⟩
@@ -193,8 +199,14 @@ noncomputable def architectureEngine :
         cases proposalContradiction
       · rcases selected with ⟨proposalEq, candidateEq⟩
         subst candidate
-        simpa [kernel, resourceValid, forgetCandidate] using
-          target_stability_obligations.resourceValid
+        change
+          binaryResourceValid
+            state.core
+            ({ update := BinaryUpdate.stay
+               next := BinaryState.target } :
+              Candidate BinaryState BinaryUpdate)
+            BinaryCertificate.stability
+        simp [binaryResourceValid]
   successorDomain := by
     intro state witness proposal certificate candidate anchor resource
       stateDomain stateAdmissible stateInvariant witnessCovered generated
@@ -252,8 +264,10 @@ def improvementEngineStep :
   successorRealized := by
     exact ⟨rfl, rfl⟩
   resourceAuthorized := by
-    norm_num [engineResourcePremise, initialState, canonicalState,
-      improvementResource]
+    change
+      initialState.resources.used ≤ initialState.resources.limit ∧
+        improvementResource.used ≤ improvementResource.limit
+    norm_num [initialState, canonicalState, improvementResource]
   checkerAccepted := improvement_check_accepts
 
 def stabilityEngineStep :
@@ -270,8 +284,10 @@ def stabilityEngineStep :
   successorRealized := by
     exact ⟨rfl, rfl⟩
   resourceAuthorized := by
-    norm_num [engineResourcePremise, targetState, canonicalState,
-      stabilityResource]
+    change
+      targetState.resources.used ≤ targetState.resources.limit ∧
+        stabilityResource.used ≤ stabilityResource.limit
+    norm_num [targetState, canonicalState, stabilityResource]
   checkerAccepted := stability_check_accepts
 
 theorem architectureSuccessorAvailability :
@@ -288,8 +304,7 @@ theorem architectureSuccessorAvailability :
             stateCanonical
           _ = canonicalState .initial := by rw [coreEq]
           _ = initialState := rfl
-      cases stateEq
-      exact ⟨improvementEngineStep⟩
+      exact ⟨stateEq.symm ▸ improvementEngineStep⟩
   | target =>
       have stateEq : predecessor.state = targetState := by
         calc
@@ -297,8 +312,7 @@ theorem architectureSuccessorAvailability :
             stateCanonical
           _ = canonicalState .target := by rw [coreEq]
           _ = targetState := rfl
-      cases stateEq
-      exact ⟨stabilityEngineStep⟩
+      exact ⟨stateEq.symm ▸ stabilityEngineStep⟩
 
 theorem improvement_direct_engine_successor :
     ArchitectureSuccessorResult
