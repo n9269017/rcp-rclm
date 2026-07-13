@@ -707,36 +707,36 @@ theorem accepted_quantum_architecture_successor
   · exact selectedChannel_recovery_exact
       candidate.update.core (densityOf state).density
   · have channelEntropy :
-      vonNeumannEntropy
-          ((forwardChannelOf candidate.update).apply (densityOf state).density) =
-        vonNeumannEntropy (densityOf state).density := by
-    simpa [forwardChannelOf] using
-      selectedChannel_vonNeumannEntropy_preserving
-        candidate.update.core (densityOf state).density
-  have forwardAction :
-      (forwardChannelOf candidate.update).apply (densityOf state).density =
-        (densityOf candidate.next).density := by
-    calc
-      (forwardChannelOf candidate.update).apply (densityOf state).density =
-          (stateDensity
-            (quantumApply state.core candidate.update.core)).density := by
-        exact selectedChannel_state_action state.core candidate.update.core
-      _ = (densityOf candidate.next).density := by
-        exact congrArg (fun coreState => (stateDensity coreState).density) coreTyped.symm
-  calc
-    entropyOf candidate.next =
         vonNeumannEntropy
-          ((forwardChannelOf candidate.update).apply (densityOf state).density) := by
-      simpa [entropyOf] using
-        congrArg vonNeumannEntropy forwardAction.symm
-    _ = entropyOf state := by
-      simpa [entropyOf] using channelEntropy
-· intro reference
-  simpa [forwardChannelOf, relativeEntropyOf] using
-    selectedChannel_quantumRelativeEntropy_preserving
-      candidate.update.core
-      (densityOf state).density
-      (densityOf reference).density
+            ((forwardChannelOf candidate.update).apply (densityOf state).density) =
+          vonNeumannEntropy (densityOf state).density := by
+      simpa [forwardChannelOf] using
+        selectedChannel_vonNeumannEntropy_preserving
+          candidate.update.core (densityOf state).density
+    have forwardAction :
+        (forwardChannelOf candidate.update).apply (densityOf state).density =
+          (densityOf candidate.next).density := by
+      calc
+        (forwardChannelOf candidate.update).apply (densityOf state).density =
+            (stateDensity
+              (quantumApply state.core candidate.update.core)).density := by
+          exact selectedChannel_state_action state.core candidate.update.core
+        _ = (densityOf candidate.next).density := by
+          exact congrArg (fun coreState => (stateDensity coreState).density) coreTyped.symm
+    calc
+      entropyOf candidate.next =
+          vonNeumannEntropy
+            ((forwardChannelOf candidate.update).apply (densityOf state).density) := by
+        simpa [entropyOf] using
+          congrArg vonNeumannEntropy forwardAction.symm
+      _ = entropyOf state := by
+        simpa [entropyOf] using channelEntropy
+  · intro reference
+    simpa [forwardChannelOf, relativeEntropyOf] using
+      selectedChannel_quantumRelativeEntropy_preserving
+        candidate.update.core
+        (densityOf state).density
+        (densityOf reference).density
 
 theorem improvement_quantum_architecture_successor :
     QuantumArchitectureSuccessor
