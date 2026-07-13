@@ -5,3 +5,4 @@ import RcpRclmFormalCoreV2.RCLM.Refinement
 import RcpRclmFormalCoreV2.RCLM.ArchitectureTheorem
 import RcpRclmFormalCoreV2.RCLM.ArchitectureEngine
 import RcpRclmFormalCoreV2.RCLM.ClassicalBinary
+import RcpRclmFormalCoreV2.RCLM.ClassicalBinaryEngine
