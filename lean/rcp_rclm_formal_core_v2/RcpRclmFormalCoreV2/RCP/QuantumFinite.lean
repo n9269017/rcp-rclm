@@ -1,2 +1,3 @@
 import RcpRclmFormalCoreV2.RCP.QuantumDensity
 import RcpRclmFormalCoreV2.RCP.QuantumKernel
+import RcpRclmFormalCoreV2.RCP.QuantumChannels
