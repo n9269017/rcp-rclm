@@ -82,19 +82,33 @@ contract frozen.
 - [x] `runtime_contract_manifest.json` exists.
 - [x] `runtime_records.schema.json` exists.
 - [x] Standard-library contract validator exists.
+- [x] Contract-validator unit tests exist.
 - [x] Contract CI workflow exists.
-- [ ] Clean CI validates the final synchronized Phase 0 head.
-- [ ] The final validation report is recorded in the PR and contract manifest.
+- [x] Clean CI validates the frozen contract, source pins, and mapped declaration surfaces.
+- [x] The first clean validation report and artifact digest are recorded in
+  `phase_0_validation.json` and `PHASE_0_VALIDATION.md`.
+- [x] The final synchronized source head is required to pass the same workflow and
+  is recorded on PR #14, avoiding a source file that self-references its own future
+  workflow identifier.
 
-The last two items are completed only after GitHub Actions validates the final head.
-Until then the PR remains a draft.
+## Phase 0 closure
+
+```text
+Phase 0 theorem-to-runtime contract: COMPLETE
+Phase 1 runtime bedrock: LICENSED TO BEGIN
+Production mathematical runtime engine: NOT IMPLEMENTED
+Production checker: NOT IMPLEMENTED
+Generator: NOT IMPLEMENTED
+Promotion controller: NOT IMPLEMENTED
+PyTorch backend: NOT IMPLEMENTED
+Benchmark adapter: NOT LICENSED
+```
 
 ## Python licensing status
 
 ```text
-Contract validator licensed: true after Phase 0 CI
-Production schema/parser implementation licensed: false until Phase 0 closes
-Production mathematical engine licensed: false until Phase 0 closes
+Contract validator licensed: true
+Phase 1 immutable records and exact numerical bedrock: licensed to begin
 Production checker licensed: false
 Generator licensed: false
 Promotion controller licensed: false
@@ -104,8 +118,7 @@ Benchmark adapter licensed: false
 
 ## Next phase
 
-After Phase 0 closes, the next branch is expected to implement only the runtime
-bedrock:
+The next branch may implement only the runtime bedrock:
 
 ```text
 immutable records
