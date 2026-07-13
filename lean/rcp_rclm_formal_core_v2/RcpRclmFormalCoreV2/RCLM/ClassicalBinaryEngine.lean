@@ -174,79 +174,27 @@ noncomputable def architectureEngine :
   resourcePremiseSound := by
     intro state proposal certificate candidate resource
       stateDomain constructed selected resourceAuthorized
-    have generated :
-        ∃ witness, engineWitnessLibrary witness ∧
-          engineProposes state witness proposal := by
-      rcases constructed with constructed | constructed
-      · rcases constructed with ⟨proposalEq, certificateEq⟩
-        subst proposal
-        rcases stateDomain with ⟨stateCanonical, stateNotOutside⟩
-        cases coreEq : state.core with
-        | outside =>
-            exact False.elim (stateNotOutside coreEq)
-        | initial =>
-            have stateEq : state = initialState := by
-              calc
-                state = canonicalState state.core := stateCanonical
-                _ = canonicalState .initial := by rw [coreEq]
-                _ = initialState := rfl
-            exact
-              ⟨.strictImprovement, True.intro,
-                Or.inl ⟨stateEq, rfl, rfl⟩⟩
-        | target =>
-            rcases selected with selected | selected
-            · rcases selected with ⟨proposalEq, candidateEq⟩
-              exact
-                ⟨.strictImprovement, True.intro,
-                  Or.inl ⟨by
-                    have contradiction : state = initialState := by
-                      calc
-                        state = canonicalState state.core := stateCanonical
-                        _ = canonicalState .target := by rw [coreEq]
-                        _ = targetState := rfl
-                    cases contradiction
-                  , rfl, rfl⟩⟩
-            · rcases selected with ⟨proposalContradiction, candidateEq⟩
-              cases proposalContradiction
-      · rcases constructed with ⟨proposalEq, certificateEq⟩
-        subst proposal
-        rcases stateDomain with ⟨stateCanonical, stateNotOutside⟩
-        cases coreEq : state.core with
-        | outside =>
-            exact False.elim (stateNotOutside coreEq)
-        | initial =>
-            rcases selected with selected | selected
-            · rcases selected with ⟨proposalContradiction, candidateEq⟩
-              cases proposalContradiction
-            · rcases selected with ⟨proposalEq, candidateEq⟩
-              exact
-                ⟨.stableContinuation, True.intro,
-                  Or.inr ⟨by
-                    have stateEq : state = initialState := by
-                      calc
-                        state = canonicalState state.core := stateCanonical
-                        _ = canonicalState .initial := by rw [coreEq]
-                        _ = initialState := rfl
-                    cases stateEq
-                  , rfl, rfl⟩⟩
-        | target =>
-            have stateEq : state = targetState := by
-              calc
-                state = canonicalState state.core := stateCanonical
-                _ = canonicalState .target := by rw [coreEq]
-                _ = targetState := rfl
-            exact
-              ⟨.stableContinuation, True.intro,
-                Or.inr ⟨stateEq, rfl, rfl⟩⟩
-    rcases generated with ⟨witness, witnessCovered, generated⟩
-    have accepted : checker.check state candidate certificate = true :=
-      engine_relations_accept generated constructed selected
-    have stateAdmissible : kernel.admissible state :=
-      ⟨stateDomain.2, stateDomain.1⟩
-    have stateInvariant : kernel.protectedInvariant state :=
-      ⟨stateDomain.2, stateDomain.1⟩
-    have obligations := checker.sound stateAdmissible stateInvariant accepted
-    exact obligations.resourceValid
+    rcases constructed with constructed | constructed
+    · rcases constructed with ⟨proposalEq, certificateEq⟩
+      subst proposal
+      subst certificate
+      rcases selected with selected | selected
+      · rcases selected with ⟨proposalEq, candidateEq⟩
+        subst candidate
+        simpa [kernel, resourceValid, forgetCandidate] using
+          initial_improvement_obligations.resourceValid
+      · rcases selected with ⟨proposalContradiction, candidateEq⟩
+        cases proposalContradiction
+    · rcases constructed with ⟨proposalEq, certificateEq⟩
+      subst proposal
+      subst certificate
+      rcases selected with selected | selected
+      · rcases selected with ⟨proposalContradiction, candidateEq⟩
+        cases proposalContradiction
+      · rcases selected with ⟨proposalEq, candidateEq⟩
+        subst candidate
+        simpa [kernel, resourceValid, forgetCandidate] using
+          target_stability_obligations.resourceValid
   successorDomain := by
     intro state witness proposal certificate candidate anchor resource
       stateDomain stateAdmissible stateInvariant witnessCovered generated
