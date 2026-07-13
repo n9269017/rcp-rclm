@@ -84,6 +84,6 @@ require_text docs/formal_core_v2/GATE_B_CLOSURE.md 'Gate B is complete at the de
 require_text docs/formal_core_v2/GATE_B_CLOSURE.md 'Exact Paper I main-theorem equivalence: not claimed'
 require_text docs/formal_core_v2/RCLM_DIRECT_ENGINE_STATUS.md 'Generic Paper II-facing conditional theorem: implemented'
 require_text docs/formal_core_v2/RCLM_DIRECT_ENGINE_STATUS.md 'Exact full Paper II theorem equivalence: not claimed'
-require_text docs/formal_core_v2/RCLM_DIRECT_ENGINE_STATUS.md 'Checker soundness does not imply this availability premise.'
+require_text docs/formal_core_v2/RCLM_DIRECT_ENGINE_STATUS.md 'It does not prove'
 
 printf '%s\n' 'PASS: paper blobs, theorem labels, Gate A, Gate B, substantive RCLM refinement, conditional architecture-engine declarations, and claim boundaries are pinned.'
