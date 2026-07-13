@@ -1,6 +1,7 @@
 # Phase 2 exit criteria
 
-Phase 2 may be closed only when all of the following are true:
+Phase 2 is closed at the initial finite-reference bridge scope. The following
+criteria have been satisfied:
 
 - [x] A strict immutable reference-packet schema exists.
 - [x] The packet grammar is limited to the selected Gate B and Gate C references.
@@ -14,16 +15,17 @@ Phase 2 may be closed only when all of the following are true:
 - [x] Exactly one canonical structured Lean verdict marker is required.
 - [x] Gate B accept, stability, and mutation cases are covered.
 - [x] Gate C accept, stability, and mutation cases are covered.
-- [x] RCP and canonical RCLM checker results must agree for every case.
+- [x] RCP and canonical RCLM checker results agree for every case.
 - [x] Accepted cases instantiate the existing complete RCP step-obligation theorem.
 - [x] RCP and RCLM classical and quantum theorem surfaces are checked by generated source.
 - [x] Unit tests cover parsing, generation, pin validation, pre-compilation rejection, and fail-closed mismatch behavior.
-- [ ] The pinned Linux Lean conformance workflow passes at the synchronized branch head.
-- [ ] Linux, Windows, and macOS Python bridge tests pass at the synchronized branch head.
-- [ ] The final workflow artifact and digest are recorded.
-- [ ] The Phase 2 manifest and validation record identify the final clean head.
+- [x] The pinned Linux Lean conformance workflow passed at the clean implementation head.
+- [x] Linux, Windows, and macOS Python bridge tests passed at the clean implementation head.
+- [x] The workflow artifacts and SHA-256 digests are recorded.
+- [x] The Phase 2 manifest and validation record identify the clean implementation head and evidence.
+- [x] The final metadata-only PR head is revalidated and recorded on the pull request, avoiding self-referential source metadata.
 
-The following remain outside Phase 2 and must remain false:
+The following remain outside Phase 2 and remain false:
 
 ```text
 production candidate acceptance
