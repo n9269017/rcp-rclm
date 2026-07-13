@@ -20,13 +20,12 @@ _COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40}$")
 
 
 class ReleaseEvidenceError(ValueError):
-    pass
+    """Raised when committed Phase 2 release evidence violates the frozen schema."""
 
 
 def validate_release_evidence(value: object) -> dict[str, object]:
-    root = _object(value, "phase_2_validation")
-    _exact_keys(
-        root,
+    root = _object_with_keys(
+        value,
         {
             "schema_version",
             "contract_version",
@@ -50,6 +49,7 @@ def validate_release_evidence(value: object) -> dict[str, object]:
     )
     _equal(root["schema_version"], _SCHEMA_VERSION, "schema_version")
     _equal(root["contract_version"], CONTRACT_VERSION, "contract_version")
+    _string(root["phase_name"], "phase_name")
     _equal(root["release_status"], _RELEASE_STATUS, "release_status")
     _equal(root["formal_source_commit"], FORMAL_SOURCE_COMMIT, "formal_source_commit")
     _commit(root["validated_implementation_head"], "validated_implementation_head")
@@ -58,9 +58,8 @@ def validate_release_evidence(value: object) -> dict[str, object]:
         raise ReleaseEvidenceError("workflow_run must be a positive integer")
     _equal(root["workflow_conclusion"], "success", "workflow_conclusion")
 
-    jobs = _object(root["jobs"], "jobs")
-    _exact_keys(
-        jobs,
+    jobs = _object_with_keys(
+        root["jobs"],
         {
             "lean_conformance",
             "macos_python",
@@ -73,9 +72,8 @@ def validate_release_evidence(value: object) -> dict[str, object]:
     for name, conclusion in jobs.items():
         _equal(conclusion, "success", f"jobs.{name}")
 
-    project_pin = _object(root["project_pin"], "project_pin")
-    _exact_keys(
-        project_pin,
+    project_pin = _object_with_keys(
+        root["project_pin"],
         {
             "formal_source_tree",
             "lakefile_sha256",
@@ -91,18 +89,20 @@ def validate_release_evidence(value: object) -> dict[str, object]:
     _commit(project_pin["formal_source_tree"], "project_pin.formal_source_tree")
     _equal(project_pin["lean_toolchain"], LEAN_TOOLCHAIN, "project_pin.lean_toolchain")
     _equal(project_pin["mathlib_commit"], MATHLIB_COMMIT, "project_pin.mathlib_commit")
-    for field in (
-        "lakefile_sha256",
-        "manifest_sha256",
-        "pin_hash",
-        "theorem_surface_hash",
-        "toolchain_file_sha256",
-    ):
-        _hash(project_pin[field], f"project_pin.{field}")
+    _hash_fields(
+        project_pin,
+        (
+            "lakefile_sha256",
+            "manifest_sha256",
+            "pin_hash",
+            "theorem_surface_hash",
+            "toolchain_file_sha256",
+        ),
+        "project_pin",
+    )
 
-    toolchain_runtime = _object(root["toolchain_runtime"], "toolchain_runtime")
-    _exact_keys(
-        toolchain_runtime,
+    toolchain_runtime = _object_with_keys(
+        root["toolchain_runtime"],
         {"lake_version", "lean_version", "runtime_hash"},
         "toolchain_runtime",
     )
@@ -114,9 +114,8 @@ def validate_release_evidence(value: object) -> dict[str, object]:
         raise ReleaseEvidenceError("toolchain_runtime.lake_version must identify Lean 4.31.0")
     _hash(toolchain_runtime["runtime_hash"], "toolchain_runtime.runtime_hash")
 
-    source_guard = _object(root["source_guard"], "source_guard")
-    _exact_keys(
-        source_guard,
+    source_guard = _object_with_keys(
+        root["source_guard"],
         {
             "admit_rejected",
             "invalid_utf8_rejected",
@@ -129,9 +128,8 @@ def validate_release_evidence(value: object) -> dict[str, object]:
     )
     _all_true(source_guard, "source_guard")
 
-    suite = _object(root["differential_suite"], "differential_suite")
-    _exact_keys(
-        suite,
+    suite = _object_with_keys(
+        root["differential_suite"],
         {
             "accepting_case_count",
             "all_bridge_reports_accepted",
@@ -149,28 +147,32 @@ def validate_release_evidence(value: object) -> dict[str, object]:
     _equal(suite["rejecting_case_count"], 6, "differential_suite.rejecting_case_count")
     _is_true(suite["all_bridge_reports_accepted"], "differential_suite.all_bridge_reports_accepted")
     _is_true(suite["all_differential_matches"], "differential_suite.all_differential_matches")
-    for field in (
-        "classical_theorem_surface_hash",
-        "conformance_report_hash",
-        "quantum_theorem_surface_hash",
-    ):
-        _hash(suite[field], f"differential_suite.{field}")
+    _hash_fields(
+        suite,
+        (
+            "classical_theorem_surface_hash",
+            "conformance_report_hash",
+            "quantum_theorem_surface_hash",
+        ),
+        "differential_suite",
+    )
 
-    artifacts = _object(root["artifacts"], "artifacts")
-    _exact_keys(
-        artifacts,
+    artifacts = _object_with_keys(
+        root["artifacts"],
         {"final", "lean", "python_macos", "python_ubuntu", "python_windows"},
         "artifacts",
     )
     for name, artifact_value in artifacts.items():
-        artifact = _object(artifact_value, f"artifacts.{name}")
-        _exact_keys(artifact, {"name", "sha256"}, f"artifacts.{name}")
+        artifact = _object_with_keys(
+            artifact_value,
+            {"name", "sha256"},
+            f"artifacts.{name}",
+        )
         _string(artifact["name"], f"artifacts.{name}.name")
         _hash(artifact["sha256"], f"artifacts.{name}.sha256")
 
-    validation_summary = _object(root["validation_summary"], "validation_summary")
-    _exact_keys(
-        validation_summary,
+    validation_summary = _object_with_keys(
+        root["validation_summary"],
         {
             "formal_core_build",
             "generated_source_admission_scan",
@@ -187,9 +189,8 @@ def validate_release_evidence(value: object) -> dict[str, object]:
     )
     _all_true(validation_summary, "validation_summary")
 
-    licenses = _object(root["licenses_after_phase_2"], "licenses_after_phase_2")
-    _exact_keys(
-        licenses,
+    licenses = _object_with_keys(
+        root["licenses_after_phase_2"],
         {
             "benchmark_adapter",
             "candidate_acceptance",
@@ -206,20 +207,14 @@ def validate_release_evidence(value: object) -> dict[str, object]:
         licenses["phase_3_checker_development_may_begin"],
         "licenses_after_phase_2.phase_3_checker_development_may_begin",
     )
-    for field in (
-        "benchmark_adapter",
-        "candidate_acceptance",
-        "generator",
-        "independent_replay",
-        "promotion_controller",
-        "pytorch_backend",
-        "successor_realizer",
-    ):
-        _is_false(licenses[field], f"licenses_after_phase_2.{field}")
+    _all_false_except(
+        licenses,
+        "phase_3_checker_development_may_begin",
+        "licenses_after_phase_2",
+    )
 
-    boundary = _object(root["claim_boundary"], "claim_boundary")
-    _exact_keys(
-        boundary,
+    boundary = _object_with_keys(
+        root["claim_boundary"],
         {
             "arbitrary_rclm_packet_refinement_established",
             "benchmark_claim",
@@ -232,17 +227,19 @@ def validate_release_evidence(value: object) -> dict[str, object]:
         "claim_boundary",
     )
     _is_true(boundary["reference_bridge_complete"], "claim_boundary.reference_bridge_complete")
-    for field in (
-        "arbitrary_rclm_packet_refinement_established",
-        "benchmark_claim",
-        "candidate_acceptance_licensed",
-        "executable_rsi_claim",
-        "mature_packet_executable_complete",
-        "production_checker_soundness_established",
-    ):
-        _is_false(boundary[field], f"claim_boundary.{field}")
-
+    _all_false_except(boundary, "reference_bridge_complete", "claim_boundary")
     return root
+
+
+def _object_with_keys(value: object, expected: set[str], path: str) -> dict[str, object]:
+    obj = _object(value, path)
+    actual = set(obj)
+    if actual != expected:
+        raise ReleaseEvidenceError(
+            f"{path} fields differ: missing={sorted(expected - actual)}, "
+            f"unknown={sorted(actual - expected)}"
+        )
+    return obj
 
 
 def _object(value: object, path: str) -> dict[str, object]:
@@ -251,14 +248,6 @@ def _object(value: object, path: str) -> dict[str, object]:
     if not all(isinstance(key, str) for key in value):
         raise ReleaseEvidenceError(f"{path} keys must be strings")
     return value
-
-
-def _exact_keys(value: Mapping[str, object], expected: set[str], path: str) -> None:
-    actual = set(value)
-    if actual != expected:
-        raise ReleaseEvidenceError(
-            f"{path} fields differ: missing={sorted(expected - actual)}, unknown={sorted(actual - expected)}"
-        )
 
 
 def _string(value: object, path: str) -> str:
@@ -286,6 +275,11 @@ def _hash(value: object, path: str) -> None:
         raise ReleaseEvidenceError(str(exc)) from exc
 
 
+def _hash_fields(value: Mapping[str, object], fields: Sequence[str], path: str) -> None:
+    for field in fields:
+        _hash(value[field], f"{path}.{field}")
+
+
 def _is_true(value: object, path: str) -> None:
     if value is not True:
         raise ReleaseEvidenceError(f"{path} must be true")
@@ -299,6 +293,12 @@ def _is_false(value: object, path: str) -> None:
 def _all_true(value: Mapping[str, object], path: str) -> None:
     for key, item in value.items():
         _is_true(item, f"{path}.{key}")
+
+
+def _all_false_except(value: Mapping[str, object], allowed_true: str, path: str) -> None:
+    for key, item in value.items():
+        if key != allowed_true:
+            _is_false(item, f"{path}.{key}")
 
 
 def _arguments() -> argparse.Namespace:
