@@ -8,9 +8,9 @@ executable implementation that follows the completed Formal Core v2 Lean project
 ```text
 Phase 0 theorem-to-runtime contract: complete and merged
 Phase 1 deterministic runtime bedrock: complete and cross-platform validated
-Phase 2 initial pinned Lean conformance bridge: implemented; clean CI pending
+Phase 2 initial pinned Lean conformance bridge: complete and validated
 Mature canonical-packet Lean executable: not implemented
-Production fail-closed successor checker: not implemented
+Production fail-closed successor checker: next phase; not implemented
 Untrusted generator: not implemented
 Promotion and rollback controller: not implemented
 PyTorch proposal backend: not implemented
@@ -59,7 +59,15 @@ python/rcp_rclm_executable_core_v2/contract/
 | Document | Purpose |
 |---|---|
 | `PHASE_2_LEAN_CONFORMANCE_BRIDGE.md` | Initial generated-source bridge, trust boundary, evidence, and differential claim |
-| `PHASE_2_EXIT_CRITERIA.md` | Conditions required before Phase 2 can close |
+| `PHASE_2_EXIT_CRITERIA.md` | Closed Phase 2 implementation and licensing criteria |
+| `PHASE_2_VALIDATION.md` | Pinned Lean run, ten-case differential suite, and artifact digests |
+
+Machine-readable Phase 2 records are:
+
+```text
+python/rcp_rclm_runtime_v2/phase_2_manifest.json
+python/rcp_rclm_runtime_v2/phase_2_validation.json
+```
 
 The bridge package is:
 
@@ -74,12 +82,17 @@ canonical reference packet
 → independent Python interpretation
 → deterministic Lean source generation
 → mandatory source guard
-→ exact pin verification
+→ exact formal-source and toolchain pin verification
 → pinned Lean compilation
 → structured RCP/RCLM verdict parsing
 → differential comparison
 → preserved evidence
 ```
+
+The clean implementation validation covered ten cases: four accepted
+improvement/stability packets and six rejected wrong-successor,
+wrong-certificate, or malformed-certificate mutations across Gate B and the
+selected Gate C scope.
 
 The checker, generator, successor controller, replay layer, and PyTorch backend remain
 absent rather than represented by empty modules.
@@ -89,7 +102,7 @@ absent rather than represented by empty modules.
 ```text
 frozen Phase 0 contract
 → deterministic Phase 1 runtime bedrock
-→ Phase 2 pinned Lean bridge and differential conformance
+→ completed Phase 2 pinned Lean bridge and differential conformance
 → fail-closed production checker
 → adversarial rejection suite
 → untrusted predecessor-driven generator
