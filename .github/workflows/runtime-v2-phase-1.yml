@@ -56,10 +56,10 @@ jobs:
 
       - name: Run deterministic unit and conformance tests
         run: >-
-          python -m unittest discover
-          -s python/rcp_rclm_runtime_v2/tests
-          -p "test_*.py"
-          -v
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase1_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_1/${{ matrix.os }}/unittest.log
 
       - name: Emit platform validation report
         run: >-
