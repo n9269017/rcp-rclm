@@ -1,15 +1,16 @@
 # Phase 2 pinned Lean conformance validation
 
-## First clean synchronized implementation validation
+## Authoritative clean implementation validation
 
-The initial generated-source Lean bridge passed its full validation matrix at:
+The initial generated-source Lean bridge, including the repaired release validator
+and complete source-guard failure metadata, passed its full validation matrix at:
 
 ```text
 validated implementation head:
-01319d8be6c4025fb32092588e4f021a60596652
+0de375d1c615c8d73eb26b53a7bddb47eaccec70
 
 workflow run:
-29287943656
+29293545142
 
 result:
 success
@@ -47,8 +48,33 @@ certificates, or malformed certificates.
 The canonical conformance-report hash is:
 
 ```text
-3c6c35067e1e810fa21f09360451768ccb89f493416f9c0ff380c8f7775096c1
+95ea6a835c054eb5148fe74c7987e8cab4f83125656539b7f1ee95ae89579aa2
 ```
+
+## Source-guard evidence
+
+Every persisted source-guard report now records:
+
+```text
+gate version
+source path
+source SHA-256
+byte count
+clean/rejected status
+matched token and reason code
+one-based line and column
+```
+
+The validated gate version is:
+
+```text
+rcp-rclm-lean-source-guard-v2.0.0
+```
+
+When a caller does not supply a semantic source path, the guard assigns a
+deterministic content-addressed virtual path of the form
+`generated/sha256-<source-hash>.lean`. Rejection remains pre-compilation and
+fail-closed.
 
 ## Pinned project and runtime identity
 
@@ -76,24 +102,24 @@ d8c0c12a9127ef41ffd263d8c658b79cb75b0b97b17430ac6ac1f1742e8a670e
 
 ```text
 final workflow closure
-  runtime-v2-phase-2-final-29287943656-1
-  sha256:a3b643f4298e63a7c46fb56781d87ca23b5a3e28150a27cc0a2e28837981b6a6
+  runtime-v2-phase-2-final-29293545142-1
+  sha256:5aec0f20a075da6cbab01c5b3dad776f59c12fb5d55f819e4483f0fab7773a01
 
 Lean conformance evidence
-  runtime-v2-phase-2-lean-29287943656-1
-  sha256:b90cd6e585bf7fc5e6c121391c6a4573cb0f5a7efa9e83807dabfb6e163ad9f2
+  runtime-v2-phase-2-lean-29293545142-1
+  sha256:2523cbf545ca91938732d40a0046ca046cf2f121af695de8b438e648e274261f
 
 Ubuntu Python evidence
-  runtime-v2-phase-2-python-ubuntu-latest-29287943656-1
-  sha256:1de4bcdefdf78a9d132fd8a1345c9de11fb403356d4ab5c369c7d9ca234fd602
+  runtime-v2-phase-2-python-ubuntu-latest-29293545142-1
+  sha256:26ba8830f8d3a2775ea4d2d3bddc7b669af6bed630ebc72894c78885535b3eb1
 
 Windows Python evidence
-  runtime-v2-phase-2-python-windows-latest-29287943656-1
-  sha256:d9449c4eeabde2df26e7f5933f6c0517da4cf1cdae343983d6433b1e82a72f94
+  runtime-v2-phase-2-python-windows-latest-29293545142-1
+  sha256:adb6dea1a7c434e621aa1d14bd4a3f488e2e10c308056e48827840ee35f3043a
 
 macOS Python evidence
-  runtime-v2-phase-2-python-macos-latest-29287943656-1
-  sha256:d917d1bd63393945eb41a3ed444f62f8dbbb71bbd8ae377b50c9a35c6b94ab4e
+  runtime-v2-phase-2-python-macos-latest-29293545142-1
+  sha256:b25d884e445bf9ac8f833ed7db1969efc539a0c270b3233aacfaff634d3d53fd
 ```
 
 The Lean artifact preserves every generated source, packet, source-guard report,
