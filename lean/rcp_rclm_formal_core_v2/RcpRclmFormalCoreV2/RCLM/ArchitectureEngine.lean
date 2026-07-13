@@ -193,7 +193,6 @@ structure ArchitectureSuccessorResult
       RCP.Kernel
         CoreState CoreUpdate CoreCertificate CoreProtected CoreResidualIndex}
     {rclmChecker : RCP.TrustedChecker rclmKernel}
-    {coreChecker : RCP.TrustedChecker coreKernel}
     (engine : ArchitectureEngine
       (Proposal := Proposal)
       (Witness := Witness)
@@ -201,12 +200,13 @@ structure ArchitectureSuccessorResult
       (ResourceRecord := ResourceRecord)
       rclmKernel rclmChecker)
     (refinement : KernelRefinement rclmKernel coreKernel)
+    (coreChecker : RCP.TrustedChecker coreKernel)
     (rclmMonitors :
       RCP.PreservationMonitors rclmKernel (Relevance := RclmRelevance))
     (coreMonitors :
       RCP.PreservationMonitors coreKernel (Relevance := CoreRelevance))
     (predecessor : ArchitecturePredecessor engine)
-    (step : ArchitectureEngineStep engine predecessor.state) : Prop where
+    (step : ArchitectureEngineStep engine predecessor.state) where
   engineTypedSuccessor :
     RCP.TypedSuccessor rclmKernel predecessor.state step.candidate
   rclmObligations :
@@ -267,7 +267,7 @@ theorem rclm_architecture_successor_theorem
     (predecessor : ArchitecturePredecessor engine)
     (step : ArchitectureEngineStep engine predecessor.state) :
     ArchitectureSuccessorResult
-      engine refinement rclmMonitors coreMonitors predecessor step := by
+      engine refinement coreChecker rclmMonitors coreMonitors predecessor step := by
   have engineTypedSuccessor :
       RCP.TypedSuccessor rclmKernel predecessor.state step.candidate :=
     engine.realizerTyped
@@ -570,7 +570,7 @@ theorem infinite_architecture_step_result
     (trajectory : InfiniteArchitectureTrajectory engine)
     (n : Nat) :
     ArchitectureSuccessorResult
-      engine refinement rclmMonitors coreMonitors
+      engine refinement coreChecker rclmMonitors coreMonitors
       (trajectory.predecessor n) (trajectory.step n) := by
   exact rclm_architecture_successor_theorem
     rclmChecker coreChecker engine refinement checkerRefinement
