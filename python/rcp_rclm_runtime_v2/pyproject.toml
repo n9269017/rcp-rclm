@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rcp-rclm-runtime-v2"
+version = "0.1.0"
+description = "Deterministic runtime bedrock for the pinned RCP/RCLM Formal Core v2 reference scopes"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "See repository LICENSE and component licenses"}
+authors = [{name = "RCP/RCLM project"}]
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rcp_rclm_runtime*"]
+
+[tool.setuptools.package-data]
+rcp_rclm_runtime = ["py.typed"]

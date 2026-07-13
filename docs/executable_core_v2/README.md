@@ -1,37 +1,30 @@
-# RCP/RCLM Executable Core v2 — Phase 0
+# RCP/RCLM Executable Core v2
 
-This directory freezes the theorem-to-runtime refinement contract that must be
-satisfied before any v2 Python checker, generator, promotion controller, learned
-proposal backend, or benchmark adapter is treated as an implementation of Formal
-Core v2.
+This directory records the theorem-to-runtime contract and the staged executable
+implementation that follows the completed Formal Core v2 Lean project.
 
 ## Status
 
 ```text
-Phase 0 contract: implemented in this branch
-Production v2 checker: not implemented
-Production v2 generator: not implemented
-Production v2 promotion loop: not implemented
-PyTorch successor backend: not implemented
+Phase 0 theorem-to-runtime contract: complete and merged
+Phase 1 deterministic runtime bedrock: implemented on the active Phase 1 branch; final CI pending
+Pinned Lean compiler/verifier bridge: not implemented
+Production fail-closed successor checker: not implemented
+Untrusted generator: not implemented
+Promotion and rollback controller: not implemented
+PyTorch proposal backend: not implemented
 External benchmark adapter: not licensed
 ```
 
-The active formal source is the merged Formal Core v2 project at commit:
+The frozen formal source is:
 
 ```text
-012de4a55f326107f53f0e215c8aec62859d0bbf
+Formal source commit: 012de4a55f326107f53f0e215c8aec62859d0bbf
+Lean:                 leanprover/lean4:v4.31.0
+mathlib:              fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
 ```
 
-The selected Gate C validation record used by this contract is:
-
-```text
-validated branch head: 6cb17a7071ba56a17d5eeffb1ad8148ddf56ee3c
-workflow run:          29249052337
-artifact:              formal-core-v2-audit-29249052337-1
-artifact SHA-256:      18b4593e544fa926af7fac20c5623850c929004d944f509d017dba04f6f7f2e5
-```
-
-## Contract documents
+## Phase 0 contract documents
 
 | Document | Frozen decision |
 |---|---|
@@ -43,37 +36,64 @@ artifact SHA-256:      18b4593e544fa926af7fac20c5623850c929004d944f509d017dba04f
 | `ACCEPTANCE_SEMANTICS.md` | Fail-closed promotion predicate and reason-code requirements |
 | `CLAIM_BOUNDARY.md` | What the first executable reference may and may not claim |
 | `PYTORCH_ENTRY_CRITERIA.md` | Preconditions for adding a learned proposal backend |
-| `PHASE_0_EXIT_CRITERIA.md` | Conditions for moving from contract work to the runtime bedrock |
+| `PHASE_0_EXIT_CRITERIA.md` | Conditions for moving from contract work to runtime implementation |
+| `PHASE_0_VALIDATION.md` | Clean Phase 0 CI and artifact record |
 
-## Machine-readable contract
+Machine-readable Phase 0 records remain at:
 
 ```text
 python/rcp_rclm_executable_core_v2/contract/
-  runtime_contract_manifest.json
-  runtime_records.schema.json
-  validate_runtime_contract.py
 ```
 
-`validate_runtime_contract.py` is a Phase 0 contract verifier. It is not the v2
-successor checker. It verifies the contract manifest, source pins, mapped Lean
-declaration surfaces, canonical contract constraints, and the anti-placeholder
-source gate.
+The Phase 0 validator verifies the contract and formal pins. It is not the
+production successor checker.
 
-## Dependency order after Phase 0
+## Phase 1 runtime bedrock
+
+| Document | Purpose |
+|---|---|
+| `PHASE_1_RUNTIME_BEDROCK.md` | Implemented records, exact mathematics, selected Gate B/C scope, serialization, hashing, and source guard |
+| `PHASE_1_EXIT_CRITERIA.md` | Required tests, cross-platform CI, and next-phase licensing boundary |
+
+The package is:
 
 ```text
-frozen contract
-→ immutable runtime records and exact numerical bedrock
-→ Lean conformance bridge
-→ fail-closed checker
-→ adversarial rejection suite
-→ untrusted predecessor-driven generator
-→ selector and successor realizer
-→ atomic promotion and rollback controller
-→ independent replay
-→ optional PyTorch proposal backend
-→ external benchmark adapters
+python/rcp_rclm_runtime_v2/
 ```
 
-The generator never certifies itself. Candidate assertions and candidate-reported
-scores remain untrusted inputs to the checker.
+Phase 1 contains only:
+
+```text
+immutable records and strict parsers
+exact rational arithmetic
+certified rational logarithm intervals
+Gate B finite classical mathematics
+selected Gate C diagonal quantum mathematics
+canonical JSON and path handling
+content and tree hashing
+RCLM-to-RCP forgetful mappings
+generated-Lean source guard
+```
+
+The checker, compiler bridge, generator, successor controller, replay layer, and
+PyTorch backend are intentionally absent rather than represented by empty files.
+
+## Dependency order
+
+```text
+frozen Phase 0 contract
+-> deterministic Phase 1 runtime bedrock
+-> pinned Lean compiler/verifier bridge and differential conformance
+-> fail-closed production checker
+-> adversarial rejection suite
+-> untrusted predecessor-driven generator
+-> selector and successor realizer
+-> atomic promotion and rollback controller
+-> independent replay
+-> optional PyTorch proposal backend
+-> external benchmark adapters
+```
+
+The generator never certifies itself. Candidate assertions, model scores, native
+floating-point diagnostics, and proposed certificate fields remain untrusted until
+recomputed by the future checker and matched against the pinned Lean bridge.

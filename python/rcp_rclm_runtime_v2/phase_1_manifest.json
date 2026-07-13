@@ -1,0 +1,66 @@
+{
+  "claim_boundary": {
+    "benchmark_claim": false,
+    "candidate_acceptance_licensed": false,
+    "executable_rsi_claim": false,
+    "python_lean_refinement_established": false,
+    "runtime_bedrock_only": true
+  },
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "formal_source_commit": "012de4a55f326107f53f0e215c8aec62859d0bbf",
+  "implemented": {
+    "canonical_json": true,
+    "content_hashing": true,
+    "gate_b_distributions": true,
+    "gate_b_exact_recovery": true,
+    "gate_b_shannon_entropy": true,
+    "gate_b_support_aware_kl": true,
+    "gate_b_zero_extension": true,
+    "gate_c_basis_swap_channel": true,
+    "gate_c_diagonal_density": true,
+    "gate_c_diagonal_qre": true,
+    "gate_c_exact_selected_recovery": true,
+    "gate_c_identity_channel": true,
+    "gate_c_spectral_entropy": true,
+    "generated_lean_source_guard": true,
+    "immutable_records": true,
+    "rclm_forgetful_mapping": true,
+    "semantic_paths": true,
+    "strict_parsers": true,
+    "tree_hashing": true
+  },
+  "local_validation": {
+    "all_tests_passed": true,
+    "conformance_vectors_hash": "5af357d1e8d4a7cc587e002c4d64b5dbc71d84913d42599925aaf11d50ca803a",
+    "cross_platform_ci": "pending",
+    "source_quality_passed": true,
+    "unit_test_count": 46
+  },
+  "not_implemented": {
+    "benchmark_adapter": true,
+    "general_noncommuting_quantum": true,
+    "generator": true,
+    "independent_replay": true,
+    "lean_compiler_bridge": true,
+    "lean_verifier": true,
+    "production_checker": true,
+    "promotion_controller": true,
+    "pytorch_backend": true,
+    "rollback_controller": true,
+    "successor_realizer": true,
+    "successor_selector": true
+  },
+  "numeric_backend": {
+    "certified_rational_log_intervals": true,
+    "exact_rationals": true,
+    "id": "rcp-rclm-rational-atanh-log-v1",
+    "maximum_precision_bits": 4096,
+    "minimum_precision_bits": 128,
+    "native_float_authoritative": false
+  },
+  "package_name": "rcp-rclm-runtime-v2",
+  "package_version": "0.1.0",
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 1 deterministic runtime bedrock",
+  "phase_status": "implemented_pending_cross_platform_clean_ci",
+  "schema_version": "rcp-rclm-runtime-phase-1-manifest-v1"
+}
