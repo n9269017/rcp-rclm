@@ -1,5 +1,5 @@
 {
-  "schema_version": "rcp-rclm-formal-core-v2-manifest-v5",
+  "schema_version": "rcp-rclm-formal-core-v2-manifest-v6",
   "phase_name": "RCP/RCLM Formal Core v2 — Mechanized Conditional Successor Theorem Closure",
   "base_repository_commit": "df88c8ed95aec4b0a38b45e74664f62e9405b0c5",
   "toolchain": {
@@ -21,7 +21,7 @@
     "paper_ii_path": "papers/paper-II-rclm-architecture/main.tex",
     "paper_ii_git_blob_sha": "9b51be8294ad79fd4f63522b01e0f617f0bf2ffd"
   },
-  "active_gate": "Concrete bounded seed-library and successor-verification packet-builder refinement",
+  "active_gate": "Gate C finite-dimensional quantum extension — planning placeholder only; implementation not begun",
   "gate_status": {
     "gate_a_abstract_kernel": "complete_clean_ci_built_and_axiom_audited",
     "gate_b_classical_finite": "complete_at_declared_finite_reference_scope_clean_ci_built_and_axiom_audited",
@@ -29,9 +29,22 @@
     "conditional_architecture_engine": "implemented_clean_ci_built_and_axiom_audited",
     "paper_ii_direct_and_robust_reflective_alignment": "implemented_with_remaining_semantic_premises_explicit",
     "paper_ii_bounded_seed_library_refinement": "complete_at_declared_binary_reference_scope_clean_ci_built_and_axiom_audited",
-    "gate_c_quantum_finite": "not_yet_claimed",
+    "gate_c_quantum_finite": "planning_placeholder_only_not_implemented",
     "exact_paper_i_equivalence": false,
     "exact_paper_ii_equivalence": false
+  },
+  "documentation": {
+    "repository_readme": "README.md",
+    "package_readme": "lean/rcp_rclm_formal_core_v2/README.md",
+    "documentation_index": "docs/formal_core_v2/README.md",
+    "theorem_contract": "docs/formal_core_v2/THEOREM_CONTRACT.md",
+    "paper_theorem_map": "docs/formal_core_v2/PAPER_THEOREM_MAP.md",
+    "assumption_register": "docs/formal_core_v2/ASSUMPTION_REGISTER.md",
+    "exit_criteria": "docs/formal_core_v2/EXIT_CRITERIA.md",
+    "axiom_audit_policy": "docs/formal_core_v2/AXIOM_AUDIT.md",
+    "reproducibility": "docs/formal_core_v2/REPRODUCIBILITY.md",
+    "audit_artifact_catalog": "docs/formal_core_v2/AUDIT_ARTIFACTS.md",
+    "gate_c_scope_placeholder": "docs/formal_core_v2/GATE_C_SCOPE.md"
   },
   "validation_records": {
     "gate_a": {
@@ -69,6 +82,17 @@
       ],
       "some_audited_theorems_axiom_free": true,
       "lake_manifest_sha256": "c17842b8da89c8c84beed4e8b33892616ef75c15475133a07aca97c16d853b0a"
+    },
+    "pre_documentation_sync": {
+      "validated_branch_head": "f8dc519d38e9187f809b4e2d00a0432e847a1f41",
+      "workflow_run_id": 29224928725,
+      "workflow_conclusion": "success",
+      "paper_surface_pin_audit": true,
+      "gate_a_axiom_audit": true,
+      "gate_b_axiom_audit": true,
+      "rclm_axiom_audit": true,
+      "audit_artifact_name": "formal-core-v2-audit-29224928725-1",
+      "audit_artifact_sha256": "83d7d00838a6849254fc981ea7448b90f461e183c89cacb8621d5c723441d74c"
     }
   },
   "bounded_seed_library_delivered": {
@@ -102,13 +126,29 @@
     "concrete_infinite_seed_domain_preservation": true,
     "concrete_every_step_rclm_and_rcp_refinement": true
   },
+  "gate_c_planning_placeholder": {
+    "scope_record_path": "docs/formal_core_v2/GATE_C_SCOPE.md",
+    "quantum_module_path": "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumFinite.lean",
+    "implementation_started": false,
+    "density_matrix_representation_frozen": false,
+    "channel_representation_frozen": false,
+    "quantum_entropy_definition_frozen": false,
+    "quantum_relative_entropy_definition_frozen": false,
+    "support_convention_frozen": false,
+    "recovery_theorem_frozen": false,
+    "concrete_quantum_checker_present": false,
+    "rclm_quantum_refinement_present": false,
+    "gate_c_complete": false
+  },
   "explicit_non_implications": {
     "checker_soundness_implies_grammar_nonempty": false,
     "checker_soundness_implies_generator_coverage": false,
     "checker_soundness_implies_seed_domain_persistence": false,
     "finite_grammar_implies_unbounded_proof_search": false,
     "bounded_seed_library_implies_arbitrary_learned_entry": false,
-    "accepted_continuation_implies_strict_improvement": false
+    "accepted_continuation_implies_strict_improvement": false,
+    "gate_b_classical_reference_implies_gate_c_quantum_closure": false,
+    "gate_c_scope_document_implies_gate_c_implementation": false
   },
   "paper_alignment": {
     "status_record_path": "docs/formal_core_v2/PAPER_II_BOUNDED_SEED_LIBRARY_REFINEMENT.md",
@@ -118,7 +158,7 @@
     "exit_criteria_path": "docs/formal_core_v2/EXIT_CRITERIA.md",
     "bounded_seed_library_component_complete": true,
     "full_paper_ii_semantic_identity_complete": false,
-    "next_selected_obligation": "Gate C finite-dimensional quantum extension and strengthened RCLM refinement"
+    "next_selected_obligation": "Gate C theorem contract freeze, then finite-dimensional quantum extension and strengthened RCLM refinement"
   },
   "claim_boundary": {
     "full_paper_mechanized": false,
