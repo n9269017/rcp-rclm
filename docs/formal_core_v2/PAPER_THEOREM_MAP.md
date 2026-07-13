@@ -1,11 +1,10 @@
 # Paper-to-Lean theorem map — formal core v2
 
-This map pins the theorem-facing source versions and records the strongest claim
-licensed by the compiled declarations. `implemented` means the declaration
-exists. `clean-CI-built and audited` additionally means the pinned workflow built
-it, scanned the source for admitted proofs and project-local axioms, and
-preserved its kernel axiom report. Neither status by itself implies exact
-agreement with a paper theorem.
+This map records the strongest claim licensed by the compiled declarations.
+`implemented` means a declaration exists. `clean-CI-built and audited` means the
+pinned workflow built it, scanned the project for admitted proofs and local
+axioms, and preserved its kernel axiom report. Neither status alone implies
+exact identity with a paper theorem.
 
 ## Source pins
 
@@ -33,60 +32,65 @@ Historical Lean v1 RCLM:
   harmless renaming.
 - **Abstract exact**: the inference is proved under explicit abstract laws; a
   later refinement must identify the abstract objects with the paper objects.
-- **Concrete reference exact**: the theorem is exact for the declared finite
-  reference instance, without claiming that the instance is the complete paper
-  semantics.
-- **Structural**: the inference shape agrees, but important paper-specific
-  quantities or certificate meanings remain abstract.
+- **Concrete reference exact**: exact for the declared finite reference instance,
+  without claiming that the reference is the complete paper semantics.
+- **Structural**: the inference shape agrees but paper-specific meanings remain
+  abstract.
 - **Deferred**: exact identification requires a later gate or refinement.
 - **Mismatch**: the current Lean result is genuinely weaker or different.
 
-The initial comparison is in `GATE_A_PAPER_ALIGNMENT_AUDIT.md`. Abstract
-resolutions are in `GATE_A_ALIGNMENT_RESOLUTION_LOG.md`. The finite classical
-closure boundary is in `GATE_B_CLOSURE.md`. The substantive RCLM refinement and
-conditional engine boundaries are recorded in `RCLM_GATE_B_REFINEMENT_STATUS.md`
-and `RCLM_DIRECT_ENGINE_STATUS.md`.
+The initial comparison is in `GATE_A_PAPER_ALIGNMENT_AUDIT.md`; Gate A
+resolutions are in `GATE_A_ALIGNMENT_RESOLUTION_LOG.md`; the finite classical
+boundary is in `GATE_B_CLOSURE.md`; RCLM and direct-engine status is in
+`RCLM_GATE_B_REFINEMENT_STATUS.md` and `RCLM_DIRECT_ENGINE_STATUS.md`; the
+bounded seed-library refinement is in
+`PAPER_II_BOUNDED_SEED_LIBRARY_REFINEMENT.md`.
 
 ## Named-claim mapping
 
-| Paper claim surface | Formal-core v2 target | Gate | Current status |
-|---|---|---:|---|
-| Paper I `thm:main_rcp`, Conditional Non-Lossy Self-Update Preservation Theorem | `RCP.finite_paper_preservation` plus the one-step, trajectory, recovery, monitor, summability, and concrete-refinement theorems | A/B/C | **Abstract wrapper implemented; one finite classical reference implemented; exact paper theorem still deferred.** The full probability, semantic ambiguity, mutual-information, and quantum-relative-entropy meanings remain open. |
-| Paper I state-safe-set and update-admissibility predicates | `RCP.PaperSemantics` | A plus concrete refinement | **Explicit abstract boundary implemented.** Exact Paper I equivalence remains open. |
-| Paper I no-op-feasibility premise | `RCP.AcceptedNoOp`, `RCP.NoOpFeasible` | A | **Abstract exact.** It remains a separate premise. |
-| Paper I Lyapunov expectation and squared-motion conclusion | `RCP.PreservationMonitors`, `RCP.finite_lyapunov_motion_bound`, `ClassicalFinite.binaryPreservationMonitors` | A/B plus probability refinement | **Concrete reference exact for KL-to-target accounting.** Conditional expectation and squared state motion remain deferred. |
-| Paper I unsupported ambiguity-collapse conclusion | `RCP.finite_ambiguity_collapse_bound`, `ClassicalFinite.binaryUnsupportedCollapse_step` | A/B plus semantic refinement | **Concrete reference exact for the declared malformed-certificate indicator.** It is not the paper semantic ambiguity quantity. |
-| Paper I self-model relevance conclusion | `RCP.finite_self_model_relevance_bound`, `ClassicalFinite.binaryRelevance_step` | A/B plus semantic refinement | **Concrete reference exact for target-fit and normalization evidence.** It is not mutual information. |
-| Paper I summability consequences | `RCP.SummableMonitorBudgets`, `toUniformMonitorBudgetCaps`, `infinite_monitor_bounds_of_summable`, `infinite_cumulative_motion_bounded_of_summable` | A | **Abstract exact.** Concrete error-sequence premises remain explicit. |
-| Paper I `thm:finite_horizon_constructive_recovery` | `RCP.RecoveryCompositionLaws`, `RCP.composedRecovery`, `RCP.finite_endpoint_recovery_bound`, `ClassicalFinite.binaryRecoveryCompositionLaws` | A/B plus later channel refinement | **Concrete reference exact for the binary discrete metric and exact zero-extension recovery.** Trace-distance/channel recovery remains deferred. |
-| Aggregate local recovery accounting | `RCP.finite_composed_recovery_bound` | A | **Implemented separately.** It is not used as a substitute for endpoint rollback. |
-| Finite proof-carrying trajectory | `RCP.FiniteAcceptedTrajectory`, finite closure theorems, `ClassicalFinite.binaryWorkedTrajectory` | A/B | **Concrete reference implemented.** The path is `initial → target → target`. |
-| Finite progress composition | `RCP.finite_progress_monotone`, strict-witness field in `FinitePaperPreservation`, `ClassicalFinite.binaryWorkedTrajectory_first_step_strict` | A/B | **Concrete non-vacuous witness implemented.** Progress is actual KL-distance reduction. |
-| Finite protected-loss composition | `RCP.transportedDistinction`, `RCP.finite_composed_nonloss_bound`, `ClassicalFinite.klDivergence_extendByZero` | A/B/C | **Concrete finite KL preservation implemented for zero-coordinate extension.** General data processing and quantum meanings remain deferred. |
-| Conditional infinite accepted trajectory | `RCP.SuccessorAvailability`, `RCP.conditional_infinite_trajectory_exists` | A | **Abstract exact.** Availability is explicit and is not inferred from checker soundness. |
-| Conditional infinite paper-domain closure | `RCP.conditional_infinite_paper_trajectory_exists` | A | **Abstract exact.** Concrete Paper I semantic identification remains deferred. |
-| Finite-prefix recovery/monitor preservation on infinite paths | `RCP.finitePrefixOfInfinite` and the infinite-prefix theorems | A | **Implemented abstractly.** |
-| Paper I direct-engine construction shape | `RCLM.ArchitectureEngine`, `RCLM.ArchitectureEngineStep`, `RCLM.rclm_architecture_successor_theorem` | RCLM after A/B | **Structural conditional theorem implemented.** Proposal, certifier, selector, realizer, coverage, trust, resource, domain, and checker premises are explicit. Exact Paper I engine semantics are not claimed. |
-| Paper I/Paper II successor-availability or generator-completeness premise | `RCLM.ArchitectureSuccessorAvailability`, `RCLM.conditional_infinite_architecture_trajectory_exists` | RCLM after A/B | **Abstract exact as a conditional existence boundary.** Availability remains an argument and is never derived from checker soundness. |
-| Paper I canonical diagonal/reference checker soundness | `ClassicalFinite.binaryCheck_eq_true_iff`, `binary_checker_refines_kernel` | B | **Concrete finite reference checker implemented.** |
-| Batch-13R classical/diagonal reference entry | `RCP.ClassicalFinite`, `RCP.ClassicalBinary` | B | **Gate B complete at the declared finite reference scope.** Exact identity with the complete paper object remains unclaimed. |
-| Paper II typed RCLM state/update/certificate surfaces | `RCLM.State`, `RCLM.Update`, `RCLM.CertificatePacket`, `RCLM.ClassicalBinary` | RCLM after B | **Substantive finite reference types implemented.** Arbitrary learned-system semantics remain deferred. |
-| Paper II substantive RCLM-to-RCP refinement | `RCLM.KernelRefinement`, `RCLM.MonitorRefinement`, `RCLM.CheckerRefinement`, generic transport theorems | RCLM after B | **Implemented and audited at the theorem-relevant Gate B scope.** General Paper II semantic identity remains deferred. |
-| Paper II checker soundness theorem | `RCLM.ClassicalBinary.checker`, `RCLM.rclm_checker_refines_rcp`, `RCLM.rclm_checker_pair_refines_rcp` | RCLM after B | **Concrete Gate B RCLM checker and acceptance refinement implemented.** Architecture-wide compiler/checker equivalence remains deferred. |
-| Paper II architecture successor theorem | `RCLM.rclm_architecture_successor_theorem` | RCLM after A/B | **Conditional structural theorem implemented.** It returns typed RCLM obligations, forgotten RCP obligations, recovery and monitor refinement evidence, successor-domain closure, trust/resource validity, and trust-anchor preservation. Exact pinned theorem equivalence remains open. |
-| Paper II direct-engine finite reference entry | `RCLM.ClassicalBinary.architectureEngine`, `architectureSuccessorAvailability`, `improvement_direct_engine_successor` | RCLM after B | **Concrete reference implementation.** The first step is strict KL-derived improvement and later available steps are accepted stability successors. This is not indefinitely strict RSI. |
-| Paper II conditional infinite architecture trajectory | `RCLM.conditional_infinite_architecture_trajectory_exists`, `RCLM.infinite_architecture_step_result`, concrete classical trajectory | RCLM after B | **Implemented under explicit architecture successor availability.** Checker soundness alone is insufficient. |
-| Finite-dimensional quantum non-loss/recovery | future `RCP.QuantumFinite` implementation | C | **Not implemented.** |
+| Paper claim surface | Formal-core v2 target | Current status |
+|---|---|---|
+| Paper I `thm:main_rcp` | `RCP.finite_paper_preservation` plus one-step, trajectory, recovery, monitor, summability, and concrete-refinement theorems | **Abstract wrapper implemented; finite classical reference implemented; exact theorem deferred.** Probability, semantic ambiguity, mutual information, and quantum meanings remain open. |
+| Paper I state-safe and update-admissibility predicates | `RCP.PaperSemantics` | **Explicit abstract boundary implemented.** Exact paper equivalence remains open. |
+| Paper I no-op feasibility | `RCP.AcceptedNoOp`, `RCP.NoOpFeasible` | **Abstract exact.** It remains a separate premise. |
+| Paper I Lyapunov and squared-motion conclusion | `RCP.PreservationMonitors`, `finite_lyapunov_motion_bound`, binary monitors | **Concrete reference exact for KL-to-target accounting.** Conditional expectation and squared state motion remain deferred. |
+| Paper I ambiguity-collapse conclusion | `RCP.finite_ambiguity_collapse_bound`, binary collapse monitor | **Concrete reference exact for the declared malformed-packet indicator.** It is not semantic ambiguity. |
+| Paper I self-model relevance conclusion | `RCP.finite_self_model_relevance_bound`, binary relevance monitor | **Concrete reference exact for finite target-fit evidence.** It is not mutual information. |
+| Paper I summability consequences | `RCP.SummableMonitorBudgets` and infinite-prefix theorems | **Abstract exact.** Concrete sequence premises remain explicit. |
+| Paper I finite endpoint recovery | `RCP.RecoveryCompositionLaws`, `composedRecovery`, `finite_endpoint_recovery_bound`, binary recovery laws | **Concrete reference exact for the discrete metric and zero-extension recovery.** Trace-distance/channel recovery remains deferred. |
+| Finite proof-carrying trajectory | `RCP.FiniteAcceptedTrajectory`, `binaryWorkedTrajectory` | **Concrete reference implemented.** The path is `initial -> target -> target`. |
+| Conditional infinite accepted trajectory | `RCP.SuccessorAvailability`, `conditional_infinite_trajectory_exists` | **Abstract exact.** Availability is explicit and never inferred from checker soundness. |
+| Paper I/Paper II direct-engine construction shape | `RCLM.ArchitectureEngine`, `ArchitectureEngineStep`, `rclm_architecture_successor_theorem` | **Structural conditional theorem implemented.** Proposal, certifier, selector, realizer, coverage, trust, resource, domain, and checker premises are explicit. |
+| Paper I/Paper II architecture successor availability | `RCLM.ArchitectureSuccessorAvailability`, `conditional_infinite_architecture_trajectory_exists` | **Abstract exact as a conditional existence boundary.** It does not imply strict improvement at every step. |
+| Paper II typed RCLM state/update/certificate surfaces | `RCLM.State`, `Update`, `CertificatePacket`, `ClassicalBinary` | **Substantive finite reference types implemented.** Arbitrary learned-system semantics remain deferred. |
+| Paper II RCLM-to-RCP refinement | `RCLM.KernelRefinement`, `MonitorRefinement`, `CheckerRefinement` | **Implemented and audited at the theorem-relevant Gate B scope.** Architecture-wide semantic identity remains deferred. |
+| Paper II checker soundness | concrete RCLM checker plus `rclm_checker_refines_rcp` and `rclm_checker_pair_refines_rcp` | **Concrete Gate B acceptance refinement implemented.** Arbitrary compiler/checker equivalence remains deferred. |
+| Paper II architecture successor theorem | `RCLM.rclm_architecture_successor_theorem` | **Conditional structural theorem implemented.** It returns typed RCLM and forgotten RCP obligations, recovery/monitor evidence, domain closure, and trust/resource preservation. |
+| Paper II strict direct-engine step | `StrictArchitectureEngineStep`, `rclm_constructive_direct_nl_rsi_engine_aligned` | **Explicit strict-successor boundary implemented.** Strict availability is not inferred from ordinary accepted availability. |
+| Paper II verifier, uncertainty, goal, trust, and budget packet clauses | `PaperIISuccessorVerificationSemantics`, robust-reflective alignment theorems | **Explicit abstract interfaces implemented.** Full semantic identity remains a refinement obligation. |
+| Paper II bounded witness library | `PaperIIBoundedSeedLibrary.witnesses` | **Finite generic interface implemented; concrete binary witness set implemented.** No arbitrary learned-library claim. |
+| Paper II bounded update/certificate grammar | `PaperIIBoundedSeedLibrary.grammar`, `wordDepth`, `proofLength`, maximum bounds | **Concrete reference exact.** Active singleton grammars and bounds of one are proved. |
+| Paper II generator coverage on the bounded class | `wordWitnessMember`, `witnessMemberCovered`, `proposalGenerated` | **Explicit theorem fields; concrete binary refinement discharged.** No unbounded generator completeness. |
+| Paper II packet builder | `PaperIIBoundedSeedPacket`, `toEngineStep`, `paper_ii_bounded_seed_packet_builder_sound` | **Concrete reference exact for the bounded binary class.** The builder yields complete successor-verification obligations. |
+| Paper II bounded packet to RCP refinement | `paper_ii_bounded_seed_packet_refines_architecture` | **Implemented.** Complete RCLM and forgotten RCP obligations are returned together. |
+| Paper II verifier-schema identification | `PaperIISeedSemanticIdentification` verifier fields | **Explicit equality refinement; concrete binary identification proved.** |
+| Paper II uncertainty-envelope identification | `PaperIISeedSemanticIdentification` envelope fields | **Explicit equality refinement; concrete binary identification proved.** |
+| Paper II goal and transport identification | `PaperIISeedSemanticIdentification` goal fields | **Explicit equality refinement; concrete binary identification and zero drift proved.** |
+| Paper II successor seed-domain persistence | `PaperIIBoundedSeedLibrary.successorSeedDomain` | **Explicit completeness premise; concrete binary persistence proved.** It is not derived from checker acceptance. |
+| Paper II bounded infinite seed-library path | `conditional_infinite_paper_ii_bounded_seed_trajectory_exists` | **Conditional construction implemented.** It requires grammar nonemptiness and successor seed-domain closure. |
+| Concrete bounded binary seed path | `ClassicalBinary.classicalInfiniteBoundedSeedTrajectory` and step theorems | **Concrete reference implemented.** One strict KL-derived improvement is followed by stable accepted continuation. |
+| Finite-dimensional quantum non-loss/recovery | future `RCP.QuantumFinite` implementation | **Not implemented.** |
 
 ## Gate verdicts
 
 ```text
 Abstract Gate A theorem kernel: complete and audited
 Gate B finite classical reference: complete and audited
-Substantive Gate B RCLM-to-RCP refinement: implemented and audited
-Conditional architecture successor theorem: implemented
-Conditional architecture infinite trajectory: implemented with explicit availability
-Concrete Gate B direct-engine reference: implemented
+Substantive Gate B RCLM-to-RCP refinement: complete at declared scope
+Conditional architecture successor/direct-engine theorem: implemented
+Paper II robust-reflective interfaces: implemented
+Bounded seed-library and packet-builder refinement: complete at binary scope
+Conditional bounded seed-library trajectory: implemented
 Exact Paper I theorem equivalence: false
 Exact Paper II theorem equivalence: false
 Gate C quantum theorem: open
@@ -95,14 +99,17 @@ Executable RSI refinement: not licensed
 
 ## Mapping discipline
 
-1. A compiled structural theorem is not called an exact paper mechanization until
-   every paper object, assumption, and conclusion is identified.
-2. Checker soundness never implies successor availability, generator coverage, or
-   useful strict improvement.
-3. The concrete classical infinite engine path proves domain-preserving accepted
-   continuation; after its first strict improvement it may use stability steps.
-4. Aggregate local recovery accounting and endpoint rollback remain distinct.
-5. The malformed-certificate indicator is not semantic ambiguity, and target-fit
-   relevance is not mutual information.
-6. The zero-coordinate embedding is not a theorem about every stochastic channel.
-7. Historical v1 files remain canonical only for their declared finite scope.
+1. Checker soundness never implies successor existence, grammar nonemptiness,
+   generator coverage, or successor seed-domain persistence.
+2. Finite grammar completeness never implies unbounded proof-search completeness.
+3. Bounded seed-library closure never implies arbitrary learned-system entry.
+4. Accepted architecture continuation never implies strict improvement at every
+   step.
+5. The concrete binary path proves one strict improvement and stable recursive
+   continuation, not unbounded empirical RSI.
+6. Aggregate local recovery accounting and endpoint rollback remain distinct.
+7. The finite collapse and relevance monitors are not semantic ambiguity or
+   mutual information.
+8. The zero-coordinate embedding is not a theorem about every stochastic or
+   quantum channel.
+9. Historical v1 files remain canonical only for their declared finite scope.
