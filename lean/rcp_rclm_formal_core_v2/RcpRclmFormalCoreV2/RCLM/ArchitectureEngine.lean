@@ -206,7 +206,7 @@ structure ArchitectureSuccessorResult
     (coreMonitors :
       RCP.PreservationMonitors coreKernel (Relevance := CoreRelevance))
     (predecessor : ArchitecturePredecessor engine)
-    (step : ArchitectureEngineStep engine predecessor.state) where
+    (step : ArchitectureEngineStep engine predecessor.state) : Prop where
   engineTypedSuccessor :
     RCP.TypedSuccessor rclmKernel predecessor.state step.candidate
   rclmObligations :
@@ -223,9 +223,9 @@ structure ArchitectureSuccessorResult
       (refinement.forgetState predecessor.state)
       (refinement.forgetCandidate step.candidate)
       (refinement.forgetCertificate step.certificate)
-  coreRecoveryLaws : RCP.RecoveryCompositionLaws coreKernel
+  coreRecoveryLaws : Nonempty (RCP.RecoveryCompositionLaws coreKernel)
   monitorRefinementEvidence :
-    MonitorRefinement refinement rclmMonitors coreMonitors
+    Nonempty (MonitorRefinement refinement rclmMonitors coreMonitors)
   successorDomain : engine.domain step.candidate.next
   successorAdmissible : rclmKernel.admissible step.candidate.next
   successorInvariant : rclmKernel.protectedInvariant step.candidate.next
@@ -357,8 +357,8 @@ theorem rclm_architecture_successor_theorem
       rclmObligations := rclmObligations
       coreCheckerAccepted := coreCheckerAccepted
       coreObligations := coreObligations
-      coreRecoveryLaws := coreRecoveryLaws
-      monitorRefinementEvidence := monitorRefinement
+      coreRecoveryLaws := ⟨coreRecoveryLaws⟩
+      monitorRefinementEvidence := ⟨monitorRefinement⟩
       successorDomain := successorDomain
       successorAdmissible := rclmObligations.successorAdmissible
       successorInvariant := rclmObligations.invariantPreserved
