@@ -3,31 +3,31 @@
   "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
   "phase_name": "RCP/RCLM Executable Core v2 — Phase 1 deterministic runtime bedrock",
   "release_status": "phase_1_runtime_bedrock_cross_platform_validated",
-  "validated_branch_head": "ab6a04ab80b7b2290ef76e56c017c070df55ff80",
-  "workflow_run": 29274306289,
+  "validated_branch_head": "ee22d11fb7472c1c8a3a61ee20fd10a28b76212a",
+  "workflow_run": 29280052015,
   "workflow_conclusion": "success",
   "test_count": 74,
   "conformance_vectors_sha256": "447c3933d2be4904f2499a5be5f8cb32e5c9babe5e5cccd029ae3a95caec78b8",
   "platforms": {
     "linux": {
       "runner": "ubuntu-latest",
-      "artifact": "phase1-runtime-bedrock-Linux-X64",
-      "artifact_sha256": "0b181d9703cdb4e806acc339d4751b0c4f1929989fab88541cb51607f2f78517"
+      "artifact": "runtime-v2-phase-1-platform-ubuntu-latest-29280052015-1",
+      "artifact_sha256": "89c301efe020bfeafa07f1497bbbbdd982cdbcb4bfe348262402aae9d3c034d2"
     },
     "windows": {
       "runner": "windows-latest",
-      "artifact": "phase1-runtime-bedrock-Windows-X64",
-      "artifact_sha256": "508a9af2c1e7da83da1e3b027fe1f8f5dc6d7cde33a94557954f73fedf8b67e4"
+      "artifact": "runtime-v2-phase-1-platform-windows-latest-29280052015-1",
+      "artifact_sha256": "4d6a278e9b9bea3152c3b4c598df32f17d7b9281c079c2591384c72f40517d17"
     },
     "macos": {
       "runner": "macos-latest",
-      "artifact": "phase1-runtime-bedrock-macOS-X64",
-      "artifact_sha256": "05ba323f6039bd880b3cec2657ca87c5366eb6bbac53a218f3554f6e08a9f87b"
+      "artifact": "runtime-v2-phase-1-platform-macos-latest-29280052015-1",
+      "artifact_sha256": "c6821e6f9f8b784bf0db6fe0bc22fdd3ce8165ac351d9dcafb7c4c397027a41a"
     }
   },
   "cross_platform_consistency": {
-    "artifact": "phase1-runtime-bedrock-final-29274306289-1",
-    "artifact_sha256": "00b52e02507161dd98cab0d81e972191ae501416905e01f62876aed6d577d2ae",
+    "artifact": "runtime-v2-phase-1-final-29280052015-1",
+    "artifact_sha256": "3c81055228e43b318492d5187754b33e8487ac3aba85e02acc1baab27e285e94",
     "stable_fields_equal": true,
     "platform_count": 3
   },
