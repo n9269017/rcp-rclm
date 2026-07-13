@@ -7,109 +7,111 @@ successor-verification packet-construction layer with the compiled Formal Core v
 architecture interfaces. It is Lean-only. It neither introduces an executable
 runtime nor begins Gate C.
 
-The phase refines the following chain:
+This phase establishes a generic bounded seed-library refinement and a concrete
+finite binary instance. The executable phase remains unlicensed.
+
+The refined chain is:
 
 ```text
 bounded seed-domain predecessor
   -> finite witness library
-  -> finite certificate-word grammar
+  -> finite packet grammar
+  -> bounded update word and proof word
   -> generated proposal
-  -> constructed certificate packet
+  -> constructed certificate
   -> selected typed candidate
   -> realized successor
-  -> trusted checker acceptance
-  -> successor-verification obligations
-  -> successor seed-domain persistence
+  -> resource authorization
+  -> trusted RCLM checker acceptance
+  -> complete RCLM successor obligations
+  -> complete Paper II successor-verification obligations
+  -> complete forgotten RCP successor obligations
+  -> successor bounded seed-domain membership
 ```
 
-The generator, certificate builder, selector, realizer, checker, and persistence
-relations remain distinct. Checker soundness is not used to infer grammar
-nonemptiness, generator coverage, packet construction, or successor availability.
+## Generic finite library and grammar
 
-## Generic bounded seed-library interface
-
-`RCLM.PaperIIBoundedSeedLibrary` supplies the explicit data and laws required by
-this phase:
+`RCLM.PaperIIBoundedSeedLibrary` carries:
 
 ```text
 seedDomain
 witnesses : State -> Finset Witness
-grammar : State -> Finset Word
-wordDepth and proofLength
-maxWordDepth and maxProofLength
-witness/proposal/certificate/candidate/resource decoders
+grammar   : State -> Finset Word
+wordDepth and maxWordDepth
+proofLength and maxProofLength
+witness, proposal, certificate, candidate, and resource decoders
 seed-domain to architecture-domain refinement
-grammar nonemptiness on the seed domain
+grammar nonemptiness on every seed-domain state
 word-to-witness membership
 witness-library coverage
-generator proposal relation
-certificate-construction relation
-candidate-selection relation
-successor-realization relation
+proposal generation
+certificate construction
+candidate selection
+successor realization
 resource authorization
 checker acceptance
 successor seed-domain closure
 ```
 
-The finite grammar is a declared bounded coverage class. It is not an assertion
-that arbitrary proof search, arbitrary learned proposals, or unbounded candidate
-spaces are complete.
+The finite `Finset` objects and the numerical bounds are theorem data. A label
+such as “bounded library” does not by itself establish finiteness, coverage, or
+completeness.
 
-`RCLM.PaperIIBoundedSeedPacket` records a concrete grammar word together with
-seed-domain and grammar-membership evidence. Its map
+## Packet builder
+
+A word together with seed-domain and grammar-membership proofs forms:
+
+```lean
+RCLM.PaperIIBoundedSeedPacket
+```
+
+The definition:
 
 ```lean
 RCLM.PaperIIBoundedSeedPacket.toEngineStep
 ```
 
-constructs the already compiled `ArchitectureEngineStep` from that evidence. The
-map therefore preserves the separation between untrusted construction relations
-and trusted checker acceptance.
+constructs the existing `ArchitectureEngineStep` without changing its trust
+boundary. The resulting step still contains explicit witness, proposal,
+certificate, candidate, resource, realization, and checker-acceptance evidence.
 
-## Packet-builder soundness
-
-The generic theorem
+The theorem:
 
 ```lean
 RCLM.paper_ii_bounded_seed_packet_builder_sound
 ```
 
-proves that a bounded seed packet supplies:
+returns:
 
 ```text
 complete RCLM StepObligations
-complete successor-verification obligations
-successor seed-domain membership
+complete Paper II successor-verification obligations
+successor bounded seed-domain membership
 declared verifier-schema persistence
 declared uncertainty-envelope persistence
-declared goal-identity drift bound
+declared goal-identity/drift bound
 ```
 
-The theorem obtains formal obligations from actual checker acceptance and obtains
-seed-domain closure from the independent library persistence field.
-
-The stronger bridge
+The architecture refinement theorem:
 
 ```lean
 RCLM.paper_ii_bounded_seed_packet_refines_architecture
 ```
 
-combines packet-builder soundness with the substantive RCLM-to-RCP architecture
-refinement. Its result contains both:
+additionally returns:
 
 ```text
-ArchitectureSuccessorResult
-PaperIIBoundedSeedSuccessorResult
+typed architecture successor evidence
+forgotten core-checker acceptance
+complete forgotten RCP StepObligations
+transported recovery-composition laws
+transported monitor-refinement evidence
 ```
 
-Accordingly, one checked bounded-library step carries the complete typed RCLM
-successor obligations, complete forgotten RCP obligations, recovery and monitor
-refinement evidence, and Paper II successor-verification packet obligations.
+## Semantic identification
 
-## Semantic identification boundary
-
-`RCLM.PaperIISeedSemanticIdentification` explicitly identifies the paper-declared
-objects with the compiled interfaces:
+`RCLM.PaperIISeedSemanticIdentification` prevents similarly named fields from
+being treated as automatically equal. It requires pointwise equality proofs for:
 
 ```text
 declared verifier schema
@@ -124,67 +126,64 @@ goal distance
 goal-drift budget
 ```
 
-These identifications are equality proofs supplied by an instantiation. Field
-names alone do not establish semantic identity.
+The packet-builder theorem rewrites through these equalities before returning the
+declared Paper II conclusions.
 
-## Conditional infinite closure
+## Recursive bounded seed-domain closure
 
-`RCLM.PaperIIBoundedSeedPredecessor` pairs an architecture predecessor with
-seed-domain membership. The recursive definitions in
-`RCLM.PaperIIBoundedSeedTrajectory` select a grammar-certified packet, construct
-the next architecture predecessor, and preserve the seed-domain proof.
+`RCLM.PaperIIBoundedSeedPredecessor` combines an architecture predecessor with
+explicit seed-domain membership. The recursive construction selects a word from
+the supplied nonempty finite grammar, builds the corresponding checked engine
+step, and constructs the next predecessor.
 
-The theorem
+The public theorems are:
 
 ```lean
 RCLM.conditional_infinite_paper_ii_bounded_seed_trajectory_exists
-```
-
-constructs an infinite architecture trajectory only from a library whose grammar
-is nonempty at every seed-domain state and whose accepted packet explicitly
-returns to the successor seed domain. The theorem does not derive these facts
-from checker soundness.
-
-Each selected step satisfies
-
-```lean
 RCLM.infinite_paper_ii_bounded_seed_step_result
+RCLM.infinite_paper_ii_bounded_seed_step_refines_architecture
 ```
 
-which replays the bounded packet-builder soundness theorem at that time index.
+The third theorem proves that every selected recursive step carries both the
+complete RCLM result and the complete forgotten RCP architecture refinement.
 
-## Concrete Gate B classical/binary instance
+The recursion uses classical choice only to select from the explicitly supplied
+`Finset.Nonempty` witness. The theorem does not infer grammar nonemptiness or
+successor seed-domain closure from checker soundness.
 
-`RCLM.ClassicalBinary.boundedSeedLibrary` instantiates the generic interface with:
+## Concrete binary reference
+
+The concrete finite reference defines:
 
 ```text
-states: initial and target
-witnesses: strictImprovement and stableContinuation
-words: improve, stabilize, rejected
+packet words: improve, stabilize, rejected
 active grammar at initial: {improve}
-active grammar at target: {stabilize}
+active grammar at target:  {stabilize}
 maximum update-word depth: 1
 maximum proof-word length: 1
+rejected word: absent from every active grammar
 ```
 
-The rejected word is not in an active grammar. Exhaustive case analysis proves
-that every active grammar word is exactly the improvement word at `initial` or
-the stability word at `target`.
+The active word decodes to the already proved architecture witness, proposal,
+certificate, candidate, resource record, realization, and checker evidence.
 
-The concrete semantic identification uses named declared objects:
+The concrete Paper II objects are identified as:
 
 ```text
 verifier schema: trustedBinaryChecker
-verifier transport: identity
 uncertainty envelope: contained
-uncertainty transport: identity
 goal: biasedTarget
+verifier transport: identity
+uncertainty transport: identity
 goal transport: identity
-goal distance: the declared finite discrete distance
-goal-drift budget: zero
+goal drift budget: zero
 ```
 
-The following concrete theorems are supplied:
+These meanings are exact for the finite binary reference. They do not claim
+arbitrary verifier-schema semantics, real-world uncertainty containment, or
+semantic goal identity for trained systems.
+
+The concrete results include:
 
 ```lean
 RCLM.ClassicalBinary.initial_bounded_seed_packet_builder_refinement
@@ -192,47 +191,71 @@ RCLM.ClassicalBinary.initial_bounded_seed_direct_engine_refinement
 RCLM.ClassicalBinary.classical_bounded_seed_packet_builder_refinement
 RCLM.ClassicalBinary.classical_infinite_bounded_seed_trajectory_exists
 RCLM.ClassicalBinary.classical_infinite_bounded_seed_step_result
+RCLM.ClassicalBinary.classical_infinite_bounded_seed_step_refines_architecture
 ```
 
-The first selected step is the already proved strict KL-derived improvement. The
-persisting path then uses the accepted stability packet at the target state. This
-is bounded seed-library and packet-construction closure, not indefinitely strict
-capability growth.
+The selected concrete path performs one strict KL-derived improvement and then
+accepted stability continuations. It does not establish strict useful novelty at
+every recursive step.
 
-## Paper II alignment result
+## Validation
 
-| Paper II object | Formal Core v2 object | Resolution |
-|---|---|---|
-| certified finite witness library | `PaperIIBoundedSeedLibrary.witnesses` | concrete finite refinement |
-| bounded update/certificate grammar | `PaperIIBoundedSeedLibrary.grammar`, depth bounds | concrete finite refinement |
-| generator coverage | `proposalGenerated` plus grammar membership | explicit theorem field |
-| packet construction | `certificateConstructed`, `PaperIIBoundedSeedPacket` | explicit theorem field and packet object |
-| candidate selection | `candidateSelected` | explicit theorem field |
-| successor realization | `successorRealized` | explicit theorem field |
-| checker acceptance | `checkerAccepted` | explicit evidence, not inferred |
-| verifier schema and transport | `PaperIISeedSemanticIdentification` | explicit equality refinement |
-| uncertainty envelope and transport | `PaperIISeedSemanticIdentification` | explicit equality refinement |
-| goal identity and drift | `PaperIISeedSemanticIdentification` and packet result | explicit equality refinement and bound |
-| successor seed-domain persistence | `successorSeedDomain` | explicit completeness premise |
-| infinite seed-library path | bounded seed trajectory theorem | conditional construction from explicit closure |
-
-## Claim boundary
-
-This phase establishes a generic bounded seed-library refinement and a complete
-finite classical/binary reference instantiation. It does not establish:
+The completed theorem surface passed the pinned Linux workflow:
 
 ```text
-unbounded grammar completeness
-arbitrary proof-search completeness
+Branch source head:   a09c742ca2541ad3302a5c1041852974649e09c8
+CI checkout commit:   02790b14d1fe9b16745ec8236bf91c9a0608e9b8
+Workflow run:         29224543624
+Build:                1953 jobs, success
+No sorry/admit:       pass
+Project-local axioms: none
+No sorryAx:           pass
+RCLM audit count:     47 declarations
+Artifact:             formal-core-v2-audit-29224543624-1
+Artifact SHA-256:     e1f00cad76ac2799b8006e01cfdf6ba47f9348b4074d664bb4d1a2314716b6b2
+```
+
+The audited foundational union is:
+
+```lean
+[propext, Classical.choice, Quot.sound]
+```
+
+Some concrete projection and domain-classification theorems are axiom-free. No
+project-local axiom or admitted proof occurs.
+
+## Exact claim boundary
+
+This phase proves:
+
+```text
+finite bounded witness and packet grammars
+explicit generator coverage on the declared finite class
+explicit packet construction and checker acceptance
+verifier/envelope/goal semantic identification by equality
+successor seed-domain closure
+conditional infinite bounded seed-library recursion
+complete RCLM and forgotten RCP obligations at every selected step
+```
+
+It does not prove:
+
+```text
+unbounded packet-grammar completeness
+unbounded proof-search completeness
 arbitrary learned-system seed-domain entry
 arbitrary learned generator coverage
 strict useful improvement at every recursive step
-exact identity with every semantic object in the full Paper II manuscript
-Gate C finite-dimensional quantum closure
-Python checker or generator correctness
-an executable promotion loop
-empirical recursive self-improvement
-external benchmark performance
+full Paper II semantic identity beyond the binary reference
+Gate C quantum relative entropy or channel recovery
+Python checker or generator refinement
+an executable recursive promotion loop
+empirical or benchmark recursive self-improvement
 ```
 
-The executable phase remains unlicensed. Gate C also remains unstarted.
+## Next formal boundary
+
+The next major gate is the finite-dimensional quantum Gate C extension, followed
+by strengthening the RCLM refinement over the selected quantum objects. No
+executable artifact should begin before those theorem boundaries and the final
+paper-facing closure decision are explicit.
