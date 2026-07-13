@@ -528,8 +528,8 @@ theorem finite_paper_ii_goal_identity_bound
       intro _
       have selfZero := semantics.goalDistance_self
         (semantics.stateGoal (trajectory.state 0))
-      rw [selfZero]
-      exact le_rfl
+      simpa [transportedPaperIIGoal, cumulativePaperIIGoalDriftBudget] using
+        (le_of_eq selfZero)
   | succ t inductionHypothesis =>
       intro bound
       have stepIndexBound : t < horizon := Nat.lt_of_succ_le bound
