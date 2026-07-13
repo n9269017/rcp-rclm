@@ -150,8 +150,8 @@ theorem infinite_paper_ii_bounded_seed_domain
     (initial : PaperIIBoundedSeedPredecessor library)
     (n : Nat) :
     library.seedDomain
-      (buildInfinitePaperIIBoundedSeedTrajectory
-        library initial).predecessor n |>.state := by
+      ((buildInfinitePaperIIBoundedSeedTrajectory
+        library initial).predecessor n).state := by
   exact
     (infinitePaperIIBoundedSeedPredecessor library initial n).seedDomain
 
