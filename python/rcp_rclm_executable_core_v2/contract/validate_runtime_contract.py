@@ -9,7 +9,7 @@ import subprocess
 import sys
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Final, Literal, Sequence, TypeAlias
+from typing import Any, Final, Literal, Sequence
 
 CONTRACT_VERSION: Final[str] = "rcp-rclm-runtime-contract-v2.0.0"
 MANIFEST_SCHEMA_VERSION: Final[str] = "rcp-rclm-runtime-contract-manifest-v1"
@@ -34,9 +34,8 @@ PYTHON_SYMBOL: Final[re.Pattern[str]] = re.compile(
 )
 RUNTIME_FUNCTION: Final[re.Pattern[str]] = re.compile(r"^[a-z_][a-z0-9_]*$")
 
-JsonScalar: TypeAlias = None | bool | int | float | str
-JsonValue: TypeAlias = JsonScalar | list["JsonValue"] | dict[str, "JsonValue"]
-Severity: TypeAlias = Literal["error", "warning"]
+Severity = Literal["error", "warning"]
+JsonValue = Any
 
 
 @dataclass(frozen=True, slots=True)
@@ -55,7 +54,7 @@ class ValidationReport:
     schema_path: str
     mapped_object_count: int
     scanned_lean_file_count: int
-    issues: tuple[Issue, ...]
+    issues: Sequence[Issue]
 
 
 class DuplicateKeyError(ValueError):
@@ -109,22 +108,14 @@ def run_git(repo_root: Path, arguments: Sequence[str]) -> subprocess.CompletedPr
     )
 
 
-def require_dict(
-    value: JsonValue,
-    path: str,
-    issues: list[Issue],
-) -> dict[str, JsonValue]:
+def require_dict(value: JsonValue, path: str, issues: list[Issue]) -> dict[str, JsonValue]:
     if isinstance(value, dict):
         return value
     issues.append(Issue("error", "TYPE_OBJECT_REQUIRED", path, "expected JSON object"))
     return {}
 
 
-def require_list(
-    value: JsonValue,
-    path: str,
-    issues: list[Issue],
-) -> list[JsonValue]:
+def require_list(value: JsonValue, path: str, issues: list[Issue]) -> list[JsonValue]:
     if isinstance(value, list):
         return value
     issues.append(Issue("error", "TYPE_ARRAY_REQUIRED", path, "expected JSON array"))
@@ -192,7 +183,12 @@ def validate_formal_source(
     )
     if expected_blob and not HEX_40.fullmatch(expected_blob):
         issues.append(
-            Issue("error", "FORMAL_MANIFEST_BLOB_FORMAT", "formal_source.formal_manifest_git_blob_sha", expected_blob)
+            Issue(
+                "error",
+                "FORMAL_MANIFEST_BLOB_FORMAT",
+                "formal_source.formal_manifest_git_blob_sha",
+                expected_blob,
+            )
         )
     if manifest_path_text:
         manifest_path = repo_root / manifest_path_text
@@ -231,7 +227,12 @@ def validate_formal_source(
     )
     if artifact_sha and not HEX_64.fullmatch(artifact_sha):
         issues.append(
-            Issue("error", "AUDIT_ARTIFACT_SHA_FORMAT", "formal_source.validation_artifact_sha256", artifact_sha)
+            Issue(
+                "error",
+                "AUDIT_ARTIFACT_SHA_FORMAT",
+                "formal_source.validation_artifact_sha256",
+                artifact_sha,
+            )
         )
 
 
@@ -264,6 +265,7 @@ def validate_object_correspondence(
             field: require_string_field(entry, field, path, issues)
             for field in required_fields
         }
+
         object_id = values["id"]
         if object_id:
             if not OBJECT_ID.fullmatch(object_id):
@@ -290,7 +292,12 @@ def validate_object_correspondence(
         if conformance_test:
             if conformance_test in seen_tests:
                 issues.append(
-                    Issue("error", "CONFORMANCE_TEST_DUPLICATE", f"{path}.conformance_test", conformance_test)
+                    Issue(
+                        "error",
+                        "CONFORMANCE_TEST_DUPLICATE",
+                        f"{path}.conformance_test",
+                        conformance_test,
+                    )
                 )
             seen_tests.add(conformance_test)
 
@@ -329,12 +336,7 @@ def validate_object_correspondence(
         declaration = values["lean_declaration"]
         if declaration not in source:
             issues.append(
-                Issue(
-                    "error",
-                    "LEAN_DECLARATION_MISSING",
-                    lean_path_text,
-                    declaration,
-                )
+                Issue("error", "LEAN_DECLARATION_MISSING", lean_path_text, declaration)
             )
         else:
             valid_count += 1
@@ -472,7 +474,7 @@ def validate_contract_invariants(
             )
 
 
-def scan_lean_source(path: Path, reject_local_axiom: bool) -> tuple[Issue, ...]:
+def scan_lean_source(path: Path, reject_local_axiom: bool) -> Sequence[Issue]:
     issues: list[Issue] = []
     text = path.read_text(encoding="utf-8")
     for match in FORBIDDEN_LEAN_TOKEN.finditer(text):
