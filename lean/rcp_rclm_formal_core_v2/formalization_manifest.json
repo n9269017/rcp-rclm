@@ -28,7 +28,7 @@
     "rclm_gate_b_refinement": "complete_at_declared_classical_reference_scope",
     "conditional_architecture_engine": "implemented_clean_ci_built_and_axiom_audited",
     "paper_ii_direct_and_robust_reflective_alignment": "implemented_with_remaining_semantic_premises_explicit",
-    "paper_ii_bounded_seed_library_refinement": "complete_at_declared_binary_reference_scope",
+    "paper_ii_bounded_seed_library_refinement": "complete_at_declared_binary_reference_scope_clean_ci_built_and_axiom_audited",
     "gate_c_quantum_finite": "not_yet_claimed",
     "exact_paper_i_equivalence": false,
     "exact_paper_ii_equivalence": false
@@ -51,23 +51,23 @@
       "audited_public_theorem_count": 22
     },
     "bounded_seed_library": {
-      "validated_branch_head": "78e9db0b0f2336d50ad4ec00d11bbc4415efc1a4",
-      "ci_checkout_commit": "f43f08c4693aec79fe01a2af3e71dbe73279714e",
-      "workflow_run_id": 29222655146,
+      "validated_branch_head": "a09c742ca2541ad3302a5c1041852974649e09c8",
+      "ci_checkout_commit": "02790b14d1fe9b16745ec8236bf91c9a0608e9b8",
+      "workflow_run_id": 29224543624,
       "workflow_conclusion": "success",
       "build_jobs": 1953,
       "no_sorry_or_admit": true,
       "no_project_local_axiom_declarations": true,
       "no_sorry_ax": true,
-      "rclm_audited_public_theorem_count": 45,
+      "rclm_audited_public_theorem_count": 47,
+      "audit_artifact_name": "formal-core-v2-audit-29224543624-1",
+      "audit_artifact_sha256": "e1f00cad76ac2799b8006e01cfdf6ba47f9348b4074d664bb4d1a2314716b6b2",
       "axiom_union": [
         "propext",
         "Classical.choice",
         "Quot.sound"
       ],
       "some_audited_theorems_axiom_free": true,
-      "audit_artifact_name": "formal-core-v2-audit-29222655146-1",
-      "audit_artifact_sha256": "c1a59e1b365e2dedd8515fd4952584057edaef0d2043206dde680c28628149af",
       "lake_manifest_sha256": "c17842b8da89c8c84beed4e8b33892616ef75c15475133a07aca97c16d853b0a"
     }
   },
@@ -94,11 +94,13 @@
     "uncertainty_envelope_identification": true,
     "goal_transport_identification": true,
     "conditional_infinite_bounded_seed_trajectory": true,
+    "generic_every_step_architecture_refinement": true,
     "concrete_binary_singleton_grammars": true,
     "rejected_word_excluded": true,
     "concrete_initial_strict_packet": true,
     "concrete_target_stability_packet": true,
-    "concrete_infinite_seed_domain_preservation": true
+    "concrete_infinite_seed_domain_preservation": true,
+    "concrete_every_step_rclm_and_rcp_refinement": true
   },
   "explicit_non_implications": {
     "checker_soundness_implies_grammar_nonempty": false,
