@@ -16,7 +16,7 @@ import RcpRclmFormalCoreV2.MainTheorem
 #print axioms RcpRclmFormalCoreV2.RCLM.rclm_constructive_direct_nl_rsi_engine_aligned
 #print axioms RcpRclmFormalCoreV2.RCLM.rclm_constructive_direct_nl_rsi_engine_exists
 #print axioms RcpRclmFormalCoreV2.RCLM.paper_ii_successor_verification_obligations
-#print axioms RcpRclmFormalCoreV2.RCLM.finite_paper_ii_goal_transport_bound
+#print axioms RcpRclmFormalCoreV2.RCLM.finite_paper_ii_goal_identity_bound
 #print axioms RcpRclmFormalCoreV2.RCLM.paper_ii_aligned_infinite_result
 #print axioms RcpRclmFormalCoreV2.RCLM.paper_ii_bounded_seed_packet_available
 #print axioms RcpRclmFormalCoreV2.RCLM.paper_ii_bounded_seed_packet_builder_sound
