@@ -34,9 +34,20 @@
 - [x] Unit tests cover strict runtime-record parsing and hash linkage.
 - [x] Unit tests cover generated-Lean source rejection.
 - [x] Frozen cross-platform conformance vectors exist.
-- [ ] Linux, Windows, and macOS CI agree on the frozen conformance vectors.
-- [ ] The final synchronized Phase 1 branch head passes all CI jobs.
-- [ ] The final workflow ID and artifact digest are recorded.
+- [x] Linux, Windows, and macOS CI agree on the frozen conformance vectors.
+- [x] The synchronized Phase 1 implementation head passes all CI jobs.
+- [x] The validation workflow ID and artifact digest are recorded.
+
+The machine-readable validation record is:
+
+```text
+python/rcp_rclm_runtime_v2/phase_1_validation.json
+```
+
+It records the clean implementation head, workflow run, all three platform artifact
+digests, and the final cross-platform consistency artifact digest. The final
+metadata-only PR head is validated separately and recorded on PR #15, avoiding a
+self-referential source file that would need to predict its own future workflow ID.
 
 ## Licensing after Phase 1 closes
 
@@ -45,14 +56,15 @@ Immutable runtime records: implemented
 Exact and interval mathematical bedrock: implemented
 Canonical serialization and hashing: implemented
 Generated-source guard: implemented
-Lean compiler/verifier bridge: not yet licensed as complete
-Production successor checker: not yet licensed
+Pinned Lean compiler/verifier bridge: licensed to begin, not implemented
+Production successor checker: not licensed
 Generator: not licensed
 Promotion controller: not licensed
+Independent replay: not licensed
 PyTorch backend: not licensed
 Benchmark adapter: not licensed
 ```
 
-The next phase may build the pinned Lean verifier bridge and differential
-Python/Lean conformance fixtures. The production aggregate checker remains after
-that bridge.
+Phase 1 is closed at the deterministic runtime-bedrock boundary. The next phase may
+build the pinned Lean verifier bridge and differential Python/Lean conformance
+fixtures. The production aggregate checker remains after that bridge.
