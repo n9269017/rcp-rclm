@@ -83,7 +83,10 @@ project-local axiom declarations
 invalid UTF-8
 ```
 
-A source-guard failure prevents compiler invocation.
+A source-guard failure prevents compiler invocation. Its structured report records
+the frozen guard version, source path, exact source SHA-256, byte count, matched
+token and reason code, and one-based line and column. When no semantic path is
+supplied, the guard uses a deterministic content-addressed virtual path.
 
 ## Pinned project identity
 
