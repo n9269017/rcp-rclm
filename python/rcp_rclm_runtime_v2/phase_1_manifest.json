@@ -33,7 +33,7 @@
     "all_tests_passed": true,
     "conformance_vectors_hash": "447c3933d2be4904f2499a5be5f8cb32e5c9babe5e5cccd029ae3a95caec78b8",
     "cross_platform_ci": "passed_linux_windows_macos",
-    "cross_platform_workflow_run": 29274306289,
+    "cross_platform_workflow_run": 29280052015,
     "source_quality_passed": true,
     "unit_test_count": 74
   },
@@ -66,10 +66,10 @@
   "schema_version": "rcp-rclm-runtime-phase-1-manifest-v1",
   "validation_record": {
     "path": "python/rcp_rclm_runtime_v2/phase_1_validation.json",
-    "validated_branch_head": "ab6a04ab80b7b2290ef76e56c017c070df55ff80",
-    "workflow_run": 29274306289,
+    "validated_branch_head": "ee22d11fb7472c1c8a3a61ee20fd10a28b76212a",
+    "workflow_run": 29280052015,
     "workflow_conclusion": "success",
-    "final_artifact": "phase1-runtime-bedrock-final-29274306289-1",
-    "final_artifact_sha256": "00b52e02507161dd98cab0d81e972191ae501416905e01f62876aed6d577d2ae"
+    "final_artifact": "runtime-v2-phase-1-final-29280052015-1",
+    "final_artifact_sha256": "3c81055228e43b318492d5187754b33e8487ac3aba85e02acc1baab27e285e94"
   }
 }
