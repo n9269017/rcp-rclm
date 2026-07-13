@@ -15,7 +15,8 @@
     "candidate_acceptance_licensed": false,
     "executable_rsi_claim": false,
     "production_checker_soundness_established": false,
-    "python_lean_reference_conformance_pending_ci": true,
+    "python_lean_reference_conformance_established": true,
+    "python_lean_reference_conformance_pending_ci": false,
     "reference_bridge_only": true
   },
   "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
@@ -34,6 +35,10 @@
     "toolchain_identity_evidence": true
   },
   "lean_toolchain": "leanprover/lean4:v4.31.0",
+  "licenses_after_phase_2": {
+    "candidate_acceptance": false,
+    "phase_3_checker_development_may_begin": true
+  },
   "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
   "not_implemented": {
     "benchmark_adapter": true,
@@ -51,6 +56,13 @@
   "package_name": "rcp-rclm-runtime-v2",
   "package_version": "0.2.0",
   "phase_name": "RCP/RCLM Executable Core v2 — Phase 2 pinned Lean conformance bridge",
-  "phase_status": "implementation_complete_clean_ci_pending",
-  "schema_version": "rcp-rclm-runtime-phase-2-manifest-v1"
+  "phase_status": "complete_clean_ci_validated",
+  "schema_version": "rcp-rclm-runtime-phase-2-manifest-v1",
+  "validation": {
+    "artifact": "runtime-v2-phase-2-lean-29287943656-1",
+    "artifact_sha256": "b90cd6e585bf7fc5e6c121391c6a4573cb0f5a7efa9e83807dabfb6e163ad9f2",
+    "implementation_head": "01319d8be6c4025fb32092588e4f021a60596652",
+    "record": "phase_2_validation.json",
+    "workflow_run": 29287943656
+  }
 }
