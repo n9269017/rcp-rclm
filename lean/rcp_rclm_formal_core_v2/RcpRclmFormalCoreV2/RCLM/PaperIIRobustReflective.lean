@@ -526,9 +526,10 @@ theorem finite_paper_ii_goal_identity_bound
   induction t with
   | zero =>
       intro _
-      simpa [transportedPaperIIGoal, cumulativePaperIIGoalDriftBudget] using
-        semantics.goalDistance_self
-          (semantics.stateGoal (trajectory.state 0))
+      have selfZero := semantics.goalDistance_self
+        (semantics.stateGoal (trajectory.state 0))
+      rw [selfZero]
+      exact le_rfl
   | succ t inductionHypothesis =>
       intro bound
       have stepIndexBound : t < horizon := Nat.lt_of_succ_le bound
@@ -760,8 +761,6 @@ theorem paper_ii_infinite_robust_reflective_result
     (budgets : PaperIIInfiniteBudgetAssumptions svSemantics trajectory) :
     PaperIIInfiniteRobustReflectiveResult
       directSemantics svSemantics trajectory := by
-  have acceptedTrajectory : RCP.InfiniteAcceptedTrajectory checker :=
-    InfiniteArchitectureTrajectory.toAcceptedTrajectory trajectory
   refine
     { successorVerification := ?_
       candidateNonLossy := ?_
@@ -830,20 +829,22 @@ theorem paper_ii_infinite_robust_reflective_result
       obligations.typedSuccessor
   · intro horizon
     have bound : horizon ≤ horizon := Nat.le_refl horizon
-    simpa [acceptedTrajectory, RCP.finitePrefixOfInfinite] using
-      finite_paper_ii_verifier_schema_persistence
-        svSemantics
-        (RCP.finitePrefixOfInfinite acceptedTrajectory horizon)
-        horizon
-        bound
+    exact finite_paper_ii_verifier_schema_persistence
+      svSemantics
+      (RCP.finitePrefixOfInfinite
+        (InfiniteArchitectureTrajectory.toAcceptedTrajectory trajectory)
+        horizon)
+      horizon
+      bound
   · intro horizon
     have bound : horizon ≤ horizon := Nat.le_refl horizon
-    simpa [acceptedTrajectory, RCP.finitePrefixOfInfinite] using
-      finite_paper_ii_goal_identity_bound
-        svSemantics
-        (RCP.finitePrefixOfInfinite acceptedTrajectory horizon)
-        horizon
-        bound
+    exact finite_paper_ii_goal_identity_bound
+      svSemantics
+      (RCP.finitePrefixOfInfinite
+        (InfiniteArchitectureTrajectory.toAcceptedTrajectory trajectory)
+        horizon)
+      horizon
+      bound
 
 theorem conditional_infinite_paper_ii_robust_reflective_trajectory_exists
     {State Update Certificate Protected ResidualIndex Proposal Witness TrustAnchor ResourceRecord : Type*}
