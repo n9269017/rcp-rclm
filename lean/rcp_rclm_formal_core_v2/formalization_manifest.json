@@ -1,5 +1,5 @@
 {
-  "schema_version": "rcp-rclm-formal-core-v2-manifest-v3",
+  "schema_version": "rcp-rclm-formal-core-v2-manifest-v4",
   "phase_name": "RCP/RCLM Formal Core v2 — Mechanized Conditional Successor Theorem Closure",
   "base_repository_commit": "df88c8ed95aec4b0a38b45e74664f62e9405b0c5",
   "toolchain": {
@@ -21,13 +21,14 @@
     "paper_ii_path": "papers/paper-II-rclm-architecture/main.tex",
     "paper_ii_git_blob_sha": "9b51be8294ad79fd4f63522b01e0f617f0bf2ffd"
   },
-  "active_gate": "Paper II architecture-level successor theorem after substantive Gate B classical RCLM-to-RCP refinement",
+  "active_gate": "Paper II direct-engine theorem line-by-line alignment after conditional architecture-engine implementation",
   "gate_status": {
     "gate_a_abstract_kernel": "complete_clean_ci_built_and_axiom_audited",
     "gate_b_classical_finite": "complete_at_declared_finite_reference_scope_clean_ci_built_and_axiom_audited",
     "gate_c_quantum_finite": "not_yet_claimed",
     "rclm_refinement": "substantive_gate_b_classical_field_monitor_recovery_and_checker_refinement_clean_ci_built_and_axiom_audited",
-    "rclm_architecture_theorem": "not_yet_complete"
+    "rclm_architecture_theorem": "conditional_structural_theorem_and_gate_b_direct_engine_reference_clean_ci_built_and_axiom_audited",
+    "exact_paper_ii_equivalence": "not_yet_complete"
   },
   "gate_a_validation": {
     "validated_source_commit": "dd71e12438fd1f8e3508061981ab11b5e7fa7028",
@@ -64,32 +65,40 @@
       "Classical.choice",
       "Quot.sound"
     ],
-    "some_audited_theorems_axiom_free": true,
     "audit_artifact_name": "formal-core-v2-audit-29208133524-1",
     "audit_artifact_sha256": "dd718909eb0e683e7e92fabf76eb773f8368a1437148f2c65ccfa10d3570930c",
     "closure_record_path": "docs/formal_core_v2/GATE_B_CLOSURE.md",
-    "theorem_map_synchronized": true,
-    "assumption_register_synchronized": true,
-    "exit_criteria_synchronized": true,
     "concrete_paper_equivalence_complete": false
   },
-  "rclm_refinement_validation": {
-    "validated_source_commit": "8483cdc3ae53843c6d3294b8b73ef3397393a958",
-    "workflow_run_id": 29212558655,
+  "rclm_architecture_validation": {
+    "validated_source_commit": "0731abfdf0edb940312a48051a3ca527c086af5b",
+    "workflow_run_id": 29215941083,
     "workflow_conclusion": "success",
+    "clean_build_job_count": 1945,
     "no_sorry_or_admit": true,
     "no_project_local_axiom_declarations": true,
     "no_sorry_ax_in_public_theorems": true,
-    "audited_public_theorem_count": 19,
-    "audit_artifact_name": "formal-core-v2-audit-29212558655-1",
-    "audit_artifact_sha256": "4a2dfe1e3ef30112f7b1c30ee111255654b890de7a42774b11006b9d1536a914",
-    "status_record_path": "docs/formal_core_v2/RCLM_GATE_B_REFINEMENT_STATUS.md",
+    "audited_public_theorem_count": 27,
+    "audited_public_theorem_axiom_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "some_audited_theorems_axiom_free": true,
+    "audit_artifact_name": "formal-core-v2-audit-29215941083-1",
+    "audit_artifact_sha256": "9d4d3d5a38e2bfefbb641950131c8a10dbec20fc90b89c165a08ef4f4b98fff4",
+    "status_record_path": "docs/formal_core_v2/RCLM_DIRECT_ENGINE_STATUS.md",
     "generic_kernel_refinement_complete": true,
     "generic_monitor_refinement_complete": true,
     "generic_recovery_law_transport_complete": true,
     "generic_checker_acceptance_refinement_complete": true,
     "concrete_gate_b_classical_instantiation_complete": true,
-    "paper_ii_architecture_theorem_complete": false
+    "generic_architecture_engine_contract_complete": true,
+    "conditional_architecture_successor_theorem_complete": true,
+    "explicit_architecture_successor_availability_complete": true,
+    "conditional_infinite_architecture_trajectory_complete": true,
+    "concrete_gate_b_direct_engine_reference_complete": true,
+    "paper_ii_exact_equivalence_complete": false
   },
   "gate_a_delivered": {
     "nonconstant_protected_value_required": true,
@@ -155,31 +164,46 @@
     "concrete_gate_b_classical_successor_packet_refined": true,
     "rclm_refinement_axiom_audit": true
   },
+  "rclm_architecture_engine_delivered": {
+    "generator_proposal_relation": true,
+    "certificate_construction_relation": true,
+    "candidate_selector_relation": true,
+    "successor_realizer_relation": true,
+    "witness_library_coverage_premise": true,
+    "trust_anchor_premise_and_preservation": true,
+    "resource_premise_and_soundness": true,
+    "successor_domain_closure": true,
+    "conditional_architecture_successor_theorem": true,
+    "complete_rclm_obligations_in_result": true,
+    "complete_forgotten_rcp_obligations_in_result": true,
+    "recovery_and_monitor_refinement_evidence_in_result": true,
+    "explicit_architecture_successor_availability": true,
+    "conditional_infinite_architecture_trajectory": true,
+    "rclm_and_core_accepted_trajectory_forgetting": true,
+    "concrete_gate_b_improvement_engine_step": true,
+    "concrete_gate_b_stability_engine_step": true,
+    "concrete_gate_b_domain_availability": true,
+    "concrete_infinite_reference_path_after_first_step_stable": true,
+    "indefinitely_strict_useful_successor_completeness": false
+  },
   "paper_alignment_audit": {
     "initial_audit_path": "docs/formal_core_v2/GATE_A_PAPER_ALIGNMENT_AUDIT.md",
     "gate_a_resolution_log_path": "docs/formal_core_v2/GATE_A_ALIGNMENT_RESOLUTION_LOG.md",
     "gate_b_closure_path": "docs/formal_core_v2/GATE_B_CLOSURE.md",
     "rclm_gate_b_refinement_path": "docs/formal_core_v2/RCLM_GATE_B_REFINEMENT_STATUS.md",
+    "rclm_direct_engine_path": "docs/formal_core_v2/RCLM_DIRECT_ENGINE_STATUS.md",
     "paper_i_exact_equivalence": false,
     "paper_ii_exact_equivalence": false,
     "abstract_gate_a_mismatch_resolution_complete": true,
     "gate_b_finite_classical_component_complete": true,
     "rclm_gate_b_classical_refinement_complete": true,
-    "resolved_at_abstract_gate_a": [
-      "ALIGN-01-paper-safe-set-and-admissibility-refinement-boundary",
-      "ALIGN-02-no-op-feasibility-premise",
-      "ALIGN-03-lyapunov-motion-and-summability-composition",
-      "ALIGN-04-ambiguity-and-self-model-monitor-composition",
-      "ALIGN-06-typed-endpoint-recovery-composition"
-    ],
-    "partially_resolved_at_gate_b": [
-      "ALIGN-05-finite-KL-component",
-      "ALIGN-03-finite-KL-Lyapunov-reference",
-      "ALIGN-04-scoped-packet-and-relevance-monitor-reference"
-    ],
-    "partially_resolved_at_rclm_gate_b_refinement": [
+    "conditional_architecture_engine_theorem_complete": true,
+    "partially_resolved_at_rclm_engine_layer": [
       "ALIGN-08-theorem-relevant-field-monitor-recovery-refinement",
-      "ALIGN-09-concrete-Gate-B-checker-acceptance-refinement"
+      "ALIGN-09-concrete-Gate-B-checker-acceptance-refinement",
+      "ALIGN-10-conditional-RCLM-architecture-successor-theorem",
+      "ALIGN-10-explicit-generator-certifier-selector-realizer-boundary",
+      "ALIGN-10-explicit-successor-availability-boundary"
     ],
     "open_cross_gate_obligations": [
       "ALIGN-05-finite-dimensional-quantum-relative-entropy-refinement",
@@ -188,23 +212,25 @@
       "ALIGN-04-semantic-ambiguity-and-mutual-information-identification",
       "ALIGN-08-general-Paper-II-field-refinement-beyond-Gate-B-reference",
       "ALIGN-09-Paper-II-architecture-wide-checker-and-compiler-refinement",
-      "ALIGN-10-RCLM-architecture-successor-theorem",
+      "ALIGN-10-exact-Paper-II-direct-engine-semantic-equivalence",
+      "ALIGN-10-indefinitely-strict-useful-successor-completeness",
       "ALIGN-11-final-concrete-paper-facing-wrapper"
     ],
-    "next_selected_obligation": "Paper-II-architecture-level-successor-theorem-with-explicit-generator-certifier-selector-realizer-trust-resource-and-availability-premises"
+    "next_selected_obligation": "line-by-line-Paper-II-direct-engine-and-robust-reflective-successor-alignment-audit"
   },
   "claim_boundary": {
     "full_paper_mechanized": false,
     "gate_a_abstract_complete": true,
-    "gate_a_clean_ci_built": true,
-    "gate_a_proof_admission_audited": true,
-    "gate_a_paper_aligned_concretely": false,
     "gate_b_complete": true,
     "gate_b_scope": "finite_classical_binary_reference_only",
     "gate_c_complete": false,
     "rclm_gate_b_classical_refinement_complete": true,
-    "rclm_checker_refinement_complete": false,
-    "rclm_architecture_theorem_complete": false,
+    "rclm_checker_refinement_complete_at_gate_b_scope": true,
+    "conditional_rclm_architecture_theorem_complete": true,
+    "concrete_gate_b_direct_engine_reference_complete": true,
+    "rclm_architecture_theorem_exact_paper_equivalence": false,
+    "arbitrary_learned_system_engine_complete": false,
+    "indefinitely_strict_recursive_improvement_proved": false,
     "python_checker_licensed": false,
     "python_generator_licensed": false,
     "closed_loop_runtime_licensed": false,
