@@ -50,6 +50,42 @@ theorem classical_infinite_bounded_seed_trajectory_exists :
     boundedSeedLibrary
     initialBoundedSeedPredecessor
 
+theorem classical_infinite_bounded_seed_step_refines_architecture
+    (n : Nat) :
+    ArchitectureSuccessorResult
+        architectureEngine
+        kernelRefinement
+        binaryChecker
+        preservationMonitors
+        binaryPreservationMonitors
+        (infinitePaperIIBoundedSeedPredecessor
+          boundedSeedLibrary initialBoundedSeedPredecessor n).predecessor
+        (infinitePaperIIBoundedSeedPacket
+          boundedSeedLibrary initialBoundedSeedPredecessor n).toEngineStep ∧
+      PaperIIBoundedSeedSuccessorResult
+        boundedSeedSemanticIdentification
+        boundedSeedLibrary
+        (infinitePaperIIBoundedSeedPredecessor
+          boundedSeedLibrary initialBoundedSeedPredecessor n).predecessor
+        (infinitePaperIIBoundedSeedPacket
+          boundedSeedLibrary initialBoundedSeedPredecessor n) := by
+  exact infinite_paper_ii_bounded_seed_step_refines_architecture
+    checker
+    binaryChecker
+    architectureEngine
+    paperIISuccessorSemantics
+    paperIIUncertaintySemantics
+    boundedSeedSemanticIdentification
+    boundedSeedLibrary
+    kernelRefinement
+    checkerRefinement
+    recoveryCompositionLaws
+    preservationMonitors
+    binaryPreservationMonitors
+    monitorRefinement
+    initialBoundedSeedPredecessor
+    n
+
 end ClassicalBinary
 end RCLM
 end RcpRclmFormalCoreV2
