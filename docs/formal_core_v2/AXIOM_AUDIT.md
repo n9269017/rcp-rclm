@@ -6,8 +6,8 @@ This audit distinguishes:
 2. whether the project declares new axioms; and
 3. which foundational axioms the compiled public theorems use.
 
-A successful build alone answers none of these questions, so the workflow
-performs and preserves separate source scans and `#print axioms` reports.
+A successful build alone answers none of these questions. The workflow performs
+and preserves separate source scans and `#print axioms` reports.
 
 ## Audited source scope
 
@@ -16,120 +16,118 @@ lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2.lean
 lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/**/*.lean
 ```
 
-Generated dependencies under `.lake/` are excluded. The scan fails on `sorry`,
-`admit`, or a project-local declaration beginning with `axiom`.
+Generated dependencies under `.lake/` are excluded. The source scan fails on
+`sorry`, `admit`, or a project-local declaration beginning with `axiom`.
 
-## Gate A audit
+## Gate A public theorem audit
 
-The abstract Gate A audit covers 22 public declarations in:
-
-```text
-docs/formal_core_v2/audit/GateAAxiomAudit.lean
-```
-
-The complete Gate A validation record remains:
+The Gate A audit covers 22 public declarations, including checker soundness,
+finite composition, endpoint recovery, monitor composition, conditional infinite
+trajectories, summability, and the paper-facing abstract wrappers.
 
 ```text
-Source head:          dd71e12438fd1f8e3508061981ab11b5e7fa7028
-Workflow run:         29187317488
-Build:                1941 jobs, success
-Audit artifact:       formal-core-v2-gate-a-audit-29187317488-1
-Artifact SHA-256:     1082c28af4911b4b9e8c0fcd1a8b2c288c55a44a5c8947de5b172b2633eb39d5
+Audit source:
+  docs/formal_core_v2/audit/GateAAxiomAudit.lean
+
+Authoritative Gate A workflow:
+  run 29187317488
+  build 1941 jobs, success
+  no sorry/admit
+  no project-local axioms
+  no sorryAx
 ```
 
-Every audited Gate A theorem reported:
+The Gate A theorem surface reports the standard Lean/mathlib foundational union:
 
 ```lean
 [propext, Classical.choice, Quot.sound]
 ```
 
-Classical choice remains visible because an infinite trajectory selects
+Classical choice remains visible because the conditional infinite theorem selects
 successors from an explicit `Nonempty` availability premise.
 
-## Gate B audit
+## Gate B public theorem audit
 
-The finite classical Gate B audit covers 22 declarations in:
-
-```text
-docs/formal_core_v2/audit/GateBAxiomAudit.lean
-```
-
-The authoritative Gate B validation record is:
+The Gate B audit covers 22 finite classical declarations, including finite KL,
+conservative extension, exact recovery, Boolean checker refinement, recovery
+laws, monitors, and the worked trajectory.
 
 ```text
-Source head:          c33087041a8588f11f85c0c108046701269f291f
-Workflow run:         29208133524
-Build:                1942 jobs, success
-No sorry/admit:       pass
-Project-local axioms: none
-No sorryAx:           pass
-Audit artifact:       formal-core-v2-audit-29208133524-1
-Artifact SHA-256:     dd718909eb0e683e7e92fabf76eb773f8368a1437148f2c65ccfa10d3570930c
+Audit source:
+  docs/formal_core_v2/audit/GateBAxiomAudit.lean
+
+Authoritative Gate B workflow:
+  run 29208133524
+  build 1942 jobs, success
+  no sorry/admit
+  no project-local axioms
+  no sorryAx
 ```
 
-Most Gate B declarations report the standard union:
+Most Gate B declarations report:
 
 ```lean
 [propext, Classical.choice, Quot.sound]
 ```
 
-Narrower computational theorems use only `propext` or no axioms.
+The invalid-candidate rejection theorem is axiom-free, and the exact Boolean
+checker characterization has a narrower report. Gate B introduces no local
+axiom and contains no admitted proof.
 
-## RCLM refinement and architecture-engine audit
+## RCLM, architecture-engine, Paper II, and bounded-seed audit
 
-The RCLM audit file is:
+The expanded RCLM audit is fixed in:
 
 ```text
 docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
 ```
 
-It covers 27 generic and concrete declarations, including:
-
-```lean
-RCLM.KernelRefinement.stepObligationsPreserved
-RCLM.KernelRefinement.recoveryCompositionLawsPreserved
-RCLM.rclm_checker_refines_rcp
-RCLM.rclm_checker_acceptance_preserved
-RCLM.rclm_monitor_refinement_valid
-RCLM.rclm_architecture_successor_theorem
-RCLM.conditional_infinite_architecture_trajectory_exists
-RCLM.infinite_architecture_step_result
-RCLM.ClassicalBinary.accepted_architecture_successor
-RCLM.ClassicalBinary.engine_relations_accept
-RCLM.ClassicalBinary.architectureSuccessorAvailability
-RCLM.ClassicalBinary.improvement_direct_engine_successor
-RCLM.ClassicalBinary.classical_infinite_architecture_trajectory_exists
-RCLM.ClassicalBinary.classical_infinite_architecture_step_result
-```
-
-The validated architecture-engine audit record is:
+It covers 45 public declarations across:
 
 ```text
-Branch source head:   0731abfdf0edb940312a48051a3ca527c086af5b
-Workflow run:         29215941083
-Build:                1945 jobs, success
+kernel, checker, monitor, and recovery refinement
+conditional architecture successor theorem
+conditional architecture infinite trajectory
+direct-engine strict-successor alignment
+successor-verification and robust-reflective alignment
+concrete Gate B RCLM reference
+bounded seed-library packet availability
+bounded packet-builder soundness
+bounded packet-to-architecture refinement
+conditional infinite bounded seed-library trajectory
+concrete binary grammar, packet, and trajectory theorems
+```
+
+The authoritative bounded-seed validation record is:
+
+```text
+Branch head:          78e9db0b0f2336d50ad4ec00d11bbc4415efc1a4
+CI checkout commit:   f43f08c4693aec79fe01a2af3e71dbe73279714e
+Workflow run:         29222655146
+Build:                1953 jobs, success
 No sorry/admit:       pass
 Project-local axioms: none
 No sorryAx:           pass
-Audited declarations: 27
-Audit artifact:       formal-core-v2-audit-29215941083-1
-Artifact SHA-256:     9d4d3d5a38e2bfefbb641950131c8a10dbec20fc90b89c165a08ef4f4b98fff4
+Audited declarations: 45
+Artifact:             formal-core-v2-audit-29222655146-1
+Artifact SHA-256:     c1a59e1b365e2dedd8515fd4952584057edaef0d2043206dde680c28628149af
 ```
 
-The generic refinement and architecture theorems report:
+The generic and most concrete RCLM theorems report only the standard union:
 
 ```lean
 [propext, Classical.choice, Quot.sound]
 ```
 
-The concrete canonical projection theorems are axiom-free; several concrete
-Boolean/equality theorems report only `propext`. No audited declaration reports
-`sorryAx`.
+The concrete grammar-case theorem reports `[propext, Quot.sound]`, and the
+concrete theorem converting architecture-domain membership to the bounded seed
+domain is axiom-free. No audited declaration reports `sorryAx`.
 
-The classical-choice dependency in the architecture infinite theorem is
-expected and explicit: `ArchitectureSuccessorAvailability` supplies a `Nonempty`
-engine step for every valid predecessor, and the construction selects one. The
-availability proposition is not inferred from checker soundness.
+The use of classical choice in bounded infinite recursion is explicit: a finite
+grammar is required to be nonempty at every seed-domain state, and one certified
+word is selected from that `Nonempty` witness. Grammar nonemptiness and successor
+seed-domain closure are independent structure fields and are not inferred from
+checker soundness.
 
 ## Combined acceptance rule
 
@@ -141,7 +139,7 @@ no project source contains sorry or admit
 no project-local axiom declaration is present
 all Gate A audit declarations elaborate
 all Gate B audit declarations elaborate
-all RCLM refinement and architecture-engine declarations elaborate
+all RCLM/refinement/engine/bounded-seed declarations elaborate
 no axiom report contains sorryAx
 a clean pinned build succeeds
 audit artifacts are uploaded even on failure
@@ -150,14 +148,18 @@ audit artifacts are uploaded even on failure
 ## Prohibited inferences
 
 ```text
-clean build ⇒ exact Paper I or Paper II theorem equivalence
-no project-local axioms ⇒ no standard Lean/mathlib foundational dependencies
-checker soundness ⇒ successor availability
-architecture availability ⇒ strict useful improvement at every step
-concrete binary infinite path ⇒ unbounded empirical RSI
-Gate B finite KL ⇒ quantum relative entropy
-binary monitor semantics ⇒ Paper I expectation, ambiguity, or mutual information
-conditional architecture theorem ⇒ executable generator correctness
+clean build => exact Paper I or Paper II theorem equivalence
+no project-local axioms => no standard Lean/mathlib foundational dependencies
+checker soundness => successor availability
+checker soundness => grammar nonemptiness
+checker soundness => generator coverage
+checker soundness => successor seed-domain persistence
+finite grammar completeness => unbounded proof-search completeness
+bounded seed-library closure => arbitrary learned-system entry
+architecture availability => strict useful improvement at every step
+concrete binary infinite path => unbounded empirical RSI
+Gate B finite KL => quantum relative entropy
+conditional architecture theorem => executable generator correctness
 ```
 
 ## Reproduction
