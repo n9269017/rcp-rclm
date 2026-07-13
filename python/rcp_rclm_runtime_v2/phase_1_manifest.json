@@ -31,10 +31,10 @@
   },
   "local_validation": {
     "all_tests_passed": true,
-    "conformance_vectors_hash": "5af357d1e8d4a7cc587e002c4d64b5dbc71d84913d42599925aaf11d50ca803a",
+    "conformance_vectors_hash": "447c3933d2be4904f2499a5be5f8cb32e5c9babe5e5cccd029ae3a95caec78b8",
     "cross_platform_ci": "pending",
     "source_quality_passed": true,
-    "unit_test_count": 46
+    "unit_test_count": 74
   },
   "not_implemented": {
     "benchmark_adapter": true,
