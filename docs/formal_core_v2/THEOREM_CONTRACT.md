@@ -2,38 +2,29 @@
 
 ## Contract status
 
-This document freezes the complete abstract Gate A successor/preservation kernel
-and the declared finite classical Gate B reference instance. It is not, by
-itself, the exact concrete statement of Paper I's `thm:main_rcp` or any Paper II
-architecture theorem.
+This document freezes the implemented abstract Gate A kernel, the finite
+classical Gate B reference, the substantive Gate B RCLM-to-RCP refinement, and
+the conditional architecture-engine theorem. It does not claim exact identity
+with every semantic object in Paper I or Paper II.
 
 ```text
 abstract one-step contract: implemented
-abstract finite trajectory composition: implemented
-abstract endpoint recovery composition: implemented
-abstract quantitative monitor composition: implemented
-standard Summable-to-uniform-prefix bridge: implemented
-paper-safe/update-admissibility refinement boundary: implemented
-no-op-feasibility premise: implemented
-conditional infinite trajectory construction: implemented
-paper-facing finite and infinite abstract wrappers: implemented
-abstract Gate A theorem kernel: complete
+abstract finite and conditional infinite composition: implemented
+endpoint recovery and quantitative monitor composition: implemented
 finite classical/diagonal Gate B reference: complete
-substantive RCLM refinement: not yet complete
-finite-dimensional quantum Gate C: not yet complete
-exact Paper I/Paper II agreement: not yet achieved
+substantive Gate B RCLM-to-RCP refinement: implemented
+conditional Paper II-facing architecture successor theorem: implemented
+conditional architecture infinite trajectory: implemented with explicit availability
+concrete Gate B direct-engine reference: implemented
+finite-dimensional quantum Gate C: not complete
+exact Paper I/Paper II agreement: not achieved
+executable theorem-to-runtime refinement: not licensed
 ```
 
 ## Ordinary one-step mathematical contract
 
-Let `M_t` be an admissible predecessor state, `u_t` a proposed typed update,
-`M_{t+1}` the claimed successor, and `c_t` a certificate packet. The kernel
-supplies typed update semantics, protected distinctions and transports,
-quantitative loss and recovery budgets, a candidate-tied recovery map, progress
-and strict-witness predicates, computed residuals, trust/resource/reality
-predicates, and an admissible successor domain.
-
-For a trusted checker:
+Let `M_t` be an admissible predecessor, `u_t` a typed update, `M_{t+1}`
+the claimed successor, and `c_t` a certificate. For a trusted checker:
 
 ```text
 Admissible(M_t)
@@ -65,15 +56,10 @@ For an accepted finite path
 M_0 --(u_0,c_0)--> M_1 -- ... --> M_N
 ```
 
-the project proves:
-
-1. every in-horizon state remains admissible and invariant-preserving;
-2. every transition satisfies the complete one-step obligations;
-3. progress is monotone and each strict witness yields strict progress;
-4. transported protected values satisfy an additive loss-budget bound;
-5. actual local recovery errors satisfy the aggregate local-budget bound; and
-6. under explicit recovery composition laws, the rollback-order composed map
-   recovers the initial state from the endpoint within the cumulative budget.
+the project proves domain and invariant closure, complete per-step obligations,
+progress composition, transported protected-value bounds, aggregate local
+recovery accounting, and—under explicit recovery composition laws—a composed
+endpoint rollback bound.
 
 The endpoint theorem uses:
 
@@ -85,7 +71,7 @@ RCP.finite_endpoint_recovery_bound
 ```
 
 The extra laws are visible: zero self-distance, triangle inequality, and
-nonexpansiveness of each candidate-tied recovery map.
+nonexpansiveness of every candidate-tied recovery map.
 
 ## Quantitative monitor contract
 
@@ -102,9 +88,8 @@ cross-time relevance transport
 relevance error budget
 ```
 
-A concrete instance must prove every one-step inequality from
-`StepObligations`; a generic residual is never silently reinterpreted as a named
-monitor. Finite composition is provided by:
+A concrete instance proves each one-step inequality from `StepObligations`.
+Finite composition is provided by:
 
 ```lean
 RCP.finite_lyapunov_motion_bound
@@ -117,219 +102,234 @@ RCP.finite_self_model_relevance_bound
 `RCP.SuccessorAvailability` remains an explicit premise: every admissible,
 invariant-preserving state has a nonempty accepted successor packet. Under this
 premise, `RCP.conditional_infinite_trajectory_exists` constructs an infinite
-accepted path.
+accepted path. Every finite prefix inherits endpoint recovery and monitor
+bounds. Standard `Summable` hypotheses are bridged to uniform partial-sum caps.
 
-Every finite prefix inherits endpoint recovery and the monitor bounds through
-`RCP.finitePrefixOfInfinite` and the infinite-prefix theorems. Standard
-`Summable` hypotheses are bridged to uniform partial-sum caps by:
-
-```lean
-RCP.SummableMonitorBudgets
-RCP.SummableMonitorBudgets.toUniformMonitorBudgetCaps
-RCP.infinite_monitor_bounds_of_summable
-RCP.infinite_cumulative_motion_bounded_of_summable
-```
+Checker soundness does not establish this availability premise.
 
 ## Paper-safe predicates and no-op premise
 
-`RCP.PaperSemantics` carries paper-facing `StateSafe` and `UpdateAdmissible`
+`RCP.PaperSemantics` carries paper-facing safe-state and update-admissibility
 predicates with explicit equivalences to the kernel domain/invariant and
-`StepObligations`. The equivalences are concrete refinement obligations, not
-consequences of the names.
-
-`RCP.AcceptedNoOp` and `RCP.NoOpFeasible` represent the no-op premise as an
-accepted unchanged-successor packet for every paper-safe state. No-op feasibility
-is separate from general successor availability.
-
-## Paper-facing abstract wrappers
-
-`RCP.finite_paper_preservation` combines, with all assumptions visible:
-
-```text
-paper-safe endpoint membership
-accepted-prefix update admissibility
-initial no-op availability
-monotone and strict-witness progress
-transported protected non-loss
-composed endpoint recovery
-Lyapunov/motion bound
-ambiguity-collapse bound
-transported self-model-relevance bound
-```
-
-`RCP.conditional_infinite_paper_trajectory_exists` constructs an infinite
-accepted path with paper-safe states, paper-update-admissible steps, and no-op
-availability, under both explicit `SuccessorAvailability` and `NoOpFeasible`.
+`StepObligations`. `RCP.AcceptedNoOp` and `RCP.NoOpFeasible` represent no-op
+feasibility separately from successor availability.
 
 ## Gate B finite classical contract
 
-### Distributions and information quantities
+### Information quantities
 
-For `Distribution n`:
-
-```text
-mass_i ≥ 0
-Σ_i mass_i = 1
-```
-
-The actual finite quantities are:
+For `Distribution n` the actual quantities are:
 
 ```text
-H(p)       = - Σ_i p_i log p_i
-D_KL(p||q) =   Σ_i p_i log(p_i/q_i).
+H(p)        = - Σ_i p_i log p_i
+D_KL(p || q) =  Σ_i p_i log(p_i/q_i).
 ```
 
-`SupportedBy p q` requires every positive numerator mass to have a positive
-denominator mass. Under that premise:
-
-```lean
-RCP.ClassicalFinite.klDivergence_nonnegative
-```
-
-proves `0 ≤ D_KL(p||q)`, and `klDivergence_self` proves self-divergence zero.
-
-### Nonconstant binary witness
-
-The concrete distributions
+Under the explicit `SupportedBy` premise, KL is nonnegative and self-divergence
+is zero. The binary distributions
 
 ```text
 uniformBinary = (1/2, 1/2)
 biasedBinary  = (3/4, 1/4)
 ```
 
-satisfy:
-
-```text
-D_KL(uniformBinary || biasedBinary)
-  = (1/2) log(4/3)
-  > 0.
-```
-
-They therefore define a nonconstant `LawfulDivergence` instance.
+have a proved strictly positive KL gap and therefore supply a nonconstant
+`LawfulDivergence` instance.
 
 ### Conservative extension and exact recovery
 
-The declared embedding adds one zero-mass head coordinate. The project proves:
+The declared embedding adds one zero-mass head coordinate. The project proves
+support, Shannon entropy, and KL preservation, and exact recovery by dropping
+the new coordinate. This is not a theorem about every stochastic channel.
 
-```text
-support is preserved
-Shannon entropy is preserved exactly
-KL divergence is preserved exactly
-dropping the new coordinate recovers the predecessor exactly
-```
+### Concrete checker and strict progress
 
-through:
+The finite binary checker accepts exactly improvement and stability packets.
+Acceptance yields the complete `StepObligations` bundle and an invalid successor
+is rejected. Progress is actual reduction of KL distance to `biasedBinary`, so
+the first accepted improvement is non-vacuously strict.
 
-```lean
-RCP.ClassicalFinite.shannonEntropy_extendByZero
-RCP.ClassicalFinite.klDivergence_extendByZero
-RCP.ClassicalFinite.recover_extendByZero
-RCP.ClassicalFinite.conservative_extension_recovery
-```
+### Concrete monitor and trajectory scope
 
-No claim is made here about every stochastic channel.
-
-### Concrete binary kernel and checker
-
-The finite state, update, certificate, and residual types define a concrete
-`RCP.Kernel`. The checker accepts exactly the improvement and stability packet
-grammar. Its refinement theorem is:
-
-```lean
-RCP.ClassicalFinite.binary_checker_refines_kernel
-```
-
-so accepted concrete packets yield the complete abstract `StepObligations`.
-The invalid claimed successor is explicitly rejected.
-
-### KL-derived strict progress
-
-The progress functional is:
-
-```text
-Progress(state)
-  = D_KL(uniformBinary || biasedBinary)
-      - D_KL(distribution(state) || biasedBinary).
-```
-
-The accepted improvement step strictly raises this functional because the
-initial KL gap is positive and target self-divergence is zero. Strict progress
-is therefore not index growth.
-
-### Concrete recovery and monitor refinement
-
-The binary state distance is the discrete metric. `binaryRecoveryCompositionLaws`
-proves the exact laws needed by `finite_endpoint_recovery_bound`.
-
-`binaryPreservationMonitors` uses:
-
-```text
-KL-to-target as Lyapunov value
-accepted KL-derived progress increase as motion charge
-zero Lyapunov error
-malformed-certificate indicator as unsupported collapse
-zero ambiguity error on valid packets
-target-fit progress and normalization evidence as relevance labels
-identity relevance transport
-zero relevance error
-```
-
-These meanings are exact for the finite binary reference. They are not claimed
-to be conditional expectation, semantic ambiguity, or mutual information.
-
-### Worked trajectory
-
-`binaryWorkedTrajectory` is the accepted finite path:
+The binary monitor instance uses KL-to-target as Lyapunov value, KL-derived
+progress increase as motion charge, a malformed-packet indicator for the scoped
+collapse monitor, and finite target-fit/normalization evidence for relevance.
+These meanings are not conditional expectation, semantic ambiguity, or mutual
+information. The worked trajectory is:
 
 ```text
 initial → target → target
 ```
 
-Its first transition has strict KL-derived progress and it instantiates endpoint
-recovery plus all three finite monitor bounds.
+## Substantive RCLM-to-RCP refinement contract
 
-## Concrete obligations still open
+`RCLM.KernelRefinement` requires preservation of:
 
-Exact Paper I mechanization still requires:
-
-1. concrete refinement of `PaperSemantics` to the pinned state-safe and
-   update-admissibility definitions;
-2. conditional-expectation and squared-motion semantics beyond the finite KL
-   reference;
-3. semantic ambiguity and mutual-information definitions and transports;
-4. finite-dimensional quantum relative entropy and channel recovery; and
-5. a final paper-facing wrapper after those identifications.
-
-Exact Paper II mechanization still requires substantive RCLM state, update,
-certificate, checker, monitor, and recovery semantics and a proof that forgetting
-an accepted RCLM packet preserves every theorem-relevant RCP object.
-
-## Implemented public declarations
-
-Gate A public declarations are audited in `GateAAxiomAudit.lean`. Gate B public
-declarations are audited in `GateBAxiomAudit.lean`, including:
-
-```lean
-RCP.ClassicalFinite.klDivergence_nonnegative
-RCP.ClassicalFinite.shannonEntropy_extendByZero
-RCP.ClassicalFinite.klDivergence_extendByZero
-RCP.ClassicalFinite.conservative_extension_recovery
-RCP.ClassicalFinite.binaryCheck_eq_true_iff
-RCP.ClassicalFinite.binary_checker_refines_kernel
-RCP.ClassicalFinite.binaryLyapunov_motion_step
-RCP.ClassicalFinite.binaryUnsupportedCollapse_step
-RCP.ClassicalFinite.binaryRelevance_step
-RCP.ClassicalFinite.binaryWorkedTrajectory_first_step_strict
-RCP.ClassicalFinite.binaryWorkedTrajectory_endpoint_recovery
-RCP.ClassicalFinite.binaryWorkedTrajectory_lyapunov_motion_bound
-RCP.ClassicalFinite.binaryWorkedTrajectory_ambiguity_bound
-RCP.ClassicalFinite.binaryWorkedTrajectory_relevance_bound
+```text
+state and typed update semantics
+admissibility and protected invariants
+protected values, transports, and budgets
+state distance, recovery maps, and recovery budgets
+progress and strict witnesses
+computed residuals
+trust, resource, and reality propositions
 ```
 
-Reserved for later gates:
+`RCLM.MonitorRefinement` preserves every named monitor quantity and transport.
+`RCLM.CheckerRefinement` requires actual Boolean acceptance preservation. The
+public transport theorems prove that complete RCLM obligations and recovery laws
+refine to the complete RCP objects.
+
+The concrete `RCLM.ClassicalBinary` checker additionally verifies that all
+architecture fields equal the declared canonical state, update, successor, and
+certificate encodings. Extra architecture data is therefore checked rather than
+ignored.
+
+## Conditional architecture-engine contract
+
+### Explicit engine data
+
+`RCLM.ArchitectureEngine` has separate relations for:
+
+```text
+witness-library coverage
+generator proposal
+certificate construction
+candidate selection
+successor realization
+trust-anchor validity
+resource authorization
+```
+
+It also requires proofs that realization agrees with typed update semantics,
+trust and resource premises imply the corresponding kernel propositions,
+accepted successors remain in the architecture theorem domain, and the trust
+anchor remains valid at the successor.
+
+`RCLM.ArchitectureEngineStep` packages an actual witness, proposal, certificate,
+candidate, resource record, all relation evidence, and RCLM checker acceptance.
+
+### One-step Paper II-facing inference
+
+For an `ArchitecturePredecessor`, an `ArchitectureEngineStep`, the substantive
+RCLM-to-RCP refinements, recovery laws, and monitor refinement:
+
+```text
+valid architecture predecessor
+∧ witness covered
+∧ proposal generated
+∧ certificate constructed
+∧ candidate selected
+∧ successor realized
+∧ trust anchor valid
+∧ resource premise satisfied
+∧ RCLM checker accepts
+
+⇒
+
+typed RCLM successor
+∧ complete RCLM StepObligations
+∧ forgotten core checker accepts
+∧ complete forgotten RCP StepObligations
+∧ preserved recovery-composition laws
+∧ preserved monitor refinement
+∧ successor remains in the architecture theorem domain
+∧ successor remains admissible and invariant-preserving
+∧ engine trust and resource validity
+∧ trust-anchor preservation.
+```
+
+The corresponding theorem is:
 
 ```lean
-RCLM.rclm_checker_refines_rcp
 RCLM.rclm_architecture_successor_theorem
+```
+
+This theorem is conditional on actual engine-stage evidence. It does not
+construct a proposal from checker soundness.
+
+### Conditional architecture recursion
+
+`RCLM.ArchitectureSuccessorAvailability engine` states that every valid
+architecture predecessor has a nonempty checker-accepted engine step carrying
+all proposal/certificate/selection/realization/resource evidence.
+
+Under that explicit premise:
+
+```lean
+RCLM.conditional_infinite_architecture_trajectory_exists
+```
+
+constructs an infinite architecture trajectory, and
+`RCLM.infinite_architecture_step_result` supplies the one-step architecture
+result at every time. The trajectory can be forgotten to both RCLM-checker and
+core-checker accepted trajectories.
+
+Availability is never derived from checker soundness.
+
+## Concrete Gate B direct-engine reference
+
+`RCLM.ClassicalBinary.architectureEngine` instantiates:
+
+```text
+strict-improvement and stable-continuation witnesses
+improve and stabilize proposals
+canonical certificates and candidates
+one root trust anchor
+explicit used/limit resources
+realization by the typed RCLM update function
+```
+
+The concrete theorem
+
+```lean
+RCLM.ClassicalBinary.improvement_direct_engine_successor
+```
+
+proves the full architecture-successor result for the accepted KL-derived
+improvement packet.
+
+`RCLM.ClassicalBinary.architectureSuccessorAvailability` proves availability
+only on the declared binary architecture domain. The resulting formal infinite
+path performs one strict improvement and thereafter may use accepted stability
+steps. It proves recursive domain closure and accepted continuation, not
+indefinitely strict capability growth.
+
+## Remaining exact-paper obligations
+
+Exact Paper I/Paper II mechanization still requires:
+
+1. exact refinement of paper safe-state and update-admissibility semantics;
+2. probability/conditional-expectation and squared-motion identification;
+3. semantic ambiguity and mutual-information definitions;
+4. finite-dimensional quantum relative entropy and channel recovery;
+5. line-by-line identification of Paper II generator, certifier, selector,
+   realizer, witness-library, trust, resource, and viability objects;
+6. any stronger useful-successor or strict-improvement completeness premise;
+7. the final combined paper-facing wrapper.
+
+## Public theorem surfaces
+
+Gate A, Gate B, and RCLM declarations are audited separately. The RCLM surface
+now includes:
+
+```lean
+RCLM.rclm_step_obligations_refine_rcp
+RCLM.rclm_checker_refines_rcp
+RCLM.rclm_checker_acceptance_preserved
+RCLM.rclm_recovery_laws_refine_rcp
+RCLM.rclm_monitor_refinement_valid
+RCLM.rclm_architecture_successor_theorem
+RCLM.conditional_infinite_architecture_trajectory_exists
+RCLM.infinite_architecture_step_result
+RCLM.ClassicalBinary.architectureSuccessorAvailability
+RCLM.ClassicalBinary.improvement_direct_engine_successor
+RCLM.ClassicalBinary.classical_infinite_architecture_trajectory_exists
+RCLM.ClassicalBinary.classical_infinite_architecture_step_result
+```
+
+Reserved for later closure:
+
+```lean
 MainTheorem.mechanized_conditional_successor_closure
 ```
