@@ -14,3 +14,4 @@ import RcpRclmFormalCoreV2.RCLM.ClassicalBinaryEngine
 import RcpRclmFormalCoreV2.RCLM.ClassicalBinaryPaperII
 import RcpRclmFormalCoreV2.RCLM.ClassicalBinarySeedLibrary
 import RcpRclmFormalCoreV2.RCLM.ClassicalBinarySeedTrajectory
+import RcpRclmFormalCoreV2.RCLM.QuantumBinary

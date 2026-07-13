@@ -17,7 +17,8 @@ lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/**/*.lean
 ```
 
 Generated dependencies under `.lake/` are excluded. The source scan fails on
-`sorry`, `admit`, or a project-local declaration beginning with `axiom`.
+`sorry`, `sorryAx`, `admit`, or a project-local declaration beginning with
+`axiom`.
 
 ## Gate A public theorem audit
 
@@ -32,7 +33,7 @@ Audit source:
 Authoritative Gate A workflow:
   run 29187317488
   build 1941 jobs, success
-  no sorry/admit
+  no admitted proof token
   no project-local axioms
   no sorryAx
 ```
@@ -59,7 +60,7 @@ Audit source:
 Authoritative Gate B workflow:
   run 29208133524
   build 1942 jobs, success
-  no sorry/admit
+  no admitted proof token
   no project-local axioms
   no sorryAx
 ```
@@ -70,8 +71,7 @@ Most Gate B declarations report:
 [propext, Classical.choice, Quot.sound]
 ```
 
-The invalid-candidate rejection theorem is axiom-free, and the exact Boolean
-checker characterization has a narrower report. Gate B introduces no local
+The invalid-candidate rejection theorem is axiom-free. Gate B introduces no local
 axiom and contains no admitted proof.
 
 ## RCLM, architecture-engine, Paper II, and bounded-seed audit
@@ -106,7 +106,7 @@ Branch source head:   a09c742ca2541ad3302a5c1041852974649e09c8
 CI checkout commit:   02790b14d1fe9b16745ec8236bf91c9a0608e9b8
 Workflow run:         29224543624
 Build:                1953 jobs, success
-No sorry/admit:       pass
+No admitted token:    pass
 Project-local axioms: none
 No sorryAx:           pass
 Audited declarations: 47
@@ -120,20 +120,64 @@ The generic and most concrete RCLM theorems report only the standard union:
 [propext, Classical.choice, Quot.sound]
 ```
 
-The concrete grammar-case theorem reports `[propext, Quot.sound]`; canonical
-projection lemmas and the concrete architecture-domain-to-bounded-seed theorem
-are axiom-free. No audited declaration reports `sorryAx`.
+Classical choice in bounded infinite recursion is explicit: a finite grammar must
+be nonempty at every seed-domain state, and one certified word is selected from
+that `Nonempty` witness. Grammar nonemptiness and successor seed-domain closure
+are independent fields and are not inferred from checker soundness.
 
-The use of classical choice in bounded infinite recursion is explicit: a finite
-grammar is required to be nonempty at every seed-domain state, and one certified
-word is selected from that `Nonempty` witness. Grammar nonemptiness and successor
-seed-domain closure are independent structure fields and are not inferred from
-checker soundness.
+## Gate C selected quantum theorem audit
 
-The new generic and concrete per-step architecture-refinement theorems prove that
-every selected bounded-seed step carries both complete RCLM successor obligations
-and complete forgotten RCP successor obligations, together with recovery and
-monitor refinement evidence.
+The selected Gate C audit is fixed in:
+
+```text
+docs/formal_core_v2/audit/GateCAxiomAudit.lean
+```
+
+It covers 32 public declarations across:
+
+```text
+diagonal density-matrix Hermitian, positive-semidefinite, and trace-one evidence
+spectral quantum-relative-entropy nonnegativity and self-zero
+positive source-to-target QRE witness
+basis-swap involution
+selected channel entropy and QRE preservation
+selected exact recovery
+quantum packet characterization and invalid-candidate rejection
+complete quantum StepObligations
+quantum checker refinement
+quantum Lyapunov, collapse, and relevance monitors
+finite quantum trajectory, strict first step, endpoint recovery, and monitor bounds
+RCLM quantum checker, architecture evidence, and selected architecture successor
+```
+
+The first complete selected Gate C validation record is:
+
+```text
+Branch source head:   9250d1fa40179738ca161dbd9b1d9310f9c901ce
+CI checkout commit:   de60b043147906a411a8b827ce41120a0e2f4e1c
+Workflow run:         29246781311
+Build:                2636 jobs, success
+No admitted token:    pass
+Project-local axioms: none
+No sorryAx:           pass
+Audited declarations: 32
+Artifact:             formal-core-v2-audit-29246781311-1
+Artifact SHA-256:     38d2776534e94a6ebb6281924e30133ff9c35d4edbbe34393b4f1d1c48c03072
+```
+
+The reported Gate C foundational union is:
+
+```lean
+[propext, Classical.choice, Quot.sound]
+```
+
+`quantumCheck_rejects_invalidCandidate` is axiom-free. No audited Gate C
+declaration reports `sorryAx`, and the source introduces no project-local axiom.
+
+This audit applies to the selected commuting/diagonal quantum reference. It does
+not certify arbitrary noncommuting density matrices, arbitrary CPTP channels, a
+general matrix-logarithm formulation, general quantum data processing, or Petz
+recovery.
 
 ## Combined acceptance rule
 
@@ -141,11 +185,12 @@ The Formal Core audit passes only when:
 
 ```text
 paper source blobs and mapped theorem surfaces match their pins
-no project source contains sorry or admit
+no project Lean source contains sorry, sorryAx, or admit
 no project-local axiom declaration is present
 all Gate A audit declarations elaborate
 all Gate B audit declarations elaborate
 all RCLM/refinement/engine/bounded-seed declarations elaborate
+all selected Gate C audit declarations elaborate
 no axiom report contains sorryAx
 a clean pinned build succeeds
 audit artifacts are uploaded even on failure
@@ -163,8 +208,10 @@ checker soundness => successor seed-domain persistence
 finite grammar completeness => unbounded proof-search completeness
 bounded seed-library closure => arbitrary learned-system entry
 architecture availability => strict useful improvement at every step
-concrete binary infinite path => unbounded empirical RSI
-Gate B finite KL => quantum relative entropy
+concrete finite path => unbounded empirical RSI
+selected diagonal QRE => arbitrary noncommuting matrix QRE
+identity/swap preservation => general CPTP data processing
+exact involutive recovery => Petz or approximate recovery
 conditional architecture theorem => executable generator correctness
 ```
 
@@ -176,6 +223,7 @@ After a successful build, run from `lean/rcp_rclm_formal_core_v2`:
 lake env lean ../../docs/formal_core_v2/audit/GateAAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/GateBAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
+lake env lean ../../docs/formal_core_v2/audit/GateCAxiomAudit.lean
 ```
 
 The GitHub workflow additionally performs the source scans and uploads all

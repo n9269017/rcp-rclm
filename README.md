@@ -18,7 +18,8 @@ executable recursive-self-improvement system.
 | Gate B RCLM-to-RCP refinement | Complete at the declared binary reference scope | Theorem-relevant state/update/certificate fields, checker acceptance, recovery laws, monitors, and architecture obligations |
 | Paper II direct-engine and robust-reflective interfaces | Implemented with explicit premises | Conditional architecture theorem, explicit generator/certifier/selector/realizer boundary, verifier/envelope/goal transports |
 | Bounded seed-library packet builder | Complete at the declared binary reference scope | Finite witness/packet grammars, packet construction, checker evidence, seed-domain closure, conditional infinite bounded trajectory |
-| Gate C — finite-dimensional quantum instance | **Planned only; not implemented** | The intended density-matrix/channel/quantum-relative-entropy boundary is documented before coding begins |
+| Gate C — selected finite-dimensional quantum instance | Complete and audited at the declared commuting/diagonal matrix scope | Certified complex diagonal density matrices, spectral von Neumann entropy and QRE, identity/swap channels, exact recovery, concrete checker, finite trajectory, RCLM refinement |
+| General noncommuting quantum extension | Open | No arbitrary noncommuting density matrices, general CPTP maps, matrix-log QRE, data-processing theorem, or Petz recovery claim |
 | Executable checker/generator/closed loop | Not licensed by the current formal result | No v2 Python refinement or benchmark claim |
 
 The detailed status and claim boundaries are indexed in
@@ -73,14 +74,16 @@ docs/formal_core_v2/
   RCLM_GATE_B_REFINEMENT_STATUS.md
   RCLM_DIRECT_ENGINE_STATUS.md
   PAPER_II_BOUNDED_SEED_LIBRARY_REFINEMENT.md
+  GATE_C_SCOPE.md                 implemented selected quantum scope
+  GATE_C_CLOSURE.md               selected Gate C closure record
   REPRODUCIBILITY.md              local and CI reproduction
   AUDIT_ARTIFACTS.md              artifact contents and interpretation
-  GATE_C_SCOPE.md                 planning placeholder; no Gate C implementation
   audit/
     verify_paper_alignment_pins.sh
     GateAAxiomAudit.lean
     GateBAxiomAudit.lean
     RCLMRefinementAxiomAudit.lean
+    GateCAxiomAudit.lean
 
 .github/workflows/
   formal-core-v2.yml              authoritative pinned build and audit workflow
@@ -110,35 +113,54 @@ Gate A composes these obligations along finite accepted trajectories and proves 
 conditional infinite trajectory theorem under an explicit successor-availability
 premise. Checker soundness alone is never used to prove generator completeness.
 
+## Gate B finite reference
+
 Gate B supplies a concrete finite classical reference with actual Shannon entropy
 and KL divergence, exact zero-coordinate conservative extension and recovery, a
 strict KL-derived improvement witness, and a Boolean checker whose acceptance
 refines to the abstract obligations.
 
-The RCLM layer then preserves the theorem-relevant Gate A/B objects through an
-explicit refinement map and adds separate architecture relations for generation,
+The RCLM layer preserves the theorem-relevant Gate A/B objects through an explicit
+refinement map and adds separate architecture relations for generation,
 certificate construction, candidate selection, realization, trust, resources,
 and successor-domain closure.
 
-## Gate C placeholder
+## Gate C selected quantum reference
 
-Gate C is deliberately represented as a **planning boundary**, not an implemented
-theorem. Before Lean code is added, the project must freeze:
+Gate C introduces a finite two-level commuting/diagonal quantum reference using:
 
 ```text
-finite-dimensional complex state representation
-density-matrix predicates: Hermitian, positive semidefinite, trace one
-support/domain convention for matrix logarithms
-admissible channel representation and complete-positive/trace-preserving laws
-von Neumann entropy and quantum relative entropy definitions
-non-loss and constructive recovery theorem statements
-nonconstant concrete quantum witness
-checker and RCLM refinement surfaces
-exact mathlib imports and any remaining explicit assumptions
+QuantumMatrix n = Matrix (Fin n) (Fin n) ℂ
 ```
 
-`RCP/QuantumFinite.lean` therefore remains intentionally empty except for its
-scope declaration. See [`docs/formal_core_v2/GATE_C_SCOPE.md`](docs/formal_core_v2/GATE_C_SCOPE.md).
+The selected state layer proves Hermitian, positive-semidefinite, and trace-one
+properties for complex diagonal density matrices. Spectral von Neumann entropy and
+quantum relative entropy are implemented through the certified finite spectrum,
+with support conditions explicit.
+
+The selected transition family consists of identity and basis-swap matrix
+channels. The formalization proves state/matrix action agreement, trace,
+Hermitian, and positive-semidefinite preservation, exact update-indexed recovery,
+and entropy/QRE preservation.
+
+The concrete quantum checker accepts exactly an improvement transition from the
+source to the target and a stable target continuation. It rejects a declared
+invalid candidate, computes transition- and packet-sensitive residuals, and
+refines acceptance to complete successor obligations.
+
+The worked path is:
+
+```text
+source -> target -> target
+```
+
+It proves one strict QRE-derived progress step, endpoint recovery, finite monitor
+composition, and substantive RCLM-to-RCP quantum refinement.
+
+This closure is deliberately limited to the selected commuting/diagonal reference.
+It is not a theorem about arbitrary noncommuting density operators, arbitrary CPTP
+maps, general matrix logarithms, general quantum data processing, or Petz recovery.
+See [`docs/formal_core_v2/GATE_C_CLOSURE.md`](docs/formal_core_v2/GATE_C_CLOSURE.md).
 
 ## Build the active v2 project
 
@@ -157,6 +179,7 @@ Run the theorem-axiom audits with:
 lake env lean ../../docs/formal_core_v2/audit/GateAAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/GateBAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
+lake env lean ../../docs/formal_core_v2/audit/GateCAxiomAudit.lean
 ```
 
 Run the paper-source and theorem-surface pin check from the repository root:
@@ -168,8 +191,8 @@ bash docs/formal_core_v2/audit/verify_paper_alignment_pins.sh
 The GitHub Actions workflow is authoritative because it checks out a clean tree,
 installs the pinned toolchain, resolves the pinned dependency graph, obtains the
 official mathlib cache, builds the project, scans for admitted proofs and local
-axioms, prints the public theorem axiom sets, and uploads the complete audit
-bundle.
+axioms, prints all four public theorem axiom surfaces, and uploads the complete
+audit bundle.
 
 Windows cache-corruption recovery and exact reproduction instructions are in
 [`docs/formal_core_v2/REPRODUCIBILITY.md`](docs/formal_core_v2/REPRODUCIBILITY.md).
@@ -183,8 +206,8 @@ formal-core-v2-audit-<run-id>-<attempt>
 ```
 
 The archive contains the build log, source-admission scans, project-local axiom
-scan, paper/source pin metadata, and the Gate A, Gate B, and RCLM theorem-axiom
-reports. The artifact layout and interpretation rules are documented in
+scan, paper/source pin metadata, and the Gate A, Gate B, RCLM, and Gate C theorem-
+axiom reports. The artifact layout and interpretation rules are documented in
 [`docs/formal_core_v2/AUDIT_ARTIFACTS.md`](docs/formal_core_v2/AUDIT_ARTIFACTS.md).
 
 A clean build is evidence that the declared Lean project elaborates. It is not,
@@ -211,19 +234,23 @@ external benchmark claim.
 | [`AXIOM_AUDIT.md`](docs/formal_core_v2/AXIOM_AUDIT.md) | Source-admission and foundational-axiom policy |
 | [`GATE_B_CLOSURE.md`](docs/formal_core_v2/GATE_B_CLOSURE.md) | Exact finite classical scope and limitations |
 | [`PAPER_II_BOUNDED_SEED_LIBRARY_REFINEMENT.md`](docs/formal_core_v2/PAPER_II_BOUNDED_SEED_LIBRARY_REFINEMENT.md) | Bounded generator/packet-builder refinement |
-| [`GATE_C_SCOPE.md`](docs/formal_core_v2/GATE_C_SCOPE.md) | Gate C planning contract and non-claims |
+| [`GATE_C_SCOPE.md`](docs/formal_core_v2/GATE_C_SCOPE.md) | Implemented selected quantum scope and open extensions |
+| [`GATE_C_CLOSURE.md`](docs/formal_core_v2/GATE_C_CLOSURE.md) | Selected Gate C theorem, audit, and claim boundary |
 
 ## Claim boundary
 
-The current project establishes a clean, pinned, conditional formal theorem stack
-and a nontrivial finite classical reference. It does **not** establish:
+The current project establishes a clean, pinned, conditional formal theorem stack,
+a nontrivial finite classical reference, and a selected finite-dimensional
+diagonal quantum reference. It does **not** establish:
 
 ```text
 exact full Paper I or Paper II semantic equivalence
 arbitrary learned-system entry
 arbitrary or unbounded generator/proof-search completeness
 strict useful improvement at every recursive step
-finite-dimensional quantum relative entropy or channel recovery
+general noncommuting quantum relative entropy or channel theorems
+arbitrary CPTP data processing
+Petz or approximate recovery
 Python checker/generator correctness
 an executable recursive promotion loop
 empirical recursive self-improvement

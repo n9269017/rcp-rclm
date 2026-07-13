@@ -19,8 +19,9 @@ is satisfied.
   - [x] The bounded seed-library, packet grammar, packet builder, verifier-schema,
     uncertainty-envelope, and goal-transport refinements are implemented at the
     finite binary reference scope.
-  - [ ] Gate C and exact Paper I/Paper II semantic refinements resolve the
-    remaining mismatches.
+  - [x] Gate C resolves the declared finite commuting/diagonal matrix reference.
+  - [ ] General noncommuting quantum semantics and exact full Paper I/Paper II
+    identity remain open.
 - [x] Every assumption used by the implemented theorem surfaces is explicit in a
   structure, proposition, equality refinement, or theorem parameter.
 - [x] Every Gate A kernel exhibits a nonconstant protected-value function.
@@ -33,8 +34,8 @@ is satisfied.
 - [x] Recovery is constructive and tied to the actual accepted update.
 - [x] Composed endpoint recovery is proved under explicit self-zero, triangle,
   and nonexpansiveness laws.
-- [x] Strict improvement is non-vacuous in the finite Gate B instance and is not
-  merely a fresh index.
+- [x] Strict improvement is non-vacuous in the finite Gate B and selected Gate C
+  instances and is not merely a fresh index.
 - [x] Abstract finite accepted-trajectory composition is proved.
 - [x] Abstract infinite-horizon closure is proved only under explicit successor
   availability.
@@ -46,6 +47,8 @@ is satisfied.
   bounds.
 - [x] RCLM-to-RCP refinement is proved for substantive Gate B states, updates,
   certificates, monitor/recovery laws, and checker acceptance.
+- [x] RCLM-to-RCP refinement is strengthened over the selected Gate C density,
+  channel, entropy, QRE, recovery, checker, and monitor objects.
 - [x] Generator proposal, certificate construction, candidate selection,
   successor realization, witness coverage, trust anchor, resource premise, and
   successor-domain closure are explicit architecture-engine objects.
@@ -74,10 +77,10 @@ is satisfied.
   `target`; the rejected word is absent.
 - [x] The concrete grammar and proof depth bounds are both one.
 - [ ] A theorem establishes useful strict improvement at every recursive step.
-  The current binary path becomes stable after its first strict step.
-- [x] The audited source contains no `sorry` or `admit`.
-- [x] No project-local `axiom` declaration or `sorryAx` occurs in the audited
-  theorem surfaces.
+  The current classical and selected quantum paths become stable after their
+  first strict step.
+- [x] The audited source contains no `sorry`, `sorryAx`, or `admit`.
+- [x] No project-local `axiom` declaration occurs in the audited theorem source.
 - [x] Lean and mathlib are pinned to exact immutable revisions.
 - [x] `lake-manifest.json` is committed.
 - [x] Clean GitHub CI builds the formal project.
@@ -88,7 +91,7 @@ is satisfied.
 
 ```text
 Abstract Gate A theorem kernel: COMPLETE
-Concrete Paper I theorem identification: PARTIALLY DISCHARGED BY GATE B
+Concrete Paper I theorem identification: PARTIALLY DISCHARGED BY GATES B AND C
 ```
 
 ## Gate B — finite classical/diagonal instantiation
@@ -186,23 +189,67 @@ Bounded seed-library reference refinement: COMPLETE AT DECLARED BINARY SCOPE
 Exact full Paper II seed-library theorem identity: NOT COMPLETE
 ```
 
-## Gate C — finite-dimensional quantum extension
+## Gate C — selected finite-dimensional quantum extension
 
-Required:
+Delivered at the commuting/diagonal two-level matrix scope:
 
-- density-matrix state conditions;
-- admissible channel/update conditions;
-- von Neumann or quantum relative entropy;
-- support/domain conditions;
-- non-loss and recovery theorem;
-- explicit imported matrix-analysis assumptions.
+- [x] exact complex matrix representation `Matrix (Fin n) (Fin n) ℂ`;
+- [x] certified diagonal density states;
+- [x] Hermitian matrix proof;
+- [x] positive-semidefinite matrix proof;
+- [x] trace-one proof;
+- [x] strictly positive spectral-state subtype;
+- [x] explicit support relation;
+- [x] spectral von Neumann entropy;
+- [x] spectral quantum relative entropy;
+- [x] QRE nonnegativity under support;
+- [x] QRE self-zero;
+- [x] strictly positive source-to-target QRE witness;
+- [x] finite diagonal channel structure with matrix-linear action;
+- [x] trace, Hermitian, and positive-semidefinite preservation fields;
+- [x] identity and basis-swap channel instances;
+- [x] selected update/channel action agreement;
+- [x] exact selected recovery tied to the update;
+- [x] selected entropy and QRE preservation;
+- [x] substantive quantum state/update/certificate/residual types;
+- [x] nonconstant QRE-derived progress;
+- [x] computed typed and packet residuals;
+- [x] substantive trust, resource, and reality gates;
+- [x] concrete Boolean checker and complete obligation refinement;
+- [x] invalid candidate rejection;
+- [x] recovery-composition laws;
+- [x] Lyapunov, collapse, and relevance monitors;
+- [x] finite trajectory `source -> target -> target`;
+- [x] strict first-step progress;
+- [x] endpoint recovery and finite monitor composition;
+- [x] substantive RCLM quantum kernel refinement;
+- [x] RCLM checker-acceptance refinement;
+- [x] RCLM recovery and monitor refinement;
+- [x] RCLM density/channel/entropy/QRE semantic identification;
+- [x] selected quantum architecture-successor theorem;
+- [x] dedicated Gate C theorem-axiom audit;
+- [x] clean pinned CI and uploaded audit artifact;
+- [ ] arbitrary noncommuting density matrices;
+- [ ] arbitrary CPTP channels;
+- [ ] general matrix-logarithm QRE;
+- [ ] general quantum data-processing inequality;
+- [ ] trace-distance, Petz, or approximate recovery;
+- [ ] exact full Paper I/Paper II quantum semantic identity.
+
+```text
+Gate C selected finite-dimensional diagonal reference: COMPLETE
+General noncommuting quantum extension: OPEN
+Exact Paper I/Paper II quantum identity: NOT COMPLETE
+```
 
 ## Licensing the executable phase
 
-The current Lean work does not license the Python phase. The finite grammar and
-packet builder are theorem objects, not an external generator implementation.
+The completed formal gates do not by themselves license the Python phase. The
+finite grammars, selected quantum channels, and packet builders are theorem
+objects, not external learned generators.
+
 Before a runtime checker or generator is claimed as a refinement, executable
-schemas and functions must map one-to-one to the Lean objects and an untrusted
+schemas and functions must map one-to-one to the Lean objects, and an untrusted
 predecessor-driven generator must produce candidates rather than replay a
 predeclared finite relation.
 

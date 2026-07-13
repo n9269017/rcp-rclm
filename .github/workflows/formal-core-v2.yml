@@ -101,7 +101,7 @@ jobs:
               --include='*.lean' \
               --exclude-dir='.lake' \
               --exclude-dir='audit-results' \
-              '(^|[^[:alnum:]_])(sorry|admit)([^[:alnum:]_]|$)' \
+              '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
               RcpRclmFormalCoreV2 RcpRclmFormalCoreV2.lean \
               > audit-results/forbidden_proof_tokens.txt; then
             cat audit-results/forbidden_proof_tokens.txt
@@ -111,7 +111,7 @@ jobs:
 
           : > audit-results/forbidden_proof_tokens.txt
           printf '%s\n' \
-            'PASS: no sorry or admit token occurs in the Formal Core v2 Lean source.' \
+            'PASS: no sorry, sorryAx, or admit token occurs in the Formal Core v2 Lean source.' \
             > audit-results/no_sorry_audit.txt
 
           if grep -RInE \
@@ -191,7 +191,27 @@ jobs:
             'PASS: all audited RCLM refinement declarations elaborate and no report contains sorryAx.' \
             > audit-results/rclm_refinement_axiom_audit_summary.txt
 
-      - name: Upload Gate A, Gate B, and RCLM refinement audit artifacts
+      - name: Print and validate Gate C theorem axioms
+        working-directory: lean/rcp_rclm_formal_core_v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results
+
+          lake env lean \
+            ../../docs/formal_core_v2/audit/GateCAxiomAudit.lean \
+            2>&1 | tee audit-results/gate_c_axioms.txt
+
+          if grep -Fq 'sorryAx' audit-results/gate_c_axioms.txt; then
+            echo "sorryAx appears in the Gate C theorem axiom report." >&2
+            exit 1
+          fi
+
+          printf '%s\n' \
+            'PASS: all audited Gate C declarations elaborate and no report contains sorryAx.' \
+            > audit-results/gate_c_axiom_audit_summary.txt
+
+      - name: Upload Gate A, Gate B, RCLM refinement, and Gate C audit artifacts
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:

@@ -13,9 +13,9 @@ system.
 
 ## Retention
 
-The workflow currently requests a 90-day GitHub artifact retention period.
-Long-term releases should preserve selected audit archives and their external
-SHA-256 digests separately from the ephemeral workflow retention window.
+The workflow requests a 90-day GitHub artifact retention period. Long-term
+releases should preserve selected audit archives and their external SHA-256
+digests separately from the ephemeral workflow retention window.
 
 ## Archive contents
 
@@ -67,8 +67,8 @@ validity.
 
 ### `forbidden_proof_tokens.txt`
 
-Contains matching source locations if a project Lean file contains a forbidden
-`admit` or admitted-proof token. It is empty on a passing source scan.
+Contains matching source locations if a project Lean file contains `sorry`,
+`sorryAx`, or `admit`. It is empty on a passing source scan.
 
 ### `no_sorry_audit.txt`
 
@@ -122,19 +122,36 @@ Output of:
 lake env lean ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
 ```
 
-It covers the substantive RCLM-to-RCP refinement, architecture engine,
-Paper II direct/robust-reflective interfaces, bounded seed-library packet builder,
-and the concrete binary reference declarations listed in that audit file.
+It covers the substantive RCLM-to-RCP refinement, architecture engine, Paper II
+direct/robust-reflective interfaces, bounded seed-library packet builder, and the
+concrete binary reference declarations listed in that audit file.
 
 ### `rclm_refinement_axiom_audit_summary.txt`
 
 Passing summary confirming that all named RCLM audit declarations elaborated and
 that no report contained `sorryAx`.
 
+### `gate_c_axioms.txt`
+
+Output of:
+
+```bash
+lake env lean ../../docs/formal_core_v2/audit/GateCAxiomAudit.lean
+```
+
+It covers the selected diagonal density, entropy, QRE, channel, exact recovery,
+checker, monitor, trajectory, and RCLM quantum-refinement declarations listed in
+that audit file.
+
+### `gate_c_axiom_audit_summary.txt`
+
+Passing summary confirming that all named selected Gate C declarations elaborated
+and that no report contained `sorryAx`.
+
 ## Foundational dependency interpretation
 
-At the completed Gate B and bounded-seed reference scope, the union reported by
-the audited public declarations is:
+At the completed Gate A, Gate B, bounded-seed, and selected Gate C reference
+scopes, the union reported by the audited public declarations is:
 
 ```lean
 [propext, Classical.choice, Quot.sound]
@@ -157,12 +174,12 @@ Quot.sound
 This union is not a list of project-local axioms. The project-local axiom scan is
 separate and must remain empty.
 
-Some concrete equality, projection, and finite-domain declarations are axiom-free.
-The exact dependency of each theorem is preserved in the corresponding report.
+Some concrete equality, projection, finite-domain, and rejection declarations are
+axiom-free. The exact dependency of each theorem is preserved in its report.
 
-## Completed Gate B/bounded-seed validation records
+## Completed Gate B and bounded-seed validation records
 
-The theorem surface was validated at source head:
+The bounded-seed theorem surface was validated at source head:
 
 ```text
 a09c742ca2541ad3302a5c1041852974649e09c8
@@ -194,9 +211,38 @@ artifact SHA-256:
   83d7d00838a6849254fc981ea7448b90f461e183c89cacb8621d5c723441d74c
 ```
 
-Later documentation-only synchronization commits may have newer successful
-workflow runs. Use `audit_metadata.txt` inside the downloaded artifact rather than
-assuming that an artifact name refers to a particular source head.
+## Completed selected Gate C validation record
+
+The first complete dedicated Gate C audit was run at branch source head:
+
+```text
+9250d1fa40179738ca161dbd9b1d9310f9c901ce
+```
+
+The pull-request workflow checkout recorded:
+
+```text
+de60b043147906a411a8b827ce41120a0e2f4e1c
+```
+
+with:
+
+```text
+workflow run: 29246781311
+build jobs: 2636
+Gate C audited declarations: 32
+artifact: formal-core-v2-audit-29246781311-1
+artifact SHA-256:
+  38d2776534e94a6ebb6281924e30133ff9c35d4edbbe34393b4f1d1c48c03072
+```
+
+That workflow passed the paper/source pin audit, complete project build,
+source-admission scan, local-axiom scan, Gate A audit, Gate B audit, RCLM audit,
+and selected Gate C audit at the same checkout.
+
+Later documentation synchronization commits may have newer successful workflow
+runs. Use `audit_metadata.txt` inside the downloaded artifact rather than assuming
+that an artifact name refers to a particular source head.
 
 ## Download from GitHub UI
 
@@ -240,17 +286,18 @@ workflow conclusion and every required summary file.
 
 ## Required passing evidence
 
-A Formal Core v2 validation is complete only when all of the following hold at the
-same checkout commit:
+A Formal Core v2 validation is complete only when all applicable items hold at
+the same checkout commit:
 
 ```text
 paper/source pin audit passes
 lake build passes
-no admitted-proof token is found
+no sorry, sorryAx, or admit token is found
 no project-local axiom declaration is found
 Gate A axiom audit elaborates and contains no sorryAx
 Gate B axiom audit elaborates and contains no sorryAx
 RCLM axiom audit elaborates and contains no sorryAx
+Gate C axiom audit elaborates and contains no sorryAx when Gate C is in scope
 artifact is uploaded and attributable to that checkout
 ```
 
@@ -264,7 +311,10 @@ successor availability from checker soundness
 strict improvement at every recursive step
 arbitrary learned-system entry
 unbounded grammar or generator completeness
-Gate C quantum closure
+arbitrary noncommuting density matrices
+general CPTP data processing
+general matrix-logarithm quantum relative entropy
+Petz or approximate recovery
 Python checker/generator refinement
 an empirical RSI or benchmark result
 ```

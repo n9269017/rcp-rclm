@@ -24,16 +24,15 @@ future or executable claims not yet licensed
 | Gate B RCLM-to-RCP refinement | Complete at the declared binary reference scope | `RCLM_GATE_B_REFINEMENT_STATUS.md` |
 | Conditional architecture successor/direct-engine theorem | Implemented and audited | `RCLM_DIRECT_ENGINE_STATUS.md` |
 | Paper II bounded seed-library and packet builder | Complete at the declared binary reference scope | `PAPER_II_BOUNDED_SEED_LIBRARY_REFINEMENT.md` |
+| Gate C finite-dimensional quantum instance | Complete and audited at the selected commuting/diagonal matrix scope | `GATE_C_SCOPE.md`, `GATE_C_CLOSURE.md` |
+| General noncommuting quantum extension | Not complete | `GATE_C_CLOSURE.md`, `ASSUMPTION_REGISTER.md` |
 | Exact Paper I equivalence | Not complete | `PAPER_THEOREM_MAP.md`, `ASSUMPTION_REGISTER.md` |
 | Exact Paper II equivalence | Not complete | `PAPER_THEOREM_MAP.md`, `ASSUMPTION_REGISTER.md` |
-| Gate C finite-dimensional quantum instance | Planning placeholder only | `GATE_C_SCOPE.md` |
 | Executable checker/generator/closed loop | Not licensed | `EXIT_CRITERIA.md` |
 
 ## Recommended reading paths
 
 ### Reviewer or auditor
-
-Read in this order:
 
 ```text
 1. THEOREM_CONTRACT.md
@@ -46,23 +45,21 @@ Read in this order:
 8. AUDIT_ARTIFACTS.md
 ```
 
+For Gate C, read `GATE_C_SCOPE.md` followed by `GATE_C_CLOSURE.md`.
+
 ### Lean contributor
 
-Read in this order:
-
 ```text
-1. ../lean/rcp_rclm_formal_core_v2/README.md
+1. ../../lean/rcp_rclm_formal_core_v2/README.md
 2. THEOREM_CONTRACT.md
 3. ASSUMPTION_REGISTER.md
 4. PAPER_THEOREM_MAP.md
 5. EXIT_CRITERIA.md
-6. GATE_C_SCOPE.md when working on the next gate
+6. Gate-specific scope and closure record
 7. audit files relevant to the declarations being changed
 ```
 
 ### Reproducer
-
-Read:
 
 ```text
 REPRODUCIBILITY.md
@@ -76,7 +73,7 @@ AXIOM_AUDIT.md
 
 Freezes the ordinary-mathematics and Lean-facing contract. It states the one-step
 successor theorem, finite and conditional infinite composition, recovery and
-monitor boundaries, Gate B concrete meanings, RCLM refinement, and architecture
+monitor boundaries, concrete reference meanings, RCLM refinement, and architecture
 engine assumptions.
 
 ### `PAPER_THEOREM_MAP.md`
@@ -99,13 +96,15 @@ checker soundness does not imply successor availability
 checker soundness does not imply grammar nonemptiness
 accepted continuation does not imply strict useful improvement
 finite grammar completeness does not imply unbounded proof-search completeness
+selected diagonal QRE does not imply general noncommuting matrix QRE
+identity/swap preservation does not imply general CPTP data processing
 ```
 
 ### `EXIT_CRITERIA.md`
 
-Defines when Gate A, Gate B, Gate C, paper-facing closure, and any later executable
-phase may be claimed complete. It is the licensing boundary for Python/runtime
-work.
+Defines when Gate A, Gate B, the selected Gate C reference, paper-facing closure,
+and any later executable phase may be claimed complete. It is the licensing
+boundary for Python/runtime work.
 
 ### `AXIOM_AUDIT.md`
 
@@ -146,11 +145,18 @@ builder.
 
 ```text
 GATE_C_SCOPE.md
+GATE_C_CLOSURE.md
+audit/GateCAxiomAudit.lean
 ```
 
-This is a planning placeholder. It freezes the decisions and theorem surfaces
-that must be agreed before any finite-dimensional quantum implementation begins.
-It is not evidence that Gate C exists.
+The selected Gate C reference uses finite complex diagonal density matrices,
+spectral von Neumann entropy and quantum relative entropy, identity/swap matrix
+channels, exact candidate-tied recovery, a concrete checker, a finite accepted
+trajectory, and substantive RCLM refinement.
+
+The closure is limited to the declared commuting/diagonal two-level reference.
+General noncommuting density matrices, arbitrary CPTP channels, general matrix-log
+QRE, data processing, and Petz/approximate recovery remain open.
 
 ## Reproducibility and artifacts
 
@@ -162,9 +168,9 @@ requirements.
 
 ### `AUDIT_ARTIFACTS.md`
 
-Catalogs the files uploaded by `.github/workflows/formal-core-v2.yml`, explains
-how to interpret them, and records the latest completed Gate B/bounded-seed
-validation available when this documentation set was synchronized.
+Catalogs the files uploaded by `.github/workflows/formal-core-v2.yml` and explains
+how to interpret build logs, source scans, local-axiom scans, and the Gate A,
+Gate B, RCLM, and Gate C theorem-axiom reports.
 
 ## Audit source files
 
@@ -173,6 +179,7 @@ audit/verify_paper_alignment_pins.sh
 audit/GateAAxiomAudit.lean
 audit/GateBAxiomAudit.lean
 audit/RCLMRefinementAxiomAudit.lean
+audit/GateCAxiomAudit.lean
 ```
 
 The shell audit pins the paper source blobs and required theorem surfaces. The
@@ -212,7 +219,9 @@ exact full-paper mechanization
 arbitrary learned-system entry
 arbitrary or unbounded generator completeness
 strict useful improvement at every recursive step
-finite-dimensional quantum closure
+general noncommuting quantum closure
+arbitrary CPTP data processing
+Petz or approximate recovery
 executable checker/generator correctness
 closed-loop empirical RSI
 external benchmark performance
