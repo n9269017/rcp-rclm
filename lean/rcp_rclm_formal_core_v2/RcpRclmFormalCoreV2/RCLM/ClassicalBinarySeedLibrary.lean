@@ -348,6 +348,7 @@ def initialBoundedSeedPacket :
   word := .improve
   seedDomain := Or.inl rfl
   wordInGrammar := by
+    change BoundedPacketWord.improve ∈ boundedPacketGrammar initialState
     simp [boundedPacketGrammar]
 
 def targetBoundedSeedPacket :
@@ -355,9 +356,10 @@ def targetBoundedSeedPacket :
   word := .stabilize
   seedDomain := Or.inr rfl
   wordInGrammar := by
+    change BoundedPacketWord.stabilize ∈ boundedPacketGrammar targetState
     simp [boundedPacketGrammar, targetState_ne_initialState]
 
-def initialBoundedStrictStep :
+noncomputable def initialBoundedStrictStep :
     StrictArchitectureEngineStep architectureEngine initialState where
   step := initialBoundedSeedPacket.toEngineStep
   strictWitness := by
