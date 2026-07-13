@@ -1,14 +1,15 @@
 # RCP/RCLM Executable Core v2
 
-This directory records the theorem-to-runtime contract and the staged executable
-implementation that follows the completed Formal Core v2 Lean project.
+This directory records the frozen theorem-to-runtime contract and the staged
+executable implementation that follows the completed Formal Core v2 Lean project.
 
 ## Status
 
 ```text
 Phase 0 theorem-to-runtime contract: complete and merged
 Phase 1 deterministic runtime bedrock: complete and cross-platform validated
-Pinned Lean compiler/verifier bridge: not implemented; licensed to begin
+Phase 2 initial pinned Lean conformance bridge: implemented; clean CI pending
+Mature canonical-packet Lean executable: not implemented
 Production fail-closed successor checker: not implemented
 Untrusted generator: not implemented
 Promotion and rollback controller: not implemented
@@ -45,54 +46,58 @@ Machine-readable Phase 0 records remain at:
 python/rcp_rclm_executable_core_v2/contract/
 ```
 
-The Phase 0 validator verifies the contract and formal pins. It is not the
-production successor checker.
-
 ## Phase 1 runtime bedrock
 
 | Document | Purpose |
 |---|---|
-| `PHASE_1_RUNTIME_BEDROCK.md` | Implemented records, exact mathematics, selected Gate B/C scope, serialization, hashing, and source guard |
+| `PHASE_1_RUNTIME_BEDROCK.md` | Records, exact mathematics, selected Gate B/C scope, serialization, hashing, and source guard |
 | `PHASE_1_EXIT_CRITERIA.md` | Closed implementation, validation, and licensing criteria |
-| `PHASE_1_VALIDATION.md` | Clean synchronized Linux, Windows, and macOS workflow and artifact record |
+| `PHASE_1_VALIDATION.md` | Synchronized Linux, Windows, and macOS workflow and artifact record |
 
-The package is:
+## Phase 2 Lean conformance bridge
+
+| Document | Purpose |
+|---|---|
+| `PHASE_2_LEAN_CONFORMANCE_BRIDGE.md` | Initial generated-source bridge, trust boundary, evidence, and differential claim |
+| `PHASE_2_EXIT_CRITERIA.md` | Conditions required before Phase 2 can close |
+
+The bridge package is:
 
 ```text
-python/rcp_rclm_runtime_v2/
+python/rcp_rclm_runtime_v2/rcp_rclm_runtime/lean_bridge/
 ```
 
-Phase 1 contains only:
+The initial bridge performs:
 
 ```text
-immutable records and strict parsers
-exact rational arithmetic
-certified rational logarithm intervals
-Gate B finite classical mathematics
-selected Gate C diagonal quantum mathematics
-canonical JSON and path handling
-content and tree hashing
-RCLM-to-RCP forgetful mappings
-generated-Lean source guard
+canonical reference packet
+→ independent Python interpretation
+→ deterministic Lean source generation
+→ mandatory source guard
+→ exact pin verification
+→ pinned Lean compilation
+→ structured RCP/RCLM verdict parsing
+→ differential comparison
+→ preserved evidence
 ```
 
-The checker, compiler bridge, generator, successor controller, replay layer, and
-PyTorch backend are intentionally absent rather than represented by empty files.
+The checker, generator, successor controller, replay layer, and PyTorch backend remain
+absent rather than represented by empty modules.
 
 ## Dependency order
 
 ```text
 frozen Phase 0 contract
--> deterministic Phase 1 runtime bedrock
--> pinned Lean compiler/verifier bridge and differential conformance
--> fail-closed production checker
--> adversarial rejection suite
--> untrusted predecessor-driven generator
--> selector and successor realizer
--> atomic promotion and rollback controller
--> independent replay
--> optional PyTorch proposal backend
--> external benchmark adapters
+→ deterministic Phase 1 runtime bedrock
+→ Phase 2 pinned Lean bridge and differential conformance
+→ fail-closed production checker
+→ adversarial rejection suite
+→ untrusted predecessor-driven generator
+→ selector and successor realizer
+→ atomic promotion and rollback controller
+→ independent replay
+→ optional PyTorch proposal backend
+→ external benchmark adapters
 ```
 
 The generator never certifies itself. Candidate assertions, model scores, native
