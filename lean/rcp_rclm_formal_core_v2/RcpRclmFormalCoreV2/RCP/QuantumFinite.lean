@@ -1,5 +1,4 @@
 import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.LinearAlgebra.Matrix.Reindex
 import Mathlib.LinearAlgebra.Matrix.Trace
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
@@ -45,9 +44,10 @@ theorem DiagonalDensityMatrix.matrix_isHermitian
     {n : Nat}
     (ρ : DiagonalDensityMatrix n) :
     ρ.matrix.IsHermitian := by
-  rw [DiagonalDensityMatrix.matrix, Matrix.isHermitian_diagonal_iff]
+  apply Matrix.isHermitian_diagonal_of_self_adjoint
+  apply funext
   intro i
-  simp
+  exact Complex.conj_ofReal (ρ.distribution.mass i)
 
 theorem DiagonalDensityMatrix.matrix_posSemidef
     {n : Nat}
@@ -140,96 +140,139 @@ theorem positiveQuantumRelativeEntropy_self
     positiveQuantumRelativeEntropy ρ ρ = 0 := by
   exact quantumRelativeEntropy_self ρ.density
 
-def permuteDistribution
-    {n : Nat}
-    (equiv : Fin n ≃ Fin n)
-    (p : Distribution n) : Distribution n where
-  mass := fun i => p.mass (equiv.symm i)
+def swapDistribution (p : Distribution 2) : Distribution 2 where
+  mass := Fin.cases (p.mass 1) (fun _ => p.mass 0)
   nonnegative := by
     intro i
-    exact p.nonnegative (equiv.symm i)
+    refine Fin.cases ?_ ?_ i
+    · exact p.nonnegative 1
+    · intro j
+      exact p.nonnegative 0
   normalized := by
-    rw [← Equiv.sum_comp equiv.symm]
-    exact p.normalized
+    have normalized := p.normalized
+    rw [Fin.sum_univ_two] at normalized
+    rw [Fin.sum_univ_two]
+    change p.mass 1 + p.mass 0 = 1
+    rw [add_comm]
+    exact normalized
 
-def DiagonalUnitaryChannel (n : Nat) :=
-  Fin n ≃ Fin n
+def swapDensity (ρ : DiagonalDensityMatrix 2) :
+    DiagonalDensityMatrix 2 where
+  distribution := swapDistribution ρ.distribution
 
-def DiagonalUnitaryChannel.apply
-    {n : Nat}
-    (channel : DiagonalUnitaryChannel n)
-    (ρ : DiagonalDensityMatrix n) :
-    DiagonalDensityMatrix n where
-  distribution := permuteDistribution channel ρ.distribution
+theorem swapDensity_involutive
+    (ρ : DiagonalDensityMatrix 2) :
+    swapDensity (swapDensity ρ) = ρ := by
+  apply DiagonalDensityMatrix.ext
+  apply Distribution.ext
+  funext i
+  refine Fin.cases ?_ ?_ i
+  · change ρ.distribution.mass 0 = ρ.distribution.mass 0
+    rfl
+  · intro j
+    have jEq : j = 0 := by
+      exact Fin.eq_zero j
+    subst j
+    change ρ.distribution.mass 1 = ρ.distribution.mass 1
+    rfl
 
-def DiagonalUnitaryChannel.matrixMap
-    {n : Nat}
-    (channel : DiagonalUnitaryChannel n) :
-    QuantumMatrix n ≃ₗ[ℂ] QuantumMatrix n :=
-  Matrix.reindexLinearEquiv ℂ ℂ channel channel
+def swapIndex : Fin 2 ≃ Fin 2 :=
+  Equiv.swap 0 1
 
-theorem DiagonalUnitaryChannel.matrix_action
-    {n : Nat}
-    (channel : DiagonalUnitaryChannel n)
-    (ρ : DiagonalDensityMatrix n) :
-    (channel.apply ρ).matrix =
-      channel.matrixMap ρ.matrix := by
+def swapMatrixMap : QuantumMatrix 2 →ₗ[ℂ] QuantumMatrix 2 where
+  toFun := fun matrix i j => matrix (swapIndex i) (swapIndex j)
+  map_add' := by
+    intro first second
+    rfl
+  map_smul' := by
+    intro scalar matrix
+    rfl
+
+theorem swapMatrix_action
+    (ρ : DiagonalDensityMatrix 2) :
+    (swapDensity ρ).matrix = swapMatrixMap ρ.matrix := by
   ext i j
-  by_cases hij : i = j
-  · subst j
-    simp [DiagonalUnitaryChannel.apply, permuteDistribution,
-      DiagonalDensityMatrix.matrix, DiagonalUnitaryChannel.matrixMap,
-      Matrix.reindex_apply]
-  · simp [DiagonalUnitaryChannel.apply, permuteDistribution,
-      DiagonalDensityMatrix.matrix, DiagonalUnitaryChannel.matrixMap,
-      Matrix.reindex_apply, hij,
-      show channel.symm i ≠ channel.symm j by
-        exact fun h => hij (channel.symm.injective h)]
+  refine Fin.cases ?_ ?_ i
+  · refine Fin.cases ?_ ?_ j
+    · rfl
+    · intro k
+      have kEq : k = 0 := by
+        exact Fin.eq_zero k
+      subst k
+      rfl
+  · intro h
+    have hEq : h = 0 := by
+      exact Fin.eq_zero h
+    subst h
+    refine Fin.cases ?_ ?_ j
+    · rfl
+    · intro k
+      have kEq : k = 0 := by
+        exact Fin.eq_zero k
+      subst k
+      rfl
 
-theorem DiagonalUnitaryChannel.trace_preserving
-    {n : Nat}
-    (channel : DiagonalUnitaryChannel n)
-    (ρ : DiagonalDensityMatrix n) :
-    Matrix.trace (channel.matrixMap ρ.matrix) =
-      Matrix.trace ρ.matrix := by
-  rw [← channel.matrix_action ρ]
-  rw [(channel.apply ρ).matrix_trace_one, ρ.matrix_trace_one]
+structure FiniteDiagonalChannel (n : Nat) where
+  apply : DiagonalDensityMatrix n → DiagonalDensityMatrix n
+  matrixMap : QuantumMatrix n →ₗ[ℂ] QuantumMatrix n
+  matrixAction : ∀ ρ, (apply ρ).matrix = matrixMap ρ.matrix
+  tracePreserving : ∀ ρ,
+    Matrix.trace (matrixMap ρ.matrix) = Matrix.trace ρ.matrix
+  hermitianPreserving : ∀ ρ, (matrixMap ρ.matrix).IsHermitian
+  positiveSemidefinitePreserving : ∀ ρ, (matrixMap ρ.matrix).PosSemidef
 
-theorem DiagonalUnitaryChannel.hermitian_preserving
-    {n : Nat}
-    (channel : DiagonalUnitaryChannel n)
-    (ρ : DiagonalDensityMatrix n) :
-    (channel.matrixMap ρ.matrix).IsHermitian := by
-  rw [← channel.matrix_action ρ]
-  exact (channel.apply ρ).matrix_isHermitian
+noncomputable def swapChannel : FiniteDiagonalChannel 2 where
+  apply := swapDensity
+  matrixMap := swapMatrixMap
+  matrixAction := swapMatrix_action
+  tracePreserving := by
+    intro ρ
+    rw [← swapMatrix_action ρ]
+    rw [(swapDensity ρ).matrix_trace_one, ρ.matrix_trace_one]
+  hermitianPreserving := by
+    intro ρ
+    rw [← swapMatrix_action ρ]
+    exact (swapDensity ρ).matrix_isHermitian
+  positiveSemidefinitePreserving := by
+    intro ρ
+    rw [← swapMatrix_action ρ]
+    exact (swapDensity ρ).matrix_posSemidef
 
-theorem DiagonalUnitaryChannel.posSemidef_preserving
-    {n : Nat}
-    (channel : DiagonalUnitaryChannel n)
-    (ρ : DiagonalDensityMatrix n) :
-    (channel.matrixMap ρ.matrix).PosSemidef := by
-  rw [← channel.matrix_action ρ]
-  exact (channel.apply ρ).matrix_posSemidef
-
-theorem DiagonalUnitaryChannel.vonNeumannEntropy_preserving
-    {n : Nat}
-    (channel : DiagonalUnitaryChannel n)
-    (ρ : DiagonalDensityMatrix n) :
-    vonNeumannEntropy (channel.apply ρ) =
+theorem swapChannel_vonNeumannEntropy_preserving
+    (ρ : DiagonalDensityMatrix 2) :
+    vonNeumannEntropy (swapChannel.apply ρ) =
       vonNeumannEntropy ρ := by
+  unfold swapChannel
   unfold vonNeumannEntropy ClassicalFinite.shannonEntropy
-  unfold DiagonalUnitaryChannel.apply permuteDistribution
-  rw [Equiv.sum_comp channel.symm]
+  unfold swapDensity swapDistribution
+  rw [Fin.sum_univ_two]
+  rw [Fin.sum_univ_two]
+  change
+    -(ρ.distribution.mass 1 * Real.log (ρ.distribution.mass 1) +
+        ρ.distribution.mass 0 * Real.log (ρ.distribution.mass 0)) =
+      -(ρ.distribution.mass 0 * Real.log (ρ.distribution.mass 0) +
+        ρ.distribution.mass 1 * Real.log (ρ.distribution.mass 1))
+  ring
 
-theorem DiagonalUnitaryChannel.quantumRelativeEntropy_preserving
-    {n : Nat}
-    (channel : DiagonalUnitaryChannel n)
-    (ρ σ : DiagonalDensityMatrix n) :
-    quantumRelativeEntropy (channel.apply ρ) (channel.apply σ) =
+theorem swapChannel_quantumRelativeEntropy_preserving
+    (ρ σ : DiagonalDensityMatrix 2) :
+    quantumRelativeEntropy (swapChannel.apply ρ) (swapChannel.apply σ) =
       quantumRelativeEntropy ρ σ := by
+  unfold swapChannel
   unfold quantumRelativeEntropy ClassicalFinite.klDivergence
-  unfold DiagonalUnitaryChannel.apply permuteDistribution
-  rw [Equiv.sum_comp channel.symm]
+  unfold swapDensity swapDistribution
+  rw [Fin.sum_univ_two]
+  rw [Fin.sum_univ_two]
+  change
+    ρ.distribution.mass 1 *
+          Real.log (ρ.distribution.mass 1 / σ.distribution.mass 1) +
+        ρ.distribution.mass 0 *
+          Real.log (ρ.distribution.mass 0 / σ.distribution.mass 0) =
+      ρ.distribution.mass 0 *
+          Real.log (ρ.distribution.mass 0 / σ.distribution.mass 0) +
+        ρ.distribution.mass 1 *
+          Real.log (ρ.distribution.mass 1 / σ.distribution.mass 1)
+  ring
 
 noncomputable def uniformDensity :
     PositiveDiagonalDensityMatrix 2 :=
@@ -263,70 +306,50 @@ noncomputable def sourceDensity :
     PositiveDiagonalDensityMatrix 2 :=
   PositiveDiagonalDensityMatrix.ofPositiveDistribution sourceDistribution
 
-def swapFinTwo : Fin 2 ≃ Fin 2 :=
-  Equiv.swap 0 1
-
-def swapChannel : DiagonalUnitaryChannel 2 :=
-  swapFinTwo
-
-theorem swapFinTwo_zero :
-    swapFinTwo 0 = 1 := by
-  simp [swapFinTwo]
-
-theorem swapFinTwo_one :
-    swapFinTwo 1 = 0 := by
-  simp [swapFinTwo]
-
-theorem swapFinTwo_involutive :
-    Function.Involutive swapFinTwo := by
-  intro i
-  refine Fin.cases ?_ ?_ i
-  · simp [swapFinTwo]
-  · intro j
-    have jEq : j = 0 := by
-      exact Fin.eq_zero j
-    subst j
-    simp [swapFinTwo]
-
-theorem swapChannel_source_to_target :
-    swapChannel.apply sourceDensity.density =
-      targetDensity.density := by
+theorem swapDensity_uniform :
+    swapDensity uniformDensity.density = uniformDensity.density := by
   apply DiagonalDensityMatrix.ext
   apply Distribution.ext
   funext i
   refine Fin.cases ?_ ?_ i
-  · norm_num [swapChannel, swapFinTwo, DiagonalUnitaryChannel.apply,
-      permuteDistribution, sourceDensity, sourceDistribution,
-      targetDensity, PositiveDiagonalDensityMatrix.ofPositiveDistribution,
-      biasedBinary]
+  · change (1 / 2 : ℝ) = 1 / 2
+    rfl
   · intro j
     have jEq : j = 0 := by
       exact Fin.eq_zero j
     subst j
-    norm_num [swapChannel, swapFinTwo, DiagonalUnitaryChannel.apply,
-      permuteDistribution, sourceDensity, sourceDistribution,
-      targetDensity, PositiveDiagonalDensityMatrix.ofPositiveDistribution,
-      biasedBinary]
+    change (1 / 2 : ℝ) = 1 / 2
+    rfl
 
-theorem swapChannel_target_to_source :
-    swapChannel.apply targetDensity.density =
-      sourceDensity.density := by
+theorem swapDensity_source_to_target :
+    swapDensity sourceDensity.density = targetDensity.density := by
   apply DiagonalDensityMatrix.ext
   apply Distribution.ext
   funext i
   refine Fin.cases ?_ ?_ i
-  · norm_num [swapChannel, swapFinTwo, DiagonalUnitaryChannel.apply,
-      permuteDistribution, sourceDensity, sourceDistribution,
-      targetDensity, PositiveDiagonalDensityMatrix.ofPositiveDistribution,
-      biasedBinary]
+  · change (3 / 4 : ℝ) = 3 / 4
+    rfl
   · intro j
     have jEq : j = 0 := by
       exact Fin.eq_zero j
     subst j
-    norm_num [swapChannel, swapFinTwo, DiagonalUnitaryChannel.apply,
-      permuteDistribution, sourceDensity, sourceDistribution,
-      targetDensity, PositiveDiagonalDensityMatrix.ofPositiveDistribution,
-      biasedBinary]
+    change (1 / 4 : ℝ) = 1 / 4
+    rfl
+
+theorem swapDensity_target_to_source :
+    swapDensity targetDensity.density = sourceDensity.density := by
+  apply DiagonalDensityMatrix.ext
+  apply Distribution.ext
+  funext i
+  refine Fin.cases ?_ ?_ i
+  · change (1 / 4 : ℝ) = 1 / 4
+    rfl
+  · intro j
+    have jEq : j = 0 := by
+      exact Fin.eq_zero j
+    subst j
+    change (3 / 4 : ℝ) = 3 / 4
+    rfl
 
 theorem source_target_quantumRelativeEntropy :
     positiveQuantumRelativeEntropy sourceDensity targetDensity =
@@ -343,6 +366,11 @@ theorem source_target_quantumRelativeEntropy :
       unfold PositiveDiagonalDensityMatrix.ofPositiveDistribution
       unfold sourceDistribution biasedBinary ClassicalFinite.klDivergence
       rw [Fin.sum_univ_two]
+      change
+        (1 / 4 : ℝ) * Real.log ((1 / 4 : ℝ) / (3 / 4 : ℝ)) +
+            (3 / 4 : ℝ) * Real.log ((3 / 4 : ℝ) / (1 / 4 : ℝ)) =
+          (1 / 4 : ℝ) * Real.log (1 / 3) +
+            (3 / 4 : ℝ) * Real.log 3
       norm_num
     _ = (1 / 2 : ℝ) * Real.log 3 := by
       rw [hlogThird]
@@ -353,12 +381,12 @@ theorem source_target_quantumRelativeEntropy_pos :
   rw [source_target_quantumRelativeEntropy]
   exact mul_pos (by norm_num) (Real.log_pos (by norm_num))
 
-theorem swapChannel_vonNeumannEntropy_preserved :
+theorem source_target_vonNeumannEntropy_equal :
     vonNeumannEntropy sourceDensity.density =
       vonNeumannEntropy targetDensity.density := by
-  rw [← swapChannel_source_to_target]
+  rw [← swapDensity_source_to_target]
   exact
-    (swapChannel.vonNeumannEntropy_preserving sourceDensity.density).symm
+    (swapChannel_vonNeumannEntropy_preserving sourceDensity.density).symm
 
 inductive QuantumState where
   | outside
@@ -424,27 +452,14 @@ def quantumApply : QuantumState → QuantumUpdate → QuantumState
 theorem quantumApply_density_swap
     (state : QuantumState) :
     (stateDensity (quantumApply state QuantumUpdate.swap)).density =
-      swapChannel.apply (stateDensity state).density := by
+      swapDensity (stateDensity state).density := by
   cases state with
   | outside =>
-      apply DiagonalDensityMatrix.ext
-      apply Distribution.ext
-      funext i
-      refine Fin.cases ?_ ?_ i
-      · norm_num [stateDensity, uniformDensity, swapChannel, swapFinTwo,
-          DiagonalUnitaryChannel.apply, permuteDistribution,
-          PositiveDiagonalDensityMatrix.ofPositiveDistribution, uniformBinary]
-      · intro j
-        have jEq : j = 0 := by
-          exact Fin.eq_zero j
-        subst j
-        norm_num [stateDensity, uniformDensity, swapChannel, swapFinTwo,
-          DiagonalUnitaryChannel.apply, permuteDistribution,
-          PositiveDiagonalDensityMatrix.ofPositiveDistribution, uniformBinary]
+      exact swapDensity_uniform.symm
   | source =>
-      exact swapChannel_source_to_target
+      exact swapDensity_source_to_target.symm
   | target =>
-      exact swapChannel_target_to_source
+      exact swapDensity_target_to_source.symm
 
 def improvementCandidate : Candidate QuantumState QuantumUpdate where
   update := QuantumUpdate.swap
@@ -530,14 +545,14 @@ def quantumRecover
     (endpoint : QuantumState) : QuantumState :=
   quantumApply endpoint candidate.update
 
-theorem quantumRecover_swap_target :
+theorem quantumRecover_improvement :
     quantumRecover
       QuantumState.source
       improvementCandidate
       QuantumState.target = QuantumState.source := by
   rfl
 
-theorem quantumRecover_stay_target :
+theorem quantumRecover_stability :
     quantumRecover
       QuantumState.target
       stabilityCandidate
@@ -612,6 +627,9 @@ noncomputable def quantumKernel :
   strictWitness := quantumStrictWitness
   residual := quantumResidual
   residual_nonconstant := by
+    have sourceNeTarget :
+        QuantumState.source ≠ QuantumState.target := by
+      decide
     refine
       ⟨QuantumState.source,
         improvementCandidate,
@@ -622,7 +640,7 @@ noncomputable def quantumKernel :
         QuantumResidualIndex.typed,
         ?_⟩
     norm_num [quantumResidual, quantumApply,
-      improvementCandidate, invalidCandidate]
+      improvementCandidate, invalidCandidate, sourceNeTarget]
   trustValid := quantumTrustValid
   resourceValid := quantumResourceValid
   realityContained := quantumRealityContained
@@ -681,7 +699,7 @@ theorem source_improvement_obligations :
     change
       quantumProgress QuantumState.source ≤
         quantumProgress QuantumState.target + 0
-    exact quantumProgress_source_lt_target.le
+    simpa using quantumProgress_source_lt_target.le
   · unfold ConstructiveRecovery
     simp [quantumKernel, quantumRecover, quantumStateDistance,
       quantumApply, improvementCandidate]
@@ -902,21 +920,19 @@ theorem quantumRelevance_step
   | traceOne =>
       exact le_rfl
   | entropyPreserved =>
+      have accepted :
+          quantumCheck state candidate certificate = true := by
+        by_contra notAccepted
+        have checkFalse :
+            quantumCheck state candidate certificate = false :=
+          Bool.eq_false_of_not_eq_true notAccepted
+        have residualBound :=
+          obligations.residualsNonpositive QuantumResidualIndex.packet
+        simp [quantumKernel, quantumResidual, checkFalse] at residualBound
       have acceptedPacket :
           ImprovementPacket state candidate certificate ∨
-            StabilityPacket state candidate certificate := by
-        have accepted :
-            quantumCheck state candidate certificate = true := by
-          by_contra notAccepted
-          have residualPositive :
-              quantumKernel.residual state candidate certificate
-                QuantumResidualIndex.packet = 1 := by
-            simp [quantumKernel, quantumResidual, notAccepted]
-          have residualNonpositive :=
-            obligations.residualsNonpositive QuantumResidualIndex.packet
-          rw [residualPositive] at residualNonpositive
-          norm_num at residualNonpositive
-        exact (quantumCheck_eq_true_iff state candidate certificate).1 accepted
+            StabilityPacket state candidate certificate :=
+        (quantumCheck_eq_true_iff state candidate certificate).1 accepted
       rcases acceptedPacket with improvement | stability
       · rcases improvement with
           ⟨stateEq, updateEq, nextEq, certificateEq⟩
@@ -930,7 +946,7 @@ theorem quantumRelevance_step
             change
               vonNeumannEntropy sourceDensity.density ≤
                 vonNeumannEntropy targetDensity.density
-            rw [swapChannel_vonNeumannEntropy_preserved]
+            exact source_target_vonNeumannEntropy_equal.le
       · rcases stability with
           ⟨stateEq, updateEq, nextEq, certificateEq⟩
         subst state
