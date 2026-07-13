@@ -1,0 +1,176 @@
+name: Runtime v2 Phase 1 bedrock
+
+on:
+  pull_request:
+    paths:
+      - "python/rcp_rclm_runtime_v2/**"
+      - "docs/executable_core_v2/**"
+      - ".github/workflows/runtime-v2-phase-1.yml"
+  push:
+    branches:
+      - "agent/rcp-rclm-runtime-v2-phase-1"
+    paths:
+      - "python/rcp_rclm_runtime_v2/**"
+      - "docs/executable_core_v2/**"
+      - ".github/workflows/runtime-v2-phase-1.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  platform-validation:
+    name: Validate runtime bedrock (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - "3.11"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Phase 1 package
+        run: python -m pip install --disable-pip-version-check -e python/rcp_rclm_runtime_v2
+
+      - name: Compile Python source
+        run: python -m compileall -q python/rcp_rclm_runtime_v2
+
+      - name: Validate source quality
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/validate_source_quality.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_1/${{ matrix.os }}/source_quality.json
+
+      - name: Run deterministic unit and conformance tests
+        run: >-
+          python -m unittest discover
+          -s python/rcp_rclm_runtime_v2/tests
+          -p "test_*.py"
+          -v
+
+      - name: Emit platform validation report
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/emit_phase1_report.py
+          --package-root python/rcp_rclm_runtime_v2
+          --platform-label ${{ matrix.os }}
+          --out artifacts/runtime_v2_phase_1/${{ matrix.os }}/phase_1_report.json
+
+      - name: Upload platform validation artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-v2-phase-1-platform-${{ matrix.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v2_phase_1/${{ matrix.os }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  cross-platform-consistency:
+    name: Verify cross-platform conformance
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs:
+      - platform-validation
+
+    steps:
+      - name: Download platform reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: runtime-v2-phase-1-platform-*-${{ github.run_id }}-${{ github.run_attempt }}
+          path: collected
+
+      - name: Compare stable report fields
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/runtime_v2_phase_1/final
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          from pathlib import Path
+
+          report_paths = sorted(Path("collected").rglob("phase_1_report.json"))
+          if len(report_paths) != 3:
+              raise SystemExit(f"expected 3 platform reports, found {len(report_paths)}")
+
+          reports = [json.loads(path.read_text(encoding="utf-8")) for path in report_paths]
+          expected_platforms = {"ubuntu-latest", "windows-latest", "macos-latest"}
+          actual_platforms = {report["platform_label"] for report in reports}
+          if actual_platforms != expected_platforms:
+              raise SystemExit(
+                  f"platform labels differ: expected {sorted(expected_platforms)}, "
+                  f"found {sorted(actual_platforms)}"
+              )
+
+          stable_fields = (
+              "package_version",
+              "contract_version",
+              "formal_source_commit",
+              "numeric_backend_id",
+              "test_count",
+              "conformance_vectors_sha256",
+              "phase_1_manifest_sha256",
+              "theorem_surface_hash",
+              "vector_schema_version",
+              "claim_boundary",
+              "ok",
+          )
+          reference = {field: reports[0][field] for field in stable_fields}
+          mismatches: list[str] = []
+          for report in reports[1:]:
+              for field in stable_fields:
+                  if report[field] != reference[field]:
+                      mismatches.append(
+                          f"{report['platform_label']} field {field} differs"
+                      )
+          if mismatches:
+              raise SystemExit("\n".join(mismatches))
+          if reference["ok"] is not True:
+              raise SystemExit("platform source-quality result is not successful")
+
+          report_hashes = {
+              path.parent.name: hashlib.sha256(path.read_bytes()).hexdigest()
+              for path in report_paths
+          }
+          output = {
+              "schema_version": "rcp-rclm-runtime-phase-1-cross-platform-v1",
+              "workflow_run": "${{ github.run_id }}",
+              "workflow_attempt": "${{ github.run_attempt }}",
+              "head_sha": "${{ github.sha }}",
+              "platforms": sorted(actual_platforms),
+              "stable_fields": reference,
+              "platform_report_sha256": dict(sorted(report_hashes.items())),
+              "ok": True,
+          }
+          output_path = Path(
+              "artifacts/runtime_v2_phase_1/final/cross_platform_consistency.json"
+          )
+          output_path.write_text(
+              json.dumps(output, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          print(json.dumps(output, ensure_ascii=False, sort_keys=True, indent=2))
+          PY
+
+      - name: Upload final Phase 1 validation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-v2-phase-1-final-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v2_phase_1/final/
+          if-no-files-found: error
+          retention-days: 90
