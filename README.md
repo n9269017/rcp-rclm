@@ -1,185 +1,238 @@
-# RCP/RCLM Robust Reflective Successor Verification
+# RCP/RCLM — Robust Reflective Successor Verification
 
-This repository contains the two companion papers, Lean 4 proof project, controlled reference artifacts, replay checkers, run logs, and documentation for the RCP/RCLM robust reflective successor-verification package.
+This repository contains the two companion RCP/RCLM manuscripts, the historical
+Lean v1 certificate, and the active pinned **RCP/RCLM Formal Core v2** Lean 4
+project.
 
-## 1. What this repository contains
+The active v2 project proves a conditional successor-verification theorem stack.
+It does not claim that checker soundness creates a successor, that every accepted
+successor is strictly useful, or that the current Lean development is an
+executable recursive-self-improvement system.
+
+## Authoritative status
+
+| Layer | Status | Exact scope |
+|---|---|---|
+| Gate A — abstract theorem kernel | Complete, clean-CI built, axiom audited | Abstract conditional successor, finite composition, endpoint recovery, monitors, and conditional infinite closure |
+| Gate B — finite classical/diagonal instance | Complete at the declared finite reference scope | Actual finite Shannon/KL quantities, zero-coordinate conservative extension, exact recovery, non-vacuous strict progress, concrete checker |
+| Gate B RCLM-to-RCP refinement | Complete at the declared binary reference scope | Theorem-relevant state/update/certificate fields, checker acceptance, recovery laws, monitors, and architecture obligations |
+| Paper II direct-engine and robust-reflective interfaces | Implemented with explicit premises | Conditional architecture theorem, explicit generator/certifier/selector/realizer boundary, verifier/envelope/goal transports |
+| Bounded seed-library packet builder | Complete at the declared binary reference scope | Finite witness/packet grammars, packet construction, checker evidence, seed-domain closure, conditional infinite bounded trajectory |
+| Gate C — finite-dimensional quantum instance | **Planned only; not implemented** | The intended density-matrix/channel/quantum-relative-entropy boundary is documented before coding begins |
+| Executable checker/generator/closed loop | Not licensed by the current formal result | No v2 Python refinement or benchmark claim |
+
+The detailed status and claim boundaries are indexed in
+[`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md).
+
+## Which Lean project is authoritative?
+
+### Active Formal Core v2
+
+```text
+lean/rcp_rclm_formal_core_v2/
+```
+
+Use this project for all current theorem work. It pins:
+
+```text
+Lean:    leanprover/lean4:v4.31.0
+mathlib: fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+```
+
+The complete dependency graph is committed in
+`lean/rcp_rclm_formal_core_v2/lake-manifest.json`.
+
+### Historical v1 certificate
+
+```text
+lean/rcp_rclm_can_lean4/
+```
+
+The v1 files are retained as historical canonical references. Formal Core v2 does
+not overwrite them and does not silently reinterpret their narrower scope.
+
+## Repository map
 
 ```text
 papers/
   paper-I-rcp-math/
-    main.tex
-    main.pdf
-    arxiv/
   paper-II-rclm-architecture/
-    main.tex
-    main.pdf
-    arxiv/
 
 lean/
-  rcp_rclm_can_lean4/
-    lakefile.toml
-    lean-toolchain
-    RcpRclmMech.lean
-    RcpRclmMech/
-      RCP.lean
-      RCLM.lean
-    cert/
-      theorem_map.md
-      mechanization_manifest.filled.json
-      build_logs/
-    artifacts/
+  rcp_rclm_formal_core_v2/       active pinned project
+  rcp_rclm_can_lean4/            historical v1 project
 
-artifacts/
-  rcp/
-    controlled_artifact.json
-    checker.py
-    runlog.json
-    mechanization_status.json
-  rclm/
-    controlled_artifact.json
-    checker.py
-    runlog.json
-    mechanization_status.json
+docs/formal_core_v2/
+  README.md                       documentation index
+  THEOREM_CONTRACT.md             frozen theorem contract
+  PAPER_THEOREM_MAP.md            paper-to-Lean mapping
+  ASSUMPTION_REGISTER.md          explicit premises and ownership
+  EXIT_CRITERIA.md                gate and runtime licensing conditions
+  AXIOM_AUDIT.md                  proof-admission and axiom policy
+  GATE_B_CLOSURE.md               finite classical closure record
+  RCLM_GATE_B_REFINEMENT_STATUS.md
+  RCLM_DIRECT_ENGINE_STATUS.md
+  PAPER_II_BOUNDED_SEED_LIBRARY_REFINEMENT.md
+  REPRODUCIBILITY.md              local and CI reproduction
+  AUDIT_ARTIFACTS.md              artifact contents and interpretation
+  GATE_C_SCOPE.md                 planning placeholder; no Gate C implementation
+  audit/
+    verify_paper_alignment_pins.sh
+    GateAAxiomAudit.lean
+    GateBAxiomAudit.lean
+    RCLMRefinementAxiomAudit.lean
 
-docs/
-  overview.md
-  theorem_dependency_graph.md
-  theorem_dependency_graph.pdf
-  notation_table.md
-  notation_table.pdf
-  claim_boundary.md
+.github/workflows/
+  formal-core-v2.yml              authoritative pinned build and audit workflow
 ```
 
-## 2. Paper I / Paper II relationship
+## Formal Core v2 theorem shape
 
-**Paper I** is the architecture-general mathematical paper. It develops the RCP/RCP-II theorem stack, including non-loss, recovery, conservative-extension algebra, direct-engine construction, seed-domain entry, successor-verification packet construction, finite/infinite certified paths, proof-carrying reference entry, controlled executable artifacts, Lean mechanization status, and the M3-Min learned-entry boundary.
+For an admissible, invariant-preserving predecessor and a trusted checker,
+accepted candidate/certificate evidence yields the complete one-step obligation
+bundle:
 
-**Paper II** is the architecture-instantiation paper. It realizes the Paper I theorem stack in the RSI--RCLM architecture, including typed RCLM densities, semantic coupling, verifier/trust structure, RCLM successor-verification packets, proof-carrying RCLM reference artifacts, the RCLM-to-RCP refinement, and the M3-Min learned RCLM entry audit boundary.
+```text
+typed successor validity
+computed residual nonpositivity
+quantitative protected-distinction non-loss
+constructive candidate-tied recovery
+protected-invariant preservation
+progress nondecrease
+strict progress when a strict witness is certified
+trust/verifier validity
+resource validity
+reality/uncertainty containment
+successor-domain admissibility
+```
 
-The two papers should be cited together when discussing the full RCP/RCLM package. Paper I may be cited independently for the architecture-general theorem stack; Paper II may be cited for the RCLM architecture realization.
+Gate A composes these obligations along finite accepted trajectories and proves a
+conditional infinite trajectory theorem under an explicit successor-availability
+premise. Checker soundness alone is never used to prove generator completeness.
 
-## 3. Lean certificate scope
+Gate B supplies a concrete finite classical reference with actual Shannon entropy
+and KL divergence, exact zero-coordinate conservative extension and recovery, a
+strict KL-derived improvement witness, and a Boolean checker whose acceptance
+refines to the abstract obligations.
 
-The Lean 4 project is shared by both papers. It contains two proof modules:
+The RCLM layer then preserves the theorem-relevant Gate A/B objects through an
+explicit refinement map and adds separate architecture relations for generation,
+certificate construction, candidate selection, realization, trust, resources,
+and successor-domain closure.
 
-- `RcpRclmMech/RCP.lean`: the RCP canonical finite core.
-- `RcpRclmMech/RCLM.lean`: the RCLM refinement module.
+## Gate C placeholder
 
-The supplied Lean certificate covers the canonical finite RCP/RCLM witness, finite checker core, and RCLM-to-RCP refinement module.
+Gate C is deliberately represented as a **planning boundary**, not an implemented
+theorem. Before Lean code is added, the project must freeze:
 
-It does **not** mechanize the full 219-page mathematical paper, the full 187-page architecture paper, arbitrary learned-system entry, broad capable-agent entry, or empirical deployment claims.
+```text
+finite-dimensional complex state representation
+density-matrix predicates: Hermitian, positive semidefinite, trace one
+support/domain convention for matrix logarithms
+admissible channel representation and complete-positive/trace-preserving laws
+von Neumann entropy and quantum relative entropy definitions
+non-loss and constructive recovery theorem statements
+nonconstant concrete quantum witness
+checker and RCLM refinement surfaces
+exact mathlib imports and any remaining explicit assumptions
+```
 
-Successful checked commands reported for the v5 root-module project:
+`RCP/QuantumFinite.lean` therefore remains intentionally empty except for its
+scope declaration. See [`docs/formal_core_v2/GATE_C_SCOPE.md`](docs/formal_core_v2/GATE_C_SCOPE.md).
 
-```powershell
-lake env lean .\RcpRclmMech\RCP.lean
-lake build RcpRclmMech.RCP
-lake env lean .\RcpRclmMech\RCLM.lean
-lake build RcpRclmMech.RCLM
-lake env lean .\RcpRclmMech.lean
+## Build the active v2 project
+
+From the repository root:
+
+```bash
+cd lean/rcp_rclm_formal_core_v2
+lake update
+lake exe cache get
 lake build
 ```
 
-## 4. Artifact replay instructions
-
-### RCP controlled artifact
+Run the theorem-axiom audits with:
 
 ```bash
-cd artifacts/rcp
-python checker.py controlled_artifact.json
+lake env lean ../../docs/formal_core_v2/audit/GateAAxiomAudit.lean
+lake env lean ../../docs/formal_core_v2/audit/GateBAxiomAudit.lean
+lake env lean ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
 ```
 
-### RCLM controlled artifact
+Run the paper-source and theorem-surface pin check from the repository root:
 
 ```bash
-cd artifacts/rclm
-python checker.py controlled_artifact.json
+bash docs/formal_core_v2/audit/verify_paper_alignment_pins.sh
 ```
 
-Expected status for both checkers: success / `ok: true`.
+The GitHub Actions workflow is authoritative because it checks out a clean tree,
+installs the pinned toolchain, resolves the pinned dependency graph, obtains the
+official mathlib cache, builds the project, scans for admitted proofs and local
+axioms, prints the public theorem axiom sets, and uploads the complete audit
+bundle.
 
-The replay artifacts are controlled executable references. They are not empirical validation of arbitrary trained systems or frontier-scale learned agents.
+Windows cache-corruption recovery and exact reproduction instructions are in
+[`docs/formal_core_v2/REPRODUCIBILITY.md`](docs/formal_core_v2/REPRODUCIBILITY.md).
 
-## 5. What is claimed
+## Audit artifacts
 
-The papers claim a domain-relative, certificate-relative theorem stack for certified seed-library classes.
+Every workflow attempt uploads:
 
-In compact form, the package supports:
-
-- recoverable monotone self-update preservation under explicit gates;
-- certified non-loss and recovery for declared protected distinctions;
-- conservative-extension algebra and finite-word non-loss composition;
-- direct-engine construction on declared certified domains;
-- seed-domain entry and witness-library closure;
-- successor-verification packet construction and finite/infinite certified trajectory closure;
-- proof-carrying finite reference entry for a declared canonical class;
-- controlled executable replay artifacts;
-- Lean 4 checking of the canonical finite RCP/RCLM witness and refinement core;
-- a minimal learned-entry boundary saying that learned systems that supply the full certificate boundary may invoke the theorem stack.
-
-## 6. What is not claimed
-
-The package does **not** claim:
-
-- arbitrary-system RSI;
-- universal successor trust;
-- full L\"obian or Vingean reflection;
-- automatic reality containment;
-- frontier-scale tractability;
-- broad learned-agent entry;
-- empirical deployment validation;
-- full mechanization of the two complete papers.
-
-The Lean project mechanizes the narrow canonical finite proof core only.
-
-## 7. How to build Lean
-
-From the Lean project root:
-
-```powershell
-cd lean\rcp_rclm_can_lean4
-lake env lean .\RcpRclmMech\RCP.lean
-lake build RcpRclmMech.RCP
-lake env lean .\RcpRclmMech\RCLM.lean
-lake build RcpRclmMech.RCLM
-lake env lean .\RcpRclmMech.lean
-lake build
+```text
+formal-core-v2-audit-<run-id>-<attempt>
 ```
 
-The project is proof-library-only and does not require building a Windows executable.
+The archive contains the build log, source-admission scans, project-local axiom
+scan, paper/source pin metadata, and the Gate A, Gate B, and RCLM theorem-axiom
+reports. The artifact layout and interpretation rules are documented in
+[`docs/formal_core_v2/AUDIT_ARTIFACTS.md`](docs/formal_core_v2/AUDIT_ARTIFACTS.md).
 
-## 8. How to reproduce checker logs
+A clean build is evidence that the declared Lean project elaborates. It is not,
+by itself, evidence of exact paper equivalence, arbitrary generator completeness,
+strict improvement at every step, executable-system correctness, or empirical
+RSI.
 
-For Lean logs, run:
+## Historical scripts and controlled artifacts
 
-```powershell
-cd lean\rcp_rclm_can_lean4
-powershell -NoProfile -ExecutionPolicy Bypass -File .\cert\run_build_and_fill_manifest.ps1
+The repository still contains historical v1 controlled artifacts, replay
+checkers, and provenance records. They remain useful as historical finite
+references, but they are **not** the runtime refinement of Formal Core v2. Formal
+Core v2 currently licenses no Python checker, generator, promotion loop, or
+external benchmark claim.
+
+## Primary documentation
+
+| Document | Purpose |
+|---|---|
+| [`THEOREM_CONTRACT.md`](docs/formal_core_v2/THEOREM_CONTRACT.md) | Ordinary-mathematics and Lean-facing theorem contract |
+| [`PAPER_THEOREM_MAP.md`](docs/formal_core_v2/PAPER_THEOREM_MAP.md) | Pinned paper claims mapped to compiled declarations |
+| [`ASSUMPTION_REGISTER.md`](docs/formal_core_v2/ASSUMPTION_REGISTER.md) | Every premise, its owner, and discharge status |
+| [`EXIT_CRITERIA.md`](docs/formal_core_v2/EXIT_CRITERIA.md) | Gate closure and executable-phase licensing rules |
+| [`AXIOM_AUDIT.md`](docs/formal_core_v2/AXIOM_AUDIT.md) | Source-admission and foundational-axiom policy |
+| [`GATE_B_CLOSURE.md`](docs/formal_core_v2/GATE_B_CLOSURE.md) | Exact finite classical scope and limitations |
+| [`PAPER_II_BOUNDED_SEED_LIBRARY_REFINEMENT.md`](docs/formal_core_v2/PAPER_II_BOUNDED_SEED_LIBRARY_REFINEMENT.md) | Bounded generator/packet-builder refinement |
+| [`GATE_C_SCOPE.md`](docs/formal_core_v2/GATE_C_SCOPE.md) | Gate C planning contract and non-claims |
+
+## Claim boundary
+
+The current project establishes a clean, pinned, conditional formal theorem stack
+and a nontrivial finite classical reference. It does **not** establish:
+
+```text
+exact full Paper I or Paper II semantic equivalence
+arbitrary learned-system entry
+arbitrary or unbounded generator/proof-search completeness
+strict useful improvement at every recursive step
+finite-dimensional quantum relative entropy or channel recovery
+Python checker/generator correctness
+an executable recursive promotion loop
+empirical recursive self-improvement
+external benchmark performance
 ```
 
-For RCP artifact replay:
+## Citation and licenses
 
-```bash
-cd artifacts/rcp
-python checker.py controlled_artifact.json > runlog.new.json
-```
-
-For RCLM artifact replay:
-
-```bash
-cd artifacts/rclm
-python checker.py controlled_artifact.json > runlog.new.json
-```
-
-Compare the generated logs with `runlog.json`.
-
-## 9. How to cite
-
-Use `CITATION.cff` for the package citation. Until arXiv IDs and a Zenodo DOI are added, cite the repository release and the two companion manuscripts:
-
-- Paper I: *Recursive Coherence Preservation / RCP-II: A Domain-Relative Robust Reflective Successor Theorem for Certified RCP Seed-Library Classes*.
-- Paper II: *RSI--RCLM Final v1: A Domain-Relative Robust Reflective Successor Theorem for Certified RCLM Seed-Library Classes*.
-
-## License
-
-Papers and documentation are intended to be distributed under CC BY 4.0. Lean code, Python checkers, scripts, and artifact utilities are intended to be distributed under MIT. See `LICENSE` and `LICENSES/`.
+Use `CITATION.cff` for the package citation and cite the two companion manuscripts
+for the paper-level claims. Papers and documentation are intended for CC BY 4.0;
+Lean code and software utilities are intended for MIT. See `LICENSE` and
+`LICENSES/`.

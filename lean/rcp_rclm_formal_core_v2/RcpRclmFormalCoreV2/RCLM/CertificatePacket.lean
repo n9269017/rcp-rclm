@@ -5,11 +5,6 @@ universe uCoreCertificate uSemanticEvidence uTypeEvidence uLedgerEvidence
   uGoalTransportEvidence uTrustEvidence uResourceEvidence uRealityEvidence
   uRecoveryEvidence uProgressEvidence
 
-/--
-An RCLM certificate packet carries evidence objects, not booleans assigned true
-by the constructor. The meaning of each evidence type is supplied by the
-architecture instantiation and refinement proof.
--/
 structure CertificatePacket
     (CoreCertificate : Type uCoreCertificate)
     (SemanticEvidence : Type uSemanticEvidence)
@@ -31,6 +26,7 @@ structure CertificatePacket
   reality : RealityEvidence
   recovery : RecoveryEvidence
   progress : ProgressEvidence
+  deriving DecidableEq
 
 end RCLM
 end RcpRclmFormalCoreV2
