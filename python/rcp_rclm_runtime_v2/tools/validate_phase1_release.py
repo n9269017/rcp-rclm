@@ -13,7 +13,7 @@ _EXPECTED_SCHEMA: Final[str] = "rcp-rclm-runtime-phase-1-validation-v1"
 _EXPECTED_CONTRACT: Final[str] = "rcp-rclm-runtime-contract-v2.0.0"
 
 
-def validate_release_record(path: Path) -> tuple[str, ...]:
+def validate_release_record(path: Path) -> Sequence[str]:
     record = json.loads(path.read_text(encoding="utf-8"))
     failures: list[str] = []
 
