@@ -19,6 +19,7 @@ Conditional infinite architecture trajectory: implemented
 Concrete Gate B classical/binary engine instance: implemented
 Concrete first strict-improvement step: implemented
 Concrete successor availability on the declared binary domain: implemented
+Clean pinned build and expanded axiom audit: passed
 Exact full Paper II theorem equivalence: not claimed
 Arbitrary learned-system engine completeness: not claimed
 Executable Python RSI phase: not licensed
@@ -154,6 +155,28 @@ selected infinite reference path performs the strict initial improvement and
 then follows accepted stability successors. This is a theorem-level closure
 witness for the finite reference engine, not evidence of indefinitely strict
 capability growth.
+
+## Validation
+
+The architecture-engine theorem surface was included in the dedicated RCLM
+axiom audit and passed the pinned Linux workflow:
+
+```text
+Branch source head:   0731abfdf0edb940312a48051a3ca527c086af5b
+CI checkout commit:   90054eb9e2da0f91bd7233e882af6d8a0cdba462
+Workflow run:         29215941083
+Build:                1945 jobs, success
+No sorry/admit:       pass
+Project-local axioms: none
+No sorryAx:           pass
+Audited declarations: 27
+Artifact:             formal-core-v2-audit-29215941083-1
+Artifact SHA-256:     9d4d3d5a38e2bfefbb641950131c8a10dbec20fc90b89c165a08ef4f4b98fff4
+```
+
+The generic engine theorems report only the standard Lean/mathlib foundational
+union `[propext, Classical.choice, Quot.sound]`; no project-local axiom or
+admitted proof occurs.
 
 ## Claim boundary
 
