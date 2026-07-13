@@ -1,272 +1,176 @@
-# Gate C scope — finite-dimensional quantum extension
+# Gate C scope — implemented finite-dimensional diagonal quantum reference
 
-## Status
+## Current status
 
 ```text
-Planning placeholder: present
-Lean implementation: not begun
-Density-matrix theorem: not claimed
-Quantum relative entropy theorem: not claimed
-Channel recovery theorem: not claimed
-Gate C closure: false
+Selected finite-dimensional diagonal implementation: complete
+Complex matrix-valued density representation: complete
+Hermitian/positive-semidefinite/trace-one evidence: complete
+Spectral von Neumann entropy: complete
+Support-aware diagonal quantum relative entropy: complete
+Selected identity/swap channel family: complete
+Exact selected recovery: complete
+Concrete checker and invalid-packet rejection: complete
+Finite accepted trajectory: complete
+Substantive RCLM quantum refinement: complete
+Dedicated Gate C theorem-axiom audit: complete
+General noncommuting quantum extension: open
+Exact full Paper I/Paper II semantic identity: open
 ```
 
-This document records the boundary that must be frozen before Gate C code is
-written. It does not add a quantum theorem and does not strengthen Gate A or Gate
-B.
+The closure record is `GATE_C_CLOSURE.md`.
 
-The current Lean module:
+## Frozen representation
+
+The implemented state representation is:
 
 ```text
-lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumFinite.lean
+QuantumMatrix n = Matrix (Fin n) (Fin n) ℂ
 ```
 
-is intentionally empty apart from a scope declaration.
+A `DiagonalDensityMatrix n` carries a finite normalized nonnegative spectrum and is represented by the corresponding complex diagonal matrix. A `PositiveDiagonalDensityMatrix n` additionally proves that every spectral mass is strictly positive.
 
-## Purpose
-
-Gate C will instantiate the existing conditional RCP kernel with a nontrivial
-finite-dimensional quantum reference. It must use actual matrix-valued states,
-actual entropy or divergence quantities, an update tied to an admissible quantum
-transition, constructive recovery, a non-vacuous strict-progress witness, and a
-concrete checker refinement.
-
-The quantum instance must refine the existing Gate A theorem interfaces rather
-than bypass them with a separate theorem vocabulary.
-
-## Decisions required before implementation
-
-### State representation
-
-Freeze one exact finite-dimensional representation, including universe and index
-choices. The likely boundary is a complex square matrix on a finite index type,
-but the implementation must name the exact mathlib type and imports.
-
-Required state evidence:
+For every selected density the Lean development proves:
 
 ```text
-Hermitian
-positive semidefinite
-trace one
-finite dimension
-support/domain data needed by logarithms and relative entropy
+matrix.IsHermitian
+matrix.PosSemidef
+Matrix.trace matrix = 1
 ```
 
-The representation must distinguish raw matrices from certified density
-operators.
+The reference dimension is two.
 
-### Admissible transitions
+## Frozen information quantities
 
-Freeze the update/channel representation and prove the exact laws needed by the
-kernel:
+For a diagonal density with spectrum `p`, the selected entropy is:
 
 ```text
-linearity
-complete positivity or the selected finite equivalent
+vonNeumannEntropy ρ = -∑ᵢ pᵢ log pᵢ
+```
+
+For diagonal densities with spectra `p` and `q`, the selected divergence is:
+
+```text
+quantumRelativeEntropy ρ σ = ∑ᵢ pᵢ log (pᵢ / qᵢ)
+```
+
+This is the exact spectral formula for the commuting diagonal reference. It is intentionally implemented through the proved finite Shannon/KL layer.
+
+Nonnegativity for arbitrary diagonal densities carries an explicit support premise. Strictly positive spectral densities discharge that premise constructively.
+
+## Frozen transition class
+
+`FiniteDiagonalChannel n` packages:
+
+```text
+state action on diagonal density matrices
+complex-linear matrix action
+state/matrix action agreement
 trace preservation
-state-domain preservation
-candidate next state agrees with applying the update
+Hermitian preservation
+positive-semidefinite preservation
 ```
 
-If a weaker transition class is selected for the first concrete instance, that
-narrower scope must be explicit in the theorem map and claim boundary.
-
-### Entropy and divergence
-
-Freeze exact definitions for:
+The selected channel family is:
 
 ```text
-von Neumann entropy
-quantum relative entropy
-support convention
-zero/equality cases
-nonnegativity or the exact imported theorem boundary
+stay -> identity channel
+swap -> two-level basis-swap channel
 ```
 
-The core protected quantity may not be a constant. Any imported matrix logarithm,
-functional calculus, spectral, trace, or positivity theorem must be listed by
-exact module and reflected in the axiom audit.
+The basis swap is an involution. The selected recovery channel is the same identity/swap channel indexed by the accepted update.
 
-### Protected distinctions and transport
+The implementation proves exact recovery and exact entropy/QRE preservation for this family.
 
-Define theorem-relevant protected distinctions and their cross-time transport.
-The instance must prove that the transport is tied to the selected update rather
-than assigned independently.
+No claim is made that `FiniteDiagonalChannel` is a formalization of every completely positive trace-preserving map.
 
-The first Gate C reference may use a narrow commuting/diagonal class only if the
-scope is stated as such and does not duplicate Gate B under a quantum label.
+## Frozen kernel instance
 
-### Recovery
-
-Define a candidate-indexed constructive recovery map tied to the actual quantum
-transition. Freeze the intended theorem:
+The quantum kernel contains:
 
 ```text
-local recovery bound
-recovery composition laws
-finite endpoint rollback bound
+QuantumState: outside | source | target
+QuantumUpdate: stay | swap
+QuantumCertificate: improvement | stability | malformed
+QuantumResidualIndex: typed | packet
 ```
 
-Any use of a Petz-style recovery map, explicit inverse channel, partial trace,
-embedding, or restricted exact recovery must identify the domain and support
-conditions precisely.
-
-### Progress and strict witness
-
-Define a progress functional that is not index growth and prove at least one
-strict witness for an accepted quantum candidate:
+The two accepted packets are:
 
 ```text
-progress predecessor < progress successor
+source + swap + target + improvement
+target + stay + target + stability
 ```
 
-The witness must follow from the selected quantum information quantity or another
-explicit theorem-relevant objective.
+Residuals test the actual typed transition and actual packet acceptance. Trust, resource, and reality containment are propositions with explicit failing cases.
 
-### Certificates, residuals, and checker
-
-The concrete packet must include evidence for:
-
-```text
-typed transition
-protected non-loss
-constructive recovery
-residual nonpositivity
-trust validity
-resource validity
-reality/uncertainty containment
-successor admissibility
-strict witness when claimed
-```
-
-Residuals must be computed from actual state/candidate/certificate evidence and
-must satisfy the existing input-sensitivity requirement.
-
-Checker soundness must retain the form:
+The checker theorem retains the required form:
 
 ```text
 check = true -> complete StepObligations
 ```
 
-### RCLM refinement
+## Progress and recovery scope
 
-Gate C must strengthen the RCLM-to-RCP refinement over the selected quantum
-objects. It must identify the architecture state, update, certificate, monitor,
-recovery, verifier, uncertainty, goal, resource, and checker objects that are
-actually preserved.
+The source and target spectra are `(1/4, 3/4)` and `(3/4, 1/4)`. Their selected quantum relative entropy is proved equal to `(1/2) * log 3` and strictly positive.
 
-The bounded seed-library interfaces may be reused only after the quantum packet
-grammar and semantic identifications are explicit.
+The progress functional is derived from this nonzero gap. The source-to-target swap has strict progress. The target-to-target stay step is accepted and stable.
 
-## Intended theorem boundary
-
-The first defensible Gate C theorem should have the following conditional shape:
+Recovery is candidate-tied:
 
 ```text
-given a certified finite-dimensional quantum predecessor,
-an admissible candidate channel/update,
-a quantum certificate packet,
-protected distinctions and cross-time transports,
-a constructive recovery map,
-progress and strict-witness evidence,
-trust/resource/reality evidence,
-and a sound trusted checker,
-
-checker acceptance implies the complete RCP successor obligations.
+stay: identity recovery
+swap: involutive swap recovery
 ```
 
-It must then instantiate the existing finite composition and conditional infinite
-trajectory theorems. Infinite closure must continue to carry explicit successor
-availability.
+The concrete trajectory proves strict first-step progress, endpoint recovery, Lyapunov/motion composition, and relevance transport.
 
-## Minimum concrete reference
+## RCLM refinement scope
 
-A Gate C closure claim requires at least one nontrivial concrete finite reference
-with:
+`RCLM/QuantumBinary.lean` refines substantive architecture state, update, certificate, checker, recovery, and monitor data into the selected RCP quantum kernel.
+
+The refinement also identifies:
 
 ```text
-actual density matrices
-actual matrix-valued update or channel
-actual nonconstant quantum information quantity
-explicit support/domain proof
-constructive recovery tied to the update
-non-vacuous strict progress
-concrete Boolean checker
-invalid candidate rejection
-finite accepted trajectory
-RCLM refinement
-source and axiom audits
+architecture state -> selected density
+architecture update -> selected forward channel
+architecture update -> selected recovery channel
+architecture state -> selected entropy
+architecture state pair -> selected quantum relative entropy
 ```
 
-A type alias around the classical Gate B distributions is insufficient unless the
-result is explicitly described as a commuting diagonal bridge rather than Gate C
-closure.
+Checker acceptance returns both complete RCLM obligations and complete forgotten RCP obligations, together with density evidence and selected channel/recovery laws.
 
-## Planned module organization
+## Infinite-horizon boundary
 
-The existing public placeholder is:
+The abstract Gate A conditional infinite theorem remains applicable only under explicit successor availability. The selected Gate C implementation does not infer availability, generator completeness, or indefinitely strict improvement from checker soundness.
+
+The concrete trajectory proves one strict improvement followed by stable continuation. It is not an indefinitely strict RSI theorem.
+
+## Audit boundary
+
+The dedicated audit file is:
 
 ```text
-RCP/QuantumFinite.lean
+docs/formal_core_v2/audit/GateCAxiomAudit.lean
 ```
 
-Before implementation begins, decide whether the concrete development remains in
-that file or is split into focused internal modules such as:
+The pinned workflow builds the complete project, scans the Lean source for admitted proofs and local axioms, evaluates the Gate C `#print axioms` surface, rejects `sorryAx`, and uploads the complete audit record.
+
+## Open extensions
+
+The following remain future formalization work rather than hidden assumptions of the selected closure:
 
 ```text
-RCP/QuantumFinite/Types.lean
-RCP/QuantumFinite/Density.lean
-RCP/QuantumFinite/Entropy.lean
-RCP/QuantumFinite/Channels.lean
-RCP/QuantumFinite/Recovery.lean
-RCP/QuantumFinite/Checker.lean
-RCP/QuantumFinite/Trajectory.lean
-RCLM/QuantumFinite.lean
-```
-
-No split is mandated by this placeholder. The exact imported API and theorem
-contract should determine the file boundary.
-
-## Gate C exit conditions
-
-Gate C is complete only when all applicable items hold:
-
-```text
-exact representation and theorem statement frozen
-exact mathlib imports pinned
-all assumptions explicit
-actual nonconstant quantum divergence or entropy quantity
-actual computed residuals
-reality containment is substantive
-constructive recovery tied to the accepted update
-non-vacuous strict witness
-concrete checker soundness
-invalid packet rejection
-finite trajectory composition instantiated
-conditional infinite closure retains successor availability
-RCLM refinement proved over the quantum objects
-no sorry/admit
-no project-local axiom declaration
-public theorem axiom audit extended
-paper theorem map and assumption register synchronized
-clean pinned GitHub CI succeeds
-closure record and manifest updated
-```
-
-## Non-goals of the placeholder
-
-This document does not claim:
-
-```text
-a completed Gate C theorem
-quantum advantage
-arbitrary quantum channels
+arbitrary noncommuting density matrices
+general matrix logarithm and noncommuting QRE
+general CPTP channels
+general quantum data processing
+trace-distance recovery laws
+Petz or approximate recovery
 infinite-dimensional operator algebras
-full Paper I or Paper II equivalence
-strict useful improvement at every recursive step
-an executable checker or generator
-empirical RSI
+exact full Paper I/Paper II quantum semantic identity
+arbitrary learned-system RCLM refinement
+executable checker/generator refinement
+empirical RSI or benchmark validation
 ```
-
-No later document should cite this planning record as evidence that any quantum
-result has been mechanized.
