@@ -271,6 +271,7 @@ theorem paper_ii_optional_claim_certificates
     (obligations : PaperIISuccessorVerificationObligations
       successorSemantics state candidate certificate) :
     PaperIIOptionalClaimCertificates
+      (successorSemantics := successorSemantics)
       scope state candidate certificate := by
   exact
     { realityWhenClaimed := fun _ => obligations.realityCertificate
