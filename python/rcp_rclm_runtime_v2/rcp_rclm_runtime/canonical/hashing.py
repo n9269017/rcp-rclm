@@ -97,7 +97,7 @@ def build_tree_records(
     if not resolved_root.is_dir():
         raise CanonicalizationError("tree.root", "tree root must be a directory")
 
-    inode_paths: dict[tuple[int, int], str] = {}
+    inode_paths: dict[tuple[int, int], list[tuple[Path, str]]] = {}
     records: list[SemanticFileRecord] = []
     for current_root, directory_names, file_names in os.walk(resolved_root, followlinks=False):
         current_path = Path(current_root)
@@ -115,12 +115,20 @@ def build_tree_records(
             if not stat.S_ISREG(stat_result.st_mode):
                 raise CanonicalizationError("tree", f"non-regular file is forbidden: {relative}")
             inode_key = (stat_result.st_dev, stat_result.st_ino)
-            if inode_key in inode_paths:
-                raise CanonicalizationError(
-                    "tree",
-                    f"hard-link alias is forbidden: {relative} aliases {inode_paths[inode_key]}",
-                )
-            inode_paths[inode_key] = relative
+            for previous_path, previous_relative in inode_paths.get(inode_key, []):
+                try:
+                    aliases = os.path.samefile(file_path, previous_path)
+                except OSError as exc:
+                    raise CanonicalizationError(
+                        "tree",
+                        f"could not determine file identity for {relative}: {exc}",
+                    ) from exc
+                if aliases:
+                    raise CanonicalizationError(
+                        "tree",
+                        f"hard-link alias is forbidden: {relative} aliases {previous_relative}",
+                    )
+            inode_paths.setdefault(inode_key, []).append((file_path, relative))
             if declared_modes is not None:
                 if relative not in declared_modes:
                     raise CanonicalizationError("tree", f"missing declared mode for {relative}")
