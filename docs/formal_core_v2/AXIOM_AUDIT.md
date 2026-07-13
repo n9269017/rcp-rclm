@@ -82,7 +82,7 @@ The expanded RCLM audit is fixed in:
 docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
 ```
 
-It covers 45 public declarations across:
+It covers 47 public declarations across:
 
 ```text
 kernel, checker, monitor, and recovery refinement
@@ -95,22 +95,23 @@ bounded seed-library packet availability
 bounded packet-builder soundness
 bounded packet-to-architecture refinement
 conditional infinite bounded seed-library trajectory
-concrete binary grammar, packet, and trajectory theorems
+generic per-step bounded-seed architecture refinement
+concrete binary grammar, packet, trajectory, and per-step architecture theorems
 ```
 
 The authoritative bounded-seed validation record is:
 
 ```text
-Branch head:          78e9db0b0f2336d50ad4ec00d11bbc4415efc1a4
-CI checkout commit:   f43f08c4693aec79fe01a2af3e71dbe73279714e
-Workflow run:         29222655146
+Branch source head:   a09c742ca2541ad3302a5c1041852974649e09c8
+CI checkout commit:   02790b14d1fe9b16745ec8236bf91c9a0608e9b8
+Workflow run:         29224543624
 Build:                1953 jobs, success
 No sorry/admit:       pass
 Project-local axioms: none
 No sorryAx:           pass
-Audited declarations: 45
-Artifact:             formal-core-v2-audit-29222655146-1
-Artifact SHA-256:     c1a59e1b365e2dedd8515fd4952584057edaef0d2043206dde680c28628149af
+Audited declarations: 47
+Artifact:             formal-core-v2-audit-29224543624-1
+Artifact SHA-256:     e1f00cad76ac2799b8006e01cfdf6ba47f9348b4074d664bb4d1a2314716b6b2
 ```
 
 The generic and most concrete RCLM theorems report only the standard union:
@@ -119,15 +120,20 @@ The generic and most concrete RCLM theorems report only the standard union:
 [propext, Classical.choice, Quot.sound]
 ```
 
-The concrete grammar-case theorem reports `[propext, Quot.sound]`, and the
-concrete theorem converting architecture-domain membership to the bounded seed
-domain is axiom-free. No audited declaration reports `sorryAx`.
+The concrete grammar-case theorem reports `[propext, Quot.sound]`; canonical
+projection lemmas and the concrete architecture-domain-to-bounded-seed theorem
+are axiom-free. No audited declaration reports `sorryAx`.
 
 The use of classical choice in bounded infinite recursion is explicit: a finite
 grammar is required to be nonempty at every seed-domain state, and one certified
 word is selected from that `Nonempty` witness. Grammar nonemptiness and successor
 seed-domain closure are independent structure fields and are not inferred from
 checker soundness.
+
+The new generic and concrete per-step architecture-refinement theorems prove that
+every selected bounded-seed step carries both complete RCLM successor obligations
+and complete forgotten RCP successor obligations, together with recovery and
+monitor refinement evidence.
 
 ## Combined acceptance rule
 
