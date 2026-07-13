@@ -96,6 +96,67 @@ jobs:
           python -m json.tool \
             python/rcp_rclm_executable_core_v2/contract/runtime_records.schema.json \
             >/dev/null
+          python -m json.tool \
+            python/rcp_rclm_executable_core_v2/contract/phase_0_validation.json \
+            >/dev/null
+
+      - name: Validate Phase 0 release evidence
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import json
+          import re
+          from pathlib import Path
+
+          path = Path(
+              "python/rcp_rclm_executable_core_v2/contract/phase_0_validation.json"
+          )
+          record = json.loads(path.read_text(encoding="utf-8"))
+          hash_pattern = re.compile(r"^[0-9a-f]{64}$")
+          required = {
+              "schema_version": "rcp-rclm-runtime-contract-validation-v1",
+              "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+              "release_status": "phase_0_contract_frozen_and_clean_ci_validated",
+              "workflow_conclusion": "success",
+          }
+          failures: list[str] = []
+          for field, expected in required.items():
+              actual = record.get(field)
+              if actual != expected:
+                  failures.append(f"{field}: expected {expected!r}, found {actual!r}")
+
+          artifact_hash = record.get("artifact_sha256")
+          if not isinstance(artifact_hash, str) or not hash_pattern.fullmatch(artifact_hash):
+              failures.append("artifact_sha256 is not a lowercase SHA-256 value")
+
+          summary = record.get("validation_summary")
+          if not isinstance(summary, dict) or summary.get("ok") is not True:
+              failures.append("validation_summary.ok must be true")
+          if isinstance(summary, dict) and summary.get("issues") != []:
+              failures.append("validation_summary.issues must be empty")
+
+          licenses = record.get("licenses_after_phase_0")
+          if not isinstance(licenses, dict):
+              failures.append("licenses_after_phase_0 must be an object")
+          else:
+              if licenses.get("phase_1_runtime_bedrock_may_begin") is not True:
+                  failures.append("Phase 1 runtime bedrock must be licensed to begin")
+              for field in (
+                  "production_checker",
+                  "generator",
+                  "promotion_controller",
+                  "pytorch_backend",
+                  "benchmark_adapter",
+              ):
+                  if licenses.get(field) is not False:
+                      failures.append(f"{field} must remain unlicensed")
+
+          if failures:
+              for failure in failures:
+                  print(failure)
+              raise SystemExit(1)
+          PY
 
       - name: Validate frozen contract and Lean source pins
         run: |
@@ -116,6 +177,7 @@ jobs:
             sha256sum \
               python/rcp_rclm_executable_core_v2/contract/runtime_contract_manifest.json \
               python/rcp_rclm_executable_core_v2/contract/runtime_records.schema.json \
+              python/rcp_rclm_executable_core_v2/contract/phase_0_validation.json \
               python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py \
               python/rcp_rclm_executable_core_v2/contract/test_validate_runtime_contract.py
           } > artifacts/executable_core_v2_contract/provenance.txt
