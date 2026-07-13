@@ -13,9 +13,9 @@ computes the finite reference verdict
 emits deterministic Lean source
 hashes the source
 runs the mandatory source guard
-checks the pinned formal project and imported module identities
+checks the pinned formal project identity and declared theorem surface
 invokes the pinned Lean toolchain
-captures stdout, stderr, exit code, timeout state, and binary identities
+captures stdout, stderr, exit code, timeout state, source/output hashes, and toolchain runtime identity
 parses one packet-bound machine-readable verdict
 compares the Lean and Python verdicts
 ```
