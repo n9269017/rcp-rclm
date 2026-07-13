@@ -9,22 +9,31 @@ strengthen the historical canonical v1 project at
 ```text
 Gate A — abstract theorem kernel: complete and clean-CI audited
 Gate B — finite classical/diagonal reference: complete at declared scope
-Gate C — finite-dimensional quantum instantiation: not yet claimed
-RCLM architecture refinement: typed interfaces and partial contract only
-Exact Paper I theorem mechanization: not yet claimed
-Exact Paper II architecture theorem mechanization: not yet claimed
-Python checker/generator/closed loop: prohibited at this phase
+Substantive Gate B RCLM-to-RCP refinement: implemented and audited
+Conditional RCLM architecture successor/direct-engine theorem: implemented
+Concrete Gate B direct-engine reference: implemented
+Conditional infinite architecture trajectory: implemented with explicit availability
+Gate C — finite-dimensional quantum instantiation: not claimed
+Exact Paper I theorem mechanization: not claimed
+Exact Paper II theorem mechanization: not claimed
+Python checker/generator/closed loop: not licensed
 External benchmark result: none
 ```
 
-Gate A supplies the conditional successor theorem kernel. Gate B now supplies a
-nontrivial finite classical instance with actual Shannon/KL quantities,
-support-aware KL laws, conservative extension and exact recovery, KL-derived
-strict progress, a concrete checker refining the kernel, scoped classical
-monitors, and a worked accepted trajectory.
+Gate A supplies the conditional successor kernel. Gate B supplies actual
+Shannon/KL quantities, conservative extension, exact recovery, KL-derived strict
+progress, a concrete checker, scoped monitors, and a worked trajectory. The RCLM
+layers now preserve the theorem-relevant Gate A/B objects and provide a
+conditional architecture-engine theorem with explicit generator, certifier,
+selector, realizer, witness, trust, resource, domain, and availability premises.
 
-Gate B completion is not full Paper I/Paper II equivalence. The exact closure
-boundary is recorded in `docs/formal_core_v2/GATE_B_CLOSURE.md`.
+The exact boundaries are recorded in:
+
+```text
+docs/formal_core_v2/GATE_B_CLOSURE.md
+docs/formal_core_v2/RCLM_GATE_B_REFINEMENT_STATUS.md
+docs/formal_core_v2/RCLM_DIRECT_ENGINE_STATUS.md
+```
 
 ## Exact dependency pins
 
@@ -33,12 +42,12 @@ Lean:    leanprover/lean4:v4.31.0
 mathlib: fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
 ```
 
-`lake-manifest.json` is committed and pins the complete dependency graph.
+`lake-manifest.json` pins the complete dependency graph.
 
-## The central one-step contract
+## One-step RCP contract
 
-For an admissible predecessor state, candidate successor, and certificate packet,
-trusted-checker acceptance implies:
+For an admissible invariant-preserving predecessor, trusted-checker acceptance
+implies:
 
 ```text
 typed successor validity
@@ -54,30 +63,29 @@ reality/uncertainty containment
 successor-domain admissibility
 ```
 
-The kernel itself excludes globally constant protected values, globally constant
-residual evaluators, and an identically true reality-containment gate.
+The kernel excludes globally constant protected values, globally constant
+residual evaluators, and universally true reality containment.
 
-## Gate A composition delivered
+## Gate A composition
 
 ```text
 finite accepted-trajectory domain/invariant closure
 finite progress composition
 transported protected-value loss-budget composition
 aggregate local recovery accounting
-composed endpoint rollback under explicit metric/nonexpansive laws
+composed endpoint rollback under explicit laws
 finite Lyapunov/motion composition
 finite ambiguity-collapse composition
-finite transported self-model-relevance composition
+finite transported relevance composition
 conditional infinite accepted path under explicit SuccessorAvailability
-finite-prefix endpoint and monitor preservation on infinite paths
-standard Summable-to-tsum-cap bridge
+finite-prefix endpoint and monitor preservation
+Summable-to-uniform-budget bridge
 explicit PaperSemantics equivalences
-explicit accepted NoOpFeasible premise
-finite_paper_preservation wrapper
-conditional_infinite_paper_trajectory_exists wrapper
+explicit NoOpFeasible premise
+finite and conditional infinite paper-facing wrappers
 ```
 
-Checker soundness is not a successor-existence or direct-engine theorem.
+Checker soundness is not successor availability or generator completeness.
 
 ## Gate B finite classical reference
 
@@ -85,7 +93,7 @@ Checker soundness is not a successor-existence or direct-engine theorem.
 
 ```text
 Distribution n:
-  nonnegative finite masses with total mass one
+  nonnegative masses with total mass one
 
 H(p):
   - Σ_i p_i log p_i
@@ -94,9 +102,8 @@ D_KL(p||q):
   Σ_i p_i log(p_i/q_i)
 ```
 
-KL nonnegativity is proved under explicit denominator-support coverage. The
-uniform and biased binary distributions produce a strictly positive, nonconstant
-KL witness.
+KL nonnegativity is proved under explicit support coverage. The uniform and
+biased binary distributions give a strictly positive, nonconstant KL witness.
 
 ### Conservative extension
 
@@ -106,10 +113,10 @@ KL witness.
 (0, p_0, ..., p_{n-1})
 ```
 
-The extension preserves support, Shannon entropy, and KL exactly, and dropping
-the new coordinate recovers the predecessor exactly.
+Support, Shannon entropy, and KL are preserved exactly, and dropping the new
+coordinate recovers the predecessor exactly.
 
-### Concrete checker and strict progress
+### Concrete checker and progress
 
 The finite checker accepts only:
 
@@ -118,19 +125,9 @@ initial -- improve / improvement certificate --> target
 target  -- stay    / stability certificate   --> target
 ```
 
-Acceptance refines to the complete `StepObligations` bundle. An invalid claimed
-successor is rejected. Progress is reduction in actual KL distance to the target,
-so the first accepted step is strictly improving for an information-theoretic
-reason rather than because an index was added.
-
-### Concrete monitors
-
-The binary monitor instance uses KL-to-target as its Lyapunov value, accepted
-KL-derived progress increase as its motion charge, a malformed-certificate
-indicator as its finite unsupported-collapse quantity, and target-fit plus
-normalization evidence as its finite relevance labels. These are scoped finite
-meanings, not claims of conditional expectation, semantic ambiguity, or mutual
-information.
+Acceptance refines to complete `StepObligations`; an invalid claimed successor is
+rejected. Progress is reduction in actual KL distance to the target, so the
+first accepted step is strictly improving for an information-theoretic reason.
 
 ### Worked trajectory
 
@@ -139,7 +136,92 @@ initial → target → target
 ```
 
 The trajectory is checker accepted, update linked, strictly improves at its first
-step, and instantiates endpoint recovery and all three finite monitor bounds.
+step, and instantiates endpoint recovery and all finite monitor bounds.
+
+## Substantive RCLM refinement
+
+The RCLM reference state contains typed language, world/human reference,
+definitiveness, ambiguity, memory, verifier, resource, and self-model registers.
+Updates and certificate packets likewise contain substantive typed fields.
+
+`RCLM.KernelRefinement` preserves every theorem-relevant kernel quantity.
+`RCLM.MonitorRefinement` preserves the named monitor quantities and transports.
+`RCLM.CheckerRefinement` preserves actual Boolean checker acceptance.
+
+The concrete RCLM checker additionally verifies that all architecture fields are
+the declared canonical encodings of the core state, update, successor, and
+certificate. Architecture fields are checked rather than ignored.
+
+## Conditional architecture engine
+
+`RCLM.ArchitectureEngine` separates:
+
+```text
+witness-library coverage
+generator proposal
+certificate construction
+candidate selection
+successor realization
+trust-anchor validity
+resource authorization
+successor-domain closure
+```
+
+`RCLM.ArchitectureEngineStep` carries an actual witness, proposal, certificate,
+candidate, resource record, all engine-stage evidence, and RCLM checker
+acceptance.
+
+The theorem
+
+```lean
+RCLM.rclm_architecture_successor_theorem
+```
+
+returns typed RCLM successor evidence, complete RCLM obligations, forgotten core
+checker acceptance, complete RCP obligations, recovery and monitor refinement
+evidence, successor-domain closure, and trust/resource preservation.
+
+It is conditional on actual engine-stage evidence. Checker soundness does not
+produce a proposal, certificate, candidate, or realizer witness.
+
+## Architecture successor availability
+
+`RCLM.ArchitectureSuccessorAvailability` states that every valid architecture
+predecessor has a nonempty generated, certified, selected, realized,
+resource-authorized, checker-accepted engine step.
+
+Under that explicit premise:
+
+```lean
+RCLM.conditional_infinite_architecture_trajectory_exists
+RCLM.infinite_architecture_step_result
+```
+
+construct and certify an infinite architecture trajectory. It can be forgotten
+to both RCLM-checker and core-checker accepted trajectories.
+
+## Concrete Gate B direct-engine reference
+
+The concrete engine has improve/stabilize/rejected proposals,
+strict-improvement/stable-continuation/rejected witnesses, canonical certificate
+and candidate relations, one root trust anchor, and explicit used/limit
+resources.
+
+```lean
+RCLM.ClassicalBinary.improvement_direct_engine_successor
+```
+
+proves the full architecture-successor result for the accepted KL-derived
+improvement packet.
+
+```lean
+RCLM.ClassicalBinary.architectureSuccessorAvailability
+```
+
+proves availability only on the declared binary domain. The selected infinite
+reference path performs one strict improvement and then accepted stability
+continuations. It proves formal recursive closure, not indefinitely strict
+capability growth.
 
 ## Module layout
 
@@ -167,6 +249,9 @@ RcpRclmFormalCoreV2/
     CertificatePacket.lean
     Refinement.lean
     ArchitectureTheorem.lean
+    ArchitectureEngine.lean
+    ClassicalBinary.lean
+    ClassicalBinaryEngine.lean
   RCP.lean
   RCLM.lean
   MainTheorem.lean
@@ -174,7 +259,7 @@ RcpRclmFormalCoreV2/
 
 ## Authoritative build and audit
 
-The repository workflow performs:
+The workflow performs:
 
 ```text
 paper-source and theorem-surface pin verification
@@ -182,27 +267,29 @@ pinned dependency resolution
 clean Lean build
 no-sorry/no-admit source scan
 project-local axiom scan
-#print axioms audit for the public Gate A theorem surface
-#print axioms audit for the public Gate B theorem surface
+Gate A theorem-axiom audit
+Gate B theorem-axiom audit
+RCLM refinement and architecture-engine theorem-axiom audit
 combined artifact upload
 ```
 
-The clean GitHub workflow is authoritative. Local interrupted or corrupted
+The clean GitHub workflow is authoritative. Interrupted or corrupted local
 mathlib caches are not evidence that a synchronized source head fails.
 
 ## Claim discipline
 
-Gate A plus Gate B completion is not:
+The current project is not:
 
 ```text
 exact Paper I main-theorem equivalence
-a finite-dimensional quantum-relative-entropy theorem
-a substantive RCLM refinement
-a direct RSI engine
+exact Paper II direct-engine equivalence
+finite-dimensional quantum-relative-entropy closure
+an arbitrary learned-system generator
+proof of strict improvement at every recursive step
 a Python implementation
 an empirical or benchmark result
 ```
 
 No Python checker, generator, successor loop, or benchmark adapter is licensed
-until the substantive RCLM refinement and remaining conditions in
+until the remaining theorem-to-runtime conditions in
 `docs/formal_core_v2/EXIT_CRITERIA.md` are satisfied.
