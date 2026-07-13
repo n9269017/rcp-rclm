@@ -1,16 +1,16 @@
 # Phase 1 cross-platform validation record
 
-## First clean synchronized runtime-bedrock validation
+## Clean synchronized runtime-bedrock validation
 
 The deterministic Phase 1 runtime bedrock passed the dedicated Linux, Windows,
 and macOS workflow at:
 
 ```text
-validated branch head:
-ab6a04ab80b7b2290ef76e56c017c070df55ff80
+validated implementation head:
+ee22d11fb7472c1c8a3a61ee20fd10a28b76212a
 
 workflow run:
-29274306289
+29280052015
 
 result:
 success
@@ -26,26 +26,26 @@ conformance-vector SHA-256:
 
 ```text
 Linux
-  artifact: phase1-runtime-bedrock-Linux-X64
-  SHA-256: 0b181d9703cdb4e806acc339d4751b0c4f1929989fab88541cb51607f2f78517
+  artifact: runtime-v2-phase-1-platform-ubuntu-latest-29280052015-1
+  SHA-256: 89c301efe020bfeafa07f1497bbbbdd982cdbcb4bfe348262402aae9d3c034d2
 
 Windows
-  artifact: phase1-runtime-bedrock-Windows-X64
-  SHA-256: 508a9af2c1e7da83da1e3b027fe1f8f5dc6d7cde33a94557954f73fedf8b67e4
+  artifact: runtime-v2-phase-1-platform-windows-latest-29280052015-1
+  SHA-256: 4d6a278e9b9bea3152c3b4c598df32f17d7b9281c079c2591384c72f40517d17
 
 macOS
-  artifact: phase1-runtime-bedrock-macOS-X64
-  SHA-256: 05ba323f6039bd880b3cec2657ca87c5366eb6bbac53a218f3554f6e08a9f87b
+  artifact: runtime-v2-phase-1-platform-macos-latest-29280052015-1
+  SHA-256: c6821e6f9f8b784bf0db6fe0bc22fdd3ce8165ac351d9dcafb7c4c397027a41a
 ```
 
 The cross-platform consistency artifact is:
 
 ```text
 artifact:
-phase1-runtime-bedrock-final-29274306289-1
+runtime-v2-phase-1-final-29280052015-1
 
 SHA-256:
-00b52e02507161dd98cab0d81e972191ae501416905e01f62876aed6d577d2ae
+3c81055228e43b318492d5187754b33e8487ac3aba85e02acc1baab27e285e94
 ```
 
 ## Validated behavior
@@ -78,15 +78,21 @@ claim boundary
 validation status
 ```
 
-## Windows portability repair
+## Portability repairs established by CI
 
-The first matrix attempt exposed that some Windows filesystems do not supply a
+The first Windows matrix exposed that some Windows filesystems do not supply a
 portable globally unique `(st_dev, st_ino)` pair for unrelated files. The semantic
 tree scanner was strengthened so that a matching stat pair is only classified as a
 hard-link alias after `os.path.samefile` independently confirms identity.
 
-The repair preserves fail-closed rejection of actual hard links while preventing
-unrelated ordinary files from being rejected on Windows.
+A later Windows matrix exposed checkout line-ending conversion in the frozen JSON
+vector. The repository now pins the Phase 1 package and validation documents to LF
+through `.gitattributes`. This makes byte-level hashes authoritative and identical
+on Linux, Windows, and macOS instead of depending on local `core.autocrlf` policy.
+
+The workflow also preserves the combined deterministic unit-test log in every
+platform artifact, including failed attempts, so future portability failures are
+inspectable without relying on truncated web logs.
 
 ## Interpretation
 
@@ -108,6 +114,7 @@ PyTorch proposal correctness
 external benchmark performance
 ```
 
-The final PR head is validated once more after this record and the machine-readable
-release evidence are added. That final workflow is recorded on PR #15 so no source
-file needs to predict its own future workflow identifier.
+The final metadata-only PR head is validated after this machine-readable evidence is
+committed. Its workflow run and final artifact digest are recorded on PR #15 so no
+source file needs to predict the identifier or digest of the workflow created by
+that same source-file commit.
