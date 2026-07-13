@@ -1,7 +1,9 @@
 # RCP/RCLM Runtime v2 — Phase 1 bedrock
 
-This package implements the deterministic runtime bedrock licensed by the frozen
-Executable Core v2 Phase 0 theorem-to-runtime contract.
+This package implements the completed deterministic runtime bedrock licensed by the
+frozen Executable Core v2 Phase 0 theorem-to-runtime contract. The package passes
+its synchronized Linux, Windows, and macOS validation matrix; the exact workflow
+and artifact digests are recorded in `phase_1_validation.json`.
 
 Implemented in this phase:
 
@@ -22,6 +24,7 @@ Not implemented or licensed here:
 - a Lean compiler/verifier bridge;
 - a generator;
 - successor promotion or rollback control;
+- independent replay;
 - a PyTorch proposal backend;
 - external benchmark adapters.
 
