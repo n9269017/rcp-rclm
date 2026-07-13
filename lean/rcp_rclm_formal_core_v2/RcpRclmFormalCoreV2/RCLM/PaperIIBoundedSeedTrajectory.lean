@@ -216,5 +216,74 @@ theorem conditional_infinite_paper_ii_bounded_seed_trajectory_exists
   · intro n
     exact infinite_paper_ii_bounded_seed_domain library initial n
 
+theorem infinite_paper_ii_bounded_seed_step_refines_architecture
+    {CoreState CoreUpdate CoreCertificate CoreProtected CoreResidualIndex : Type*}
+    {RclmState RclmUpdate RclmCertificate RclmProtected RclmResidualIndex : Type*}
+    {Proposal Witness TrustAnchor ResourceRecord Word CoreRelevance RclmRelevance : Type*}
+    [DecidableEq Witness]
+    [DecidableEq Word]
+    {VerifierSchema UncertaintyEnvelope Goal : Type*}
+    {rclmKernel :
+      RCP.Kernel
+        RclmState RclmUpdate RclmCertificate RclmProtected RclmResidualIndex}
+    {coreKernel :
+      RCP.Kernel
+        CoreState CoreUpdate CoreCertificate CoreProtected CoreResidualIndex}
+    (rclmChecker : RCP.TrustedChecker rclmKernel)
+    (coreChecker : RCP.TrustedChecker coreKernel)
+    (engine : ArchitectureEngine
+      (Proposal := Proposal)
+      (Witness := Witness)
+      (TrustAnchor := TrustAnchor)
+      (ResourceRecord := ResourceRecord)
+      rclmKernel rclmChecker)
+    (successorSemantics : PaperIISuccessorVerificationSemantics
+      (VerifierSchema := VerifierSchema)
+      (UncertaintyEnvelope := UncertaintyEnvelope)
+      (Goal := Goal)
+      engine)
+    (uncertaintySemantics :
+      PaperIIUncertaintyEnvelopeSemantics successorSemantics)
+    (identification :
+      PaperIISeedSemanticIdentification successorSemantics uncertaintySemantics)
+    (library : PaperIIBoundedSeedLibrary (Word := Word) engine)
+    (refinement : KernelRefinement rclmKernel coreKernel)
+    (checkerRefinement :
+      CheckerRefinement refinement rclmChecker coreChecker)
+    (rclmRecoveryLaws : RCP.RecoveryCompositionLaws rclmKernel)
+    (rclmMonitors :
+      RCP.PreservationMonitors rclmKernel (Relevance := RclmRelevance))
+    (coreMonitors :
+      RCP.PreservationMonitors coreKernel (Relevance := CoreRelevance))
+    (monitorRefinement :
+      MonitorRefinement refinement rclmMonitors coreMonitors)
+    (initial : PaperIIBoundedSeedPredecessor library)
+    (n : Nat) :
+    ArchitectureSuccessorResult
+        engine refinement coreChecker rclmMonitors coreMonitors
+        (infinitePaperIIBoundedSeedPredecessor library initial n).predecessor
+        (infinitePaperIIBoundedSeedPacket library initial n).toEngineStep ∧
+      PaperIIBoundedSeedSuccessorResult
+        identification
+        library
+        (infinitePaperIIBoundedSeedPredecessor library initial n).predecessor
+        (infinitePaperIIBoundedSeedPacket library initial n) := by
+  exact paper_ii_bounded_seed_packet_refines_architecture
+    rclmChecker
+    coreChecker
+    engine
+    successorSemantics
+    uncertaintySemantics
+    identification
+    library
+    refinement
+    checkerRefinement
+    rclmRecoveryLaws
+    rclmMonitors
+    coreMonitors
+    monitorRefinement
+    (infinitePaperIIBoundedSeedPredecessor library initial n).predecessor
+    (infinitePaperIIBoundedSeedPacket library initial n)
+
 end RCLM
 end RcpRclmFormalCoreV2
