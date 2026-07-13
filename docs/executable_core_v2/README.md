@@ -7,8 +7,8 @@ implementation that follows the completed Formal Core v2 Lean project.
 
 ```text
 Phase 0 theorem-to-runtime contract: complete and merged
-Phase 1 deterministic runtime bedrock: implemented on the active Phase 1 branch; final CI pending
-Pinned Lean compiler/verifier bridge: not implemented
+Phase 1 deterministic runtime bedrock: complete and cross-platform validated
+Pinned Lean compiler/verifier bridge: not implemented; licensed to begin
 Production fail-closed successor checker: not implemented
 Untrusted generator: not implemented
 Promotion and rollback controller: not implemented
@@ -53,7 +53,8 @@ production successor checker.
 | Document | Purpose |
 |---|---|
 | `PHASE_1_RUNTIME_BEDROCK.md` | Implemented records, exact mathematics, selected Gate B/C scope, serialization, hashing, and source guard |
-| `PHASE_1_EXIT_CRITERIA.md` | Required tests, cross-platform CI, and next-phase licensing boundary |
+| `PHASE_1_EXIT_CRITERIA.md` | Closed implementation, validation, and licensing criteria |
+| `PHASE_1_VALIDATION.md` | Clean synchronized Linux, Windows, and macOS workflow and artifact record |
 
 The package is:
 
