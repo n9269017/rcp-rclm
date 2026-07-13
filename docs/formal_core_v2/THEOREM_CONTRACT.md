@@ -3,167 +3,107 @@
 ## Contract status
 
 This document freezes the implemented abstract Gate A kernel, the finite
-classical Gate B reference, the substantive Gate B RCLM-to-RCP refinement, and
-the conditional architecture-engine theorem. It does not claim exact identity
-with every semantic object in Paper I or Paper II.
+classical Gate B reference, the substantive Gate B RCLM-to-RCP refinement, the
+conditional architecture-engine theorem, the Paper II direct-engine and
+robust-reflective alignment layer, and the bounded seed-library packet-builder
+refinement.
 
 ```text
-abstract one-step contract: implemented
-abstract finite and conditional infinite composition: implemented
-endpoint recovery and quantitative monitor composition: implemented
+abstract Gate A successor/preservation kernel: complete
 finite classical/diagonal Gate B reference: complete
-substantive Gate B RCLM-to-RCP refinement: implemented
-conditional Paper II-facing architecture successor theorem: implemented
-conditional architecture infinite trajectory: implemented with explicit availability
-concrete Gate B direct-engine reference: implemented
+substantive Gate B RCLM-to-RCP refinement: complete at the declared scope
+conditional architecture successor/direct-engine theorem: implemented
+Paper II robust-reflective alignment interfaces: implemented
+bounded seed-library and packet-builder refinement: implemented
+conditional bounded seed-library infinite trajectory: implemented
 finite-dimensional quantum Gate C: not complete
-exact Paper I/Paper II agreement: not achieved
+exact Paper I/Paper II semantic equivalence: not complete
 executable theorem-to-runtime refinement: not licensed
 ```
 
-## Ordinary one-step mathematical contract
+A clean build or a structural theorem does not by itself establish exact paper
+semantics. Every remaining semantic identification stays visible as a
+refinement premise or a later-gate obligation.
 
-Let `M_t` be an admissible predecessor, `u_t` a typed update, `M_{t+1}`
-the claimed successor, and `c_t` a certificate. For a trusted checker:
+## Abstract one-step contract
+
+Let `M_t` be an admissible predecessor, `u_t` a typed update, `M_{t+1}` the
+claimed successor, and `c_t` a certificate. Trusted-checker acceptance proves:
 
 ```text
-Admissible(M_t)
-∧ ProtectedInvariant(M_t)
-∧ Check(M_t,u_t,M_{t+1},c_t) = true
-
-⇒
-
 M_{t+1} = Apply(M_t,u_t)
-∧ every computed residual is nonpositive
-∧ every protected distinction is preserved within its loss budget
-∧ recovery returns within the one-step recovery budget
-∧ ProtectedInvariant(M_{t+1})
-∧ Progress(M_t) ≤ Progress(M_{t+1})
-∧ (StrictWitness(...) ⇒ Progress(M_t) < Progress(M_{t+1}))
-∧ TrustValid(...)
-∧ ResourceValid(...)
-∧ RealityContained(...)
-∧ Admissible(M_{t+1}).
+computed residuals are nonpositive
+protected distinctions satisfy the declared quantitative non-loss bound
+candidate-tied recovery satisfies the declared recovery bound
+protected invariants are preserved
+progress is nondecreasing
+strict progress follows from a certified strict witness
+trust evidence is valid
+resource evidence is valid
+reality-containment evidence is valid
+the successor remains admissible
 ```
 
-This is checker soundness, not successor existence or generator completeness.
+This is checker soundness. It is not successor existence, generator coverage,
+grammar completeness, or useful-successor completeness.
 
-## Finite composition contract
+## Finite and conditional infinite composition
 
-For an accepted finite path
+For every finite accepted trajectory, the project proves:
 
 ```text
-M_0 --(u_0,c_0)--> M_1 -- ... --> M_N
+state-domain and invariant closure
+complete per-step obligations
+progress composition
+transported protected-value bounds
+aggregate local recovery accounting
+composed endpoint rollback under explicit recovery laws
+Lyapunov/motion composition
+ambiguity-collapse composition
+transported relevance composition
 ```
 
-the project proves domain and invariant closure, complete per-step obligations,
-progress composition, transported protected-value bounds, aggregate local
-recovery accounting, and—under explicit recovery composition laws—a composed
-endpoint rollback bound.
+The endpoint recovery theorem uses explicit self-zero, triangle, and
+nonexpansiveness laws. Aggregate local recovery accounting and endpoint rollback
+remain distinct statements.
 
-The endpoint theorem uses:
-
-```lean
-RCP.RecoveryCompositionLaws
-RCP.composedRecovery
-RCP.composedRecovery_nonexpansive
-RCP.finite_endpoint_recovery_bound
-```
-
-The extra laws are visible: zero self-distance, triangle inequality, and
-nonexpansiveness of every candidate-tied recovery map.
-
-## Quantitative monitor contract
-
-`RCP.PreservationMonitors` explicitly names:
-
-```text
-Lyapunov value
-charged motion term
-Lyapunov error budget
-unsupported ambiguity collapse
-ambiguity error budget
-self-model relevance value
-cross-time relevance transport
-relevance error budget
-```
-
-A concrete instance proves each one-step inequality from `StepObligations`.
-Finite composition is provided by:
-
-```lean
-RCP.finite_lyapunov_motion_bound
-RCP.finite_ambiguity_collapse_bound
-RCP.finite_self_model_relevance_bound
-```
-
-## Infinite trajectory and summability contract
-
-`RCP.SuccessorAvailability` remains an explicit premise: every admissible,
-invariant-preserving state has a nonempty accepted successor packet. Under this
-premise, `RCP.conditional_infinite_trajectory_exists` constructs an infinite
-accepted path. Every finite prefix inherits endpoint recovery and monitor
-bounds. Standard `Summable` hypotheses are bridged to uniform partial-sum caps.
-
-Checker soundness does not establish this availability premise.
-
-## Paper-safe predicates and no-op premise
-
-`RCP.PaperSemantics` carries paper-facing safe-state and update-admissibility
-predicates with explicit equivalences to the kernel domain/invariant and
-`StepObligations`. `RCP.AcceptedNoOp` and `RCP.NoOpFeasible` represent no-op
-feasibility separately from successor availability.
+`RCP.SuccessorAvailability` is an explicit premise of the abstract infinite
+trajectory theorem. Standard `Summable` assumptions bridge nonnegative monitor
+budgets to uniform finite-prefix bounds. `NoOpFeasible` remains separate from
+both checker soundness and successor availability.
 
 ## Gate B finite classical contract
 
-### Information quantities
-
-For `Distribution n` the actual quantities are:
+For a normalized finite distribution `p`:
 
 ```text
-H(p)        = - Σ_i p_i log p_i
-D_KL(p || q) =  Σ_i p_i log(p_i/q_i).
+H(p)         = - Σ_i p_i log p_i
+D_KL(p || q) =   Σ_i p_i log(p_i/q_i)
 ```
 
-Under the explicit `SupportedBy` premise, KL is nonnegative and self-divergence
-is zero. The binary distributions
+Under the explicit denominator-support premise, finite KL is nonnegative and
+self-divergence is zero. The uniform and biased binary distributions have a
+proved strictly positive KL gap and supply a nonconstant divergence witness.
+
+The zero-head conservative extension preserves support, Shannon entropy, and KL
+exactly, and dropping the added coordinate recovers the predecessor exactly.
+This is a theorem for the declared extension, not for every stochastic channel.
+
+The concrete binary checker accepts exactly the declared improvement and
+stability packets, rejects an invalid successor, and refines Boolean acceptance
+to the complete abstract obligations. Progress is actual reduction in KL
+distance to the target. The worked trajectory is:
 
 ```text
-uniformBinary = (1/2, 1/2)
-biasedBinary  = (3/4, 1/4)
+initial -> target -> target
 ```
 
-have a proved strictly positive KL gap and therefore supply a nonconstant
-`LawfulDivergence` instance.
+Its first step is strictly improving and its second step is an accepted
+stability continuation.
 
-### Conservative extension and exact recovery
+## Substantive RCLM-to-RCP refinement
 
-The declared embedding adds one zero-mass head coordinate. The project proves
-support, Shannon entropy, and KL preservation, and exact recovery by dropping
-the new coordinate. This is not a theorem about every stochastic channel.
-
-### Concrete checker and strict progress
-
-The finite binary checker accepts exactly improvement and stability packets.
-Acceptance yields the complete `StepObligations` bundle and an invalid successor
-is rejected. Progress is actual reduction of KL distance to `biasedBinary`, so
-the first accepted improvement is non-vacuously strict.
-
-### Concrete monitor and trajectory scope
-
-The binary monitor instance uses KL-to-target as Lyapunov value, KL-derived
-progress increase as motion charge, a malformed-packet indicator for the scoped
-collapse monitor, and finite target-fit/normalization evidence for relevance.
-These meanings are not conditional expectation, semantic ambiguity, or mutual
-information. The worked trajectory is:
-
-```text
-initial → target → target
-```
-
-## Substantive RCLM-to-RCP refinement contract
-
-`RCLM.KernelRefinement` requires preservation of:
+`RCLM.KernelRefinement` preserves:
 
 ```text
 state and typed update semantics
@@ -175,160 +115,190 @@ computed residuals
 trust, resource, and reality propositions
 ```
 
-`RCLM.MonitorRefinement` preserves every named monitor quantity and transport.
-`RCLM.CheckerRefinement` requires actual Boolean acceptance preservation. The
-public transport theorems prove that complete RCLM obligations and recovery laws
-refine to the complete RCP objects.
-
-The concrete `RCLM.ClassicalBinary` checker additionally verifies that all
-architecture fields equal the declared canonical state, update, successor, and
-certificate encodings. Extra architecture data is therefore checked rather than
-ignored.
+`RCLM.MonitorRefinement` preserves the named Lyapunov, motion, ambiguity, and
+relevance quantities and transports. `RCLM.CheckerRefinement` preserves actual
+Boolean checker acceptance. The concrete RCLM checker also validates every
+canonical architecture state, update, successor, and certificate field.
 
 ## Conditional architecture-engine contract
 
-### Explicit engine data
-
-`RCLM.ArchitectureEngine` has separate relations for:
+`RCLM.ArchitectureEngine` separates:
 
 ```text
+architecture theorem domain
 witness-library coverage
 generator proposal
 certificate construction
 candidate selection
 successor realization
-trust-anchor validity
-resource authorization
+trust-anchor validity and preservation
+resource authorization and soundness
+successor-domain closure
 ```
 
-It also requires proofs that realization agrees with typed update semantics,
-trust and resource premises imply the corresponding kernel propositions,
-accepted successors remain in the architecture theorem domain, and the trust
-anchor remains valid at the successor.
-
-`RCLM.ArchitectureEngineStep` packages an actual witness, proposal, certificate,
-candidate, resource record, all relation evidence, and RCLM checker acceptance.
-
-### One-step Paper II-facing inference
-
-For an `ArchitecturePredecessor`, an `ArchitectureEngineStep`, the substantive
-RCLM-to-RCP refinements, recovery laws, and monitor refinement:
-
-```text
-valid architecture predecessor
-∧ witness covered
-∧ proposal generated
-∧ certificate constructed
-∧ candidate selected
-∧ successor realized
-∧ trust anchor valid
-∧ resource premise satisfied
-∧ RCLM checker accepts
-
-⇒
-
-typed RCLM successor
-∧ complete RCLM StepObligations
-∧ forgotten core checker accepts
-∧ complete forgotten RCP StepObligations
-∧ preserved recovery-composition laws
-∧ preserved monitor refinement
-∧ successor remains in the architecture theorem domain
-∧ successor remains admissible and invariant-preserving
-∧ engine trust and resource validity
-∧ trust-anchor preservation.
-```
-
-The corresponding theorem is:
+An `ArchitectureEngineStep` contains an actual witness, proposal, certificate,
+candidate, resource record, all engine-stage evidence, and checker acceptance.
+The theorem
 
 ```lean
 RCLM.rclm_architecture_successor_theorem
 ```
 
-This theorem is conditional on actual engine-stage evidence. It does not
-construct a proposal from checker soundness.
+returns a typed RCLM successor, complete RCLM obligations, forgotten core
+checker acceptance, complete forgotten RCP obligations, recovery and monitor
+refinement evidence, successor-domain membership, admissibility, invariant
+preservation, and trust/resource preservation.
 
-### Conditional architecture recursion
+`ArchitectureSuccessorAvailability` is a separate premise of
+`conditional_infinite_architecture_trajectory_exists`. It is never derived from
+checker soundness.
 
-`RCLM.ArchitectureSuccessorAvailability engine` states that every valid
-architecture predecessor has a nonempty checker-accepted engine step carrying
-all proposal/certificate/selection/realization/resource evidence.
+## Paper II direct-engine and robust-reflective alignment
 
-Under that explicit premise:
-
-```lean
-RCLM.conditional_infinite_architecture_trajectory_exists
-```
-
-constructs an infinite architecture trajectory, and
-`RCLM.infinite_architecture_step_result` supplies the one-step architecture
-result at every time. The trajectory can be forgotten to both RCLM-checker and
-core-checker accepted trajectories.
-
-Availability is never derived from checker soundness.
-
-## Concrete Gate B direct-engine reference
-
-`RCLM.ClassicalBinary.architectureEngine` instantiates:
+The direct-engine layer explicitly distinguishes:
 
 ```text
-strict-improvement and stable-continuation witnesses
-improve and stabilize proposals
-canonical certificates and candidates
-one root trust anchor
-explicit used/limit resources
-realization by the typed RCLM update function
+accepted continuation
+strict successor availability
+predecessor-ability preservation
+strict ability expansion
+successor viability
+projection realization
 ```
 
-The concrete theorem
+The robust-reflective layer explicitly represents verifier-schema transport,
+uncertainty-envelope transport, goal transport and drift, anti-circular trust,
+proof/checking budgets, successor-verification persistence, optional reality and
+tractability certificates, summable failure risk, and the separately supplied
+Borel-Cantelli consequence.
+
+These are proposition-valued interfaces. Names alone do not identify them with
+the full Paper II semantic objects.
+
+## Bounded seed-library and packet-builder contract
+
+`RCLM.PaperIIBoundedSeedLibrary` supplies:
+
+```text
+seedDomain
+finite witness set
+finite certificate-word grammar
+word-depth and proof-length bounds
+witness/proposal/certificate/candidate/resource decoders
+seed-domain to architecture-domain refinement
+grammar nonemptiness on the seed domain
+word-to-witness membership
+witness-library coverage
+generator proposal evidence
+certificate-construction evidence
+candidate-selection evidence
+successor-realization evidence
+resource authorization
+checker acceptance
+successor seed-domain closure
+```
+
+A grammar word is converted to the already compiled architecture-engine step by:
 
 ```lean
-RCLM.ClassicalBinary.improvement_direct_engine_successor
+RCLM.PaperIIBoundedSeedPacket.toEngineStep
 ```
 
-proves the full architecture-successor result for the accepted KL-derived
-improvement packet.
+The generic packet-builder theorem is:
 
-`RCLM.ClassicalBinary.architectureSuccessorAvailability` proves availability
-only on the declared binary architecture domain. The resulting formal infinite
-path performs one strict improvement and thereafter may use accepted stability
-steps. It proves recursive domain closure and accepted continuation, not
-indefinitely strict capability growth.
+```lean
+RCLM.paper_ii_bounded_seed_packet_builder_sound
+```
+
+It yields complete RCLM obligations, complete successor-verification
+obligations, successor seed-domain membership, verifier-schema persistence,
+uncertainty-envelope persistence, and the declared goal-drift bound.
+
+The architecture bridge is:
+
+```lean
+RCLM.paper_ii_bounded_seed_packet_refines_architecture
+```
+
+It additionally yields the complete forgotten RCP obligations and recovery and
+monitor refinement evidence.
+
+`RCLM.PaperIISeedSemanticIdentification` requires pointwise equalities between
+the paper-declared and compiled objects:
+
+```text
+verifier schema, transport, and refinement relation
+uncertainty envelope, transport, and refinement relation
+goal, goal transport, goal distance, and goal-drift budget
+```
+
+No identification is inferred from field names.
+
+## Conditional bounded seed-library recursion
+
+`RCLM.PaperIIBoundedSeedPredecessor` combines an architecture predecessor with
+seed-domain membership. The recursive bounded-seed construction uses the
+library's explicit grammar-nonemptiness and successor-closure fields. It proves:
+
+```lean
+RCLM.conditional_infinite_paper_ii_bounded_seed_trajectory_exists
+RCLM.infinite_paper_ii_bounded_seed_step_result
+RCLM.infinite_paper_ii_bounded_seed_step_refines_architecture
+```
+
+Thus every selected finite grammar word generates a checked packet and every
+successor returns to the declared bounded seed domain. This does not imply
+unbounded grammar completeness, arbitrary learned-system entry, or strict
+improvement at every step.
+
+## Concrete bounded binary reference
+
+The concrete bounded grammar is:
+
+```text
+initial: {improve}
+target:  {stabilize}
+maximum update-word depth: 1
+maximum proof-word length: 1
+rejected word: absent from every active grammar
+```
+
+The concrete semantic bridge identifies the declared verifier schema,
+uncertainty envelope, and goal objects with the compiled finite binary Paper II
+interfaces. The resulting path performs one strict KL-derived improvement and
+then accepted stability continuations.
 
 ## Remaining exact-paper obligations
 
-Exact Paper I/Paper II mechanization still requires:
+Exact Paper I/Paper II closure still requires:
 
-1. exact refinement of paper safe-state and update-admissibility semantics;
-2. probability/conditional-expectation and squared-motion identification;
-3. semantic ambiguity and mutual-information definitions;
+1. exact safe-state and update-admissibility semantic refinement;
+2. conditional-expectation and squared-motion identification;
+3. semantic ambiguity and mutual-information identification;
 4. finite-dimensional quantum relative entropy and channel recovery;
-5. line-by-line identification of Paper II generator, certifier, selector,
-   realizer, witness-library, trust, resource, and viability objects;
-6. any stronger useful-successor or strict-improvement completeness premise;
-7. the final combined paper-facing wrapper.
+5. architecture-wide semantic identity beyond the bounded binary reference;
+6. any theorem asserting strict useful successor availability at every step;
+7. learned-system entry and generator/compiler refinement;
+8. the final combined paper-facing wrapper.
 
-## Public theorem surfaces
-
-Gate A, Gate B, and RCLM declarations are audited separately. The RCLM surface
-now includes:
+## Public bounded-seed theorem surface
 
 ```lean
-RCLM.rclm_step_obligations_refine_rcp
-RCLM.rclm_checker_refines_rcp
-RCLM.rclm_checker_acceptance_preserved
-RCLM.rclm_recovery_laws_refine_rcp
-RCLM.rclm_monitor_refinement_valid
-RCLM.rclm_architecture_successor_theorem
-RCLM.conditional_infinite_architecture_trajectory_exists
-RCLM.infinite_architecture_step_result
-RCLM.ClassicalBinary.architectureSuccessorAvailability
-RCLM.ClassicalBinary.improvement_direct_engine_successor
-RCLM.ClassicalBinary.classical_infinite_architecture_trajectory_exists
-RCLM.ClassicalBinary.classical_infinite_architecture_step_result
+RCLM.paper_ii_bounded_seed_packet_available
+RCLM.paper_ii_bounded_seed_packet_builder_sound
+RCLM.paper_ii_bounded_seed_packet_refines_architecture
+RCLM.conditional_infinite_paper_ii_bounded_seed_trajectory_exists
+RCLM.infinite_paper_ii_bounded_seed_step_result
+RCLM.infinite_paper_ii_bounded_seed_step_refines_architecture
+RCLM.ClassicalBinary.initial_bounded_seed_packet_builder_refinement
+RCLM.ClassicalBinary.initial_bounded_seed_direct_engine_refinement
+RCLM.ClassicalBinary.classical_bounded_seed_packet_builder_refinement
+RCLM.ClassicalBinary.classical_infinite_bounded_seed_trajectory_exists
+RCLM.ClassicalBinary.classical_infinite_bounded_seed_step_result
+RCLM.ClassicalBinary.classical_infinite_bounded_seed_step_refines_architecture
 ```
 
-Reserved for later closure:
+Reserved for later final closure:
 
 ```lean
 MainTheorem.mechanized_conditional_successor_closure
