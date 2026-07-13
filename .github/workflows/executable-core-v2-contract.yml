@@ -36,10 +36,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Compile contract validator
+      - name: Compile contract validator and tests
         run: |
           python -m py_compile \
-            python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py
+            python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py \
+            python/rcp_rclm_executable_core_v2/contract/test_validate_runtime_contract.py
 
       - name: Reject Python placeholders
         shell: bash
@@ -52,6 +53,10 @@ jobs:
             echo "Executable Core v2 Python source contains a forbidden placeholder." >&2
             exit 1
           fi
+
+      - name: Run contract validator unit tests
+        working-directory: python/rcp_rclm_executable_core_v2/contract
+        run: python -m unittest -v test_validate_runtime_contract.py
 
       - name: Parse machine-readable contract files
         run: |
@@ -82,7 +87,8 @@ jobs:
             sha256sum \
               python/rcp_rclm_executable_core_v2/contract/runtime_contract_manifest.json \
               python/rcp_rclm_executable_core_v2/contract/runtime_records.schema.json \
-              python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py
+              python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py \
+              python/rcp_rclm_executable_core_v2/contract/test_validate_runtime_contract.py
           } > artifacts/executable_core_v2_contract/provenance.txt
 
       - name: Upload Phase 0 contract validation artifact
