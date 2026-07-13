@@ -55,7 +55,7 @@ theorem classical_infinite_bounded_seed_step_refines_architecture
     ArchitectureSuccessorResult
         architectureEngine
         kernelRefinement
-        binaryChecker
+        RCP.ClassicalFinite.binaryChecker
         preservationMonitors
         binaryPreservationMonitors
         (infinitePaperIIBoundedSeedPredecessor
@@ -71,7 +71,7 @@ theorem classical_infinite_bounded_seed_step_refines_architecture
           boundedSeedLibrary initialBoundedSeedPredecessor n) := by
   exact infinite_paper_ii_bounded_seed_step_refines_architecture
     checker
-    binaryChecker
+    RCP.ClassicalFinite.binaryChecker
     architectureEngine
     paperIISuccessorSemantics
     paperIIUncertaintySemantics
