@@ -36,6 +36,14 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Initialize validation artifact directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/executable_core_v2_contract
+          printf 'workflow_started=true\n' \
+            > artifacts/executable_core_v2_contract/workflow_started.txt
+
       - name: Compile contract validator and tests
         run: |
           python -m py_compile \
@@ -46,13 +54,35 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -RInE \
-              --include='*.py' \
-              '(^|[[:space:]])pass([[:space:]]|$)|# TODO|\.\.\.' \
-              python/rcp_rclm_executable_core_v2; then
-            echo "Executable Core v2 Python source contains a forbidden placeholder." >&2
-            exit 1
-          fi
+          python - <<'PY'
+          from __future__ import annotations
+
+          import ast
+          import re
+          from pathlib import Path
+
+          root = Path("python/rcp_rclm_executable_core_v2")
+          todo_pattern = re.compile(r"#\s*TODO\b", re.IGNORECASE)
+          failures: list[str] = []
+
+          for path in sorted(root.rglob("*.py")):
+              text = path.read_text(encoding="utf-8")
+              tree = ast.parse(text, filename=str(path))
+              for node in ast.walk(tree):
+                  if isinstance(node, ast.Pass):
+                      failures.append(f"{path}:{node.lineno}: pass statement")
+                  if isinstance(node, ast.Constant) and node.value is Ellipsis:
+                      failures.append(f"{path}:{node.lineno}: ellipsis expression")
+              for line_number, line in enumerate(text.splitlines(), start=1):
+                  if todo_pattern.search(line):
+                      failures.append(f"{path}:{line_number}: TODO marker")
+
+          if failures:
+              print("Executable Core v2 Python source contains forbidden placeholders:")
+              for failure in failures:
+                  print(failure)
+              raise SystemExit(1)
+          PY
 
       - name: Run contract validator unit tests
         working-directory: python/rcp_rclm_executable_core_v2/contract
@@ -69,7 +99,6 @@ jobs:
 
       - name: Validate frozen contract and Lean source pins
         run: |
-          mkdir -p artifacts/executable_core_v2_contract
           python \
             python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py \
             --repo-root . \
