@@ -1,0 +1,192 @@
+name: Executable Core v2 Phase 0 contract
+
+on:
+  pull_request:
+    paths:
+      - "docs/executable_core_v2/**"
+      - "python/rcp_rclm_executable_core_v2/**"
+      - ".github/workflows/executable-core-v2-contract.yml"
+      - "README.md"
+  push:
+    branches:
+      - "agent/rcp-rclm-executable-core-v2-contract"
+    paths:
+      - "docs/executable_core_v2/**"
+      - "python/rcp_rclm_executable_core_v2/**"
+      - ".github/workflows/executable-core-v2-contract.yml"
+      - "README.md"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-contract:
+    name: Validate theorem-to-runtime contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Initialize validation artifact directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/executable_core_v2_contract
+          printf 'workflow_started=true\n' \
+            > artifacts/executable_core_v2_contract/workflow_started.txt
+
+      - name: Compile contract validator and tests
+        run: |
+          python -m py_compile \
+            python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py \
+            python/rcp_rclm_executable_core_v2/contract/test_validate_runtime_contract.py
+
+      - name: Reject Python placeholders
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from __future__ import annotations
+
+          import ast
+          import re
+          from pathlib import Path
+
+          root = Path("python/rcp_rclm_executable_core_v2")
+          todo_pattern = re.compile(r"#\s*TODO\b", re.IGNORECASE)
+          failures: list[str] = []
+
+          for path in sorted(root.rglob("*.py")):
+              text = path.read_text(encoding="utf-8")
+              tree = ast.parse(text, filename=str(path))
+              for node in ast.walk(tree):
+                  if isinstance(node, ast.Pass):
+                      failures.append(f"{path}:{node.lineno}: pass statement")
+                  if isinstance(node, ast.Constant) and node.value is Ellipsis:
+                      failures.append(f"{path}:{node.lineno}: ellipsis expression")
+              for line_number, line in enumerate(text.splitlines(), start=1):
+                  if todo_pattern.search(line):
+                      failures.append(f"{path}:{line_number}: TODO marker")
+
+          if failures:
+              print("Executable Core v2 Python source contains forbidden placeholders:")
+              for failure in failures:
+                  print(failure)
+              raise SystemExit(1)
+          PY
+
+      - name: Run contract validator unit tests
+        working-directory: python/rcp_rclm_executable_core_v2/contract
+        run: python -m unittest -v test_validate_runtime_contract.py
+
+      - name: Parse machine-readable contract files
+        run: |
+          python -m json.tool \
+            python/rcp_rclm_executable_core_v2/contract/runtime_contract_manifest.json \
+            >/dev/null
+          python -m json.tool \
+            python/rcp_rclm_executable_core_v2/contract/runtime_records.schema.json \
+            >/dev/null
+          python -m json.tool \
+            python/rcp_rclm_executable_core_v2/contract/phase_0_validation.json \
+            >/dev/null
+
+      - name: Validate Phase 0 release evidence
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import json
+          import re
+          from pathlib import Path
+
+          path = Path(
+              "python/rcp_rclm_executable_core_v2/contract/phase_0_validation.json"
+          )
+          record = json.loads(path.read_text(encoding="utf-8"))
+          hash_pattern = re.compile(r"^[0-9a-f]{64}$")
+          required = {
+              "schema_version": "rcp-rclm-runtime-contract-validation-v1",
+              "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+              "release_status": "phase_0_contract_frozen_and_clean_ci_validated",
+              "workflow_conclusion": "success",
+          }
+          failures: list[str] = []
+          for field, expected in required.items():
+              actual = record.get(field)
+              if actual != expected:
+                  failures.append(f"{field}: expected {expected!r}, found {actual!r}")
+
+          artifact_hash = record.get("artifact_sha256")
+          if not isinstance(artifact_hash, str) or not hash_pattern.fullmatch(artifact_hash):
+              failures.append("artifact_sha256 is not a lowercase SHA-256 value")
+
+          summary = record.get("validation_summary")
+          if not isinstance(summary, dict) or summary.get("ok") is not True:
+              failures.append("validation_summary.ok must be true")
+          if isinstance(summary, dict) and summary.get("issues") != []:
+              failures.append("validation_summary.issues must be empty")
+
+          licenses = record.get("licenses_after_phase_0")
+          if not isinstance(licenses, dict):
+              failures.append("licenses_after_phase_0 must be an object")
+          else:
+              if licenses.get("phase_1_runtime_bedrock_may_begin") is not True:
+                  failures.append("Phase 1 runtime bedrock must be licensed to begin")
+              for field in (
+                  "production_checker",
+                  "generator",
+                  "promotion_controller",
+                  "pytorch_backend",
+                  "benchmark_adapter",
+              ):
+                  if licenses.get(field) is not False:
+                      failures.append(f"{field} must remain unlicensed")
+
+          if failures:
+              for failure in failures:
+                  print(failure)
+              raise SystemExit(1)
+          PY
+
+      - name: Validate frozen contract and Lean source pins
+        run: |
+          python \
+            python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py \
+            --repo-root . \
+            --out artifacts/executable_core_v2_contract/validation_report.json
+
+      - name: Record contract provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            printf 'checkout_commit=%s\n' "$(git rev-parse HEAD)"
+            printf 'formal_source_commit=%s\n' \
+              '012de4a55f326107f53f0e215c8aec62859d0bbf'
+            printf 'python=%s\n' "$(python --version 2>&1)"
+            sha256sum \
+              python/rcp_rclm_executable_core_v2/contract/runtime_contract_manifest.json \
+              python/rcp_rclm_executable_core_v2/contract/runtime_records.schema.json \
+              python/rcp_rclm_executable_core_v2/contract/phase_0_validation.json \
+              python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py \
+              python/rcp_rclm_executable_core_v2/contract/test_validate_runtime_contract.py
+          } > artifacts/executable_core_v2_contract/provenance.txt
+
+      - name: Upload Phase 0 contract validation artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: executable-core-v2-contract-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/executable_core_v2_contract/
+          if-no-files-found: error
+          retention-days: 90

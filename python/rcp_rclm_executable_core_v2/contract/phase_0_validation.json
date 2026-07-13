@@ -1,0 +1,44 @@
+{
+  "schema_version": "rcp-rclm-runtime-contract-validation-v1",
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "release_status": "phase_0_contract_frozen_and_clean_ci_validated",
+  "validated_branch": "agent/rcp-rclm-executable-core-v2-contract",
+  "validated_head": "23632bae9601ecfdd0f4eb12f892620dfebe3131",
+  "pull_request_merge_checkout": "144da32553b64c9020086fdf7483d75f84ee104f",
+  "workflow_run": 29258694605,
+  "workflow_attempt": 1,
+  "workflow_conclusion": "success",
+  "artifact": "executable-core-v2-contract-29258694605-1",
+  "artifact_sha256": "80cf894621062cfe16584bb28aea09651f9bd36f6d8b13d3233267b80a489878",
+  "artifact_files": {
+    "validation_report.json": "494f2e40f713a8c8a46a9e154fb4368d0c407dc8206b8a6e6c7e149b0c0a0de1",
+    "provenance.txt": "dbe70d5cd8acf4781011cc824c84d8bc5b0983981250db01cc08c501297f52cd",
+    "workflow_started.txt": "4e3e95d2e2d89561fd52e5e8c89971198d5909dc8684898b1cc9cc817cf69f70"
+  },
+  "validated_contract_files": {
+    "runtime_contract_manifest.json": "cf8e3d6106c449d2c7dbe9e8fa36d1cd0d9dc65a0721e1c8fd38321aae88f125",
+    "runtime_records.schema.json": "aff49b9dcc0c5e33f37170896d5380dfdbc957e13549dbdffd300f1c6c33cdd2",
+    "validate_runtime_contract.py": "893093c2c1e6f8d289f6c677f07985772836119c5c93e664102528967e4e4e9a",
+    "test_validate_runtime_contract.py": "554ca14d259cc99923466293d5c60df95e3100ba0a180875903ff3e06b586e5d"
+  },
+  "validation_summary": {
+    "ok": true,
+    "issues": [],
+    "mapped_object_count": 27,
+    "contract_validator_tests_passed": true,
+    "python_placeholder_gate_passed": true,
+    "machine_readable_files_parsed": true,
+    "formal_source_pins_passed": true,
+    "lean_declaration_surfaces_passed": true,
+    "artifact_uploaded": true
+  },
+  "licenses_after_phase_0": {
+    "phase_1_runtime_bedrock_may_begin": true,
+    "production_checker": false,
+    "generator": false,
+    "promotion_controller": false,
+    "pytorch_backend": false,
+    "benchmark_adapter": false
+  },
+  "final_current_head_validation_location": "Pull request #14 records the clean workflow for the final synchronized source head after this release record is added."
+}

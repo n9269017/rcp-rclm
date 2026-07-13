@@ -1,0 +1,383 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/n9269017/rcp-rclm/schemas/runtime_records.v2.json",
+  "title": "RCP/RCLM Executable Core v2 runtime records",
+  "oneOf": [
+    {"$ref": "#/$defs/distribution"},
+    {"$ref": "#/$defs/diagonalDensity"},
+    {"$ref": "#/$defs/selectedChannel"},
+    {"$ref": "#/$defs/candidate"},
+    {"$ref": "#/$defs/rclmState"},
+    {"$ref": "#/$defs/rclmUpdate"},
+    {"$ref": "#/$defs/rclmCertificatePacket"},
+    {"$ref": "#/$defs/packageManifest"},
+    {"$ref": "#/$defs/checkVerdict"},
+    {"$ref": "#/$defs/leanVerifierReport"}
+  ],
+  "$defs": {
+    "hash256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "schemaId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_.-]*\\.v2$"
+    },
+    "canonicalInteger": {
+      "type": "string",
+      "pattern": "^(0|-?[1-9][0-9]*)$"
+    },
+    "canonicalNonnegativeInteger": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)$"
+    },
+    "rational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["numerator", "denominator"],
+      "properties": {
+        "numerator": {"$ref": "#/$defs/canonicalInteger"},
+        "denominator": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*$"
+        }
+      }
+    },
+    "interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lower", "upper", "precision_bits"],
+      "properties": {
+        "lower": {"$ref": "#/$defs/rational"},
+        "upper": {"$ref": "#/$defs/rational"},
+        "precision_bits": {
+          "type": "integer",
+          "minimum": 128,
+          "maximum": 4096
+        }
+      }
+    },
+    "distribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "dimension", "masses"],
+      "properties": {
+        "schema_id": {"const": "gate_b.distribution.v2"},
+        "dimension": {"type": "integer", "minimum": 1},
+        "masses": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/rational"}
+        }
+      }
+    },
+    "diagonalDensity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "dimension", "spectrum"],
+      "properties": {
+        "schema_id": {"const": "gate_c.diagonal_density.v2"},
+        "dimension": {"type": "integer", "const": 2},
+        "spectrum": {"$ref": "#/$defs/distribution"}
+      }
+    },
+    "selectedChannel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "dimension", "kind", "permutation"],
+      "properties": {
+        "schema_id": {"const": "gate_c.selected_channel.v2"},
+        "dimension": {"type": "integer", "const": 2},
+        "kind": {"enum": ["identity", "basis_swap"]},
+        "permutation": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {"type": "integer", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "typedArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "content_hash", "value"],
+      "properties": {
+        "schema_id": {"$ref": "#/$defs/schemaId"},
+        "content_hash": {"$ref": "#/$defs/hash256"},
+        "value": {}
+      }
+    },
+    "rcpState": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["schema_id", "state"],
+          "properties": {
+            "schema_id": {"const": "gate_b.binary_state.v2"},
+            "state": {"enum": ["outside", "initial", "target"]}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["schema_id", "state", "density"],
+          "properties": {
+            "schema_id": {"const": "gate_c.quantum_state.v2"},
+            "state": {"enum": ["outside", "source", "target"]},
+            "density": {"$ref": "#/$defs/diagonalDensity"}
+          }
+        }
+      ]
+    },
+    "rcpUpdate": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["schema_id", "update"],
+          "properties": {
+            "schema_id": {"const": "gate_b.binary_update.v2"},
+            "update": {"enum": ["stay", "improve"]}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["schema_id", "update", "channel"],
+          "properties": {
+            "schema_id": {"const": "gate_c.quantum_update.v2"},
+            "update": {"enum": ["stay", "swap"]},
+            "channel": {"$ref": "#/$defs/selectedChannel"}
+          }
+        }
+      ]
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "update", "next"],
+      "properties": {
+        "schema_id": {"const": "rcp.candidate.v2"},
+        "update": {"$ref": "#/$defs/rcpUpdate"},
+        "next": {"$ref": "#/$defs/rcpState"}
+      }
+    },
+    "rclmState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "core",
+        "language",
+        "world_reference",
+        "human_reference",
+        "definitiveness",
+        "ambiguity",
+        "memory",
+        "verifier",
+        "resources",
+        "self_model"
+      ],
+      "properties": {
+        "schema_id": {"const": "rclm.state.v2"},
+        "core": {"$ref": "#/$defs/rcpState"},
+        "language": {"$ref": "#/$defs/typedArtifact"},
+        "world_reference": {"$ref": "#/$defs/typedArtifact"},
+        "human_reference": {"$ref": "#/$defs/typedArtifact"},
+        "definitiveness": {"$ref": "#/$defs/typedArtifact"},
+        "ambiguity": {"$ref": "#/$defs/typedArtifact"},
+        "memory": {"$ref": "#/$defs/typedArtifact"},
+        "verifier": {"$ref": "#/$defs/typedArtifact"},
+        "resources": {"$ref": "#/$defs/typedArtifact"},
+        "self_model": {"$ref": "#/$defs/typedArtifact"}
+      }
+    },
+    "rclmUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "core",
+        "parameters",
+        "architecture",
+        "memory",
+        "verifier",
+        "semantics",
+        "tools",
+        "resources"
+      ],
+      "properties": {
+        "schema_id": {"const": "rclm.update.v2"},
+        "core": {"$ref": "#/$defs/rcpUpdate"},
+        "parameters": {"$ref": "#/$defs/typedArtifact"},
+        "architecture": {"$ref": "#/$defs/typedArtifact"},
+        "memory": {"$ref": "#/$defs/typedArtifact"},
+        "verifier": {"$ref": "#/$defs/typedArtifact"},
+        "semantics": {"$ref": "#/$defs/typedArtifact"},
+        "tools": {"$ref": "#/$defs/typedArtifact"},
+        "resources": {"$ref": "#/$defs/typedArtifact"}
+      }
+    },
+    "rclmCertificatePacket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "core",
+        "semantics",
+        "typing",
+        "ledger",
+        "goal_transport",
+        "trust",
+        "resources",
+        "reality",
+        "recovery",
+        "progress"
+      ],
+      "properties": {
+        "schema_id": {"const": "rclm.certificate_packet.v2"},
+        "core": {"$ref": "#/$defs/typedArtifact"},
+        "semantics": {"$ref": "#/$defs/typedArtifact"},
+        "typing": {"$ref": "#/$defs/typedArtifact"},
+        "ledger": {"$ref": "#/$defs/typedArtifact"},
+        "goal_transport": {"$ref": "#/$defs/typedArtifact"},
+        "trust": {"$ref": "#/$defs/typedArtifact"},
+        "resources": {"$ref": "#/$defs/typedArtifact"},
+        "reality": {"$ref": "#/$defs/typedArtifact"},
+        "recovery": {"$ref": "#/$defs/typedArtifact"},
+        "progress": {"$ref": "#/$defs/typedArtifact"}
+      }
+    },
+    "packageManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "contract_version",
+        "package_id",
+        "parent_package_id",
+        "parent_manifest_hash",
+        "semantic_tree_hash",
+        "candidate_hash",
+        "certificate_packet_hash",
+        "checker_policy_hash",
+        "lean_verifier_policy_hash",
+        "trust_anchor_hash",
+        "resource_record_hash",
+        "claim_boundary_hash"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.package_manifest.v2"},
+        "contract_version": {"const": "rcp-rclm-runtime-contract-v2.0.0"},
+        "package_id": {"type": "string", "minLength": 1},
+        "parent_package_id": {"type": ["string", "null"]},
+        "parent_manifest_hash": {
+          "oneOf": [{"$ref": "#/$defs/hash256"}, {"type": "null"}]
+        },
+        "semantic_tree_hash": {"$ref": "#/$defs/hash256"},
+        "candidate_hash": {"$ref": "#/$defs/hash256"},
+        "certificate_packet_hash": {"$ref": "#/$defs/hash256"},
+        "checker_policy_hash": {"$ref": "#/$defs/hash256"},
+        "lean_verifier_policy_hash": {"$ref": "#/$defs/hash256"},
+        "trust_anchor_hash": {"$ref": "#/$defs/hash256"},
+        "resource_record_hash": {"$ref": "#/$defs/hash256"},
+        "claim_boundary_hash": {"$ref": "#/$defs/hash256"}
+      }
+    },
+    "reasonCode": {
+      "enum": [
+        "SCHEMA_UNKNOWN",
+        "SCHEMA_MALFORMED",
+        "CANONICALIZATION_FAILED",
+        "HASH_MISMATCH",
+        "PARENT_LINK_MISMATCH",
+        "TRUST_ANCHOR_CHANGED",
+        "UNSUPPORTED_SCOPE",
+        "TYPE_MISMATCH",
+        "TYPED_SUCCESSOR_FAILED",
+        "RESIDUAL_POSITIVE",
+        "NONLOSS_FAILED",
+        "RECOVERY_FAILED",
+        "INVARIANT_FAILED",
+        "PROGRESS_REGRESSION",
+        "STRICT_WITNESS_FAILED",
+        "TRUST_INVALID",
+        "RESOURCE_INVALID",
+        "CONTAINMENT_FAILED",
+        "SUCCESSOR_DOMAIN_FAILED",
+        "REFINEMENT_MISMATCH",
+        "MONITOR_FAILED",
+        "NUMERIC_INDETERMINATE",
+        "LEAN_SOURCE_FORBIDDEN_TOKEN",
+        "LEAN_VERIFIER_FAILED",
+        "PROVENANCE_FAILED",
+        "MANUAL_REPAIR_DETECTED",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "checkVerdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "contract_version",
+        "verdict",
+        "reason_codes",
+        "input_hashes",
+        "evidence_hashes",
+        "checker_implementation_hash",
+        "lean_verifier_report_hash"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.check_verdict.v2"},
+        "contract_version": {"const": "rcp-rclm-runtime-contract-v2.0.0"},
+        "verdict": {"enum": ["accept", "reject", "indeterminate"]},
+        "reason_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/reasonCode"}
+        },
+        "input_hashes": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/hash256"}
+        },
+        "evidence_hashes": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/hash256"}
+        },
+        "checker_implementation_hash": {"$ref": "#/$defs/hash256"},
+        "lean_verifier_report_hash": {"$ref": "#/$defs/hash256"}
+      }
+    },
+    "leanVerifierReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "verdict",
+        "source_hash",
+        "toolchain",
+        "mathlib_commit",
+        "exit_code",
+        "stdout_hash",
+        "stderr_hash",
+        "forbidden_tokens"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.lean_verifier_report.v2"},
+        "verdict": {"enum": ["accept", "reject"]},
+        "source_hash": {"$ref": "#/$defs/hash256"},
+        "toolchain": {"const": "leanprover/lean4:v4.31.0"},
+        "mathlib_commit": {"const": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"},
+        "exit_code": {"type": "integer"},
+        "stdout_hash": {"$ref": "#/$defs/hash256"},
+        "stderr_hash": {"$ref": "#/$defs/hash256"},
+        "forbidden_tokens": {
+          "type": "array",
+          "maxItems": 0
+        }
+      }
+    }
+  }
+}
