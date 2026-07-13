@@ -1,0 +1,72 @@
+{
+  "bridge": {
+    "case_count": 10,
+    "formal_source_git_pin_required": true,
+    "generated_source_guard_required": true,
+    "initial_bridge": true,
+    "mature_packet_executable": false,
+    "rcp_and_rclm_checks_required": true,
+    "reference_accepting_cases": 4,
+    "reference_rejecting_cases": 6,
+    "source_guard_hash_recorded": true,
+    "source_guard_path_recorded": true,
+    "source_guard_position_recorded": true,
+    "source_guard_version": "rcp-rclm-lean-source-guard-v2.0.0",
+    "structured_verdict_required": true
+  },
+  "claim_boundary": {
+    "benchmark_claim": false,
+    "candidate_acceptance_licensed": false,
+    "executable_rsi_claim": false,
+    "production_checker_soundness_established": false,
+    "python_lean_reference_conformance_established": true,
+    "python_lean_reference_conformance_pending_ci": false,
+    "reference_bridge_only": true
+  },
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "formal_source_commit": "012de4a55f326107f53f0e215c8aec62859d0bbf",
+  "implemented": {
+    "canonical_reference_packet": true,
+    "formal_source_commit_worktree_verification": true,
+    "generated_lean_certificate_source": true,
+    "lean_compiler_invocation": true,
+    "lean_source_guard_before_compile": true,
+    "pinned_project_discovery": true,
+    "python_lean_reference_differential_suite": true,
+    "rcp_rclm_layer_agreement": true,
+    "structured_lean_verdict_parser": true,
+    "structured_verifier_report": true,
+    "toolchain_identity_evidence": true
+  },
+  "lean_toolchain": "leanprover/lean4:v4.31.0",
+  "licenses_after_phase_2": {
+    "candidate_acceptance": false,
+    "phase_3_checker_development_may_begin": true
+  },
+  "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+  "not_implemented": {
+    "benchmark_adapter": true,
+    "general_noncommuting_quantum": true,
+    "generator": true,
+    "independent_replay": true,
+    "mature_lean_packet_executable": true,
+    "production_checker": true,
+    "promotion_controller": true,
+    "pytorch_backend": true,
+    "rollback_controller": true,
+    "successor_realizer": true,
+    "successor_selector": true
+  },
+  "package_name": "rcp-rclm-runtime-v2",
+  "package_version": "0.2.0",
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 2 pinned Lean conformance bridge",
+  "phase_status": "complete_clean_ci_validated",
+  "schema_version": "rcp-rclm-runtime-phase-2-manifest-v1",
+  "validation": {
+    "artifact": "runtime-v2-phase-2-lean-29293545142-1",
+    "artifact_sha256": "2523cbf545ca91938732d40a0046ca046cf2f121af695de8b438e648e274261f",
+    "implementation_head": "0de375d1c615c8d73eb26b53a7bddb47eaccec70",
+    "record": "phase_2_validation.json",
+    "workflow_run": 29293545142
+  }
+}

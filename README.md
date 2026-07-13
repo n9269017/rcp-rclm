@@ -2,12 +2,14 @@
 
 This repository contains the two companion RCP/RCLM manuscripts, the historical
 Lean v1 certificate, the completed pinned **RCP/RCLM Formal Core v2** Lean 4
-reference scopes, and the first two phases of the **Executable Core v2** transition.
+reference scopes, and the first three phases of the **Executable Core v2**
+transition.
 
 The formal project proves a conditional successor-verification theorem stack. The
-Executable Core contract and deterministic bedrock do not claim that checker
-soundness creates a successor, that every accepted successor is strictly useful, or
-that the current repository is an autonomous recursive-self-improvement system.
+Executable Core contract, deterministic bedrock, and finite-reference Lean bridge do
+not claim that checker soundness creates a successor, that every accepted successor
+is strictly useful, or that the current repository is an autonomous
+recursive-self-improvement system.
 
 ## Authoritative status
 
@@ -22,8 +24,9 @@ that the current repository is an autonomous recursive-self-improvement system.
 | General noncommuting quantum extension | Open | No arbitrary noncommuting density matrices, general CPTP maps, matrix-log QRE, data-processing theorem, or Petz recovery claim |
 | Executable Core v2 Phase 0 | Complete and merged | Frozen theorem-to-runtime object map, trust boundary, numerical semantics, serialization/hashing, acceptance semantics, and claim boundary |
 | Executable Core v2 Phase 1 | Complete and cross-platform validated | Immutable records, strict parsing, exact rationals, certified intervals, selected Gate B/Gate C mathematics, canonical hashing, RCLM mappings, source guard |
-| Pinned Lean compiler/verifier bridge | Next phase; not implemented | Restricted generated certificate source, pinned Lean invocation, structured verifier reports, differential conformance |
-| Production checker/generator/promotion loop | Not licensed | No candidate acceptance or promotion claim |
+| Executable Core v2 Phase 2 | Complete at the selected finite reference scope | Pinned formal-source/toolchain verification, generated Lean certificates, structured RCP/RCLM verdicts, and ten-case Python/Lean differential conformance |
+| Production fail-closed successor checker | Next phase; not implemented | No general candidate acceptance or promotion claim |
+| Generator, promotion loop, PyTorch, and benchmark adapters | Not licensed | No autonomous recursive-improvement or external benchmark claim |
 
 The formal documentation is indexed in
 [`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md). The executable
@@ -75,14 +78,16 @@ python/rcp_rclm_executable_core_v2/
   contract/                       frozen Phase 0 machine-readable contract
 
 python/rcp_rclm_runtime_v2/
-  rcp_rclm_runtime/               deterministic Phase 1 bedrock
-  tests/                          74 deterministic tests and frozen vectors
-  tools/                          source-quality, report, and release validators
+  rcp_rclm_runtime/               deterministic bedrock and pinned Lean bridge
+  tests/                          Phase 1 deterministic tests and frozen vectors
+  tests_phase2/                   Phase 2 bridge and release-evidence tests
+  tools/                          validation, reporting, and bridge runners
 
 .github/workflows/
   formal-core-v2.yml
   executable-core-v2-contract.yml
   runtime-v2-phase-1.yml
+  runtime-v2-phase-2.yml
 ```
 
 ## Formal Core v2 theorem shape
@@ -164,8 +169,28 @@ generated-Lean anti-placeholder/local-axiom source guard
 Linux, Windows, and macOS conformance fixtures
 ```
 
-The bedrock does not accept or promote candidates. The next licensed phase is the
-pinned Lean compiler/verifier bridge and Python/Lean differential conformance.
+The bedrock does not accept or promote candidates.
+
+### Phase 2 — pinned Lean conformance bridge
+
+Phase 2 adds the initial hybrid reference bridge:
+
+```text
+strict finite Gate B/Gate C reference packets
+independent deterministic Python interpretation
+deterministic generated Lean certificate source
+pre-compilation source guard
+formal-source Git and toolchain pin verification
+pinned Lean compilation
+structured RCP and RCLM verdict parsing
+fail-closed differential comparison
+raw source, stdout, stderr, compiler, pin, and toolchain evidence
+```
+
+The clean reference suite contains four accepted improvement/stability cases and six
+rejected wrong-successor, wrong-certificate, or malformed-certificate mutations. It
+establishes agreement only for those ten selected cases; it is not the production
+successor checker and does not authorize promotion.
 
 ## Build and validate Formal Core v2
 
@@ -185,27 +210,39 @@ lake env lean ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/GateCAxiomAudit.lean
 ```
 
-## Install and validate the Phase 1 runtime
+## Install and validate Runtime v2
 
 ```bash
 cd python/rcp_rclm_runtime_v2
 python -m pip install --no-deps -e .
-python -m compileall -q rcp_rclm_runtime tests tools
-python tools/validate_source_quality.py .
+python -m compileall -q rcp_rclm_runtime tests tests_phase2 tools
+python tools/validate_source_quality.py --package-root . --out source_quality.json
 python tools/validate_phase1_release.py phase_1_validation.json
+python tools/validate_phase2_release.py phase_2_validation.json
 python -m unittest discover -s tests -v
+python -m unittest discover -s tests_phase2 -v
 ```
 
-The authoritative CI workflow is:
+Run the initial pinned bridge from the repository root with:
+
+```bash
+python python/rcp_rclm_runtime_v2/tools/run_phase2_conformance.py \
+  --repo-root . \
+  --outdir artifacts/runtime_v2_phase_2/local
+```
+
+The authoritative workflows are:
 
 ```text
 .github/workflows/runtime-v2-phase-1.yml
+.github/workflows/runtime-v2-phase-2.yml
 ```
 
 ## Claim boundary
 
-The repository establishes a clean, pinned formal theorem stack and a deterministic
-runtime bedrock for selected finite references. It does **not** establish:
+The repository establishes a clean, pinned formal theorem stack, a deterministic
+runtime bedrock, and a finite-reference Python/Lean conformance bridge. It does
+**not** establish:
 
 ```text
 exact full Paper I or Paper II semantic equivalence
@@ -215,8 +252,9 @@ strict useful improvement at every recursive step
 general noncommuting quantum relative entropy or channel theorems
 arbitrary CPTP data processing
 Petz or approximate recovery
-Python-to-Lean differential refinement
+general Python-to-Lean refinement beyond the ten selected reference/mutation cases
 production successor-checker soundness
+candidate promotion authorization
 an executable recursive promotion loop
 empirical recursive self-improvement
 external benchmark performance

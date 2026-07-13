@@ -1,0 +1,103 @@
+{
+  "artifacts": {
+    "final": {
+      "name": "runtime-v2-phase-2-final-29293545142-1",
+      "sha256": "5aec0f20a075da6cbab01c5b3dad776f59c12fb5d55f819e4483f0fab7773a01"
+    },
+    "lean": {
+      "name": "runtime-v2-phase-2-lean-29293545142-1",
+      "sha256": "2523cbf545ca91938732d40a0046ca046cf2f121af695de8b438e648e274261f"
+    },
+    "python_macos": {
+      "name": "runtime-v2-phase-2-python-macos-latest-29293545142-1",
+      "sha256": "b25d884e445bf9ac8f833ed7db1969efc539a0c270b3233aacfaff634d3d53fd"
+    },
+    "python_ubuntu": {
+      "name": "runtime-v2-phase-2-python-ubuntu-latest-29293545142-1",
+      "sha256": "26ba8830f8d3a2775ea4d2d3bddc7b669af6bed630ebc72894c78885535b3eb1"
+    },
+    "python_windows": {
+      "name": "runtime-v2-phase-2-python-windows-latest-29293545142-1",
+      "sha256": "adb6dea1a7c434e621aa1d14bd4a3f488e2e10c308056e48827840ee35f3043a"
+    }
+  },
+  "claim_boundary": {
+    "arbitrary_rclm_packet_refinement_established": false,
+    "benchmark_claim": false,
+    "candidate_acceptance_licensed": false,
+    "executable_rsi_claim": false,
+    "mature_packet_executable_complete": false,
+    "production_checker_soundness_established": false,
+    "reference_bridge_complete": true
+  },
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "differential_suite": {
+    "accepting_case_count": 4,
+    "all_bridge_reports_accepted": true,
+    "all_differential_matches": true,
+    "case_count": 10,
+    "classical_theorem_surface_hash": "a220cbe7dbbca12dd6dda17c7117f23afca3ef86682ae12ef903a1e378e26e4c",
+    "conformance_report_hash": "95ea6a835c054eb5148fe74c7987e8cab4f83125656539b7f1ee95ae89579aa2",
+    "quantum_theorem_surface_hash": "02001a0439ff11f094606b6b78892e6b3f46185e8de2ac3b27c49d55448f89cb",
+    "rejecting_case_count": 6
+  },
+  "formal_source_commit": "012de4a55f326107f53f0e215c8aec62859d0bbf",
+  "jobs": {
+    "lean_conformance": "success",
+    "macos_python": "success",
+    "ubuntu_python": "success",
+    "windows_python": "success",
+    "workflow_closure": "success"
+  },
+  "licenses_after_phase_2": {
+    "benchmark_adapter": false,
+    "candidate_acceptance": false,
+    "generator": false,
+    "independent_replay": false,
+    "phase_3_checker_development_may_begin": true,
+    "promotion_controller": false,
+    "pytorch_backend": false,
+    "successor_realizer": false
+  },
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 2 pinned Lean conformance bridge",
+  "project_pin": {
+    "formal_source_tree": "e9eab104ea2bfe0372ccf43c4eb3da388fbd3344",
+    "lakefile_sha256": "6a1fa80bc96176a8a2bbfcfa336c85b66296d674e99679dbaef50b5c0b60d167",
+    "lean_toolchain": "leanprover/lean4:v4.31.0",
+    "manifest_sha256": "c17842b8da89c8c84beed4e8b33892616ef75c15475133a07aca97c16d853b0a",
+    "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+    "pin_hash": "32cbf7de4cf65298568432322fb428bceb4cb66269be934de537d0c8991a66d9",
+    "theorem_surface_hash": "277a9bef3ca905710b82bb7e68281ee41b010e141c33838a24c0c706f1bfaedc",
+    "toolchain_file_sha256": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee"
+  },
+  "release_status": "phase_2_initial_lean_conformance_bridge_validated",
+  "schema_version": "rcp-rclm-runtime-phase-2-validation-v1",
+  "source_guard": {
+    "admit_rejected": true,
+    "invalid_utf8_rejected": true,
+    "local_axiom_rejected": true,
+    "pre_compilation": true,
+    "sorry_ax_rejected": true,
+    "sorry_rejected": true
+  },
+  "toolchain_runtime": {
+    "lake_version": "Lake version 5.0.0-src+68218e8 (Lean version 4.31.0)",
+    "lean_version": "Lean (version 4.31.0, x86_64-unknown-linux-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)",
+    "runtime_hash": "d8c0c12a9127ef41ffd263d8c658b79cb75b0b97b17430ac6ac1f1742e8a670e"
+  },
+  "validated_implementation_head": "0de375d1c615c8d73eb26b53a7bddb47eaccec70",
+  "validation_summary": {
+    "formal_core_build": true,
+    "generated_source_admission_scan": true,
+    "lean_compilation": true,
+    "ok": true,
+    "phase_1_regression": true,
+    "phase_2_unit_tests": true,
+    "python_compileall": true,
+    "source_quality": true,
+    "structured_verdicts": true,
+    "workflow_artifacts": true
+  },
+  "workflow_conclusion": "success",
+  "workflow_run": 29293545142
+}
