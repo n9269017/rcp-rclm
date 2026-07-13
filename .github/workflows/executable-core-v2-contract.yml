@@ -1,0 +1,95 @@
+name: Executable Core v2 Phase 0 contract
+
+on:
+  pull_request:
+    paths:
+      - "docs/executable_core_v2/**"
+      - "python/rcp_rclm_executable_core_v2/**"
+      - ".github/workflows/executable-core-v2-contract.yml"
+      - "README.md"
+  push:
+    branches:
+      - "agent/rcp-rclm-executable-core-v2-contract"
+    paths:
+      - "docs/executable_core_v2/**"
+      - "python/rcp_rclm_executable_core_v2/**"
+      - ".github/workflows/executable-core-v2-contract.yml"
+      - "README.md"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-contract:
+    name: Validate theorem-to-runtime contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile contract validator
+        run: |
+          python -m py_compile \
+            python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py
+
+      - name: Reject Python placeholders
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE \
+              --include='*.py' \
+              '(^|[[:space:]])pass([[:space:]]|$)|# TODO|\.\.\.' \
+              python/rcp_rclm_executable_core_v2; then
+            echo "Executable Core v2 Python source contains a forbidden placeholder." >&2
+            exit 1
+          fi
+
+      - name: Parse machine-readable contract files
+        run: |
+          python -m json.tool \
+            python/rcp_rclm_executable_core_v2/contract/runtime_contract_manifest.json \
+            >/dev/null
+          python -m json.tool \
+            python/rcp_rclm_executable_core_v2/contract/runtime_records.schema.json \
+            >/dev/null
+
+      - name: Validate frozen contract and Lean source pins
+        run: |
+          mkdir -p artifacts/executable_core_v2_contract
+          python \
+            python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py \
+            --repo-root . \
+            --out artifacts/executable_core_v2_contract/validation_report.json
+
+      - name: Record contract provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            printf 'checkout_commit=%s\n' "$(git rev-parse HEAD)"
+            printf 'formal_source_commit=%s\n' \
+              '012de4a55f326107f53f0e215c8aec62859d0bbf'
+            printf 'python=%s\n' "$(python --version 2>&1)"
+            sha256sum \
+              python/rcp_rclm_executable_core_v2/contract/runtime_contract_manifest.json \
+              python/rcp_rclm_executable_core_v2/contract/runtime_records.schema.json \
+              python/rcp_rclm_executable_core_v2/contract/validate_runtime_contract.py
+          } > artifacts/executable_core_v2_contract/provenance.txt
+
+      - name: Upload Phase 0 contract validation artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: executable-core-v2-contract-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/executable_core_v2_contract/
+          if-no-files-found: error
+          retention-days: 90
