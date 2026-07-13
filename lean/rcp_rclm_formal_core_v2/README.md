@@ -15,12 +15,13 @@ claims.
 | Component | Status | Scope |
 |---|---|---|
 | Gate A abstract theorem kernel | Complete and audited | Abstract successor obligations, finite composition, endpoint recovery, monitors, conditional infinite closure |
-| Gate B finite classical/diagonal instance | Complete and audited | Actual finite Shannon/KL quantities and a concrete binary reference |
+| Gate B finite classical/diagonal instance | Complete and audited | Actual finite Shannon/KL quantities, conservative extension, exact recovery, concrete checker and trajectory |
 | Substantive RCLM-to-RCP refinement | Complete at the Gate B reference scope | State/update/certificate fields, checker acceptance, recovery laws, monitors |
 | Conditional architecture successor theorem | Implemented and audited | Explicit generator, certifier, selector, realizer, trust, resource, and domain premises |
 | Paper II direct-engine and robust-reflective interfaces | Implemented with explicit semantic premises | Verifier-schema, uncertainty-envelope, goal-transport, trust, budget, and persistence boundaries |
 | Bounded seed-library and packet-builder refinement | Complete and audited at the binary reference scope | Finite grammars, packet construction, checker evidence, seed-domain closure |
-| Gate C finite-dimensional quantum instance | **Planning placeholder only** | No density-matrix, channel, von Neumann entropy, or quantum-relative-entropy theorem is yet claimed |
+| Gate C selected finite-dimensional quantum instance | Complete and audited at the commuting/diagonal matrix scope | Complex diagonal density matrices, spectral entropy/QRE, identity/swap channels, exact recovery, checker, trajectory, RCLM refinement |
+| General noncommuting quantum extension | Open | Arbitrary density operators, CPTP maps, matrix-log QRE, data processing, Petz/approximate recovery |
 | Executable runtime refinement | Not licensed | No v2 Python checker, generator, promotion loop, or benchmark result |
 
 The documentation index is
@@ -43,7 +44,7 @@ formalization_manifest.json
                      theorem/package status and validation metadata
 ```
 
-The paper sources are also pinned by Git blob in the manifest and checked by the
+The paper sources are pinned by Git blob in the manifest and checked by the
 paper-alignment audit script.
 
 ## Quick start
@@ -63,6 +64,7 @@ Run the public theorem-axiom audits:
 lake env lean ../../docs/formal_core_v2/audit/GateAAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/GateBAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
+lake env lean ../../docs/formal_core_v2/audit/GateCAxiomAudit.lean
 ```
 
 Run the paper/source pin check from the repository root:
@@ -94,6 +96,9 @@ RcpRclmFormalCoreV2/
     PaperContract.lean
     ClassicalFinite.lean
     ClassicalBinary.lean
+    QuantumDensity.lean
+    QuantumKernel.lean
+    QuantumChannels.lean
     QuantumFinite.lean
 
   RCLM/
@@ -113,6 +118,7 @@ RcpRclmFormalCoreV2/
     ClassicalBinaryPaperII.lean
     ClassicalBinarySeedLibrary.lean
     ClassicalBinarySeedTrajectory.lean
+    QuantumBinary.lean
 
   RCP.lean
   RCLM.lean
@@ -223,18 +229,11 @@ The concrete embedding adds one zero-mass head coordinate:
 (p₀, …, pₙ₋₁) ↦ (0, p₀, …, pₙ₋₁)
 ```
 
-The package proves exact preservation of:
+The package proves exact support, Shannon-entropy, and KL preservation. Dropping
+the new coordinate recovers the predecessor exactly. This theorem is limited to
+the declared zero-extension and is not a general stochastic-channel result.
 
-```text
-support coverage
-Shannon entropy
-KL divergence
-```
-
-Dropping the new coordinate recovers the predecessor exactly. This is a theorem
-for the declared finite zero-extension, not for every stochastic channel.
-
-## Concrete state, certificate, checker, and strict progress
+## Concrete checker and trajectory
 
 The binary checker accepts exactly:
 
@@ -245,70 +244,47 @@ target  -- stay    / stability certificate   --> target
 
 Acceptance refines to the complete abstract `StepObligations`; a deliberately
 invalid successor is rejected. Progress is reduction of actual KL distance to the
-target, so the improvement transition is non-vacuously strict.
+target, so the first transition is non-vacuously strict.
 
 The worked finite path is:
 
 ```text
-initial → target → target
+initial -> target -> target
 ```
-
-It instantiates progress, protected-value, recovery, Lyapunov/motion,
-ambiguity-indicator, and relevance-label composition at the declared finite
-scope.
 
 # Substantive RCLM-to-RCP refinement
 
-The concrete RCLM reference state carries typed registers for:
+The concrete RCLM reference state carries typed registers for language, world and
+human reference, definitiveness, ambiguity, memory, verifier, resources, and self
+model. Updates and certificates carry corresponding theorem-relevant evidence.
+
+The generic refinement structures preserve:
 
 ```text
-language
-world reference
-human reference
-definitiveness
-ambiguity
-memory
-verifier
-resources
-self model
+state/update/certificate/protected/residual maps
+typed update semantics
+admissibility and invariant preservation
+protected values, transports, and budgets
+state distance, recovery, and recovery budgets
+progress and strict witnesses
+computed residuals
+trust, resources, and reality containment
+complete StepObligations
+recovery-composition laws
+Lyapunov, ambiguity, and relevance monitors
+actual Boolean checker acceptance
 ```
 
-Updates and certificates carry corresponding theorem-relevant evidence.
-
-The generic refinement structures are:
-
-```text
-KernelRefinement
-  state/update/certificate/protected/residual maps
-  typed update semantics
-  admissibility and invariant preservation
-  protected values, transports, and budgets
-  state distance, recovery, and recovery budgets
-  progress and strict witnesses
-  residuals
-  trust, resources, and reality containment
-  complete StepObligations
-  recovery-composition laws
-
-MonitorRefinement
-  Lyapunov value and motion charge
-  ambiguity quantity and transport
-  relevance quantity and transport
-
-CheckerRefinement
-  actual Boolean acceptance preservation
-```
-
-The concrete RCLM checker also verifies that all extra architecture fields equal
-the declared canonical encodings. The fields are checked rather than ignored.
+The concrete RCLM checker verifies that the extra architecture fields equal the
+declared canonical encodings. The fields are checked rather than ignored.
 
 # Conditional architecture engine
 
-`RCLM.ArchitectureEngine` separates the following relations and premises:
+`RCLM.ArchitectureEngine` separates:
 
 ```text
 architecture theorem domain
-finite or abstract witness-library coverage
+witness-library coverage
 generator proposal relation
 certificate construction relation
 candidate selection relation
@@ -321,142 +297,31 @@ successor-domain closure
 `RCLM.ArchitectureEngineStep` packages actual witness, proposal, certificate,
 candidate, resource, realization, and checker-acceptance evidence.
 
-The theorem:
-
 ```lean
 RCLM.rclm_architecture_successor_theorem
 ```
 
-returns:
-
-```text
-typed RCLM successor evidence
-complete RCLM StepObligations
-forgotten core checker acceptance
-complete forgotten RCP StepObligations
-transported recovery-composition laws
-transported monitor-refinement evidence
-successor architecture-domain membership
-successor admissibility and invariant preservation
-engine trust/resource validity
-trust-anchor preservation
-```
+returns typed RCLM successor evidence, complete RCLM and forgotten RCP obligations,
+transported recovery and monitor evidence, domain closure, and trust/resource
+validity.
 
 The infinite architecture theorem keeps
 `RCLM.ArchitectureSuccessorAvailability` explicit. It does not turn checker
 soundness into generator completeness.
 
-# Paper II alignment interfaces
+# Paper II bounded seed-library and packet builder
 
-## Direct-engine semantics
+`RCLM.PaperIIBoundedSeedLibrary` contains finite `Finset` witness and grammar
+objects, explicit depth/proof bounds, proposal/certificate/candidate/resource
+decoders, grammar nonemptiness, coverage, realization, checker acceptance, and
+successor seed-domain closure.
 
-The direct-engine layer separately represents:
+A selected grammar word forms `RCLM.PaperIIBoundedSeedPacket` and converts to an
+architecture step. Packet-builder soundness returns complete successor-verification
+obligations; the architecture refinement additionally returns complete forgotten
+RCP obligations plus recovery and monitor evidence.
 
-```text
-non-lossy candidate status
-algebraic gate
-full gate
-predecessor-ability preservation
-strict ability expansion
-viability-kernel membership
-projection realization
-```
-
-Accepted continuation is not identified with strict improvement.
-
-## Robust-reflective successor semantics
-
-The robust-reflective layer separately represents:
-
-```text
-verifier schema and cross-time transport
-uncertainty envelope and transport
-goal and goal transport
-goal distance and drift budget
-anti-circular trust
-proof/checking budget validity
-successor persistence
-reality and tractability certificates
-soundness-failure risk
-summability and separately supplied almost-sure consequences
-```
-
-These objects are proposition-valued theorem data. Similar names do not establish
-semantic identity.
-
-# Bounded seed-library and packet builder
-
-## Generic interface
-
-```lean
-RCLM.PaperIIBoundedSeedLibrary
-```
-
-contains actual finite `Finset` objects and explicit laws for:
-
-```text
-seed domain
-finite witness library
-finite packet-word grammar
-word-depth and proof-length bounds
-witness/proposal/certificate/candidate/resource decoders
-grammar nonemptiness on the seed domain
-word-to-witness membership
-witness coverage
-proposal generation
-certificate construction
-candidate selection
-successor realization
-resource authorization
-checker acceptance
-successor seed-domain closure
-```
-
-A selected grammar word plus its proofs forms:
-
-```lean
-RCLM.PaperIIBoundedSeedPacket
-```
-
-and converts to the compiled architecture step through:
-
-```lean
-RCLM.PaperIIBoundedSeedPacket.toEngineStep
-```
-
-## Packet-builder and architecture refinement
-
-```lean
-RCLM.paper_ii_bounded_seed_packet_builder_sound
-```
-
-returns complete RCLM obligations, Paper II successor-verification obligations,
-seed-domain closure, verifier-schema persistence, uncertainty-envelope
-persistence, and the declared goal-drift bound.
-
-```lean
-RCLM.paper_ii_bounded_seed_packet_refines_architecture
-```
-
-adds the complete forgotten RCP obligations plus recovery and monitor refinement.
-
-`RCLM.PaperIISeedSemanticIdentification` requires pointwise equality proofs for
-the declared verifier schema, uncertainty envelope, goal, transports, refinement
-relations, distance, and budget.
-
-## Recursive bounded trajectory
-
-```lean
-RCLM.conditional_infinite_paper_ii_bounded_seed_trajectory_exists
-RCLM.infinite_paper_ii_bounded_seed_step_result
-RCLM.infinite_paper_ii_bounded_seed_step_refines_architecture
-```
-
-The construction selects from an explicitly nonempty finite grammar and preserves
-an independently supplied successor seed-domain law. Classical choice selects an
-available packet; checker soundness does not supply the packet.
-
-## Concrete binary grammar
+The concrete binary grammar is:
 
 ```text
 active grammar at initial: {improve}
@@ -466,42 +331,147 @@ maximum proof-word length: 1
 rejected word: absent from every active grammar
 ```
 
-The declared verifier schema is `trustedBinaryChecker`, the uncertainty envelope
-is `contained`, and the goal is `biasedTarget`; the finite reference uses identity
-transports and zero goal drift.
-
 The path improves strictly once and then uses accepted stability continuation. It
 does not prove indefinitely strict capability growth.
 
-# Gate C planning placeholder
+# Gate C — selected finite-dimensional quantum instance
 
-Gate C has **not** begun in this branch. `RCP/QuantumFinite.lean` is intentionally
-empty apart from a scope declaration.
+## Density representation
 
-The planned Gate C contract must be frozen before implementation and must include:
+The selected matrix type is:
 
 ```text
-finite-dimensional complex matrix representation
-density matrices with Hermitian, positive-semidefinite, and trace-one evidence
-support/domain conditions for matrix logarithms
-admissible completely positive trace-preserving transitions
-von Neumann entropy or an explicitly chosen equivalent finite definition
-quantum relative entropy with explicit support convention
-non-loss theorem for declared protected distinctions
-constructive recovery tied to the actual transition
-nonconstant concrete quantum witness
-non-vacuous strict progress witness
-concrete checker refinement
-finite trajectory composition
-conditional infinite closure with explicit successor availability
-strengthened RCLM-to-RCP refinement over the quantum objects
-exact import and axiom audit
+QuantumMatrix n = Matrix (Fin n) (Fin n) ℂ
 ```
 
-See
-[`../../docs/formal_core_v2/GATE_C_SCOPE.md`](../../docs/formal_core_v2/GATE_C_SCOPE.md).
-No density-matrix, channel, or quantum-relative-entropy result should be inferred
-from the current placeholder.
+`RCP.QuantumFinite.DiagonalDensityMatrix n` carries a normalized nonnegative
+spectrum and exposes its complex diagonal matrix. For every selected density the
+formalization proves:
+
+```text
+matrix.IsHermitian
+matrix.PosSemidef
+Matrix.trace matrix = 1
+```
+
+`PositiveDiagonalDensityMatrix n` carries strict positivity of every spectral
+mass and therefore supplies the support hypothesis required by the selected QRE
+nonnegativity theorem.
+
+## Entropy and quantum relative entropy
+
+At the commuting/diagonal scope:
+
+```text
+S(ρ)      = - Σ_i p_i log p_i
+D(ρ || σ) =   Σ_i p_i log (p_i/q_i)
+```
+
+The source and target spectra are `(1/4, 3/4)` and `(3/4, 1/4)`. Their QRE is proved
+equal to `(1/2) * log 3`, hence strictly positive. The concrete protected/progress
+quantity is therefore nonconstant.
+
+This is a spectral commuting reference, not a general matrix-logarithm theorem.
+
+## Selected matrix channels and recovery
+
+`FiniteDiagonalChannel n` packages:
+
+```text
+action on diagonal density matrices
+complex-linear matrix map
+state/matrix action agreement
+trace preservation
+Hermitian preservation
+positive-semidefinite preservation
+```
+
+The concrete channel family is:
+
+```text
+stay -> identityChannel
+swap -> swapChannel
+```
+
+The selected recovery channel is indexed by the actual update. Identity recovers
+identity; swap recovers by applying the involutive basis swap again. The package
+proves exact recovery and entropy/QRE preservation for this selected family.
+
+## Quantum kernel and checker
+
+The quantum kernel has substantive state, update, certificate, residual, trust,
+resource, and reality-containment objects. It accepts exactly:
+
+```text
+source + swap + target + improvement certificate
+target + stay + target + stability certificate
+```
+
+Residuals test the actual typed transition and actual packet acceptance. The
+reality gate excludes an explicit outside-state packet and is not definitionally
+true.
+
+The checker theorem retains the required form:
+
+```text
+check = true -> complete StepObligations
+```
+
+and a declared invalid candidate is rejected.
+
+## Quantum monitors and finite trajectory
+
+The progress functional is derived from the positive source-to-target QRE gap.
+The worked path is:
+
+```text
+source -> target -> target
+```
+
+The first step is strict; the second is stable. The package proves endpoint
+recovery, Lyapunov/motion composition, and relevance transport.
+
+## Quantum RCLM refinement
+
+`RCLM/QuantumBinary.lean` supplies substantive architecture states, updates,
+certificates, a concrete checker, recovery laws, and monitors, and identifies:
+
+```text
+architecture state -> selected density
+architecture update -> selected forward channel
+architecture update -> selected recovery channel
+architecture state -> selected entropy
+architecture state pair -> selected QRE
+```
+
+```lean
+RCLM.QuantumBinary.accepted_quantum_architecture_successor
+```
+
+returns complete RCLM obligations, complete forgotten RCP obligations, density
+evidence, forward-channel realization, exact selected recovery, entropy
+preservation, and QRE preservation.
+
+## Gate C limitation
+
+The selected closure does not claim:
+
+```text
+arbitrary noncommuting density matrices
+arbitrary CPTP channels
+general matrix-logarithm QRE
+general quantum data processing
+trace-distance, Petz, or approximate recovery
+strict useful improvement at every recursive step
+exact full Paper I or Paper II quantum identity
+```
+
+See:
+
+```text
+../../docs/formal_core_v2/GATE_C_SCOPE.md
+../../docs/formal_core_v2/GATE_C_CLOSURE.md
+```
 
 # Build, audit, and artifacts
 
@@ -519,11 +489,12 @@ pinned Lean installation
 pinned dependency resolution
 official mathlib cache retrieval
 clean project build
-source scan for sorry/admit
+source scan for sorry/sorryAx/admit
 project-local axiom declaration scan
 Gate A theorem-axiom audit
 Gate B theorem-axiom audit
 RCLM/refinement/engine/bounded-seed theorem-axiom audit
+Gate C theorem-axiom audit
 audit artifact upload even on failure
 ```
 
@@ -534,6 +505,7 @@ docs/formal_core_v2/audit/verify_paper_alignment_pins.sh
 docs/formal_core_v2/audit/GateAAxiomAudit.lean
 docs/formal_core_v2/audit/GateBAxiomAudit.lean
 docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
+docs/formal_core_v2/audit/GateCAxiomAudit.lean
 ```
 
 ## Artifact name
@@ -543,10 +515,10 @@ formal-core-v2-audit-<workflow-run-id>-<attempt>
 ```
 
 The artifact contains the full build log, metadata, source-admission scans, local
-axiom scan, and the three theorem-axiom reports. See
+axiom scan, and all four theorem-axiom reports. See
 [`../../docs/formal_core_v2/AUDIT_ARTIFACTS.md`](../../docs/formal_core_v2/AUDIT_ARTIFACTS.md).
 
-The audited foundational union at the completed Gate B/bounded-seed scope is:
+The audited foundational union at the completed selected Gate C scope is:
 
 ```lean
 [propext, Classical.choice, Quot.sound]
@@ -574,8 +546,9 @@ Documentation-only changes must not silently upgrade theorem status.
 
 # Exact claim boundary
 
-The project currently proves a pinned conditional theorem stack and a nontrivial
-finite classical reference. It does not prove:
+The project currently proves a pinned conditional theorem stack, a nontrivial
+finite classical reference, and a selected finite-dimensional diagonal quantum
+reference. It does not prove:
 
 ```text
 exact full Paper I semantic equivalence
@@ -584,7 +557,9 @@ arbitrary learned-system theorem entry
 arbitrary learned generator coverage
 unbounded grammar or proof-search completeness
 strict useful improvement at every recursive step
-finite-dimensional quantum relative entropy or channel recovery
+general noncommuting quantum closure
+arbitrary CPTP data processing
+Petz or approximate recovery
 Python checker or generator correctness
 an executable recursive promotion loop
 empirical recursive self-improvement
