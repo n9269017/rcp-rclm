@@ -73,6 +73,12 @@ jobs:
           --package-root python/rcp_rclm_runtime_v2
           --out artifacts/runtime_v2_phase_2/${{ matrix.os }}/phase_2_unit.log
 
+      - name: Validate Phase 2 release evidence
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/validate_phase2_release.py
+          python/rcp_rclm_runtime_v2/phase_2_validation.json
+
       - name: Upload Python validation artifact
         if: always()
         uses: actions/upload-artifact@v4
