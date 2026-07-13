@@ -24,6 +24,7 @@ from .source_generator import (
     generate_reference_source,
 )
 from .source_guard import (
+    SOURCE_GUARD_VERSION,
     LeanSourceRejected,
     SourceGuardFinding,
     SourceGuardReport,
@@ -64,6 +65,7 @@ __all__ = [
     "LeanVerdictParseError",
     "PinnedLeanProject",
     "SOURCE_GENERATOR_VERSION",
+    "SOURCE_GUARD_VERSION",
     "SourceGuardFinding",
     "SourceGuardReport",
     "generate_reference_source",
