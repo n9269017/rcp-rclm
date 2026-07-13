@@ -25,11 +25,11 @@ noncomputable def identityChannel
     intro ρ
     exact ρ.matrix_posSemidef
 
-def selectedChannel : QuantumUpdate → FiniteDiagonalChannel 2
+noncomputable def selectedChannel : QuantumUpdate → FiniteDiagonalChannel 2
   | QuantumUpdate.stay => identityChannel 2
   | QuantumUpdate.swap => swapChannel
 
-def selectedRecoveryChannel : QuantumUpdate → FiniteDiagonalChannel 2
+noncomputable def selectedRecoveryChannel : QuantumUpdate → FiniteDiagonalChannel 2
   | QuantumUpdate.stay => identityChannel 2
   | QuantumUpdate.swap => swapChannel
 
