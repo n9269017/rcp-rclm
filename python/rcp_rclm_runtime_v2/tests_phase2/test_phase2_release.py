@@ -5,11 +5,14 @@ import subprocess
 import sys
 import unittest
 from pathlib import Path
+from typing import Final
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
 VALIDATION_PATH = PACKAGE_ROOT / "phase_2_validation.json"
 VALIDATOR_PATH = PACKAGE_ROOT / "tools" / "validate_phase2_release.py"
+VALIDATED_IMPLEMENTATION_HEAD: Final[str] = "0de375d1c615c8d73eb26b53a7bddb47eaccec70"
+VALIDATED_WORKFLOW_RUN: Final[int] = 29293545142
 
 
 class Phase2ReleaseEvidenceTests(unittest.TestCase):
@@ -26,10 +29,14 @@ class Phase2ReleaseEvidenceTests(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
         report = json.loads(completed.stdout)
         self.assertTrue(report["ok"])
-        self.assertEqual(report["workflow_run"], 29287943656)
+        self.assertEqual(report["workflow_run"], VALIDATED_WORKFLOW_RUN)
         self.assertEqual(
             report["validated_implementation_head"],
-            "01319d8be6c4025fb32092588e4f021a60596652",
+            VALIDATED_IMPLEMENTATION_HEAD,
+        )
+        self.assertEqual(
+            report["release_status"],
+            "phase_2_initial_lean_conformance_bridge_validated",
         )
 
     def test_mutated_claim_boundary_is_rejected(self) -> None:
