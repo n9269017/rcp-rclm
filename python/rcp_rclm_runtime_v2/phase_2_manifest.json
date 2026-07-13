@@ -8,6 +8,10 @@
     "rcp_and_rclm_checks_required": true,
     "reference_accepting_cases": 4,
     "reference_rejecting_cases": 6,
+    "source_guard_hash_recorded": true,
+    "source_guard_path_recorded": true,
+    "source_guard_position_recorded": true,
+    "source_guard_version": "rcp-rclm-lean-source-guard-v2.0.0",
     "structured_verdict_required": true
   },
   "claim_boundary": {
@@ -59,10 +63,10 @@
   "phase_status": "complete_clean_ci_validated",
   "schema_version": "rcp-rclm-runtime-phase-2-manifest-v1",
   "validation": {
-    "artifact": "runtime-v2-phase-2-lean-29287943656-1",
-    "artifact_sha256": "b90cd6e585bf7fc5e6c121391c6a4573cb0f5a7efa9e83807dabfb6e163ad9f2",
-    "implementation_head": "01319d8be6c4025fb32092588e4f021a60596652",
+    "artifact": "runtime-v2-phase-2-lean-29293545142-1",
+    "artifact_sha256": "2523cbf545ca91938732d40a0046ca046cf2f121af695de8b438e648e274261f",
+    "implementation_head": "0de375d1c615c8d73eb26b53a7bddb47eaccec70",
     "record": "phase_2_validation.json",
-    "workflow_run": 29287943656
+    "workflow_run": 29293545142
   }
 }
