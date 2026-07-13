@@ -364,9 +364,16 @@ noncomputable def kernelRefinement :
     rfl
   recoverPreserved := by
     intro state candidate endpoint
-    simpa [kernel, recover, quantumKernel] using
-      canonicalState_core
-        (quantumRecover state.core (forgetCandidate candidate) endpoint.core)
+    change
+      (canonicalState
+        (quantumRecover state.core (forgetCandidate candidate) endpoint.core)).core =
+      quantumRecover
+        state.core
+        { update := candidate.update.core
+          next := candidate.next.core }
+        endpoint.core
+    rw [canonicalState_core]
+    rfl
   recoveryBudgetPreserved := by
     intro state candidate
     rfl
@@ -656,7 +663,7 @@ structure QuantumArchitectureSuccessor
         ((forwardChannelOf candidate.update).apply (densityOf reference).density) =
       relativeEntropyOf state reference
 
-noncomputable theorem accepted_quantum_architecture_successor
+theorem accepted_quantum_architecture_successor
     {state : ArchitectureState}
     {candidate : Candidate ArchitectureState ArchitectureUpdate}
     {certificate : ArchitectureCertificate}
@@ -719,7 +726,7 @@ noncomputable theorem accepted_quantum_architecture_successor
       (densityOf state).density
       (densityOf reference).density
 
-noncomputable theorem improvement_quantum_architecture_successor :
+theorem improvement_quantum_architecture_successor :
     QuantumArchitectureSuccessor
       sourceState
       improvementCandidate
@@ -729,7 +736,7 @@ noncomputable theorem improvement_quantum_architecture_successor :
   · simp [kernel, protectedInvariant, sourceState]
   · rfl
 
-noncomputable theorem stability_quantum_architecture_successor :
+theorem stability_quantum_architecture_successor :
     QuantumArchitectureSuccessor
       targetState
       stabilityCandidate
