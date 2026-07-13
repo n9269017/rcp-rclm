@@ -71,7 +71,8 @@
     "concrete_paper_equivalence_complete": false
   },
   "rclm_architecture_validation": {
-    "validated_source_commit": "0731abfdf0edb940312a48051a3ca527c086af5b",
+    "validated_branch_head": "0731abfdf0edb940312a48051a3ca527c086af5b",
+    "validated_ci_checkout_commit": "90054eb9e2da0f91bd7233e882af6d8a0cdba462",
     "workflow_run_id": 29215941083,
     "workflow_conclusion": "success",
     "clean_build_job_count": 1945,
