@@ -9,6 +9,9 @@ import RcpRclmFormalCoreV2.MainTheorem
 #print axioms RcpRclmFormalCoreV2.RCLM.rclm_checker_pair_refines_rcp
 #print axioms RcpRclmFormalCoreV2.RCLM.rclm_recovery_laws_refine_rcp
 #print axioms RcpRclmFormalCoreV2.RCLM.rclm_monitor_refinement_valid
+#print axioms RcpRclmFormalCoreV2.RCLM.rclm_architecture_successor_theorem
+#print axioms RcpRclmFormalCoreV2.RCLM.conditional_infinite_architecture_trajectory_exists
+#print axioms RcpRclmFormalCoreV2.RCLM.infinite_architecture_step_result
 #print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.canonicalState_core
 #print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.canonicalUpdate_core
 #print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.canonicalCertificate_core
@@ -19,3 +22,8 @@ import RcpRclmFormalCoreV2.MainTheorem
 #print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.improvement_check_accepts
 #print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.improvement_refines_gate_b
 #print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.improvement_architecture_evidence
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.engine_relations_accept
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.architectureSuccessorAvailability
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.improvement_direct_engine_successor
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.classical_infinite_architecture_trajectory_exists
+#print axioms RcpRclmFormalCoreV2.RCLM.ClassicalBinary.classical_infinite_architecture_step_result
