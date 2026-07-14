@@ -18,6 +18,9 @@ from rcp_rclm_runtime.generator.records import (
     ReferenceGeneratorInputRecord,
     ReferenceWorkerResponse,
 )
+from rcp_rclm_runtime.generator.sandbox import (
+    REFERENCE_WORKER_AUDIT_POLICY_VERSION,
+)
 
 _WORKER_MODULE: Final[str] = "rcp_rclm_runtime.generator.worker"
 _ENVIRONMENT_KEYS: Final[Sequence[str]] = (
@@ -101,30 +104,28 @@ def run_reference_generator_process(
         parsed = load_json_strict(stdout, require_canonical=True)
         response = ReferenceWorkerResponse.from_json(parsed)
     except (RuntimeValidationError, TypeError, ValueError):
-        return GeneratorProcessObservation(
-            status="reject",
-            reason_codes=(GeneratorReasonCode.OUTPUT_INVALID,),
-            exit_code=normalized_exit_code,
-            timed_out=False,
-            input_hash=input_hash,
-            stdout_hash=sha256_hex(stdout),
-            stderr_hash=sha256_hex(stderr),
-            command_hash=command_hash,
-            environment_key_hash=environment_key_hash,
-            response=None,
+        return _invalid_output_observation(
+            normalized_exit_code,
+            input_hash,
+            stdout,
+            stderr,
+            command_hash,
+            environment_key_hash,
+            None,
         )
-    if response.input_hash != input_hash:
-        return GeneratorProcessObservation(
-            status="reject",
-            reason_codes=(GeneratorReasonCode.OUTPUT_INVALID,),
-            exit_code=normalized_exit_code,
-            timed_out=False,
-            input_hash=input_hash,
-            stdout_hash=sha256_hex(stdout),
-            stderr_hash=sha256_hex(stderr),
-            command_hash=command_hash,
-            environment_key_hash=environment_key_hash,
-            response=response,
+    if (
+        response.input_hash != input_hash
+        or response.sandbox.audit_policy_version
+        != REFERENCE_WORKER_AUDIT_POLICY_VERSION
+    ):
+        return _invalid_output_observation(
+            normalized_exit_code,
+            input_hash,
+            stdout,
+            stderr,
+            command_hash,
+            environment_key_hash,
+            response,
         )
     return GeneratorProcessObservation(
         status=response.status,
@@ -201,6 +202,29 @@ def run_reference_generator_replay(
         first=first,
         second=second,
         proposal=None,
+    )
+
+
+def _invalid_output_observation(
+    exit_code: int,
+    input_hash: str,
+    stdout: bytes,
+    stderr: bytes,
+    command_hash: str,
+    environment_key_hash: str,
+    response: ReferenceWorkerResponse | None,
+) -> GeneratorProcessObservation:
+    return GeneratorProcessObservation(
+        status="reject",
+        reason_codes=(GeneratorReasonCode.OUTPUT_INVALID,),
+        exit_code=exit_code,
+        timed_out=False,
+        input_hash=input_hash,
+        stdout_hash=sha256_hex(stdout),
+        stderr_hash=sha256_hex(stderr),
+        command_hash=command_hash,
+        environment_key_hash=environment_key_hash,
+        response=response,
     )
 
 
