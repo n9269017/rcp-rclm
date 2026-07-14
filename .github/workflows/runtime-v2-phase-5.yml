@@ -1,0 +1,245 @@
+name: Runtime v2 Phase 5A deterministic reference generator
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "python/rcp_rclm_runtime_v2/**"
+      - "python/rcp_rclm_executable_core_v2/contract/phase_5_reference_generator.schema.json"
+      - "lean/rcp_rclm_formal_core_v2/**"
+      - "scripts/generate_candidate.py"
+      - "docs/executable_core_v2/PHASE_5*.md"
+      - ".github/workflows/runtime-v2-phase-5.yml"
+  push:
+    branches:
+      - "agent/rcp-rclm-runtime-v2-phase-5-reference-generator"
+    paths:
+      - "python/rcp_rclm_runtime_v2/**"
+      - "python/rcp_rclm_executable_core_v2/contract/phase_5_reference_generator.schema.json"
+      - "lean/rcp_rclm_formal_core_v2/**"
+      - "scripts/generate_candidate.py"
+      - "docs/executable_core_v2/PHASE_5*.md"
+      - ".github/workflows/runtime-v2-phase-5.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generator:
+    name: Validate Phase 5A generator (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - "3.11"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install runtime package
+        run: python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+
+      - name: Compile Python source
+        run: >-
+          python -m compileall -q
+          python/rcp_rclm_runtime_v2
+          scripts/check_candidate.py
+          scripts/check_hardened_candidate.py
+          scripts/generate_candidate.py
+
+      - name: Validate source quality
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/validate_source_quality.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_5/${{ matrix.os }}/source_quality.json
+
+      - name: Run Phase 1 regression suite
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase1_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_5/${{ matrix.os }}/phase_1_regression.log
+
+      - name: Run Phase 2 bridge unit suite
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase2_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_5/${{ matrix.os }}/phase_2_regression.log
+
+      - name: Run Phase 3 checker unit suite
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase3_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_5/${{ matrix.os }}/phase_3_regression.log
+
+      - name: Run Phase 4 adversarial unit suite
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase4_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_5/${{ matrix.os }}/phase_4_regression.log
+
+      - name: Run Phase 5A reference-generator unit suite
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase5_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_5/${{ matrix.os }}/phase_5_generator.log
+
+      - name: Emit separate-process replay evidence
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase5_reference_replay.py
+          --outdir artifacts/runtime_v2_phase_5/${{ matrix.os }}/reference_replay
+
+      - name: Upload Phase 5A platform artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-v2-phase-5-${{ matrix.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v2_phase_5/${{ matrix.os }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  lean-pipeline:
+    name: Run pinned Phase 5A generator-to-checker pipeline
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Check out repository with formal history
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.11"
+
+      - name: Install runtime package
+        run: python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+
+      - name: Install pinned Lean toolchain
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          lake-package-directory: lean/rcp_rclm_formal_core_v2
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Resolve pinned dependency graph
+        working-directory: lean/rcp_rclm_formal_core_v2
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        run: lake update
+
+      - name: Fetch official mathlib build cache
+        working-directory: lean/rcp_rclm_formal_core_v2
+        run: lake exe cache get
+
+      - name: Build pinned Formal Core v2
+        working-directory: lean/rcp_rclm_formal_core_v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results
+          lake build > audit-results/phase_5_lake_build.log 2>&1
+          tail -n 40 audit-results/phase_5_lake_build.log
+
+      - name: Run bounded generator through Lean and hardened checker
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase5_reference_pipeline.py
+          --repo-root .
+          --outdir artifacts/runtime_v2_phase_5/lean_pipeline
+          --timeout-seconds 180
+
+      - name: Verify generated Lean source contains no admissions or local axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          generated_root=artifacts/runtime_v2_phase_5/lean_pipeline
+          if grep -RInE \
+              --include='*.lean' \
+              '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
+              "$generated_root"; then
+            echo "Generated Phase 5A certificate source contains an admitted-proof token." >&2
+            exit 1
+          fi
+          if grep -RInE \
+              --include='*.lean' \
+              '^[[:space:]]*(private[[:space:]]+)?axiom[[:space:]]+' \
+              "$generated_root"; then
+            echo "Generated Phase 5A certificate source contains a project-local axiom declaration." >&2
+            exit 1
+          fi
+
+      - name: Upload pinned Phase 5A pipeline artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-v2-phase-5-lean-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/runtime_v2_phase_5/lean_pipeline/
+            lean/rcp_rclm_formal_core_v2/audit-results/phase_5_lake_build.log
+          if-no-files-found: error
+          retention-days: 90
+
+  closure:
+    name: Verify Phase 5A generator closure
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs:
+      - generator
+      - lean-pipeline
+
+    steps:
+      - name: Emit closure record
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/runtime_v2_phase_5/final
+          cat > artifacts/runtime_v2_phase_5/final/workflow_closure.json <<JSON
+          {
+            "schema_id": "runtime.phase_5_workflow_closure.v2",
+            "head_sha": "${GITHUB_SHA}",
+            "workflow_run": "${GITHUB_RUN_ID}",
+            "workflow_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "python_platform_count": 3,
+            "separate_process_replay": true,
+            "bounded_initial_and_target_cases": 2,
+            "pinned_lean_pipeline": true,
+            "generated_source_guard": true,
+            "hardened_checker": true,
+            "ok": true
+          }
+          JSON
+
+      - name: Upload final Phase 5A artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-v2-phase-5-final-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v2_phase_5/final/
+          if-no-files-found: error
+          retention-days: 90
