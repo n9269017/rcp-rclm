@@ -157,6 +157,8 @@ class Phase3CheckerReport:
     evaluation_result: ComponentResultRecord
     protected_nonloss_result: ComponentResultRecord
     recovery_result: ComponentResultRecord
+    invariant_result: ComponentResultRecord
+    containment_result: ComponentResultRecord
     progress_result: ComponentResultRecord
     strict_witness_result: ComponentResultRecord
     trust_result: ComponentResultRecord
@@ -233,6 +235,8 @@ class Phase3CheckerReport:
             "evaluation_result": self.evaluation_result.to_json(),
             "protected_nonloss_result": self.protected_nonloss_result.to_json(),
             "recovery_result": self.recovery_result.to_json(),
+            "invariant_result": self.invariant_result.to_json(),
+            "containment_result": self.containment_result.to_json(),
             "progress_result": self.progress_result.to_json(),
             "strict_witness_result": self.strict_witness_result.to_json(),
             "trust_result": self.trust_result.to_json(),
