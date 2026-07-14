@@ -1,7 +1,8 @@
 # RCP/RCLM Runtime v2
 
 This package contains the deterministic Phase 1 runtime bedrock, the validated
-Phase 2 pinned Lean conformance bridge, and the Phase 3 deterministic checker.
+Phase 2 pinned Lean conformance bridge, the Phase 3 deterministic checker, and the
+Phase 4 hardened checker and adversarial rejection suite.
 
 ## Phase 1 bedrock
 
@@ -56,29 +57,50 @@ It recomputes:
 Candidate fields that merely claim preservation, containment, improvement, trust,
 or acceptance are not part of the request schema and are rejected as unknown.
 
-Run the checker from the repository root:
+## Phase 4 hardened checker and attack suite
+
+The hardened envelope composes the Phase 3 checker with independently measured
+package-integrity records. It recomputes:
+
+- predecessor and candidate semantic-tree hashes;
+- candidate parent package and parent manifest links;
+- candidate and certificate hashes;
+- trust-anchor, resource-record, checker-policy, Lean-policy, and claim hashes;
+- the pinned Phase 3 checker-manifest hash;
+- a transition-binding hash over the predecessor, candidate, certificate,
+  evaluation evidence, and Lean bridge report.
+
+The deterministic adversarial suite records at least 27 first-class cases covering
+schema attacks, evidence removal, parent/certificate replay, file and manifest
+tampering, invalid numerical data, selected Gate C scope violations, forged
+witnesses, insufficient interval margins, resource/provenance violations, and
+forbidden generated Lean source.
+
+Run the hardened checker from the repository root:
 
 ```bash
 python -m pip install --no-deps -e python/rcp_rclm_runtime_v2
-python scripts/check_candidate.py request.json --out checker_report.json
+python scripts/check_hardened_candidate.py request.json \
+  --out hardened_checker_report.json
 ```
 
-Run the Phase 3 unit suite with:
+Run the Phase 4 suites with:
 
 ```bash
-python python/rcp_rclm_runtime_v2/tools/run_phase3_tests.py \
+python python/rcp_rclm_runtime_v2/tools/run_phase4_tests.py \
   --package-root python/rcp_rclm_runtime_v2 \
-  --out artifacts/runtime_v2_phase_3/local/phase_3_checker.log
+  --out artifacts/runtime_v2_phase_4/local/phase_4_unit.log
+python python/rcp_rclm_runtime_v2/tools/run_phase4_adversarial.py \
+  --out artifacts/runtime_v2_phase_4/local/adversarial_suite.json
 ```
 
 ## Boundary
 
-The checker currently validates only the declared finite Gate B binary and
-selected Gate C diagonal-quantum scopes. It does not implement arbitrary
-noncommuting quantum objects, a generator, candidate realization, promotion,
-rollback, independent replay, PyTorch integration, or an external benchmark
-claim.
+The checker validates only the declared finite Gate B binary and selected Gate C
+diagonal-quantum scopes. It does not implement arbitrary noncommuting quantum
+objects, a generator, candidate realization, selection, promotion, rollback,
+independent replay, PyTorch integration, or an external benchmark claim.
 
-Even after Phase 3 CI is green, candidate promotion remains unlicensed until
-the Phase 4 adversarial and tamper-rejection suite closes the checker attack
-surface.
+A clean Phase 4 closure licenses development of the deterministic bounded reference
+generator. It does not make that generator trusted and does not license candidate
+promotion.
