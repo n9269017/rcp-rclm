@@ -14,7 +14,8 @@ immutable predecessor package
 → certificate construction outside the generator
 → typed update selection outside the generator
 → successor realization by applying the selected update
-→ generated Lean certificate and source guard
+→ direct pinned-Lean grammar conformance
+→ generated Lean candidate certificate and source guard
 → pinned Lean RCP/RCLM verdict
 → Phase 4 hardened checker verdict
 ```
@@ -44,6 +45,11 @@ initial  → word improve   → witness strict_improvement
 target   → word stabilize → witness stable_continuation
                            → proposal stabilize
 ```
+
+The live Phase 5A Lean job compiles a generated conformance file that checks the
+initial and target packet words, depth and proof bounds, witness and proposal maps,
+certificate and candidate maps, active grammar membership, and rejection of the
+inactive `rejected` word.
 
 The selected Gate C mathematics and checker remain available, but the formal project
 does not currently contain an equivalent Gate C bounded seed-library grammar.
@@ -93,16 +99,25 @@ stdout and stderr captured
 fixed timeout
 ```
 
-The worker installs a Python audit hook before parsing or interpreting the request.
-The hook rejects filesystem-write operations, process creation, and socket events.
+Package initialization is lazy so starting `rcp_rclm_runtime.generator.worker` does not
+load any checker module. The worker checks that no `rcp_rclm_runtime.checker` module is
+present before interpreting the request.
+
+The worker necessarily loads its fixed generator, schema, canonicalization, and
+mathematics modules during Python startup. After startup and after reading the bounded
+stdin payload, it installs a Python audit hook before parsing or interpreting the
+request. The hook rejects all later filesystem opens, filesystem mutations, process
+creation, and socket events. Thus the active proposal computation has no filesystem,
+network, subprocess, checker-module, or control-plane data path.
+
 The worker also emits structured sandbox evidence showing that checker input, trust
-anchors, manifest history, the promotion ledger, and reference-answer files were not
+anchors, manifest history, the promotion ledger, and reference-answer objects were not
 part of its request.
 
 The audit hook is a deterministic application-level boundary, not a claim of complete
 operating-system sandboxing against malicious native extensions. The Phase 6 realizer
-and Phase 7 controller must add the stronger OS-level filesystem and process boundary
-before an open-ended generator is admitted.
+and Phase 7 controller must add the stronger OS-level mount, process, and resource
+boundary before an open-ended generator is admitted.
 
 ## Deterministic replay
 
@@ -170,9 +185,10 @@ formed from the canonical lifted update and the computed canonical successor.
 
 ## Lean and checker boundary
 
-The realized candidate and independently constructed certificate are converted into
-the existing restricted Lean reference packet. Before compilation, the Phase 2 source
-guard rejects:
+The pinned workflow first compiles direct Lean assertions for the exact bounded seed
+grammar. The realized candidate and independently constructed certificate are then
+converted into the existing restricted Lean reference packet. Before either generated
+Lean source is compiled, the Phase 2 source guard rejects:
 
 ```text
 sorry
@@ -184,7 +200,8 @@ invalid UTF-8
 
 The pinned Lean bridge must return agreeing RCP and RCLM acceptance. The Phase 4
 hardened checker then recomputes the mathematical obligations and package-integrity
-bindings. The pipeline accepts only when all stages accept.
+bindings. The pipeline accepts only when direct grammar conformance, candidate Lean
+verification, and the hardened checker all accept.
 
 ## Structured evidence
 
@@ -197,8 +214,10 @@ untrusted proposal
 certificate construction
 selection
 realization
-generated Lean source and source-guard report
-Lean compilation and machine-readable verdict
+direct bounded-grammar Lean source and source-guard report
+direct bounded-grammar Lean compilation
+generated candidate Lean source and source-guard report
+candidate Lean compilation and machine-readable verdict
 hardened checker report
 content hashes linking every stage
 ```
@@ -235,7 +254,7 @@ unbounded grammar or proof-search completeness
 Gate C bounded generator refinement
 generator trust
 candidate promotion
-selector/realizer filesystem isolation
+production selector/realizer filesystem isolation
 independent replay without the generator
 LLM, program-synthesis, search, or PyTorch proposal correctness
 arbitrary learned-system entry
