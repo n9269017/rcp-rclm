@@ -59,7 +59,16 @@
   "package_name": "rcp-rclm-runtime-v2",
   "package_version": "0.5.0",
   "phase_name": "RCP/RCLM Executable Core v2 — Phase 5A deterministic bounded reference generator",
-  "phase_status": "implementation_pending_cross_platform_and_pinned_lean_validation",
+  "phase_status": "validated_at_clean_implementation_head",
   "schema_version": "rcp-rclm-runtime-phase-5a-manifest-v1",
-  "supported_scope": "gate_b_classical_bounded_seed_library"
+  "supported_scope": "gate_b_classical_bounded_seed_library",
+  "validation_evidence": {
+    "all_reference_loops_accepted": true,
+    "all_worker_replays_deterministic": true,
+    "cross_platform": true,
+    "pinned_lean_and_hardened_checker_path": true,
+    "validated_implementation_head": "ca6b7edd7df34b479be031c8cd87104db67614e9",
+    "workflow_conclusion": "success",
+    "workflow_run": 29309437018
+  }
 }
