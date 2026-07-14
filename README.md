@@ -2,14 +2,13 @@
 
 This repository contains the two companion RCP/RCLM manuscripts, the historical
 Lean v1 certificate, the completed pinned **RCP/RCLM Formal Core v2** Lean 4
-reference scopes, and the first three phases of the **Executable Core v2**
-transition.
+reference scopes, and Phases 0 through 4 of the **Executable Core v2** transition.
 
 The formal project proves a conditional successor-verification theorem stack. The
-Executable Core contract, deterministic bedrock, and finite-reference Lean bridge do
-not claim that checker soundness creates a successor, that every accepted successor
-is strictly useful, or that the current repository is an autonomous
-recursive-self-improvement system.
+Executable Core contract, deterministic bedrock, finite-reference Lean bridge,
+fail-closed checker, and adversarial rejection suite do not claim that checker
+soundness creates a successor, that every accepted successor is strictly useful, or
+that the current repository is an autonomous recursive-self-improvement system.
 
 ## Authoritative status
 
@@ -25,8 +24,9 @@ recursive-self-improvement system.
 | Executable Core v2 Phase 0 | Complete and merged | Frozen theorem-to-runtime object map, trust boundary, numerical semantics, serialization/hashing, acceptance semantics, and claim boundary |
 | Executable Core v2 Phase 1 | Complete and cross-platform validated | Immutable records, strict parsing, exact rationals, certified intervals, selected Gate B/Gate C mathematics, canonical hashing, RCLM mappings, source guard |
 | Executable Core v2 Phase 2 | Complete at the selected finite reference scope | Pinned formal-source/toolchain verification, generated Lean certificates, structured RCP/RCLM verdicts, and ten-case Python/Lean differential conformance |
-| Production fail-closed successor checker | Next phase; not implemented | No general candidate acceptance or promotion claim |
-| Generator, promotion loop, PyTorch, and benchmark adapters | Not licensed | No autonomous recursive-improvement or external benchmark claim |
+| Executable Core v2 Phase 3 | Complete and cross-platform validated at the selected scope | Deterministic pure checker, recomputed obligation bundle, structured reports, and packet-bound Lean evidence |
+| Executable Core v2 Phase 4 | Complete and cross-platform validated at the declared attack scope | Hardened package integrity, 27 deterministic replayed attacks, first-class rejection records, and pinned Lean/source-guard revalidation |
+| Generator, realizer, promotion, replay, PyTorch, and benchmark adapters | Not licensed | No generator trust, candidate promotion, autonomous recursive improvement, or external benchmark claim |
 
 The formal documentation is indexed in
 [`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md). The executable
@@ -75,19 +75,31 @@ docs/formal_core_v2/             theorem, gate, audit, and reproduction records
 docs/executable_core_v2/         theorem-to-runtime and runtime-phase records
 
 python/rcp_rclm_executable_core_v2/
-  contract/                       frozen Phase 0 machine-readable contract
+  contract/                       frozen schemas for Phases 0, 3, and 4
 
 python/rcp_rclm_runtime_v2/
-  rcp_rclm_runtime/               deterministic bedrock and pinned Lean bridge
+  rcp_rclm_runtime/
+    checker/                      Phase 3 checker and Phase 4 hardened envelope
+    adversarial/                  Phase 4 attack records and deterministic runner
+    lean_bridge/                  Phase 2 pinned Lean bridge
+    mathematics/                  exact Gate B and selected Gate C mathematics
   tests/                          Phase 1 deterministic tests and frozen vectors
-  tests_phase2/                   Phase 2 bridge and release-evidence tests
-  tools/                          validation, reporting, and bridge runners
+  tests_phase2/                   Phase 2 bridge tests
+  tests_phase3/                   Phase 3 checker tests
+  tests_phase4/                   Phase 4 hardened and adversarial tests
+  tools/                          validation, test, conformance, and report runners
+
+scripts/
+  check_candidate.py
+  check_hardened_candidate.py
 
 .github/workflows/
   formal-core-v2.yml
   executable-core-v2-contract.yml
   runtime-v2-phase-1.yml
   runtime-v2-phase-2.yml
+  runtime-v2-phase-3.yml
+  runtime-v2-phase-4.yml
 ```
 
 ## Formal Core v2 theorem shape
@@ -192,6 +204,48 @@ rejected wrong-successor, wrong-certificate, or malformed-certificate mutations.
 establishes agreement only for those ten selected cases; it is not the production
 successor checker and does not authorize promotion.
 
+### Phase 3 — deterministic checker
+
+Phase 3 is the first core executable decision engine. It is deterministic, pure over
+immutable input records, model-free, network-free, generator-independent, and
+fail-closed. It independently recomputes:
+
+```text
+typed successor and residuals
+state-derived exact distributions or diagonal spectra
+Shannon/von Neumann entropy and KL/QRE certified intervals
+protected non-loss and constructive recovery
+invariant, containment, progress, strict-witness, trust, resource, and domain checks
+RCLM-to-RCP refinement and preservation monitors
+exact packet binding to an accepting Phase 2 Lean report
+canonical artifact hashes
+```
+
+The final Boolean is derived from the structured tri-state report. Candidate fields
+that merely assert success are not accepted as evidence.
+
+### Phase 4 — adversarial and tamper rejection
+
+Phase 4 composes the checker with a package-integrity envelope and attacks the
+resulting boundary before a generator exists. The hardened layer recomputes:
+
+```text
+predecessor and candidate semantic-tree hashes
+parent package and parent-manifest links
+candidate and certificate hashes
+trust, resource, checker-policy, Lean-policy, and claim-boundary hashes
+pinned checker-manifest hash
+transition binding over predecessor, candidate, certificate, evaluation, and Lean evidence
+```
+
+The deterministic suite records malformed, replay, tamper, numerical, resource,
+trust, provenance, selected-quantum-scope, forged-witness, and generated-Lean-source
+attacks as first-class results. Every attack is executed twice, must reproduce the
+same structured observation hash, and must remain nonaccepting.
+
+A clean Phase 4 closure licenses development of the deterministic bounded reference
+generator. It does not make a generator trusted and does not authorize promotion.
+
 ## Build and validate Formal Core v2
 
 ```bash
@@ -215,15 +269,18 @@ lake env lean ../../docs/formal_core_v2/audit/GateCAxiomAudit.lean
 ```bash
 cd python/rcp_rclm_runtime_v2
 python -m pip install --no-deps -e .
-python -m compileall -q rcp_rclm_runtime tests tests_phase2 tools
+python -m compileall -q rcp_rclm_runtime tests tests_phase2 tests_phase3 tests_phase4 tools
 python tools/validate_source_quality.py --package-root . --out source_quality.json
 python tools/validate_phase1_release.py phase_1_validation.json
 python tools/validate_phase2_release.py phase_2_validation.json
 python -m unittest discover -s tests -v
 python -m unittest discover -s tests_phase2 -v
+python -m unittest discover -s tests_phase3 -v
+python -m unittest discover -s tests_phase4 -v
+python tools/run_phase4_adversarial.py --out phase_4_adversarial.json
 ```
 
-Run the initial pinned bridge from the repository root with:
+Run the pinned bridge from the repository root with:
 
 ```bash
 python python/rcp_rclm_runtime_v2/tools/run_phase2_conformance.py \
@@ -231,31 +288,42 @@ python python/rcp_rclm_runtime_v2/tools/run_phase2_conformance.py \
   --outdir artifacts/runtime_v2_phase_2/local
 ```
 
+Run the hardened checker with:
+
+```bash
+python scripts/check_hardened_candidate.py request.json \
+  --out hardened_checker_report.json
+```
+
 The authoritative workflows are:
 
 ```text
 .github/workflows/runtime-v2-phase-1.yml
 .github/workflows/runtime-v2-phase-2.yml
+.github/workflows/runtime-v2-phase-3.yml
+.github/workflows/runtime-v2-phase-4.yml
 ```
 
 ## Claim boundary
 
-The repository establishes a clean, pinned formal theorem stack, a deterministic
-runtime bedrock, and a finite-reference Python/Lean conformance bridge. It does
-**not** establish:
+The repository establishes a clean, pinned formal theorem stack, deterministic
+runtime mathematics, a finite-reference Python/Lean conformance bridge, a selected-
+scope executable checker, and a deterministic adversarial rejection implementation.
+It does **not** establish:
 
 ```text
 exact full Paper I or Paper II semantic equivalence
 arbitrary learned-system entry
 arbitrary or unbounded generator/proof-search completeness
+generator trust or generator correctness
 strict useful improvement at every recursive step
 general noncommuting quantum relative entropy or channel theorems
 arbitrary CPTP data processing
 Petz or approximate recovery
-general Python-to-Lean refinement beyond the ten selected reference/mutation cases
-production successor-checker soundness
+general Python-to-Lean refinement beyond the selected reference packets
 candidate promotion authorization
 an executable recursive promotion loop
+independent replay
 empirical recursive self-improvement
 external benchmark performance
 ```
