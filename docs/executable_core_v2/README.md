@@ -169,7 +169,8 @@ Phase 3 checker request
 
 | Document | Purpose |
 |---|---|
-| `PHASE_5A_REFERENCE_GENERATOR.md` | Bounded grammar, separate-process boundary, replay, certificate construction, selection, realization, and checker integration |
+| `PHASE_5A_REFERENCE_GENERATOR.md` | Bounded grammar, separate-process boundary, replay, direct Lean grammar conformance, certificate construction, selection, realization, and checker integration |
+| `PHASE_5A_IMPLEMENTATION_NOTES.md` | Modular package structure and proposal/control-plane separation |
 | `PHASE_5A_EXIT_CRITERIA.md` | Exact process-isolation, replay, Lean, checker, cross-platform, and licensing conditions |
 | `PHASE_5B_OPEN_ENDED_BOUNDARY.md` | Frozen requirements for later search, synthesis, LLM, and learned proposal backends |
 
@@ -190,20 +191,24 @@ Phase 5A performs:
 
 ```text
 canonical read-only generator input
+→ lazy package startup without checker imports
 → isolated separate worker process
 → bounded improve/stabilize proposal
 → deterministic second-process replay
 → independent certificate construction
 → independent typed update selection
 → successor computation from predecessor plus update
-→ generated Lean source and mandatory source guard
+→ direct generated-Lean grammar conformance and mandatory source guard
+→ generated candidate Lean source and mandatory source guard
 → pinned Lean RCP/RCLM verification
 → Phase 4 hardened checker
 → structured pipeline report and artifact hashes
 ```
 
-The current bounded generator scope is the concrete Gate B classical seed grammar.
-No equivalent Gate C bounded seed-library grammar is claimed.
+After startup, the worker audit hook denies all filesystem opens and mutations,
+sockets, and subprocess creation. The current bounded generator scope is the concrete
+Gate B classical seed grammar. No equivalent Gate C bounded seed-library grammar is
+claimed.
 
 ## Dependency order
 
