@@ -8,7 +8,7 @@ from typing import Final
 from rcp_rclm_runtime.generator.records import WorkerSandboxRecord
 
 REFERENCE_WORKER_AUDIT_POLICY_VERSION: Final[str] = (
-    "rcp-rclm-phase5-reference-worker-audit-v1"
+    "rcp-rclm-phase5-reference-worker-audit-v2"
 )
 
 _DENIED_EVENTS: Final[frozenset[str]] = frozenset(
@@ -35,14 +35,7 @@ _DENIED_EVENTS: Final[frozenset[str]] = frozenset(
 
 def audit_denial_reason(event: str, args: Sequence[object]) -> str | None:
     if event == "open":
-        mode = args[1] if len(args) > 1 else None
-        flags = args[2] if len(args) > 2 else None
-        if isinstance(mode, str) and any(token in mode for token in ("w", "a", "x", "+")):
-            return "filesystem_write_denied"
-        if isinstance(flags, int):
-            write_flags = os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND
-            if flags & write_flags:
-                return "filesystem_write_denied"
+        return "filesystem_access_denied"
     if event in _DENIED_EVENTS:
         return "mutation_or_subprocess_denied"
     if event.startswith("socket."):
@@ -61,6 +54,7 @@ def install_reference_worker_audit_hook() -> None:
 
 
 def run_reference_worker_sandbox_self_test() -> WorkerSandboxRecord:
+    _require_denied("open", ("probe", "rb", os.O_RDONLY))
     _require_denied("open", ("probe", "wb", os.O_WRONLY | os.O_CREAT))
     _require_denied("socket.__new__", ())
     _require_denied("subprocess.Popen", ())
