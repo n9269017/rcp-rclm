@@ -1,0 +1,102 @@
+{
+  "artifacts": {
+    "final": {
+      "name": "runtime-v2-phase-5a-final-29309437018-1",
+      "sha256": "6301c4476ecf653f0eebda02c6b3c9b1cff7ee97431bf30192bbf59b7751701b"
+    },
+    "lean_and_reference_loop": {
+      "name": "runtime-v2-phase-5a-lean-29309437018-1",
+      "sha256": "4dce3c45b8f5975bd9c23ab8f522929987d8b70a916c5e9030afd8663d82ae8a"
+    },
+    "python_macos": {
+      "name": "runtime-v2-phase-5a-macos-latest-29309437018-1",
+      "sha256": "7546cd2ea7677d315e06b85a07e1cfbb4edfdbe4177aad6c612ee9d3e1938975"
+    },
+    "python_ubuntu": {
+      "name": "runtime-v2-phase-5a-ubuntu-latest-29309437018-1",
+      "sha256": "383b6424920102d20647799261b59a77ff577a2d237e251472ff6b669023e601"
+    },
+    "python_windows": {
+      "name": "runtime-v2-phase-5a-windows-latest-29309437018-1",
+      "sha256": "19c865067275c289fc77826efd68f2885cc00ed290d983d0ea8af7ab8f389f5a"
+    }
+  },
+  "claim_boundary": {
+    "candidate_promotion_licensed": false,
+    "external_benchmark_claim": false,
+    "general_noncommuting_quantum": false,
+    "generator_trusted": false,
+    "independent_replay_established": false,
+    "open_ended_generator_implemented": false,
+    "phase_5a_bounded_reference_path_closed": true,
+    "real_filesystem_successor_implemented": false,
+    "unbounded_rsi_claim": false
+  },
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "jobs": {
+    "phase_0_contract": "success",
+    "phase_1_bedrock": "success",
+    "phase_2_lean_bridge": "success",
+    "phase_3_checker": "success",
+    "phase_4_adversarial": "success",
+    "phase_5a_macos": "success",
+    "phase_5a_pinned_lean_loop": "success",
+    "phase_5a_ubuntu": "success",
+    "phase_5a_windows": "success",
+    "phase_5a_workflow_closure": "success"
+  },
+  "licenses_after_phase_5a": {
+    "candidate_promotion": false,
+    "generator_trust": false,
+    "phase_5b_open_ended_generator_development": true,
+    "phase_6_realizer_development": true,
+    "promotion_controller": false,
+    "pytorch_backend": false
+  },
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 5A deterministic bounded reference generator",
+  "release_status": "phase_5a_bounded_reference_generator_validated",
+  "schema_version": "rcp-rclm-runtime-phase-5a-validation-v1",
+  "suite": {
+    "all_reference_loops_accepted": true,
+    "all_worker_replays_deterministic": true,
+    "generator_success_assertions_consumed": false,
+    "phase_1_test_count": 74,
+    "phase_2_accepting_case_count": 4,
+    "phase_2_differential_case_count": 10,
+    "phase_2_rejecting_case_count": 6,
+    "phase_2_test_count": 19,
+    "phase_3_test_count": 20,
+    "phase_4_test_count": 10,
+    "phase_5a_process_case_count": 2,
+    "phase_5a_reference_loop_count": 2,
+    "phase_5a_test_count": 18,
+    "pinned_formal_core_build_job_count": 2636,
+    "python_file_count": 103,
+    "worker_certificate_fields_consumed": false,
+    "worker_successor_fields_consumed": false
+  },
+  "validated_implementation_head": "ca6b7edd7df34b479be031c8cd87104db67614e9",
+  "validation_summary": {
+    "cross_platform_generator_process": true,
+    "generated_source_admission_scan": true,
+    "hardened_checker_acceptance": true,
+    "host_owned_certificate_construction": true,
+    "host_owned_logical_realization": true,
+    "pinned_lean_reference_loop": true,
+    "proposal_schema_and_hash_validation": true,
+    "separate_process_worker": true,
+    "single_proposal_selection": true,
+    "source_quality": true,
+    "two_run_deterministic_replay": true,
+    "worker_capability_source_guard": true
+  },
+  "workflow_conclusion": "success",
+  "workflow_runs": {
+    "phase_0": 29309437001,
+    "phase_1": 29309436998,
+    "phase_2": 29309437021,
+    "phase_3": 29309437007,
+    "phase_4": 29309437036,
+    "phase_5a": 29309437018
+  }
+}
