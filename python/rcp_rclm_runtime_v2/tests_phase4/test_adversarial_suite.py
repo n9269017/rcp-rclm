@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import unittest
 
-from rcp_rclm_runtime.adversarial.runner import run_phase4_adversarial_suite
+from rcp_rclm_runtime.adversarial.suite import run_phase4_adversarial_suite
+from rcp_rclm_runtime.schema.verdict import ReasonCode
 
 
 class Phase4AdversarialSuiteTests(unittest.TestCase):
@@ -49,6 +50,20 @@ class Phase4AdversarialSuiteTests(unittest.TestCase):
                 self.assertEqual(len(result.first_observation_hash), 64)
                 self.assertEqual(len(result.second_observation_hash), 64)
                 self.assertEqual(len(result.result_hash), 64)
+
+    def test_coherent_candidate_tree_substitution_is_rejected(self) -> None:
+        report = run_phase4_adversarial_suite()
+        result = next(
+            item
+            for item in report.results
+            if item.case_id == "phase4.package.tampered_candidate_file"
+        )
+        self.assertEqual(result.observed_verdict, "reject")
+        self.assertIn(ReasonCode.HASH_MISMATCH.value, result.observed_reason_codes)
+        self.assertEqual(
+            result.to_json()["evidence"]["attack"],
+            "coherent file-record and semantic-tree substitution",
+        )
 
     def test_forbidden_lean_tokens_are_individually_recorded(self) -> None:
         report = run_phase4_adversarial_suite()
