@@ -6,6 +6,7 @@ from dataclasses import replace
 from phase5_helpers import accepting_lean_report
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
 from rcp_rclm_runtime.errors import SchemaValidationError
+from rcp_rclm_runtime.schema._common import thaw_json
 from rcp_rclm_runtime.generator.pipeline import (
     finalize_reference_transition,
     prepare_reference_transition,
@@ -19,6 +20,7 @@ from rcp_rclm_runtime.generator.reference import (
     build_reference_generator_input,
     reference_generator_policy,
 )
+from rcp_rclm_runtime.generator.sandbox import audit_denial_reason
 
 
 class Phase5ReferenceGeneratorProcessTests(unittest.TestCase):
@@ -102,6 +104,16 @@ class Phase5ReferenceGeneratorProcessTests(unittest.TestCase):
         self.assertFalse(sandbox.promotion_ledger_present)
         self.assertFalse(sandbox.reference_answer_present)
 
+    def test_worker_audit_denies_all_filesystem_reads_and_writes(self) -> None:
+        self.assertEqual(
+            audit_denial_reason("open", ("probe", "rb", 0)),
+            "filesystem_access_denied",
+        )
+        self.assertEqual(
+            audit_denial_reason("open", ("probe", "wb", 1)),
+            "filesystem_access_denied",
+        )
+
     def test_input_schema_contains_only_declared_read_only_inputs(self) -> None:
         value = build_reference_generator_input("initial").to_json()
         self.assertEqual(
@@ -144,7 +156,9 @@ class Phase5ReferencePipelineTests(unittest.TestCase):
             canonical_json_hash(generator_input.predecessor_package.state.to_json()),
         )
         self.assertEqual(
-            prepared.certificate_construction.certificate.core.value.items[0][1],
+            thaw_json(
+                prepared.certificate_construction.certificate.core.value
+            )["certificate"],
             "improvement",
         )
         report = finalize_reference_transition(
