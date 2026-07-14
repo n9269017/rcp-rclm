@@ -4,8 +4,9 @@ import os
 import subprocess
 import sys
 import tempfile
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Final, Mapping
+from typing import Final
 
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, sha256_hex
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes, load_json_strict
@@ -19,7 +20,7 @@ from rcp_rclm_runtime.generator.records import (
 )
 
 _WORKER_MODULE: Final[str] = "rcp_rclm_runtime.generator.worker"
-_ENVIRONMENT_KEYS: Final[tuple[str, ...]] = (
+_ENVIRONMENT_KEYS: Final[Sequence[str]] = (
     "COMSPEC",
     "LANG",
     "LC_ALL",
