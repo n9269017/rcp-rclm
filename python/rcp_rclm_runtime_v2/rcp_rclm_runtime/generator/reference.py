@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from typing import Final, Literal
 
 from rcp_rclm_runtime.canonical.hashing import (
@@ -176,7 +177,7 @@ def build_reference_generator_input(
 
 def interpret_reference_input(
     generator_input: ReferenceGeneratorInputRecord,
-) -> tuple[UntrustedProposalRecord | None, tuple[GeneratorReasonCode, ...]]:
+) -> tuple[UntrustedProposalRecord | None, Sequence[GeneratorReasonCode]]:
     policy_reasons = _policy_reasons(generator_input.policy)
     if policy_reasons:
         return None, policy_reasons
@@ -247,14 +248,14 @@ def interpret_reference_input(
 
 def _policy_reasons(
     policy: ReferenceGeneratorPolicyRecord,
-) -> tuple[GeneratorReasonCode, ...]:
+) -> Sequence[GeneratorReasonCode]:
     expected = reference_generator_policy()
     return () if policy == expected else (GeneratorReasonCode.POLICY_MISMATCH,)
 
 
 def _objective_reasons(
     objective: DeclaredObjectiveRecord,
-) -> tuple[GeneratorReasonCode, ...]:
+) -> Sequence[GeneratorReasonCode]:
     if objective.objective_id != REFERENCE_GENERATOR_OBJECTIVE_ID:
         return (GeneratorReasonCode.OBJECTIVE_MISMATCH,)
     if (
@@ -270,7 +271,7 @@ def _budget_reasons(
     budget: GeneratorResourceBudgetRecord,
     *,
     resource_units: int,
-) -> tuple[GeneratorReasonCode, ...]:
+) -> Sequence[GeneratorReasonCode]:
     sufficient = (
         budget.proposal_limit >= REFERENCE_PROPOSAL_LIMIT
         and budget.word_depth_limit >= REFERENCE_WORD_DEPTH
