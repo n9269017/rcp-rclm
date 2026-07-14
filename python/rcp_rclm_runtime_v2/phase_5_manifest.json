@@ -2,6 +2,7 @@
   "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
   "generator_boundary": {
     "candidate_assertions_authoritative": false,
+    "checker_module_loaded_in_worker": false,
     "checker_source_access": false,
     "generator_trusted": false,
     "model_free": true,
@@ -12,16 +13,18 @@
     "reference_answer_access": false,
     "separate_process": true,
     "trust_anchor_access": false,
-    "worker_file_writes": false
+    "worker_filesystem_access_after_startup": false
   },
   "implemented": {
     "bounded_seed_grammar": true,
     "canonical_generator_input": true,
     "certificate_construction_after_proposal": true,
     "deterministic_two_process_replay": true,
+    "direct_pinned_lean_grammar_conformance": true,
     "generated_lean_source_guard": true,
     "hardened_checker_integration": true,
     "initial_improvement_word": true,
+    "lazy_generator_package_initialization": true,
     "pinned_lean_bridge_integration": true,
     "proposal_binding_hashes": true,
     "read_only_worker_audit_hook": true,
@@ -38,6 +41,7 @@
     "active_target_grammar": [
       "stabilize"
     ],
+    "direct_generated_lean_conformance": true,
     "maximum_proof_length": 1,
     "maximum_word_depth": 1,
     "rejected_word_active": false,
