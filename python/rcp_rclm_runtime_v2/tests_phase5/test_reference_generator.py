@@ -6,7 +6,9 @@ from dataclasses import replace
 from phase5_helpers import accepting_lean_report
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
 from rcp_rclm_runtime.errors import SchemaValidationError
+from rcp_rclm_runtime.lean_bridge.source_guard import scan_source_bytes
 from rcp_rclm_runtime.schema._common import thaw_json
+from rcp_rclm_runtime.generator.lean_conformance import reference_grammar_lean_source
 from rcp_rclm_runtime.generator.pipeline import (
     finalize_reference_transition,
     prepare_reference_transition,
@@ -20,7 +22,10 @@ from rcp_rclm_runtime.generator.reference import (
     build_reference_generator_input,
     reference_generator_policy,
 )
-from rcp_rclm_runtime.generator.sandbox import audit_denial_reason
+from rcp_rclm_runtime.generator.sandbox import (
+    REFERENCE_WORKER_AUDIT_POLICY_VERSION,
+    audit_denial_reason,
+)
 
 
 class Phase5ReferenceGeneratorProcessTests(unittest.TestCase):
@@ -95,6 +100,10 @@ class Phase5ReferenceGeneratorProcessTests(unittest.TestCase):
             build_reference_generator_input("initial")
         )
         sandbox = observation.response.sandbox
+        self.assertEqual(
+            sandbox.audit_policy_version,
+            REFERENCE_WORKER_AUDIT_POLICY_VERSION,
+        )
         self.assertEqual(sandbox.file_write_probe, "denied")
         self.assertEqual(sandbox.network_probe, "denied")
         self.assertEqual(sandbox.subprocess_probe, "denied")
@@ -145,6 +154,20 @@ class Phase5ReferenceGeneratorProcessTests(unittest.TestCase):
 
 
 class Phase5ReferencePipelineTests(unittest.TestCase):
+    def test_generated_grammar_source_is_clean_and_binds_exact_words(self) -> None:
+        source = reference_grammar_lean_source()
+        report = scan_source_bytes(
+            source,
+            source_path="generated/Phase5AReferenceGrammarConformance.lean",
+        )
+        self.assertTrue(report.clean)
+        text = source.decode("utf-8")
+        self.assertIn("initialBoundedSeedPacket.word", text)
+        self.assertIn("targetBoundedSeedPacket.word", text)
+        self.assertIn("boundedWordDepth", text)
+        self.assertIn("boundedProofLength", text)
+        self.assertIn("BoundedPacketWord.rejected ∉", text)
+
     def test_initial_pipeline_constructs_and_accepts_without_manual_successor(self) -> None:
         generator_input = build_reference_generator_input("initial")
         prepared = prepare_reference_transition(generator_input)
