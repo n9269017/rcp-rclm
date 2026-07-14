@@ -25,7 +25,7 @@ that the current repository is an autonomous recursive-self-improvement system.
 | Executable Core v2 Phase 1 | Complete and cross-platform validated | Immutable records, strict parsing, exact rationals, certified intervals, selected Gate B/Gate C mathematics, canonical hashing, RCLM mappings, source guard |
 | Executable Core v2 Phase 2 | Complete at the selected finite reference scope | Pinned formal-source/toolchain verification, generated Lean certificates, structured RCP/RCLM verdicts, and ten-case Python/Lean differential conformance |
 | Executable Core v2 Phase 3 | Complete and cross-platform validated at the selected scope | Deterministic pure checker, recomputed obligation bundle, structured reports, and packet-bound Lean evidence |
-| Executable Core v2 Phase 4 | Implemented; exact-head validation in progress | Hardened package integrity, deterministic replayed attacks, first-class rejection records, and pinned Lean/source-guard revalidation |
+| Executable Core v2 Phase 4 | Complete and cross-platform validated at the declared attack scope | Hardened package integrity, 27 deterministic replayed attacks, first-class rejection records, and pinned Lean/source-guard revalidation |
 | Generator, realizer, promotion, replay, PyTorch, and benchmark adapters | Not licensed | No generator trust, candidate promotion, autonomous recursive improvement, or external benchmark claim |
 
 The formal documentation is indexed in
