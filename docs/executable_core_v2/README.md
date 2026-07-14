@@ -9,8 +9,8 @@ executable implementation that follows the completed Formal Core v2 Lean project
 Phase 0 theorem-to-runtime contract: complete and merged
 Phase 1 deterministic runtime bedrock: complete and cross-platform validated
 Phase 2 initial pinned Lean conformance bridge: complete and validated
-Phase 3 deterministic fail-closed checker: implementation complete and cross-platform validated
-Phase 4 adversarial and tamper rejection: implementation complete; cross-platform validation pending
+Phase 3 deterministic fail-closed checker: complete and cross-platform validated
+Phase 4 adversarial and tamper rejection: complete and cross-platform validated
 Mature canonical-packet Lean executable: not implemented
 Untrusted generator: not implemented
 Promotion and rollback controller: not implemented
@@ -133,13 +133,15 @@ strict immutable request parsing
 | Document | Purpose |
 |---|---|
 | `PHASE_4_ADVERSARIAL_REJECTION.md` | Hardened package-integrity envelope, attack matrix, first-class results, and claim boundary |
-| `PHASE_4_EXIT_CRITERIA.md` | Exact rejection, replay, tamper, cross-platform, and licensing conditions |
+| `PHASE_4_EXIT_CRITERIA.md` | Closed rejection, replay, tamper, cross-platform, and licensing criteria |
+| `PHASE_4_VALIDATION.md` | Exact clean implementation head, workflow, attack totals, Lean revalidation, and artifact digests |
 
 Machine-readable Phase 4 records are:
 
 ```text
 python/rcp_rclm_executable_core_v2/contract/phase_4_adversarial.schema.json
 python/rcp_rclm_runtime_v2/phase_4_manifest.json
+python/rcp_rclm_runtime_v2/phase_4_validation.json
 ```
 
 The hardened and adversarial packages are:
@@ -159,6 +161,7 @@ Phase 3 checker request
 → two independent observations per attack
 → first-class attack result records
 → canonical suite report and artifact hashes
+→ pinned Lean build and generated-source hygiene revalidation
 ```
 
 The generator, selector, realizer, promotion controller, replay layer, and
@@ -171,7 +174,7 @@ frozen Phase 0 contract
 → deterministic Phase 1 runtime bedrock
 → completed Phase 2 pinned Lean bridge and differential conformance
 → Phase 3 fail-closed deterministic checker
-→ Phase 4 adversarial rejection suite
+→ completed Phase 4 adversarial rejection suite
 → untrusted predecessor-driven generator
 → selector and successor realizer
 → atomic promotion and rollback controller
