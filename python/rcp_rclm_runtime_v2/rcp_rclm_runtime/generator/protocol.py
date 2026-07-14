@@ -72,16 +72,25 @@ class ReferenceGeneratorPolicyRecord:
     schema_id: ClassVar[str] = REFERENCE_POLICY_SCHEMA_ID
 
     def __post_init__(self) -> None:
-        for name in ("grammar_id", "implementation_id", "formal_source_commit", "policy_version"):
-            require_string(getattr(self, name), f"reference_policy.{name}")
+        for name, value in (
+            ("grammar_id", self.grammar_id),
+            ("implementation_id", self.implementation_id),
+            ("formal_source_commit", self.formal_source_commit),
+            ("policy_version", self.policy_version),
+        ):
+            require_string(value, f"reference_policy.{name}")
         _require_exact(self.scope, "gate_b_classical", "reference_policy.scope")
         _require_exact(
             self.process_mode,
             "isolated_stdin_stdout",
             "reference_policy.process_mode",
         )
-        for name in ("max_word_depth", "max_proof_length", "max_proposals"):
-            _require_positive(getattr(self, name), f"reference_policy.{name}")
+        for name, value in (
+            ("max_word_depth", self.max_word_depth),
+            ("max_proof_length", self.max_proof_length),
+            ("max_proposals", self.max_proposals),
+        ):
+            _require_positive(value, f"reference_policy.{name}")
 
     @property
     def policy_hash(self) -> str:
@@ -207,14 +216,14 @@ class ReferenceBudgetRecord:
     schema_id: ClassVar[str] = REFERENCE_BUDGET_SCHEMA_ID
 
     def __post_init__(self) -> None:
-        for name in (
-            "max_budget_units",
-            "max_word_depth",
-            "max_proof_length",
-            "max_proposals",
-            "process_timeout_seconds",
+        for name, value in (
+            ("max_budget_units", self.max_budget_units),
+            ("max_word_depth", self.max_word_depth),
+            ("max_proof_length", self.max_proof_length),
+            ("max_proposals", self.max_proposals),
+            ("process_timeout_seconds", self.process_timeout_seconds),
         ):
-            _require_positive(getattr(self, name), f"reference_budget.{name}")
+            _require_positive(value, f"reference_budget.{name}")
         if self.process_timeout_seconds > 300:
             raise SchemaValidationError("reference_budget.process_timeout_seconds", "timeout must not exceed 300 seconds")
 
@@ -269,8 +278,12 @@ class GeneratorPredecessorViewRecord:
 
     def __post_init__(self) -> None:
         require_string(self.package_id, "generator_predecessor.package_id")
-        for name in ("manifest_hash", "semantic_tree_hash", "state_hash"):
-            validate_hash256(getattr(self, name), f"generator_predecessor.{name}")
+        for name, value in (
+            ("manifest_hash", self.manifest_hash),
+            ("semantic_tree_hash", self.semantic_tree_hash),
+            ("state_hash", self.state_hash),
+        ):
+            validate_hash256(value, f"generator_predecessor.{name}")
         if canonical_json_hash(self.state.to_json()) != self.state_hash:
             raise SchemaValidationError("generator_predecessor.state_hash", "state hash does not match canonical state")
         if not isinstance(self.state.core, ClassicalBinaryStateRecord):
@@ -321,6 +334,11 @@ class ReferenceGeneratorInputRecord:
         _require_exact(self.contract_version, CONTRACT_VERSION, "reference_generator_input.contract_version")
         if self.policy.scope != self.objective.scope:
             raise SchemaValidationError("reference_generator_input.scope", "policy and objective scopes differ")
+        if self.predecessor.package_id != f"{self.transition_id}.predecessor":
+            raise SchemaValidationError(
+                "reference_generator_input.predecessor.package_id",
+                "predecessor package ID is not bound to the transition ID",
+            )
         if self.budget.max_word_depth < self.policy.max_word_depth:
             raise SchemaValidationError("reference_generator_input.budget.max_word_depth", "budget below policy bound")
         if self.budget.max_proof_length < self.policy.max_proof_length:
@@ -377,8 +395,13 @@ class ReferenceProposalRecord:
     schema_id: ClassVar[str] = REFERENCE_PROPOSAL_SCHEMA_ID
 
     def __post_init__(self) -> None:
-        for name in ("request_hash", "policy_hash", "predecessor_manifest_hash", "objective_hash"):
-            validate_hash256(getattr(self, name), f"reference_proposal.{name}")
+        for name, value in (
+            ("request_hash", self.request_hash),
+            ("policy_hash", self.policy_hash),
+            ("predecessor_manifest_hash", self.predecessor_manifest_hash),
+            ("objective_hash", self.objective_hash),
+        ):
+            validate_hash256(value, f"reference_proposal.{name}")
         _require_exact_set(self.word, {"improve", "stabilize"}, "reference_proposal.word")
         _require_exact_set(
             self.witness,
@@ -386,8 +409,12 @@ class ReferenceProposalRecord:
             "reference_proposal.witness",
         )
         _require_exact_set(self.proposal, {"improve", "stabilize"}, "reference_proposal.proposal")
-        for name in ("word_depth", "proof_length", "budget_units_used"):
-            _require_nonnegative(getattr(self, name), f"reference_proposal.{name}")
+        for name, value in (
+            ("word_depth", self.word_depth),
+            ("proof_length", self.proof_length),
+            ("budget_units_used", self.budget_units_used),
+        ):
+            _require_nonnegative(value, f"reference_proposal.{name}")
 
     @property
     def proposal_hash(self) -> str:
