@@ -54,6 +54,19 @@ def install_reference_worker_audit_hook() -> None:
 
 
 def run_reference_worker_sandbox_self_test() -> WorkerSandboxRecord:
+    forbidden_modules = tuple(
+        sorted(
+            module_name
+            for module_name in sys.modules
+            if module_name == "rcp_rclm_runtime.checker"
+            or module_name.startswith("rcp_rclm_runtime.checker.")
+        )
+    )
+    if forbidden_modules:
+        raise RuntimeError(
+            "generator worker loaded checker modules before isolation: "
+            + ",".join(forbidden_modules)
+        )
     _require_denied("open", ("probe", "rb", os.O_RDONLY))
     _require_denied("open", ("probe", "wb", os.O_WRONLY | os.O_CREAT))
     _require_denied("socket.__new__", ())
