@@ -1,18 +1,23 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from collections.abc import Sequence
-from typing import Final
+from dataclasses import dataclass
+from typing import ClassVar, Final
 
 from rcp_rclm_runtime._version import FORMAL_SOURCE_COMMIT
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
+from rcp_rclm_runtime.schema._common import (
+    TypedArtifactRecord,
+    require_schema_id,
+    strict_object,
+)
 from rcp_rclm_runtime.schema.candidate import CandidateRecord
-from rcp_rclm_runtime.schema._common import TypedArtifactRecord
 from rcp_rclm_runtime.schema.certificate import RclmCertificatePacketRecord
 from rcp_rclm_runtime.schema.state import RclmStateRecord, RcpStateRecord
 from rcp_rclm_runtime.schema.update import RclmUpdateRecord, RcpUpdateRecord
 
 REFINEMENT_MAPPING_ID: Final[str] = "rclm-to-rcp-selected-gate-b-c-v2"
+RCLM_CANDIDATE_SCHEMA_ID: Final[str] = "rclm.candidate.v2"
 PRESERVED_KERNEL_FIELDS: Final[Sequence[str]] = (
     "apply",
     "admissible",
@@ -37,9 +42,27 @@ class RclmCandidateRecord:
     update: RclmUpdateRecord
     next: RclmStateRecord
 
+    schema_id: ClassVar[str] = RCLM_CANDIDATE_SCHEMA_ID
+
+    def __post_init__(self) -> None:
+        CandidateRecord(update=self.update.core, next=self.next.core)
+
+    @classmethod
+    def from_json(
+        cls,
+        value: object,
+        path: str = "rclm_candidate",
+    ) -> RclmCandidateRecord:
+        obj = strict_object(value, path, {"schema_id", "update", "next"})
+        require_schema_id(obj["schema_id"], f"{path}.schema_id", cls.schema_id)
+        return cls(
+            update=RclmUpdateRecord.from_json(obj["update"], f"{path}.update"),
+            next=RclmStateRecord.from_json(obj["next"], f"{path}.next"),
+        )
+
     def to_json(self) -> dict[str, object]:
         return {
-            "schema_id": "rclm.candidate.v2",
+            "schema_id": self.schema_id,
             "update": self.update.to_json(),
             "next": self.next.to_json(),
         }

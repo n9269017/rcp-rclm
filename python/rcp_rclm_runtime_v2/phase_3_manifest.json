@@ -1,0 +1,74 @@
+{
+  "checker": {
+    "candidate_assertions_authoritative": false,
+    "candidate_mutation_allowed": false,
+    "deterministic": true,
+    "fail_closed": true,
+    "generator_independent": true,
+    "lean_acceptance_required": true,
+    "model_free": true,
+    "network_free": true,
+    "predecessor_mutation_allowed": false,
+    "pure_with_respect_to_candidate_inputs": true,
+    "residual_indices": [
+      "typed",
+      "packet"
+    ],
+    "structured_report": true,
+    "supported_scopes": [
+      "gate_b_classical",
+      "gate_c_diagonal_quantum"
+    ]
+  },
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "implemented": {
+    "canonical_cli": true,
+    "computed_artifact_hashes": true,
+    "constructive_recovery": true,
+    "cross_platform_workflow": true,
+    "exact_rclm_canonical_lifts": true,
+    "kl_qre_entropy_interval_evidence": true,
+    "packet_bound_lean_bridge_validation": true,
+    "preservation_monitors": true,
+    "progress_and_strict_witness": true,
+    "protected_invariant_recomputation": true,
+    "protected_nonloss": true,
+    "rclm_to_rcp_refinement_validation": true,
+    "reality_containment_recomputation": true,
+    "residual_recomputation": true,
+    "resource_and_provenance_validation": true,
+    "strict_checker_request_schema": true,
+    "successor_domain_validation": true,
+    "trust_root_validation": true,
+    "typed_successor_recomputation": true
+  },
+  "licenses_after_phase_3_ci": {
+    "candidate_acceptance": false,
+    "phase_4_adversarial_checker_testing_may_begin": true,
+    "promotion": false
+  },
+  "not_implemented_or_not_licensed": {
+    "external_benchmark_claim": true,
+    "general_noncommuting_quantum": true,
+    "generator": true,
+    "independent_replay": true,
+    "package_tree_realization": true,
+    "promotion_controller": true,
+    "pytorch_backend": true,
+    "realizer": true,
+    "rollback_controller": true,
+    "selector": true
+  },
+  "package_name": "rcp-rclm-runtime-v2",
+  "package_version": "0.3.0",
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 3 deterministic checker",
+  "phase_status": "implementation_complete_pending_ci_and_phase_4_adversarial_closure",
+  "policy_hashes": {
+    "checker_policy": "5a7c846d1fa9e1d574a1c14556c2ed3cf42ed59a714178b5588b6f4ce8781e89",
+    "claim_boundary": "7c37ea1fa764399f579bf537a52ffb9087a745013d82311eed3e6d7b1d689617",
+    "evaluation_policy": "366fc5ba2b1bacbd88c87bec9e6c04972fdb1c51bf569f7c05631780fb75ea7d",
+    "lean_verifier_policy": "d29b8006362934e31448ac2ce9895cf43407c72f1e4dba202a200a434279f9cb",
+    "resource_meter_policy": "1938df95ec42bdb2cd542d283b2f255b0e52e40f16f8a623e683c0485d34b160"
+  },
+  "schema_version": "rcp-rclm-runtime-phase-3-manifest-v1"
+}

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rcp-rclm-runtime-v2"
-version = "0.2.0"
-description = "Deterministic runtime bedrock and pinned Lean conformance bridge for RCP/RCLM Formal Core v2"
+version = "0.3.0"
+description = "Deterministic runtime bedrock, pinned Lean bridge, and fail-closed Phase 3 checker for RCP/RCLM Formal Core v2"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "See repository LICENSE and component licenses"}
