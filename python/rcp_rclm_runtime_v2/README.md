@@ -1,7 +1,7 @@
 # RCP/RCLM Runtime v2
 
-This package contains the completed deterministic Phase 1 runtime bedrock and the
-completed initial Phase 2 pinned Lean conformance bridge.
+This package contains the deterministic Phase 1 runtime bedrock, the validated
+Phase 2 pinned Lean conformance bridge, and the Phase 3 deterministic checker.
 
 ## Phase 1 bedrock
 
@@ -26,54 +26,59 @@ Implemented and validated:
 - deterministic Python interpretation for ten accept/reject cases;
 - deterministic generated Lean certificate source;
 - mandatory pre-compilation rejection of admitted-proof tokens and local axioms;
-- verification of the frozen formal-source Git commit and the exact Lean/mathlib pins;
+- verification of the frozen formal-source Git commit and exact Lean/mathlib pins;
 - pinned `lake env lean` invocation;
-- raw stdout, stderr, exit-code, timeout, source, and toolchain evidence;
 - canonical structured Lean verdict parsing with independent RCP and RCLM fields;
 - fail-closed Python/Lean differential comparison;
-- preservation of generated source and every per-case report;
 - Linux, Windows, and macOS Python bridge tests;
 - a clean pinned Linux Lean build and ten-case conformance run.
 
-The clean implementation run established:
+## Phase 3 deterministic checker
 
-```text
-4 accepting reference cases
-6 rejecting mutation cases
-10/10 Python/RCP/RCLM differential matches
-```
+The checker core is a pure function over immutable records. It is deterministic,
+model-free, network-free, generator-independent, and fail-closed.
 
-Run the Phase 2 reference suite from the repository root with:
+It recomputes:
+
+- exact RCLM canonical state/update/certificate lifts;
+- the typed successor;
+- typed and packet residuals;
+- Shannon/von Neumann entropy and KL/QRE interval evidence;
+- zero-budget protected non-loss;
+- selected constructive recovery;
+- protected invariants and reality containment;
+- progress and the derived strict witness;
+- trust-root, resource, provenance, and domain obligations;
+- RCLM-to-RCP refinement and preservation monitors;
+- exact packet binding to an accepting Phase 2 Lean report;
+- canonical hashes of all authoritative inputs and derived bindings.
+
+Candidate fields that merely claim preservation, containment, improvement, trust,
+or acceptance are not part of the request schema and are rejected as unknown.
+
+Run the checker from the repository root:
 
 ```bash
-python python/rcp_rclm_runtime_v2/tools/run_phase2_conformance.py \
-  --repo-root . \
-  --outdir artifacts/runtime_v2_phase_2/local
+python -m pip install --no-deps -e python/rcp_rclm_runtime_v2
+python scripts/check_candidate.py request.json --out checker_report.json
 ```
 
-Validate the frozen Phase 2 evidence with:
+Run the Phase 3 unit suite with:
 
 ```bash
-python python/rcp_rclm_runtime_v2/tools/validate_phase2_release.py \
-  python/rcp_rclm_runtime_v2/phase_2_validation.json
+python python/rcp_rclm_runtime_v2/tools/run_phase3_tests.py \
+  --package-root python/rcp_rclm_runtime_v2 \
+  --out artifacts/runtime_v2_phase_3/local/phase_3_checker.log
 ```
-
-The Formal Core project must already have its pinned dependency graph resolved.
-The authoritative workflow is `.github/workflows/runtime-v2-phase-2.yml`.
 
 ## Boundary
 
-The bridge validates only the declared finite Gate B binary and selected Gate C
-diagonal-quantum reference and mutation cases. It is not the production successor
-checker and does not authorize candidate promotion.
+The checker currently validates only the declared finite Gate B binary and
+selected Gate C diagonal-quantum scopes. It does not implement arbitrary
+noncommuting quantum objects, a generator, candidate realization, promotion,
+rollback, independent replay, PyTorch integration, or an external benchmark
+claim.
 
-Not implemented or licensed here:
-
-- a mature Lean executable that parses canonical packets directly;
-- the production aggregate checker;
-- an untrusted generator;
-- successor selection or realization;
-- promotion, rollback, or independent replay;
-- a PyTorch proposal backend;
-- external benchmark adapters;
-- arbitrary noncommuting quantum semantics.
+Even after Phase 3 CI is green, candidate promotion remains unlicensed until
+the Phase 4 adversarial and tamper-rejection suite closes the checker attack
+surface.
