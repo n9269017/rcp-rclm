@@ -89,8 +89,9 @@ maximum proof length = 1
 ```
 
 The worker receives only the predecessor package, public generator policy, declared
-objective, and resource budget. It executes in a separate isolated Python process,
-with filesystem writes, sockets, and subprocess creation denied by its audit hook.
+objective, and resource budget. It executes in a separate isolated Python process.
+Lazy package initialization prevents checker imports. After startup, its audit hook
+denies all filesystem opens, filesystem mutations, sockets, and subprocess creation.
 It has no request fields for checker source, trust anchors, previous-manifest history,
 the promotion ledger, reference answers, certificates, successors, or verdicts.
 
@@ -102,8 +103,9 @@ Outside the worker, the runtime independently:
 constructs the canonical certificate
 selects the typed update
 computes the successor from predecessor plus update
-builds the generated Lean packet
-runs the source guard and pinned Lean bridge
+compiles direct Lean assertions for the bounded grammar
+builds the generated candidate Lean packet
+runs both source guards and pinned Lean compilations
 runs the Phase 4 hardened checker
 ```
 
