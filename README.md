@@ -27,7 +27,7 @@ recursive-self-improvement system.
 | Executable Core v2 Phase 2 | Complete at the selected finite reference scope | Pinned formal-source/toolchain verification, generated Lean certificates, structured RCP/RCLM verdicts, and ten-case Python/Lean differential conformance |
 | Executable Core v2 Phase 3 | Complete and cross-platform validated at the selected scope | Deterministic pure checker, recomputed obligation bundle, structured reports, and packet-bound Lean evidence |
 | Executable Core v2 Phase 4 | Complete and cross-platform validated at the declared attack scope | Hardened package integrity, 27 deterministic replayed attacks, first-class rejection records, and pinned Lean/source-guard revalidation |
-| Executable Core v2 Phase 5A | Implemented; cross-platform and pinned-Lean validation in progress | Separate-process bounded Gate B generator, deterministic replay, direct Lean grammar conformance, certificate construction, typed selection, computed realization, and hardened checking |
+| Executable Core v2 Phase 5A | Complete and cross-platform/pinned-Lean validated | Separate-process bounded Gate B generator, deterministic replay, direct Lean grammar conformance, certificate construction, typed selection, computed realization, and hardened checking |
 | Phase 5B, production realization, promotion, replay, PyTorch, and benchmark adapters | Not licensed | No generator trust, candidate promotion, autonomous recursive improvement, or external benchmark claim |
 
 The formal documentation is indexed in
@@ -272,13 +272,15 @@ the certificate, selects the typed update, computes the successor, directly comp
 Lean assertions for the bounded grammar, runs the generated-candidate Lean bridge, and
 submits the result to the Phase 4 hardened checker.
 
+The clean validation passed on Linux, Windows, and macOS, directly compiled the bounded
+Lean grammar, and accepted both the initial-improvement and target-stability pipelines.
 The selected Gate C mathematics remains available to the checker, but Phase 5A does
 not claim a Gate C generator because the formal bounded seed-library implementation is
 currently classical binary.
 
-A clean Phase 5A closure licenses development of open-ended **untrusted** proposal
-backends and the production selector/realizer/package-builder boundary. It does not
-make a generator trusted and does not authorize promotion.
+Phase 5A closure licenses development of open-ended **untrusted** proposal backends
+and the production selector/realizer/package-builder boundary. It does not make a
+generator trusted and does not authorize promotion.
 
 ## Build and validate Formal Core v2
 
