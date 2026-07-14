@@ -132,6 +132,13 @@ class Phase5AReferenceGeneratorTests(unittest.TestCase):
         )
         self.assertEqual(findings[0].code, "GENERATOR_FORBIDDEN_ATTRIBUTE_READ")
 
+    def test_worker_source_guard_rejects_dynamic_getattr_escape(self) -> None:
+        findings = scan_generator_source_bytes(
+            "synthetic_dynamic_getattr.py",
+            b"import sys\nvalue = getattr(sys, 'modules')\n",
+        )
+        self.assertEqual(findings[0].code, "GENERATOR_FORBIDDEN_CALL")
+
     def test_separate_process_is_deterministic(self) -> None:
         request = reference_generator_input("initial")
         first = run_reference_generator_process(request)
