@@ -1,0 +1,361 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/n9269017/rcp-rclm/schemas/phase_5_reference_generator.v2.json",
+  "title": "RCP/RCLM Executable Core v2 Phase 5A deterministic reference generator records",
+  "oneOf": [
+    {"$ref": "#/$defs/generatorInput"},
+    {"$ref": "#/$defs/untrustedProposal"},
+    {"$ref": "#/$defs/workerResponse"},
+    {"$ref": "#/$defs/processObservation"},
+    {"$ref": "#/$defs/generatorReplay"},
+    {"$ref": "#/$defs/pipelineReport"}
+  ],
+  "$defs": {
+    "hash256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "generatorReasonCode": {
+      "enum": [
+        "GENERATOR_SCHEMA_MALFORMED",
+        "GENERATOR_POLICY_MISMATCH",
+        "GENERATOR_OBJECTIVE_MISMATCH",
+        "GENERATOR_UNSUPPORTED_SCOPE",
+        "GENERATOR_PREDECESSOR_OUTSIDE_DOMAIN",
+        "GENERATOR_BUDGET_EXCEEDED",
+        "GENERATOR_PROCESS_TIMEOUT",
+        "GENERATOR_PROCESS_FAILED",
+        "GENERATOR_OUTPUT_INVALID",
+        "GENERATOR_REPLAY_MISMATCH",
+        "GENERATOR_SANDBOX_VIOLATION",
+        "GENERATOR_PIPELINE_BINDING_MISMATCH",
+        "GENERATOR_LEAN_VERIFIER_FAILED",
+        "GENERATOR_CHECKER_REJECTED",
+        "GENERATOR_INTERNAL_ERROR"
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "policy_id",
+        "grammar_id",
+        "supported_scope",
+        "max_word_depth",
+        "max_proof_length",
+        "proposal_limit",
+        "open_ended_generation_allowed",
+        "model_invocation_limit",
+        "network_request_limit",
+        "file_write_limit"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_reference_generator_policy.v2"},
+        "policy_id": {"const": "rclm-classical-binary-bounded-seed-v1"},
+        "grammar_id": {"const": "rclm-classical-binary-bounded-packet-grammar-v1"},
+        "supported_scope": {"const": "gate_b_classical"},
+        "max_word_depth": {"const": 1},
+        "max_proof_length": {"const": 1},
+        "proposal_limit": {"const": 1},
+        "open_ended_generation_allowed": {"const": false},
+        "model_invocation_limit": {"const": 0},
+        "network_request_limit": {"const": 0},
+        "file_write_limit": {"const": 0}
+      }
+    },
+    "objective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "task_id",
+        "objective_id",
+        "scope",
+        "goal",
+        "trajectory_mode"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_declared_objective.v2"},
+        "task_id": {"type": "string", "minLength": 1},
+        "objective_id": {"const": "biased-target-strict-then-stable-v1"},
+        "scope": {"const": "gate_b_classical"},
+        "goal": {"const": "biased_target"},
+        "trajectory_mode": {"const": "strict_then_stable"}
+      }
+    },
+    "resourceBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "proposal_limit",
+        "word_depth_limit",
+        "proof_length_limit",
+        "resource_units",
+        "timeout_seconds",
+        "model_invocation_limit",
+        "network_request_limit",
+        "file_write_limit"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_generator_resource_budget.v2"},
+        "proposal_limit": {"type": "integer", "minimum": 0, "maximum": 64},
+        "word_depth_limit": {"type": "integer", "minimum": 0, "maximum": 64},
+        "proof_length_limit": {"type": "integer", "minimum": 0, "maximum": 64},
+        "resource_units": {"type": "integer", "minimum": 0, "maximum": 1000000},
+        "timeout_seconds": {"type": "integer", "minimum": 1, "maximum": 300},
+        "model_invocation_limit": {"const": 0},
+        "network_request_limit": {"const": 0},
+        "file_write_limit": {"const": 0}
+      }
+    },
+    "predecessorPackage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "manifest", "state"],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_reference_predecessor_package.v2"},
+        "manifest": {
+          "$ref": "phase_4_adversarial.schema.json#/$defs/packageManifest"
+        },
+        "state": {
+          "$ref": "runtime_records.schema.json#/$defs/rclmState"
+        }
+      }
+    },
+    "generatorInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "contract_version",
+        "predecessor_package",
+        "policy",
+        "objective",
+        "resource_budget"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_reference_generator_input.v2"},
+        "contract_version": {"const": "rcp-rclm-runtime-contract-v2.0.0"},
+        "predecessor_package": {"$ref": "#/$defs/predecessorPackage"},
+        "policy": {"$ref": "#/$defs/policy"},
+        "objective": {"$ref": "#/$defs/objective"},
+        "resource_budget": {"$ref": "#/$defs/resourceBudget"}
+      }
+    },
+    "untrustedProposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "proposal_id",
+        "word",
+        "witness",
+        "proposal",
+        "word_depth",
+        "proof_length",
+        "resource_units",
+        "predecessor_package_id",
+        "predecessor_manifest_hash",
+        "policy_hash",
+        "objective_hash",
+        "budget_hash",
+        "generator_input_hash",
+        "worker_version"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_untrusted_proposal.v2"},
+        "proposal_id": {"type": "string", "minLength": 1},
+        "word": {"enum": ["improve", "stabilize"]},
+        "witness": {"enum": ["strict_improvement", "stable_continuation"]},
+        "proposal": {"enum": ["improve", "stabilize"]},
+        "word_depth": {"const": 1},
+        "proof_length": {"const": 1},
+        "resource_units": {"type": "integer", "minimum": 0, "maximum": 1},
+        "predecessor_package_id": {"type": "string", "minLength": 1},
+        "predecessor_manifest_hash": {"$ref": "#/$defs/hash256"},
+        "policy_hash": {"$ref": "#/$defs/hash256"},
+        "objective_hash": {"$ref": "#/$defs/hash256"},
+        "budget_hash": {"$ref": "#/$defs/hash256"},
+        "generator_input_hash": {"$ref": "#/$defs/hash256"},
+        "worker_version": {"const": "rcp-rclm-phase5-reference-generator-worker-v1"}
+      }
+    },
+    "workerSandbox": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "audit_policy_version",
+        "file_write_probe",
+        "network_probe",
+        "subprocess_probe",
+        "checker_input_present",
+        "trust_anchor_present",
+        "previous_manifest_history_present",
+        "promotion_ledger_present",
+        "reference_answer_present"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_worker_sandbox.v2"},
+        "audit_policy_version": {"const": "rcp-rclm-phase5-reference-worker-audit-v1"},
+        "file_write_probe": {"const": "denied"},
+        "network_probe": {"const": "denied"},
+        "subprocess_probe": {"const": "denied"},
+        "checker_input_present": {"const": false},
+        "trust_anchor_present": {"const": false},
+        "previous_manifest_history_present": {"const": false},
+        "promotion_ledger_present": {"const": false},
+        "reference_answer_present": {"const": false}
+      }
+    },
+    "workerResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "status",
+        "reason_codes",
+        "proposal",
+        "sandbox",
+        "input_hash",
+        "worker_version"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_worker_response.v2"},
+        "status": {"enum": ["generated", "reject", "indeterminate"]},
+        "reason_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/generatorReasonCode"}
+        },
+        "proposal": {
+          "oneOf": [
+            {"$ref": "#/$defs/untrustedProposal"},
+            {"type": "null"}
+          ]
+        },
+        "sandbox": {"$ref": "#/$defs/workerSandbox"},
+        "input_hash": {"$ref": "#/$defs/hash256"},
+        "worker_version": {"const": "rcp-rclm-phase5-reference-generator-worker-v1"}
+      }
+    },
+    "processObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "status",
+        "reason_codes",
+        "exit_code",
+        "timed_out",
+        "input_hash",
+        "stdout_hash",
+        "stderr_hash",
+        "command_hash",
+        "environment_key_hash",
+        "response"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_generator_process_observation.v2"},
+        "status": {"enum": ["generated", "reject", "indeterminate"]},
+        "reason_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/generatorReasonCode"}
+        },
+        "exit_code": {"type": "integer", "minimum": 0, "maximum": 255},
+        "timed_out": {"type": "boolean"},
+        "input_hash": {"$ref": "#/$defs/hash256"},
+        "stdout_hash": {"$ref": "#/$defs/hash256"},
+        "stderr_hash": {"$ref": "#/$defs/hash256"},
+        "command_hash": {"$ref": "#/$defs/hash256"},
+        "environment_key_hash": {"$ref": "#/$defs/hash256"},
+        "response": {
+          "oneOf": [
+            {"$ref": "#/$defs/workerResponse"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "generatorReplay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "status",
+        "reason_codes",
+        "deterministic",
+        "first",
+        "second",
+        "proposal"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_generator_replay.v2"},
+        "status": {"enum": ["generated", "reject", "indeterminate"]},
+        "reason_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/generatorReasonCode"}
+        },
+        "deterministic": {"type": "boolean"},
+        "first": {"$ref": "#/$defs/processObservation"},
+        "second": {"$ref": "#/$defs/processObservation"},
+        "proposal": {
+          "oneOf": [
+            {"$ref": "#/$defs/untrustedProposal"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "pipelineReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "contract_version",
+        "transition_id",
+        "verdict",
+        "accepted",
+        "reason_codes",
+        "generator_replay",
+        "certificate_construction",
+        "selection",
+        "realization",
+        "lean_bridge_report",
+        "hardened_checker_report",
+        "artifact_hashes"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_reference_pipeline_report.v2"},
+        "contract_version": {"const": "rcp-rclm-runtime-contract-v2.0.0"},
+        "transition_id": {"type": "string", "minLength": 1},
+        "verdict": {"enum": ["accept", "reject", "indeterminate"]},
+        "accepted": {"type": "boolean"},
+        "reason_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "generator_replay": {"$ref": "#/$defs/generatorReplay"},
+        "certificate_construction": {"type": ["object", "null"]},
+        "selection": {"type": ["object", "null"]},
+        "realization": {"type": ["object", "null"]},
+        "lean_bridge_report": {"type": ["object", "null"]},
+        "hardened_checker_report": {
+          "oneOf": [
+            {"$ref": "phase_4_adversarial.schema.json#/$defs/hardenedReport"},
+            {"type": "null"}
+          ]
+        },
+        "artifact_hashes": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/hash256"}
+        }
+      }
+    }
+  }
+}
