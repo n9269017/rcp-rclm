@@ -6,7 +6,9 @@ from typing import Final, Literal
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
 from rcp_rclm_runtime.schema.state import ClassicalBinaryStateRecord
 from rcp_rclm_runtime.generator.records import (
+    REFERENCE_GENERATOR_GRAMMAR_ID,
     REFERENCE_GENERATOR_OBJECTIVE_ID,
+    REFERENCE_GENERATOR_POLICY_ID,
     DeclaredObjectiveRecord,
     GeneratorReasonCode,
     GeneratorResourceBudgetRecord,
@@ -102,9 +104,8 @@ def _policy_reasons(
     policy: ReferenceGeneratorPolicyRecord,
 ) -> Sequence[GeneratorReasonCode]:
     valid = (
-        policy.policy_id == "rclm-classical-binary-bounded-seed-v1"
-        and policy.grammar_id
-        == "rclm-classical-binary-bounded-packet-grammar-v1"
+        policy.policy_id == REFERENCE_GENERATOR_POLICY_ID
+        and policy.grammar_id == REFERENCE_GENERATOR_GRAMMAR_ID
         and policy.supported_scope == "gate_b_classical"
         and policy.max_word_depth == REFERENCE_WORD_DEPTH
         and policy.max_proof_length == REFERENCE_PROOF_LENGTH
