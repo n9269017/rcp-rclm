@@ -87,6 +87,29 @@ _BANNED_ATTRIBUTE_READS: Final[frozenset[str]] = frozenset(
         "path_hooks",
     }
 )
+_ALLOWED_RECORD_GETATTR_FIELDS: Final[frozenset[str]] = frozenset(
+    {
+        "budget_units_used",
+        "formal_source_commit",
+        "grammar_id",
+        "implementation_id",
+        "manifest_hash",
+        "max_budget_units",
+        "max_proof_length",
+        "max_proposals",
+        "max_word_depth",
+        "objective_hash",
+        "policy_hash",
+        "policy_version",
+        "predecessor_manifest_hash",
+        "process_timeout_seconds",
+        "proof_length",
+        "request_hash",
+        "semantic_tree_hash",
+        "state_hash",
+        "word_depth",
+    }
+)
 _ALLOWED_RUNTIME_IMPORTS: Final[frozenset[str]] = frozenset(
     {
         "rcp_rclm_runtime._version",
@@ -335,7 +358,10 @@ def scan_generator_source_bytes(
                     )
                 )
         if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
-            if node.func.id in _BANNED_CALL_NAMES:
+            if (
+                node.func.id in _BANNED_CALL_NAMES
+                and not _allowed_record_getattr(node)
+            ):
                 findings.append(
                     WorkerSourceFinding(
                         code="GENERATOR_FORBIDDEN_CALL",
@@ -364,6 +390,21 @@ def scan_generator_source_bytes(
                 )
             )
     return tuple(findings)
+
+
+def _allowed_record_getattr(node: ast.Call) -> bool:
+    if not isinstance(node.func, ast.Name) or node.func.id != "getattr":
+        return False
+    if len(node.args) != 2 or node.keywords:
+        return False
+    owner, field = node.args
+    return (
+        isinstance(owner, ast.Name)
+        and owner.id == "self"
+        and isinstance(field, ast.Constant)
+        and isinstance(field.value, str)
+        and field.value in _ALLOWED_RECORD_GETATTR_FIELDS
+    )
 
 
 def _sanitized_environment(source: Mapping[str, str]) -> dict[str, str]:
