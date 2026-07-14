@@ -9,8 +9,9 @@ executable implementation that follows the completed Formal Core v2 Lean project
 Phase 0 theorem-to-runtime contract: complete and merged
 Phase 1 deterministic runtime bedrock: complete and cross-platform validated
 Phase 2 initial pinned Lean conformance bridge: complete and validated
+Phase 3 deterministic fail-closed checker: implementation complete; CI and Phase 4 closure pending
 Mature canonical-packet Lean executable: not implemented
-Production fail-closed successor checker: next phase; not implemented
+Adversarial checker closure: next phase
 Untrusted generator: not implemented
 Promotion and rollback controller: not implemented
 PyTorch proposal backend: not implemented
@@ -94,8 +95,41 @@ improvement/stability packets and six rejected wrong-successor,
 wrong-certificate, or malformed-certificate mutations across Gate B and the
 selected Gate C scope.
 
-The checker, generator, successor controller, replay layer, and PyTorch backend remain
-absent rather than represented by empty modules.
+## Phase 3 deterministic checker
+
+| Document | Purpose |
+|---|---|
+| `PHASE_3_CHECKER.md` | Pure checker architecture, recomputed obligations, structured report, and claim boundary |
+| `PHASE_3_EXIT_CRITERIA.md` | Exact CI and licensing conditions for Phase 4 entry |
+
+Machine-readable Phase 3 records are:
+
+```text
+python/rcp_rclm_executable_core_v2/contract/phase_3_checker.schema.json
+python/rcp_rclm_runtime_v2/phase_3_manifest.json
+```
+
+The checker package is:
+
+```text
+python/rcp_rclm_runtime_v2/rcp_rclm_runtime/checker/
+```
+
+The checker performs:
+
+```text
+strict immutable request parsing
+→ exact RCLM canonical-lift validation
+→ typed-successor and residual recomputation
+→ entropy and KL/QRE interval recomputation
+→ non-loss, recovery, invariant, containment, progress, trust, resource, and domain checks
+→ RCLM-to-RCP refinement and monitor checks
+→ exact packet binding to the Phase 2 Lean report
+→ structured verdict and computed artifact hashes
+```
+
+The generator, selector, realizer, promotion controller, replay layer, and
+PyTorch backend remain absent rather than represented by empty modules.
 
 ## Dependency order
 
@@ -103,8 +137,8 @@ absent rather than represented by empty modules.
 frozen Phase 0 contract
 → deterministic Phase 1 runtime bedrock
 → completed Phase 2 pinned Lean bridge and differential conformance
-→ fail-closed production checker
-→ adversarial rejection suite
+→ Phase 3 fail-closed deterministic checker
+→ Phase 4 adversarial rejection suite
 → untrusted predecessor-driven generator
 → selector and successor realizer
 → atomic promotion and rollback controller
@@ -114,5 +148,6 @@ frozen Phase 0 contract
 ```
 
 The generator never certifies itself. Candidate assertions, model scores, native
-floating-point diagnostics, and proposed certificate fields remain untrusted until
-recomputed by the future checker and matched against the pinned Lean bridge.
+floating-point diagnostics, and proposed certificate fields remain untrusted.
+The checker recomputes authoritative facts and requires packet-bound agreement
+with the pinned Lean bridge.
