@@ -135,7 +135,7 @@ def build_reference_generator_input(
             "worker_version": REFERENCE_GENERATOR_WORKER_VERSION,
             "network": "denied",
             "model": "absent",
-            "filesystem_access_after_startup": "denied",
+            "filesystem_writes": "denied",
         }
     )
     resource_record = reference_resource_record(
