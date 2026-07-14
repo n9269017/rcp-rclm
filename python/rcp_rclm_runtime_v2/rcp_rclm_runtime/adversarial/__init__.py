@@ -10,7 +10,7 @@ from rcp_rclm_runtime.adversarial.reference import (
     reference_phase3_request,
     refresh_hardened_request,
 )
-from rcp_rclm_runtime.adversarial.runner import run_phase4_adversarial_suite
+from rcp_rclm_runtime.adversarial.suite import run_phase4_adversarial_suite
 
 __all__ = [
     "ATTACK_CASE_RESULT_SCHEMA_ID",
