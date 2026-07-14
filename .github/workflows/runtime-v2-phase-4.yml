@@ -1,0 +1,144 @@
+name: Runtime v2 Phase 4 adversarial rejection
+
+on:
+  pull_request:
+    branches:
+      - main
+      - "agent/rcp-rclm-runtime-v2-phase-3-checker"
+    paths:
+      - "python/rcp_rclm_runtime_v2/**"
+      - "python/rcp_rclm_executable_core_v2/contract/phase_4_adversarial.schema.json"
+      - "scripts/check_hardened_candidate.py"
+      - "docs/executable_core_v2/PHASE_4_*.md"
+      - ".github/workflows/runtime-v2-phase-4.yml"
+  push:
+    branches:
+      - "agent/rcp-rclm-runtime-v2-phase-4-adversarial"
+    paths:
+      - "python/rcp_rclm_runtime_v2/**"
+      - "python/rcp_rclm_executable_core_v2/contract/phase_4_adversarial.schema.json"
+      - "scripts/check_hardened_candidate.py"
+      - "docs/executable_core_v2/PHASE_4_*.md"
+      - ".github/workflows/runtime-v2-phase-4.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  adversarial:
+    name: Validate Phase 4 rejection suite (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - "3.11"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install runtime package
+        run: python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+
+      - name: Compile Python source
+        run: >-
+          python -m compileall -q
+          python/rcp_rclm_runtime_v2
+          scripts/check_candidate.py
+          scripts/check_hardened_candidate.py
+
+      - name: Validate source quality
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/validate_source_quality.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_4/${{ matrix.os }}/source_quality.json
+
+      - name: Run Phase 1 regression suite
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase1_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_4/${{ matrix.os }}/phase_1_regression.log
+
+      - name: Run Phase 2 bridge unit suite
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase2_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_4/${{ matrix.os }}/phase_2_regression.log
+
+      - name: Run Phase 3 checker unit suite
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase3_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_4/${{ matrix.os }}/phase_3_regression.log
+
+      - name: Run Phase 4 unit suite
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase4_tests.py
+          --package-root python/rcp_rclm_runtime_v2
+          --out artifacts/runtime_v2_phase_4/${{ matrix.os }}/phase_4_unit.log
+
+      - name: Emit first-class adversarial rejection report
+        run: >-
+          python
+          python/rcp_rclm_runtime_v2/tools/run_phase4_adversarial.py
+          --out artifacts/runtime_v2_phase_4/${{ matrix.os }}/adversarial_suite.json
+
+      - name: Upload Phase 4 validation artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-v2-phase-4-${{ matrix.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v2_phase_4/${{ matrix.os }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  closure:
+    name: Verify Phase 4 adversarial closure
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs:
+      - adversarial
+
+    steps:
+      - name: Emit closure record
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/runtime_v2_phase_4/final
+          cat > artifacts/runtime_v2_phase_4/final/workflow_closure.json <<JSON
+          {
+            "schema_id": "runtime.phase_4_workflow_closure.v2",
+            "head_sha": "${GITHUB_SHA}",
+            "workflow_run": "${GITHUB_RUN_ID}",
+            "workflow_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "python_platform_count": 3,
+            "minimum_attack_case_count": 27,
+            "first_class_rejection_records": true,
+            "ok": true
+          }
+          JSON
+
+      - name: Upload final Phase 4 artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-v2-phase-4-final-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v2_phase_4/final/
+          if-no-files-found: error
+          retention-days: 90
