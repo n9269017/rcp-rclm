@@ -292,10 +292,9 @@ def check_package_integrity(
     )
     if not all(checks[field] for field in link_fields):
         reasons.append(ReasonCode.PARENT_LINK_MISMATCH)
+    excluded_hash_fields = set(link_fields) | {"transition_binding_hash"}
     hash_fields = tuple(
-        field
-        for field in checks
-        if field not in {*link_fields, "transition_binding_hash"}
+        field for field in checks if field not in excluded_hash_fields
     )
     if not all(checks[field] for field in hash_fields):
         reasons.append(ReasonCode.HASH_MISMATCH)
@@ -318,7 +317,7 @@ def check_package_integrity(
 
 def _reference_file_records(
     request: Phase3CheckerRequest,
-) -> tuple[tuple[SemanticFileRecord, ...], tuple[SemanticFileRecord, ...]]:
+) -> tuple[Sequence[SemanticFileRecord], Sequence[SemanticFileRecord]]:
     predecessor_files = (
         file_record_from_bytes(
             "state/predecessor.json",
