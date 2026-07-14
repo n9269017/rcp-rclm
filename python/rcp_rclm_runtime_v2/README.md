@@ -2,8 +2,8 @@
 
 This package contains the deterministic Phase 1 runtime bedrock, the validated
 Phase 2 pinned Lean conformance bridge, the Phase 3 deterministic checker, the
-Phase 4 hardened checker and adversarial rejection suite, and the Phase 5A bounded
-reference generator.
+Phase 4 hardened checker and adversarial rejection suite, and the validated Phase 5A
+bounded reference generator.
 
 ## Phase 1 bedrock
 
@@ -109,6 +109,11 @@ runs both source guards and pinned Lean compilations
 runs the Phase 4 hardened checker
 ```
 
+The clean validation passed on Linux, Windows, and macOS. It recorded 104 Python files
+with zero source-quality issues, 14 Phase 5A tests, three deterministic process-replay
+cases, direct pinned-Lean grammar conformance, and two accepting end-to-end reference
+transitions.
+
 Run only the separate generator worker through:
 
 ```bash
@@ -142,6 +147,6 @@ program synthesis, LLM/scaffold generation, learned PyTorch policies, training-d
 updates, production filesystem realization, promotion, rollback, independent replay,
 or external benchmark claims.
 
-The generator remains untrusted. A clean Phase 5A closure licenses Phase 5B
-open-ended-generator development and Phase 6 selector/realizer/package-builder work;
+The generator remains untrusted. Phase 5A closure licenses Phase 5B open-ended
+untrusted-generator development and Phase 6 selector/realizer/package-builder work;
 it does not authorize candidate promotion.
