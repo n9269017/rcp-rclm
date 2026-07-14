@@ -5,13 +5,13 @@ import sys
 from rcp_rclm_runtime.canonical.hashing import sha256_hex
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes, load_json_strict
 from rcp_rclm_runtime.errors import RuntimeValidationError
+from rcp_rclm_runtime.generator.grammar import interpret_reference_input
 from rcp_rclm_runtime.generator.records import (
     REFERENCE_GENERATOR_MAX_INPUT_BYTES,
     GeneratorReasonCode,
     ReferenceGeneratorInputRecord,
     ReferenceWorkerResponse,
 )
-from rcp_rclm_runtime.generator.reference import interpret_reference_input
 from rcp_rclm_runtime.generator.sandbox import (
     install_reference_worker_audit_hook,
     run_reference_worker_sandbox_self_test,
