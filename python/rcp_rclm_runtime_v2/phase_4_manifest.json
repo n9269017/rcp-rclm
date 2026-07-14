@@ -1,6 +1,7 @@
 {
   "adversarial_suite": {
     "clean_case_count": 27,
+    "coherent_candidate_tree_substitution_rejected": true,
     "deterministic_replay_required": true,
     "every_case_first_class": true,
     "minimum_case_count": 27,
@@ -28,15 +29,19 @@
       "unsupported_channel": true,
       "unsupported_qre_support": true,
       "wrong_matrix_dimension": true
-    }
+    },
+    "runtime_error_codes_preserved": true
   },
   "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
   "hardened_checker": {
+    "candidate_file_records_bound_to_canonical_request": true,
     "candidate_tree_hash_recomputed": true,
     "certificate_hash_recomputed": true,
     "checker_manifest_hash_pinned": true,
     "parent_link_recomputed": true,
     "phase_3_checker_composed": true,
+    "predecessor_file_records_bound_to_canonical_request": true,
+    "predecessor_manifest_fully_checked": true,
     "predecessor_tree_hash_recomputed": true,
     "transition_binding_recomputed": true
   },
@@ -60,14 +65,14 @@
   "package_name": "rcp-rclm-runtime-v2",
   "package_version": "0.4.0",
   "phase_name": "RCP/RCLM Executable Core v2 — Phase 4 adversarial and tamper rejection",
-  "phase_status": "validated_at_initial_clean_implementation_head",
+  "phase_status": "validated_at_strengthened_clean_implementation_head",
   "schema_version": "rcp-rclm-runtime-phase-4-manifest-v1",
   "validation_evidence": {
     "all_attacks_nonaccepting": true,
     "all_deterministic_replays": true,
     "pinned_lean_revalidation": true,
-    "validated_implementation_head": "4e4199e59989a829fb770556676c4e695c48ff9e",
+    "validated_implementation_head": "f6a0a852b71a0f347f75797248fd24f415b3b075",
     "workflow_conclusion": "success",
-    "workflow_run": 29298535864
+    "workflow_run": 29299291191
   }
 }
