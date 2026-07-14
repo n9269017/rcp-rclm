@@ -11,8 +11,9 @@ Phase 1 deterministic runtime bedrock: complete and cross-platform validated
 Phase 2 initial pinned Lean conformance bridge: complete and validated
 Phase 3 deterministic fail-closed checker: complete and cross-platform validated
 Phase 4 adversarial and tamper rejection: complete and cross-platform validated
-Mature canonical-packet Lean executable: not implemented
-Untrusted generator: not implemented
+Phase 5A deterministic bounded reference generator: implementation complete; validation pending
+Phase 5B open-ended untrusted generators: not implemented
+Production selector, realizer, and package builder: not implemented
 Promotion and rollback controller: not implemented
 PyTorch proposal backend: not implemented
 External benchmark adapter: not licensed
@@ -164,8 +165,45 @@ Phase 3 checker request
 → pinned Lean build and generated-source hygiene revalidation
 ```
 
-The generator, selector, realizer, promotion controller, replay layer, and
-PyTorch backend remain absent rather than represented by empty modules.
+## Phase 5A deterministic reference generator
+
+| Document | Purpose |
+|---|---|
+| `PHASE_5A_REFERENCE_GENERATOR.md` | Bounded grammar, separate-process boundary, replay, certificate construction, selection, realization, and checker integration |
+| `PHASE_5A_EXIT_CRITERIA.md` | Exact process-isolation, replay, Lean, checker, cross-platform, and licensing conditions |
+| `PHASE_5B_OPEN_ENDED_BOUNDARY.md` | Frozen requirements for later search, synthesis, LLM, and learned proposal backends |
+
+Machine-readable Phase 5A records are:
+
+```text
+python/rcp_rclm_executable_core_v2/contract/phase_5_reference_generator.schema.json
+python/rcp_rclm_runtime_v2/phase_5_manifest.json
+```
+
+The generator package is:
+
+```text
+python/rcp_rclm_runtime_v2/rcp_rclm_runtime/generator/
+```
+
+Phase 5A performs:
+
+```text
+canonical read-only generator input
+→ isolated separate worker process
+→ bounded improve/stabilize proposal
+→ deterministic second-process replay
+→ independent certificate construction
+→ independent typed update selection
+→ successor computation from predecessor plus update
+→ generated Lean source and mandatory source guard
+→ pinned Lean RCP/RCLM verification
+→ Phase 4 hardened checker
+→ structured pipeline report and artifact hashes
+```
+
+The current bounded generator scope is the concrete Gate B classical seed grammar.
+No equivalent Gate C bounded seed-library grammar is claimed.
 
 ## Dependency order
 
@@ -175,8 +213,9 @@ frozen Phase 0 contract
 → completed Phase 2 pinned Lean bridge and differential conformance
 → Phase 3 fail-closed deterministic checker
 → completed Phase 4 adversarial rejection suite
-→ untrusted predecessor-driven generator
-→ selector and successor realizer
+→ Phase 5A deterministic bounded reference generator
+→ optional Phase 5B open-ended untrusted generators
+→ Phase 6 selector, successor realizer, and package builder
 → atomic promotion and rollback controller
 → independent replay
 → optional PyTorch proposal backend
@@ -184,6 +223,6 @@ frozen Phase 0 contract
 ```
 
 The generator never certifies itself. Candidate assertions, model scores, native
-floating-point diagnostics, and proposed certificate fields remain untrusted.
-The checker recomputes authoritative facts and requires packet-bound agreement
-with the pinned Lean bridge.
+floating-point diagnostics, and proposed certificate fields remain untrusted. The
+checker recomputes authoritative facts and requires packet-bound agreement with the
+pinned Lean bridge.
