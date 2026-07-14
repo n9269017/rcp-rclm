@@ -1,24 +1,24 @@
 {
   "artifacts": {
     "final": {
-      "name": "runtime-v2-phase-4-final-29298535864-1",
-      "sha256": "b7ed3ba303311a30d3d0e66a841ff72ffe404d168f2f677c480bb7dcd85b5e23"
+      "name": "runtime-v2-phase-4-final-29299291191-1",
+      "sha256": "8d4c0642984cbd678804bd21e1ef2ae175da11a40562656cf44d4278bd600ecd"
     },
     "lean": {
-      "name": "runtime-v2-phase-4-lean-29298535864-1",
-      "sha256": "5003a7b2a9fb9f6282729d955df2ff7becdd7dddefdf4d7eb6065a144afb6c0f"
+      "name": "runtime-v2-phase-4-lean-29299291191-1",
+      "sha256": "00f1b47454eb2d42cdf7896e4bc3ed6bcf70eb4e3237e491ca2988893db6da2c"
     },
     "python_macos": {
-      "name": "runtime-v2-phase-4-macos-latest-29298535864-1",
-      "sha256": "066ac23cc9fc95c8489037f42e65728e0683c47e6111f9cf84e60798161566fe"
+      "name": "runtime-v2-phase-4-macos-latest-29299291191-1",
+      "sha256": "63834893f94e099810a4506b05264dc3e4a564cb9f893126e7160f5ef63a7277"
     },
     "python_ubuntu": {
-      "name": "runtime-v2-phase-4-ubuntu-latest-29298535864-1",
-      "sha256": "d45cb4a6e9e066585f7f73144a1cba51f9d8fe6122f60987f2e079671dd3a622"
+      "name": "runtime-v2-phase-4-ubuntu-latest-29299291191-1",
+      "sha256": "3bfe73dd94f0048082f2d415631bf66a39cf9904d2621c46bd586da5a6bcbff4"
     },
     "python_windows": {
-      "name": "runtime-v2-phase-4-windows-latest-29298535864-1",
-      "sha256": "248bb1b3629d10372981def0a8ecd4926c14fc549e3ae5466556e190475478f6"
+      "name": "runtime-v2-phase-4-windows-latest-29299291191-1",
+      "sha256": "5c33c1ca8575c13aeaf1374ebbb423396ef78129679bd7714a99370ac70e1b1e"
     }
   },
   "claim_boundary": {
@@ -56,23 +56,30 @@
     "all_deterministic_replays": true,
     "all_passed": true,
     "case_count": 27,
+    "coherent_candidate_tree_substitution_rejected": true,
     "failed_count": 0,
     "nonaccepting_case_count": 27,
-    "passed_count": 27
+    "passed_count": 27,
+    "runtime_error_codes_preserved": true
   },
   "validation_summary": {
     "generated_source_admission_scan": true,
     "hardened_checker_references": true,
     "phase_1_regression": true,
+    "phase_1_test_count": 74,
     "phase_2_regression": true,
+    "phase_2_test_count": 19,
     "phase_3_regression": true,
+    "phase_3_test_count": 20,
+    "phase_4_test_count": 10,
     "phase_4_unit_tests": true,
     "pinned_formal_core_build": true,
+    "python_file_count": 90,
     "source_quality": true,
     "ten_case_lean_conformance": true,
     "workflow_artifacts": true
   },
-  "validated_implementation_head": "4e4199e59989a829fb770556676c4e695c48ff9e",
+  "validated_implementation_head": "f6a0a852b71a0f347f75797248fd24f415b3b075",
   "workflow_conclusion": "success",
-  "workflow_run": 29298535864
+  "workflow_run": 29299291191
 }
