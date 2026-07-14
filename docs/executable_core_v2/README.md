@@ -11,7 +11,7 @@ Phase 1 deterministic runtime bedrock: complete and cross-platform validated
 Phase 2 initial pinned Lean conformance bridge: complete and validated
 Phase 3 deterministic fail-closed checker: complete and cross-platform validated
 Phase 4 adversarial and tamper rejection: complete and cross-platform validated
-Phase 5A deterministic bounded reference generator: implementation complete; validation pending
+Phase 5A deterministic bounded reference generator: complete and cross-platform/pinned-Lean validated
 Phase 5B open-ended untrusted generators: not implemented
 Production selector, realizer, and package builder: not implemented
 Promotion and rollback controller: not implemented
@@ -171,7 +171,8 @@ Phase 3 checker request
 |---|---|
 | `PHASE_5A_REFERENCE_GENERATOR.md` | Bounded grammar, separate-process boundary, replay, direct Lean grammar conformance, certificate construction, selection, realization, and checker integration |
 | `PHASE_5A_IMPLEMENTATION_NOTES.md` | Modular package structure and proposal/control-plane separation |
-| `PHASE_5A_EXIT_CRITERIA.md` | Exact process-isolation, replay, Lean, checker, cross-platform, and licensing conditions |
+| `PHASE_5A_EXIT_CRITERIA.md` | Closed process-isolation, replay, Lean, checker, cross-platform, and licensing criteria |
+| `PHASE_5A_VALIDATION.md` | Exact clean implementation head, all Phase 0–5 workflows, replay totals, Lean grammar/pipeline evidence, and artifact digests |
 | `PHASE_5B_OPEN_ENDED_BOUNDARY.md` | Frozen requirements for later search, synthesis, LLM, and learned proposal backends |
 
 Machine-readable Phase 5A records are:
@@ -179,6 +180,7 @@ Machine-readable Phase 5A records are:
 ```text
 python/rcp_rclm_executable_core_v2/contract/phase_5_reference_generator.schema.json
 python/rcp_rclm_runtime_v2/phase_5_manifest.json
+python/rcp_rclm_runtime_v2/phase_5_validation.json
 ```
 
 The generator package is:
@@ -210,6 +212,10 @@ sockets, and subprocess creation. The current bounded generator scope is the con
 Gate B classical seed grammar. No equivalent Gate C bounded seed-library grammar is
 claimed.
 
+The clean validation established three deterministic process-replay cases, direct
+pinned-Lean grammar conformance, and two accepting end-to-end reference transitions.
+Generator trust and candidate promotion remain false.
+
 ## Dependency order
 
 ```text
@@ -218,7 +224,7 @@ frozen Phase 0 contract
 → completed Phase 2 pinned Lean bridge and differential conformance
 → Phase 3 fail-closed deterministic checker
 → completed Phase 4 adversarial rejection suite
-→ Phase 5A deterministic bounded reference generator
+→ completed Phase 5A deterministic bounded reference generator
 → optional Phase 5B open-ended untrusted generators
 → Phase 6 selector, successor realizer, and package builder
 → atomic promotion and rollback controller
