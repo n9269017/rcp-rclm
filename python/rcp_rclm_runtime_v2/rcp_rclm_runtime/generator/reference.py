@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Sequence
-from typing import Final, Literal
+from typing import Literal
 
 from rcp_rclm_runtime.canonical.hashing import (
     canonical_json_hash,
@@ -21,23 +20,24 @@ from rcp_rclm_runtime.checker.reference import (
     reference_resource_record,
     reference_trust_anchor,
 )
+from rcp_rclm_runtime.generator.grammar import (
+    REFERENCE_PROOF_LENGTH,
+    REFERENCE_PROPOSAL_LIMIT,
+    REFERENCE_WORD_DEPTH,
+    interpret_reference_input,
+)
 from rcp_rclm_runtime.generator.records import (
     REFERENCE_GENERATOR_GRAMMAR_ID,
     REFERENCE_GENERATOR_OBJECTIVE_ID,
     REFERENCE_GENERATOR_POLICY_ID,
     REFERENCE_GENERATOR_WORKER_VERSION,
     DeclaredObjectiveRecord,
-    GeneratorReasonCode,
     GeneratorResourceBudgetRecord,
     ReferenceGeneratorInputRecord,
     ReferenceGeneratorPolicyRecord,
     ReferencePredecessorPackageRecord,
-    UntrustedProposalRecord,
 )
 
-REFERENCE_WORD_DEPTH: Final[int] = 1
-REFERENCE_PROOF_LENGTH: Final[int] = 1
-REFERENCE_PROPOSAL_LIMIT: Final[int] = 1
 ReferencePredecessorName = Literal["outside", "initial", "target"]
 
 
@@ -135,7 +135,7 @@ def build_reference_generator_input(
             "worker_version": REFERENCE_GENERATOR_WORKER_VERSION,
             "network": "denied",
             "model": "absent",
-            "filesystem_writes": "denied",
+            "filesystem_access_after_startup": "denied",
         }
     )
     resource_record = reference_resource_record(
@@ -175,115 +175,6 @@ def build_reference_generator_input(
     )
 
 
-def interpret_reference_input(
-    generator_input: ReferenceGeneratorInputRecord,
-) -> tuple[UntrustedProposalRecord | None, Sequence[GeneratorReasonCode]]:
-    policy_reasons = _policy_reasons(generator_input.policy)
-    if policy_reasons:
-        return None, policy_reasons
-    objective_reasons = _objective_reasons(generator_input.objective)
-    if objective_reasons:
-        return None, objective_reasons
-    core = generator_input.predecessor_package.state.core
-    if not isinstance(core, ClassicalBinaryStateRecord):
-        return None, (GeneratorReasonCode.UNSUPPORTED_SCOPE,)
-    expected_transition_id = reference_transition_id(
-        core,
-        generator_input.policy,
-        generator_input.objective,
-        generator_input.resource_budget,
-    )
-    expected_package_id = f"{expected_transition_id}.predecessor"
-    if generator_input.predecessor_package.manifest.package_id != expected_package_id:
-        return None, (GeneratorReasonCode.PIPELINE_BINDING_MISMATCH,)
-    if core.state == "outside":
-        return None, (GeneratorReasonCode.PREDECESSOR_OUTSIDE_DOMAIN,)
-    if core.state == "initial":
-        word: Literal["improve", "stabilize"] = "improve"
-        witness: Literal["strict_improvement", "stable_continuation"] = (
-            "strict_improvement"
-        )
-        resource_units = 1
-    else:
-        word = "stabilize"
-        witness = "stable_continuation"
-        resource_units = 0
-    budget_reasons = _budget_reasons(
-        generator_input.resource_budget,
-        resource_units=resource_units,
-    )
-    if budget_reasons:
-        return None, budget_reasons
-    proposal_payload = {
-        "schema_id": "runtime.phase5_reference_proposal_identity.v2",
-        "generator_input_hash": generator_input.input_hash,
-        "word": word,
-        "witness": witness,
-        "proposal": word,
-    }
-    proposal_id = f"phase5a.proposal.{canonical_json_hash(proposal_payload)[:40]}"
-    return (
-        UntrustedProposalRecord(
-            proposal_id=proposal_id,
-            word=word,
-            witness=witness,
-            proposal=word,
-            word_depth=REFERENCE_WORD_DEPTH,
-            proof_length=REFERENCE_PROOF_LENGTH,
-            resource_units=resource_units,
-            predecessor_package_id=(
-                generator_input.predecessor_package.manifest.package_id
-            ),
-            predecessor_manifest_hash=(
-                generator_input.predecessor_package.manifest_hash
-            ),
-            policy_hash=generator_input.policy.policy_hash,
-            objective_hash=generator_input.objective.objective_hash,
-            budget_hash=generator_input.resource_budget.budget_hash,
-            generator_input_hash=generator_input.input_hash,
-        ),
-        (),
-    )
-
-
-def _policy_reasons(
-    policy: ReferenceGeneratorPolicyRecord,
-) -> Sequence[GeneratorReasonCode]:
-    expected = reference_generator_policy()
-    return () if policy == expected else (GeneratorReasonCode.POLICY_MISMATCH,)
-
-
-def _objective_reasons(
-    objective: DeclaredObjectiveRecord,
-) -> Sequence[GeneratorReasonCode]:
-    if objective.objective_id != REFERENCE_GENERATOR_OBJECTIVE_ID:
-        return (GeneratorReasonCode.OBJECTIVE_MISMATCH,)
-    if (
-        objective.scope != "gate_b_classical"
-        or objective.goal != "biased_target"
-        or objective.trajectory_mode != "strict_then_stable"
-    ):
-        return (GeneratorReasonCode.OBJECTIVE_MISMATCH,)
-    return ()
-
-
-def _budget_reasons(
-    budget: GeneratorResourceBudgetRecord,
-    *,
-    resource_units: int,
-) -> Sequence[GeneratorReasonCode]:
-    sufficient = (
-        budget.proposal_limit >= REFERENCE_PROPOSAL_LIMIT
-        and budget.word_depth_limit >= REFERENCE_WORD_DEPTH
-        and budget.proof_length_limit >= REFERENCE_PROOF_LENGTH
-        and budget.resource_units >= resource_units
-        and budget.model_invocation_limit == 0
-        and budget.network_request_limit == 0
-        and budget.file_write_limit == 0
-    )
-    return () if sufficient else (GeneratorReasonCode.BUDGET_EXCEEDED,)
-
-
 def _root_certificate_hash(transition_id: str) -> str:
     return canonical_json_hash(
         {
@@ -291,3 +182,14 @@ def _root_certificate_hash(transition_id: str) -> str:
             "transition_id": transition_id,
         }
     )
+
+
+__all__ = [
+    "build_reference_generator_input",
+    "interpret_reference_input",
+    "reference_declared_objective",
+    "reference_generator_budget",
+    "reference_generator_policy",
+    "reference_transition_id",
+    "reference_transition_seed",
+]
