@@ -1,0 +1,120 @@
+{
+  "artifacts": {
+    "final": {
+      "name": "runtime-v2-phase-5-final-29309422906-1",
+      "sha256": "8372dfb031fd941e5bb4b522bfa7474fa1cc477f0b0e70e39179dc85b454bbdb"
+    },
+    "lean_pipeline": {
+      "name": "runtime-v2-phase-5-lean-29309422906-1",
+      "sha256": "35c8111812efc84d24b63066355a831583bcd241f531ae54ad7f6a23e9c11e0f"
+    },
+    "python_macos": {
+      "name": "runtime-v2-phase-5-macos-latest-29309422906-1",
+      "sha256": "2404273cd53e72271735fcd09a9997fbb1034b0011c24d5e00cb8e3e579cfae4"
+    },
+    "python_ubuntu": {
+      "name": "runtime-v2-phase-5-ubuntu-latest-29309422906-1",
+      "sha256": "ab2604d396d4f09336f45508c6659bca02e15cf54f3aee28c8b008f48ba94e1b"
+    },
+    "python_windows": {
+      "name": "runtime-v2-phase-5-windows-latest-29309422906-1",
+      "sha256": "cc2427428398d6fd29d479197f2dbab8bda3e95a43324de6601ab0e9dbbe3245"
+    }
+  },
+  "claim_boundary": {
+    "candidate_promotion_licensed": false,
+    "external_benchmark_claim": false,
+    "gate_c_bounded_generator_refinement": false,
+    "general_noncommuting_quantum": false,
+    "generator_intelligence_established": false,
+    "generator_trusted": false,
+    "open_ended_generator_correctness": false,
+    "pytorch_generator_correctness": false,
+    "unbounded_rsi_claim": false
+  },
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "generator_replay": {
+    "all_deterministic": true,
+    "all_expected": true,
+    "case_count": 3,
+    "generated_case_count": 2,
+    "outside_rejection_code": "GENERATOR_PREDECESSOR_OUTSIDE_DOMAIN",
+    "rejected_case_count": 1,
+    "suite_hash": "09cf162b67b82c25cdcd6a02acf7de502eb1561e104cccb8e2f02437bdf9e1e3"
+  },
+  "jobs": {
+    "phase_0_contract": "success",
+    "phase_1_bedrock": "success",
+    "phase_2_lean_bridge": "success",
+    "phase_3_checker": "success",
+    "phase_4_adversarial": "success",
+    "phase_5_macos_generator": "success",
+    "phase_5_pinned_lean_pipeline": "success",
+    "phase_5_ubuntu_generator": "success",
+    "phase_5_windows_generator": "success",
+    "phase_5_workflow_closure": "success"
+  },
+  "lean_grammar_conformance": {
+    "accepted": true,
+    "compilation_exit_code": 0,
+    "compilation_timed_out": false,
+    "report_hash": "018685759aed2d8a3170d6a756a37f7210bb9df3aaf444326b5c3deae38f5a1b",
+    "source_guard_clean": true,
+    "source_hash": "d57a2b4e9cc4ee3c975fbe04f065a68f481f908823c49d6af64ebb88c8172164"
+  },
+  "licenses_after_phase_5a": {
+    "candidate_acceptance": false,
+    "generator_trust": false,
+    "phase_5b_open_ended_generator_development_may_begin": true,
+    "phase_6_selector_realizer_package_builder_development_may_begin": true,
+    "promotion_controller": false
+  },
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 5A deterministic reference generator",
+  "pipeline": {
+    "accepted_case_count": 2,
+    "all_accepted": true,
+    "all_generator_replays_deterministic": true,
+    "case_count": 2,
+    "grammar_conformance_accepted": true,
+    "initial_pipeline_report_hash": "527d5c8939fba8e369555e41483dbe95c371cb9a6ed8d106ae7094fe32c68512",
+    "suite_hash": "064fc3941f29a5e518bff0d26c0186073707e36f28a6612f95e6af2c36fbe105",
+    "target_pipeline_report_hash": "06e9e57cbfe9d782eb3cb55f38677582550fa79e4195320cc857a522e25f8dee"
+  },
+  "release_status": "phase_5a_deterministic_reference_generator_validated",
+  "schema_version": "rcp-rclm-runtime-phase-5-validation-v1",
+  "validation_summary": {
+    "direct_lean_grammar_conformance": true,
+    "generated_source_admission_scan": true,
+    "hardened_checker_initial": true,
+    "hardened_checker_target": true,
+    "phase_1_regression": true,
+    "phase_1_test_count": 74,
+    "phase_2_regression": true,
+    "phase_2_test_count": 19,
+    "phase_3_regression": true,
+    "phase_3_test_count": 20,
+    "phase_4_regression": true,
+    "phase_4_test_count": 10,
+    "phase_5_generator_tests": true,
+    "phase_5_test_count": 14,
+    "pinned_formal_core_build": true,
+    "pinned_formal_core_job_count": 2636,
+    "python_file_count": 104,
+    "source_quality": true,
+    "worker_control_plane_separation": true,
+    "worker_filesystem_access_after_startup": false,
+    "worker_model_free": true,
+    "worker_network_free": true,
+    "worker_separate_process": true
+  },
+  "validated_implementation_head": "d348a23690a76ecae6924e0a95c57a0513a5a96d",
+  "workflow_conclusion": "success",
+  "workflow_runs": {
+    "phase_0": 29309422903,
+    "phase_1": 29309422887,
+    "phase_2": 29309422909,
+    "phase_3": 29309422959,
+    "phase_4": 29309422886,
+    "phase_5": 29309422906
+  }
+}
