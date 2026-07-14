@@ -8,6 +8,7 @@
     {"$ref": "#/$defs/workerResponse"},
     {"$ref": "#/$defs/processObservation"},
     {"$ref": "#/$defs/generatorReplay"},
+    {"$ref": "#/$defs/grammarConformance"},
     {"$ref": "#/$defs/pipelineReport"}
   ],
   "$defs": {
@@ -199,7 +200,7 @@
       ],
       "properties": {
         "schema_id": {"const": "runtime.phase5_worker_sandbox.v2"},
-        "audit_policy_version": {"const": "rcp-rclm-phase5-reference-worker-audit-v1"},
+        "audit_policy_version": {"const": "rcp-rclm-phase5-reference-worker-audit-v2"},
         "file_write_probe": {"const": "denied"},
         "network_probe": {"const": "denied"},
         "subprocess_probe": {"const": "denied"},
@@ -309,6 +310,26 @@
             {"type": "null"}
           ]
         }
+      }
+    },
+    "grammarConformance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "source_hash",
+        "source_path",
+        "accepted",
+        "source_guard",
+        "compilation"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.phase5_reference_grammar_lean_conformance.v2"},
+        "source_hash": {"$ref": "#/$defs/hash256"},
+        "source_path": {"type": "string", "minLength": 1},
+        "accepted": {"type": "boolean"},
+        "source_guard": {"type": "object"},
+        "compilation": {"type": ["object", "null"]}
       }
     },
     "pipelineReport": {
