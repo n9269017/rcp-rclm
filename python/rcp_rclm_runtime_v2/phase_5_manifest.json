@@ -71,6 +71,17 @@
   "package_name": "rcp-rclm-runtime-v2",
   "package_version": "0.5.0",
   "phase_name": "RCP/RCLM Executable Core v2 — Phase 5A deterministic reference generator",
-  "phase_status": "implementation_complete_pending_cross_platform_and_pinned_lean_validation",
-  "schema_version": "rcp-rclm-runtime-phase-5-manifest-v1"
+  "phase_status": "validated_at_clean_executable_implementation_head",
+  "schema_version": "rcp-rclm-runtime-phase-5-manifest-v1",
+  "validation_evidence": {
+    "all_exact_head_phase_workflows_successful": true,
+    "all_generator_replays_deterministic": true,
+    "direct_pinned_lean_grammar_conformance": true,
+    "initial_pipeline_accepted": true,
+    "pinned_formal_core_build": true,
+    "target_pipeline_accepted": true,
+    "validated_implementation_head": "d348a23690a76ecae6924e0a95c57a0513a5a96d",
+    "workflow_conclusion": "success",
+    "workflow_run": 29309422906
+  }
 }
