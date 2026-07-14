@@ -12,11 +12,16 @@ head:
 - [ ] The generator request contains only predecessor package, public policy, declared objective, and resource budget.
 - [ ] Unknown or forbidden control-plane fields are rejected.
 - [ ] The generator runs in a separate process with a fresh temporary working directory.
-- [ ] The worker audit hook denies file writes, sockets, and subprocess creation.
+- [ ] Generator package startup does not import any checker module.
+- [ ] The worker verifies that no checker module is loaded before proposal interpretation.
+- [ ] The worker audit hook denies all filesystem opens after startup, filesystem mutations, sockets, and subprocess creation.
 - [ ] The worker receives no trust anchor, checker input, manifest history, promotion ledger, or reference-answer object.
 - [ ] The active initial grammar contains only `improve`.
 - [ ] The active target grammar contains only `stabilize`.
 - [ ] Word depth and proof length are bounded by one.
+- [ ] A generated Lean conformance file verifies the exact words, bounds, witness/proposal maps, certificate/candidate maps, membership, and rejected-word exclusion.
+- [ ] The grammar conformance source passes the mandatory source guard before compilation.
+- [ ] The grammar conformance source compiles with the pinned Lean project.
 - [ ] The generator output contains no certificate, candidate successor, checker verdict, or promotion Boolean.
 - [ ] Every generator invocation is replayed in a second fresh process.
 - [ ] Both process outputs have identical canonical response hashes.
