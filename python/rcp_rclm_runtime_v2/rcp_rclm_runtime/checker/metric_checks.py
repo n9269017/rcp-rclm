@@ -52,7 +52,11 @@ def compute_metric_bounds(
         before = binary_state_distribution(predecessor.core.state)
         after = binary_state_distribution(candidate.next.core.state)
         target = BIASED_BINARY
-        gap = kl_divergence_interval(UNIFORM_BINARY, BIASED_BINARY, precision_bits)
+        gap = kl_divergence_interval(
+            UNIFORM_BINARY,
+            BIASED_BINARY,
+            precision_bits,
+        )
         entropy_before = shannon_entropy_interval(before, precision_bits)
         entropy_after = shannon_entropy_interval(after, precision_bits)
         entropy_target = shannon_entropy_interval(target, precision_bits)
@@ -113,7 +117,10 @@ def _evaluation_match(
         return ComponentResultRecord.from_evidence(
             "fail",
             (ReasonCode.REFINEMENT_MISMATCH,),
-            {"expected_scope": scope, "observed_scope": evaluation.scope},
+            {
+                "expected_scope": scope,
+                "observed_scope": evaluation.scope,
+            },
         )
     if scope == "gate_b_classical":
         if not isinstance(predecessor.core, ClassicalBinaryStateRecord):
@@ -170,21 +177,21 @@ def _protected_nonloss_result(
     statuses: list[str] = []
     for distinction in distinctions:
         if distinction.distinction_id == "target_fit":
-            status = _nonnegative_status(
-                metrics.progress_delta + distinction.loss_budget
-            )
+            interval = metrics.progress_delta + distinction.loss_budget
+            status = _nonnegative_status(interval)
+            results[distinction.distinction_id] = status
+            statuses.append(status)
         elif distinction.distinction_id in {"normalization", "trace_one"}:
-            status = "pass"
+            results[distinction.distinction_id] = "pass"
+            statuses.append("pass")
         elif distinction.distinction_id == "entropy_preserved":
-            status = _nonnegative_status(
-                metrics.entropy_after
-                - metrics.entropy_before
-                + distinction.loss_budget
-            )
+            interval = _entropy_delta(metrics) + distinction.loss_budget
+            status = _nonnegative_status(interval)
+            results[distinction.distinction_id] = status
+            statuses.append(status)
         else:
-            status = "fail"
-        results[distinction.distinction_id] = status
-        statuses.append(status)
+            results[distinction.distinction_id] = "fail"
+            statuses.append("fail")
     evidence["checks"] = results
     if "fail" in statuses:
         return ComponentResultRecord.from_evidence(
@@ -227,7 +234,11 @@ def _strict_witness_result(
 ) -> ComponentResultRecord:
     witness_derived = (
         certificate_name == "improvement"
-        and core_packet_accepted(predecessor, candidate, certificate_name)
+        and core_packet_accepted(
+            predecessor,
+            candidate,
+            certificate_name,
+        )
     )
     if not witness_derived:
         return ComponentResultRecord.from_evidence(
@@ -267,12 +278,13 @@ def _monitor_result(
     unsupported_collapse = (
         Rational.one() if certificate_name == "malformed" else Rational.zero()
     )
+    lyapunov_symbolic_residual = Rational.zero()
     target_fit_status = _nonnegative_status(metrics.progress_delta)
     checks: dict[str, object] = {
         "lyapunov_before": metrics.divergence_before.to_json(),
         "lyapunov_after": metrics.divergence_after.to_json(),
         "motion_charge": metrics.progress_delta.to_json(),
-        "lyapunov_symbolic_residual": Rational.zero().to_json(),
+        "lyapunov_symbolic_residual": lyapunov_symbolic_residual.to_json(),
         "unsupported_collapse": unsupported_collapse.to_json(),
         "ambiguity_error": Rational.zero().to_json(),
         "target_fit_relevance": target_fit_status,
@@ -283,9 +295,7 @@ def _monitor_result(
         statuses.append("pass")
     else:
         checks["trace_one_relevance"] = "pass"
-        entropy_status = _nonnegative_status(
-            metrics.entropy_after - metrics.entropy_before
-        )
+        entropy_status = _nonnegative_status(_entropy_delta(metrics))
         checks["entropy_preserved_relevance"] = entropy_status
         statuses.extend(("pass", entropy_status))
     if unsupported_collapse != Rational.zero():
@@ -307,6 +317,18 @@ def _monitor_result(
             checks,
         )
     return ComponentResultRecord.from_evidence("pass", (), checks)
+
+
+def _entropy_delta(metrics: MetricBoundsRecord) -> IntervalEvidence:
+    if metrics.entropy_after == metrics.entropy_before:
+        return IntervalEvidence.exact(
+            Rational.zero(),
+            min(
+                metrics.entropy_after.precision_bits,
+                metrics.entropy_before.precision_bits,
+            ),
+        )
+    return metrics.entropy_after - metrics.entropy_before
 
 
 def _nonnegative_status(interval: IntervalEvidence) -> str:
