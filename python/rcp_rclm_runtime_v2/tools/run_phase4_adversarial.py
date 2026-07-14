@@ -4,7 +4,7 @@ import argparse
 from collections.abc import Sequence
 from pathlib import Path
 
-from rcp_rclm_runtime.adversarial.runner import run_phase4_adversarial_suite
+from rcp_rclm_runtime.adversarial.suite import run_phase4_adversarial_suite
 from rcp_rclm_runtime.canonical.json import canonical_json_text
 
 
