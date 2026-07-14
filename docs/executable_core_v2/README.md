@@ -11,7 +11,7 @@ Phase 1 deterministic runtime bedrock: complete and cross-platform validated
 Phase 2 initial pinned Lean conformance bridge: complete and validated
 Phase 3 deterministic fail-closed checker: complete and cross-platform validated
 Phase 4 adversarial and tamper rejection: complete and cross-platform validated
-Phase 5A deterministic bounded reference generator: implementation and validation in progress
+Phase 5A deterministic bounded reference generator: complete and cross-platform validated
 Phase 5B open-ended untrusted generators: not implemented
 Phase 6 realizer and package builder: not implemented
 Promotion and rollback controller: not implemented
@@ -123,6 +123,7 @@ Phase 3 checker request
 |---|---|
 | `PHASE_5A_REFERENCE_GENERATOR.md` | Bounded Lean grammar mapping, process boundary, and end-to-end path |
 | `PHASE_5A_EXIT_CRITERIA.md` | Exact replay, isolation, Lean, checker, and licensing conditions |
+| `PHASE_5A_VALIDATION.md` | Cross-platform process, pinned Lean, hardened-checker, and artifact evidence |
 | `PHASE_5B_ENTRY_CRITERIA.md` | Preconditions for open-ended untrusted proposal backends |
 
 Machine-readable Phase 5A records are:
@@ -130,6 +131,7 @@ Machine-readable Phase 5A records are:
 ```text
 python/rcp_rclm_executable_core_v2/contract/phase_5a_reference_generator.schema.json
 python/rcp_rclm_runtime_v2/phase_5a_manifest.json
+python/rcp_rclm_runtime_v2/phase_5a_validation.json
 ```
 
 The Phase 5A path is:
