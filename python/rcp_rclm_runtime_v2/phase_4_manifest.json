@@ -1,5 +1,6 @@
 {
   "adversarial_suite": {
+    "clean_case_count": 27,
     "deterministic_replay_required": true,
     "every_case_first_class": true,
     "minimum_case_count": 27,
@@ -59,6 +60,14 @@
   "package_name": "rcp-rclm-runtime-v2",
   "package_version": "0.4.0",
   "phase_name": "RCP/RCLM Executable Core v2 — Phase 4 adversarial and tamper rejection",
-  "phase_status": "implementation_complete_pending_cross_platform_validation",
-  "schema_version": "rcp-rclm-runtime-phase-4-manifest-v1"
+  "phase_status": "validated_at_initial_clean_implementation_head",
+  "schema_version": "rcp-rclm-runtime-phase-4-manifest-v1",
+  "validation_evidence": {
+    "all_attacks_nonaccepting": true,
+    "all_deterministic_replays": true,
+    "pinned_lean_revalidation": true,
+    "validated_implementation_head": "4e4199e59989a829fb770556676c4e695c48ff9e",
+    "workflow_conclusion": "success",
+    "workflow_run": 29298535864
+  }
 }
