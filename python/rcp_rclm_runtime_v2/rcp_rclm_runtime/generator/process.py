@@ -152,7 +152,6 @@ def run_reference_generator_replay(
         generator_input,
         python_executable=python_executable,
     )
-    provisional = GeneratorReplayReport.__new__(GeneratorReplayReport)
     deterministic = (
         first.stdout_hash == second.stdout_hash
         and first.status == second.status
@@ -166,7 +165,6 @@ def run_reference_generator_replay(
             )
         )
     )
-    del provisional
     if not deterministic:
         return GeneratorReplayReport(
             status="reject",
