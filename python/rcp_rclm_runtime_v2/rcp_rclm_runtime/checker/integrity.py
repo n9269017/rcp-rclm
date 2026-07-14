@@ -149,25 +149,7 @@ def transition_binding_hash(
 def build_reference_package_integrity(
     request: Phase3CheckerRequest,
 ) -> PackageIntegrityRecord:
-    predecessor_files = (
-        file_record_from_bytes(
-            "state/predecessor.json",
-            "0644",
-            canonical_json_bytes(request.predecessor.to_json()),
-        ),
-    )
-    candidate_files = (
-        file_record_from_bytes(
-            "candidate/successor.json",
-            "0644",
-            canonical_json_bytes(request.candidate.next.to_json()),
-        ),
-        file_record_from_bytes(
-            "candidate/update.json",
-            "0644",
-            canonical_json_bytes(request.candidate.update.to_json()),
-        ),
-    )
+    predecessor_files, candidate_files = _reference_file_records(request)
     trust_anchor_hash = canonical_json_hash(request.trust_anchor.to_json())
     resource_record_hash = canonical_json_hash(request.resource_record.to_json())
     predecessor_manifest = PackageManifestRecord(
@@ -176,12 +158,7 @@ def build_reference_package_integrity(
         parent_manifest_hash=None,
         semantic_tree_hash=semantic_tree_hash(predecessor_files),
         candidate_hash=canonical_json_hash(request.predecessor.to_json()),
-        certificate_packet_hash=canonical_json_hash(
-            {
-                "schema_id": "runtime.phase4_root_certificate.v2",
-                "transition_id": request.transition_id,
-            }
-        ),
+        certificate_packet_hash=_root_certificate_hash(request.transition_id),
         checker_policy_hash=CHECKER_POLICY_HASH,
         lean_verifier_policy_hash=LEAN_VERIFIER_POLICY_HASH,
         trust_anchor_hash=trust_anchor_hash,
@@ -223,48 +200,81 @@ def check_package_integrity(
     expected_binding_hash = transition_binding_hash(request, predecessor_manifest_hash)
     expected_trust_anchor_hash = canonical_json_hash(request.trust_anchor.to_json())
     expected_resource_record_hash = canonical_json_hash(request.resource_record.to_json())
+    expected_predecessor_files, expected_candidate_files = _reference_file_records(request)
+    predecessor = integrity.predecessor_manifest
+    candidate = integrity.candidate_manifest
     checks = {
+        "predecessor_file_records_match_request": (
+            integrity.predecessor_files == expected_predecessor_files
+        ),
+        "candidate_file_records_match_request": (
+            integrity.candidate_files == expected_candidate_files
+        ),
         "predecessor_tree_hash": (
             semantic_tree_hash(integrity.predecessor_files)
-            == integrity.predecessor_manifest.semantic_tree_hash
+            == predecessor.semantic_tree_hash
         ),
         "candidate_tree_hash": (
             semantic_tree_hash(integrity.candidate_files)
-            == integrity.candidate_manifest.semantic_tree_hash
+            == candidate.semantic_tree_hash
+        ),
+        "predecessor_package_id": (
+            predecessor.package_id == f"{request.transition_id}.predecessor"
+        ),
+        "candidate_package_id": (
+            candidate.package_id == f"{request.transition_id}.candidate"
         ),
         "parent_package_id": (
-            integrity.candidate_manifest.parent_package_id
-            == integrity.predecessor_manifest.package_id
+            candidate.parent_package_id == predecessor.package_id
         ),
         "parent_manifest_hash": (
-            integrity.candidate_manifest.parent_manifest_hash
-            == predecessor_manifest_hash
+            candidate.parent_manifest_hash == predecessor_manifest_hash
+        ),
+        "predecessor_state_hash": (
+            predecessor.candidate_hash
+            == canonical_json_hash(request.predecessor.to_json())
+        ),
+        "predecessor_root_certificate_hash": (
+            predecessor.certificate_packet_hash
+            == _root_certificate_hash(request.transition_id)
         ),
         "candidate_hash": (
-            integrity.candidate_manifest.candidate_hash
+            candidate.candidate_hash
             == canonical_json_hash(request.candidate.to_json())
         ),
         "certificate_packet_hash": (
-            integrity.candidate_manifest.certificate_packet_hash
+            candidate.certificate_packet_hash
             == canonical_json_hash(request.certificate.to_json())
         ),
-        "checker_policy_hash": (
-            integrity.candidate_manifest.checker_policy_hash == CHECKER_POLICY_HASH
+        "predecessor_checker_policy_hash": (
+            predecessor.checker_policy_hash == CHECKER_POLICY_HASH
         ),
-        "lean_verifier_policy_hash": (
-            integrity.candidate_manifest.lean_verifier_policy_hash
-            == LEAN_VERIFIER_POLICY_HASH
+        "candidate_checker_policy_hash": (
+            candidate.checker_policy_hash == CHECKER_POLICY_HASH
         ),
-        "trust_anchor_hash": (
-            integrity.candidate_manifest.trust_anchor_hash
-            == expected_trust_anchor_hash
+        "predecessor_lean_verifier_policy_hash": (
+            predecessor.lean_verifier_policy_hash == LEAN_VERIFIER_POLICY_HASH
         ),
-        "resource_record_hash": (
-            integrity.candidate_manifest.resource_record_hash
-            == expected_resource_record_hash
+        "candidate_lean_verifier_policy_hash": (
+            candidate.lean_verifier_policy_hash == LEAN_VERIFIER_POLICY_HASH
         ),
-        "claim_boundary_hash": (
-            integrity.candidate_manifest.claim_boundary_hash == CLAIM_BOUNDARY_HASH
+        "predecessor_trust_anchor_hash": (
+            predecessor.trust_anchor_hash == expected_trust_anchor_hash
+        ),
+        "candidate_trust_anchor_hash": (
+            candidate.trust_anchor_hash == expected_trust_anchor_hash
+        ),
+        "predecessor_resource_record_hash": (
+            predecessor.resource_record_hash == expected_resource_record_hash
+        ),
+        "candidate_resource_record_hash": (
+            candidate.resource_record_hash == expected_resource_record_hash
+        ),
+        "predecessor_claim_boundary_hash": (
+            predecessor.claim_boundary_hash == CLAIM_BOUNDARY_HASH
+        ),
+        "candidate_claim_boundary_hash": (
+            candidate.claim_boundary_hash == CLAIM_BOUNDARY_HASH
         ),
         "checker_manifest_hash": (
             integrity.checker_manifest_hash == PHASE_3_MANIFEST_HASH
@@ -274,19 +284,18 @@ def check_package_integrity(
         ),
     }
     reasons: list[ReasonCode] = []
-    if not checks["parent_package_id"] or not checks["parent_manifest_hash"]:
+    link_fields = (
+        "predecessor_package_id",
+        "candidate_package_id",
+        "parent_package_id",
+        "parent_manifest_hash",
+    )
+    if not all(checks[field] for field in link_fields):
         reasons.append(ReasonCode.PARENT_LINK_MISMATCH)
-    hash_fields = (
-        "predecessor_tree_hash",
-        "candidate_tree_hash",
-        "candidate_hash",
-        "certificate_packet_hash",
-        "checker_policy_hash",
-        "lean_verifier_policy_hash",
-        "trust_anchor_hash",
-        "resource_record_hash",
-        "claim_boundary_hash",
-        "checker_manifest_hash",
+    hash_fields = tuple(
+        field
+        for field in checks
+        if field not in {*link_fields, "transition_binding_hash"}
     )
     if not all(checks[field] for field in hash_fields):
         reasons.append(ReasonCode.HASH_MISMATCH)
@@ -304,6 +313,40 @@ def check_package_integrity(
             "expected_checker_manifest_hash": PHASE_3_MANIFEST_HASH,
             "observed_checker_manifest_hash": integrity.checker_manifest_hash,
         },
+    )
+
+
+def _reference_file_records(
+    request: Phase3CheckerRequest,
+) -> tuple[tuple[SemanticFileRecord, ...], tuple[SemanticFileRecord, ...]]:
+    predecessor_files = (
+        file_record_from_bytes(
+            "state/predecessor.json",
+            "0644",
+            canonical_json_bytes(request.predecessor.to_json()),
+        ),
+    )
+    candidate_files = (
+        file_record_from_bytes(
+            "candidate/successor.json",
+            "0644",
+            canonical_json_bytes(request.candidate.next.to_json()),
+        ),
+        file_record_from_bytes(
+            "candidate/update.json",
+            "0644",
+            canonical_json_bytes(request.candidate.update.to_json()),
+        ),
+    )
+    return predecessor_files, candidate_files
+
+
+def _root_certificate_hash(transition_id: str) -> str:
+    return canonical_json_hash(
+        {
+            "schema_id": "runtime.phase4_root_certificate.v2",
+            "transition_id": transition_id,
+        }
     )
 
 
