@@ -6,6 +6,10 @@ from pathlib import Path
 
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes
+from rcp_rclm_runtime.generator.lean_conformance import (
+    reference_grammar_lean_source,
+    verify_reference_grammar_with_lean,
+)
 from rcp_rclm_runtime.generator.pipeline import execute_reference_pipeline
 from rcp_rclm_runtime.generator.reference import build_reference_generator_input
 from rcp_rclm_runtime.lean_bridge.compiler import LeanCompiler, PinnedLeanProject
@@ -16,8 +20,8 @@ def _arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "Run the deterministic Phase 5A bounded reference generator through "
-            "certificate construction, selection, realization, pinned Lean, and "
-            "the hardened checker."
+            "direct grammar conformance, certificate construction, selection, "
+            "realization, pinned Lean, and the hardened checker."
         )
     )
     parser.add_argument("--repo-root", type=Path, required=True)
@@ -47,8 +51,38 @@ def main() -> int:
     verifier = LeanReferenceVerifier(compiler)
     _write_json(outdir / "project_pin.json", project.to_json())
 
+    grammar_dir = outdir / "grammar_conformance"
+    grammar_evidence = verify_reference_grammar_with_lean(compiler)
+    grammar_dir.mkdir(parents=True, exist_ok=True)
+    (grammar_dir / "bounded_reference_grammar.lean").write_bytes(
+        reference_grammar_lean_source()
+    )
+    _write_json(
+        grammar_dir / "source_guard.json",
+        grammar_evidence.source_guard.to_json(),
+    )
+    _write_json(
+        grammar_dir / "grammar_conformance.json",
+        grammar_evidence.to_json(),
+    )
+    if grammar_evidence.compilation is not None:
+        _write_json(
+            grammar_dir / "compilation.json",
+            grammar_evidence.compilation.to_json(),
+        )
+        (grammar_dir / "lean_stdout.txt").write_bytes(
+            grammar_evidence.compilation.stdout
+        )
+        (grammar_dir / "lean_stderr.txt").write_bytes(
+            grammar_evidence.compilation.stderr
+        )
+        _write_json(
+            grammar_dir / "toolchain_identity.json",
+            grammar_evidence.compilation.toolchain_identity.to_json(),
+        )
+
     case_summaries: list[dict[str, object]] = []
-    all_accepted = True
+    all_accepted = grammar_evidence.accepted
     for predecessor_name in ("initial", "target"):
         generator_input = build_reference_generator_input(
             predecessor_name,
@@ -142,6 +176,8 @@ def main() -> int:
 
     suite_payload = {
         "schema_id": "runtime.phase5_reference_pipeline_suite.v2",
+        "grammar_conformance_accepted": grammar_evidence.accepted,
+        "grammar_conformance_report_hash": grammar_evidence.report_hash,
         "case_count": len(case_summaries),
         "accepted_case_count": sum(
             1 for item in case_summaries if item["accepted"] is True
