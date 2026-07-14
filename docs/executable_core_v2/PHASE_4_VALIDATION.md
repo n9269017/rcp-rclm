@@ -1,16 +1,16 @@
 # Phase 4 adversarial and tamper-rejection validation
 
-## First clean implementation validation
+## Clean strengthened implementation validation
 
 The hardened Phase 4 checker and deterministic adversarial suite passed their full
 validation matrix at:
 
 ```text
 validated implementation head:
-4e4199e59989a829fb770556676c4e695c48ff9e
+f6a0a852b71a0f347f75797248fd24f415b3b075
 
 workflow run:
-29298535864
+29299291191
 
 result:
 success
@@ -22,6 +22,11 @@ The successful workflow established:
 Linux source quality and Phase 1–4 tests: success
 Windows source quality and Phase 1–4 tests: success
 macOS source quality and Phase 1–4 tests: success
+90 Python files with zero source-quality issues
+Phase 1 tests: 74 passed
+Phase 2 tests: 19 passed
+Phase 3 tests: 20 passed
+Phase 4 tests: 10 passed
 27 first-class adversarial cases: success
 27/27 deterministic two-observation replays: success
 27/27 nonaccepting attack results: success
@@ -44,6 +49,15 @@ The suite includes malformed and unknown schemas, evidence removal, parent and
 certificate replay, candidate-file and checker-manifest tampering, invalid numerical
 inputs, selected Gate C scope violations, forged witnesses, insufficient interval
 margin, resource and provenance attacks, and five generated-Lean source attacks.
+
+The strengthened candidate-file attack substitutes a measured file record and also
+recomputes the candidate semantic-tree hash. The hardened checker still rejects it
+because the measured file-record set is independently recomputed from the canonical
+candidate update and successor bytes.
+
+Quantum and numerical rejection records use the runtime's actual structured error
+codes, including `NUMERIC_INVALID` and `UNSUPPORTED_SCOPE`, rather than synthetic
+case labels.
 
 Each attack record contains its declared expectation, observed verdict and reason
 codes, two canonical observation hashes, deterministic replay status, and
@@ -71,24 +85,24 @@ The scan and all ten conformance cases passed.
 
 ```text
 final workflow closure
-  runtime-v2-phase-4-final-29298535864-1
-  sha256:b7ed3ba303311a30d3d0e66a841ff72ffe404d168f2f677c480bb7dcd85b5e23
+  runtime-v2-phase-4-final-29299291191-1
+  sha256:8d4c0642984cbd678804bd21e1ef2ae175da11a40562656cf44d4278bd600ecd
 
 pinned Lean revalidation
-  runtime-v2-phase-4-lean-29298535864-1
-  sha256:5003a7b2a9fb9f6282729d955df2ff7becdd7dddefdf4d7eb6065a144afb6c0f
+  runtime-v2-phase-4-lean-29299291191-1
+  sha256:00f1b47454eb2d42cdf7896e4bc3ed6bcf70eb4e3237e491ca2988893db6da2c
 
 Ubuntu checker and attack evidence
-  runtime-v2-phase-4-ubuntu-latest-29298535864-1
-  sha256:d45cb4a6e9e066585f7f73144a1cba51f9d8fe6122f60987f2e079671dd3a622
+  runtime-v2-phase-4-ubuntu-latest-29299291191-1
+  sha256:3bfe73dd94f0048082f2d415631bf66a39cf9904d2621c46bd586da5a6bcbff4
 
 Windows checker and attack evidence
-  runtime-v2-phase-4-windows-latest-29298535864-1
-  sha256:248bb1b3629d10372981def0a8ecd4926c14fc549e3ae5466556e190475478f6
+  runtime-v2-phase-4-windows-latest-29299291191-1
+  sha256:5c33c1ca8575c13aeaf1374ebbb423396ef78129679bd7714a99370ac70e1b1e
 
 macOS checker and attack evidence
-  runtime-v2-phase-4-macos-latest-29298535864-1
-  sha256:066ac23cc9fc95c8489037f42e65728e0683c47e6111f9cf84e60798161566fe
+  runtime-v2-phase-4-macos-latest-29299291191-1
+  sha256:63834893f94e099810a4506b05264dc3e4a564cb9f893126e7160f5ef63a7277
 ```
 
 ## Interpretation
@@ -103,6 +117,6 @@ A clean Phase 4 closure licenses Phase 5A deterministic bounded reference-genera
 development. It does not make the generator trusted and does not authorize candidate
 promotion.
 
-The final documentation-only PR head is revalidated separately. Its exact workflow
+The final evidence-only PR head is revalidated separately. Its exact workflow
 identifier and artifact digests are recorded in the pull-request discussion rather
 than embedded self-referentially in the commit that triggers those workflows.
