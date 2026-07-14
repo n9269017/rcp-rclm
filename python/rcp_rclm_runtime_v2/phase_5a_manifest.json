@@ -1,0 +1,74 @@
+{
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "generator_boundary": {
+    "candidate_successor_emitted_by_worker": false,
+    "certificate_emitted_by_worker": false,
+    "checker_or_trust_material_visible_to_worker": false,
+    "deterministic": true,
+    "model_free": true,
+    "network_endpoints_granted": false,
+    "open_ended_search": false,
+    "reference_answers_visible_to_worker": false,
+    "separate_process": true,
+    "worker_write_handles_granted": false
+  },
+  "implemented": {
+    "bounded_lean_grammar_mapping": true,
+    "certificate_construction_outside_worker": true,
+    "cross_platform_process_suite": true,
+    "deterministic_two_run_replay": true,
+    "end_to_end_hardened_checker_loop": true,
+    "logical_successor_realization_from_update": true,
+    "pinned_lean_verification": true,
+    "proposal_schema_and_hash_binding": true,
+    "single_proposal_selection": true,
+    "worker_capability_source_guard": true
+  },
+  "lean_reference": {
+    "grammar_declaration": "RcpRclmFormalCoreV2.RCLM.ClassicalBinary.boundedPacketGrammar",
+    "max_proof_length": 1,
+    "max_word_depth": 1,
+    "seed_domain": [
+      "initial",
+      "target"
+    ],
+    "word_mapping": {
+      "initial": "improve",
+      "target": "stabilize"
+    }
+  },
+  "licenses_after_clean_phase_5a_closure": {
+    "candidate_promotion": false,
+    "generator_trust": false,
+    "phase_5b_open_ended_generator_development_may_begin": true,
+    "phase_6_realizer_development_may_begin": true
+  },
+  "not_implemented_or_not_licensed": {
+    "external_benchmark_claim": true,
+    "general_noncommuting_quantum": true,
+    "independent_replay": true,
+    "llm_or_scaffold_generator": true,
+    "open_ended_search_generator": true,
+    "program_synthesis_generator": true,
+    "promotion_controller": true,
+    "pytorch_policy": true,
+    "real_filesystem_realizer": true,
+    "rollback_controller": true,
+    "training_driven_updates": true
+  },
+  "package_name": "rcp-rclm-runtime-v2",
+  "package_version": "0.5.0",
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 5A deterministic bounded reference generator",
+  "phase_status": "validated_at_clean_implementation_head",
+  "schema_version": "rcp-rclm-runtime-phase-5a-manifest-v1",
+  "supported_scope": "gate_b_classical_bounded_seed_library",
+  "validation_evidence": {
+    "all_reference_loops_accepted": true,
+    "all_worker_replays_deterministic": true,
+    "cross_platform": true,
+    "pinned_lean_and_hardened_checker_path": true,
+    "validated_implementation_head": "ca6b7edd7df34b479be031c8cd87104db67614e9",
+    "workflow_conclusion": "success",
+    "workflow_run": 29309437018
+  }
+}

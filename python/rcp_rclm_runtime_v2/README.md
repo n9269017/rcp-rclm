@@ -1,8 +1,9 @@
 # RCP/RCLM Runtime v2
 
 This package contains the deterministic Phase 1 runtime bedrock, the validated
-Phase 2 pinned Lean conformance bridge, the Phase 3 deterministic checker, and the
-Phase 4 hardened checker and adversarial rejection suite.
+Phase 2 pinned Lean conformance bridge, the Phase 3 deterministic checker, the
+Phase 4 hardened checker and adversarial rejection suite, and the Phase 5A
+bounded reference generator.
 
 ## Phase 1 bedrock
 
@@ -70,37 +71,50 @@ package-integrity records. It recomputes:
 - a transition-binding hash over the predecessor, candidate, certificate,
   evaluation evidence, and Lean bridge report.
 
-The deterministic adversarial suite records at least 27 first-class cases covering
-schema attacks, evidence removal, parent/certificate replay, file and manifest
-tampering, invalid numerical data, selected Gate C scope violations, forged
-witnesses, insufficient interval margins, resource/provenance violations, and
-forbidden generated Lean source.
+The deterministic adversarial suite records 27 first-class cases covering schema
+attacks, evidence removal, parent/certificate replay, file and manifest tampering,
+invalid numerical data, selected Gate C scope violations, forged witnesses,
+insufficient interval margins, resource/provenance violations, and forbidden
+generated Lean source.
 
-Run the hardened checker from the repository root:
+## Phase 5A bounded reference generator
+
+The first generator implements only the finite Gate B seed grammar declared in Lean.
+It runs in a separate process and receives a canonical read-only view containing the
+predecessor state and package hashes, public policy, objective, and resource bounds.
+It receives no checker source, trust anchor, promotion ledger, previous-manifest write
+handle, or reference answer.
+
+The worker emits only a bounded word, witness, proposal name, depth/proof bounds,
+resource use, and binding hashes. It does not emit a certificate, successor,
+candidate, or acceptance Boolean. Trusted orchestration independently validates the
+proposal, constructs the canonical certificate, selects the single permitted update,
+derives the successor, invokes the pinned Lean bridge, and calls the Phase 4 hardened
+checker.
+
+Run the separate-process generator suite:
 
 ```bash
-python -m pip install --no-deps -e python/rcp_rclm_runtime_v2
-python scripts/check_hardened_candidate.py request.json \
-  --out hardened_checker_report.json
+python python/rcp_rclm_runtime_v2/tools/run_phase5a_process_suite.py \
+  --out artifacts/runtime_v2_phase_5a/local/process_suite.json
 ```
 
-Run the Phase 4 suites with:
+Run the complete pinned reference loop from the repository root:
 
 ```bash
-python python/rcp_rclm_runtime_v2/tools/run_phase4_tests.py \
-  --package-root python/rcp_rclm_runtime_v2 \
-  --out artifacts/runtime_v2_phase_4/local/phase_4_unit.log
-python python/rcp_rclm_runtime_v2/tools/run_phase4_adversarial.py \
-  --out artifacts/runtime_v2_phase_4/local/adversarial_suite.json
+python scripts/run_phase5a_reference_loop.py \
+  --repo-root . \
+  --outdir artifacts/runtime_v2_phase_5a/local/reference_loop
 ```
 
 ## Boundary
 
-The checker validates only the declared finite Gate B binary and selected Gate C
-diagonal-quantum scopes. It does not implement arbitrary noncommuting quantum
-objects, a generator, candidate realization, selection, promotion, rollback,
-independent replay, PyTorch integration, or an external benchmark claim.
+The executable scope remains the declared finite Gate B binary and selected Gate C
+diagonal-quantum checker semantics. Phase 5A adds only the Gate B bounded generator
+grammar. It does not implement a real filesystem realizer, promotion, rollback,
+independent replay, open-ended search, program synthesis, LLM/scaffold generation,
+PyTorch learning, external benchmarks, or arbitrary noncommuting quantum semantics.
 
-A clean Phase 4 closure licenses development of the deterministic bounded reference
-generator. It does not make that generator trusted and does not license candidate
-promotion.
+The generator remains untrusted. A clean Phase 5A closure licenses Phase 5B
+open-ended-generator experiments and Phase 6 realizer/package-builder development,
+but does not license candidate promotion.
