@@ -1,0 +1,78 @@
+{
+  "artifacts": {
+    "final": {
+      "name": "runtime-v2-phase-4-final-29298535864-1",
+      "sha256": "b7ed3ba303311a30d3d0e66a841ff72ffe404d168f2f677c480bb7dcd85b5e23"
+    },
+    "lean": {
+      "name": "runtime-v2-phase-4-lean-29298535864-1",
+      "sha256": "5003a7b2a9fb9f6282729d955df2ff7becdd7dddefdf4d7eb6065a144afb6c0f"
+    },
+    "python_macos": {
+      "name": "runtime-v2-phase-4-macos-latest-29298535864-1",
+      "sha256": "066ac23cc9fc95c8489037f42e65728e0683c47e6111f9cf84e60798161566fe"
+    },
+    "python_ubuntu": {
+      "name": "runtime-v2-phase-4-ubuntu-latest-29298535864-1",
+      "sha256": "d45cb4a6e9e066585f7f73144a1cba51f9d8fe6122f60987f2e079671dd3a622"
+    },
+    "python_windows": {
+      "name": "runtime-v2-phase-4-windows-latest-29298535864-1",
+      "sha256": "248bb1b3629d10372981def0a8ecd4926c14fc549e3ae5466556e190475478f6"
+    }
+  },
+  "claim_boundary": {
+    "arbitrary_attack_resistance_established": false,
+    "candidate_acceptance_licensed": false,
+    "external_benchmark_claim": false,
+    "general_noncommuting_quantum": false,
+    "generator_trusted": false,
+    "phase_4_reference_attack_surface_closed": true,
+    "promotion_licensed": false,
+    "unbounded_rsi_claim": false
+  },
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "jobs": {
+    "lean_conformance": "success",
+    "macos_adversarial": "success",
+    "ubuntu_adversarial": "success",
+    "windows_adversarial": "success",
+    "workflow_closure": "success"
+  },
+  "licenses_after_phase_4": {
+    "candidate_acceptance": false,
+    "deterministic_reference_generator_development_may_begin": true,
+    "generator_trust": false,
+    "independent_replay": false,
+    "promotion_controller": false,
+    "pytorch_backend": false,
+    "selector_and_realizer": false
+  },
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 4 adversarial and tamper rejection",
+  "release_status": "phase_4_adversarial_rejection_validated",
+  "schema_version": "rcp-rclm-runtime-phase-4-validation-v1",
+  "suite": {
+    "all_cases_first_class": true,
+    "all_deterministic_replays": true,
+    "all_passed": true,
+    "case_count": 27,
+    "failed_count": 0,
+    "nonaccepting_case_count": 27,
+    "passed_count": 27
+  },
+  "validation_summary": {
+    "generated_source_admission_scan": true,
+    "hardened_checker_references": true,
+    "phase_1_regression": true,
+    "phase_2_regression": true,
+    "phase_3_regression": true,
+    "phase_4_unit_tests": true,
+    "pinned_formal_core_build": true,
+    "source_quality": true,
+    "ten_case_lean_conformance": true,
+    "workflow_artifacts": true
+  },
+  "validated_implementation_head": "4e4199e59989a829fb770556676c4e695c48ff9e",
+  "workflow_conclusion": "success",
+  "workflow_run": 29298535864
+}
