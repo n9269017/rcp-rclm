@@ -2,8 +2,9 @@
 
 This package contains the deterministic Phase 1 runtime bedrock, the validated
 Phase 2 pinned Lean conformance bridge, the Phase 3 deterministic checker, the
-Phase 4 hardened checker and adversarial rejection suite, and the Phase 5A
-bounded reference generator.
+Phase 4 hardened checker and adversarial rejection suite, the Phase 5A bounded
+reference generator, and the Phase 6 selector, filesystem realizer, rollback builder,
+and candidate-package verifier.
 
 ## Phase 1 bedrock
 
@@ -38,83 +39,74 @@ Implemented and validated:
 ## Phase 3 deterministic checker
 
 The checker core is a pure function over immutable records. It is deterministic,
-model-free, network-free, generator-independent, and fail-closed.
-
-It recomputes:
-
-- exact RCLM canonical state/update/certificate lifts;
-- the typed successor;
-- typed and packet residuals;
-- Shannon/von Neumann entropy and KL/QRE interval evidence;
-- zero-budget protected non-loss;
-- selected constructive recovery;
-- protected invariants and reality containment;
-- progress and the derived strict witness;
-- trust-root, resource, provenance, and domain obligations;
-- RCLM-to-RCP refinement and preservation monitors;
-- exact packet binding to an accepting Phase 2 Lean report;
-- canonical hashes of all authoritative inputs and derived bindings.
-
-Candidate fields that merely claim preservation, containment, improvement, trust,
-or acceptance are not part of the request schema and are rejected as unknown.
+model-free, network-free, generator-independent, and fail-closed. Candidate fields
+that merely claim preservation, containment, improvement, trust, or acceptance are
+not part of the request schema and are rejected as unknown.
 
 ## Phase 4 hardened checker and attack suite
 
 The hardened envelope composes the Phase 3 checker with independently measured
-package-integrity records. It recomputes:
-
-- predecessor and candidate semantic-tree hashes;
-- candidate parent package and parent manifest links;
-- candidate and certificate hashes;
-- trust-anchor, resource-record, checker-policy, Lean-policy, and claim hashes;
-- the pinned Phase 3 checker-manifest hash;
-- a transition-binding hash over the predecessor, candidate, certificate,
-  evaluation evidence, and Lean bridge report.
-
-The deterministic adversarial suite records 27 first-class cases covering schema
-attacks, evidence removal, parent/certificate replay, file and manifest tampering,
-invalid numerical data, selected Gate C scope violations, forged witnesses,
-insufficient interval margins, resource/provenance violations, and forbidden
-generated Lean source.
+package-integrity records. The deterministic adversarial suite records 27 first-class
+schema, replay, tamper, numerical, selected-quantum, resource, trust, provenance, and
+generated-source attacks.
 
 ## Phase 5A bounded reference generator
 
 The first generator implements only the finite Gate B seed grammar declared in Lean.
-It runs in a separate process and receives a canonical read-only view containing the
-predecessor state and package hashes, public policy, objective, and resource bounds.
-It receives no checker source, trust anchor, promotion ledger, previous-manifest write
-handle, or reference answer.
+It runs in a separate capability-minimized process and emits only a bounded proposal.
+Trusted orchestration validates the proposal, constructs the certificate, selects the
+update, derives the logical successor, invokes the pinned Lean bridge, and calls the
+Phase 4 hardened checker.
 
-The worker emits only a bounded word, witness, proposal name, depth/proof bounds,
-resource use, and binding hashes. It does not emit a certificate, successor,
-candidate, or acceptance Boolean. Trusted orchestration independently validates the
-proposal, constructs the canonical certificate, selects the single permitted update,
-derives the successor, invokes the pinned Lean bridge, and calls the Phase 4 hardened
-checker.
-
-Run the separate-process generator suite:
+Run the generator process suite:
 
 ```bash
 python python/rcp_rclm_runtime_v2/tools/run_phase5a_process_suite.py \
   --out artifacts/runtime_v2_phase_5a/local/process_suite.json
 ```
 
-Run the complete pinned reference loop from the repository root:
+## Phase 6 selector, realizer, and package builder
+
+Phase 6 turns the validated proposal into an actual filesystem candidate without
+promoting it. It:
+
+```text
+measures the predecessor package from bytes
+→ validates proposal and predecessor bindings
+→ selects explicit file operations
+→ copies the payload into an isolated workspace
+→ applies only selected operations
+→ records exact before/after hashes
+→ rejects metadata-only or state-only successors
+→ builds and independently restores a rollback archive
+→ writes a realized_unverified candidate package
+→ publicly reverifies all package bindings
+→ atomically publishes the package
+```
+
+The reference cases introduce genuine verification-policy and memory-policy changes.
+The candidate package remains unverified for promotion; Phase 7 must run objective
+evaluation, the checker, and the Lean bridge before any active-package replacement.
+
+Run the Phase 6 unit suite:
 
 ```bash
-python scripts/run_phase5a_reference_loop.py \
-  --repo-root . \
-  --outdir artifacts/runtime_v2_phase_5a/local/reference_loop
+python python/rcp_rclm_runtime_v2/tools/run_phase6_tests.py \
+  --package-root python/rcp_rclm_runtime_v2 \
+  --out artifacts/runtime_v2_phase_6/local/phase_6_unit.log
+```
+
+Build both reference filesystem candidates:
+
+```bash
+python python/rcp_rclm_runtime_v2/tools/run_phase6_reference_suite.py \
+  --outdir artifacts/runtime_v2_phase_6/local/reference_suite
 ```
 
 ## Boundary
 
-The executable scope remains the declared finite Gate B binary and selected Gate C
-diagonal-quantum checker semantics. Phase 5A adds only the Gate B bounded generator
-grammar. It does not implement a real filesystem realizer, promotion, rollback,
-independent replay, open-ended search, program synthesis, LLM/scaffold generation,
-PyTorch learning, external benchmarks, or arbitrary noncommuting quantum semantics.
-
-The generator remains untrusted. A clean Phase 5A closure licenses Phase 5B
-open-ended-generator experiments and Phase 6 realizer/package-builder development,
-but does not license candidate promotion.
+The executable mathematical scope remains the declared finite Gate B binary and
+selected Gate C diagonal-quantum checker semantics. Phase 6 does not add arbitrary
+noncommuting matrices or channels. It also does not implement promotion, active-package
+replacement, promotion-ledger mutation, independent replay, open-ended-generator
+correctness, PyTorch learning, or external benchmark claims.
