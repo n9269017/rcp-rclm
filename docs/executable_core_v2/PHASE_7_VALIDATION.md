@@ -1,24 +1,36 @@
 # Phase 7 promotion-controller validation
 
-## Validation state
+## Clean implementation head
 
-The promotion-controller implementation is locally complete and has the authoritative
-Phase 7 workflow, strict record schema, local deterministic evidence, generated-Lean
-source scan, and closure job attached. Cross-platform and pinned-Lean closure remains
-pending until one exact published head passes the full Phase 0–7 matrix.
-
-The implementation under validation is based on:
+The authoritative Phase 7 implementation passed the complete Phase 0–7 matrix at:
 
 ```text
-164e4138be8af4effc36e88a9d30b26d740e101f
+branch head:
+001f060bb79015a7b9b06722977323e3f5f71063
+
+GitHub pull-request merge ref used by Actions:
+d431dc136c56dbc89145367c368dcf06304aeb5e
 ```
 
-Subsequent commits in PR #22 add only the missing validation, schema, workflow, and
-status records unless a CI failure requires an executable repair.
+All authoritative workflows completed successfully:
 
-## Local deterministic evidence
+```text
+Phase 0:  29396211667
+Phase 1:  29396211707
+Phase 2:  29396211668
+Phase 3:  29396211676
+Phase 4:  29396211781
+Phase 5A: 29396211698
+Phase 6:  29396211699
+Phase 7:  29396211684
+```
 
-The exact branch source currently reports:
+The commits after that head update only validation, status, exit-criteria, and repository
+documentation. The resulting final evidence head must pass the same matrix before merge.
+
+## Cross-platform deterministic evidence
+
+The exact implementation head reports:
 
 ```text
 Python files scanned: 161
@@ -33,7 +45,39 @@ Phase 6 tests:  22
 Phase 7 tests:  17
 ```
 
-The Phase 7 reference trajectory completed with fixture Lean evidence:
+Linux, Windows, and macOS all completed source compilation, source-quality validation,
+Phase 1–7 regression, and the deterministic Phase 7 reference trajectory.
+
+## Pinned formal and executable revalidation
+
+The pinned Phase 7 job completed:
+
+```text
+pinned Formal Core build
+10/10 Phase 2 differential cases
+4 accepting Phase 2 references
+6 rejecting Phase 2 mutations
+2/2 accepting Phase 5A reference loops
+2/2 verified Phase 6 filesystem packages
+real pinned-Lean Phase 7 reference trajectory
+generated-Lean admission and local-axiom scan
+Phase 7 closure job
+```
+
+The generated source was scanned before compilation and again across retained workflow
+artifacts for:
+
+```text
+sorry
+sorryAx
+admit
+project-local axiom declarations
+invalid UTF-8 at the source-guard boundary
+```
+
+## Pinned Phase 7 trajectory
+
+The real pinned-Lean trajectory completed as:
 
 ```text
 root initial package
@@ -42,62 +86,71 @@ root initial package
 → two rejected attempts after the finite grammar is exhausted
 ```
 
-Its deterministic local bindings are:
+Its authoritative bindings are:
 
 ```text
 trajectory hash:
-bb5440c2fc8abfa077ff500c19047305b417777accdd32c447185974755a092a
+ef0207a4f6a533ed4bf4c23d1eef18bc1ded02795cca3386c80d562869b212d3
+
+project pin hash:
+32cbf7de4cf65298568432322fb428bceb4cb66269be934de537d0c8991a66d9
 
 bootstrap package:
 0a80ac68151d9c64915472b0611d983f01622988cc32187ce9ff822c343c1211
 
 first promoted package:
-29a6684c57a5f7dbe6919b942fe5f45ea305ba148411d550c781b5a844dcef10
+03a40023e87b08d977d8c3cab2b008d2179036dfd3f394e7a976821edad9ec4f
 
-second promoted package:
-14ed1b50445e9d0f6444ebf7b1aa1a61acfe1e3a3c585ae8103f60bfb66c07d4
+second promoted and final active package:
+671633d16a9fb9cd12a823a9db19d22a3275ea9a5cc3ebc1f1fac4e156f1472e
 
-final active package after exhausted rejection:
-14ed1b50445e9d0f6444ebf7b1aa1a61acfe1e3a3c585ae8103f60bfb66c07d4
+first controller report:
+1954dc1461da04e32516b66d1b9c90eadb84101c8ed593074d266a81fe482780
+
+second controller report:
+299d29b59c0fe755d19e51718e669f99eb96f5b47b7e45c6538d816a7746db37
+
+exhausted controller report:
+e1b05098a8ce3f4e046ffe1a5dee2fdbd6d931fda99ee4d7705e1712cf0a1dd8
 ```
 
 The controller preserves raw generator input/output, process reports, proposal,
 selection, Phase 6 realization evidence, objective evaluation, host-constructed
 certificate, generated Lean source and source-guard report, Lean report, hardened
 checker report, attempt report, package hashes, pointer state, ledger entries, resource
-records, and rollback evidence.
+records, and rollback-fallback evidence.
 
-## Exact-head workflow requirements
-
-The authoritative Phase 7 workflow must pass all of the following at one head:
+## Artifact digests
 
 ```text
-Linux, Windows, and macOS compilation and Phase 1–7 regression
-Phase 7 deterministic reference trajectory on all three platforms
-complete pinned Formal Core build
-all ten Phase 2 differential cases
-both Phase 5A reference loops
-both Phase 6 filesystem packages
-real pinned-Lean Phase 7 promotion trajectory
-generated Lean source admission/local-axiom scan
-Phase 7 closure artifact
-```
+final closure:
+51ae697d70beacedd795e924338aaee5a74a0857ba8c0fa884f8d12e769fcc84
 
-The final validation record must preserve the exact head, workflow IDs, test counts,
-trajectory and package hashes, and platform/pinned/final artifact digests. Those fields
-are populated only after the corresponding workflow completes; they are not asserted
-self-referentially by the commit that triggers the run.
+pinned Lean and closed loop:
+7d95bf083994fd042b53b07cbb043924e4e1c03a399a192933f0b6a8fa381429
+
+Ubuntu:
+fab3901f2993aa205c30748eece3beacf1048f258ee0a3bc9e5eac900bd69419
+
+Windows:
+8db7195804d7ebe74bfe466eec0a1e46334a77e7cb883bb9158877e6529d0c32
+
+macOS:
+75daa6e1fe67c430dea5b14bd0bc898993f911d17c835bd0a5c42a643948f445
+```
 
 ## Claim boundary
 
-Before exact-head closure, this is an implementation candidate and does not license
-Phase 8. After clean closure it supports only:
+The clean implementation supports:
 
-> A deterministic fixed-budget promotion and rollback controller for the declared
-> finite Gate B reference path, with checker-owned acceptance, pinned Lean evidence,
-> immutable parent-linked packages, append-only hash evidence, and fail-closed
-> rejection behavior.
+> A deterministic fixed-budget promotion and rollback-fallback controller for the
+> declared finite Gate B reference path, with checker-owned acceptance, pinned Lean
+> evidence, immutable parent-linked packages, append-only hash evidence, atomic active
+> pointer replacement, and fail-closed rejection behavior.
 
 It does not establish independent replay, generator trust, open-ended-generator
 correctness, learned PyTorch authority, external benchmark performance, general
 noncommuting quantum semantics, or autonomous/unbounded RSI.
+
+A clean final evidence-head revalidation and merge licenses Phase 8 independent replay
+and finite-trajectory development.
