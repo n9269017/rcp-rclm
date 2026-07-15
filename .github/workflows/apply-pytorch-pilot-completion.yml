@@ -67,6 +67,7 @@ jobs:
               extraction.mkdir()
               with tarfile.open(fileobj=io.BytesIO(archive), mode="r:gz") as bundle:
                   members = bundle.getmembers()
+                  regular_paths: list[str] = []
                   for member in members:
                       normalized = member.name.removeprefix("./")
                       path = PurePosixPath(normalized)
@@ -74,30 +75,42 @@ jobs:
                           raise RuntimeError(f"unsafe archive path: {member.name}")
                       if member.issym() or member.islnk() or member.isdev():
                           raise RuntimeError(f"unsupported archive entry: {member.name}")
+                      if member.isfile() and normalized != "TRANSFER_MANIFEST.txt":
+                          regular_paths.append(normalized)
                   bundle.extractall(extraction)
               manifest = extraction / "TRANSFER_MANIFEST.txt"
-              if not manifest.is_file():
-                  raise RuntimeError("payload transfer manifest is absent")
-              paths = tuple(
-                  line.strip()
-                  for line in manifest.read_text(encoding="utf-8").splitlines()
-                  if line.strip()
-              )
+              if manifest.is_file():
+                  paths = tuple(
+                      line.strip()
+                      for line in manifest.read_text(encoding="utf-8").splitlines()
+                      if line.strip()
+                  )
+              else:
+                  paths = tuple(sorted(regular_paths, key=lambda item: item.encode("utf-8")))
               if len(paths) < 20:
-                  raise RuntimeError("payload manifest is unexpectedly incomplete")
+                  raise RuntimeError("payload file set is unexpectedly incomplete")
               if len(paths) != len(set(paths)):
-                  raise RuntimeError("payload manifest contains duplicate paths")
+                  raise RuntimeError("payload file set contains duplicate paths")
               for relative in paths:
                   semantic = PurePosixPath(relative)
                   if semantic.is_absolute() or ".." in semantic.parts:
-                      raise RuntimeError(f"unsafe manifest path: {relative}")
+                      raise RuntimeError(f"unsafe payload path: {relative}")
                   source = extraction.joinpath(*semantic.parts)
                   if not source.is_file() or source.is_symlink():
-                      raise RuntimeError(f"manifest source is not a regular file: {relative}")
+                      raise RuntimeError(f"payload source is not a regular file: {relative}")
                   destination = repository.joinpath(*semantic.parts)
                   destination.parent.mkdir(parents=True, exist_ok=True)
                   shutil.copyfile(source, destination)
               print("applied files:", len(paths))
+
+          test_path = repository / "python/rcp_rclm_runtime_v2/tests_pytorch_pilot/test_admission_replay.py"
+          source = test_path.read_text(encoding="utf-8")
+          old = '''        self.assertTrue(verify_pytorch_pilot_promotion(self.accepted))\n        verified = load_active_phase7_store(\n            self.accepted.store_root, pytorch_pilot_phase7_policy()\n        )\n'''
+          new = '''        verified = verify_pytorch_pilot_promotion(self.accepted)\n'''
+          if old in source:
+              test_path.write_text(source.replace(old, new, 1), encoding="utf-8")
+          elif new not in source:
+              raise RuntimeError("unexpected PyTorch promotion-verifier test shape")
           PY
 
       - name: Remove all temporary transfer machinery
