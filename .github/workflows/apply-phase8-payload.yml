@@ -30,9 +30,18 @@ jobs:
           show-progress: false
 
       - name: Expand validated implementation payload
+        id: expand
+        continue-on-error: true
         shell: bash
         run: |
-          set -euo pipefail
+          set +e
+          bash -euxo pipefail <<'SCRIPT' > phase8-apply.log 2>&1
+          ls -l .phase8_payload.gz
+          python - <<'PY'
+          from pathlib import Path
+          payload = Path(".phase8_payload.gz").read_bytes()
+          print({"payload_bytes": len(payload), "prefix": payload[:4].hex()})
+          PY
           git checkout origin/main -- .github/workflows/runtime-v2-phase-7.yml
           python - <<'PY'
           from __future__ import annotations
@@ -47,6 +56,7 @@ jobs:
           with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
               members = archive.getmembers()
               names = [member.name for member in members]
+              print({"member_count": len(names), "first": names[0], "last": names[-1]})
               if names != sorted(names, key=lambda value: value.encode("utf-8")):
                   raise RuntimeError("payload members are not canonically ordered")
               if len(names) != len(set(names)):
@@ -69,17 +79,42 @@ jobs:
                   destination.write_bytes(source.read())
                   destination.chmod(0o644)
           PY
+          git status --short
+          SCRIPT
+          status=$?
+          printf '%s\n' "$status" > phase8-apply.status
+          cat phase8-apply.log
+          exit "$status"
+
+      - name: Upload applicator diagnostics
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase8-applicator-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            phase8-apply.log
+            phase8-apply.status
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Commit implementation
+        if: steps.expand.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f phase8-apply.log phase8-apply.status
           rm -f .phase8_payload.gz
           rm -f .github/workflows/apply-phase8-payload.yml
           rm -f .github/workflows/phase8-source-snapshot.yml
           git add -A
           git diff --cached --check
-
-      - name: Commit implementation
-        shell: bash
-        run: |
-          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Implement Phase 8 independent replay"
           git push origin HEAD:agent/rcp-rclm-runtime-v2-phase-8-independent-replay
+
+      - name: Require successful expansion
+        if: steps.expand.outcome != 'success'
+        shell: bash
+        run: exit 1
