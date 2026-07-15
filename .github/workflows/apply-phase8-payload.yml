@@ -42,77 +42,103 @@ jobs:
           import io
           import json
           import tarfile
+          import traceback
           from pathlib import Path, PurePosixPath
 
-          parts = sorted(Path('.').glob('.phase8_payload.part*'))
-          raw_parts = [part.read_bytes() for part in parts]
-          stripped_parts = [raw.decode('ascii').strip() for raw in raw_parts]
-          encoded_text = ''.join(stripped_parts)
-          encoded = encoded_text.encode('ascii')
-          diagnostics = {
-              'part_count': len(parts),
-              'part_paths': [part.name for part in parts],
-              'part_raw_sizes': [len(raw) for raw in raw_parts],
-              'part_stripped_sizes': [len(text) for text in stripped_parts],
-              'encoded_size': len(encoded),
-              'encoded_sha256': hashlib.sha256(encoded).hexdigest(),
-          }
-          Path('/tmp/phase8-diagnostics/payload.json').write_text(
-              json.dumps(diagnostics, indent=2, sort_keys=True) + '\n',
-              encoding='utf-8',
-          )
-          if len(parts) != 11:
-              raise RuntimeError(f'expected 11 payload parts, found {len(parts)}')
-          if len(encoded) != 63988:
-              raise RuntimeError(f'unexpected payload encoding length: {len(encoded)}')
-          if hashlib.sha256(encoded).hexdigest() != (
-              '1ab20157abab33f5bccb097b63aeda5b283e26ef046d9cbcff578c27c2832d41'
-          ):
-              raise RuntimeError('payload encoding hash mismatch')
-          compressed = base64.b64decode(encoded, validate=True)
-          diagnostics.update({
-              'compressed_size': len(compressed),
-              'compressed_sha256': hashlib.sha256(compressed).hexdigest(),
-          })
-          Path('/tmp/phase8-diagnostics/payload.json').write_text(
-              json.dumps(diagnostics, indent=2, sort_keys=True) + '\n',
-              encoding='utf-8',
-          )
-          if len(compressed) != 47989:
-              raise RuntimeError(
-                  f'unexpected compressed payload length: {len(compressed)}'
-              )
-          if hashlib.sha256(compressed).hexdigest() != (
-              '1baf2c4df74fa7ad745c9918e878f99c866b469540d9d69aa1dddc96b4d46f20'
-          ):
-              raise RuntimeError('compressed payload hash mismatch')
+          diagnostics_path = Path('/tmp/phase8-diagnostics/payload.json')
+          diagnostics: dict[str, object] = {}
 
-          archive_bytes = gzip.decompress(compressed)
-          repository_root = Path.cwd().resolve(strict=True)
-          with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode='r:') as archive:
-              members = archive.getmembers()
-              names = [member.name for member in members]
-              if names != sorted(names, key=lambda value: value.encode('utf-8')):
-                  raise RuntimeError('payload members are not canonically ordered')
-              if len(names) != len(set(names)):
-                  raise RuntimeError('payload contains duplicate paths')
-              for member in members:
-                  path = PurePosixPath(member.name)
-                  if path.is_absolute() or not path.parts or '..' in path.parts:
-                      raise RuntimeError(f'unsafe payload path: {member.name}')
-                  if not member.isfile():
-                      raise RuntimeError(
-                          f'payload member is not a regular file: {member.name}'
-                      )
-                  source = archive.extractfile(member)
-                  if source is None:
-                      raise RuntimeError(
-                          f'payload member has no content: {member.name}'
-                      )
-                  destination = repository_root.joinpath(*path.parts)
-                  destination.parent.mkdir(parents=True, exist_ok=True)
-                  destination.write_bytes(source.read())
-                  destination.chmod(0o644)
+          def write_diagnostics() -> None:
+              diagnostics_path.write_text(
+                  json.dumps(diagnostics, indent=2, sort_keys=True) + '\n',
+                  encoding='utf-8',
+              )
+
+          try:
+              parts = sorted(Path('.').glob('.phase8_payload.part*'))
+              raw_parts = [part.read_bytes() for part in parts]
+              stripped_parts = [raw.decode('ascii').strip() for raw in raw_parts]
+              encoded_text = ''.join(stripped_parts)
+              encoded = encoded_text.encode('ascii')
+              diagnostics.update({
+                  'part_count': len(parts),
+                  'part_paths': [part.name for part in parts],
+                  'part_raw_sizes': [len(raw) for raw in raw_parts],
+                  'part_stripped_sizes': [len(text) for text in stripped_parts],
+                  'encoded_size': len(encoded),
+                  'encoded_sha256': hashlib.sha256(encoded).hexdigest(),
+              })
+              write_diagnostics()
+              if len(parts) != 11:
+                  raise RuntimeError(f'expected 11 payload parts, found {len(parts)}')
+              if len(encoded) != 63988:
+                  raise RuntimeError(
+                      f'unexpected payload encoding length: {len(encoded)}'
+                  )
+              if hashlib.sha256(encoded).hexdigest() != (
+                  '1ab20157abab33f5bccb097b63aeda5b283e26ef046d9cbcff578c27c2832d41'
+              ):
+                  raise RuntimeError('payload encoding hash mismatch')
+              compressed = base64.b64decode(encoded, validate=True)
+              diagnostics.update({
+                  'compressed_size': len(compressed),
+                  'compressed_sha256': hashlib.sha256(compressed).hexdigest(),
+              })
+              write_diagnostics()
+              if len(compressed) != 47989:
+                  raise RuntimeError(
+                      f'unexpected compressed payload length: {len(compressed)}'
+                  )
+              if hashlib.sha256(compressed).hexdigest() != (
+                  '1baf2c4df74fa7ad745c9918e878f99c866b469540d9d69aa1dddc96b4d46f20'
+              ):
+                  raise RuntimeError('compressed payload hash mismatch')
+
+              archive_bytes = gzip.decompress(compressed)
+              diagnostics.update({
+                  'archive_size': len(archive_bytes),
+                  'archive_sha256': hashlib.sha256(archive_bytes).hexdigest(),
+              })
+              repository_root = Path.cwd().resolve(strict=True)
+              with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode='r:') as archive:
+                  members = archive.getmembers()
+                  names = [member.name for member in members]
+                  diagnostics.update({
+                      'member_count': len(members),
+                      'member_names': names,
+                  })
+                  write_diagnostics()
+                  if names != sorted(names, key=lambda value: value.encode('utf-8')):
+                      raise RuntimeError('payload members are not canonically ordered')
+                  if len(names) != len(set(names)):
+                      raise RuntimeError('payload contains duplicate paths')
+                  for member in members:
+                      path = PurePosixPath(member.name)
+                      if path.is_absolute() or not path.parts or '..' in path.parts:
+                          raise RuntimeError(f'unsafe payload path: {member.name}')
+                      if not member.isfile():
+                          raise RuntimeError(
+                              f'payload member is not a regular file: {member.name}'
+                          )
+                      source = archive.extractfile(member)
+                      if source is None:
+                          raise RuntimeError(
+                              f'payload member has no content: {member.name}'
+                          )
+                      destination = repository_root.joinpath(*path.parts)
+                      destination.parent.mkdir(parents=True, exist_ok=True)
+                      destination.write_bytes(source.read())
+                      destination.chmod(0o644)
+              diagnostics['extraction_complete'] = True
+              write_diagnostics()
+          except Exception as exc:
+              diagnostics.update({
+                  'error_type': type(exc).__name__,
+                  'error_message': str(exc),
+                  'traceback': traceback.format_exc(),
+              })
+              write_diagnostics()
+              raise
           PY
 
           test -f python/rcp_rclm_runtime_v2/rcp_rclm_runtime/replay/reproduce.py
