@@ -1,12 +1,20 @@
 from __future__ import annotations
 
+import tempfile
 from collections.abc import Sequence
 from pathlib import Path
+from typing import Final
 
-from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, sha256_hex
+from rcp_rclm_runtime.canonical.hashing import (
+    SemanticFileRecord,
+    canonical_json_hash,
+    sha256_hex,
+)
 from rcp_rclm_runtime.canonical.json import load_json_strict
 from rcp_rclm_runtime.errors import CanonicalizationError, SchemaValidationError
 from rcp_rclm_runtime.schema._common import require_schema_id, strict_object
+from rcp_rclm_runtime.successor.change_detection import diff_payload_trees
+from rcp_rclm_runtime.successor.filesystem import command_record, safe_payload_path
 from rcp_rclm_runtime.successor.records import (
     Phase6CandidateManifestRecord,
     Phase6CommandRecord,
@@ -19,10 +27,24 @@ from rcp_rclm_runtime.successor.records import (
     Phase6RollbackSnapshotRecord,
     Phase6SelectionRecord,
 )
+from rcp_rclm_runtime.successor.rollback_io import (
+    PHASE6_ROLLBACK_FORMAT_ID,
+    restore_rollback_snapshot_archive,
+)
 from rcp_rclm_runtime.successor.workspace import (
+    PHASE6_REALIZER_POLICY_ID,
     Phase6WorkspaceError,
     measure_payload_tree,
-    verify_rollback_snapshot_archive,
+    package_command_record,
+)
+from rcp_rclm_runtime.successor.workspace_types import PayloadMeasurement
+
+_CAPTURED_ENVIRONMENT_KEYS: Final[Sequence[str]] = (
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "PYTHONIOENCODING",
+    "PYTHONUTF8",
 )
 
 
@@ -72,7 +94,8 @@ def verify_candidate_package(package_root: Path) -> Phase6CandidateManifestRecor
                 require_canonical=True,
             )
         )
-        payload_measurement = measure_payload_tree(resolved / "payload")
+        payload_root = resolved / "payload"
+        payload_measurement = measure_payload_tree(payload_root)
         evidence_root = resolved / "evidence"
         expected_evidence_names = {
             "commands.json",
@@ -111,7 +134,7 @@ def verify_candidate_package(package_root: Path) -> Phase6CandidateManifestRecor
             _load_evidence_json(evidence_root / "rollback.json")
         )
         command_log = _parse_command_log(evidence_root / "commands.json")
-        change_ledger_hash = _parse_change_ledger_hash(
+        declared_changes, change_ledger_hash = _parse_change_ledger(
             evidence_root / "modified_files.json"
         )
     except Phase6WorkspaceError:
@@ -181,6 +204,9 @@ def verify_candidate_package(package_root: Path) -> Phase6CandidateManifestRecor
             == realization.change_ledger_hash
             == manifest.change_ledger_hash
         ),
+        "declared_change_ledger": (
+            declared_changes == tuple(realization.changes)
+        ),
         "command_log": command_log == tuple(realization.commands),
         "command_log_hash": (
             realization.command_log_hash == manifest.command_log_hash
@@ -188,6 +214,13 @@ def verify_candidate_package(package_root: Path) -> Phase6CandidateManifestRecor
         "environment": environment == realization.environment,
         "environment_hash": (
             environment.environment_hash == manifest.environment_hash
+        ),
+        "environment_policy": (
+            environment.realizer_policy_id == PHASE6_REALIZER_POLICY_ID
+        ),
+        "environment_keys": (
+            tuple(key for key, _ in environment.environment_value_hashes.entries)
+            == tuple(sorted(_CAPTURED_ENVIRONMENT_KEYS))
         ),
         "resources": resources == realization.resources,
         "resource_usage_hash": (
@@ -207,6 +240,7 @@ def verify_candidate_package(package_root: Path) -> Phase6CandidateManifestRecor
         ),
         "component_kinds": (
             tuple(realization.substantive_component_kinds)
+            == tuple(selection.substantive_component_kinds)
             == tuple(manifest.substantive_component_kinds)
         ),
     }
@@ -216,34 +250,310 @@ def verify_candidate_package(package_root: Path) -> Phase6CandidateManifestRecor
             Phase6ReasonCode.PACKAGE_BUILD_FAILED,
             f"candidate package binding checks failed: {failed}",
         )
+
     rollback_path = resolved / rollback.archive_relative_path
     try:
-        archive_hash = sha256_hex(rollback_path.read_bytes())
+        archive_bytes = rollback_path.read_bytes()
     except OSError as exc:
         raise Phase6WorkspaceError(
             Phase6ReasonCode.PACKAGE_BUILD_FAILED,
             f"candidate rollback archive cannot be read: {exc}",
         ) from exc
-    if archive_hash != rollback.archive_hash:
+    if sha256_hex(archive_bytes) != rollback.archive_hash:
         raise Phase6WorkspaceError(
             Phase6ReasonCode.PACKAGE_BUILD_FAILED,
             "candidate rollback archive hash mismatch",
         )
-    if rollback_path.stat().st_size != rollback.archive_bytes:
+    if len(archive_bytes) != rollback.archive_bytes:
         raise Phase6WorkspaceError(
             Phase6ReasonCode.PACKAGE_BUILD_FAILED,
             "candidate rollback archive byte count mismatch",
         )
-    restored_tree_hash = verify_rollback_snapshot_archive(
-        rollback_path,
-        predecessor_manifest.payload_tree_hash,
+
+    with tempfile.TemporaryDirectory(
+        prefix="rcp-rclm-phase6-package-verify-"
+    ) as temporary_directory:
+        restored_root = Path(temporary_directory) / "predecessor"
+        restored_measurement = restore_rollback_snapshot_archive(
+            rollback_path,
+            restored_root,
+            predecessor_manifest.payload_tree_hash,
+        )
+        _verify_operation_bindings(
+            selection,
+            restored_root,
+            restored_measurement,
+            payload_root,
+            payload_measurement,
+        )
+        computed_changes = tuple(
+            diff_payload_trees(
+                restored_root,
+                restored_measurement.records,
+                payload_root,
+                payload_measurement.records,
+                selection.operations,
+            )
+        )
+
+    computed_components = tuple(
+        sorted(
+            {
+                change.component_kind
+                for change in computed_changes
+                if change.substantive and change.component_kind is not None
+            }
+        )
     )
-    if restored_tree_hash != rollback.restored_tree_hash:
+    expected_commands = _expected_commands(
+        selection,
+        restored_measurement,
+        payload_measurement,
+        rollback,
+    )
+    expected_resources = _expected_resources(
+        selection,
+        restored_measurement,
+        payload_measurement,
+        rollback,
+        computed_changes,
+        expected_commands,
+        resources,
+    )
+    recomputed_checks = {
+        "restored_file_count": (
+            restored_measurement.file_count == predecessor_manifest.file_count
+        ),
+        "restored_total_bytes": (
+            restored_measurement.total_bytes == predecessor_manifest.total_bytes
+        ),
+        "workspace_copy_tree": (
+            realization.workspace_copy_tree_hash == restored_measurement.tree_hash
+        ),
+        "recomputed_changes": computed_changes == tuple(realization.changes),
+        "recomputed_change_hash": (
+            canonical_json_hash([change.to_json() for change in computed_changes])
+            == change_ledger_hash
+        ),
+        "recomputed_components": (
+            computed_components
+            == tuple(selection.substantive_component_kinds)
+            == tuple(realization.substantive_component_kinds)
+            == tuple(manifest.substantive_component_kinds)
+        ),
+        "recomputed_commands": (
+            expected_commands
+            == command_log
+            == tuple(realization.commands)
+        ),
+        "recomputed_resources": expected_resources == resources,
+        "rollback_restored_tree": (
+            restored_measurement.tree_hash == rollback.restored_tree_hash
+        ),
+    }
+    if not all(recomputed_checks.values()):
+        failed = ", ".join(
+            key for key, ok in recomputed_checks.items() if not ok
+        )
         raise Phase6WorkspaceError(
             Phase6ReasonCode.PACKAGE_BUILD_FAILED,
-            "candidate rollback archive restoration mismatch",
+            f"candidate package recomputation checks failed: {failed}",
         )
     return manifest
+
+
+def _verify_operation_bindings(
+    selection: Phase6SelectionRecord,
+    predecessor_root: Path,
+    predecessor: PayloadMeasurement,
+    candidate_root: Path,
+    candidate: PayloadMeasurement,
+) -> None:
+    before_by_path = {record.path: record for record in predecessor.records}
+    after_by_path = {record.path: record for record in candidate.records}
+    for operation in selection.operations:
+        before = before_by_path.get(operation.path)
+        after = after_by_path.get(operation.path)
+        if operation.expected_before_hash is None:
+            before_matches = before is None
+        else:
+            before_matches = (
+                before is not None
+                and before.sha256 == operation.expected_before_hash
+                and before.mode == operation.expected_before_mode
+            )
+        if not before_matches:
+            raise Phase6WorkspaceError(
+                Phase6ReasonCode.PACKAGE_BUILD_FAILED,
+                f"selected before-file binding mismatch: {operation.path}",
+            )
+        if operation.operation == "delete":
+            if after is not None:
+                raise Phase6WorkspaceError(
+                    Phase6ReasonCode.PACKAGE_BUILD_FAILED,
+                    f"selected delete path remains in candidate: {operation.path}",
+                )
+            continue
+        content = operation.decoded_content()
+        if after is None:
+            raise Phase6WorkspaceError(
+                Phase6ReasonCode.PACKAGE_BUILD_FAILED,
+                f"selected write path is absent from candidate: {operation.path}",
+            )
+        candidate_content = safe_payload_path(
+            candidate_root,
+            operation.path,
+        ).read_bytes()
+        if (
+            after.sha256 != operation.after_hash
+            or after.mode != operation.after_mode
+            or sha256_hex(content) != operation.after_hash
+            or candidate_content != content
+        ):
+            raise Phase6WorkspaceError(
+                Phase6ReasonCode.PACKAGE_BUILD_FAILED,
+                f"selected after-file binding mismatch: {operation.path}",
+            )
+        if before is not None:
+            predecessor_content = safe_payload_path(
+                predecessor_root,
+                operation.path,
+            ).read_bytes()
+            if sha256_hex(predecessor_content) != before.sha256:
+                raise Phase6WorkspaceError(
+                    Phase6ReasonCode.PACKAGE_BUILD_FAILED,
+                    f"restored predecessor content mismatch: {operation.path}",
+                )
+
+
+def _expected_commands(
+    selection: Phase6SelectionRecord,
+    predecessor: PayloadMeasurement,
+    candidate: PayloadMeasurement,
+    rollback: Phase6RollbackSnapshotRecord,
+) -> Sequence[Phase6CommandRecord]:
+    commands: list[Phase6CommandRecord] = [
+        command_record(
+            sequence_number=0,
+            command_kind="copy_payload",
+            argv=(
+                "internal:copy_payload",
+                f"file_count={predecessor.file_count}",
+                f"tree={predecessor.tree_hash}",
+            ),
+            working_directory_policy="isolated_workspace",
+            stdin_hash=predecessor.tree_hash,
+            stdout_hash=predecessor.tree_hash,
+        )
+    ]
+    for offset, operation in enumerate(selection.operations):
+        sequence_number = 1 + offset
+        if operation.operation == "write":
+            commands.append(
+                command_record(
+                    sequence_number=sequence_number,
+                    command_kind="write_file",
+                    argv=(
+                        "internal:write_file",
+                        operation.path,
+                        operation.after_mode or "0644",
+                        operation.after_hash or sha256_hex(b""),
+                    ),
+                    working_directory_policy="isolated_workspace",
+                    stdin_hash=operation.operation_hash,
+                    stdout_hash=operation.after_hash or sha256_hex(b""),
+                )
+            )
+        else:
+            commands.append(
+                command_record(
+                    sequence_number=sequence_number,
+                    command_kind="delete_file",
+                    argv=("internal:delete_file", operation.path),
+                    working_directory_policy="isolated_workspace",
+                    stdin_hash=operation.operation_hash,
+                    stdout_hash=sha256_hex(b"deleted"),
+                )
+            )
+    rollback_sequence = 1 + len(selection.operations)
+    commands.append(
+        command_record(
+            sequence_number=rollback_sequence,
+            command_kind="build_rollback",
+            argv=(
+                "internal:build_rollback",
+                PHASE6_ROLLBACK_FORMAT_ID,
+                f"tree={predecessor.tree_hash}",
+            ),
+            working_directory_policy="candidate_package_staging",
+            stdin_hash=predecessor.tree_hash,
+            stdout_hash=rollback.archive_hash,
+        )
+    )
+    commands.append(
+        command_record(
+            sequence_number=rollback_sequence + 1,
+            command_kind="verify_rollback",
+            argv=(
+                "internal:verify_rollback",
+                PHASE6_ROLLBACK_FORMAT_ID,
+                f"archive={rollback.archive_hash}",
+            ),
+            working_directory_policy="candidate_package_staging",
+            stdin_hash=rollback.archive_hash,
+            stdout_hash=rollback.restored_tree_hash,
+        )
+    )
+    commands.append(
+        package_command_record(
+            sequence_number=rollback_sequence + 2,
+            selection_hash=selection.selection_hash,
+            payload_tree_hash=candidate.tree_hash,
+        )
+    )
+    return tuple(commands)
+
+
+def _expected_resources(
+    selection: Phase6SelectionRecord,
+    predecessor: PayloadMeasurement,
+    candidate: PayloadMeasurement,
+    rollback: Phase6RollbackSnapshotRecord,
+    changes: Sequence[Phase6FileChangeRecord],
+    commands: Sequence[Phase6CommandRecord],
+    declared: Phase6ResourceUsageRecord,
+) -> Phase6ResourceUsageRecord:
+    before_by_path = {record.path: record for record in predecessor.records}
+    operation_read_bytes = sum(
+        before_by_path[operation.path].size
+        for operation in selection.operations
+        if operation.path in before_by_path
+    )
+    operation_write_bytes = sum(
+        len(operation.decoded_content())
+        for operation in selection.operations
+        if operation.operation == "write"
+    )
+    return Phase6ResourceUsageRecord(
+        budget=declared.budget,
+        predecessor_file_count=predecessor.file_count,
+        candidate_file_count=candidate.file_count,
+        predecessor_bytes=predecessor.total_bytes,
+        candidate_bytes=candidate.total_bytes,
+        bytes_read=(
+            predecessor.total_bytes
+            + operation_read_bytes
+            + predecessor.total_bytes
+        ),
+        bytes_written=(
+            predecessor.total_bytes
+            + operation_write_bytes
+            + rollback.archive_bytes
+        ),
+        changed_files=len(changes),
+        commands=len(commands),
+        snapshot_bytes=rollback.archive_bytes,
+    )
 
 
 def _load_evidence_json(path: Path) -> object:
@@ -297,7 +607,9 @@ def _parse_command_log(path: Path) -> Sequence[Phase6CommandRecord]:
     return commands
 
 
-def _parse_change_ledger_hash(path: Path) -> str:
+def _parse_change_ledger(
+    path: Path,
+) -> tuple[Sequence[Phase6FileChangeRecord], str]:
     value = _load_evidence_json(path)
     obj = strict_object(
         value,
@@ -331,4 +643,4 @@ def _parse_change_ledger_hash(path: Path) -> str:
             "phase6_modified_file_ledger.ledger_hash",
             "modified-file ledger hash mismatch",
         )
-    return computed_hash
+    return changes, computed_hash
