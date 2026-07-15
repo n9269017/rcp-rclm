@@ -1,6 +1,11 @@
 name: Recover Phase 8 with Python 3.11
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/apply-phase8-with-python.yml"
   push:
     branches:
       - agent/rcp-rclm-runtime-v2-phase-8-independent-replay
