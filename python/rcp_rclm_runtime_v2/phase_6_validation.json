@@ -1,0 +1,111 @@
+{
+  "artifacts": {
+    "final": {
+      "name": "runtime-v2-phase-6-final-29383092505-1",
+      "sha256": "73440a6a206c3edf8481e2dc1299f7592bf9473f756b3fe8eec495b4ff14ddcd"
+    },
+    "macos": {
+      "name": "runtime-v2-phase-6-macos-latest-29383092505-1",
+      "sha256": "6c1366e7aa07f7fc7a1f0639deb871745bb87c19b121bbf793189720f045f5f6"
+    },
+    "pinned": {
+      "name": "runtime-v2-phase-6-pinned-29383092505-1",
+      "sha256": "20e746cddeab9e86d0db4e675270ced05aa913476ce029abeafd1242f2d540db"
+    },
+    "ubuntu": {
+      "name": "runtime-v2-phase-6-ubuntu-latest-29383092505-1",
+      "sha256": "63f4363bfa912cb09ac2b1df00c127ea84ead75d2212b5276de0af3cb6cf2f98"
+    },
+    "windows": {
+      "name": "runtime-v2-phase-6-windows-latest-29383092505-1",
+      "sha256": "092ad18e00870aac832708ef07c32181d05fd6e4c8a13b82ebce3e3e5048d809"
+    }
+  },
+  "claim_boundary": {
+    "active_package_replacement": false,
+    "candidate_promotion": false,
+    "external_benchmark_claim": false,
+    "general_noncommuting_quantum": false,
+    "generator_trust": false,
+    "independent_replay_without_generator": false,
+    "phase_7_development_licensed": true,
+    "pytorch_proposal_acceptance": false
+  },
+  "implementation_head": "6afbf8a395a9b41cd4f6d9b5accbe247974c8b20",
+  "phase_2_revalidation": {
+    "accepting_case_count": 4,
+    "all_bridge_reports_accepted": true,
+    "all_differential_matches": true,
+    "case_count": 10,
+    "rejecting_case_count": 6
+  },
+  "phase_5a_revalidation": {
+    "all_accepted": true,
+    "case_count": 2,
+    "summary_hash": "74719025429b20de8dda7fa717571f0c5c13414401f4a96e535f56369cab431a"
+  },
+  "phase_6_public_verifier": {
+    "coherent_selection_substitution_rejected": true,
+    "command_log_recomputed": true,
+    "modified_file_ledger_recomputed": true,
+    "operation_before_after_bindings_recomputed": true,
+    "resource_usage_recomputed": true,
+    "rollback_restored_before_diff": true,
+    "substantive_component_kinds_recomputed": true
+  },
+  "phase_6_reference_suite": {
+    "all_built": true,
+    "built_case_count": 2,
+    "case_count": 2,
+    "initial": {
+      "candidate_manifest_hash": "fe29dcc45f9b510d4ef725ba353f700bc7560beccaf97af484b6ce73ee433bfd",
+      "candidate_payload_tree_hash": "da118659b014357bdc07568bd16c1dcce701ccfaca72f54486ff3baca0894264",
+      "package_report_hash": "7e37f14a24549705036d9ae3a9b3603e99ffae45c837b82d2bb6ec35e871019c",
+      "selection_hash": "f360bff5302eee0676cd3e6f705bbad664e99ddb8f2506552029be3a4a67eba5",
+      "substantive_component_kind": "verification_policy"
+    },
+    "promotion_licensed": false,
+    "suite_hash": "6ccbb61ab9d92dd6ab6616f55dfeb56f99c9ab0e4ca1ae0e5407177920a6843c",
+    "target": {
+      "candidate_manifest_hash": "021c3614dcb776dff98284bc7f1fe9d45d808b021085358656082a160d3cef3b",
+      "candidate_payload_tree_hash": "75ed50b2f14606e721e4eab212920bd2248d377dfd3f34e5a22788a48c43af47",
+      "package_report_hash": "36a6ac61829e33f6eac5a535270bc4782a1a0d69b2e1072b5f241b35fc7b4162",
+      "selection_hash": "868d416a26f0e6a7cdb33fba0b40e5cd91e12e4033071dd80088dc89fe67e404",
+      "substantive_component_kind": "memory_policy"
+    }
+  },
+  "pinned_formal_core": {
+    "build_jobs": 2636,
+    "build_result": "success",
+    "formal_source_commit": "012de4a55f326107f53f0e215c8aec62859d0bbf",
+    "lean_toolchain": "leanprover/lean4:v4.31.0",
+    "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+  },
+  "schema_version": "rcp-rclm-runtime-phase-6-validation-v1",
+  "source_quality": {
+    "issue_count": 0,
+    "python_file_count": 135
+  },
+  "tests": {
+    "phase_1": 74,
+    "phase_2": 19,
+    "phase_3": 20,
+    "phase_4": 10,
+    "phase_5a": 18,
+    "phase_6": 22
+  },
+  "workflow_closure": {
+    "pull_request_merge_revision": "7e25c728271f6da7d43599b5ee802763463c944d",
+    "workflow_attempt": 1,
+    "workflow_run": 29383092505
+  },
+  "workflows": {
+    "phase_0": 29383092464,
+    "phase_1": 29383092479,
+    "phase_2": 29383092465,
+    "phase_3": 29383092462,
+    "phase_4": 29383092453,
+    "phase_5a": 29383092516,
+    "phase_6": 29383092505
+  }
+}

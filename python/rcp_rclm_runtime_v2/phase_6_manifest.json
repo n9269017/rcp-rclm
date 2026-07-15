@@ -1,0 +1,66 @@
+{
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "implemented": {
+    "atomic_candidate_publication": true,
+    "candidate_package_public_verifier": true,
+    "coherent_evidence_substitution_rejection": true,
+    "command_and_environment_evidence": true,
+    "cross_platform_reference_packages": true,
+    "deterministic_rollback_archive": true,
+    "genuine_memory_policy_successor": true,
+    "genuine_verification_policy_successor": true,
+    "isolated_workspace_copy": true,
+    "modified_file_ledger": true,
+    "operation_binding_recomputation": true,
+    "parent_and_phase5_binding": true,
+    "pinned_lean_revalidation": true,
+    "resource_budget_recomputation": true,
+    "rollback_restore_verification": true,
+    "strict_selector": true,
+    "substantive_change_enforcement": true,
+    "symlink_hardlink_nonregular_rejection": true
+  },
+  "licenses_after_clean_phase_6_closure": {
+    "candidate_promotion": false,
+    "generator_trust": false,
+    "phase_7_promotion_controller_development_may_begin": true
+  },
+  "not_implemented_or_not_licensed": {
+    "active_package_replacement": true,
+    "automatic_generator_retry": true,
+    "candidate_promotion": true,
+    "external_benchmark_claim": true,
+    "general_noncommuting_quantum": true,
+    "independent_replay_without_generator": true,
+    "learned_pytorch_backend": true,
+    "open_ended_generator_correctness": true,
+    "promotion_ledger_mutation": true,
+    "trusted_generator": true
+  },
+  "package_name": "rcp-rclm-runtime-v2",
+  "package_version": "0.6.0",
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 6 selector, realizer, and package builder",
+  "phase_status": "validated_at_clean_hardened_implementation_head",
+  "schema_version": "rcp-rclm-runtime-phase-6-manifest-v1",
+  "substantive_component_kinds": [
+    "architecture_code",
+    "code_generation_policy",
+    "memory_policy",
+    "model_weights",
+    "planning_policy",
+    "retrieval_policy",
+    "tool_policy",
+    "training_policy",
+    "verification_policy"
+  ],
+  "successor_status": "realized_unverified",
+  "validation_evidence": {
+    "all_reference_packages_built_and_verified": true,
+    "cross_platform": true,
+    "pinned_lean_phase2_and_phase5a_revalidated": true,
+    "promotion_licensed": false,
+    "validated_implementation_head": "6afbf8a395a9b41cd4f6d9b5accbe247974c8b20",
+    "workflow_conclusion": "success",
+    "workflow_run": 29383092505
+  }
+}

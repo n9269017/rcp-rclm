@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rcp-rclm-runtime-v2"
-version = "0.5.0"
-description = "Deterministic runtime, pinned Lean bridge, fail-closed checker, adversarial rejection, and bounded reference generator for RCP/RCLM Formal Core v2"
+version = "0.6.0"
+description = "Deterministic runtime, pinned Lean bridge, fail-closed checker, adversarial rejection, bounded generator, and verified successor-package builder for RCP/RCLM Formal Core v2"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "See repository LICENSE and component licenses"}
