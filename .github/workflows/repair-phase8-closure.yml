@@ -1,0 +1,64 @@
+name: Repair Phase 8 closure defects
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-runtime-v2-phase-8-independent-replay
+    paths:
+      - ".github/workflows/repair-phase8-closure.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out Phase 8 branch
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: agent/rcp-rclm-runtime-v2-phase-8-independent-replay
+          fetch-depth: 0
+          show-progress: false
+
+      - name: Apply exact cross-platform and replay-summary repairs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          replacements = (
+              (
+                  Path("python/rcp_rclm_runtime_v2/tests_phase8/test_independent_replay.py"),
+                  '        self.assertEqual(completed.stdout, b"0\\n0\\n")',
+                  '        self.assertEqual(completed.stdout.splitlines(), [b"0", b"0"])',
+              ),
+              (
+                  Path("scripts/reproduce_run.py"),
+                  '        "bundle_manifest": bundle.manifest.to_json(),',
+                  '        "bundle_manifest": bundle.to_json(),',
+              ),
+          )
+          for path, old, new in replacements:
+              source = path.read_text(encoding="utf-8")
+              count = source.count(old)
+              if count != 1:
+                  raise RuntimeError(
+                      f"expected one replacement target in {path}, found {count}"
+                  )
+              path.write_text(source.replace(old, new), encoding="utf-8")
+          PY
+          rm -f .github/workflows/repair-phase8-closure.yml
+          git add -A
+          git diff --cached --check
+
+      - name: Commit repairs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Fix Phase 8 cross-platform replay closure"
+          git push origin HEAD:agent/rcp-rclm-runtime-v2-phase-8-independent-replay
