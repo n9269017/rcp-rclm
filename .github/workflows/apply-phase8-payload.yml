@@ -1,11 +1,11 @@
-name: Apply Phase 8 implementation patch
+name: Apply Phase 8 implementation payload
 
 on:
   push:
     branches:
       - agent/rcp-rclm-runtime-v2-phase-8-independent-replay
     paths:
-      - ".phase8_patch.ready"
+      - ".phase8_payload.ready"
 
 permissions:
   contents: write
@@ -21,15 +21,54 @@ jobs:
           ref: agent/rcp-rclm-runtime-v2-phase-8-independent-replay
           fetch-depth: 0
 
-      - name: Apply validated implementation patch
+      - name: Expand validated implementation payload
         shell: bash
         run: |
           set -euo pipefail
           git checkout origin/main -- .github/workflows/runtime-v2-phase-7.yml
-          cat .phase8_patch.part* > /tmp/phase8.patch
-          git apply --index --whitespace=error-all /tmp/phase8.patch
-          rm -f .phase8_patch.part*
-          rm -f .phase8_patch.ready
+          cat .phase8_payload.part* > /tmp/phase8_payload.b64
+          python - <<'PY'
+          from __future__ import annotations
+
+          import base64
+          import bz2
+          import io
+          import tarfile
+          from pathlib import Path, PurePosixPath
+
+          payload = base64.b64decode(
+              Path("/tmp/phase8_payload.b64").read_text(encoding="ascii"),
+              validate=True,
+          )
+          archive_bytes = bz2.decompress(payload)
+          repository_root = Path.cwd().resolve(strict=True)
+          with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
+              members = archive.getmembers()
+              names = [member.name for member in members]
+              if names != sorted(names, key=lambda value: value.encode("utf-8")):
+                  raise RuntimeError("payload members are not canonically ordered")
+              if len(names) != len(set(names)):
+                  raise RuntimeError("payload contains duplicate paths")
+              for member in members:
+                  path = PurePosixPath(member.name)
+                  if path.is_absolute() or not path.parts or ".." in path.parts:
+                      raise RuntimeError(f"unsafe payload path: {member.name}")
+                  if not member.isfile():
+                      raise RuntimeError(
+                          f"payload member is not a regular file: {member.name}"
+                      )
+                  source = archive.extractfile(member)
+                  if source is None:
+                      raise RuntimeError(
+                          f"payload member has no content: {member.name}"
+                      )
+                  destination = repository_root.joinpath(*path.parts)
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_bytes(source.read())
+                  destination.chmod(0o644)
+          PY
+          rm -f .phase8_payload.part*
+          rm -f .phase8_payload.ready
           rm -f .github/workflows/apply-phase8-payload.yml
           rm -f .github/workflows/phase8-source-snapshot.yml
           git add -A
