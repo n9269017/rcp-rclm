@@ -66,7 +66,7 @@ jobs:
           if len(encoded) != 63988:
               raise RuntimeError(f'unexpected payload encoding length: {len(encoded)}')
           if hashlib.sha256(encoded).hexdigest() != (
-              '3f5f8315bda704a88147595c321c3d3d7fb1aa174a376ae4237bd9bb69659ee6'
+              '1ab20157abab33f5bccb097b63aeda5b283e26ef046d9cbcff578c27c2832d41'
           ):
               raise RuntimeError('payload encoding hash mismatch')
           compressed = base64.b64decode(encoded, validate=True)
