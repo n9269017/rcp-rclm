@@ -5,7 +5,7 @@ on:
     branches:
       - agent/rcp-rclm-runtime-v2-phase-8-independent-replay
     paths:
-      - ".phase8_payload.ready"
+      - ".github/workflows/apply-phase8-payload.yml"
 
 permissions:
   contents: write
@@ -13,42 +13,44 @@ permissions:
 jobs:
   apply:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - name: Check out branch
+      - name: Check out canonical Phase 8 branch
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
           ref: agent/rcp-rclm-runtime-v2-phase-8-independent-replay
           fetch-depth: 0
           show-progress: false
 
-      - name: Expand validated implementation payload
+      - name: Expand and validate recovered implementation payload
         shell: bash
         run: |
           set -euo pipefail
+          git fetch --no-tags origin agent/phase8-blob-inspect
           git checkout origin/main -- .github/workflows/runtime-v2-phase-7.yml
-          cat .phase8_payload.part* > /tmp/phase8_payload.b64
+          git show origin/agent/phase8-blob-inspect:.phase8-blob0.bin > /tmp/phase8-payload.part0
+          git show origin/agent/phase8-blob-inspect:.phase8-blob1.bin > /tmp/phase8-payload.part1
+          cat /tmp/phase8-payload.part0 /tmp/phase8-payload.part1 > /tmp/phase8-payload.gz
           python - <<'PY'
           from __future__ import annotations
 
-          import base64
           import gzip
           import hashlib
           import io
           import tarfile
           from pathlib import Path, PurePosixPath
 
-          encoded = Path("/tmp/phase8_payload.b64").read_bytes()
-          if len(encoded) != 63988:
-              raise RuntimeError(f"unexpected payload encoding length: {len(encoded)}")
-          if hashlib.sha256(encoded).hexdigest() != "3f5f8315bda704a88147595c321c3d3d7fb1aa174a376ae4237bd9bb69659ee6":
-              raise RuntimeError("payload encoding hash mismatch")
-          payload = base64.b64decode(encoded, validate=True)
-          if len(payload) != 47989:
-              raise RuntimeError(f"unexpected compressed payload length: {len(payload)}")
-          if hashlib.sha256(payload).hexdigest() != "0de564ccf4e84e610a61c73a812fbf8be7fb702fe1335fa03e232f7c6983201e":
+          compressed = Path("/tmp/phase8-payload.gz").read_bytes()
+          if len(compressed) != 47989:
+              raise RuntimeError(
+                  f"unexpected compressed payload length: {len(compressed)}"
+              )
+          if hashlib.sha256(compressed).hexdigest() != (
+              "0de564ccf4e84e610a61c73a812fbf8be7fb702fe1335fa03e232f7c6983201e"
+          ):
               raise RuntimeError("compressed payload hash mismatch")
-          archive_bytes = gzip.decompress(payload)
+
+          archive_bytes = gzip.decompress(compressed)
           repository_root = Path.cwd().resolve(strict=True)
           with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
               members = archive.getmembers()
@@ -75,13 +77,31 @@ jobs:
                   destination.write_bytes(source.read())
                   destination.chmod(0o644)
           PY
-          rm -f .phase8_payload.gz
-          rm -f .phase8_payload.part*
-          rm -f .phase8_payload.ready
+
+          test -f python/rcp_rclm_runtime_v2/rcp_rclm_runtime/replay/reproduce.py
+          test -f python/rcp_rclm_runtime_v2/tests_phase8/test_independent_replay.py
+          test -f python/rcp_rclm_executable_core_v2/contract/phase_8_independent_replay.schema.json
+          test -f .github/workflows/runtime-v2-phase-8.yml
+
+          rm -f .phase8_payload.gz .phase8_payload.part* .phase8_payload.ready
           rm -f .github/workflows/apply-phase8-payload.yml
+          rm -f .github/workflows/apply-phase8-valid-blob.yml
           rm -f .github/workflows/phase8-source-snapshot.yml
           git add -A
           git diff --cached --check
+
+      - name: Validate recovered source before publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m compileall -q python/rcp_rclm_runtime_v2 scripts
+          python python/rcp_rclm_runtime_v2/tools/validate_source_quality.py \
+            --package-root python/rcp_rclm_runtime_v2 \
+            --out /tmp/phase8-source-quality.json
+          python python/rcp_rclm_runtime_v2/tools/run_phase8_tests.py \
+            --package-root python/rcp_rclm_runtime_v2 \
+            --out /tmp/phase8-tests.log
 
       - name: Commit implementation
         shell: bash
