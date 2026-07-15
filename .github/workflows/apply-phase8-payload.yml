@@ -30,11 +30,13 @@ jobs:
           show-progress: false
 
       - name: Expand validated implementation payload
+        id: expand
+        continue-on-error: true
         shell: bash
         run: |
-          set +e
-          (
-            set -euxo pipefail
+          mkdir -p artifacts/phase8-applicator
+          {
+            set -uxo pipefail
             ls -l .phase8_payload.gz
             python - <<'PY'
             from pathlib import Path
@@ -84,34 +86,33 @@ jobs:
             git add -A
             git diff --cached --check
             git status --short
-          ) > /tmp/phase8-apply.log 2>&1
+          } > artifacts/phase8-applicator/apply.log 2>&1
           status=$?
-          printf '%s\n' "$status" > /tmp/phase8-apply.status
-          cat /tmp/phase8-apply.log
-          exit 0
+          printf '%s\n' "$status" > artifacts/phase8-applicator/status.txt
+          cat artifacts/phase8-applicator/apply.log
+          exit "$status"
 
       - name: Upload applicator diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: phase8-applicator-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            /tmp/phase8-apply.log
-            /tmp/phase8-apply.status
+          path: artifacts/phase8-applicator/
           if-no-files-found: error
           retention-days: 7
 
-      - name: Require successful expansion
-        shell: bash
-        run: |
-          set -euo pipefail
-          test "$(cat /tmp/phase8-apply.status)" = "0"
-
       - name: Commit implementation
+        if: steps.expand.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf artifacts/phase8-applicator
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Implement Phase 8 independent replay"
           git push origin HEAD:agent/rcp-rclm-runtime-v2-phase-8-independent-replay
+
+      - name: Require successful expansion
+        if: steps.expand.outcome != 'success'
+        shell: bash
+        run: exit 1
