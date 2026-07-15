@@ -21,7 +21,10 @@ from rcp_rclm_runtime.successor.records import (
     Phase6ReasonCode,
     Phase6RollbackSnapshotRecord,
 )
-from rcp_rclm_runtime.successor.workspace_types import Phase6WorkspaceError
+from rcp_rclm_runtime.successor.workspace_types import (
+    PayloadMeasurement,
+    Phase6WorkspaceError,
+)
 
 PHASE6_ROLLBACK_FORMAT_ID: Final[str] = "rcp-rclm-phase6-ustar-v1"
 ROLLBACK_ARCHIVE_RELATIVE_PATH: Final[str] = "rollback/predecessor.tar"
@@ -104,89 +107,115 @@ def verify_rollback_snapshot_archive(
     archive_path: Path,
     expected_tree_hash: str,
 ) -> str:
+    with tempfile.TemporaryDirectory(
+        prefix="rcp-rclm-phase6-rollback-verify-"
+    ) as temp_dir:
+        restored = restore_rollback_snapshot_archive(
+            archive_path,
+            Path(temp_dir) / "payload",
+            expected_tree_hash,
+        )
+        return restored.tree_hash
+
+
+def restore_rollback_snapshot_archive(
+    archive_path: Path,
+    destination_root: Path,
+    expected_tree_hash: str,
+) -> PayloadMeasurement:
+    """Restore a canonical rollback archive into a fresh caller-owned directory."""
+
     try:
-        archive_bytes = archive_path.read_bytes()
-        restored_files: list[tuple[SemanticFileRecord, bytes]] = []
-        with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
-            members = archive.getmembers()
-            names = [member.name for member in members]
-            if names != sorted(names, key=lambda item: item.encode("utf-8")):
-                raise Phase6WorkspaceError(
-                    Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
-                    "rollback members are not canonically ordered",
-                )
-            if len(names) != len(set(names)):
-                raise Phase6WorkspaceError(
-                    Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
-                    "rollback archive contains duplicate paths",
-                )
-            for member in members:
-                validate_semantic_path(member.name)
-                if not member.isfile():
-                    raise Phase6WorkspaceError(
-                        Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
-                        f"rollback member is not a regular file: {member.name}",
-                    )
-                mode = f"{member.mode & 0o777:04o}"
-                validate_file_mode(mode)
-                if (
-                    member.mtime != 0
-                    or member.uid != 0
-                    or member.gid != 0
-                    or member.uname != ""
-                    or member.gname != ""
-                ):
-                    raise Phase6WorkspaceError(
-                        Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
-                        f"rollback member metadata is not canonical: {member.name}",
-                    )
-                source = archive.extractfile(member)
-                if source is None:
-                    raise Phase6WorkspaceError(
-                        Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
-                        f"rollback member has no content: {member.name}",
-                    )
-                content = source.read()
-                restored_files.append(
-                    (
-                        SemanticFileRecord(
-                            path=member.name,
-                            mode=mode,
-                            size=len(content),
-                            sha256=sha256_hex(content),
-                        ),
-                        content,
-                    )
-                )
+        archive_bytes, restored_files = _read_canonical_archive(archive_path)
+        destination_root.mkdir(parents=True, exist_ok=False)
+        for record, content in restored_files:
+            target = safe_payload_path(destination_root, record.path)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(content)
+            target.chmod(int(record.mode, 8))
+        restored = measure_payload_tree(destination_root)
+        if restored.tree_hash != expected_tree_hash:
+            raise Phase6WorkspaceError(
+                Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
+                "rollback restoration tree hash mismatch",
+            )
         if _canonical_ustar_bytes(restored_files) != archive_bytes:
             raise Phase6WorkspaceError(
                 Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
                 "rollback archive bytes are not canonical USTAR",
             )
-        with tempfile.TemporaryDirectory(
-            prefix="rcp-rclm-phase6-rollback-verify-"
-        ) as temp_dir:
-            restore_root = Path(temp_dir) / "payload"
-            restore_root.mkdir(parents=True, exist_ok=False)
-            for record, content in restored_files:
-                target = safe_payload_path(restore_root, record.path)
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_bytes(content)
-                target.chmod(int(record.mode, 8))
-            restored = measure_payload_tree(restore_root)
-            if restored.tree_hash != expected_tree_hash:
-                raise Phase6WorkspaceError(
-                    Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
-                    "rollback restoration tree hash mismatch",
-                )
-            return restored.tree_hash
+        return restored
     except Phase6WorkspaceError:
         raise
     except (CanonicalizationError, OSError, tarfile.TarError) as exc:
         raise Phase6WorkspaceError(
             Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
-            f"rollback verification failed: {exc}",
+            f"rollback restoration failed: {exc}",
         ) from exc
+
+
+def _read_canonical_archive(
+    archive_path: Path,
+) -> tuple[bytes, Sequence[tuple[SemanticFileRecord, bytes]]]:
+    archive_bytes = archive_path.read_bytes()
+    restored_files: list[tuple[SemanticFileRecord, bytes]] = []
+    with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
+        members = archive.getmembers()
+        names = [member.name for member in members]
+        if names != sorted(names, key=lambda item: item.encode("utf-8")):
+            raise Phase6WorkspaceError(
+                Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
+                "rollback members are not canonically ordered",
+            )
+        if len(names) != len(set(names)):
+            raise Phase6WorkspaceError(
+                Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
+                "rollback archive contains duplicate paths",
+            )
+        for member in members:
+            validate_semantic_path(member.name)
+            if not member.isfile():
+                raise Phase6WorkspaceError(
+                    Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
+                    f"rollback member is not a regular file: {member.name}",
+                )
+            mode = f"{member.mode & 0o777:04o}"
+            validate_file_mode(mode)
+            if (
+                member.mtime != 0
+                or member.uid != 0
+                or member.gid != 0
+                or member.uname != ""
+                or member.gname != ""
+            ):
+                raise Phase6WorkspaceError(
+                    Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
+                    f"rollback member metadata is not canonical: {member.name}",
+                )
+            source = archive.extractfile(member)
+            if source is None:
+                raise Phase6WorkspaceError(
+                    Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
+                    f"rollback member has no content: {member.name}",
+                )
+            content = source.read()
+            restored_files.append(
+                (
+                    SemanticFileRecord(
+                        path=member.name,
+                        mode=mode,
+                        size=len(content),
+                        sha256=sha256_hex(content),
+                    ),
+                    content,
+                )
+            )
+    if _canonical_ustar_bytes(restored_files) != archive_bytes:
+        raise Phase6WorkspaceError(
+            Phase6ReasonCode.ROLLBACK_SNAPSHOT_FAILED,
+            "rollback archive bytes are not canonical USTAR",
+        )
+    return archive_bytes, tuple(restored_files)
 
 
 def _canonical_ustar_bytes(
