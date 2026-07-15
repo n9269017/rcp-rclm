@@ -25,7 +25,7 @@ jobs:
         with:
           ref: agent/rcp-rclm-runtime-v2-pytorch-pilot
           fetch-depth: 1
-      - name: Record commit and tree object IDs
+      - name: Record commit, tree, and file object IDs
         shell: bash
         run: |
           set -euo pipefail
@@ -34,10 +34,11 @@ jobs:
             echo "HEAD_SHA=$(git rev-parse HEAD)"
             echo "TREE_SHA=$(git rev-parse 'HEAD^{tree}')"
           } | tee artifacts/branch-tree-probe/tree.txt
+          git ls-tree -r HEAD > artifacts/branch-tree-probe/files.txt
       - name: Upload tree probe
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: branch-tree-probe-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/branch-tree-probe/tree.txt
+          path: artifacts/branch-tree-probe/
           if-no-files-found: error
           retention-days: 1
