@@ -13,7 +13,7 @@ permissions:
 jobs:
   apply:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Check out canonical Phase 8 branch
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
@@ -22,55 +22,66 @@ jobs:
           fetch-depth: 0
           show-progress: false
 
-      - name: Expand and validate recovered implementation payload
+      - name: Expand and validate the complete implementation payload
         shell: bash
         run: |
           set -euo pipefail
-          git fetch --no-tags origin agent/phase8-blob-inspect
           git checkout origin/main -- .github/workflows/runtime-v2-phase-7.yml
-          git show origin/agent/phase8-blob-inspect:.phase8-blob0.bin > /tmp/phase8-payload.part0
-          git show origin/agent/phase8-blob-inspect:.phase8-blob1.bin > /tmp/phase8-payload.part1
-          cat /tmp/phase8-payload.part0 /tmp/phase8-payload.part1 > /tmp/phase8-payload.gz
           python - <<'PY'
           from __future__ import annotations
 
+          import base64
           import gzip
           import hashlib
           import io
           import tarfile
           from pathlib import Path, PurePosixPath
 
-          compressed = Path("/tmp/phase8-payload.gz").read_bytes()
+          parts = sorted(Path('.').glob('.phase8_payload.part*'))
+          if len(parts) != 11:
+              raise RuntimeError(f'expected 11 payload parts, found {len(parts)}')
+          encoded_text = ''.join(
+              part.read_text(encoding='ascii').strip()
+              for part in parts
+          )
+          encoded = encoded_text.encode('ascii')
+          if len(encoded) != 63988:
+              raise RuntimeError(f'unexpected payload encoding length: {len(encoded)}')
+          if hashlib.sha256(encoded).hexdigest() != (
+              '3f5f8315bda704a88147595c321c3d3d7fb1aa174a376ae4237bd9bb69659ee6'
+          ):
+              raise RuntimeError('payload encoding hash mismatch')
+          compressed = base64.b64decode(encoded, validate=True)
           if len(compressed) != 47989:
               raise RuntimeError(
-                  f"unexpected compressed payload length: {len(compressed)}"
+                  f'unexpected compressed payload length: {len(compressed)}'
               )
           if hashlib.sha256(compressed).hexdigest() != (
-              "0de564ccf4e84e610a61c73a812fbf8be7fb702fe1335fa03e232f7c6983201e"
+              '0de564ccf4e84e610a61c73a812fbf8be7fb702fe1335fa03e232f7c6983201e'
           ):
-              raise RuntimeError("compressed payload hash mismatch")
+              raise RuntimeError('compressed payload hash mismatch')
 
           archive_bytes = gzip.decompress(compressed)
           repository_root = Path.cwd().resolve(strict=True)
-          with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
+          with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode='r:') as archive:
               members = archive.getmembers()
               names = [member.name for member in members]
-              if names != sorted(names, key=lambda value: value.encode("utf-8")):
-                  raise RuntimeError("payload members are not canonically ordered")
+              if names != sorted(names, key=lambda value: value.encode('utf-8')):
+                  raise RuntimeError('payload members are not canonically ordered')
               if len(names) != len(set(names)):
-                  raise RuntimeError("payload contains duplicate paths")
+                  raise RuntimeError('payload contains duplicate paths')
               for member in members:
                   path = PurePosixPath(member.name)
-                  if path.is_absolute() or not path.parts or ".." in path.parts:
-                      raise RuntimeError(f"unsafe payload path: {member.name}")
+                  if path.is_absolute() or not path.parts or '..' in path.parts:
+                      raise RuntimeError(f'unsafe payload path: {member.name}')
                   if not member.isfile():
                       raise RuntimeError(
-                          f"payload member is not a regular file: {member.name}"
+                          f'payload member is not a regular file: {member.name}'
                       )
                   source = archive.extractfile(member)
                   if source is None:
                       raise RuntimeError(
-                          f"payload member has no content: {member.name}"
+                          f'payload member has no content: {member.name}'
                       )
                   destination = repository_root.joinpath(*path.parts)
                   destination.parent.mkdir(parents=True, exist_ok=True)
