@@ -155,7 +155,7 @@ class IndependentReplayTests(unittest.TestCase):
             timeout=30,
         )
         self.assertEqual(completed.returncode, 0, completed.stderr.decode("utf-8"))
-        self.assertEqual(completed.stdout, b"0\n0\n")
+        self.assertEqual(completed.stdout.splitlines(), [b"0", b"0"])
 
     def test_source_guard_proves_generator_process_absent(self) -> None:
         report = guard_independent_replay_source()

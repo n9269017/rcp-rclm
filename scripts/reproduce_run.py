@@ -54,7 +54,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "schema_id": "runtime.phase8_reproduction_summary.v2",
         "project_pin_hash": project.pin_hash,
         "source_guard": source_guard.to_json(),
-        "bundle_manifest": bundle.manifest.to_json(),
+        "bundle_manifest": bundle.to_json(),
         "replay_report": evidence.report.to_json(),
         "generator_invocations": evidence.report.generator_invocations,
         "generator_modules_loaded": [],
