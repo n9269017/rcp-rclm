@@ -1,0 +1,42 @@
+name: Export Phase 8 payload files
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".phase8_payload.gz"
+      - ".phase8_payload.part*"
+      - ".github/workflows/phase8-payload-artifact.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out canonical Phase 8 branch
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+      - name: Record payload hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum .phase8_payload.gz .phase8_payload.part* > phase8-payload-sha256.txt
+          wc -c .phase8_payload.gz .phase8_payload.part* > phase8-payload-sizes.txt
+
+      - name: Upload payload files
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase8-payload-files-${{ github.sha }}
+          path: |
+            .phase8_payload.gz
+            .phase8_payload.part*
+            phase8-payload-sha256.txt
+            phase8-payload-sizes.txt
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 7
