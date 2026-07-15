@@ -2,40 +2,40 @@
 
 Phase 8 closes only when every item below passes at one exact implementation head.
 
-- [ ] Phase 0 through Phase 7 authoritative workflows pass.
-- [ ] Linux, Windows, and macOS compile the replay package and execute the Phase 8 tests.
-- [ ] The replay source guard rejects generator-process, worker, stochastic, network,
+- [x] Phase 0 through Phase 7 authoritative workflows pass.
+- [x] Linux, Windows, and macOS compile the replay package and execute the Phase 8 tests.
+- [x] The replay source guard rejects generator-process, worker, stochastic, network,
       and subprocess capabilities.
-- [ ] The core replay function itself enforces the source guard.
-- [ ] The replay bundle contains only `manifest.json` and `store/`.
-- [ ] The complete Phase 7 store tree is copied byte-for-byte and content-addressed.
-- [ ] The active pointer, complete ledger chain, and all immutable packages revalidate.
-- [ ] Every non-bootstrap ledger entry has one immutable attempt index.
-- [ ] Every source transition preserves raw generator input, output, stderr, process
+- [x] The core replay function itself enforces the source guard.
+- [x] The replay bundle contains only `manifest.json` and `store/`.
+- [x] The complete Phase 7 store tree is copied byte-for-byte and content-addressed.
+- [x] The active pointer, complete ledger chain, and all immutable packages revalidate.
+- [x] Every non-bootstrap ledger entry has one immutable attempt index.
+- [x] Every source transition preserves raw generator input, output, stderr, process
       reports, proposal, realization, evaluation, certificate, Lean, checker, resource,
       rollback, parent, and successor evidence as applicable.
-- [ ] The reproducer invokes the original generator zero times.
-- [ ] The pinned replay succeeds after the generator process and worker source files are removed.
-- [ ] The replay CLI verifies that neither forbidden generator module is loaded.
-- [ ] Generator input is reconstructed from the immutable predecessor package.
-- [ ] Preserved generator outputs are parsed canonically and two-run equality is checked.
-- [ ] Proposal validation is recomputed against the public bounded grammar.
-- [ ] Phase 6 selection and actual filesystem realization are recomputed.
-- [ ] Candidate package, payload, manifest, resource, and rollback hashes agree.
-- [ ] Objective evaluation is reconstructed from predecessor and candidate states.
-- [ ] Certificate construction is recomputed outside the generator.
-- [ ] Captured Lean source is independently regenerated and scanned before compilation.
-- [ ] The pinned Lean bridge reruns for each promoted transition.
-- [ ] The captured hardened-checker result recomputes from its captured inputs.
-- [ ] A fresh hardened-checker run with the fresh Lean report agrees mathematically.
-- [ ] Promotion parent links and nonpromotion active-hash preservation are recomputed.
-- [ ] Both bounded grammar-exhaustion rejection attempts replay correctly.
-- [ ] Bundle, package, generator-output, evaluation, certificate, Lean, checker, resource,
+- [x] The reproducer invokes the original generator zero times.
+- [x] The pinned replay succeeds after the generator process and worker source files are removed.
+- [x] The replay CLI verifies that neither forbidden generator module is loaded.
+- [x] Generator input is reconstructed from the immutable predecessor package.
+- [x] Preserved generator outputs are parsed canonically and two-run equality is checked.
+- [x] Proposal validation is recomputed against the public bounded grammar.
+- [x] Phase 6 selection and actual filesystem realization are recomputed.
+- [x] Candidate package, payload, manifest, resource, and rollback hashes agree.
+- [x] Objective evaluation is reconstructed from predecessor and candidate states.
+- [x] Certificate construction is recomputed outside the generator.
+- [x] Captured Lean source is independently regenerated and scanned before compilation.
+- [x] The pinned Lean bridge reruns for each promoted transition.
+- [x] The captured hardened-checker result recomputes from its captured inputs.
+- [x] A fresh hardened-checker run with the fresh Lean report agrees mathematically.
+- [x] Promotion parent links and nonpromotion active-hash preservation are recomputed.
+- [x] Both bounded grammar-exhaustion rejection attempts replay correctly.
+- [x] Bundle, package, generator-output, evaluation, certificate, Lean, checker, resource,
       rollback, and parent-link tampering remain nonaccepting.
-- [ ] Replaying the same bundle in two fresh directories yields identical report bytes.
-- [ ] The pinned Formal Core build and all ten Phase 2 differential cases pass.
-- [ ] Generated Lean source contains no admitted-proof token or project-local axiom.
-- [ ] Final artifacts bind the exact checked head.
+- [x] Replaying the same bundle in two fresh directories yields identical report bytes.
+- [x] The pinned Formal Core build and all ten Phase 2 differential cases pass.
+- [x] Generated Lean source contains no admitted-proof token or project-local axiom.
+- [x] Final artifacts bind the checked implementation and PR merge-test heads.
 
 The following remain false after Phase 8:
 
