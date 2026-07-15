@@ -3,8 +3,8 @@
 This package contains the deterministic Phase 1 runtime bedrock, the validated
 Phase 2 pinned Lean conformance bridge, the Phase 3 deterministic checker, the
 Phase 4 hardened checker and adversarial rejection suite, the Phase 5A bounded
-reference generator, and the Phase 6 selector, filesystem realizer, rollback builder,
-and candidate-package verifier.
+reference generator, and the cross-platform validated Phase 6 selector, filesystem
+realizer, rollback builder, and candidate-package verifier.
 
 ## Phase 1 bedrock
 
@@ -87,6 +87,8 @@ measures the predecessor package from bytes
 The reference cases introduce genuine verification-policy and memory-policy changes.
 The candidate package remains unverified for promotion; Phase 7 must run objective
 evaluation, the checker, and the Lean bridge before any active-package replacement.
+The exact clean implementation and artifact record is
+`docs/executable_core_v2/PHASE_6_VALIDATION.md`.
 
 Run the Phase 6 unit suite:
 

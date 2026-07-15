@@ -1,0 +1,102 @@
+{
+  "artifacts": {
+    "final": {
+      "name": "runtime-v2-phase-6-final-29381815200-1",
+      "sha256": "09cb568fe21e3d665280c538cb19fa4610a3967e158d96bac8e34847b3f8c9b0"
+    },
+    "macos": {
+      "name": "runtime-v2-phase-6-macos-latest-29381815200-1",
+      "sha256": "19aa40376a12c4b48f514e3f39647bf6a01c5438bfc953caf89da86c6647321f"
+    },
+    "pinned": {
+      "name": "runtime-v2-phase-6-pinned-29381815200-1",
+      "sha256": "65fa81637fbc9e25ea2063ae1e2767c90c605dc2c1fc8d4a8c2e048b0d65328a"
+    },
+    "ubuntu": {
+      "name": "runtime-v2-phase-6-ubuntu-latest-29381815200-1",
+      "sha256": "b0710bd3ccc1f8d157e7f9c6c554e6bbec04042f6a7c61234ac148589fa47992"
+    },
+    "windows": {
+      "name": "runtime-v2-phase-6-windows-latest-29381815200-1",
+      "sha256": "58f2bd98fd7e3106223e85fe7ab46941a106fad2487df9b48b7f730a17b18263"
+    }
+  },
+  "claim_boundary": {
+    "active_package_replacement": false,
+    "candidate_promotion": false,
+    "external_benchmark_claim": false,
+    "general_noncommuting_quantum": false,
+    "generator_trust": false,
+    "independent_replay_without_generator": false,
+    "phase_7_development_licensed": true,
+    "pytorch_proposal_acceptance": false
+  },
+  "implementation_head": "d3520abdc68fed9b7fd5fe3921ce63e9e00cf1f1",
+  "phase_2_revalidation": {
+    "accepting_case_count": 4,
+    "all_bridge_reports_accepted": true,
+    "all_differential_matches": true,
+    "case_count": 10,
+    "rejecting_case_count": 6
+  },
+  "phase_5a_revalidation": {
+    "all_accepted": true,
+    "case_count": 2,
+    "summary_hash": "471d4ffb86a97accfe4e84a787384aae80d25cf12aff7b587c502c5b3a71ffc1"
+  },
+  "phase_6_reference_suite": {
+    "all_built": true,
+    "built_case_count": 2,
+    "case_count": 2,
+    "initial": {
+      "candidate_manifest_hash": "fe29dcc45f9b510d4ef725ba353f700bc7560beccaf97af484b6ce73ee433bfd",
+      "candidate_payload_tree_hash": "da118659b014357bdc07568bd16c1dcce701ccfaca72f54486ff3baca0894264",
+      "package_report_hash": "7e37f14a24549705036d9ae3a9b3603e99ffae45c837b82d2bb6ec35e871019c",
+      "selection_hash": "f360bff5302eee0676cd3e6f705bbad664e99ddb8f2506552029be3a4a67eba5",
+      "substantive_component_kind": "verification_policy"
+    },
+    "promotion_licensed": false,
+    "suite_hash": "6ccbb61ab9d92dd6ab6616f55dfeb56f99c9ab0e4ca1ae0e5407177920a6843c",
+    "target": {
+      "candidate_manifest_hash": "021c3614dcb776dff98284bc7f1fe9d45d808b021085358656082a160d3cef3b",
+      "candidate_payload_tree_hash": "75ed50b2f14606e721e4eab212920bd2248d377dfd3f34e5a22788a48c43af47",
+      "package_report_hash": "36a6ac61829e33f6eac5a535270bc4782a1a0d69b2e1072b5f241b35fc7b4162",
+      "selection_hash": "868d416a26f0e6a7cdb33fba0b40e5cd91e12e4033071dd80088dc89fe67e404",
+      "substantive_component_kind": "memory_policy"
+    }
+  },
+  "pinned_formal_core": {
+    "build_jobs": 2636,
+    "build_result": "success",
+    "formal_source_commit": "012de4a55f326107f53f0e215c8aec62859d0bbf",
+    "lean_toolchain": "leanprover/lean4:v4.31.0",
+    "mathlib_commit": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+  },
+  "schema_version": "rcp-rclm-runtime-phase-6-validation-v1",
+  "source_quality": {
+    "issue_count": 0,
+    "python_file_count": 135
+  },
+  "tests": {
+    "phase_1": 74,
+    "phase_2": 19,
+    "phase_3": 20,
+    "phase_4": 10,
+    "phase_5a": 18,
+    "phase_6": 21
+  },
+  "workflow_closure": {
+    "pull_request_merge_revision": "ce9a5d0ad1c485f5b6f1fb6f3873b506449f90c4",
+    "workflow_attempt": 1,
+    "workflow_run": 29381815200
+  },
+  "workflows": {
+    "phase_0": 29381815173,
+    "phase_1": 29381815211,
+    "phase_2": 29381815215,
+    "phase_3": 29381815168,
+    "phase_4": 29381815157,
+    "phase_5a": 29381815164,
+    "phase_6": 29381815200
+  }
+}

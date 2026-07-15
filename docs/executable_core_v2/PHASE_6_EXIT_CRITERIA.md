@@ -1,36 +1,38 @@
 # Phase 6 exit criteria
 
-Phase 6 closes only when all of the following pass at one exact implementation head:
+Phase 6 is closed at implementation head
+`d3520abdc68fed9b7fd5fe3921ce63e9e00cf1f1` in workflow run `29381815200`.
+The retained validation record establishes:
 
-- [ ] Phase 0 through Phase 5A authoritative regression workflows pass.
-- [ ] Linux, Windows, and macOS compile the Phase 6 package and execute its tests.
-- [ ] The selector validates proposal, predecessor package, policy, objective, and hash bindings.
-- [ ] The generator never receives candidate-workspace or package write authority.
-- [ ] The predecessor package is independently measured from actual bytes.
-- [ ] Symlinks, non-regular files, and hard-link aliases are rejected.
-- [ ] The predecessor payload is copied into a fresh isolated workspace.
-- [ ] Only selected operations may modify the workspace.
-- [ ] Every changed path is recorded with exact before/after file hashes and modes.
-- [ ] Canonical policy changes receive metadata-stripped semantic hashes.
-- [ ] State-only, manifest-only, index-only, name-only, version-only, and timestamp-only changes are non-substantive.
-- [ ] At least one declared substantive component is changed.
-- [ ] Component classifications are restricted to their declared paths.
-- [ ] Every internal copy, write/delete, rollback, verification, and package action is recorded.
-- [ ] Runtime environment identity and fixed allowlisted environment-value hashes are retained.
-- [ ] File, byte, write, command, and snapshot budgets are recomputed and enforced.
-- [ ] A deterministic complete predecessor rollback archive is created.
-- [ ] The rollback archive is restored in a fresh directory and reproduces the predecessor tree hash.
-- [ ] The candidate package contains payload, rollback, evidence, and manifest trees only.
-- [ ] The candidate manifest binds parent, payload, proposal, selection, change ledger, command log, environment, resources, rollback, and substantive component kinds.
-- [ ] A public verifier recomputes every candidate-package binding after construction.
-- [ ] Candidate payload or evidence tampering is rejected.
-- [ ] Existing candidate output directories are never overwritten.
-- [ ] Package staging is atomically renamed only after complete verification.
-- [ ] The `initial` reference changes the state and verification policy.
-- [ ] The `target` reference changes the memory policy while preserving the target state.
-- [ ] Both reference packages are reproducible on a fixed platform.
-- [ ] The pinned Formal Core and Phase 2/5A generated-source hygiene paths pass before closure.
-- [ ] Cross-platform and pinned artifacts identify the exact checked head.
+- [x] Phase 0 through Phase 5A authoritative regression workflows pass.
+- [x] Linux, Windows, and macOS compile the Phase 6 package and execute its tests.
+- [x] The selector validates proposal, predecessor package, policy, objective, and hash bindings.
+- [x] The generator never receives candidate-workspace or package write authority.
+- [x] The predecessor package is independently measured from actual bytes.
+- [x] Symlinks, non-regular files, and hard-link aliases are rejected.
+- [x] The predecessor payload is copied into a fresh isolated workspace.
+- [x] Only selected operations may modify the workspace.
+- [x] Every changed path is recorded with exact before/after file hashes and modes.
+- [x] Canonical policy changes receive metadata-stripped semantic hashes.
+- [x] State-only, manifest-only, index-only, name-only, version-only, and timestamp-only changes are non-substantive.
+- [x] At least one declared substantive component is changed.
+- [x] Component classifications are restricted to their declared paths.
+- [x] Every internal copy, write/delete, rollback, verification, and package action is recorded.
+- [x] Runtime environment identity and fixed allowlisted environment-value hashes are retained.
+- [x] File, byte, write, command, and snapshot budgets are recomputed and enforced.
+- [x] A deterministic complete predecessor rollback archive is created.
+- [x] The rollback archive is restored in a fresh directory and reproduces the predecessor tree hash.
+- [x] The candidate package contains payload, rollback, evidence, and manifest trees only.
+- [x] The candidate manifest binds parent, payload, proposal, selection, change ledger, command log, environment, resources, rollback, and substantive component kinds.
+- [x] A public verifier recomputes every candidate-package binding after construction.
+- [x] Candidate payload, evidence, rollback, and unexpected-entry tampering are rejected.
+- [x] Existing candidate output directories are never overwritten.
+- [x] Package staging is atomically renamed only after complete verification.
+- [x] The `initial` reference changes the state and verification policy.
+- [x] The `target` reference changes the memory policy while preserving the target state.
+- [x] Both reference packages are reproducible on a fixed platform.
+- [x] The pinned Formal Core and Phase 2/5A generated-source hygiene paths pass before closure.
+- [x] Cross-platform and pinned artifacts are retained and bind to the exact implementation head through artifact metadata.
 
 The following remain false after Phase 6:
 
@@ -47,4 +49,7 @@ general noncommuting quantum semantics
 autonomous or unbounded RSI
 ```
 
-A clean Phase 6 closure licenses Phase 7 closed-loop promotion-controller development. It does not make the generator trusted and it does not itself promote a package.
+A clean Phase 6 closure licenses Phase 7 closed-loop promotion-controller development.
+It does not make the generator trusted and it does not itself promote a package. The
+final documentation/evidence PR head is revalidated separately and recorded in the
+pull-request discussion before merge.

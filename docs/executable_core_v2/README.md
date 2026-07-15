@@ -13,7 +13,7 @@ Phase 3 deterministic fail-closed checker: complete and cross-platform validated
 Phase 4 adversarial and tamper rejection: complete and cross-platform validated
 Phase 5A deterministic bounded reference generator: complete and cross-platform validated
 Phase 5B open-ended untrusted generators: optional and not implemented
-Phase 6 selector, realizer, and package builder: implementation complete; validation pending
+Phase 6 selector, realizer, and package builder: complete and cross-platform validated
 Promotion and rollback controller: not implemented
 Independent replay: not implemented
 PyTorch proposal backend: not implemented
@@ -65,13 +65,15 @@ certificate, candidate successor, checker verdict, or acceptance Boolean.
 | Document | Purpose |
 |---|---|
 | `PHASE_6_SELECTOR_REALIZER_PACKAGE_BUILDER.md` | Filesystem measurement, selection, realization, rollback, packaging, and verification |
-| `PHASE_6_EXIT_CRITERIA.md` | Exact substantive-change, rollback, package, CI, and licensing conditions |
+| `PHASE_6_EXIT_CRITERIA.md` | Closed substantive-change, rollback, package, CI, and licensing criteria |
+| `PHASE_6_VALIDATION.md` | Exact implementation head, workflows, tests, packages, hashes, and artifacts |
 
 Machine-readable Phase 6 records are:
 
 ```text
 python/rcp_rclm_executable_core_v2/contract/phase_6_successor_package.schema.json
 python/rcp_rclm_runtime_v2/phase_6_manifest.json
+python/rcp_rclm_runtime_v2/phase_6_validation.json
 ```
 
 The Phase 6 package is:

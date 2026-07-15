@@ -4,17 +4,24 @@
     "atomic_candidate_publication": true,
     "candidate_package_public_verifier": true,
     "command_and_environment_evidence": true,
+    "cross_platform_reference_packages": true,
     "deterministic_rollback_archive": true,
     "genuine_memory_policy_successor": true,
     "genuine_verification_policy_successor": true,
     "isolated_workspace_copy": true,
     "modified_file_ledger": true,
     "parent_and_phase5_binding": true,
+    "pinned_lean_revalidation": true,
     "resource_budget_recomputation": true,
     "rollback_restore_verification": true,
     "strict_selector": true,
     "substantive_change_enforcement": true,
     "symlink_hardlink_nonregular_rejection": true
+  },
+  "licenses_after_clean_phase_6_closure": {
+    "candidate_promotion": false,
+    "generator_trust": false,
+    "phase_7_promotion_controller_development_may_begin": true
   },
   "not_implemented_or_not_licensed": {
     "active_package_replacement": true,
@@ -31,7 +38,7 @@
   "package_name": "rcp-rclm-runtime-v2",
   "package_version": "0.6.0",
   "phase_name": "RCP/RCLM Executable Core v2 — Phase 6 selector, realizer, and package builder",
-  "phase_status": "implementation_complete_pending_cross_platform_and_pinned_validation",
+  "phase_status": "validated_at_clean_implementation_head",
   "schema_version": "rcp-rclm-runtime-phase-6-manifest-v1",
   "substantive_component_kinds": [
     "architecture_code",
@@ -44,5 +51,14 @@
     "training_policy",
     "verification_policy"
   ],
-  "successor_status": "realized_unverified"
+  "successor_status": "realized_unverified",
+  "validation_evidence": {
+    "all_reference_packages_built_and_verified": true,
+    "cross_platform": true,
+    "pinned_lean_phase2_and_phase5a_revalidated": true,
+    "promotion_licensed": false,
+    "validated_implementation_head": "d3520abdc68fed9b7fd5fe3921ce63e9e00cf1f1",
+    "workflow_conclusion": "success",
+    "workflow_run": 29381815200
+  }
 }
