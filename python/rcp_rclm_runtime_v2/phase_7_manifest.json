@@ -16,7 +16,7 @@
     "rollback_fallback_verification": true,
     "two_run_generator_replay": true
   },
-  "licenses_after_clean_phase_7_closure": {
+  "licenses_after_clean_final_head_and_merge": {
     "generator_trust": false,
     "learned_pytorch_authority": false,
     "open_ended_generator_correctness": false,
@@ -34,10 +34,12 @@
   "package_name": "rcp-rclm-runtime-v2",
   "package_version": "0.7.0",
   "phase_name": "RCP/RCLM Executable Core v2 — Phase 7 promotion and rollback controller",
-  "phase_status": "validation_ready_pending_exact_head_cross_platform_and_pinned_lean",
+  "phase_status": "implementation_validated_pending_final_evidence_head_revalidation",
   "schema": "python/rcp_rclm_executable_core_v2/contract/phase_7_promotion_controller.schema.json",
   "schema_version": "rcp-rclm-runtime-phase-7-manifest-v1",
   "supported_scope": "finite_gate_b_reference_promotion",
+  "validated_implementation_head": "001f060bb79015a7b9b06722977323e3f5f71063",
   "validation_evidence": "python/rcp_rclm_runtime_v2/phase_7_validation.json",
-  "workflow": ".github/workflows/runtime-v2-phase-7.yml"
+  "workflow": ".github/workflows/runtime-v2-phase-7.yml",
+  "workflow_run": 29396211684
 }
