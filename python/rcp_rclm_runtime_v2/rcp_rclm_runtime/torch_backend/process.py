@@ -18,10 +18,7 @@ from rcp_rclm_runtime.canonical.hashing import (
 )
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes, load_json_strict
 from rcp_rclm_runtime.errors import SchemaValidationError
-from rcp_rclm_runtime.torch_backend.protocol import (
-    PILOT_PROCESS_COMMAND_TEMPLATE,
-    PilotRequestBinding,
-)
+from rcp_rclm_runtime.torch_backend.protocol import PilotRequestBinding
 
 PROCESS_SCHEMA_ID: Final[str] = "runtime.pytorch_pilot_process_report.v1"
 SOURCE_GUARD_SCHEMA_ID: Final[str] = "runtime.pytorch_pilot_source_guard.v1"
@@ -253,7 +250,6 @@ def run_pytorch_proposal_process(
             "--output-root",
             str(resolved_output),
         )
-        reported_command = tuple(PILOT_PROCESS_COMMAND_TEMPLATE)
         environment = _worker_environment()
         try:
             completed = subprocess.run(
@@ -271,7 +267,7 @@ def run_pytorch_proposal_process(
             report = _report(
                 verdict="indeterminate",
                 reasons=("PYTORCH_PROCESS_TIMEOUT",),
-                command=reported_command,
+                command=command,
                 return_code=None,
                 timed_out=True,
                 stdout=stdout,
@@ -316,7 +312,7 @@ def run_pytorch_proposal_process(
     report = PilotProcessReport(
         verdict=verdict,
         reason_codes=reasons,
-        command=reported_command,
+        command=command,
         return_code=completed.returncode,
         timed_out=False,
         stdout_hash=sha256_hex(stdout),
