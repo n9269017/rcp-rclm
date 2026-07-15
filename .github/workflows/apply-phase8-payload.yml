@@ -83,7 +83,7 @@ jobs:
                   f'unexpected compressed payload length: {len(compressed)}'
               )
           if hashlib.sha256(compressed).hexdigest() != (
-              '0de564ccf4e84e610a61c73a812fbf8be7fb702fe1335fa03e232f7c6983201e'
+              '1baf2c4df74fa7ad745c9918e878f99c866b469540d9d69aa1dddc96b4d46f20'
           ):
               raise RuntimeError('compressed payload hash mismatch')
 
