@@ -1,6 +1,11 @@
 name: Phase 8 source snapshot
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/phase8-source-snapshot.yml
   push:
     branches:
       - agent/rcp-rclm-runtime-v2-phase-8-independent-replay
