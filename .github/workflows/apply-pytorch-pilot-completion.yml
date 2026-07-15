@@ -1,6 +1,12 @@
 name: Apply PyTorch pilot completion payload
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/apply-pytorch-pilot-completion.yml"
+      - ".pytorch_pilot_payload/READY"
   push:
     branches:
       - agent/rcp-rclm-runtime-v2-pytorch-pilot
