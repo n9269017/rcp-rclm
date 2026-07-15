@@ -1,0 +1,88 @@
+name: Apply validated Phase 8 implementation blob
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-runtime-v2-phase-8-independent-replay
+    paths:
+      - ".github/workflows/apply-phase8-valid-blob.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out Phase 8 branch
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: agent/rcp-rclm-runtime-v2-phase-8-independent-replay
+          fetch-depth: 0
+
+      - name: Materialize validated Phase 8 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/phase8-blob-inspect
+          git checkout origin/main -- .github/workflows/runtime-v2-phase-7.yml
+
+          if [ ! -f python/rcp_rclm_runtime_v2/rcp_rclm_runtime/replay/reproduce.py ]; then
+            git cat-file blob 9c73affafeac97b88943395184650fc88f13044b > /tmp/phase8_payload.gz
+            python - <<'PY'
+          from __future__ import annotations
+
+          import gzip
+          import io
+          import tarfile
+          from pathlib import Path, PurePosixPath
+
+          archive_bytes = gzip.decompress(Path("/tmp/phase8_payload.gz").read_bytes())
+          repository_root = Path.cwd().resolve(strict=True)
+          with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
+              members = archive.getmembers()
+              names = [member.name for member in members]
+              if names != sorted(names, key=lambda value: value.encode("utf-8")):
+                  raise RuntimeError("payload members are not canonically ordered")
+              if len(names) != len(set(names)):
+                  raise RuntimeError("payload contains duplicate paths")
+              for member in members:
+                  path = PurePosixPath(member.name)
+                  if path.is_absolute() or not path.parts or ".." in path.parts:
+                      raise RuntimeError(f"unsafe payload path: {member.name}")
+                  if not member.isfile():
+                      raise RuntimeError(
+                          f"payload member is not a regular file: {member.name}"
+                      )
+                  source = archive.extractfile(member)
+                  if source is None:
+                      raise RuntimeError(
+                          f"payload member has no content: {member.name}"
+                      )
+                  destination = repository_root.joinpath(*path.parts)
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_bytes(source.read())
+                  destination.chmod(0o644)
+          PY
+          fi
+
+          rm -f .phase8_payload.gz .phase8_payload.ready
+          rm -f .phase8_payload.part* .phase8_patch.part* .phase8_patch.ready
+          rm -f .github/workflows/apply-phase8-payload.yml
+          rm -f .github/workflows/phase8-source-snapshot.yml
+          rm -f .github/workflows/apply-phase8-valid-blob.yml
+          git add -A
+          git diff --cached --check
+
+      - name: Commit Phase 8 implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Implement Phase 8 independent replay"
+          git push origin HEAD:agent/rcp-rclm-runtime-v2-phase-8-independent-replay
