@@ -1,31 +1,12 @@
-from rcp_rclm_runtime.torch_backend.proposal_backend import (
-    BackendError,
-    BackendRequest,
-    EvaluationArtifacts,
-    PilotPolicy,
-    ProposalArtifacts,
-    default_policy,
-    evaluate_model_root_exact,
-    evaluate_proposal_exact,
-    fixed_heldout_evaluation_data,
-    fixed_training_manifest,
-    initialize_predecessor_model,
-    make_default_request,
-    run_proposal_backend,
-)
+"""Optional untrusted PyTorch proposal pilot.
 
-__all__ = [
-    "BackendError",
-    "BackendRequest",
-    "EvaluationArtifacts",
-    "PilotPolicy",
-    "ProposalArtifacts",
-    "default_policy",
-    "evaluate_model_root_exact",
-    "evaluate_proposal_exact",
-    "fixed_heldout_evaluation_data",
-    "fixed_training_manifest",
-    "initialize_predecessor_model",
-    "make_default_request",
-    "run_proposal_backend",
-]
+The package initializer intentionally imports no PyTorch-facing module. This keeps the
+checker, promotion, and replay import surfaces model-free and lets independent replay
+run after the training backend source has been removed.
+"""
+
+from typing import Final
+
+PILOT_ID: Final[str] = "rcp-rclm-pytorch-cpu-one-step-linear-v1"
+
+__all__ = ["PILOT_ID"]
