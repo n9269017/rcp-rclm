@@ -46,11 +46,13 @@ jobs:
           from __future__ import annotations
 
           import base64
+          import gzip
           import hashlib
           import io
           import shutil
           import tarfile
           import tempfile
+          import zipfile
           from pathlib import Path, PurePosixPath
 
           repository = Path.cwd().resolve(strict=True)
@@ -67,24 +69,84 @@ jobs:
           print("encoded sha256:", hashlib.sha256(encoded.encode("ascii")).hexdigest())
           print("archive bytes:", len(archive))
           print("archive sha256:", hashlib.sha256(archive).hexdigest())
+          print("archive magic:", archive[:8].hex())
+
+          def safe_name(raw: str) -> str:
+              normalized = raw.removeprefix("./")
+              path = PurePosixPath(normalized)
+              if not normalized or path.is_absolute() or ".." in path.parts:
+                  raise RuntimeError(f"unsafe archive path: {raw}")
+              return normalized
+
+          def extract_payload(data: bytes, destination: Path) -> list[str]:
+              candidates = [data]
+              if data.startswith(b"\x1f\x8b"):
+                  decompressed = gzip.decompress(data)
+                  print("gzip payload bytes:", len(decompressed))
+                  print("gzip payload magic:", decompressed[:8].hex())
+                  candidates.insert(0, decompressed)
+              errors: list[str] = []
+              for candidate in candidates:
+                  if zipfile.is_zipfile(io.BytesIO(candidate)):
+                      paths: list[str] = []
+                      with zipfile.ZipFile(io.BytesIO(candidate)) as bundle:
+                          for info in bundle.infolist():
+                              normalized = safe_name(info.filename)
+                              mode = (info.external_attr >> 16) & 0xF000
+                              if mode == 0xA000:
+                                  raise RuntimeError(
+                                      f"unsupported ZIP symlink: {info.filename}"
+                                  )
+                              if not info.is_dir():
+                                  paths.append(normalized)
+                          bundle.extractall(destination)
+                      print("archive format: zip")
+                      return paths
+                  try:
+                      paths = []
+                      with tarfile.open(fileobj=io.BytesIO(candidate), mode="r:*") as bundle:
+                          for member in bundle.getmembers():
+                              normalized = safe_name(member.name)
+                              if member.issym() or member.islnk() or member.isdev():
+                                  raise RuntimeError(
+                                      f"unsupported tar entry: {member.name}"
+                                  )
+                              if member.isfile():
+                                  paths.append(normalized)
+                          bundle.extractall(destination)
+                      print("archive format: tar")
+                      return paths
+                  except tarfile.TarError as exc:
+                      errors.append(f"{type(exc).__name__}: {exc}")
+              raise RuntimeError(
+                  "unsupported staged payload archive: " + " | ".join(errors)
+              )
 
           with tempfile.TemporaryDirectory(prefix="rcp-rclm-pytorch-payload-") as temp:
               extraction = Path(temp) / "extracted"
               extraction.mkdir()
-              with tarfile.open(fileobj=io.BytesIO(archive), mode="r:gz") as bundle:
-                  members = bundle.getmembers()
-                  regular_paths: list[str] = []
-                  for member in members:
-                      normalized = member.name.removeprefix("./")
-                      path = PurePosixPath(normalized)
-                      if not normalized or path.is_absolute() or ".." in path.parts:
-                          raise RuntimeError(f"unsafe archive path: {member.name}")
-                      if member.issym() or member.islnk() or member.isdev():
-                          raise RuntimeError(f"unsupported archive entry: {member.name}")
-                      if member.isfile() and normalized != "TRANSFER_MANIFEST.txt":
-                          regular_paths.append(normalized)
-                  bundle.extractall(extraction)
-              manifest = extraction / "TRANSFER_MANIFEST.txt"
+              regular_paths = extract_payload(archive, extraction)
+              roots = [extraction]
+              children = tuple(extraction.iterdir())
+              if len(children) == 1 and children[0].is_dir():
+                  roots.append(children[0])
+                  nested = tuple(children[0].iterdir())
+                  if len(nested) == 1 and nested[0].is_dir():
+                      roots.append(nested[0])
+              source_root = next(
+                  (
+                      root
+                      for root in roots
+                      if (root / "python/rcp_rclm_runtime_v2").is_dir()
+                      and (root / "docs/executable_core_v2").is_dir()
+                  ),
+                  None,
+              )
+              if source_root is None:
+                  raise RuntimeError(
+                      "decoded payload does not contain the expected overlay root"
+                  )
+              manifest = source_root / "TRANSFER_MANIFEST.txt"
               if manifest.is_file():
                   paths = tuple(
                       line.strip()
@@ -92,7 +154,18 @@ jobs:
                       if line.strip()
                   )
               else:
-                  paths = tuple(sorted(regular_paths, key=lambda item: item.encode("utf-8")))
+                  paths = tuple(
+                      sorted(
+                          (
+                              path.relative_to(source_root).as_posix()
+                              for path in source_root.rglob("*")
+                              if path.is_file()
+                              and not path.is_symlink()
+                              and path.name != "TRANSFER_MANIFEST.txt"
+                          ),
+                          key=lambda item: item.encode("utf-8"),
+                      )
+                  )
               if len(paths) < 20:
                   raise RuntimeError("payload file set is unexpectedly incomplete")
               if len(paths) != len(set(paths)):
@@ -101,7 +174,7 @@ jobs:
                   semantic = PurePosixPath(relative)
                   if semantic.is_absolute() or ".." in semantic.parts:
                       raise RuntimeError(f"unsafe payload path: {relative}")
-                  source = extraction.joinpath(*semantic.parts)
+                  source = source_root.joinpath(*semantic.parts)
                   if not source.is_file() or source.is_symlink():
                       raise RuntimeError(f"payload source is not a regular file: {relative}")
                   destination = repository.joinpath(*semantic.parts)
