@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import platform
 import sys
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Final
 
@@ -39,7 +40,7 @@ from rcp_rclm_runtime.successor.workspace_types import (
 )
 
 PHASE6_REALIZER_POLICY_ID: Final[str] = "rcp-rclm-phase6-isolated-realizer-v1"
-_CAPTURED_ENVIRONMENT_KEYS: Final[tuple[str, ...]] = (
+_CAPTURED_ENVIRONMENT_KEYS: Final[Sequence[str]] = (
     "LANG",
     "LC_ALL",
     "PYTHONHASHSEED",
