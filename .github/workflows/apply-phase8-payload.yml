@@ -1,6 +1,12 @@
 name: Apply Phase 8 implementation payload
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".phase8_payload.gz"
+      - ".github/workflows/apply-phase8-payload.yml"
   push:
     branches:
       - agent/rcp-rclm-runtime-v2-phase-8-independent-replay
