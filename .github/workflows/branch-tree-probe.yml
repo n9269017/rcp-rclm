@@ -20,14 +20,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Check out branch head
+      - name: Check out canonical branch head
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
+          ref: agent/rcp-rclm-runtime-v2-pytorch-pilot
           fetch-depth: 1
-      - name: Print commit and tree object IDs
+      - name: Record commit and tree object IDs
         shell: bash
         run: |
           set -euo pipefail
-          echo "HEAD_SHA=$(git rev-parse HEAD)"
-          echo "TREE_SHA=$(git rev-parse 'HEAD^{tree}')"
-          echo "PROBE_VERSION=2"
+          mkdir -p artifacts/branch-tree-probe
+          {
+            echo "HEAD_SHA=$(git rev-parse HEAD)"
+            echo "TREE_SHA=$(git rev-parse 'HEAD^{tree}')"
+          } | tee artifacts/branch-tree-probe/tree.txt
+      - name: Upload tree probe
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: branch-tree-probe-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/branch-tree-probe/tree.txt
+          if-no-files-found: error
+          retention-days: 1
