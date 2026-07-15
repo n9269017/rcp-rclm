@@ -1,6 +1,6 @@
 """Optional untrusted PyTorch proposal pilot.
 
-The package initializer intentionally imports no PyTorch-facing module. This keeps the
+The package initializer intentionally imports no PyTorch-facing module.  This keeps the
 checker, promotion, and replay import surfaces model-free and lets independent replay
 run after the training backend source has been removed.
 """
