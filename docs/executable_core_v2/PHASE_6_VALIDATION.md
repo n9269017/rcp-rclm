@@ -2,33 +2,33 @@
 
 ## Clean executable implementation head
 
-The complete Phase 6 implementation passed the authoritative Phase 0–6 validation
-matrix at:
+The complete hardened Phase 6 implementation passed the authoritative Phase 0–6
+validation matrix at:
 
 ```text
 validated implementation head:
-d3520abdc68fed9b7fd5fe3921ce63e9e00cf1f1
+6afbf8a395a9b41cd4f6d9b5accbe247974c8b20
 
 Phase 0 workflow:
-29381815173 — success
+29383092464 — success
 
 Phase 1 workflow:
-29381815211 — success
+29383092479 — success
 
 Phase 2 workflow:
-29381815215 — success
+29383092465 — success
 
 Phase 3 workflow:
-29381815168 — success
+29383092462 — success
 
 Phase 4 workflow:
-29381815157 — success
+29383092453 — success
 
 Phase 5A workflow:
-29381815164 — success
+29383092516 — success
 
 Phase 6 workflow:
-29381815200 — success
+29383092505 — success
 ```
 
 All seven executable-core workflows completed successfully at that exact source head.
@@ -60,15 +60,16 @@ Phase 2 tests:          19 passed
 Phase 3 tests:          20 passed
 Phase 4 tests:          10 passed
 Phase 5A tests:         18 passed
-Phase 6 tests:          21 passed
+Phase 6 tests:          22 passed
 ```
 
 The Phase 6 suite covers selector binding, substantive verification- and memory-policy
 changes, exact before/after file hashes, command/environment/resource evidence,
 rollback restoration, strict record round trips, public package verification, payload,
-evidence, and rollback tampering, unknown package entries, metadata-only and state-only
+evidence, rollback, and unexpected-entry tampering, metadata-only and state-only
 changes, component/path mismatches, resource overflow, predecessor tampering, output
-overwrite protection, hard links, symlinks, and deterministic package construction.
+overwrite protection, hard links, symlinks, deterministic package construction, and a
+coherent selection/realization/manifest substitution attack.
 
 ## Filesystem predecessor and candidate packages
 
@@ -201,13 +202,28 @@ suite SHA-256:
 The rollback snapshot uses a canonical USTAR profile with sorted semantic paths, fixed
 modes, zero owner/group IDs, empty owner/group names, and zero modification times. Each
 archive was restored in an independent fresh directory and reproduced the measured
-predecessor semantic-tree hash. The public candidate-package verifier then reparsed all
-evidence, remeasured the payload, verified the exact package layout, recomputed every
-manifest binding, checked the rollback bytes, restored the archive again, and compared
-the restored predecessor tree hash.
+predecessor semantic-tree hash.
 
-The regression suite separately confirms that any payload, evidence, rollback archive,
-or unexpected package-entry mutation is rejected.
+The public candidate-package verifier reparses all evidence, remeasures the candidate
+payload, validates the exact package layout, checks the rollback bytes, restores the
+predecessor again, and independently recomputes:
+
+```text
+selected before-file hash and mode bindings
+selected after-file content, hash, and mode bindings
+actual modified-path set
+metadata-stripped semantic change ledger
+substantive component kinds
+internal command sequence and hashes
+resource accounting
+manifest, parent, environment, rollback, and evidence bindings
+```
+
+A coherent attack that substitutes a new selection and updates the realization and
+candidate manifest consistently is rejected because the substituted selected operation
+no longer matches the actual predecessor and candidate bytes. The regression suite also
+confirms fail-closed rejection of ordinary payload, evidence, rollback, and package
+layout tampering.
 
 ## Pinned Lean and earlier-phase revalidation
 
@@ -236,7 +252,7 @@ Lean acceptances: 2/2
 hardened-checker acceptances: 2/2
 all accepted: true
 summary SHA-256:
-471d4ffb86a97accfe4e84a787384aae80d25cf12aff7b587c502c5b3a71ffc1
+74719025429b20de8dda7fa717571f0c5c13414401f4a96e535f56369cab431a
 ```
 
 Every generated Lean source passed the mandatory pre-compilation rejection gate for
@@ -246,29 +262,30 @@ Every generated Lean source passed the mandatory pre-compilation rejection gate 
 
 ```text
 final workflow closure
-  runtime-v2-phase-6-final-29381815200-1
-  sha256:09cb568fe21e3d665280c538cb19fa4610a3967e158d96bac8e34847b3f8c9b0
+  runtime-v2-phase-6-final-29383092505-1
+  sha256:73440a6a206c3edf8481e2dc1299f7592bf9473f756b3fe8eec495b4ff14ddcd
 
 pinned Lean and complete Phase 6 path
-  runtime-v2-phase-6-pinned-29381815200-1
-  sha256:65fa81637fbc9e25ea2063ae1e2767c90c605dc2c1fc8d4a8c2e048b0d65328a
+  runtime-v2-phase-6-pinned-29383092505-1
+  sha256:20e746cddeab9e86d0db4e675270ced05aa913476ce029abeafd1242f2d540db
 
 Ubuntu runtime and reference packages
-  runtime-v2-phase-6-ubuntu-latest-29381815200-1
-  sha256:b0710bd3ccc1f8d157e7f9c6c554e6bbec04042f6a7c61234ac148589fa47992
+  runtime-v2-phase-6-ubuntu-latest-29383092505-1
+  sha256:63f4363bfa912cb09ac2b1df00c127ea84ead75d2212b5276de0af3cb6cf2f98
 
 Windows runtime and reference packages
-  runtime-v2-phase-6-windows-latest-29381815200-1
-  sha256:58f2bd98fd7e3106223e85fe7ab46941a106fad2487df9b48b7f730a17b18263
+  runtime-v2-phase-6-windows-latest-29383092505-1
+  sha256:092ad18e00870aac832708ef07c32181d05fd6e4c8a13b82ebce3e3e5048d809
 
 macOS runtime and reference packages
-  runtime-v2-phase-6-macos-latest-29381815200-1
-  sha256:19aa40376a12c4b48f514e3f39647bf6a01c5438bfc953caf89da86c6647321f
+  runtime-v2-phase-6-macos-latest-29383092505-1
+  sha256:6c1366e7aa07f7fc7a1f0639deb871745bb87c19b121bbf793189720f045f5f6
 ```
 
-The closure JSON records the pull-request merge revision used by the workflow. GitHub
-artifact metadata independently binds every retained artifact to implementation head
-`d3520abdc68fed9b7fd5fe3921ce63e9e00cf1f1`.
+The closure JSON records pull-request merge revision
+`7e25c728271f6da7d43599b5ee802763463c944d`. GitHub artifact metadata independently
+binds every retained artifact to implementation head
+`6afbf8a395a9b41cd4f6d9b5accbe247974c8b20`.
 
 ## Interpretation and claim boundary
 
