@@ -29,7 +29,7 @@ from rcp_rclm_runtime.generator.grammar import (
     reference_objective,
     reference_policy,
 )
-from rcp_rclm_runtime.generator.process import REFERENCE_PROCESS_ENVIRONMENT_HASH
+from rcp_rclm_runtime.generator.environment import REFERENCE_PROCESS_ENVIRONMENT_HASH
 from rcp_rclm_runtime.generator.protocol import (
     GeneratorPredecessorViewRecord,
     ReferenceGeneratorInputRecord,

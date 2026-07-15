@@ -9,12 +9,12 @@ from typing import Final, Literal
 
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes
-from rcp_rclm_runtime.generator.process import run_reference_generator_process
 from rcp_rclm_runtime.generator.protocol import (
     ReferenceGeneratorInputRecord,
     ReferenceProposalRecord,
 )
 from rcp_rclm_runtime.generator.reference import reference_generator_input
+from rcp_rclm_runtime.successor.budget import reference_phase6_budget
 from rcp_rclm_runtime.successor.filesystem import atomic_write
 from rcp_rclm_runtime.successor.package_builder import (
     Phase6PackageBuildEvidence,
@@ -95,17 +95,6 @@ class Phase6ReferenceCaseEvidence:
         }
 
 
-def reference_phase6_budget() -> Phase6ResourceBudgetRecord:
-    return Phase6ResourceBudgetRecord(
-        max_file_count=64,
-        max_total_bytes=1_048_576,
-        max_changed_files=8,
-        max_written_bytes=4_194_304,
-        max_commands=16,
-        max_snapshot_bytes=2_097_152,
-    )
-
-
 def build_reference_predecessor_package(
     generator_input: ReferenceGeneratorInputRecord,
     package_root: Path,
@@ -159,6 +148,8 @@ def run_reference_phase6_case(
     *,
     budget: Phase6ResourceBudgetRecord | None = None,
 ) -> Phase6ReferenceCaseEvidence:
+    from rcp_rclm_runtime.generator.process import run_reference_generator_process
+
     generator_input = reference_generator_input(state)
     process = run_reference_generator_process(generator_input)
     if process.report.verdict != "success" or process.proposal is None:

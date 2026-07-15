@@ -1,0 +1,72 @@
+{
+  "claim_boundary": {
+    "arbitrary_learned_system_refinement": false,
+    "autonomous_unbounded_rsi": false,
+    "external_benchmark_claim": false,
+    "general_noncommuting_quantum": false,
+    "generator_trust": false,
+    "learned_pytorch_authority": false,
+    "open_ended_generator_correctness": false,
+    "strict_useful_improvement_every_step": false,
+    "unbounded_successor_availability": false
+  },
+  "implementation_head": null,
+  "local_reference_roundtrip": {
+    "all_expectations_met": true,
+    "bundle_manifest_hash": "f9add553db0379f33fcbda5a52798b9f926aff5b29777d9832aa4e5ecf11f9b0",
+    "generator_invocations": 0,
+    "generator_modules_loaded": [],
+    "package_chain": [
+      "0a80ac68151d9c64915472b0611d983f01622988cc32187ce9ff822c343c1211",
+      "29a6684c57a5f7dbe6919b942fe5f45ea305ba148411d550c781b5a844dcef10",
+      "14ed1b50445e9d0f6444ebf7b1aa1a61acfe1e3a3c585ae8103f60bfb66c07d4"
+    ],
+    "promotion_count": 2,
+    "rejection_count": 2,
+    "replay_report_hash": "17cea55d51f85581eac90e6397561ec86d5cda39b675eccb6061036253c92d67",
+    "replay_source_guard_hash": "7ffc550ac2337ac5f666ce2ab61545c92e4d011ec73a2c4ae13ae23ed4462076",
+    "roundtrip_hash": "5f183f12a139cb50f3e68f437341526a38714fc7061a06b2ea1e1fa0698e7471",
+    "source_store_tree_hash": "c88e84190c0d519001f415b1b1e5cbb583d4bf3110d14d6488c54dd725052d56",
+    "source_trajectory_hash": "bb5440c2fc8abfa077ff500c19047305b417777accdd32c447185974755a092a"
+  },
+  "phase_8_invariants": {
+    "bundle_manifest_recomputed": true,
+    "candidate_realization_recomputed": true,
+    "captured_generator_outputs_untrusted": true,
+    "certificate_recomputed_outside_generator": true,
+    "checker_acceptance_recomputed": true,
+    "forbidden_generator_modules_loaded": false,
+    "generator_invocations_zero": true,
+    "lean_source_regenerated_and_scanned": true,
+    "original_generator_executable_absent_in_replay_validation": true,
+    "parent_and_successor_hashes_recomputed": true,
+    "rejection_attempts_preserved": true,
+    "replay_source_guard_clean": true,
+    "resource_and_rollback_recomputed": true
+  },
+  "published_validation": {
+    "artifact_digests": {},
+    "cross_platform": false,
+    "exact_head": null,
+    "pinned_lean": false,
+    "workflow_conclusion": null,
+    "workflow_run": null
+  },
+  "schema_version": "rcp-rclm-runtime-phase-8-validation-v1",
+  "source_phase7_main_commit": "af7878af72dbf4b094f2430b9ca5b14ddf3332a9",
+  "source_quality": {
+    "issue_count": 0,
+    "python_file_count": 173
+  },
+  "tests": {
+    "phase_1": 74,
+    "phase_2": 19,
+    "phase_3": 20,
+    "phase_4": 10,
+    "phase_5a": 18,
+    "phase_6": 22,
+    "phase_7": 17,
+    "phase_8": 23
+  },
+  "validation_status": "local_complete_pending_exact_head_cross_platform_and_pinned_lean"
+}
