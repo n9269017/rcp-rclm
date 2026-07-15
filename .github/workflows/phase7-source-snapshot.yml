@@ -1,0 +1,38 @@
+name: Phase 7 source snapshot
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/phase7-source-snapshot.yml
+  push:
+    branches:
+      - agent/rcp-rclm-runtime-v2-phase-7-promotion-controller
+    paths:
+      - .github/workflows/phase7-source-snapshot.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+      - name: Upload exact source snapshot
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase7-source-${{ github.sha }}
+          path: |
+            python/rcp_rclm_runtime_v2/
+            python/rcp_rclm_executable_core_v2/
+            scripts/
+            docs/executable_core_v2/
+            .github/workflows/
+            README.md
+          if-no-files-found: error
+          retention-days: 7
