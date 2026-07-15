@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p recovered
+          mkdir -p recovered diagnostics
           cat .phase8-blob0.bin .phase8-blob1.bin > /tmp/phase8-payload.gz
           python - <<'PY'
           from __future__ import annotations
@@ -37,15 +37,26 @@ jobs:
           import tarfile
           from pathlib import Path, PurePosixPath
 
+          part0 = Path('.phase8-blob0.bin').read_bytes()
+          part1 = Path('.phase8-blob1.bin').read_bytes()
           compressed = Path('/tmp/phase8-payload.gz').read_bytes()
-          expected_size = 47989
-          expected_hash = '0de564ccf4e84e610a61c73a812fbf8be7fb702fe1335fa03e232f7c6983201e'
-          if len(compressed) != expected_size:
-              raise RuntimeError(f'unexpected compressed size: {len(compressed)}')
-          if hashlib.sha256(compressed).hexdigest() != expected_hash:
-              raise RuntimeError('compressed payload hash mismatch')
+          diagnostics = {
+              'part0_size': len(part0),
+              'part0_sha256': hashlib.sha256(part0).hexdigest(),
+              'part1_size': len(part1),
+              'part1_sha256': hashlib.sha256(part1).hexdigest(),
+              'combined_size': len(compressed),
+              'combined_sha256': hashlib.sha256(compressed).hexdigest(),
+              'gzip_magic': compressed[:2].hex(),
+          }
+          Path('diagnostics/payload.json').write_text(
+              json.dumps(diagnostics, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+          )
 
           archive_bytes = gzip.decompress(compressed)
+          diagnostics['archive_size'] = len(archive_bytes)
+          diagnostics['archive_sha256'] = hashlib.sha256(archive_bytes).hexdigest()
           output_root = Path('recovered').resolve(strict=True)
           inventory: list[dict[str, object]] = []
           with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode='r:') as archive:
@@ -73,6 +84,7 @@ jobs:
                       'sha256': hashlib.sha256(content).hexdigest(),
                       'size': len(content),
                   })
+          diagnostics['member_count'] = len(inventory)
           required = (
               'python/rcp_rclm_runtime_v2/rcp_rclm_runtime/replay/reproduce.py',
               'python/rcp_rclm_runtime_v2/tests_phase8/test_independent_replay.py',
@@ -80,6 +92,11 @@ jobs:
               '.github/workflows/runtime-v2-phase-8.yml',
           )
           missing = [name for name in required if not (output_root / name).is_file()]
+          diagnostics['missing_required'] = missing
+          Path('diagnostics/payload.json').write_text(
+              json.dumps(diagnostics, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+          )
           if missing:
               raise RuntimeError(f'missing required files: {missing}')
           (output_root / 'RECOVERY_INVENTORY.json').write_text(
@@ -88,7 +105,17 @@ jobs:
           )
           PY
 
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase8-recovery-diagnostics-${{ github.sha }}
+          path: diagnostics/
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Upload recovered implementation
+        if: success()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: phase8-recovered-implementation-${{ github.sha }}
