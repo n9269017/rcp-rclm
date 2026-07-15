@@ -5,7 +5,7 @@ on:
     branches:
       - agent/rcp-rclm-runtime-v2-phase-8-independent-replay
     paths:
-      - ".phase8_payload.ready"
+      - ".phase8_payload.gz"
 
 permissions:
   contents: write
@@ -26,21 +26,15 @@ jobs:
         run: |
           set -euo pipefail
           git checkout origin/main -- .github/workflows/runtime-v2-phase-7.yml
-          cat .phase8_payload.part* > /tmp/phase8_payload.b64
           python - <<'PY'
           from __future__ import annotations
 
-          import base64
           import gzip
           import io
           import tarfile
           from pathlib import Path, PurePosixPath
 
-          payload = base64.b64decode(
-              Path("/tmp/phase8_payload.b64").read_text(encoding="ascii"),
-              validate=True,
-          )
-          archive_bytes = gzip.decompress(payload)
+          archive_bytes = gzip.decompress(Path(".phase8_payload.gz").read_bytes())
           repository_root = Path.cwd().resolve(strict=True)
           with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
               members = archive.getmembers()
@@ -67,8 +61,7 @@ jobs:
                   destination.write_bytes(source.read())
                   destination.chmod(0o644)
           PY
-          rm -f .phase8_payload.part*
-          rm -f .phase8_payload.ready
+          rm -f .phase8_payload.gz
           rm -f .github/workflows/apply-phase8-payload.yml
           rm -f .github/workflows/phase8-source-snapshot.yml
           git add -A
