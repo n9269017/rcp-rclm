@@ -3,8 +3,8 @@
 This package contains the deterministic Phase 1 runtime bedrock, the validated
 Phase 2 pinned Lean conformance bridge, the Phase 3 deterministic checker, the
 Phase 4 hardened checker and adversarial rejection suite, the Phase 5A bounded
-reference generator, and the cross-platform validated Phase 6 selector, filesystem
-realizer, rollback builder, and candidate-package verifier.
+reference generator, the Phase 6 selector and filesystem candidate-package builder,
+and the Phase 7 fixed-budget promotion and rollback controller.
 
 ## Phase 1 bedrock
 
@@ -85,10 +85,8 @@ measures the predecessor package from bytes
 ```
 
 The reference cases introduce genuine verification-policy and memory-policy changes.
-The candidate package remains unverified for promotion; Phase 7 must run objective
-evaluation, the checker, and the Lean bridge before any active-package replacement.
-The exact clean implementation and artifact record is
-`docs/executable_core_v2/PHASE_6_VALIDATION.md`.
+The candidate remains unverified for promotion until the Phase 7 controller invokes
+objective evaluation, the pinned Lean bridge, and the hardened checker.
 
 Run the Phase 6 unit suite:
 
@@ -105,10 +103,65 @@ python python/rcp_rclm_runtime_v2/tools/run_phase6_reference_suite.py \
   --outdir artifacts/runtime_v2_phase_6/local/reference_suite
 ```
 
+## Phase 7 promotion and rollback controller
+
+Phase 7 coordinates the existing components without replacing the checker:
+
+```text
+load immutable active package
+→ invoke the untrusted generator twice
+→ validate replay and proposal bindings
+→ realize and publicly verify a Phase 6 candidate
+→ derive objective evidence from the measured states
+→ construct the certificate outside the generator
+→ invoke the pinned Lean bridge
+→ invoke the Phase 4 hardened checker
+→ reverify candidate immutability
+→ install an immutable parent-linked package
+→ append a hash-chained ledger entry
+→ atomically replace the active pointer or restore it on activation failure
+```
+
+Retry is permitted only under the original fixed attempt and resource budgets.
+Rejected candidates are not repaired. Indeterminate results remain nonpromoting. The
+controller does not calculate authoritative Shannon/KL or von Neumann/QRE facts; the
+checker and Lean bridge retain that authority.
+
+Run the Phase 7 unit suite:
+
+```bash
+python python/rcp_rclm_runtime_v2/tools/run_phase7_tests.py \
+  --package-root python/rcp_rclm_runtime_v2 \
+  --out artifacts/runtime_v2_phase_7/local/phase_7_unit.log
+```
+
+Run the deterministic platform fixture trajectory:
+
+```bash
+python python/rcp_rclm_runtime_v2/tools/run_phase7_reference_suite.py \
+  --outdir artifacts/runtime_v2_phase_7/local/reference_trajectory
+```
+
+Run the pinned-Lean promotion trajectory from the repository root:
+
+```bash
+python scripts/run_promotion_loop.py \
+  --repo-root . \
+  --store-root artifacts/runtime_v2_phase_7/local/store \
+  --out artifacts/runtime_v2_phase_7/local/summary.json \
+  --trajectory \
+  --timeout-seconds 180
+```
+
+The clean implementation head is recorded in
+`docs/executable_core_v2/PHASE_7_VALIDATION.md` and
+`phase_7_validation.json`. The final documentation/evidence PR head is revalidated
+before merge.
+
 ## Boundary
 
 The executable mathematical scope remains the declared finite Gate B binary and
-selected Gate C diagonal-quantum checker semantics. Phase 6 does not add arbitrary
-noncommuting matrices or channels. It also does not implement promotion, active-package
-replacement, promotion-ledger mutation, independent replay, open-ended-generator
-correctness, PyTorch learning, or external benchmark claims.
+selected Gate C diagonal-quantum checker semantics. Phase 7 does not add arbitrary
+noncommuting matrices or channels. It also does not implement independent replay,
+open-ended-generator correctness, generator trust, PyTorch learning authority,
+external benchmark claims, or autonomous/unbounded RSI.

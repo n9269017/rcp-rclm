@@ -14,8 +14,8 @@ Phase 4 adversarial and tamper rejection: complete and cross-platform validated
 Phase 5A deterministic bounded reference generator: complete and cross-platform validated
 Phase 5B open-ended untrusted generators: optional and not implemented
 Phase 6 selector, realizer, and package builder: complete and cross-platform validated
-Promotion and rollback controller: not implemented
-Independent replay: not implemented
+Phase 7 promotion and rollback controller: implementation validated; final PR head revalidation pending
+Phase 8 independent replay: not implemented
 PyTorch proposal backend: not implemented
 External benchmark adapter: not licensed
 ```
@@ -76,32 +76,52 @@ python/rcp_rclm_runtime_v2/phase_6_manifest.json
 python/rcp_rclm_runtime_v2/phase_6_validation.json
 ```
 
-The Phase 6 package is:
+Phase 6 measures the real predecessor, applies explicit selected operations in an
+isolated workspace, requires a substantive component change, builds and restores a
+canonical rollback archive, and publishes a publicly verifiable `realized_unverified`
+candidate package. It never promotes the package.
+
+## Phase 7 promotion and rollback controller
+
+| Document | Purpose |
+|---|---|
+| `PHASE_7_PROMOTION_CONTROLLER.md` | Controller architecture, trust separation, promotion store, and rollback fallback |
+| `PHASE_7_EXIT_CRITERIA.md` | Closed implementation criteria and retained claim boundary |
+| `PHASE_7_VALIDATION.md` | Exact implementation head, Phase 0–7 workflows, trajectory hashes, and artifact digests |
+
+Machine-readable Phase 7 records are:
 
 ```text
-python/rcp_rclm_runtime_v2/rcp_rclm_runtime/successor/
+python/rcp_rclm_executable_core_v2/contract/phase_7_promotion_controller.schema.json
+python/rcp_rclm_runtime_v2/phase_7_manifest.json
+python/rcp_rclm_runtime_v2/phase_7_validation.json
 ```
 
-Its path is:
+The controller performs:
 
 ```text
-actual predecessor package bytes
-→ strict proposal/predecessor selection
-→ isolated payload copy
-→ explicit selected file operations
-→ complete candidate-tree measurement
-→ before/after and semantic change ledger
-→ substantive-component enforcement
-→ command/environment/resource evidence
-→ deterministic rollback archive and fresh restoration
-→ immutable candidate package
-→ public package verification
-→ atomic publication as realized_unverified
+immutable active predecessor
+→ two isolated executions of the untrusted generator
+→ strict replay and proposal validation
+→ Phase 6 realization and public package verification
+→ state-derived objective evaluation
+→ host-owned certificate construction
+→ pinned Lean bridge
+→ Phase 4 hardened checker
+→ immutable parent-linked package installation
+→ append-only hash-ledger update
+→ atomic active-pointer replacement or rollback fallback
 ```
 
-A generator never receives candidate-workspace or package write authority. Merely
-changing a state index, name, version, timestamp, schema, or manifest field is not a
-substantive successor.
+The checker owns mathematical acceptance. Rejected candidates are never repaired
+inside the run. Retry is permitted only while the frozen attempt and resource budgets
+remain. An indeterminate result is nonpromoting.
+
+The implementation head `001f060bb79015a7b9b06722977323e3f5f71063`
+passed the complete Phase 0–7 matrix, including Linux, Windows, macOS, the pinned
+Formal Core build, generated-source hygiene, and the real pinned-Lean promotion
+trajectory. The final documentation/evidence PR head is independently revalidated
+before merge.
 
 ## Dependency order
 
@@ -126,4 +146,6 @@ sandbox, promotion, and replay boundaries exist.
 The generator never certifies itself. Candidate assertions, model scores, native
 floating-point diagnostics, and proposed certificate fields remain untrusted. The
 checker owns acceptance and requires packet-bound agreement with the pinned Lean
-bridge. Phase 6 builds candidates but never promotes them.
+bridge. Phase 7 does not establish independent replay, generator trust, learned
+proposal authority, general noncommuting quantum semantics, external benchmark
+performance, or autonomous/unbounded RSI.

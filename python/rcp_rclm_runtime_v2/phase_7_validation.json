@@ -1,0 +1,80 @@
+{
+  "claim_boundary": {
+    "autonomous_unbounded_rsi": false,
+    "external_benchmark_claim": false,
+    "general_noncommuting_quantum": false,
+    "generator_trust": false,
+    "independent_replay_without_generator": false,
+    "learned_pytorch_authority": false,
+    "open_ended_generator_correctness": false,
+    "phase_8_development_licensed_after_final_head_revalidation_and_merge": true
+  },
+  "implementation_head": "001f060bb79015a7b9b06722977323e3f5f71063",
+  "phase_7_invariants": {
+    "append_only_hash_ledger": true,
+    "atomic_active_pointer": true,
+    "bounded_retry": true,
+    "candidate_reverified_after_checker": true,
+    "checker_owns_acceptance": true,
+    "content_addressed_packages": true,
+    "generator_two_run_replay_required": true,
+    "manual_repair_count_zero": true,
+    "pinned_lean_required_before_checker": true,
+    "rejection_preserves_active_package": true,
+    "rollback_fallback_verified": true
+  },
+  "phase_7_reference_trajectory": {
+    "all_expectations_met": true,
+    "bootstrap_package_hash": "0a80ac68151d9c64915472b0611d983f01622988cc32187ce9ff822c343c1211",
+    "exhausted_attempt_count": 2,
+    "exhausted_controller_report_hash": "e1b05098a8ce3f4e046ffe1a5dee2fdbd6d931fda99ee4d7705e1712cf0a1dd8",
+    "exhausted_final_active_package_hash": "671633d16a9fb9cd12a823a9db19d22a3275ea9a5cc3ebc1f1fac4e156f1472e",
+    "first_controller_report_hash": "1954dc1461da04e32516b66d1b9c90eadb84101c8ed593074d266a81fe482780",
+    "first_promoted_package_hash": "03a40023e87b08d977d8c3cab2b008d2179036dfd3f394e7a976821edad9ec4f",
+    "lean_mode": "pinned_lean_toolchain",
+    "project_pin_hash": "32cbf7de4cf65298568432322fb428bceb4cb66269be934de537d0c8991a66d9",
+    "second_controller_report_hash": "299d29b59c0fe755d19e51718e669f99eb96f5b47b7e45c6538d816a7746db37",
+    "second_promoted_package_hash": "671633d16a9fb9cd12a823a9db19d22a3275ea9a5cc3ebc1f1fac4e156f1472e",
+    "trajectory_hash": "ef0207a4f6a533ed4bf4c23d1eef18bc1ded02795cca3386c80d562869b212d3"
+  },
+  "published_validation": {
+    "artifact_digests": {
+      "final": "51ae697d70beacedd795e924338aaee5a74a0857ba8c0fa884f8d12e769fcc84",
+      "macos": "75daa6e1fe67c430dea5b14bd0bc898993f911d17c835bd0a5c42a643948f445",
+      "pinned": "7d95bf083994fd042b53b07cbb043924e4e1c03a399a192933f0b6a8fa381429",
+      "ubuntu": "fab3901f2993aa205c30748eece3beacf1048f258ee0a3bc9e5eac900bd69419",
+      "windows": "8db7195804d7ebe74bfe466eec0a1e46334a77e7cb883bb9158877e6529d0c32"
+    },
+    "cross_platform": true,
+    "exact_branch_head": "001f060bb79015a7b9b06722977323e3f5f71063",
+    "github_pull_request_merge_ref_sha": "d431dc136c56dbc89145367c368dcf06304aeb5e",
+    "pinned_lean": true,
+    "workflow_conclusion": "success",
+    "workflow_run": 29396211684,
+    "workflow_runs": {
+      "phase_0": 29396211667,
+      "phase_1": 29396211707,
+      "phase_2": 29396211668,
+      "phase_3": 29396211676,
+      "phase_4": 29396211781,
+      "phase_5a": 29396211698,
+      "phase_6": 29396211699,
+      "phase_7": 29396211684
+    }
+  },
+  "schema_version": "rcp-rclm-runtime-phase-7-validation-v1",
+  "source_quality": {
+    "issue_count": 0,
+    "python_file_count": 161
+  },
+  "tests": {
+    "phase_1": 74,
+    "phase_2": 19,
+    "phase_3": 20,
+    "phase_4": 10,
+    "phase_5a": 18,
+    "phase_6": 22,
+    "phase_7": 17
+  },
+  "validation_status": "implementation_validated_pending_final_evidence_head_revalidation"
+}
