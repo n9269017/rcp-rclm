@@ -1,1 +1,43 @@
-{"contract_version":"rcp-rclm-runtime-contract-v2.0.0","implemented":{"append_only_hash_ledger":true,"atomic_active_pointer":true,"bounded_generator_retry":true,"candidate_immutability_check":true,"checker_owned_acceptance":true,"content_addressed_promotion_package":true,"host_owned_certificate":true,"immutable_parent_hash_chain":true,"objective_evidence_reconstruction":true,"pinned_lean_before_checker":true,"promotion_store_lock":true,"rejection_preserves_active_package":true,"rollback_fallback_verification":true,"two_run_generator_replay":true},"not_implemented_or_not_licensed":{"autonomous_unbounded_rsi":true,"external_benchmark_claim":true,"general_noncommuting_quantum":true,"generator_trust":true,"independent_replay_without_generator":true,"learned_pytorch_backend":true,"open_ended_generator_correctness":true},"package_name":"rcp-rclm-runtime-v2","package_version":"0.7.0","phase_name":"RCP/RCLM Executable Core v2 — Phase 7 promotion and rollback controller","phase_status":"implementation_complete_pending_cross_platform_and_pinned_validation","schema_version":"rcp-rclm-runtime-phase-7-manifest-v1","supported_scope":"finite_gate_b_reference_promotion","validation_evidence":null}
+{
+  "contract_version": "rcp-rclm-runtime-contract-v2.0.0",
+  "implemented": {
+    "append_only_hash_ledger": true,
+    "atomic_active_pointer": true,
+    "bounded_generator_retry": true,
+    "candidate_immutability_check": true,
+    "checker_owned_acceptance": true,
+    "content_addressed_promotion_package": true,
+    "host_owned_certificate": true,
+    "immutable_parent_hash_chain": true,
+    "objective_evidence_reconstruction": true,
+    "pinned_lean_before_checker": true,
+    "promotion_store_lock": true,
+    "rejection_preserves_active_package": true,
+    "rollback_fallback_verification": true,
+    "two_run_generator_replay": true
+  },
+  "licenses_after_clean_phase_7_closure": {
+    "generator_trust": false,
+    "learned_pytorch_authority": false,
+    "open_ended_generator_correctness": false,
+    "phase_8_independent_replay_development_may_begin": true
+  },
+  "not_implemented_or_not_licensed": {
+    "autonomous_unbounded_rsi": true,
+    "external_benchmark_claim": true,
+    "general_noncommuting_quantum": true,
+    "generator_trust": true,
+    "independent_replay_without_generator": true,
+    "learned_pytorch_backend": true,
+    "open_ended_generator_correctness": true
+  },
+  "package_name": "rcp-rclm-runtime-v2",
+  "package_version": "0.7.0",
+  "phase_name": "RCP/RCLM Executable Core v2 — Phase 7 promotion and rollback controller",
+  "phase_status": "validation_ready_pending_exact_head_cross_platform_and_pinned_lean",
+  "schema": "python/rcp_rclm_executable_core_v2/contract/phase_7_promotion_controller.schema.json",
+  "schema_version": "rcp-rclm-runtime-phase-7-manifest-v1",
+  "supported_scope": "finite_gate_b_reference_promotion",
+  "validation_evidence": "python/rcp_rclm_runtime_v2/phase_7_validation.json",
+  "workflow": ".github/workflows/runtime-v2-phase-7.yml"
+}
