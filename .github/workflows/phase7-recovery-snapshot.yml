@@ -1,6 +1,14 @@
 name: Phase 7 recovery snapshot
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/phase7-recovery-snapshot.yml
+      - python/rcp_rclm_runtime_v2/**
+      - scripts/**
+      - docs/executable_core_v2/**
   push:
     branches:
       - agent/phase7-recovery-snapshot
