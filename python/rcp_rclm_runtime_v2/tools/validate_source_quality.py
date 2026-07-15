@@ -4,16 +4,16 @@ import argparse
 import ast
 import json
 import tokenize
-from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
+from collections.abc import Sequence
 from typing import Final
 
 
 BANNED_RUNTIME_IMPORT_ROOTS: Final[frozenset[str]] = frozenset(
     {"numpy", "random", "secrets", "torch"}
 )
-TORCH_BACKEND_DIRECTORY: Final[str] = "torch_backend"
+TORCH_BACKEND_RELATIVE_PATH: Final[tuple[str, str]] = ("torch_backend", "proposal_backend.py")
 
 
 @dataclass(frozen=True, slots=True)
@@ -39,7 +39,7 @@ def python_files(root: Path) -> Sequence[Path]:
 def evaluate_source_quality(package_root: Path) -> dict[str, object]:
     package_root = package_root.resolve(strict=True)
     runtime_root = package_root / "rcp_rclm_runtime"
-    torch_backend_root = runtime_root / TORCH_BACKEND_DIRECTORY
+    torch_backend_entry = runtime_root.joinpath(*TORCH_BACKEND_RELATIVE_PATH)
     issues: list[QualityIssue] = []
     paths = python_files(package_root)
 
@@ -80,7 +80,7 @@ def evaluate_source_quality(package_root: Path) -> dict[str, object]:
                 elif isinstance(node, ast.ImportFrom) and node.module is not None:
                     imported_roots.add(node.module.split(".", 1)[0])
                 for imported_root in sorted(imported_roots & BANNED_RUNTIME_IMPORT_ROOTS):
-                    if imported_root == "torch" and path.is_relative_to(torch_backend_root):
+                    if imported_root == "torch" and path == torch_backend_entry:
                         continue
                     issues.append(
                         QualityIssue(
