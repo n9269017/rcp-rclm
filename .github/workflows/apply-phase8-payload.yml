@@ -32,6 +32,7 @@ jobs:
         run: |
           set -euo pipefail
           git checkout origin/main -- .github/workflows/runtime-v2-phase-7.yml
+          mkdir -p /tmp/phase8-diagnostics
           python - <<'PY'
           from __future__ import annotations
 
@@ -39,17 +40,29 @@ jobs:
           import gzip
           import hashlib
           import io
+          import json
           import tarfile
           from pathlib import Path, PurePosixPath
 
           parts = sorted(Path('.').glob('.phase8_payload.part*'))
+          raw_parts = [part.read_bytes() for part in parts]
+          stripped_parts = [raw.decode('ascii').strip() for raw in raw_parts]
+          encoded_text = ''.join(stripped_parts)
+          encoded = encoded_text.encode('ascii')
+          diagnostics = {
+              'part_count': len(parts),
+              'part_paths': [part.name for part in parts],
+              'part_raw_sizes': [len(raw) for raw in raw_parts],
+              'part_stripped_sizes': [len(text) for text in stripped_parts],
+              'encoded_size': len(encoded),
+              'encoded_sha256': hashlib.sha256(encoded).hexdigest(),
+          }
+          Path('/tmp/phase8-diagnostics/payload.json').write_text(
+              json.dumps(diagnostics, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+          )
           if len(parts) != 11:
               raise RuntimeError(f'expected 11 payload parts, found {len(parts)}')
-          encoded_text = ''.join(
-              part.read_text(encoding='ascii').strip()
-              for part in parts
-          )
-          encoded = encoded_text.encode('ascii')
           if len(encoded) != 63988:
               raise RuntimeError(f'unexpected payload encoding length: {len(encoded)}')
           if hashlib.sha256(encoded).hexdigest() != (
@@ -57,6 +70,14 @@ jobs:
           ):
               raise RuntimeError('payload encoding hash mismatch')
           compressed = base64.b64decode(encoded, validate=True)
+          diagnostics.update({
+              'compressed_size': len(compressed),
+              'compressed_sha256': hashlib.sha256(compressed).hexdigest(),
+          })
+          Path('/tmp/phase8-diagnostics/payload.json').write_text(
+              json.dumps(diagnostics, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+          )
           if len(compressed) != 47989:
               raise RuntimeError(
                   f'unexpected compressed payload length: {len(compressed)}'
@@ -105,6 +126,15 @@ jobs:
           rm -f .github/workflows/phase8-source-snapshot.yml
           git add -A
           git diff --cached --check
+
+      - name: Upload payload diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase8-payload-diagnostics-${{ github.sha }}
+          path: /tmp/phase8-diagnostics/
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Validate recovered source before publication
         shell: bash
