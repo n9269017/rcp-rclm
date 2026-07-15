@@ -1,24 +1,24 @@
 {
   "artifacts": {
     "final": {
-      "name": "runtime-v2-phase-6-final-29381815200-1",
-      "sha256": "09cb568fe21e3d665280c538cb19fa4610a3967e158d96bac8e34847b3f8c9b0"
+      "name": "runtime-v2-phase-6-final-29383092505-1",
+      "sha256": "73440a6a206c3edf8481e2dc1299f7592bf9473f756b3fe8eec495b4ff14ddcd"
     },
     "macos": {
-      "name": "runtime-v2-phase-6-macos-latest-29381815200-1",
-      "sha256": "19aa40376a12c4b48f514e3f39647bf6a01c5438bfc953caf89da86c6647321f"
+      "name": "runtime-v2-phase-6-macos-latest-29383092505-1",
+      "sha256": "6c1366e7aa07f7fc7a1f0639deb871745bb87c19b121bbf793189720f045f5f6"
     },
     "pinned": {
-      "name": "runtime-v2-phase-6-pinned-29381815200-1",
-      "sha256": "65fa81637fbc9e25ea2063ae1e2767c90c605dc2c1fc8d4a8c2e048b0d65328a"
+      "name": "runtime-v2-phase-6-pinned-29383092505-1",
+      "sha256": "20e746cddeab9e86d0db4e675270ced05aa913476ce029abeafd1242f2d540db"
     },
     "ubuntu": {
-      "name": "runtime-v2-phase-6-ubuntu-latest-29381815200-1",
-      "sha256": "b0710bd3ccc1f8d157e7f9c6c554e6bbec04042f6a7c61234ac148589fa47992"
+      "name": "runtime-v2-phase-6-ubuntu-latest-29383092505-1",
+      "sha256": "63f4363bfa912cb09ac2b1df00c127ea84ead75d2212b5276de0af3cb6cf2f98"
     },
     "windows": {
-      "name": "runtime-v2-phase-6-windows-latest-29381815200-1",
-      "sha256": "58f2bd98fd7e3106223e85fe7ab46941a106fad2487df9b48b7f730a17b18263"
+      "name": "runtime-v2-phase-6-windows-latest-29383092505-1",
+      "sha256": "092ad18e00870aac832708ef07c32181d05fd6e4c8a13b82ebce3e3e5048d809"
     }
   },
   "claim_boundary": {
@@ -31,7 +31,7 @@
     "phase_7_development_licensed": true,
     "pytorch_proposal_acceptance": false
   },
-  "implementation_head": "d3520abdc68fed9b7fd5fe3921ce63e9e00cf1f1",
+  "implementation_head": "6afbf8a395a9b41cd4f6d9b5accbe247974c8b20",
   "phase_2_revalidation": {
     "accepting_case_count": 4,
     "all_bridge_reports_accepted": true,
@@ -42,7 +42,16 @@
   "phase_5a_revalidation": {
     "all_accepted": true,
     "case_count": 2,
-    "summary_hash": "471d4ffb86a97accfe4e84a787384aae80d25cf12aff7b587c502c5b3a71ffc1"
+    "summary_hash": "74719025429b20de8dda7fa717571f0c5c13414401f4a96e535f56369cab431a"
+  },
+  "phase_6_public_verifier": {
+    "coherent_selection_substitution_rejected": true,
+    "command_log_recomputed": true,
+    "modified_file_ledger_recomputed": true,
+    "operation_before_after_bindings_recomputed": true,
+    "resource_usage_recomputed": true,
+    "rollback_restored_before_diff": true,
+    "substantive_component_kinds_recomputed": true
   },
   "phase_6_reference_suite": {
     "all_built": true,
@@ -83,20 +92,20 @@
     "phase_3": 20,
     "phase_4": 10,
     "phase_5a": 18,
-    "phase_6": 21
+    "phase_6": 22
   },
   "workflow_closure": {
-    "pull_request_merge_revision": "ce9a5d0ad1c485f5b6f1fb6f3873b506449f90c4",
+    "pull_request_merge_revision": "7e25c728271f6da7d43599b5ee802763463c944d",
     "workflow_attempt": 1,
-    "workflow_run": 29381815200
+    "workflow_run": 29383092505
   },
   "workflows": {
-    "phase_0": 29381815173,
-    "phase_1": 29381815211,
-    "phase_2": 29381815215,
-    "phase_3": 29381815168,
-    "phase_4": 29381815157,
-    "phase_5a": 29381815164,
-    "phase_6": 29381815200
+    "phase_0": 29383092464,
+    "phase_1": 29383092479,
+    "phase_2": 29383092465,
+    "phase_3": 29383092462,
+    "phase_4": 29383092453,
+    "phase_5a": 29383092516,
+    "phase_6": 29383092505
   }
 }
