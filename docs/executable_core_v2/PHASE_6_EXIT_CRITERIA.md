@@ -1,7 +1,7 @@
 # Phase 6 exit criteria
 
-Phase 6 is closed at implementation head
-`d3520abdc68fed9b7fd5fe3921ce63e9e00cf1f1` in workflow run `29381815200`.
+Phase 6 is closed at hardened implementation head
+`6afbf8a395a9b41cd4f6d9b5accbe247974c8b20` in workflow run `29383092505`.
 The retained validation record establishes:
 
 - [x] Phase 0 through Phase 5A authoritative regression workflows pass.
@@ -24,7 +24,9 @@ The retained validation record establishes:
 - [x] The rollback archive is restored in a fresh directory and reproduces the predecessor tree hash.
 - [x] The candidate package contains payload, rollback, evidence, and manifest trees only.
 - [x] The candidate manifest binds parent, payload, proposal, selection, change ledger, command log, environment, resources, rollback, and substantive component kinds.
-- [x] A public verifier recomputes every candidate-package binding after construction.
+- [x] The public verifier restores the predecessor and independently recomputes selected before/after operation bindings.
+- [x] The public verifier recomputes the actual modified-file ledger, substantive component kinds, command log, and resource usage.
+- [x] A coherent selection/realization/manifest substitution is rejected when it does not match the actual predecessor and candidate bytes.
 - [x] Candidate payload, evidence, rollback, and unexpected-entry tampering are rejected.
 - [x] Existing candidate output directories are never overwritten.
 - [x] Package staging is atomically renamed only after complete verification.
