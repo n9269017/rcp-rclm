@@ -30,3 +30,4 @@ jobs:
           set -euo pipefail
           echo "HEAD_SHA=$(git rev-parse HEAD)"
           echo "TREE_SHA=$(git rev-parse 'HEAD^{tree}')"
+          echo "PROBE_VERSION=2"
