@@ -21,6 +21,9 @@ if TYPE_CHECKING:
     import torch
 
 
+CANONICAL_JSON_HASH_DOMAIN: Final[bytes] = b"RCPRCLM-CANONICAL-JSON-V2\0"
+TREE_HASH_DOMAIN: Final[bytes] = b"RCPRCLM-TREE-V2\0"
+
 BACKEND_SCHEMA_ID: Final[str] = "runtime.pytorch_pilot_backend_request.v1"
 POLICY_SCHEMA_ID: Final[str] = "runtime.pytorch_pilot_policy.v1"
 PROPOSAL_SCHEMA_ID: Final[str] = "runtime.pytorch_pilot_proposal.v1"
@@ -405,9 +408,10 @@ def run_proposal_backend(
     _require_time_budget(start_ns, request.policy)
 
     torch = _load_torch(request.policy)
-    rng_before = _torch_rng_bytes(torch)
     model = _build_torch_model(torch)
     _load_quantized_into_model(torch, model, predecessor_weights, request.policy.quantization_scale)
+    torch.manual_seed(request.policy.seed)
+    rng_before = _torch_rng_bytes(torch)
     before_float_state = _float_state_snapshot(torch, model)
     optimizer = torch.optim.SGD(
         model.parameters(),
@@ -635,6 +639,26 @@ def evaluate_proposal_exact(
     predecessor_model_hash = _hash256(
         proposal.get("predecessor_model_hash"), "proposal.predecessor_model_hash"
     )
+    return evaluate_model_root_exact(
+        resolved_proposal / "files",
+        predecessor_model_hash=predecessor_model_hash,
+        candidate_model_hash=candidate_model_hash,
+        evaluation_data=evaluation_data,
+        output_path=output_path,
+    )
+
+
+def evaluate_model_root_exact(
+    model_root: Path,
+    *,
+    predecessor_model_hash: str,
+    candidate_model_hash: str,
+    evaluation_data: object,
+    output_path: Path,
+) -> EvaluationArtifacts:
+    resolved_model_root = model_root.resolve(strict=True)
+    predecessor_model_hash = _hash256(predecessor_model_hash, "predecessor_model_hash")
+    candidate_model_hash = _hash256(candidate_model_hash, "candidate_model_hash")
     data_obj = _strict_object(
         evaluation_data,
         {"schema_id", "features", "labels", "protected_class"},
@@ -653,9 +677,9 @@ def evaluate_proposal_exact(
     if protected_class not in {0, 1} or any(label not in {0, 1} for label in labels):
         raise BackendError("PYTORCH_EVALUATION_INVALID", "labels must be binary")
 
-    candidate = _load_quantized_model(resolved_proposal / "files")
+    candidate = _load_quantized_model(resolved_model_root)
     candidate_manifest = _load_canonical_json(
-        resolved_proposal / "files" / WEIGHTS_MANIFEST_PATH
+        resolved_model_root / WEIGHTS_MANIFEST_PATH
     )
     if not isinstance(candidate_manifest, dict):
         raise BackendError("PYTORCH_PROPOSAL_INVALID", "candidate weight manifest is not an object")
@@ -1015,8 +1039,11 @@ def _phase6_operations(predecessor_root: Path, files_root: Path) -> list[dict[st
         expected_before_hash: str | None
         expected_before_mode: str | None
         if predecessor_path.is_file():
-            expected_before_hash = _sha256(predecessor_path.read_bytes())
+            predecessor_content = predecessor_path.read_bytes()
+            expected_before_hash = _sha256(predecessor_content)
             expected_before_mode = "0644"
+            if predecessor_content == content:
+                continue
         else:
             expected_before_hash = None
             expected_before_mode = None
@@ -1098,19 +1125,24 @@ def _snapshot_predecessor(root: Path) -> dict[str, str]:
 
 
 def _directory_tree_hash(root: Path) -> str:
-    records: list[dict[str, object]] = []
-    for path in sorted((item for item in root.rglob("*") if item.is_file()), key=lambda item: item.relative_to(root).as_posix().encode("utf-8")):
+    lines: list[bytes] = []
+    for path in sorted(
+        (item for item in root.rglob("*") if item.is_file()),
+        key=lambda item: item.relative_to(root).as_posix().encode("utf-8"),
+    ):
         relative = path.relative_to(root).as_posix()
         content = path.read_bytes()
-        records.append(
-            {
-                "path": relative,
-                "mode": "0644",
-                "size": len(content),
-                "sha256": _sha256(content),
-            }
+        lines.append(
+            relative.encode("utf-8")
+            + b"\0"
+            + b"0644"
+            + b"\0"
+            + str(len(content)).encode("ascii")
+            + b"\0"
+            + _sha256(content).encode("ascii")
+            + b"\n"
         )
-    return _canonical_hash(records)
+    return _sha256(TREE_HASH_DOMAIN + b"".join(lines))
 
 
 def _tensor_file_bytes(root: Path) -> int:
@@ -1191,7 +1223,7 @@ def _canonical_bytes(value: object) -> bytes:
 
 
 def _canonical_hash(value: object) -> str:
-    return _sha256(_canonical_bytes(value))
+    return _sha256(CANONICAL_JSON_HASH_DOMAIN + _canonical_bytes(value))
 
 
 def _sha256(data: bytes) -> str:
@@ -1405,6 +1437,7 @@ __all__ = [
     "PilotPolicy",
     "ProposalArtifacts",
     "default_policy",
+    "evaluate_model_root_exact",
     "evaluate_proposal_exact",
     "fixed_heldout_evaluation_data",
     "fixed_training_manifest",
