@@ -2,9 +2,11 @@
 
 ## Validation state
 
-The independent-replay implementation is locally complete. Cross-platform and pinned
-Lean closure remains pending until one exact published branch head passes the full
-Phase 0–8 workflow matrix.
+The independent-replay implementation is published. Exact-head cross-platform and
+pinned Lean closure is being revalidated after repairing Windows newline normalization
+and replay-summary manifest serialization. The repaired implementation head is
+`2e59dfa655a5fddec944d354b349be58591b7c8d`; no closure claim is made until one
+published branch head passes the full Phase 0–8 workflow matrix.
 
 ## Local deterministic evidence
 
