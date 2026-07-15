@@ -31,7 +31,7 @@ jobs:
           from __future__ import annotations
 
           import base64
-          import bz2
+          import gzip
           import io
           import tarfile
           from pathlib import Path, PurePosixPath
@@ -40,7 +40,7 @@ jobs:
               Path("/tmp/phase8_payload.b64").read_text(encoding="ascii"),
               validate=True,
           )
-          archive_bytes = bz2.decompress(payload)
+          archive_bytes = gzip.decompress(payload)
           repository_root = Path.cwd().resolve(strict=True)
           with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
               members = archive.getmembers()
