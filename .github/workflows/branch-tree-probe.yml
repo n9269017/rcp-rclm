@@ -1,6 +1,11 @@
 name: Branch tree probe
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/branch-tree-probe.yml"
   push:
     branches:
       - agent/rcp-rclm-runtime-v2-pytorch-pilot
