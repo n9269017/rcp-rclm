@@ -183,6 +183,56 @@ class Phase6SuccessorPackageTests(unittest.TestCase):
         with self.assertRaises(Phase6WorkspaceError):
             verify_candidate_package(evidence.output_root)
 
+    def test_coherent_selection_substitution_is_rejected(self) -> None:
+        _, _, predecessor, selection, evidence = self._built("initial")
+        original_realization = evidence.report.realization
+        original_manifest = evidence.report.candidate_manifest
+        by_path = {operation.path: operation for operation in selection.operations}
+        before = next(
+            record
+            for record in predecessor.measurement.records
+            if record.path == VERIFICATION_POLICY_PATH
+        )
+        alternate_policy = baseline_verification_policy()
+        semantics = alternate_policy["policy_semantics"]
+        self.assertIsInstance(semantics, dict)
+        semantics["required_verifiers"] = [
+            "phase3_checker",
+            "substituted_verifier",
+        ]
+        forged_operation = SelectedFileOperationRecord.write(
+            path=VERIFICATION_POLICY_PATH,
+            component_kind="verification_policy",
+            expected_before_hash=before.sha256,
+            expected_before_mode=before.mode,
+            after_mode="0644",
+            content=policy_bytes(alternate_policy),
+        )
+        forged_selection = replace(
+            selection,
+            operations=(forged_operation, by_path[STATE_PATH]),
+        )
+        forged_realization = replace(
+            original_realization,
+            selection_hash=forged_selection.selection_hash,
+        )
+        forged_manifest = replace(
+            original_manifest,
+            selection_hash=forged_selection.selection_hash,
+        )
+        evidence_root = evidence.output_root / "evidence"
+        (evidence_root / "selection.json").write_bytes(
+            canonical_json_bytes(forged_selection.to_json())
+        )
+        (evidence_root / "realization.json").write_bytes(
+            canonical_json_bytes(forged_realization.to_json())
+        )
+        (evidence.output_root / "manifest.json").write_bytes(
+            canonical_json_bytes(forged_manifest.to_json())
+        )
+        with self.assertRaises(Phase6WorkspaceError):
+            verify_candidate_package(evidence.output_root)
+
     def test_rollback_archive_tampering_is_rejected(self) -> None:
         _, _, _, _, evidence = self._built("initial")
         archive = evidence.output_root / "rollback" / "predecessor.tar"
