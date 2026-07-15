@@ -145,17 +145,67 @@ jobs:
           git diff --cached --check
 
       - name: Validate recovered source before publication
+        id: validate
         shell: bash
         run: |
-          set -euo pipefail
-          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
-          python -m compileall -q python/rcp_rclm_runtime_v2 scripts
-          python python/rcp_rclm_runtime_v2/tools/validate_source_quality.py \
-            --package-root python/rcp_rclm_runtime_v2 \
-            --out /tmp/phase8-source-quality.json
-          python python/rcp_rclm_runtime_v2/tools/run_phase8_tests.py \
-            --package-root python/rcp_rclm_runtime_v2 \
-            --out /tmp/phase8-tests.log
+          set +e
+          mkdir -p /tmp/phase8-validation
+
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2 \
+            > /tmp/phase8-validation/pip-install.log 2>&1
+          pip_status=$?
+
+          if [ "$pip_status" -eq 0 ]; then
+            python -m compileall -q python/rcp_rclm_runtime_v2 scripts \
+              > /tmp/phase8-validation/compileall.log 2>&1
+            compile_status=$?
+          else
+            compile_status=99
+          fi
+
+          if [ "$pip_status" -eq 0 ] && [ "$compile_status" -eq 0 ]; then
+            python python/rcp_rclm_runtime_v2/tools/validate_source_quality.py \
+              --package-root python/rcp_rclm_runtime_v2 \
+              --out /tmp/phase8-validation/source-quality.json \
+              > /tmp/phase8-validation/source-quality.log 2>&1
+            source_status=$?
+          else
+            source_status=99
+          fi
+
+          if [ "$pip_status" -eq 0 ] && [ "$compile_status" -eq 0 ]; then
+            python python/rcp_rclm_runtime_v2/tools/run_phase8_tests.py \
+              --package-root python/rcp_rclm_runtime_v2 \
+              --out /tmp/phase8-validation/phase8-tests.log \
+              > /tmp/phase8-validation/phase8-tests-stdout.log 2>&1
+            tests_status=$?
+          else
+            tests_status=99
+          fi
+
+          printf '{\n  "pip_install": %s,\n  "compileall": %s,\n  "source_quality": %s,\n  "phase8_tests": %s\n}\n' \
+            "$pip_status" "$compile_status" "$source_status" "$tests_status" \
+            > /tmp/phase8-validation/status.json
+
+          for file in /tmp/phase8-validation/*.log; do
+            echo "===== ${file} ====="
+            cat "$file"
+          done
+          cat /tmp/phase8-validation/status.json
+
+          if [ "$pip_status" -ne 0 ] || [ "$compile_status" -ne 0 ] || \
+             [ "$source_status" -ne 0 ] || [ "$tests_status" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Upload recovery validation diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase8-recovery-validation-${{ github.sha }}
+          path: /tmp/phase8-validation/
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Commit implementation
         shell: bash
