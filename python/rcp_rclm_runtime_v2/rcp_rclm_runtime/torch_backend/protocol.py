@@ -20,19 +20,6 @@ PROPOSAL_SCHEMA_ID: Final[str] = "runtime.pytorch_pilot_proposal.v1"
 OUTPUT_MANIFEST_SCHEMA_ID: Final[str] = "runtime.pytorch_pilot_output_manifest.v1"
 BACKEND_ID: Final[str] = "rcp-rclm-pytorch-cpu-one-step-linear-v1"
 HOST_SELECTION_POLICY_ID: Final[str] = "rcp-rclm-pytorch-pilot-host-selector-v1"
-PILOT_PROCESS_COMMAND_TEMPLATE: Final[Sequence[str]] = (
-    "python",
-    "-I",
-    "-B",
-    "rcp_rclm_runtime/torch_backend/proposal_backend.py",
-    "propose",
-    "--request",
-    "<canonical-request>",
-    "--predecessor-root",
-    "<immutable-predecessor-payload>",
-    "--output-root",
-    "<fresh-proposal-output>",
-)
 
 EXPECTED_MODEL_PATHS: Final[Sequence[str]] = (
     "model/architecture.json",
@@ -103,7 +90,7 @@ class PilotPolicyBinding:
                 )
 
     @classmethod
-    def from_json(cls, value: object) -> "PilotPolicyBinding":
+    def from_json(cls, value: object) -> PilotPolicyBinding:
         obj = strict_object(
             value,
             "pytorch_pilot.policy",
@@ -218,7 +205,7 @@ class PilotRequestBinding:
     schema_id: ClassVar[str] = REQUEST_SCHEMA_ID
 
     @classmethod
-    def from_json(cls, value: object) -> "PilotRequestBinding":
+    def from_json(cls, value: object) -> PilotRequestBinding:
         obj = strict_object(
             value,
             "pytorch_pilot.request",
@@ -312,7 +299,7 @@ class PilotProposalRecord:
     schema_id: ClassVar[str] = PROPOSAL_SCHEMA_ID
 
     @classmethod
-    def from_json(cls, value: object) -> "PilotProposalRecord":
+    def from_json(cls, value: object) -> PilotProposalRecord:
         if not isinstance(value, dict):
             raise SchemaValidationError("pytorch_pilot.proposal", "expected object")
         expected_fields = {
@@ -439,7 +426,7 @@ class PilotOutputManifestRecord:
     schema_id: ClassVar[str] = OUTPUT_MANIFEST_SCHEMA_ID
 
     @classmethod
-    def from_json(cls, value: object) -> "PilotOutputManifestRecord":
+    def from_json(cls, value: object) -> PilotOutputManifestRecord:
         obj = strict_object(
             value,
             "pytorch_pilot.output_manifest",
@@ -489,7 +476,6 @@ __all__ = [
     "BACKEND_ID",
     "EXPECTED_MODEL_PATHS",
     "HOST_SELECTION_POLICY_ID",
-    "PILOT_PROCESS_COMMAND_TEMPLATE",
     "PilotOutputManifestRecord",
     "PilotPolicyBinding",
     "PilotProposalRecord",
