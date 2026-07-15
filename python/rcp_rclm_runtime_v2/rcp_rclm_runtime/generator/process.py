@@ -15,6 +15,11 @@ from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, sha256_hex
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes, load_json_strict
 from rcp_rclm_runtime.errors import RuntimeValidationError
 from rcp_rclm_runtime.schema.verdict import FrozenHashMap
+from rcp_rclm_runtime.generator.environment import (
+    ALLOWED_ENVIRONMENT_KEYS,
+    REFERENCE_PROCESS_ENVIRONMENT_HASH,
+    REFERENCE_PROCESS_POLICY_ID,
+)
 from rcp_rclm_runtime.generator.protocol import (
     GeneratorReasonCode,
     ReferenceGeneratorInputRecord,
@@ -31,7 +36,6 @@ REFERENCE_WORKER_MODULE: Final[str] = "rcp_rclm_runtime.generator.worker"
 REFERENCE_GRAMMAR_MODULE: Final[str] = "rcp_rclm_runtime.generator.grammar"
 REFERENCE_PROTOCOL_MODULE: Final[str] = "rcp_rclm_runtime.generator.protocol"
 WORKER_SOURCE_GUARD_VERSION: Final[str] = "rcp-rclm-phase5a-worker-source-guard-v1"
-REFERENCE_PROCESS_POLICY_ID: Final[str] = "rcp-rclm-phase5a-isolated-stdio-v1"
 _BANNED_IMPORT_ROOTS: Final[frozenset[str]] = frozenset(
     {
         "ctypes",
@@ -122,32 +126,6 @@ _ALLOWED_RUNTIME_IMPORTS: Final[frozenset[str]] = frozenset(
         "rcp_rclm_runtime.schema.state",
     }
 )
-_ALLOWED_ENVIRONMENT_KEYS: Final[Sequence[str]] = (
-    "COMSPEC",
-    "PATH",
-    "SYSTEMROOT",
-    "TEMP",
-    "TMP",
-    "WINDIR",
-)
-REFERENCE_PROCESS_ENVIRONMENT_HASH: Final[str] = canonical_json_hash(
-    {
-        "schema_id": "runtime.phase5a_process_environment_policy.v2",
-        "policy_id": REFERENCE_PROCESS_POLICY_ID,
-        "input_channel": "stdin",
-        "output_channel": "stdout",
-        "working_directory": "fresh_empty_temporary_directory",
-        "python_isolated_mode": True,
-        "python_bytecode_writes": False,
-        "python_utf8_mode": True,
-        "hash_order_independent_canonical_output": True,
-        "allowed_environment_keys": list(_ALLOWED_ENVIRONMENT_KEYS),
-        "generator_file_arguments": [],
-        "generator_network_endpoints": [],
-        "generator_write_handles": [],
-    }
-)
-
 
 @dataclass(frozen=True, slots=True)
 class GeneratorProcessEvidence:
@@ -410,7 +388,7 @@ def _allowed_record_getattr(node: ast.Call) -> bool:
 def _sanitized_environment(source: Mapping[str, str]) -> dict[str, str]:
     environment = {
         key: source[key]
-        for key in _ALLOWED_ENVIRONMENT_KEYS
+        for key in ALLOWED_ENVIRONMENT_KEYS
         if key in source and source[key]
     }
     environment["PYTHONUTF8"] = "1"

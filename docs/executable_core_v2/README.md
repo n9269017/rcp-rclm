@@ -14,8 +14,8 @@ Phase 4 adversarial and tamper rejection: complete and cross-platform validated
 Phase 5A deterministic bounded reference generator: complete and cross-platform validated
 Phase 5B open-ended untrusted generators: optional and not implemented
 Phase 6 selector, realizer, and package builder: complete and cross-platform validated
-Phase 7 promotion and rollback controller: implementation validated; final PR head revalidation pending
-Phase 8 independent replay: not implemented
+Phase 7 promotion and rollback controller: complete, merged, and cross-platform validated
+Phase 8 independent replay: complete and cross-platform/pinned-Lean validated
 PyTorch proposal backend: not implemented
 External benchmark adapter: not licensed
 ```
@@ -117,11 +117,31 @@ The checker owns mathematical acceptance. Rejected candidates are never repaired
 inside the run. Retry is permitted only while the frozen attempt and resource budgets
 remain. An indeterminate result is nonpromoting.
 
-The implementation head `001f060bb79015a7b9b06722977323e3f5f71063`
-passed the complete Phase 0–7 matrix, including Linux, Windows, macOS, the pinned
-Formal Core build, generated-source hygiene, and the real pinned-Lean promotion
-trajectory. The final documentation/evidence PR head is independently revalidated
-before merge.
+Phase 7 is merged and supplies the immutable source store consumed by the Phase 8
+replay bundle.
+
+## Phase 8 independent replay
+
+| Document | Purpose |
+|---|---|
+| `PHASE_8_INDEPENDENT_REPLAY.md` | Portable bundle boundary, zero-generator reproducer, Lean/checker replay, and finite trajectory |
+| `PHASE_8_EXIT_CRITERIA.md` | Closed cross-platform, pinned-Lean, tamper, and claim criteria |
+| `PHASE_8_VALIDATION.md` | Exact implementation head, Phase 0–8 workflows, replay hashes, and artifact digests |
+
+Machine-readable Phase 8 records are:
+
+```text
+python/rcp_rclm_executable_core_v2/contract/phase_8_independent_replay.schema.json
+python/rcp_rclm_runtime_v2/phase_8_manifest.json
+python/rcp_rclm_runtime_v2/phase_8_validation.json
+```
+
+Phase 8 preserves the complete Phase 7 store, independently rebuilds candidate and
+certificate evidence, regenerates and scans Lean source, reruns the pinned Lean bridge
+and hardened checker, and verifies parent, resource, rollback, ledger, and active-pointer
+bindings. The pinned reproducer succeeds after the original generator executable is
+removed and records zero generator invocations. The finite witness contains two
+promotions, two correctly reproduced rejections, and three immutable packages.
 
 ## Dependency order
 
@@ -139,13 +159,14 @@ frozen Phase 0 contract
 → external benchmark adapters
 ```
 
-Phase 5B proposal interfaces may be developed independently, but an arbitrary
-open-ended backend must not enter the controller before the stronger Phase 6–8
-sandbox, promotion, and replay boundaries exist.
+The Phase 6–8 containment, promotion, rollback, and independent-replay boundaries
+are now closed for the finite reference path. Optional Phase 5B proposal interfaces may
+be developed behind the same untrusted generator protocol; they do not inherit trust.
 
 The generator never certifies itself. Candidate assertions, model scores, native
 floating-point diagnostics, and proposed certificate fields remain untrusted. The
 checker owns acceptance and requires packet-bound agreement with the pinned Lean
-bridge. Phase 7 does not establish independent replay, generator trust, learned
-proposal authority, general noncommuting quantum semantics, external benchmark
-performance, or autonomous/unbounded RSI.
+bridge. Phase 8 establishes only finite generator-free replay for the captured Gate B
+path with selected diagonal Gate C regression. It does not establish learned proposal
+authority, arbitrary learned-system refinement, general noncommuting quantum semantics,
+external benchmark performance, or autonomous/unbounded RSI.

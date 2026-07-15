@@ -2,15 +2,16 @@
 
 This repository contains the two companion RCP/RCLM manuscripts, the historical
 Lean v1 certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, and
-Phases 0 through 7 of the **Executable Core v2** transition.
+Phases 0 through 8 of the **Executable Core v2** transition.
 
 The formal project proves a conditional successor-verification theorem stack. The
 executable project instantiates a finite declared reference scope with exact runtime
 records, a pinned Lean bridge, a fail-closed checker, an adversarial rejection suite,
-an untrusted bounded generator, a verified filesystem candidate-package builder, and
-a fixed-budget promotion and rollback controller. It does not claim that checker
-soundness creates successors, that every accepted successor is strictly useful, or
-that the repository is an autonomous unbounded recursive-self-improvement system.
+an untrusted bounded generator, a verified filesystem candidate-package builder, a
+fixed-budget promotion and rollback controller, and independent generator-free replay.
+It does not claim that checker soundness creates successors, that every accepted
+successor is strictly useful, or that the repository is an autonomous unbounded
+recursive-self-improvement system.
 
 ## Authoritative status
 
@@ -29,9 +30,9 @@ that the repository is an autonomous unbounded recursive-self-improvement system
 | Executable Core v2 Phase 4 | Complete and cross-platform validated | Hardened package integrity, 27 deterministic adversarial cases, first-class rejection records, pinned Lean revalidation |
 | Executable Core v2 Phase 5A | Complete and cross-platform validated | Separate-process bounded Gate B proposals, two-run replay, host-owned certificate/selection/logical realization, Lean and hardened-checker acceptance |
 | Executable Core v2 Phase 6 | Complete and cross-platform validated at the reference package scope | Actual predecessor measurement, isolated realization, substantive policy changes, before/after hashes, rollback restoration, immutable candidate packaging, public verification |
-| Executable Core v2 Phase 7 | Implementation validated; final PR-head revalidation pending | Fixed-budget retries, state-derived evaluation, host-owned certificate, pinned Lean and hardened-checker admission, immutable parent-linked packages, hash ledger, atomic active pointer, rollback fallback |
-| Phase 8 independent replay | Not implemented | No replay claim without the original generator yet |
-| Phase 5B, PyTorch, and benchmark adapters | Not licensed for claims | No generator trust, no learned proposal authority, no autonomous RSI, and no external benchmark result |
+| Executable Core v2 Phase 7 | Complete, merged, and cross-platform validated | Fixed-budget retries, state-derived evaluation, host-owned certificate, pinned Lean and hardened-checker admission, immutable parent-linked packages, hash ledger, atomic active pointer, rollback fallback |
+| Executable Core v2 Phase 8 | Complete and cross-platform/pinned-Lean validated at the finite reference scope | Portable retained-evidence bundle, zero-generator replay, fresh candidate/certificate/Lean/checker recomputation, two promotions, two bounded rejections, and a three-package parent chain |
+| Phase 5B, PyTorch, and benchmark adapters | Optional or not yet licensed for claims | No generator trust, no learned proposal authority, no autonomous RSI, and no external benchmark result |
 
 The formal documentation is indexed in
 [`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md). The executable
@@ -79,7 +80,7 @@ docs/formal_core_v2/             theorem, gate, audit, and reproduction records
 docs/executable_core_v2/         theorem-to-runtime and executable-phase records
 
 python/rcp_rclm_executable_core_v2/
-  contract/                       frozen schemas for Phases 0, 3, 4, 5A, 6, and 7
+  contract/                       frozen schemas for Phases 0, 3, 4, 5A, 6, 7, and 8
 
 python/rcp_rclm_runtime_v2/
   rcp_rclm_runtime/
@@ -90,6 +91,7 @@ python/rcp_rclm_runtime_v2/
     generator/                    Phase 5A bounded worker, protocol, process, and loop
     successor/                    Phase 6 selector, realizer, rollback, package verifier
     promotion/                    Phase 7 controller, immutable store, ledger, and pointer
+    replay/                       Phase 8 bundle, source guard, records, and reproducer
   tests/                          Phase 1 deterministic tests and frozen vectors
   tests_phase2/                   Phase 2 bridge tests
   tests_phase3/                   Phase 3 checker tests
@@ -97,6 +99,7 @@ python/rcp_rclm_runtime_v2/
   tests_phase5/                   Phase 5A generator and reference-loop tests
   tests_phase6/                   Phase 6 successor-package tests
   tests_phase7/                   Phase 7 promotion-controller tests
+  tests_phase8/                   Phase 8 independent-replay and tamper tests
   tools/                          validation, conformance, and artifact runners
 
 scripts/
@@ -106,6 +109,8 @@ scripts/
   run_phase5a_reference_loop.py
   build_candidate_package.py
   run_promotion_loop.py
+  build_replay_bundle.py
+  reproduce_run.py
 
 .github/workflows/
   formal-core-v2.yml
@@ -117,6 +122,7 @@ scripts/
   runtime-v2-phase-5a.yml
   runtime-v2-phase-6.yml
   runtime-v2-phase-7.yml
+  runtime-v2-phase-8.yml
 ```
 
 ## Formal theorem shape
@@ -260,11 +266,28 @@ checker. A rejection may return to a fresh generator process only while the orig
 fixed budget remains. An indeterminate result stops the run and remains nonpromoting.
 No manual repair or override-to-accept path exists.
 
-The implementation head
-`001f060bb79015a7b9b06722977323e3f5f71063` passed the complete Phase 0–7
-workflow matrix, including Linux, Windows, macOS, the pinned Formal Core build, the
-real pinned-Lean promotion trajectory, generated-source hygiene, and closure. The
-final documentation/evidence PR head is independently revalidated before merge.
+Phase 7 is merged and remains regression-validated as the immutable promotion-store
+source for Phase 8.
+
+### Phase 8 — independent replay and finite trajectory
+
+```text
+verify the retained Phase 7 store and portable replay bundle
+→ reconstruct generator input from the immutable predecessor
+→ parse and validate preserved raw generator output without invoking the generator
+→ recompute Phase 6 selection and filesystem realization
+→ reconstruct objective evidence and the host-owned certificate
+→ regenerate and scan Lean source before pinned compilation
+→ recompute the captured hardened-checker result and run it again with fresh Lean evidence
+→ verify resources, rollback, parent links, successor hashes, ledger, and active pointer
+→ reproduce two promotions and two correct bounded nonpromotions
+```
+
+The validated reference chain contains three immutable packages. The pinned replay
+removes the original generator process and worker source files before reproduction and
+records zero generator invocations and no forbidden generator modules loaded. Phase 8
+remains limited to the finite Gate B promoted path plus selected diagonal Gate C
+checker/Lean regression; it does not establish open-ended successor availability.
 
 ## Build and validate
 
@@ -291,7 +314,7 @@ Install and test Runtime v2:
 ```bash
 cd python/rcp_rclm_runtime_v2
 python -m pip install --no-deps -e .
-python -m compileall -q rcp_rclm_runtime tests tests_phase2 tests_phase3 tests_phase4 tests_phase5 tests_phase6 tests_phase7 tools
+python -m compileall -q rcp_rclm_runtime tests tests_phase2 tests_phase3 tests_phase4 tests_phase5 tests_phase6 tests_phase7 tests_phase8 tools
 python tools/validate_source_quality.py --package-root . --out source_quality.json
 python -m unittest discover -s tests -v
 python -m unittest discover -s tests_phase2 -v
@@ -300,6 +323,7 @@ python -m unittest discover -s tests_phase4 -v
 python -m unittest discover -s tests_phase5 -v
 python -m unittest discover -s tests_phase6 -v
 python -m unittest discover -s tests_phase7 -v
+python -m unittest discover -s tests_phase8 -v
 ```
 
 Run the principal executable paths from the repository root:
@@ -322,20 +346,28 @@ python scripts/run_promotion_loop.py \
   --out artifacts/runtime_v2_phase_7/local/summary.json \
   --trajectory \
   --timeout-seconds 180
+
+python scripts/build_replay_bundle.py \
+  --source-store artifacts/runtime_v2_phase_7/local/store \
+  --output artifacts/runtime_v2_phase_8/local/bundle
+
+python scripts/reproduce_run.py \
+  --repo-root . \
+  --bundle artifacts/runtime_v2_phase_8/local/bundle \
+  --outdir artifacts/runtime_v2_phase_8/local/reproduced \
+  --timeout-seconds 180
 ```
 
 ## Next boundary
 
-After the final Phase 7 evidence head is green and PR #22 is merged, the next phase is
-Phase 8 independent replay. The reproducer must recompute each retained result without
-invoking the original generator.
+With the finite Phase 0–8 reference path closed, the next optional executable boundary
+is a small deterministic Phase 5B/PyTorch proposal pilot behind the existing untrusted
+generator interface. The learned backend may propose a genuinely changed package, but
+it cannot determine canonical hashes, KL/QRE certification, strict margins, trust
+validity, checker acceptance, promotion, rollback, or replay.
 
-Phase 5B open-ended proposal backends remain untrusted. A learned or open-ended backend
-must not enter the controller before the stronger Phase 6–8 containment, promotion,
-and independent-replay boundaries are closed. PyTorch and native floating-point model
-outputs may propose or rank candidates later, but never determine canonical hashes,
-KL/QRE certification, strict margins, trust validity, checker acceptance, promotion,
-or replay.
+General noncommuting quantum semantics, arbitrary learned-system refinement, external
+benchmark claims, and unbounded successor availability remain open.
 
 ## Claim boundary
 
@@ -350,7 +382,7 @@ strict useful improvement at every recursive step
 general noncommuting QRE or arbitrary CPTP data processing
 Petz or approximate recovery
 general Python-to-Lean refinement beyond the declared reference packets
-independent replay without the original generator
+independent replay beyond the declared finite captured reference trajectory
 empirical autonomous or unbounded RSI
 external benchmark performance
 ```

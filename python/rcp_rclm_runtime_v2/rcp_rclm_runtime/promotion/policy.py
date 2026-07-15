@@ -7,7 +7,7 @@ from rcp_rclm_runtime.promotion.records import (
     Phase7ControllerBudgetRecord,
     Phase7ControllerPolicyRecord,
 )
-from rcp_rclm_runtime.successor.reference import reference_phase6_budget
+from rcp_rclm_runtime.successor.budget import reference_phase6_budget
 
 PHASE7_CONTROLLER_POLICY_ID: Final[str] = (
     "rcp-rclm-phase7-finite-reference-promotion-controller-v1"

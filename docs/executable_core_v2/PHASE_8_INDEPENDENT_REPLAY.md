@@ -1,0 +1,209 @@
+# Phase 8 — independent replay and finite trajectory
+
+## Scope
+
+Phase 8 turns the immutable Phase 7 promotion store into a portable replay bundle and
+recomputes the finite reference trajectory without invoking the original generator
+process.
+
+The promoted trajectory remains the declared finite Gate B reference path:
+
+```text
+RCLM_0 — root initial package
+  → RCLM_1 — target state plus a substantive verification-policy change
+  → RCLM_2 — target state plus a substantive memory-policy change
+```
+
+The same captured ledger then contains two bounded rejection attempts after the finite
+grammar is exhausted. Those attempts are replayed as correct nonpromotion outcomes and
+the active package remains `RCLM_2`.
+
+The selected diagonal Gate C mathematical and checker implementations remain part of
+the regression and pinned Lean conformance surface. Phase 8 does not invent a Gate C
+generator or promoted quantum trajectory.
+
+## Classical and diagonal-quantum mapping
+
+Phase 8 introduces no competing mathematical representation. It consumes the immutable
+records established in Phases 1–7:
+
+```text
+RCLM state and update records
+exact Gate B rational distributions
+selected Gate C spectrum-backed diagonal densities
+certificate packets
+Phase 3 checker requests and reports
+Phase 4 package-integrity and hardened-checker reports
+Phase 6 filesystem candidates and rollback archives
+Phase 7 immutable packages, ledger entries, attempts, and active pointer
+```
+
+Classical entropy and KL values, selected diagonal von Neumann entropy and QRE bounds,
+recovery, progress, trust, resources, containment, and domain facts are recomputed by
+the existing checker. The replay engine does not calculate a substitute acceptance
+predicate.
+
+## Bundle boundary
+
+A replay bundle has exactly this layout:
+
+```text
+manifest.json
+store/
+```
+
+`store/` is a byte-preserving copy of one verified Phase 7 store. The manifest binds:
+
+```text
+Phase 7 controller-policy hash
+complete store semantic-tree hash
+final active-pointer hash
+final active-package hash
+ledger-head hash
+ordered ledger-entry hashes
+ordered promoted-package chain
+one attempt index for every non-bootstrap ledger entry
+hashes of every retained replay artifact
+```
+
+For each source attempt, the bundle preserves and hashes:
+
+```text
+predecessor immutable package
+controller report and attempt report
+raw generator input bytes
+raw generator stdout and stderr
+both generator process reports
+both generator source-guard reports
+parsed untrusted proposal
+selection and Phase 6 realization report, when reached
+actual candidate package tree, when reached
+objective evaluation evidence
+host-constructed certificate
+generated Lean source and generated-source record
+Lean source-guard and verifier report
+pinned compiler evidence, when present
+checker request, package-integrity record, and hardened-checker report
+resource record
+rollback record and archive
+parent and successor package hashes
+rejection reason and nonpromotion evidence
+```
+
+Symlinks, non-regular files, hard-link aliases, unknown bundle entries, malformed
+canonical JSON, broken ledger links, package tampering, and manifest disagreement fail
+closed.
+
+## Independent reproducer
+
+The independent replay path is:
+
+```text
+verify replay source capability guard
+→ verify bundle layout and manifest
+→ verify Phase 7 store, packages, active pointer, and ledger chain
+→ reconstruct generator input from the predecessor package
+→ parse preserved raw generator output as an untrusted proposal
+→ verify the two preserved generator executions agree
+→ validate the proposal against the public bounded grammar
+→ recompute selection or reproduce the source selection rejection
+→ rebuild the Phase 6 candidate in a fresh directory
+→ compare candidate bytes, tree, manifest, change ledger, resources, and rollback
+→ derive objective evidence from predecessor and candidate states
+→ reconstruct the certificate outside the generator
+→ regenerate and scan the Lean source before compilation
+→ invoke the pinned Lean bridge independently
+→ recompute the captured hardened-checker result
+→ run the hardened checker again with the fresh Lean report
+→ verify promotion-parent and successor bindings
+→ emit a structured replay report
+```
+
+The replay package has an AST capability guard. It rejects direct imports of the Phase
+5A generator process or worker, stochastic libraries, socket/process backends, and
+direct calls to generator entry points. The pinned workflow additionally removes the
+original `generator/process.py` and `generator/worker.py` modules before starting the
+reproducer, and the CLI checks that neither module was loaded before or after replay.
+Every accepted attempt report records:
+
+```text
+generator_invocations = 0
+```
+
+The preserved generator output is treated as untrusted historical evidence. It is
+parsed and validated; it is not regenerated by calling the original worker.
+
+## Lean pre-compilation gate
+
+For every promoted transition, replay independently regenerates the expected Lean
+source and verifies that it is byte-identical to the captured source. It then reruns the
+mandatory source guard before invoking Lean. The guard rejects:
+
+```text
+sorry
+sorryAx
+admit
+project-local axiom declarations
+invalid UTF-8
+```
+
+The fresh Lean report must accept and must match the captured semantic verdict,
+packet, theorem surface, generated-source hash, and source-guard binding. Runtime-only
+duration may differ and is excluded from the semantic comparison.
+
+## Checker replay
+
+The reproducer performs two checker validations for each promoted transition:
+
+1. It reconstructs the original checker request and package-integrity evidence from
+   captured inputs and requires the captured hardened report to recompute exactly.
+2. It builds a fresh checker request with the independently reproduced Lean report and
+   requires the mathematical checker fingerprint to agree with the source result.
+
+The controller and replay engine do not override checker acceptance.
+
+## Rejection replay
+
+The two grammar-exhaustion attempts are retained as first-class replay entries. Replay
+reconstructs their predecessor and proposal, repeats proposal validation, reproduces
+the Phase 6 selection failure, verifies that later stages were not evaluated, and
+confirms that the active package hash did not change.
+
+A replay report may therefore be `accept` even though the source ledger contains
+rejections: `accept` means that the source promotions and source nonpromotions were all
+reproduced correctly.
+
+## Command-line entry points
+
+Capture a verified Phase 7 store:
+
+```bash
+python scripts/build_replay_bundle.py \
+  --source-store artifacts/runtime_v2_phase_7/source/store \
+  --output artifacts/runtime_v2_phase_8/bundle
+```
+
+Replay it with the pinned Lean project, without invoking the generator:
+
+```bash
+python scripts/reproduce_run.py \
+  --repo-root . \
+  --bundle artifacts/runtime_v2_phase_8/bundle \
+  --outdir artifacts/runtime_v2_phase_8/replay \
+  --timeout-seconds 180
+```
+
+## Claim boundary
+
+After cross-platform and pinned-Lean closure, the supported claim is:
+
+> A finite executable theorem-to-runtime refinement witness for the declared Gate B
+> reference promotion path, with fail-closed successor promotion, retained rejection
+> evidence, and independent generator-free replay; together with continued selected
+> diagonal Gate C checker and Lean-conformance regression.
+
+It is not a proof of autonomous or unbounded recursive self-improvement. It does not
+prove successor availability beyond the finite captured chain, useful strict
+improvement at every continuation, open-ended generator correctness, learned PyTorch
+authority, arbitrary noncommuting quantum semantics, or external benchmark
+performance.

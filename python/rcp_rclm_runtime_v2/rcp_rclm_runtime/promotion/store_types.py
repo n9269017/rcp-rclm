@@ -8,7 +8,6 @@ from typing import Final, Literal
 from rcp_rclm_runtime.canonical.hashing import build_tree_records, canonical_json_hash, semantic_tree_hash, sha256_hex
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes, load_json_strict
 from rcp_rclm_runtime.errors import CanonicalizationError, SchemaValidationError
-from rcp_rclm_runtime.generator.reference import reference_generator_input
 from rcp_rclm_runtime.schema.state import ClassicalBinaryStateRecord, RclmStateRecord
 from rcp_rclm_runtime.successor.filesystem import atomic_write, safe_payload_path
 from rcp_rclm_runtime.successor.package_builder import verify_candidate_package
