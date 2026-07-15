@@ -36,7 +36,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git checkout origin/main -- .github/workflows/runtime-v2-phase-7.yml
           python - <<'PY'
           from __future__ import annotations
 
@@ -142,12 +141,9 @@ jobs:
           test -f .github/workflows/runtime-v2-phase-8.yml
 
           rm -f .phase8_payload.gz .phase8_payload.part* .phase8_payload.ready
-          rm -f .github/workflows/apply-phase8-payload.yml
-          rm -f .github/workflows/apply-phase8-valid-blob.yml
-          rm -f .github/workflows/apply-phase8-with-python.yml
-          rm -f .github/workflows/phase8-source-snapshot.yml
-          rm -f .github/workflows/phase8-payload-artifact.yml
-          git add -A
+          git reset
+          git add -u -- .
+          git add README.md docs/executable_core_v2 python scripts
           git diff --cached --check
 
       - name: Validate recovered source before publication
@@ -163,7 +159,7 @@ jobs:
             --package-root python/rcp_rclm_runtime_v2 \
             --out /tmp/phase8-tests.log
 
-      - name: Commit implementation
+      - name: Commit implementation source
         shell: bash
         run: |
           set -euo pipefail
