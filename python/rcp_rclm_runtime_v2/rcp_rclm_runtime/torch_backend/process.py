@@ -387,6 +387,9 @@ def _worker_environment() -> dict[str, str]:
     environment.update(
         {
             "CUDA_VISIBLE_DEVICES": "",
+            "LOGNAME": "rcp-rclm-pytorch-pilot",
+            "USER": "rcp-rclm-pytorch-pilot",
+            "USERNAME": "rcp-rclm-pytorch-pilot",
             "MKL_NUM_THREADS": "1",
             "NUMEXPR_NUM_THREADS": "1",
             "OMP_NUM_THREADS": "1",
