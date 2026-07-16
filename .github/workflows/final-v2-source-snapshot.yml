@@ -24,7 +24,7 @@ jobs:
         with:
           ref: agent/rcp-rclm-v2-final-documentation
           fetch-depth: 1
-      - name: Create source archive
+      - name: Create exact source archive
         shell: bash
         run: |
           set -euo pipefail
