@@ -1,0 +1,39 @@
+name: Final v2 source snapshot
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/final-v2-source-snapshot.yml"
+  push:
+    branches:
+      - agent/rcp-rclm-v2-final-documentation
+    paths:
+      - ".github/workflows/final-v2-source-snapshot.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: agent/rcp-rclm-v2-final-documentation
+          fetch-depth: 1
+      - name: Create source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/final-v2-source
+          git archive --format=zip --output=artifacts/final-v2-source/source.zip HEAD
+          git rev-parse HEAD > artifacts/final-v2-source/head.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: final-v2-source-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/final-v2-source/
+          if-no-files-found: error
+          retention-days: 1
