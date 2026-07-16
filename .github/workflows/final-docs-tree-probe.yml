@@ -1,0 +1,38 @@
+name: Final documentation tree probe
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-v2-final-documentation
+    paths:
+      - ".github/workflows/final-docs-tree-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: agent/rcp-rclm-v2-final-documentation
+          fetch-depth: 1
+      - name: Record object IDs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/final-docs-tree-probe
+          {
+            echo "HEAD_SHA=$(git rev-parse HEAD)"
+            echo "TREE_SHA=$(git rev-parse 'HEAD^{tree}')"
+          } | tee artifacts/final-docs-tree-probe/tree.txt
+      - name: Upload object IDs
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: final-docs-tree-probe-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/final-docs-tree-probe/tree.txt
+          if-no-files-found: error
+          retention-days: 1
