@@ -51,7 +51,6 @@ class PyTorchPilotAdmissionReplayTests(unittest.TestCase):
     def tearDownClass(cls) -> None:
         cls._temporary.cleanup()
 
-
     def _assert_model_free_host_imports(self) -> None:
         package_root = Path(__file__).resolve().parents[1]
         command = (
@@ -164,7 +163,7 @@ class PyTorchPilotAdmissionReplayTests(unittest.TestCase):
             output,
             fixture_lean_evidence,
         )
-        self.assertTrue(replay.report.accepted)
+        self.assertTrue(replay.report.accepted, replay.report.to_json())
         self.assertEqual(replay.report.generator_invocations, 0)
         self.assertEqual(replay.report.training_backend_modules_loaded, ())
         self.assertEqual(
