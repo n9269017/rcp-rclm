@@ -7,8 +7,9 @@ implementation is locally complete. Authoritative cross-platform and pinned-Lean
 remains pending until the implementation is published and one exact branch head passes
 the complete Phase 0–8 plus PyTorch-pilot workflow matrix.
 
-The final documentation branch is now revalidating that published implementation after
-repairing deterministic, hash-bound worker-stderr handling in independent replay.
+The final documentation branch is revalidating the published implementation after
+repairing deterministic hash-bound worker-stderr handling and shortening the focused test
+workspace prefix for Windows path-length safety.
 
 ## Local source and test evidence
 
