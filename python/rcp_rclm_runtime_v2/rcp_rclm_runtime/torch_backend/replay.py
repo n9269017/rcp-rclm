@@ -839,7 +839,6 @@ def replay_pytorch_pilot_store(
             if (
                 first_stdout != second_stdout
                 or first_stderr != second_stderr
-                or first_stderr
                 or first_report["verdict"] != "success"
                 or second_report["verdict"] != "success"
                 or first_report["stdout_hash"] != sha256_hex(first_stdout)
