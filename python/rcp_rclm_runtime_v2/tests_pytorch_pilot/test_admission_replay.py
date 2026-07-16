@@ -36,7 +36,7 @@ class PyTorchPilotAdmissionReplayTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls._temporary = tempfile.TemporaryDirectory(
-            prefix="rcp-rclm-pytorch-admission-tests-"
+            prefix="rp-"
         )
         cls.root = Path(cls._temporary.name)
         cls.accepted_store = cls.root / "accepted-store"
