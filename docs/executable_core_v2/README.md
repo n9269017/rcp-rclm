@@ -1,26 +1,27 @@
 # RCP/RCLM Executable Core v2
 
-This directory records the frozen theorem-to-runtime contract and the staged
-executable implementation following the completed Formal Core v2 Lean project.
+This directory is the documentation index for the frozen theorem-to-runtime contract,
+Executable Core v2 Phases 0–8, and the first bounded PyTorch learned-successor pilot.
+The executable project follows the completed Formal Core v2 Lean theorem stack and keeps
+untrusted proposal systems outside the checker and promotion authority.
 
 ## Status
 
 ```text
 Phase 0 theorem-to-runtime contract: complete and merged
 Phase 1 deterministic runtime bedrock: complete and cross-platform validated
-Phase 2 initial pinned Lean conformance bridge: complete and validated
+Phase 2 pinned Lean conformance bridge: complete at the selected finite scope
 Phase 3 deterministic fail-closed checker: complete and cross-platform validated
 Phase 4 adversarial and tamper rejection: complete and cross-platform validated
 Phase 5A deterministic bounded reference generator: complete and cross-platform validated
-Phase 5B open-ended untrusted generators: optional and not implemented
-Phase 6 selector, realizer, and package builder: complete and cross-platform validated
-Phase 7 promotion and rollback controller: complete, merged, and cross-platform validated
+Phase 6 selector, realizer, rollback, and package builder: complete and cross-platform validated
+Phase 7 promotion and rollback controller: complete and cross-platform validated
 Phase 8 independent replay: complete and cross-platform/pinned-Lean validated
-PyTorch proposal backend: not implemented
-External benchmark adapter: not licensed
+First CPU-only PyTorch learned-successor pilot: complete at the declared tiny-model scope
+Open-ended learned generators and external benchmarks: open and untrusted
 ```
 
-The frozen formal source is:
+Frozen formal source:
 
 ```text
 Formal source commit: 012de4a55f326107f53f0e215c8aec62859d0bbf
@@ -39,134 +40,129 @@ mathlib:              fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
 | `CANONICAL_SERIALIZATION.md` | Canonical JSON, path, content, tree, and parent hashing |
 | `ACCEPTANCE_SEMANTICS.md` | Fail-closed tri-state acceptance predicate |
 | `CLAIM_BOUNDARY.md` | Licensed and unlicensed claims |
-| `PYTORCH_ENTRY_CRITERIA.md` | Preconditions for a learned proposal backend |
+| `PYTORCH_ENTRY_CRITERIA.md` | Preconditions and authority limits for learned proposal backends |
 
-## Phases 1–4
+## Phase documentation
 
-The first four runtime phases provide immutable exact records, selected Gate B/Gate C
-mathematics, the pinned Lean conformance bridge, the pure fail-closed checker, and the
-hardened 27-case adversarial rejection boundary. Their detailed architecture,
-validation, and exit-criteria records remain in this directory.
+### Phases 1–4
 
-## Phase 5A deterministic reference generator
+These phases provide the immutable numerical/runtime bedrock, selected Gate B/Gate C
+mathematics, the pinned Lean bridge, the pure checker, and the hardened 27-case attack
+boundary. Their architecture, validation, and exit-criteria documents use the
+`PHASE_1_*` through `PHASE_4_*` prefixes.
+
+### Phase 5A — bounded reference generator
 
 | Document | Purpose |
 |---|---|
 | `PHASE_5A_REFERENCE_GENERATOR.md` | Bounded Lean grammar mapping, process boundary, and end-to-end path |
-| `PHASE_5A_EXIT_CRITERIA.md` | Exact replay, isolation, Lean, checker, and licensing conditions |
-| `PHASE_5A_VALIDATION.md` | Cross-platform process, pinned Lean, hardened-checker, and artifact evidence |
-| `PHASE_5B_ENTRY_CRITERIA.md` | Preconditions for optional open-ended proposal backends |
+| `PHASE_5A_EXIT_CRITERIA.md` | Isolation, replay, Lean, checker, and licensing criteria |
+| `PHASE_5A_VALIDATION.md` | Cross-platform process and pinned-Lean evidence |
+| `PHASE_5B_ENTRY_CRITERIA.md` | Preconditions for optional open-ended proposal systems |
 
-The Phase 5A worker emits only an untrusted bounded proposal. It cannot emit a
-certificate, candidate successor, checker verdict, or acceptance Boolean.
+The worker emits only an untrusted bounded proposal. Certificate construction, update
+selection, logical realization, Lean verification, and checker admission remain outside
+the worker.
 
-## Phase 6 selector, realizer, and package builder
-
-| Document | Purpose |
-|---|---|
-| `PHASE_6_SELECTOR_REALIZER_PACKAGE_BUILDER.md` | Filesystem measurement, selection, realization, rollback, packaging, and verification |
-| `PHASE_6_EXIT_CRITERIA.md` | Closed substantive-change, rollback, package, CI, and licensing criteria |
-| `PHASE_6_VALIDATION.md` | Exact implementation head, workflows, tests, packages, hashes, and artifacts |
-
-Machine-readable Phase 6 records are:
-
-```text
-python/rcp_rclm_executable_core_v2/contract/phase_6_successor_package.schema.json
-python/rcp_rclm_runtime_v2/phase_6_manifest.json
-python/rcp_rclm_runtime_v2/phase_6_validation.json
-```
-
-Phase 6 measures the real predecessor, applies explicit selected operations in an
-isolated workspace, requires a substantive component change, builds and restores a
-canonical rollback archive, and publishes a publicly verifiable `realized_unverified`
-candidate package. It never promotes the package.
-
-## Phase 7 promotion and rollback controller
+### Phase 6 — selector, realizer, rollback, and package builder
 
 | Document | Purpose |
 |---|---|
-| `PHASE_7_PROMOTION_CONTROLLER.md` | Controller architecture, trust separation, promotion store, and rollback fallback |
-| `PHASE_7_EXIT_CRITERIA.md` | Closed implementation criteria and retained claim boundary |
-| `PHASE_7_VALIDATION.md` | Exact implementation head, Phase 0–7 workflows, trajectory hashes, and artifact digests |
+| `PHASE_6_SELECTOR_REALIZER_PACKAGE_BUILDER.md` | Filesystem measurement, realization, rollback, packaging, and public verification |
+| `PHASE_6_EXIT_CRITERIA.md` | Substantive-change, resource, rollback, package, and CI criteria |
+| `PHASE_6_VALIDATION.md` | Exact workflow, package, hash, and artifact evidence |
 
-Machine-readable Phase 7 records are:
+Phase 6 constructs `realized_unverified` packages from actual bytes. It does not promote
+them.
 
-```text
-python/rcp_rclm_executable_core_v2/contract/phase_7_promotion_controller.schema.json
-python/rcp_rclm_runtime_v2/phase_7_manifest.json
-python/rcp_rclm_runtime_v2/phase_7_validation.json
-```
-
-The controller performs:
-
-```text
-immutable active predecessor
-→ two isolated executions of the untrusted generator
-→ strict replay and proposal validation
-→ Phase 6 realization and public package verification
-→ state-derived objective evaluation
-→ host-owned certificate construction
-→ pinned Lean bridge
-→ Phase 4 hardened checker
-→ immutable parent-linked package installation
-→ append-only hash-ledger update
-→ atomic active-pointer replacement or rollback fallback
-```
-
-The checker owns mathematical acceptance. Rejected candidates are never repaired
-inside the run. Retry is permitted only while the frozen attempt and resource budgets
-remain. An indeterminate result is nonpromoting.
-
-Phase 7 is merged and supplies the immutable source store consumed by the Phase 8
-replay bundle.
-
-## Phase 8 independent replay
+### Phase 7 — promotion and rollback controller
 
 | Document | Purpose |
 |---|---|
-| `PHASE_8_INDEPENDENT_REPLAY.md` | Portable bundle boundary, zero-generator reproducer, Lean/checker replay, and finite trajectory |
-| `PHASE_8_EXIT_CRITERIA.md` | Closed cross-platform, pinned-Lean, tamper, and claim criteria |
-| `PHASE_8_VALIDATION.md` | Exact implementation head, Phase 0–8 workflows, replay hashes, and artifact digests |
+| `PHASE_7_PROMOTION_CONTROLLER.md` | Controller architecture, immutable store, ledger, pointer, and rollback fallback |
+| `PHASE_7_EXIT_CRITERIA.md` | Closed fixed-budget and promotion criteria |
+| `PHASE_7_VALIDATION.md` | Phase 0–7 workflow and finite-trajectory evidence |
 
-Machine-readable Phase 8 records are:
+The controller coordinates but does not replace the checker. It can promote only after
+pinned Lean and hardened-checker acceptance, installs an immutable parent-linked package,
+and changes visibility through one atomic active-pointer replacement.
+
+### Phase 8 — independent replay
+
+| Document | Purpose |
+|---|---|
+| `PHASE_8_INDEPENDENT_REPLAY.md` | Portable retained-evidence boundary and zero-generator reproducer |
+| `PHASE_8_EXIT_CRITERIA.md` | Cross-platform, pinned-Lean, tamper, and claim criteria |
+| `PHASE_8_VALIDATION.md` | Exact workflow, trajectory, replay, and artifact hashes |
+
+The validated finite reference witness contains three immutable packages, two promotions,
+and two correctly reproduced bounded rejections. Replay succeeds after removing the
+original generator executable and records zero generator invocations.
+
+## First PyTorch learned-successor pilot
+
+| Document | Purpose |
+|---|---|
+| `PYTORCH_PILOT.md` | Frozen model/training scope, package format, trust boundary, promotion, and replay path |
+| `PYTORCH_PILOT_EXIT_CRITERIA.md` | Determinism, exact evaluation, admission, rollback, replay, and claim criteria |
+| `PYTORCH_PILOT_VALIDATION.md` | Cross-platform and pinned-Lean learned-pilot evidence |
+
+Machine-readable records are:
 
 ```text
-python/rcp_rclm_executable_core_v2/contract/phase_8_independent_replay.schema.json
-python/rcp_rclm_runtime_v2/phase_8_manifest.json
-python/rcp_rclm_runtime_v2/phase_8_validation.json
+python/rcp_rclm_executable_core_v2/contract/pytorch_pilot.schema.json
+python/rcp_rclm_runtime_v2/pytorch_pilot_manifest.json
+python/rcp_rclm_runtime_v2/pytorch_pilot_validation.json
 ```
 
-Phase 8 preserves the complete Phase 7 store, independently rebuilds candidate and
-certificate evidence, regenerates and scans Lean source, reruns the pinned Lean bridge
-and hardened checker, and verifies parent, resource, rollback, ledger, and active-pointer
-bindings. The pinned reproducer succeeds after the original generator executable is
-removed and records zero generator invocations. The finite witness contains two
-promotions, two correctly reproduced rejections, and three immutable packages.
-
-## Dependency order
+The pilot is deliberately small and CPU-only:
 
 ```text
-frozen Phase 0 contract
-→ deterministic Phase 1 runtime bedrock
-→ Phase 2 pinned Lean bridge and differential conformance
-→ Phase 3 fail-closed checker
-→ Phase 4 adversarial rejection
-→ Phase 5A bounded untrusted reference generator
-→ Phase 6 selector, filesystem realizer, rollback, and package builder
-→ Phase 7 atomic promotion and rollback controller
-→ Phase 8 independent replay
-→ optional Phase 5B/PyTorch open-ended proposal backends after containment closure
-→ external benchmark adapters
+Linear(2, 2), with bias
+float64 training
+canonical little-endian int64 weights
+seed 1729
+one thread
+one SGD step
+four train examples
+four held-out examples
 ```
 
-The Phase 6–8 containment, promotion, rollback, and independent-replay boundaries
-are now closed for the finite reference path. Optional Phase 5B proposal interfaces may
-be developed behind the same untrusted generator protocol; they do not inherit trust.
+PyTorch is used only in the isolated proposal process. The host validates canonical raw
+tensor bytes, constructs the Phase 6 selection, realizes the package, evaluates the
+model with exact Python integer arithmetic, constructs the certificate, and invokes the
+existing Lean/checker/promotion path. Independent replay runs after the training process
+and worker source are removed and records zero training invocations.
 
-The generator never certifies itself. Candidate assertions, model scores, native
-floating-point diagnostics, and proposed certificate fields remain untrusted. The
-checker owns acceptance and requires packet-bound agreement with the pinned Lean
-bridge. Phase 8 establishes only finite generator-free replay for the captured Gate B
-path with selected diagonal Gate C regression. It does not establish learned proposal
-authority, arbitrary learned-system refinement, general noncommuting quantum semantics,
-external benchmark performance, or autonomous/unbounded RSI.
+The accepted reference improves held-out correctness from `2/4` to `4/4` while retaining
+the protected class-0 result at `2/2`. A negative fixture fails the exact learned
+objective, remains nonpromoting, preserves the active predecessor, and verifies rollback.
+
+## Dependency and authority order
+
+```text
+Formal Core v2 Gates A–C
+→ Phase 0 frozen refinement contract
+→ Phase 1 exact deterministic runtime
+→ Phase 2 pinned Lean bridge
+→ Phase 3 checker
+→ Phase 4 hardened rejection
+→ Phase 5A bounded untrusted generator
+→ Phase 6 filesystem realization and rollback
+→ Phase 7 atomic promotion controller
+→ Phase 8 generator-free replay
+→ optional untrusted PyTorch learned proposal pilot
+→ later open-ended learned/search backends and external benchmarks
+```
+
+Candidate assertions, model scores, native floating-point diagnostics, and proposed
+certificate fields are never authoritative. Canonical hashing, interval/exact arithmetic,
+trust validation, checker acceptance, promotion, rollback, and replay remain
+framework-independent.
+
+## Claim boundary
+
+The executable package establishes finite reference and tiny-model pilot witnesses only.
+It does not establish generator trust, learned proposal authority, arbitrary
+learned-system refinement, GPU reproducibility, general noncommuting quantum semantics,
+unbounded successor availability, external benchmark performance, or autonomous RSI.
