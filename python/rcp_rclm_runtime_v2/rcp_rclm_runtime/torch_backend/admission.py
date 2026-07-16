@@ -881,6 +881,7 @@ def _finish_pilot_attempt(
     return attempt
 
 
+
 def _run_proposal_process_ephemeral(
     request: PilotRequestBinding,
     predecessor_payload_root: Path,
@@ -898,7 +899,6 @@ def _run_proposal_process_ephemeral(
         if package is not None and getattr(package, "process", None) is module:
             delattr(package, "process")
     return evidence
-
 
 def _generator_evidence(
     first: PilotProcessEvidence,

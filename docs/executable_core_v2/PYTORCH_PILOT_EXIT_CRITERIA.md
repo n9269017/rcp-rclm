@@ -3,42 +3,56 @@
 The first learned-successor pilot closes only when every item below passes at one exact
 published head.
 
-- [ ] PyTorch remains an optional dependency and is not imported by the checker,
-      mathematics, canonicalization, promotion-store, or replay packages.
-- [ ] The proposal backend runs in a separate process with a fixed timeout and a fresh
-      atomic output path.
-- [ ] The worker rejects a visible GPU and uses exactly one CPU thread.
-- [ ] The PyTorch version, model architecture, seed, optimizer, learning rate, and step
-      count are pinned.
-- [ ] Exactly one optimizer step changes at least one raw packaged tensor hash.
-- [ ] No held-out label is present in the backend input schema.
-- [ ] The training-data, held-out-feature, architecture, tensor, optimizer, RNG, command,
-      resource, evaluation-request, and rollback-binding manifests are complete.
-- [ ] Tensor files use canonical little-endian int64 serialization rather than pickle.
-- [ ] Tensor raw-byte hashes and Phase 1 domain-separated manifest hashes recompute.
-- [ ] Two fresh proposal processes produce identical canonical outputs.
-- [ ] The predecessor model tree is byte-identical before and after proposal generation.
-- [ ] The Phase 6 selection record parses strictly and names `model_weights` as the
-      substantive component.
-- [ ] The existing Phase 6 package builder realizes and publicly verifies the candidate.
-- [ ] Phase 6 independently records every actual changed file and rejects undeclared or
-      falsely declared modifications.
-- [ ] The Phase 6 rollback archive restores the exact predecessor tree.
-- [ ] A framework-independent evaluator reads the realized int64 model package without
-      importing PyTorch.
-- [ ] Held-out correct count strictly improves under exact integer arithmetic.
-- [ ] The protected class metric does not regress under exact integer arithmetic.
-- [ ] Candidate-provided acceptance, certificate, and aggregate-score fields remain null.
-- [ ] NaN, infinity, nonfinite gradients, gradient overflow, model-layout mismatch,
-      malformed schema, predecessor tampering, output overwrite, and resource overflow
-      remain nonaccepting.
-- [ ] Linux, Windows, and macOS complete the proposal, exact evaluator, Phase 6 package,
-      and deterministic two-process reference case.
-- [ ] All Phase 0–8 authoritative workflows remain green.
-- [ ] A pinned-Lean/hardened-checker admission adapter accepts or rejects without using a
-      PyTorch reduction as mathematical evidence.
-- [ ] A promoted pilot package, if any, is independently replayed without rerunning the
-      original training backend.
+## Implementation and local validation
+
+- [x] PyTorch is optional and confined to the untrusted proposal worker.
+- [x] Importing the host admission and replay modules does not import PyTorch, the
+      proposal backend, or its launcher.
+- [x] The proposal backend runs in a separate isolated process with a fixed timeout and
+      fresh atomic output path.
+- [x] The worker rejects a visible GPU and uses one CPU thread.
+- [x] PyTorch version, architecture, seed, optimizer, learning rate, and step count are
+      pinned.
+- [x] Exactly one optimizer step changes a canonical packaged tensor hash.
+- [x] Held-out labels are absent from the backend request schema.
+- [x] Architecture, tensor, optimizer, training-data, RNG, command, resource,
+      evaluation-request, and rollback-binding manifests are complete.
+- [x] Tensor files use canonical little-endian signed int64 serialization, not pickle.
+- [x] Tensor byte hashes and Phase 1 domain-separated hashes recompute.
+- [x] Two fresh proposal processes produce equal canonical evidence.
+- [x] The predecessor remains byte-identical during training.
+- [x] The host reconstructs the Phase 6 selection and ignores candidate-reported
+      selection and self-certification fields.
+- [x] Phase 6 realizes and publicly verifies a substantive `model_weights` candidate.
+- [x] Phase 6 records every actual modification and verifies exact rollback.
+- [x] A framework-independent integer evaluator observes strict held-out improvement and
+      protected-metric non-regression.
+- [x] Exact model-gate failure rejects and preserves the active predecessor.
+- [x] Lean rejection is nonpromoting.
+- [x] The accepted fixture passes Lean and the hardened checker and is atomically
+      promoted through the Phase 7 store.
+- [x] Model-free replay recomputes the retained candidate with zero training invocations.
+- [x] Replay rejects retained-evidence, candidate-package, source, and loaded-training
+      tampering.
+- [x] Local source quality is clean and the 23 focused tests pass.
+
+## Authoritative published-head validation
+
+- [ ] Linux, Windows, and macOS pass the proposal, exact evaluation, promotion,
+      rejection, rollback, and replay suites.
+- [ ] All Phase 0–8 authoritative workflows remain green at the same final head.
+- [ ] The pinned Formal Core builds and Phase 2 differential conformance passes.
+- [ ] The real pinned Lean bridge and hardened checker admit the accepted learned
+      candidate.
+- [ ] The pinned exact-objective rejection preserves the active package.
+- [ ] The original training worker and launcher are physically absent before replay.
+- [ ] Pinned independent replay reports zero training invocations and no forbidden
+      training modules.
+- [ ] All regenerated Lean source passes the `sorry`/`sorryAx`/`admit` and local-axiom
+      gate before compilation.
+- [ ] Exact-head workflow IDs, package hashes, replay hashes, and artifact digests are
+      committed to the validation record.
+- [ ] The final documentation/evidence head is independently revalidated.
 
 The following remain false after this pilot:
 

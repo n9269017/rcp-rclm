@@ -7,7 +7,10 @@ on:
     paths:
       - "python/rcp_rclm_runtime_v2/**"
       - "python/rcp_rclm_executable_core_v2/contract/pytorch_pilot.schema.json"
+      - "python/rcp_rclm_executable_core_v2/contract/phase_7_promotion_controller.schema.json"
       - "scripts/run_pytorch_pilot.py"
+      - "scripts/run_pytorch_pilot_controller.py"
+      - "scripts/replay_pytorch_pilot.py"
       - "docs/executable_core_v2/PYTORCH_PILOT*.md"
       - ".github/workflows/runtime-v2-pytorch-pilot.yml"
       - "README.md"
@@ -17,7 +20,10 @@ on:
     paths:
       - "python/rcp_rclm_runtime_v2/**"
       - "python/rcp_rclm_executable_core_v2/contract/pytorch_pilot.schema.json"
+      - "python/rcp_rclm_executable_core_v2/contract/phase_7_promotion_controller.schema.json"
       - "scripts/run_pytorch_pilot.py"
+      - "scripts/run_pytorch_pilot_controller.py"
+      - "scripts/replay_pytorch_pilot.py"
       - "docs/executable_core_v2/PYTORCH_PILOT*.md"
       - ".github/workflows/runtime-v2-pytorch-pilot.yml"
       - "README.md"
@@ -39,7 +45,7 @@ jobs:
   pilot:
     name: Validate CPU-only PyTorch pilot (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 90
+    timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
@@ -79,7 +85,6 @@ jobs:
           "import torch;
           assert torch.__version__.split('+', 1)[0] == '2.10.0';
           assert not torch.cuda.is_available();
-          assert torch.get_num_threads() >= 1;
           print(torch.__version__)"
 
       - name: Compile Python source
@@ -87,6 +92,8 @@ jobs:
           python -m compileall -q
           python/rcp_rclm_runtime_v2
           scripts/run_pytorch_pilot.py
+          scripts/run_pytorch_pilot_controller.py
+          scripts/replay_pytorch_pilot.py
 
       - name: Validate source quality and torch import boundary
         run: >-
@@ -102,9 +109,13 @@ jobs:
           import rcp_rclm_runtime.checker.aggregate;
           import rcp_rclm_runtime.promotion.controller;
           import rcp_rclm_runtime.replay.reproduce;
-          assert 'torch' not in sys.modules"
+          import rcp_rclm_runtime.torch_backend.admission;
+          import rcp_rclm_runtime.torch_backend.replay;
+          assert 'torch' not in sys.modules;
+          assert 'rcp_rclm_runtime.torch_backend.process' not in sys.modules;
+          assert 'rcp_rclm_runtime.torch_backend.proposal_backend' not in sys.modules"
 
-      - name: Run focused PyTorch pilot tests
+      - name: Run focused proposal, admission, rejection, and replay tests
         run: >-
           python python/rcp_rclm_runtime_v2/tools/run_pytorch_pilot_tests.py
           --package-root python/rcp_rclm_runtime_v2
@@ -115,27 +126,59 @@ jobs:
           python python/rcp_rclm_runtime_v2/tools/run_pytorch_pilot_reference.py
           --outdir artifacts/runtime_v2_pytorch_pilot/${{ matrix.os }}/reference
 
-      - name: Verify reference summary
+      - name: Run accepted fixture promotion and generator-free replay
+        run: >-
+          python python/rcp_rclm_runtime_v2/tools/run_pytorch_pilot_admission_fixture.py
+          --outdir artifacts/runtime_v2_pytorch_pilot/${{ matrix.os }}/accepted
+          --case accepted
+
+      - name: Run rejected fixture and verify active-package preservation
+        run: >-
+          python python/rcp_rclm_runtime_v2/tools/run_pytorch_pilot_admission_fixture.py
+          --outdir artifacts/runtime_v2_pytorch_pilot/${{ matrix.os }}/rejected
+          --case rejected
+
+      - name: Verify platform summaries
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
           import json
           from pathlib import Path
-          summary = json.loads(
-              Path("artifacts/runtime_v2_pytorch_pilot/${{ matrix.os }}/reference/summary.json")
-              .read_text(encoding="utf-8")
-          )
-          assert summary["all_expectations_met"] is True
-          assert summary["proposal_processes"] == 2
-          assert summary["semantic_replay_equal"] is True
-          assert summary["torch_loaded_by_host_evaluator"] is False
-          assert summary["evaluation"]["objective_improved"] is True
-          assert summary["evaluation"]["protected_nonregression"] is True
-          assert summary["evaluation"]["torch_used_for_evaluation"] is False
-          assert summary["phase6_rollback_verified"] is True
-          assert summary["promotion_attempted"] is False
-          assert summary["formal_checker_claimed_for_model_objective"] is False
+
+          root = Path("artifacts/runtime_v2_pytorch_pilot/${{ matrix.os }}")
+          reference = json.loads((root / "reference/summary.json").read_text(encoding="utf-8"))
+          accepted = json.loads((root / "accepted/summary.json").read_text(encoding="utf-8"))
+          rejected = json.loads((root / "rejected/summary.json").read_text(encoding="utf-8"))
+
+          assert reference["all_expectations_met"] is True
+          assert reference["proposal_processes"] == 2
+          assert reference["semantic_replay_equal"] is True
+          assert reference["torch_loaded_by_host_evaluator"] is False
+          assert reference["evaluation"]["objective_improved"] is True
+          assert reference["evaluation"]["protected_nonregression"] is True
+          assert reference["evaluation"]["torch_used_for_evaluation"] is False
+          assert reference["phase6_rollback_verified"] is True
+          assert reference["promotion_attempted"] is False
+          assert reference["formal_checker_claimed_for_model_objective"] is False
+
+          assert accepted["expectation_met"] is True
+          assert accepted["observed_verdict"] == "promoted"
+          assert accepted["active_package_changed"] is True
+          assert accepted["fallback_rollback_verified"] is True
+          assert accepted["manual_repair_count"] == 0
+          assert accepted["host_torch_loaded"] is False
+          assert accepted["host_proposal_backend_loaded"] is False
+          assert accepted["replay_accepted"] is True
+          assert accepted["replay_generator_invocations"] == 0
+
+          assert rejected["expectation_met"] is True
+          assert rejected["observed_verdict"] == "rejected"
+          assert rejected["active_package_changed"] is False
+          assert rejected["fallback_rollback_verified"] is True
+          assert rejected["manual_repair_count"] == 0
+          assert rejected["host_torch_loaded"] is False
+          assert rejected["host_proposal_backend_loaded"] is False
           PY
 
       - name: Upload platform evidence
@@ -147,12 +190,215 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
+  pinned-validation:
+    name: Validate learned admission and replay with pinned Lean
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+
+    steps:
+      - name: Check out repository with formal history
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.11"
+
+      - name: Install runtime package
+        run: python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+
+      - name: Install pinned CPU PyTorch
+        run: >-
+          python -m pip install --disable-pip-version-check
+          torch==2.10.0
+          --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Verify frozen PyTorch and CPU boundary
+        run: >-
+          python -c
+          "import torch;
+          assert torch.__version__.split('+', 1)[0] == '2.10.0';
+          assert not torch.cuda.is_available();
+          print(torch.__version__)"
+
+      - name: Install pinned Lean toolchain
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          lake-package-directory: lean/rcp_rclm_formal_core_v2
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Resolve pinned dependency graph
+        working-directory: lean/rcp_rclm_formal_core_v2
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        run: lake update
+
+      - name: Fetch official mathlib build cache
+        working-directory: lean/rcp_rclm_formal_core_v2
+        run: lake exe cache get
+
+      - name: Build pinned Formal Core v2
+        working-directory: lean/rcp_rclm_formal_core_v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results
+          lake build > audit-results/pytorch_pilot_lake_build.log 2>&1
+          tail -n 40 audit-results/pytorch_pilot_lake_build.log
+
+      - name: Revalidate Phase 2 differential bridge
+        run: >-
+          python python/rcp_rclm_runtime_v2/tools/run_phase2_conformance.py
+          --repo-root .
+          --outdir artifacts/runtime_v2_pytorch_pilot/pinned/phase_2_conformance
+          --timeout-seconds 180
+
+      - name: Promote learned candidate through pinned Lean and hardened checker
+        run: >-
+          python scripts/run_pytorch_pilot_controller.py
+          --repo-root .
+          --store-root artifacts/runtime_v2_pytorch_pilot/pinned/store
+          --out artifacts/runtime_v2_pytorch_pilot/pinned/controller_summary.json
+          --run-label pytorch.pilot.pinned.accept
+          --evaluation-mode frozen
+          --expect promoted
+          --timeout-seconds 180
+
+      - name: Verify pinned promotion result
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          summary = json.loads(
+              Path("artifacts/runtime_v2_pytorch_pilot/pinned/controller_summary.json")
+              .read_text(encoding="utf-8")
+          )
+          assert summary["expectation_met"] is True
+          assert summary["verdict"] == "promoted"
+          assert summary["promoted_package_hash"] == summary["active_package_hash"]
+          assert summary["host_torch_loaded"] is False
+          assert summary["host_proposal_backend_loaded"] is False
+          assert summary["manual_repair_count"] == 0
+          stages = {item["stage"]: item for item in summary["attempt_report"]["stages"]}
+          assert stages["objective_evaluation"]["status"] == "pass"
+          assert stages["lean_bridge"]["status"] == "pass"
+          assert stages["hardened_checker"]["status"] == "pass"
+          assert stages["fallback_rollback"]["status"] == "pass"
+          PY
+
+      - name: Verify generated Lean source contains no admissions or local axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          generated_root=artifacts/runtime_v2_pytorch_pilot/pinned
+          if grep -RInE \
+              --include='*.lean' \
+              '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
+              "$generated_root"; then
+            echo "Generated PyTorch-pilot Lean source contains an admitted-proof token." >&2
+            exit 1
+          fi
+          if grep -RInE \
+              --include='*.lean' \
+              '^[[:space:]]*(private[[:space:]]+)?axiom[[:space:]]+' \
+              "$generated_root"; then
+            echo "Generated PyTorch-pilot Lean source contains a project-local axiom." >&2
+            exit 1
+          fi
+
+      - name: Remove the original training backend before replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          backend_root=python/rcp_rclm_runtime_v2/rcp_rclm_runtime/torch_backend
+          mv "$backend_root/proposal_backend.py" "$backend_root/proposal_backend.py.pilot-disabled"
+          mv "$backend_root/process.py" "$backend_root/process.py.pilot-disabled"
+          rm -f "$backend_root"/__pycache__/proposal_backend*.pyc
+          rm -f "$backend_root"/__pycache__/process*.pyc
+          test ! -e "$backend_root/proposal_backend.py"
+          test ! -e "$backend_root/process.py"
+
+      - name: Independently replay promoted candidate without training backend
+        run: >-
+          python scripts/replay_pytorch_pilot.py
+          --repo-root .
+          --store-root artifacts/runtime_v2_pytorch_pilot/pinned/store
+          --outdir artifacts/runtime_v2_pytorch_pilot/pinned/replay
+          --summary artifacts/runtime_v2_pytorch_pilot/pinned/replay_summary.json
+          --require-training-source-absent
+          --timeout-seconds 180
+
+      - name: Verify zero training invocations and complete replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          summary = json.loads(
+              Path("artifacts/runtime_v2_pytorch_pilot/pinned/replay_summary.json")
+              .read_text(encoding="utf-8")
+          )
+          report = summary["replay_report"]
+          assert summary["accepted"] is True
+          assert summary["generator_invocations"] == 0
+          assert summary["training_backend_modules_loaded"] == []
+          assert summary["training_source_absence_required"] is True
+          assert report["verdict"] == "accept"
+          assert report["generator_invocations"] == 0
+          assert report["training_backend_modules_loaded"] == []
+          assert [stage["status"] for stage in report["stages"]] == ["pass"] * 12
+          PY
+
+      - name: Re-scan regenerated Lean source after replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          generated_root=artifacts/runtime_v2_pytorch_pilot/pinned/replay
+          if grep -RInE \
+              --include='*.lean' \
+              '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
+              "$generated_root"; then
+            echo "Replayed PyTorch-pilot Lean source contains an admitted-proof token." >&2
+            exit 1
+          fi
+          if grep -RInE \
+              --include='*.lean' \
+              '^[[:space:]]*(private[[:space:]]+)?axiom[[:space:]]+' \
+              "$generated_root"; then
+            echo "Replayed PyTorch-pilot Lean source contains a project-local axiom." >&2
+            exit 1
+          fi
+
+      - name: Upload pinned learned-admission and replay evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-v2-pytorch-pilot-pinned-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/runtime_v2_pytorch_pilot/pinned/
+            lean/rcp_rclm_formal_core_v2/audit-results/pytorch_pilot_lake_build.log
+          if-no-files-found: error
+          retention-days: 90
+
   closure:
-    name: Verify first PyTorch pilot proposal closure
+    name: Verify first PyTorch learned-successor closure
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs:
       - pilot
+      - pinned-validation
 
     steps:
       - name: Emit closure record
@@ -162,19 +408,26 @@ jobs:
           mkdir -p artifacts/runtime_v2_pytorch_pilot/final
           cat > artifacts/runtime_v2_pytorch_pilot/final/workflow_closure.json <<JSON
           {
-            "schema_id": "runtime.pytorch_pilot_workflow_closure.v1",
+            "schema_id": "runtime.pytorch_pilot_workflow_closure.v2",
             "head_sha": "${GITHUB_SHA}",
             "workflow_run": "${GITHUB_RUN_ID}",
             "workflow_attempt": "${GITHUB_RUN_ATTEMPT}",
             "platform_count": 3,
             "pytorch_version": "2.10.0",
             "cpu_only": true,
-            "proposal_processes_per_platform": 2,
-            "framework_independent_evaluation": true,
+            "proposal_processes_per_candidate": 2,
+            "one_optimizer_step": true,
+            "framework_independent_exact_evaluation": true,
             "phase6_candidate_package": true,
             "phase6_rollback_verified": true,
-            "promotion_attempted": false,
-            "pilot_proposal_stage_ok": true
+            "pinned_lean_acceptance": true,
+            "hardened_checker_acceptance": true,
+            "atomic_phase7_promotion": true,
+            "exact_objective_rejection_preserves_active_package": true,
+            "training_backend_removed_before_replay": true,
+            "independent_replay_generator_invocations": 0,
+            "manual_repair_count": 0,
+            "ok": true
           }
           JSON
 

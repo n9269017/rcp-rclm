@@ -1,18 +1,19 @@
-# First PyTorch phase — deterministic learned-successor proposal pilot
+# First PyTorch phase — deterministic learned-successor pilot
 
 ## Scope
 
 This phase introduces PyTorch only as an optional **untrusted proposal backend** after
-Executable Core v2 Phases 0–8. It does not move PyTorch, floating-point reductions,
-model scores, or optimizer state into the checker, canonical serializer, trust anchor,
-promotion rule, or independent-replay source of truth.
+Executable Core v2 Phases 0–8. PyTorch, floating-point reductions, model scores,
+optimizer state, and candidate declarations remain outside canonical serialization,
+certificate arithmetic, KL/QRE bounds, trust validation, checker acceptance,
+promotion, and replay.
 
-The selected pilot is deliberately small:
+The frozen pilot is deliberately small:
 
 ```text
 model:                 CPU-only Linear(2, 2) classifier
 training dtype:        torch.float64
-package weight dtype:  canonical little-endian int64
+package weight dtype:  canonical little-endian signed int64
 quantization scale:    1,000,000
 seed:                  1729
 threads:               1
@@ -25,14 +26,13 @@ GPU:                   forbidden
 network:               forbidden
 ```
 
-The one-step update starts from an immutable zero-weight predecessor. The training
-worker receives the training split and a hash of held-out features, but not held-out
-labels. A separate framework-independent evaluator receives the held-out labels only
-after the candidate exists.
+The training worker receives the frozen training split and a hash of held-out features,
+but never receives held-out labels. A separate framework-independent evaluator receives
+the held-out labels only after the candidate package exists.
 
-## Trust boundary
+## Trust separation
 
-### Untrusted
+### Untrusted proposal process
 
 ```text
 PyTorch runtime
@@ -40,56 +40,65 @@ training loss and gradients
 optimizer implementation
 float64 parameter values
 quantization proposal
-candidate-reported metadata
-candidate-reported scores
+candidate-reported selection
+candidate-reported acceptance
+candidate-reported certificate
+candidate-reported aggregate score
 ```
 
-### Trusted or trusted after existing validation
+### Framework-independent host path
 
 ```text
-Phase 1 canonical JSON and hash domains
-raw file SHA-256
-strict pilot request parser
-framework-independent exact integer evaluator
-Phase 6 selector record parser, realizer, rollback builder, and package verifier
-Phase 7 promotion controller, when the later admission adapter is connected
-Phase 8 replay boundary, when the later pilot replay adapter is connected
+strict request and proposal parsing
+Phase 1 canonical JSON and hashing
+raw tensor-byte SHA-256
+host-constructed Phase 6 selection
+Phase 6 isolated realization and rollback
+exact integer held-out evaluation
+host-constructed stability certificate
+pinned Lean bridge
+Phase 4 hardened checker
+Phase 7 immutable promotion store
+model-free independent replay
 ```
 
-PyTorch output cannot contain an acceptance Boolean, certificate packet, or aggregate
-score that is treated as evidence. Those proposal fields are fixed to `null`.
+The host does not import PyTorch, `proposal_backend.py`, or the process launcher while
+performing validation, evaluation, Lean/checker admission, promotion, or replay. The
+launcher is imported ephemerally only to start the untrusted process, then removed from
+the host module table and package attributes.
 
 ## Process isolation and failure behavior
 
-The backend is an executable worker:
+The backend runs as a separate executable worker:
 
 ```text
-python -m rcp_rclm_runtime.torch_backend.proposal_backend propose ...
+python -I -B proposal_backend.py propose ...
 ```
 
-The host starts it in a separate process with a fixed timeout, CPU-only environment,
-captured canonical stdout, captured stderr, and a fresh output path. The worker writes
-only to a temporary staging directory and publishes the output atomically after all
-internal checks pass. A crash, timeout, nonfinite loss, nonfinite gradient, gradient
-bound violation, version mismatch, visible GPU, unexpected tensor layout, byte-budget
-overflow, time-budget overflow, predecessor mutation, or malformed request returns a
-structured non-success result and leaves no published candidate output.
+The host supplies a canonical request, immutable predecessor payload, fresh output path,
+CPU-only environment, fixed timeout, and captured stdout/stderr. The worker stages its
+output and publishes atomically only after internal consistency checks pass.
 
-The reference runner executes two fresh proposal processes and requires byte-identical
-process results and semantic output trees.
+A crash, timeout, PyTorch version mismatch, visible GPU, nonfinite loss, nonfinite or
+missing gradient, gradient-bound overflow, unexpected tensor layout, predecessor
+mutation, malformed request, output overwrite, or byte/time budget overflow is
+nonaccepting.
+
+Every candidate is generated twice in fresh processes. The host requires equal raw
+stdout/stderr, equal source-guard evidence, equal proposal hash, and equal semantic output
+tree before selection.
 
 ## Canonical model representation
 
-The package source of truth is not `torch.save` and not a Python pickle. Each model
-parameter is quantized to a frozen integer scale and serialized as raw little-endian
-signed int64 bytes:
+The package source of truth is neither `torch.save` nor pickle. Parameters are quantized
+to the frozen integer scale and serialized as raw little-endian signed int64 files:
 
 ```text
 model/weights/linear.weight.bin
 model/weights/linear.bias.bin
 ```
 
-The manifest records, for every tensor:
+Each tensor record binds:
 
 ```text
 name
@@ -97,114 +106,125 @@ shape
 dtype
 byte order
 element count
-size in bytes
+byte length
 raw-byte SHA-256
 ```
 
-The model hash is the Phase 1 domain-separated canonical JSON hash of the architecture
-and tensor manifest. Phase 6 receives explicit write operations with raw content hashes;
-it independently rebuilds the candidate tree and does not trust the backend's model
-hash declaration.
+The model identity is a Phase 1 domain-separated canonical JSON hash of the architecture
+and tensor manifest. PyTorch proposes float64 values, but cannot choose the canonical
+bytes or hashes accepted by the host.
 
-## Complete proposal artifact
+## Phase 6 realization and rollback
 
-The proposal contains:
+The host validates the proposal and independently constructs a strict
+`Phase6SelectionRecord`. Candidate-reported selection fields are retained only as
+untrusted evidence and are not consumed.
+
+The genuine substantive operation is a changed file under:
 
 ```text
-proposal.json
-phase6_selection.json
-manifest.json
-files/model/architecture.json
-files/model/weights_manifest.json
-files/model/weights/linear.weight.bin
-files/model/weights/linear.bias.bin
-files/model/optimizer_manifest.json
-files/model/training_data_manifest.json
-files/model/rng_manifest.json
-files/model/training_command.json
-files/model/resource_usage.json
-files/model/evaluation_request.json
-files/model/rollback_binding.json
+model/weights/
+component kind: model_weights
 ```
 
-The Phase 6 selection contains only operations whose bytes genuinely differ or are new.
-The changed weight file is classified as `model_weights`, which is already a substantive
-Phase 6 component kind. Unchanged architecture and bias bytes are not falsely listed as
-modified files.
+Phase 6 then copies the predecessor into an isolated workspace, applies only the
+host-selected writes, remeasures the candidate, records all before/after hashes, creates
+the rollback archive, restores that archive independently, publicly verifies the
+candidate package, and publishes it as `realized_unverified`.
 
-## Independent evaluation
+## Exact model evaluation
 
-The authoritative pilot evaluator does not import PyTorch. It reads the quantized int64
-candidate directly and evaluates logits with Python integer arithmetic. The frozen
-held-out result is:
+The model evaluator imports no PyTorch. It reads signed int64 tensor bytes and computes
+logits and predictions using Python integer arithmetic.
+
+The frozen held-out result is:
 
 ```text
-predecessor correct: 2 / 4
-candidate correct:   4 / 4
-protected class-0:   2 / 2 before and after
+predecessor correct:       2 / 4
+candidate correct:         4 / 4
+protected class-0 correct: 2 / 2 before and after
 ```
 
-The pilot evaluation conditions are therefore:
+The learned-candidate gate requires:
 
 ```text
-held-out correct count strictly increases
-protected class-0 recall does not decrease
 candidate model hash differs from predecessor model hash
+held-out correct count strictly increases
+protected class-0 metric does not decrease
 ```
 
-These exact empirical conditions are an admission precondition for the later promotion
-adapter. They are not represented as a new Gate A/B/C theorem and are not substituted
-for the existing Lean/checker obligations.
+These are exact empirical package conditions. They are not represented as a new Gate
+A/B/C theorem and do not replace the existing Lean/checker obligations.
 
-## Phase 6 alignment
+## Lean and checker admission
 
-The reference runner constructs an actual verified Phase 6 predecessor package, adds
-the immutable predecessor model before measurement, runs the untrusted proposal twice,
-parses the produced `Phase6SelectionRecord`, and invokes the existing Phase 6 package
-builder. The resulting candidate package records:
+After exact model evaluation passes, the host constructs the ordinary Gate B stability
+certificate outside PyTorch. The candidate preserves the logical `target` state while
+changing model weights. The pinned Lean bridge and hardened checker therefore verify the
+existing formal stability obligations; they do **not** prove the empirical model score.
+
+Promotion requires both independent gates:
 
 ```text
-actual changed files
-before/after hashes
-commands and environment
-resource usage
-substantive model_weights change
-canonical rollback archive
-independently restored predecessor tree
-candidate manifest and payload-tree hash
+exact model objective/protected-metric gate
+and
+existing Lean plus hardened-checker stability gate
 ```
 
-The framework-independent evaluator then reads the model bytes from the actual realized
-candidate package rather than from in-memory PyTorch tensors.
+A failure in either gate is nonpromoting. The controller does not manually repair the
+candidate and the active predecessor remains unchanged.
 
-## Current boundary
+## Atomic promotion and independent replay
 
-This first implementation round establishes:
+An accepted candidate is installed through the existing Phase 7 content-addressed
+store, parent binding, append-only ledger, and atomic active-pointer replacement.
+
+The learned replay path then recomputes, without rerunning training:
 
 ```text
-verified predecessor package
-→ isolated untrusted PyTorch proposal
-→ exactly one genuine weight update
-→ deterministic integer weight package
-→ Phase 6 candidate realization
-→ exact held-out evaluation
-→ protected-metric non-regression
-→ verified Phase 6 rollback
+retained two-process generator evidence
+proposal validation
+host selection
+fresh Phase 6 realization
+exact integer evaluation
+host certificate
+Lean source and source guard
+Lean semantic verdict
+hardened-checker semantic verdict
+resource evidence
+rollback restoration
+promotion-parent linkage
 ```
 
-It intentionally does not yet claim:
+Replay rejects if `torch`, the process launcher, or the proposal backend is loaded. The
+pinned workflow physically removes `proposal_backend.py` and `process.py` before replay
+and requires zero training/generator invocations.
+
+## Local deterministic evidence
+
+The completed local suite records:
 
 ```text
-PyTorch-specific promotion
-Phase 7 learned-backend controller admission
-Phase 8 generator-free replay of a promoted learned package
-formal proof of the empirical model objective
-arbitrary learned-system refinement
-GPU determinism
-LLM-scale training
-open-ended generator correctness
+proposal/backend tests:          10 passed
+admission/rejection/replay tests: 13 passed
+source-quality findings:          0
+accepted fixture:                 promoted
+rejected objective fixture:       active package preserved
+independent replay:               accept
+training invocations in replay:   0
+manual repair count:              0
 ```
 
-The next closure work for this pilot is the narrow admission adapter that combines the
-exact model evaluator with the unchanged pinned Lean and hardened-checker path, followed
-by promotion/rejection and independent replay of the retained learned candidate.
+Authoritative completion still requires one published exact head to pass Linux,
+Windows, macOS, pinned Lean, all Phase 0–8 regressions, learned promotion/rejection,
+training-source removal, independent replay, generated-Lean hygiene, and closure.
+
+## Claim boundary
+
+Even after closure, this pilot establishes only one deterministic CPU-only learned
+successor example behind the existing trust boundary. It does not establish generator
+trust, learned proposal authority, arbitrary learned-system refinement, open-ended
+generator correctness, GPU reproducibility, LLM-scale training, strict useful
+improvement at every recursive step, unbounded successor availability, general
+noncommuting quantum semantics, external benchmark performance, or autonomous/unbounded
+RSI.
