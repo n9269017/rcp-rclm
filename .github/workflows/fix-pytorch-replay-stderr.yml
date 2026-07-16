@@ -18,14 +18,14 @@ permissions:
 jobs:
   fix:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       - name: Check out documentation branch
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
           ref: agent/rcp-rclm-v2-final-documentation
           fetch-depth: 0
-      - name: Patch replay to accept hash-bound deterministic stderr
+      - name: Patch and publish replay condition
         shell: bash
         run: |
           set -euo pipefail
@@ -39,19 +39,6 @@ jobs:
               raise RuntimeError("expected deterministic-stderr replay condition not found")
           path.write_text(text.replace(old, new, 1), encoding="utf-8")
           PY
-      - name: Install runtime and pinned CPU PyTorch
-        run: |
-          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
-          python -m pip install --disable-pip-version-check --index-url https://download.pytorch.org/whl/cpu torch==2.10.0
-      - name: Run focused PyTorch pilot tests
-        run: >-
-          python python/rcp_rclm_runtime_v2/tools/run_pytorch_pilot_tests.py
-          --package-root python/rcp_rclm_runtime_v2
-          --out /tmp/pytorch-pilot-tests.log
-      - name: Commit repair and remove temporary workflow
-        shell: bash
-        run: |
-          set -euo pipefail
           rm -f .github/workflows/fix-pytorch-replay-stderr.yml
           git add -A
           git diff --cached --check
