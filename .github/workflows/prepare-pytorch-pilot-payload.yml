@@ -1,0 +1,72 @@
+name: Prepare complete PyTorch pilot payload
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-runtime-v2-pytorch-pilot
+    paths:
+      - ".pytorch_pilot_payload_v4/READY"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepare-pytorch-pilot-payload-v4
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out canonical pilot branch
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: agent/rcp-rclm-runtime-v2-pytorch-pilot
+          fetch-depth: 0
+          show-progress: false
+
+      - name: Verify and convert the complete payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+
+          source = Path(".pytorch_pilot_payload_v4")
+          if (source / "READY").read_text(encoding="ascii") != "ready-v4\n":
+              raise RuntimeError("invalid v4 readiness marker")
+          parts = tuple(sorted(source.glob("part*.txt")))
+          expected = tuple(f"part{index:02d}.txt" for index in range(5))
+          if tuple(path.name for path in parts) != expected:
+              raise RuntimeError("v4 payload part set is incomplete")
+          encoded = "".join(path.read_text(encoding="ascii").strip() for path in parts)
+          if len(encoded) != 24356:
+              raise RuntimeError("unexpected v4 encoded length")
+          digest = hashlib.sha256(encoded.encode("ascii")).hexdigest()
+          if digest != "36b789a4c30d303ad11017816d81d17707557277754b4b97304a422ee4a0c8a8":
+              raise RuntimeError("v4 encoded hash mismatch")
+          target = Path(".pytorch_pilot_payload_v3")
+          target.mkdir(exist_ok=True)
+          for old in target.glob("part*.txt"):
+              old.unlink()
+          for index, start in enumerate(range(0, len(encoded), 8000)):
+              (target / f"part{index:02d}.txt").write_text(
+                  encoded[start : start + 8000], encoding="ascii"
+              )
+          (target / "READY").write_text("ready-v3\n", encoding="ascii")
+          PY
+          rm -rf .pytorch_pilot_payload_v4
+          rm -f .github/workflows/prepare-pytorch-pilot-payload.yml
+
+      - name: Publish the verified v3 payload atomically
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Stage verified complete PyTorch pilot payload [skip ci]"
+          git push origin HEAD:agent/rcp-rclm-runtime-v2-pytorch-pilot
