@@ -1,0 +1,47 @@
+name: Fix PyTorch Windows worker user environment
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/fix-pytorch-windows-worker-user.yml"
+  push:
+    branches:
+      - agent/rcp-rclm-v2-final-documentation
+    paths:
+      - ".github/workflows/fix-pytorch-windows-worker-user.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: agent/rcp-rclm-v2-final-documentation
+          fetch-depth: 0
+      - name: Add deterministic user identity to isolated worker environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("python/rcp_rclm_runtime_v2/rcp_rclm_runtime/torch_backend/process.py")
+          text = path.read_text(encoding="utf-8")
+          old = '''            "CUDA_VISIBLE_DEVICES": "",\n            "MKL_NUM_THREADS": "1",\n'''
+          new = '''            "CUDA_VISIBLE_DEVICES": "",\n            "LOGNAME": "rcp-rclm-pytorch-pilot",\n            "USER": "rcp-rclm-pytorch-pilot",\n            "USERNAME": "rcp-rclm-pytorch-pilot",\n            "MKL_NUM_THREADS": "1",\n'''
+          if old not in text:
+              raise RuntimeError("expected worker environment block not found")
+          path.write_text(text.replace(old, new, 1), encoding="utf-8")
+          PY
+          rm -f .github/workflows/fix-pytorch-windows-worker-user.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Stabilize PyTorch worker identity on Windows"
+          git push origin HEAD:agent/rcp-rclm-v2-final-documentation
