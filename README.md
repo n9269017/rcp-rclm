@@ -1,47 +1,50 @@
 # RCP/RCLM — Robust Reflective Successor Verification
 
-This repository contains the two companion RCP/RCLM manuscripts, the historical
-Lean v1 certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, and
-Phases 0 through 8 of the **Executable Core v2** transition.
+This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1
+certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
+Phases 0–8**, and the first bounded **PyTorch learned-successor pilot**.
 
-The formal project proves a conditional successor-verification theorem stack. The
-executable project instantiates a finite declared reference scope with exact runtime
-records, a pinned Lean bridge, a fail-closed checker, an adversarial rejection suite,
-an untrusted bounded generator, a verified filesystem candidate-package builder, a
-fixed-budget promotion and rollback controller, and independent generator-free replay.
-It does not claim that checker soundness creates successors, that every accepted
-successor is strictly useful, or that the repository is an autonomous unbounded
-recursive-self-improvement system.
+The project proves and executes a conditional successor-verification architecture. The
+formal layer supplies the theorem kernel and the selected finite classical/diagonal
+quantum instances. The executable layer supplies canonical records and hashing, a pinned
+Lean bridge, a pure fail-closed checker, adversarial rejection, an untrusted generator,
+filesystem realization and rollback, atomic promotion, and independent replay. The
+PyTorch pilot adds one optional untrusted CPU-only training backend without moving
+PyTorch into the checker or any other source-of-truth component.
+
+The repository establishes a finite theorem-to-runtime refinement witness at the declared
+reference scope. It does **not** prove autonomous or unbounded recursive self-improvement,
+generator completeness, useful strict improvement at every step, or general
+noncommuting quantum semantics.
 
 ## Authoritative status
 
-| Layer | Status | Exact scope |
+| Layer | Status | Declared scope |
 |---|---|---|
-| Gate A — abstract theorem kernel | Complete, clean-CI built, axiom audited | Abstract conditional successor, finite composition, endpoint recovery, monitors, and conditional infinite closure |
-| Gate B — finite classical instance | Complete at the declared finite reference scope | Shannon entropy, support-aware KL, zero-coordinate conservative extension, exact recovery, strict improvement, concrete checker |
-| Gate B RCLM-to-RCP refinement | Complete at the declared binary scope | Theorem-relevant state/update/certificate fields, checker acceptance, recovery laws, monitors, and architecture obligations |
-| Paper II engine and seed-library interfaces | Implemented with explicit premises | Generator/certifier/selector/realizer relations, trust/resource/domain premises, finite bounded packet grammar |
-| Gate C — selected quantum instance | Complete and audited at the declared commuting/diagonal scope | Certified complex diagonal densities, spectral von Neumann entropy and QRE, identity/swap channels, exact recovery, checker, trajectory, and RCLM refinement |
-| General noncommuting quantum extension | Open | No arbitrary noncommuting densities, general CPTP maps, matrix-log QRE, data processing, or Petz recovery claim |
-| Executable Core v2 Phase 0 | Complete and merged | Frozen object map, trust boundary, numerical semantics, serialization/hashing, acceptance semantics, and claim boundary |
-| Executable Core v2 Phase 1 | Complete and cross-platform validated | Immutable records, exact rationals, certified intervals, selected Gate B/Gate C mathematics, canonical hashing, source guard |
-| Executable Core v2 Phase 2 | Complete at the selected finite reference scope | Pinned toolchain verification, generated Lean certificates, structured RCP/RCLM verdicts, ten-case differential conformance |
-| Executable Core v2 Phase 3 | Complete and cross-platform validated | Deterministic pure checker, recomputed obligation bundle, structured reports, packet-bound Lean evidence |
-| Executable Core v2 Phase 4 | Complete and cross-platform validated | Hardened package integrity, 27 deterministic adversarial cases, first-class rejection records, pinned Lean revalidation |
-| Executable Core v2 Phase 5A | Complete and cross-platform validated | Separate-process bounded Gate B proposals, two-run replay, host-owned certificate/selection/logical realization, Lean and hardened-checker acceptance |
-| Executable Core v2 Phase 6 | Complete and cross-platform validated at the reference package scope | Actual predecessor measurement, isolated realization, substantive policy changes, before/after hashes, rollback restoration, immutable candidate packaging, public verification |
-| Executable Core v2 Phase 7 | Complete, merged, and cross-platform validated | Fixed-budget retries, state-derived evaluation, host-owned certificate, pinned Lean and hardened-checker admission, immutable parent-linked packages, hash ledger, atomic active pointer, rollback fallback |
-| Executable Core v2 Phase 8 | Complete and cross-platform/pinned-Lean validated at the finite reference scope | Portable retained-evidence bundle, zero-generator replay, fresh candidate/certificate/Lean/checker recomputation, two promotions, two bounded rejections, and a three-package parent chain |
-| Phase 5B, PyTorch, and benchmark adapters | Optional or not yet licensed for claims | No generator trust, no learned proposal authority, no autonomous RSI, and no external benchmark result |
+| Gate A — abstract theorem kernel | Complete, clean-CI built, axiom audited | Conditional successor soundness, finite composition, endpoint recovery, preservation monitors, and conditional infinite closure under explicit successor availability |
+| Gate B — finite classical instance | Complete | Finite distributions, Shannon entropy, support-aware KL, zero-coordinate conservative extension, exact recovery, binary improvement/stability checker, and bounded seed grammar |
+| Gate B RCLM-to-RCP refinement | Complete | Architecture state/update/certificate fields, checker refinement, recovery/monitor transport, and trust/resource/domain premises |
+| Gate C — selected quantum instance | Complete and audited at the commuting/diagonal scope | Certified complex diagonal densities, spectral von Neumann entropy, support-aware diagonal QRE, identity/swap channels, exact selected recovery, checker, finite trajectory, and RCLM refinement |
+| General noncommuting quantum extension | Open | No arbitrary noncommuting densities, general CPTP maps, matrix-log QRE, general data processing, or Petz-recovery claim |
+| Executable Core v2 Phase 0 | Complete | Frozen object map, trust boundary, numerical semantics, canonical serialization/hashing, acceptance semantics, and claim boundary |
+| Phase 1 | Complete and cross-platform validated | Immutable types, exact rationals, certified intervals, selected Gate B/Gate C mathematics, canonical hashes, and source hygiene |
+| Phase 2 | Complete at the selected finite scope | Pinned Lean certificate generation/compilation, structured verdicts, and ten-case differential conformance |
+| Phase 3 | Complete and cross-platform validated | Pure deterministic model-free checker with recomputed obligation reports |
+| Phase 4 | Complete and cross-platform validated | Hardened package bindings and 27 first-class adversarial/tamper rejections |
+| Phase 5A | Complete and cross-platform validated | Separate-process bounded Gate B proposal grammar, two-run replay, host-owned certificate/selection/realization, Lean and checker admission |
+| Phase 6 | Complete and cross-platform validated | Isolated filesystem realization, substantive changes, before/after hashes, resource records, rollback restoration, and immutable candidate packages |
+| Phase 7 | Complete and cross-platform validated | Fixed-budget retries, pinned Lean/checker admission, immutable parent-linked packages, hash-chained ledger, atomic active pointer, and rollback fallback |
+| Phase 8 | Complete and cross-platform/pinned-Lean validated | Portable retained evidence, zero-generator replay, fresh realization/certificate/Lean/checker recomputation, two promotions, two bounded rejections, and a three-package chain |
+| First PyTorch learned-successor pilot | Complete at the declared tiny CPU-only scope | Two deterministic proposal runs, one genuine SGD update, canonical int64 weight package, exact framework-independent evaluation, protected-metric non-regression, fail-closed admission, atomic promotion/rejection, rollback, and zero-training replay |
+| Larger/open-ended learned generators and benchmarks | Open | No learned proposal authority, GPU reproducibility, LLM-scale training, architecture search, external benchmark claim, or autonomous RSI |
 
-The formal documentation is indexed in
-[`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md). The executable
-transition is indexed in
-[`docs/executable_core_v2/README.md`](docs/executable_core_v2/README.md).
+Formal documentation is indexed at
+[`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md). Executable documentation
+is indexed at [`docs/executable_core_v2/README.md`](docs/executable_core_v2/README.md).
 
-## Authoritative Lean project
+## Pinned formal project
 
-The active project is:
+The active Lean project is:
 
 ```text
 lean/rcp_rclm_formal_core_v2/
@@ -54,16 +57,14 @@ Lean:    leanprover/lean4:v4.31.0
 mathlib: fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
 ```
 
-The complete dependency graph is committed in
-`lean/rcp_rclm_formal_core_v2/lake-manifest.json`.
-
-The historical v1 project remains at:
+The frozen formal source commit used by Runtime v2 is:
 
 ```text
-lean/rcp_rclm_can_lean4/
+012de4a55f326107f53f0e215c8aec62859d0bbf
 ```
 
-Formal Core v2 does not overwrite or silently broaden the historical certificate.
+The historical v1 project remains under `lean/rcp_rclm_can_lean4/`; v2 does not overwrite
+or silently broaden that certificate.
 
 ## Repository map
 
@@ -73,67 +74,54 @@ papers/
   paper-II-rclm-architecture/
 
 lean/
-  rcp_rclm_formal_core_v2/       active pinned formal project
-  rcp_rclm_can_lean4/            historical v1 project
+  rcp_rclm_formal_core_v2/       active pinned Formal Core v2
+  rcp_rclm_can_lean4/            historical v1 certificate
 
 docs/formal_core_v2/             theorem, gate, audit, and reproduction records
-docs/executable_core_v2/         theorem-to-runtime and executable-phase records
+docs/executable_core_v2/         Phase 0–8 and PyTorch-pilot architecture/validation
 
 python/rcp_rclm_executable_core_v2/
-  contract/                       frozen schemas for Phases 0, 3, 4, 5A, 6, 7, and 8
+  contract/                       strict executable schemas
 
 python/rcp_rclm_runtime_v2/
   rcp_rclm_runtime/
+    canonical/                    canonical JSON, paths, content/tree hashes
     mathematics/                  exact Gate B and selected Gate C mathematics
-    lean_bridge/                  Phase 2 pinned Lean bridge
+    refinement/                   RCLM-to-RCP executable mappings
+    lean_bridge/                  generated-source guard and pinned Lean verifier
     checker/                      Phase 3 checker and Phase 4 hardened envelope
-    adversarial/                  Phase 4 attack records and deterministic runner
-    generator/                    Phase 5A bounded worker, protocol, process, and loop
-    successor/                    Phase 6 selector, realizer, rollback, package verifier
-    promotion/                    Phase 7 controller, immutable store, ledger, and pointer
-    replay/                       Phase 8 bundle, source guard, records, and reproducer
-  tests/                          Phase 1 deterministic tests and frozen vectors
-  tests_phase2/                   Phase 2 bridge tests
-  tests_phase3/                   Phase 3 checker tests
-  tests_phase4/                   Phase 4 hardened and adversarial tests
-  tests_phase5/                   Phase 5A generator and reference-loop tests
-  tests_phase6/                   Phase 6 successor-package tests
-  tests_phase7/                   Phase 7 promotion-controller tests
-  tests_phase8/                   Phase 8 independent-replay and tamper tests
-  tools/                          validation, conformance, and artifact runners
+    adversarial/                  deterministic Phase 4 attack suite
+    generator/                    Phase 5A bounded untrusted worker/process
+    successor/                    Phase 6 selector, realizer, package, rollback
+    promotion/                    Phase 7 immutable store, ledger, pointer, controller
+    replay/                       Phase 8 bundle and generator-free reproducer
+    torch_backend/                optional untrusted CPU PyTorch pilot and model-free replay
+  tests*/                         Phase-specific regression suites
+  tests_pytorch_pilot/            learned proposal/admission/replay tests
+  tools/                          conformance and artifact runners
 
 scripts/
   check_candidate.py
   check_hardened_candidate.py
-  generate_reference_candidate.py
   run_phase5a_reference_loop.py
   build_candidate_package.py
   run_promotion_loop.py
   build_replay_bundle.py
   reproduce_run.py
-
-.github/workflows/
-  formal-core-v2.yml
-  executable-core-v2-contract.yml
-  runtime-v2-phase-1.yml
-  runtime-v2-phase-2.yml
-  runtime-v2-phase-3.yml
-  runtime-v2-phase-4.yml
-  runtime-v2-phase-5a.yml
-  runtime-v2-phase-6.yml
-  runtime-v2-phase-7.yml
-  runtime-v2-phase-8.yml
+  run_pytorch_pilot.py
+  run_pytorch_pilot_controller.py
+  replay_pytorch_pilot.py
 ```
 
 ## Formal theorem shape
 
 For an admissible invariant-preserving predecessor and a trusted checker, accepted
-candidate/certificate evidence yields the one-step obligation bundle:
+candidate/certificate evidence yields a one-step obligation bundle:
 
 ```text
 typed successor validity
 computed residual nonpositivity
-quantitative protected-distinction non-loss
+protected-distinction non-loss
 constructive candidate-tied recovery
 protected-invariant preservation
 progress nondecrease
@@ -144,150 +132,89 @@ reality/uncertainty containment
 successor-domain admissibility
 ```
 
-Gate A composes these obligations along finite accepted trajectories and proves a
-conditional infinite trajectory theorem under an explicit successor-availability
-premise. Checker soundness is never used to prove generator completeness.
+Gate A composes the obligations over finite accepted trajectories and proves conditional
+infinite closure only under an explicit successor-availability premise. Checker soundness
+is not generator completeness.
 
-Gate B supplies a concrete finite classical reference with actual Shannon entropy and
-KL divergence, exact zero-coordinate extension and recovery, a KL-derived strict
-improvement witness, a binary checker, and a bounded improve/stabilize seed grammar.
+Gate B instantiates the theorem with exact finite classical objects. Gate C instantiates
+the selected two-level commuting/diagonal quantum reference. The latter does not imply a
+general noncommuting theorem.
 
-Gate C uses certified finite spectra embedded as complex diagonal matrices. It proves
-Hermitian, positive-semidefinite, and trace-one properties; spectral von Neumann
-entropy; support-aware diagonal QRE; identity/swap behavior; exact selected recovery;
-and finite checker/trajectory/RCLM properties. The claim remains limited to the
-commuting/diagonal reference.
-
-## Executable Core v2 phases
-
-### Phase 0 — frozen theorem-to-runtime contract
-
-Phase 0 freezes the Lean-to-schema/Python/runtime/evidence/test correspondence, trust
-boundary, exact/interval numerical semantics, canonical JSON and tree hashing,
-fail-closed tri-state acceptance, and claim limits.
-
-### Phase 1 — deterministic runtime bedrock
-
-Phase 1 implements immutable strict records, exact rational arithmetic, certified
-outward log intervals, selected Gate B/Gate C mathematics, canonical paths and hashes,
-RCLM-to-RCP mappings, and the generated-Lean anti-placeholder/local-axiom source gate.
-
-### Phase 2 — pinned Lean conformance bridge
+## Executable theorem-to-runtime path
 
 ```text
-canonical reference packet
-→ independent Python interpretation
-→ deterministic Lean source generation
-→ pre-compilation source guard
-→ exact formal-source and toolchain pin verification
-→ pinned Lean compilation
-→ structured RCP/RCLM verdict parsing
-→ differential comparison and retained evidence
+Phase 0  freeze refinement contract and trust boundary
+Phase 1  implement exact deterministic runtime bedrock
+Phase 2  bind selected packets to the pinned Lean project
+Phase 3  recompute all checker obligations
+Phase 4  reject schema, tamper, numeric, trust, and proof-token attacks
+Phase 5A run the bounded untrusted reference proposal process
+Phase 6  realize actual filesystem candidates and verified rollback snapshots
+Phase 7  promote or reject through Lean/checker-controlled atomic transactions
+Phase 8  replay retained transitions without invoking the original generator
 ```
 
-The declared suite contains four accepted references and six rejected mutations.
-
-### Phase 3 — deterministic checker
-
-The checker is deterministic, pure over immutable inputs, model-free, network-free,
-generator-independent, and fail-closed. It recomputes typed successor and residuals,
-state-derived distributions/spectra, entropy and KL/QRE intervals, protected non-loss,
-recovery, invariants, containment, progress, strict witness, trust, resources, domain,
-RCLM-to-RCP consistency, monitors, Lean-packet binding, and artifact hashes.
-Candidate fields that merely assert success are not evidence.
-
-### Phase 4 — adversarial and tamper rejection
-
-Phase 4 adds parent/tree/candidate/certificate/trust/resource/policy/claim bindings and
-records 27 deterministic schema, replay, tamper, numeric, scope, witness, resource,
-trust, provenance, and generated-source attacks. Every required attack remains
-nonaccepting.
-
-### Phase 5A — deterministic bounded reference generator
-
-The untrusted worker receives only an immutable predecessor view, public policy,
-declared objective, and bounded resources. It emits only a bounded word, witness,
-proposal name, and binding/resource fields. It cannot emit a certificate, successor,
-checker result, or acceptance Boolean.
-
-The host executes each request twice, validates replay, constructs the certificate,
-selects the typed update, derives the logical successor, invokes the pinned Lean bridge,
-and calls the hardened checker:
+The validated finite reference trajectory is:
 
 ```text
-initial → improve → target
-target  → stabilize → target
+RCLM_0 — immutable initial root
+→ RCLM_1 — target plus a substantive verification-policy change
+→ RCLM_2 — target plus a substantive memory-policy change
+→ bounded rejection
+→ bounded rejection
+→ active package remains RCLM_2
 ```
 
-### Phase 6 — selector, realizer, rollback, and candidate package
+Phase 8 re-realizes candidate packages, reconstructs certificates, regenerates and scans
+Lean source, reruns Lean and the hardened checker, verifies rollback and parent links, and
+records zero original-generator invocations.
+
+## First PyTorch learned-successor pilot
+
+PyTorch remains an optional **untrusted proposal backend**. It is not used as the source
+of truth for canonical serialization, hashing, certificate arithmetic, KL/QRE bounds,
+trust, checker acceptance, promotion, rollback, or replay.
+
+The frozen pilot uses:
 
 ```text
-measure actual predecessor bytes
-→ validate proposal and parent bindings
-→ select explicit file operations
-→ copy payload into a fresh isolated workspace
-→ apply only selected operations
-→ remeasure the complete candidate tree
-→ record before/after file and semantic hashes
-→ require a genuine substantive component change
-→ record commands, environment, and resource use
-→ build and independently restore a deterministic rollback archive
-→ write an immutable realized_unverified candidate package
-→ publicly reverify all package bindings
-→ atomically publish without overwriting an existing output
+model:                 Linear(2, 2), with bias
+device:                CPU only
+training dtype:        float64
+canonical weight type: little-endian int64
+seed:                  1729
+threads:               1
+optimizer:             SGD
+optimizer steps:       exactly 1
+train examples:        4
+held-out examples:     4
+GPU/network:           forbidden
 ```
 
-The `initial` reference changes the state and verification policy. The `target`
-reference preserves the target state while changing the memory policy. Metadata-only,
-state-only, name-, version-, timestamp-, schema-, index-, and manifest-only changes are
-not substantive successors.
+The training worker receives no held-out labels. It emits an untrusted proposal and raw
+canonical tensor files. A framework-independent exact integer evaluator recomputes the
+held-out and protected metrics from the realized package. The accepted reference changes
+the model hash, improves held-out correctness from `2/4` to `4/4`, and preserves the
+protected class-0 result at `2/2`.
 
-### Phase 7 — fixed-budget promotion and rollback controller
+The learned candidate then follows the existing trusted-after-validation path:
 
 ```text
-load immutable active predecessor
-→ run the untrusted generator twice
-→ require replay equality and strict proposal validity
-→ account against frozen attempt and resource budgets
-→ select and realize through Phase 6
-→ publicly verify the filesystem candidate
-→ derive objective evidence from measured states
-→ construct the certificate outside the generator
-→ invoke the pinned Lean bridge
-→ invoke the Phase 4 hardened checker
-→ reverify candidate immutability
-→ install an immutable package bound to the active parent hash
-→ append the hash-chained ledger entry
-→ atomically replace the active pointer or restore it on activation failure
+predecessor model package
+→ two isolated PyTorch proposal runs
+→ host-constructed Phase 6 selection
+→ actual candidate package and rollback snapshot
+→ exact model-free evaluation
+→ host-owned certificate
+→ generated-Lean source guard and pinned Lean verifier
+→ Phase 4 hardened checker
+→ Phase 7 atomic promotion or fail-closed rejection
+→ independent replay after removing the training worker
 ```
 
-The controller coordinates components; it does not become a second mathematical
-checker. A rejection may return to a fresh generator process only while the original
-fixed budget remains. An indeterminate result stops the run and remains nonpromoting.
-No manual repair or override-to-accept path exists.
-
-Phase 7 is merged and remains regression-validated as the immutable promotion-store
-source for Phase 8.
-
-### Phase 8 — independent replay and finite trajectory
-
-```text
-verify the retained Phase 7 store and portable replay bundle
-→ reconstruct generator input from the immutable predecessor
-→ parse and validate preserved raw generator output without invoking the generator
-→ recompute Phase 6 selection and filesystem realization
-→ reconstruct objective evidence and the host-owned certificate
-→ regenerate and scan Lean source before pinned compilation
-→ recompute the captured hardened-checker result and run it again with fresh Lean evidence
-→ verify resources, rollback, parent links, successor hashes, ledger, and active pointer
-→ reproduce two promotions and two correct bounded nonpromotions
-```
-
-The validated reference chain contains three immutable packages. The pinned replay
-removes the original generator process and worker source files before reproduction and
-records zero generator invocations and no forbidden generator modules loaded. Phase 8
-remains limited to the finite Gate B promoted path plus selected diagonal Gate C
-checker/Lean regression; it does not establish open-ended successor availability.
+The negative fixture fails the exact learned objective, does not promote, preserves the
+active predecessor, and verifies rollback. The independent reproducer records zero
+training invocations and no loaded training-backend module.
 
 ## Build and validate
 
@@ -309,12 +236,18 @@ lake env lean ../../docs/formal_core_v2/audit/RCLMRefinementAxiomAudit.lean
 lake env lean ../../docs/formal_core_v2/audit/GateCAxiomAudit.lean
 ```
 
-Install and test Runtime v2:
+Install Runtime v2 and the optional pinned pilot dependency:
 
 ```bash
 cd python/rcp_rclm_runtime_v2
 python -m pip install --no-deps -e .
-python -m compileall -q rcp_rclm_runtime tests tests_phase2 tests_phase3 tests_phase4 tests_phase5 tests_phase6 tests_phase7 tests_phase8 tools
+python -m pip install '.[torch-pilot]'
+```
+
+Run all Python suites:
+
+```bash
+python -m compileall -q rcp_rclm_runtime tests tests_phase2 tests_phase3 tests_phase4 tests_phase5 tests_phase6 tests_phase7 tests_phase8 tests_pytorch_pilot tools
 python tools/validate_source_quality.py --package-root . --out source_quality.json
 python -m unittest discover -s tests -v
 python -m unittest discover -s tests_phase2 -v
@@ -324,50 +257,27 @@ python -m unittest discover -s tests_phase5 -v
 python -m unittest discover -s tests_phase6 -v
 python -m unittest discover -s tests_phase7 -v
 python -m unittest discover -s tests_phase8 -v
+python -m unittest discover -s tests_pytorch_pilot -v
 ```
 
-Run the principal executable paths from the repository root:
+Principal repository-root entry points include:
 
 ```bash
-python python/rcp_rclm_runtime_v2/tools/run_phase2_conformance.py \
-  --repo-root . \
-  --outdir artifacts/runtime_v2_phase_2/local
-
-python scripts/run_phase5a_reference_loop.py \
-  --repo-root . \
-  --outdir artifacts/runtime_v2_phase_5a/local/reference_loop
-
-python python/rcp_rclm_runtime_v2/tools/run_phase6_reference_suite.py \
-  --outdir artifacts/runtime_v2_phase_6/local/reference_suite
-
-python scripts/run_promotion_loop.py \
-  --repo-root . \
-  --store-root artifacts/runtime_v2_phase_7/local/store \
-  --out artifacts/runtime_v2_phase_7/local/summary.json \
-  --trajectory \
-  --timeout-seconds 180
-
-python scripts/build_replay_bundle.py \
-  --source-store artifacts/runtime_v2_phase_7/local/store \
-  --output artifacts/runtime_v2_phase_8/local/bundle
-
-python scripts/reproduce_run.py \
-  --repo-root . \
-  --bundle artifacts/runtime_v2_phase_8/local/bundle \
-  --outdir artifacts/runtime_v2_phase_8/local/reproduced \
-  --timeout-seconds 180
+python scripts/run_promotion_loop.py --repo-root . --store-root artifacts/phase7/store --out artifacts/phase7/summary.json --trajectory
+python scripts/build_replay_bundle.py --source-store artifacts/phase7/store --output artifacts/phase8/bundle
+python scripts/reproduce_run.py --repo-root . --bundle artifacts/phase8/bundle --outdir artifacts/phase8/reproduced
+python scripts/run_pytorch_pilot.py --outdir artifacts/pytorch/proposal
+python scripts/run_pytorch_pilot_controller.py --repo-root . --store-root artifacts/pytorch/store --out artifacts/pytorch/controller.json --expect promoted
+python scripts/replay_pytorch_pilot.py --repo-root . --store-root artifacts/pytorch/store --outdir artifacts/pytorch/replay --summary artifacts/pytorch/replay.json --require-training-source-absent
 ```
 
-## Next boundary
+## Next research boundary
 
-With the finite Phase 0–8 reference path closed, the next optional executable boundary
-is a small deterministic Phase 5B/PyTorch proposal pilot behind the existing untrusted
-generator interface. The learned backend may propose a genuinely changed package, but
-it cannot determine canonical hashes, KL/QRE certification, strict margins, trust
-validity, checker acceptance, promotion, rollback, or replay.
-
-General noncommuting quantum semantics, arbitrary learned-system refinement, external
-benchmark claims, and unbounded successor availability remain open.
+Later optional work may introduce learned experiment selection, proposal ranking, planners,
+adapters/LoRA, optimizer-policy changes, or architecture changes. Every such component
+must remain inside the successor package hash boundary and outside checker authority.
+Large external benchmarks should follow—not precede—the corresponding deterministic
+containment, rollback, promotion, and replay evidence.
 
 ## Claim boundary
 
@@ -375,16 +285,16 @@ The repository does **not** establish:
 
 ```text
 exact full Paper I or Paper II semantic equivalence
-arbitrary learned-system entry
+arbitrary learned-system entry or learned proposal authority
 arbitrary or unbounded generator/proof-search completeness
-generator trust or open-ended generator correctness
 strict useful improvement at every recursive step
 general noncommuting QRE or arbitrary CPTP data processing
 Petz or approximate recovery
-general Python-to-Lean refinement beyond the declared reference packets
-independent replay beyond the declared finite captured reference trajectory
-empirical autonomous or unbounded RSI
+general Python-to-Lean refinement beyond the declared packets
+independent replay beyond the declared finite reference and tiny-model pilot scopes
+GPU reproducibility or LLM-scale learned refinement
 external benchmark performance
+autonomous or unbounded RSI
 ```
 
 ## Citation and licenses

@@ -92,7 +92,7 @@ class ExactMetricRecord:
         cls,
         value: object,
         path: str = "pytorch_pilot.metric",
-    ) -> "ExactMetricRecord":
+    ) -> ExactMetricRecord:
         obj = strict_object(
             value,
             path,
@@ -195,7 +195,7 @@ class ExactEvaluationRecord:
         cls,
         value: object,
         path: str = "pytorch_pilot.evaluation",
-    ) -> "ExactEvaluationRecord":
+    ) -> ExactEvaluationRecord:
         obj = strict_object(
             value,
             path,

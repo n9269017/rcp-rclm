@@ -1,167 +1,151 @@
 # RCP/RCLM Runtime v2
 
-This package contains the deterministic Phase 1 runtime bedrock, the validated
-Phase 2 pinned Lean conformance bridge, the Phase 3 deterministic checker, the
-Phase 4 hardened checker and adversarial rejection suite, the Phase 5A bounded
-reference generator, the Phase 6 selector and filesystem candidate-package builder,
-and the Phase 7 fixed-budget promotion and rollback controller.
+`rcp-rclm-runtime-v2` is the deterministic Python execution layer for the pinned
+RCP/RCLM Formal Core v2. It contains Executable Core v2 Phases 1–8 and the first optional
+untrusted CPU-only PyTorch learned-successor pilot.
 
-## Phase 1 bedrock
-
-Implemented and cross-platform validated:
-
-- immutable runtime records and strict parsers;
-- reduced exact rational arithmetic;
-- certified outward rational logarithm intervals;
-- Gate B finite distributions, Shannon entropy, support-aware KL, zero extension,
-  and exact recovery;
-- selected Gate C two-level diagonal density matrices, spectral entropy, diagonal
-  QRE, identity/swap channels, and exact selected recovery;
-- canonical JSON, semantic paths, content hashing, and semantic-tree hashing;
-- RCLM-to-RCP forgetful mappings;
-- generated-Lean source hygiene checks.
-
-## Phase 2 initial Lean bridge
-
-Implemented and validated:
-
-- a closed immutable Gate B/Gate C reference-packet grammar;
-- deterministic Python interpretation for ten accept/reject cases;
-- deterministic generated Lean certificate source;
-- mandatory pre-compilation rejection of admitted-proof tokens and local axioms;
-- verification of the frozen formal-source Git commit and exact Lean/mathlib pins;
-- pinned `lake env lean` invocation;
-- canonical structured Lean verdict parsing with independent RCP and RCLM fields;
-- fail-closed Python/Lean differential comparison;
-- Linux, Windows, and macOS Python bridge tests;
-- a clean pinned Linux Lean build and ten-case conformance run.
-
-## Phase 3 deterministic checker
-
-The checker core is a pure function over immutable records. It is deterministic,
-model-free, network-free, generator-independent, and fail-closed. Candidate fields
-that merely claim preservation, containment, improvement, trust, or acceptance are
-not part of the request schema and are rejected as unknown.
-
-## Phase 4 hardened checker and attack suite
-
-The hardened envelope composes the Phase 3 checker with independently measured
-package-integrity records. The deterministic adversarial suite records 27 first-class
-schema, replay, tamper, numerical, selected-quantum, resource, trust, provenance, and
-generated-source attacks.
-
-## Phase 5A bounded reference generator
-
-The first generator implements only the finite Gate B seed grammar declared in Lean.
-It runs in a separate capability-minimized process and emits only a bounded proposal.
-Trusted orchestration validates the proposal, constructs the certificate, selects the
-update, derives the logical successor, invokes the pinned Lean bridge, and calls the
-Phase 4 hardened checker.
-
-Run the generator process suite:
-
-```bash
-python python/rcp_rclm_runtime_v2/tools/run_phase5a_process_suite.py \
-  --out artifacts/runtime_v2_phase_5a/local/process_suite.json
-```
-
-## Phase 6 selector, realizer, and package builder
-
-Phase 6 turns the validated proposal into an actual filesystem candidate without
-promoting it. It:
+## Implemented layers
 
 ```text
-measures the predecessor package from bytes
-→ validates proposal and predecessor bindings
-→ selects explicit file operations
-→ copies the payload into an isolated workspace
-→ applies only selected operations
-→ records exact before/after hashes
-→ rejects metadata-only or state-only successors
-→ builds and independently restores a rollback archive
-→ writes a realized_unverified candidate package
-→ publicly reverifies all package bindings
-→ atomically publishes the package
+Phase 1  immutable records, exact rational/interval mathematics, canonical hashes
+Phase 2  generated-source guard and pinned Lean conformance bridge
+Phase 3  pure deterministic fail-closed checker
+Phase 4  hardened package envelope and 27-case adversarial suite
+Phase 5A bounded separate-process reference generator
+Phase 6  selector, isolated realizer, rollback, and candidate-package verifier
+Phase 7  immutable promotion store, ledger, active pointer, and rollback controller
+Phase 8  portable bundle and independent zero-generator replay
+PyTorch pilot  isolated one-update proposal, exact evaluation, admission, promotion/rejection, and zero-training replay
 ```
 
-The reference cases introduce genuine verification-policy and memory-policy changes.
-The candidate remains unverified for promotion until the Phase 7 controller invokes
-objective evaluation, the pinned Lean bridge, and the hardened checker.
+The mathematical runtime scope is the declared Gate B finite classical reference and the
+selected Gate C commuting/diagonal reference. No general noncommuting density-matrix or
+CPTP-map implementation is claimed.
 
-Run the Phase 6 unit suite:
-
-```bash
-python python/rcp_rclm_runtime_v2/tools/run_phase6_tests.py \
-  --package-root python/rcp_rclm_runtime_v2 \
-  --out artifacts/runtime_v2_phase_6/local/phase_6_unit.log
-```
-
-Build both reference filesystem candidates:
-
-```bash
-python python/rcp_rclm_runtime_v2/tools/run_phase6_reference_suite.py \
-  --outdir artifacts/runtime_v2_phase_6/local/reference_suite
-```
-
-## Phase 7 promotion and rollback controller
-
-Phase 7 coordinates the existing components without replacing the checker:
+## Package map
 
 ```text
-load immutable active package
-→ invoke the untrusted generator twice
-→ validate replay and proposal bindings
-→ realize and publicly verify a Phase 6 candidate
-→ derive objective evidence from the measured states
-→ construct the certificate outside the generator
-→ invoke the pinned Lean bridge
-→ invoke the Phase 4 hardened checker
-→ reverify candidate immutability
-→ install an immutable parent-linked package
-→ append a hash-chained ledger entry
-→ atomically replace the active pointer or restore it on activation failure
+rcp_rclm_runtime/
+  canonical/       canonical JSON, Unicode/path rules, content and tree hashing
+  schema/          strict immutable state/update/candidate/certificate records
+  mathematics/     exact Gate B and selected Gate C mathematics
+  refinement/      executable RCLM-to-RCP mappings
+  lean_bridge/     source generation, anti-placeholder gate, compiler, verdict parser
+  checker/         Phase 3 checker and Phase 4 hardened request/report
+  adversarial/     deterministic attack cases and first-class results
+  generator/       Phase 5A protocol, worker, process, and reference loop
+  successor/       Phase 6 selection, realization, package, rollback, public verifier
+  promotion/       Phase 7 policy, store, ledger, pointer, controller
+  replay/          Phase 8 bundle, source guard, records, reproducer
+  torch_backend/   optional untrusted PyTorch worker plus model-free host/replay code
 ```
 
-Retry is permitted only under the original fixed attempt and resource budgets.
-Rejected candidates are not repaired. Indeterminate results remain nonpromoting. The
-controller does not calculate authoritative Shannon/KL or von Neumann/QRE facts; the
-checker and Lean bridge retain that authority.
+## Trust boundary
 
-Run the Phase 7 unit suite:
+Trusted or trusted after conformance validation:
+
+```text
+pinned Lean project and bridge
+canonical serializer and hashing
+exact/interval mathematical runtime
+Phase 3/4 checker
+Phase 6 public package verifier
+Phase 7 promotion transaction
+Phase 8 replay verifier
+```
+
+Untrusted:
+
+```text
+reference generator
+PyTorch model and optimizer
+candidate code and files
+candidate-provided certificate assertions
+candidate-reported scores or acceptance fields
+future search, synthesis, LLM, or learned proposal policies
+```
+
+PyTorch is prohibited as the source of truth for canonical serialization, hashes,
+certificate arithmetic, KL/QRE bounds, trust, checker acceptance, promotion, rollback,
+or replay.
+
+## First PyTorch pilot
+
+The optional dependency is declared as:
 
 ```bash
-python python/rcp_rclm_runtime_v2/tools/run_phase7_tests.py \
-  --package-root python/rcp_rclm_runtime_v2 \
-  --out artifacts/runtime_v2_phase_7/local/phase_7_unit.log
+python -m pip install '.[torch-pilot]'
 ```
 
-Run the deterministic platform fixture trajectory:
+The pilot uses a frozen `Linear(2, 2)` classifier, CPU-only `float64` training, seed 1729,
+one thread, exactly one SGD update, and canonical little-endian `int64` package weights.
+The worker receives no held-out labels.
+
+The host path is:
+
+```text
+verified predecessor package
+→ two isolated proposal processes
+→ strict proposal and tensor-manifest validation
+→ host-owned Phase 6 selection
+→ isolated realization and verified rollback
+→ exact framework-independent integer evaluation
+→ host-owned Gate B stability certificate
+→ generated-Lean source guard and pinned verifier
+→ hardened checker
+→ atomic Phase 7 promotion or rejection
+→ independent replay after removing the training backend
+```
+
+The accepted reference changes the model hash, moves held-out correctness from `2/4` to
+`4/4`, and preserves the protected class-0 result at `2/2`. The rejection fixture does
+not alter the active pointer. Replay records zero training invocations.
+
+## Install and test
 
 ```bash
-python python/rcp_rclm_runtime_v2/tools/run_phase7_reference_suite.py \
-  --outdir artifacts/runtime_v2_phase_7/local/reference_trajectory
+python -m pip install --no-deps -e .
+python -m pip install '.[torch-pilot]'
+python -m compileall -q rcp_rclm_runtime tests tests_phase2 tests_phase3 tests_phase4 tests_phase5 tests_phase6 tests_phase7 tests_phase8 tests_pytorch_pilot tools
+python tools/validate_source_quality.py --package-root . --out source_quality.json
 ```
 
-Run the pinned-Lean promotion trajectory from the repository root:
+Run all suites:
 
 ```bash
-python scripts/run_promotion_loop.py \
-  --repo-root . \
-  --store-root artifacts/runtime_v2_phase_7/local/store \
-  --out artifacts/runtime_v2_phase_7/local/summary.json \
-  --trajectory \
-  --timeout-seconds 180
+python -m unittest discover -s tests -v
+python -m unittest discover -s tests_phase2 -v
+python -m unittest discover -s tests_phase3 -v
+python -m unittest discover -s tests_phase4 -v
+python -m unittest discover -s tests_phase5 -v
+python -m unittest discover -s tests_phase6 -v
+python -m unittest discover -s tests_phase7 -v
+python -m unittest discover -s tests_phase8 -v
+python -m unittest discover -s tests_pytorch_pilot -v
 ```
 
-The clean implementation head is recorded in
-`docs/executable_core_v2/PHASE_7_VALIDATION.md` and
-`phase_7_validation.json`. The final documentation/evidence PR head is revalidated
-before merge.
+Dedicated runners include:
+
+```bash
+python tools/run_phase2_conformance.py --repo-root ../.. --outdir ../../artifacts/phase2
+python tools/run_phase6_reference_suite.py --outdir ../../artifacts/phase6
+python tools/run_phase7_reference_suite.py --outdir ../../artifacts/phase7
+python tools/run_phase8_tests.py --package-root . --out ../../artifacts/phase8-tests.log
+python tools/run_pytorch_pilot_tests.py --package-root . --out ../../artifacts/pytorch-tests.log
+python tools/run_pytorch_pilot_reference.py --outdir ../../artifacts/pytorch-reference
+python tools/run_pytorch_pilot_admission_fixture.py --case accepted --outdir ../../artifacts/pytorch-accepted
+python tools/run_pytorch_pilot_admission_fixture.py --case rejected --outdir ../../artifacts/pytorch-rejected
+```
+
+## Validation records
+
+Phase-specific machine-readable manifests and validation files are stored at the package
+root. Human-readable architecture, exit criteria, and exact workflow records are under
+`docs/executable_core_v2/`.
 
 ## Boundary
 
-The executable mathematical scope remains the declared finite Gate B binary and
-selected Gate C diagonal-quantum checker semantics. Phase 7 does not add arbitrary
-noncommuting matrices or channels. It also does not implement independent replay,
-open-ended-generator correctness, generator trust, PyTorch learning authority,
-external benchmark claims, or autonomous/unbounded RSI.
+This package does not prove arbitrary learned-system refinement, generator completeness,
+GPU reproducibility, general noncommuting quantum semantics, external benchmark
+performance, or autonomous/unbounded RSI. Its strongest results are finite,
+content-addressed, fail-closed, and independently replayable at the declared scopes.
