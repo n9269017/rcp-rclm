@@ -24,13 +24,14 @@ jobs:
         with:
           ref: agent/rcp-rclm-v2-final-documentation
           fetch-depth: 1
-      - name: Create exact source archive
+      - name: Create exact source archive and object record
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifacts/final-v2-source
           git archive --format=zip --output=artifacts/final-v2-source/source.zip HEAD
           git rev-parse HEAD > artifacts/final-v2-source/head.txt
+          git rev-parse 'HEAD^{tree}' > artifacts/final-v2-source/tree.txt
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: final-v2-source-${{ github.run_id }}-${{ github.run_attempt }}
