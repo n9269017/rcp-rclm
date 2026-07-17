@@ -1,4 +1,4 @@
-# RCP/RCLM — Robust Reflective Successor Verification
+# RCP/RCLM — Reflective Successor Verification
 
 This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1
 certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
