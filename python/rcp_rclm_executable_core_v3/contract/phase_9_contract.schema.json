@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/n9269017/rcp-rclm/schemas/runtime-v3-phase-9-contract-v1.json",
+  "title": "RCP/RCLM Runtime v3 Phase 9 learned-language-model refinement contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["predecessor", "update", "candidate", "certificate", "heldout_policy", "report"],
+  "properties": {
+    "predecessor": {"$ref": "#/$defs/LearnedRCLMState"},
+    "update": {"$ref": "#/$defs/LearnedRCLMUpdate"},
+    "candidate": {"$ref": "#/$defs/LearnedRCLMState"},
+    "certificate": {"$ref": "#/$defs/LearnedCertificatePacket"},
+    "heldout_policy": {"$ref": "#/$defs/HeldoutAccessPolicy"},
+    "report": {"$ref": "#/$defs/Phase9TransitionReport"}
+  },
+  "$defs": {
+    "Hash256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "NonemptyString": {"type": "string", "minLength": 1},
+    "StringSet": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/NonemptyString"},
+      "uniqueItems": true
+    },
+    "ModelIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "model_family", "architecture_hash", "weights_tree_hash", "adapter_manifest_hash", "tensor_manifest_hash", "tokenizer_hash", "vocabulary_hash", "parameter_count"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.model_identity.v1"},
+        "model_family": {"const": "compact_decoder_only_transformer_v1"},
+        "architecture_hash": {"$ref": "#/$defs/Hash256"},
+        "weights_tree_hash": {"$ref": "#/$defs/Hash256"},
+        "adapter_manifest_hash": {"$ref": "#/$defs/Hash256"},
+        "tensor_manifest_hash": {"$ref": "#/$defs/Hash256"},
+        "tokenizer_hash": {"$ref": "#/$defs/Hash256"},
+        "vocabulary_hash": {"$ref": "#/$defs/Hash256"},
+        "parameter_count": {"type": "integer", "minimum": 1, "maximum": 50000000}
+      }
+    },
+    "PolicyIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "training_policy_hash", "optimizer_policy_hash", "data_curriculum_hash", "generator_policy_hash", "planner_policy_hash", "retrieval_policy_hash", "memory_state_hash", "tool_policy_hash", "verification_policy_hash", "resource_policy_hash", "self_model_hash"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.policy_identity.v1"},
+        "training_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "optimizer_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "data_curriculum_hash": {"$ref": "#/$defs/Hash256"},
+        "generator_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "planner_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "retrieval_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "memory_state_hash": {"$ref": "#/$defs/Hash256"},
+        "tool_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "verification_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "resource_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "self_model_hash": {"$ref": "#/$defs/Hash256"}
+      }
+    },
+    "SelfHostingBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "generator_component_hash", "planner_component_hash", "proposal_protocol_hash", "self_hosting_contract_hash"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.self_hosting_binding.v1"},
+        "generator_component_hash": {"$ref": "#/$defs/Hash256"},
+        "planner_component_hash": {"$ref": "#/$defs/Hash256"},
+        "proposal_protocol_hash": {"$ref": "#/$defs/Hash256"},
+        "self_hosting_contract_hash": {"$ref": "#/$defs/Hash256"}
+      }
+    },
+    "TaskRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "task_id", "task_class", "prompt_hash", "verifier_spec_hash", "partition"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.task_record.v1"},
+        "task_id": {"$ref": "#/$defs/NonemptyString"},
+        "task_class": {"const": "lean_theorem_completion_v1"},
+        "prompt_hash": {"$ref": "#/$defs/Hash256"},
+        "verifier_spec_hash": {"$ref": "#/$defs/Hash256"},
+        "partition": {"enum": ["training", "protected", "heldout"]}
+      }
+    },
+    "CertificationRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "task_id", "model_identity_hash", "verifier_report_hash", "verified_output_hash", "verifier_kind"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.certification_record.v1"},
+        "task_id": {"$ref": "#/$defs/NonemptyString"},
+        "model_identity_hash": {"$ref": "#/$defs/Hash256"},
+        "verifier_report_hash": {"$ref": "#/$defs/Hash256"},
+        "verified_output_hash": {"$ref": "#/$defs/Hash256"},
+        "verifier_kind": {"const": "pinned_lean_theorem_verifier_v1"}
+      }
+    },
+    "TaskLedger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "tasks", "certifications"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.task_ledger.v1"},
+        "tasks": {"type": "array", "items": {"$ref": "#/$defs/TaskRecord"}},
+        "certifications": {"type": "array", "items": {"$ref": "#/$defs/CertificationRecord"}}
+      }
+    },
+    "CapabilityFrontier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "task_ids"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.capability_frontier.v1"},
+        "task_ids": {"$ref": "#/$defs/StringSet"}
+      }
+    },
+    "LearnedRCLMState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "contract_version", "selected_task_class", "package_id", "parent_package_id", "base_state_hash", "model", "policies", "self_hosting", "task_ledger", "capability_frontier"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.learned_rclm_state.v1"},
+        "contract_version": {"const": "rcp-rclm-executable-v3-phase-9"},
+        "selected_task_class": {"const": "lean_theorem_completion_v1"},
+        "package_id": {"$ref": "#/$defs/NonemptyString"},
+        "parent_package_id": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/NonemptyString"}]},
+        "base_state_hash": {"$ref": "#/$defs/Hash256"},
+        "model": {"$ref": "#/$defs/ModelIdentity"},
+        "policies": {"$ref": "#/$defs/PolicyIdentity"},
+        "self_hosting": {"$ref": "#/$defs/SelfHostingBinding"},
+        "task_ledger": {"$ref": "#/$defs/TaskLedger"},
+        "capability_frontier": {"$ref": "#/$defs/CapabilityFrontier"}
+      }
+    },
+    "UpdateOperation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "operation_id", "kind", "target", "component_path", "before_hash", "after_hash"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.update_operation.v1"},
+        "operation_id": {"$ref": "#/$defs/NonemptyString"},
+        "kind": {"enum": ["weight_update", "adapter_update", "optimizer_policy_update", "training_policy_update", "data_curriculum_update", "retrieval_update", "memory_update", "planner_update", "generator_update", "architecture_extension", "tokenizer_update", "tool_policy_update", "verification_policy_update", "resource_policy_update", "self_model_update"]},
+        "target": {"enum": ["model_weights", "adapter_manifest", "optimizer_policy", "training_policy", "data_curriculum", "retrieval_policy", "memory_state", "planner_policy", "generator_policy", "model_architecture", "tokenizer", "tool_policy", "verification_policy", "resource_policy", "self_model"]},
+        "component_path": {"$ref": "#/$defs/NonemptyString"},
+        "before_hash": {"$ref": "#/$defs/Hash256"},
+        "after_hash": {"$ref": "#/$defs/Hash256"}
+      }
+    },
+    "LearnedRCLMUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "contract_version", "transition_id", "predecessor_state_hash", "candidate_state_hash", "base_update_hash", "operations", "update_hash"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.learned_rclm_update.v1"},
+        "contract_version": {"const": "rcp-rclm-executable-v3-phase-9"},
+        "transition_id": {"$ref": "#/$defs/NonemptyString"},
+        "predecessor_state_hash": {"$ref": "#/$defs/Hash256"},
+        "candidate_state_hash": {"$ref": "#/$defs/Hash256"},
+        "base_update_hash": {"$ref": "#/$defs/Hash256"},
+        "operations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/UpdateOperation"}},
+        "update_hash": {"$ref": "#/$defs/Hash256"}
+      }
+    },
+    "LearnedCertificatePacket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "contract_version", "transition_id", "protected_task_ids", "new_task_ids", "predecessor_state_hash", "candidate_state_hash", "update_hash", "base_certificate_hash", "capability_frontier_before_hash", "capability_frontier_after_hash", "task_frontier_retention_evidence_hash", "new_task_capability_evidence_hash", "model_output_density_evidence_hash", "entropy_kl_qre_evidence_hash", "goal_drift_evidence_hash", "training_data_provenance_hash", "heldout_isolation_evidence_hash", "architecture_compatibility_hash", "self_hosting_evidence_hash", "resource_evidence_hash", "rollback_evidence_hash", "heldout_access_policy_hash", "active_generator_hash", "active_planner_hash", "proposal_protocol_hash", "certificate_hash"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.learned_certificate_packet.v1"},
+        "contract_version": {"const": "rcp-rclm-executable-v3-phase-9"},
+        "transition_id": {"$ref": "#/$defs/NonemptyString"},
+        "protected_task_ids": {"$ref": "#/$defs/StringSet"},
+        "new_task_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/NonemptyString"}},
+        "predecessor_state_hash": {"$ref": "#/$defs/Hash256"},
+        "candidate_state_hash": {"$ref": "#/$defs/Hash256"},
+        "update_hash": {"$ref": "#/$defs/Hash256"},
+        "base_certificate_hash": {"$ref": "#/$defs/Hash256"},
+        "capability_frontier_before_hash": {"$ref": "#/$defs/Hash256"},
+        "capability_frontier_after_hash": {"$ref": "#/$defs/Hash256"},
+        "task_frontier_retention_evidence_hash": {"$ref": "#/$defs/Hash256"},
+        "new_task_capability_evidence_hash": {"$ref": "#/$defs/Hash256"},
+        "model_output_density_evidence_hash": {"$ref": "#/$defs/Hash256"},
+        "entropy_kl_qre_evidence_hash": {"$ref": "#/$defs/Hash256"},
+        "goal_drift_evidence_hash": {"$ref": "#/$defs/Hash256"},
+        "training_data_provenance_hash": {"$ref": "#/$defs/Hash256"},
+        "heldout_isolation_evidence_hash": {"$ref": "#/$defs/Hash256"},
+        "architecture_compatibility_hash": {"$ref": "#/$defs/Hash256"},
+        "self_hosting_evidence_hash": {"$ref": "#/$defs/Hash256"},
+        "resource_evidence_hash": {"$ref": "#/$defs/Hash256"},
+        "rollback_evidence_hash": {"$ref": "#/$defs/Hash256"},
+        "heldout_access_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "active_generator_hash": {"$ref": "#/$defs/Hash256"},
+        "active_planner_hash": {"$ref": "#/$defs/Hash256"},
+        "proposal_protocol_hash": {"$ref": "#/$defs/Hash256"},
+        "certificate_hash": {"$ref": "#/$defs/Hash256"}
+      }
+    },
+    "HeldoutAccessPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "contract_version", "selected_task_class", "policy_id", "heldout_task_manifest_hash", "reference_answer_store_hash", "evaluator_policy_hash", "generator_task_ids_visible_before_candidate_freeze", "generator_prompts_visible_before_candidate_freeze", "generator_reference_answers_visible", "training_backend_heldout_prompts_visible", "training_backend_reference_answers_visible", "evaluator_prompts_visible_after_candidate_freeze", "evaluator_reference_answers_visible", "policy_hash"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.heldout_access_policy.v1"},
+        "contract_version": {"const": "rcp-rclm-executable-v3-phase-9"},
+        "selected_task_class": {"const": "lean_theorem_completion_v1"},
+        "policy_id": {"$ref": "#/$defs/NonemptyString"},
+        "heldout_task_manifest_hash": {"$ref": "#/$defs/Hash256"},
+        "reference_answer_store_hash": {"$ref": "#/$defs/Hash256"},
+        "evaluator_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "generator_task_ids_visible_before_candidate_freeze": {"const": false},
+        "generator_prompts_visible_before_candidate_freeze": {"const": false},
+        "generator_reference_answers_visible": {"const": false},
+        "training_backend_heldout_prompts_visible": {"const": false},
+        "training_backend_reference_answers_visible": {"const": false},
+        "evaluator_prompts_visible_after_candidate_freeze": {"const": true},
+        "evaluator_reference_answers_visible": {"const": true},
+        "policy_hash": {"$ref": "#/$defs/Hash256"}
+      }
+    },
+    "Phase9TransitionReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "accepted", "reason_codes", "predecessor_state_hash", "candidate_state_hash", "update_hash", "certificate_hash", "heldout_access_policy_hash", "retained_task_ids", "new_task_ids", "changed_components", "semantic_report_hash"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase9.transition_report.v1"},
+        "accepted": {"type": "boolean"},
+        "reason_codes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/NonemptyString"}},
+        "predecessor_state_hash": {"$ref": "#/$defs/Hash256"},
+        "candidate_state_hash": {"$ref": "#/$defs/Hash256"},
+        "update_hash": {"$ref": "#/$defs/Hash256"},
+        "certificate_hash": {"$ref": "#/$defs/Hash256"},
+        "heldout_access_policy_hash": {"$ref": "#/$defs/Hash256"},
+        "retained_task_ids": {"$ref": "#/$defs/StringSet"},
+        "new_task_ids": {"$ref": "#/$defs/StringSet"},
+        "changed_components": {"$ref": "#/$defs/StringSet"},
+        "semantic_report_hash": {"$ref": "#/$defs/Hash256"}
+      }
+    }
+  }
+}
