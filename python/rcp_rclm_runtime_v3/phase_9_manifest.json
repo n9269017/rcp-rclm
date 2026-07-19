@@ -1,0 +1,129 @@
+{
+  "artifact_hashes": {
+    "lean_executable_contract_sha256": "ef98e02f26e2977ed663a87ef99aa7decaf18351beb1772c656ca9fb5367e793",
+    "phase_9_axiom_audit_sha256": "cbd36d1d4ac5de26d29fc3c17a2f7cda49afa69e07dc67e52fd7f1ff7561ef89",
+    "phase_9_contract_schema_sha256": "646f00af321f7f243fb9005ece145159fb6bf3a86848d12113377fb4525995f5"
+  },
+  "claim_boundary": {
+    "actual_compact_language_model": false,
+    "arbitrary_learned_system_refinement": false,
+    "autonomous_unbounded_rsi": false,
+    "general_noncommuting_quantum": false,
+    "generator_self_modification": false,
+    "generic_frontier_expanding_successor_availability": false,
+    "independent_open_task_universe": false,
+    "learned_proposal_authority": false,
+    "model_training": false,
+    "self_hosted_multi_generation_recursion": false
+  },
+  "formal_core_v3_dependency": {
+    "gate_d_merge_commit": "ff5e11a6f99fb37af59f85a373a9defacd0b0ad2",
+    "path": "lean/rcp_rclm_formal_core_v3",
+    "required_present": true
+  },
+  "heldout_policy": {
+    "evaluator_prompts_visible_after_candidate_freeze": true,
+    "evaluator_reference_answers_visible": true,
+    "generator_prompts_visible_before_candidate_freeze": false,
+    "generator_reference_answers_visible": false,
+    "generator_task_ids_visible_before_candidate_freeze": false,
+    "training_backend_heldout_prompts_visible": false,
+    "training_backend_reference_answers_visible": false
+  },
+  "implementation_validation": {
+    "artifact_digests": {
+      "closure": "2b8990a6de6270487ce14481af8c6f3b09abf0a66c524f9b1f3aa1c81258df76",
+      "macos": "15c68fb1c4d19531808653be6d69f1dde5677703abfae8f0dde165e435228bc4",
+      "pinned_lean": "a8fc53ba86892828e41a1b526103d3f3678b45a4b37c03fa0b3f6c7ff0a3d94c",
+      "ubuntu": "c66a961846af0368212b6cdb7cc19494d7aa2bf6cd9aad217a2a7e469a921495",
+      "windows": "8343b5213a9e4561e50c9da81d51915948b6882d290d2c0b2949b8c3740ad86f"
+    },
+    "branch_head": "fb7a61b8083fcebf98f8c13c08a23ba8cfc59644",
+    "build_jobs": 2631,
+    "cross_platform": true,
+    "merge_test_commit": "215675f533fa47371f13857f9f032631288e20f8",
+    "no_project_local_axiom_declarations": true,
+    "no_sorry_or_admit": true,
+    "pinned_lean": true,
+    "public_theorem_axiom_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "workflow_conclusion": "success",
+    "workflow_run_id": 29677111722
+  },
+  "object_correspondence": [
+    {
+      "lean": "RcpRclmFormalCoreV3.Learned.LearnedRCLMState",
+      "python": "rcp_rclm_runtime_v3.contract.records.LearnedRCLMState",
+      "schema": "#/$defs/LearnedRCLMState",
+      "semantic_object": "learned_rclm_state"
+    },
+    {
+      "lean": "RcpRclmFormalCoreV3.Learned.LearnedRCLMUpdate",
+      "python": "rcp_rclm_runtime_v3.contract.records.LearnedRCLMUpdate",
+      "schema": "#/$defs/LearnedRCLMUpdate",
+      "semantic_object": "learned_rclm_update"
+    },
+    {
+      "lean": "RcpRclmFormalCoreV3.Learned.LearnedCertificatePacket",
+      "python": "rcp_rclm_runtime_v3.contract.records.LearnedCertificatePacket",
+      "schema": "#/$defs/LearnedCertificatePacket",
+      "semantic_object": "learned_certificate_packet"
+    },
+    {
+      "lean": "RcpRclmFormalCoreV3.Learned.CapabilityFrontier",
+      "python": "rcp_rclm_runtime_v3.contract.records.CapabilityFrontier",
+      "schema": "#/$defs/CapabilityFrontier",
+      "semantic_object": "capability_frontier"
+    },
+    {
+      "lean": "RcpRclmFormalCoreV3.Learned.CertifiedTask",
+      "python": "rcp_rclm_runtime_v3.contract.records.CertificationRecord",
+      "schema": "#/$defs/CertificationRecord",
+      "semantic_object": "certified_task"
+    },
+    {
+      "lean": "RcpRclmFormalCoreV3.Learned.SelfHostedGenerator",
+      "python": "rcp_rclm_runtime_v3.contract.records.SelfHostingBinding",
+      "schema": "#/$defs/SelfHostingBinding",
+      "semantic_object": "self_hosted_generator"
+    },
+    {
+      "lean": "RcpRclmFormalCoreV3.Learned.LearnedKernelRefinement",
+      "python": "rcp_rclm_runtime_v3.contract.validation.validate_phase9_transition",
+      "schema": "phase_9_manifest.object_correspondence",
+      "semantic_object": "learned_kernel_refinement"
+    },
+    {
+      "lean": "RcpRclmFormalCoreV3.Learned.LearnedCheckerRefinement",
+      "python": "rcp_rclm_runtime_v3.contract.validation.Phase9TransitionReport",
+      "schema": "#/$defs/Phase9TransitionReport",
+      "semantic_object": "learned_checker_refinement"
+    }
+  ],
+  "phase_name": "Executable Core v3 Phase 9 - learned-language-model refinement contract",
+  "reference_hashes": {
+    "candidate_state_hash": "8bcd85f2d6f5ee5dde715598b0b89e51af00c9a3dd7cecb617e3af8c3809f8fa",
+    "certificate_hash": "ac518e5e1c1a66a5c92853a720c3a2f2e6dce7e5576e042c1c5cbb8c120eeff7",
+    "heldout_policy_hash": "71ff754164ae3320525f384cb59a9de5cd7db7546608ed3dae6ba93ee0bcb1c6",
+    "predecessor_state_hash": "84127baea242b390e91ecad239799fe2107b53ca64542ac0f6294b143ba73f4a",
+    "transition_report_hash": "c4a1d8f22a4dd41dc4c929dcc8ce41d2c5fc30241fcdd7bd03a4579b09c953eb",
+    "update_hash": "5df08b901a04b88886ce2fc21e7e8b7a41178940d1dcf39bc5ba04eff0bc1bb0"
+  },
+  "runtime_v2_dependency": {
+    "canonical_json_domain": "RCPRCLM-CANONICAL-JSON-V2\\0",
+    "path": "python/rcp_rclm_runtime_v2",
+    "required_unchanged": true
+  },
+  "schema_version": "rcp-rclm-runtime-v3-phase-9-manifest-v1",
+  "selected_scope": {
+    "maximum_parameter_count": 50000000,
+    "model_family": "compact_decoder_only_transformer_v1",
+    "task_class": "lean_theorem_completion_v1",
+    "task_verifier": "pinned_lean_theorem_verifier_v1"
+  },
+  "source_main_commit": "ff5e11a6f99fb37af59f85a373a9defacd0b0ad2",
+  "status": "phase9_contract_complete_at_declared_scope"
+}

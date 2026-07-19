@@ -1,0 +1,5 @@
+import RcpRclmFormalCoreV3.Learned.ExecutableContract
+
+#print axioms RcpRclmFormalCoreV3.Learned.learned_accepted_step_frontier_retention
+#print axioms RcpRclmFormalCoreV3.Learned.learned_accepted_step_frontier_expansion
+#print axioms RcpRclmFormalCoreV3.Learned.learned_accepted_step_self_hosted_generator

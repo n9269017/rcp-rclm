@@ -1,0 +1,274 @@
+name: Runtime v3 Phase 9 learned-language-model contract
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "python/rcp_rclm_runtime_v3/**"
+      - "python/rcp_rclm_executable_core_v3/**"
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/ExecutableContract.lean"
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned.lean"
+      - "docs/executable_core_v3/**"
+      - "docs/formal_core_v3/audit/Phase9ContractAxiomAudit.lean"
+      - "scripts/run_phase9_contract.py"
+      - ".github/workflows/runtime-v3-phase-9.yml"
+  push:
+    branches:
+      - "agent/rcp-rclm-v3-phase-9-*"
+    paths:
+      - "python/rcp_rclm_runtime_v3/**"
+      - "python/rcp_rclm_executable_core_v3/**"
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/ExecutableContract.lean"
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned.lean"
+      - "docs/executable_core_v3/**"
+      - "docs/formal_core_v3/audit/Phase9ContractAxiomAudit.lean"
+      - "scripts/run_phase9_contract.py"
+      - ".github/workflows/runtime-v3-phase-9.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    name: Validate Phase 9 contract (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - "3.11"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Runtime v2 canonical foundation
+        run: python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+
+      - name: Install Runtime v3 Phase 9 package and schema validator
+        run: python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+
+      - name: Compile Phase 9 Python source
+        run: >-
+          python -m compileall -q
+          python/rcp_rclm_runtime_v3
+          scripts/run_phase9_contract.py
+
+      - name: Validate deterministic source quality
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_source_quality.py
+          --package-root python/rcp_rclm_runtime_v3
+          --out artifacts/runtime_v3_phase_9/${{ matrix.os }}/source_quality.json
+
+      - name: Run focused Phase 9 tests
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase9_tests.py
+          --package-root python/rcp_rclm_runtime_v3
+          --out artifacts/runtime_v3_phase_9/${{ matrix.os }}/phase_9_tests.log
+
+      - name: Validate Draft 2020-12 schema correspondence
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase9_schema.py
+          --schema python/rcp_rclm_executable_core_v3/contract/phase_9_contract.schema.json
+          --out artifacts/runtime_v3_phase_9/${{ matrix.os }}/schema_validation.json
+
+      - name: Recompute the non-vacuous reference transition
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase9_reference.py
+          --out artifacts/runtime_v3_phase_9/${{ matrix.os }}/reference.json
+
+      - name: Validate manifest, object map, and retained hashes
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase9_manifest.py
+          --repo-root .
+          --out artifacts/runtime_v3_phase_9/${{ matrix.os }}/manifest_validation.json
+
+      - name: Run repository-root Phase 9 entry point
+        run: >-
+          python scripts/run_phase9_contract.py
+          --out artifacts/runtime_v3_phase_9/${{ matrix.os }}/entry_point.json
+
+      - name: Upload platform evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-9-${{ matrix.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_9/${{ matrix.os }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  pinned-lean:
+    name: Validate Phase 9 correspondence with pinned Lean
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+
+    steps:
+      - name: Check out repository with formal history
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install Runtime v2 and Runtime v3
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+
+      - name: Install pinned Lean toolchain through Formal Core v3
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          lake-package-directory: lean/rcp_rclm_formal_core_v2
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Resolve pinned dependency graph
+        working-directory: lean/rcp_rclm_formal_core_v3
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        run: lake update
+
+      - name: Verify committed dependency manifest remains exact
+        working-directory: lean/rcp_rclm_formal_core_v3
+        run: git diff --exit-code -- lake-manifest.json
+
+      - name: Fetch official mathlib build cache
+        working-directory: lean/rcp_rclm_formal_core_v3
+        run: lake exe cache get
+
+      - name: Build Formal Core v3 with Phase 9 correspondence
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results-phase9
+          lake build > audit-results-phase9/lake_build.log 2>&1
+          tail -n 60 audit-results-phase9/lake_build.log
+
+      - name: Reject forbidden proof tokens and local axioms
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              --exclude-dir='audit-results-phase9' \
+              '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
+              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
+              > audit-results-phase9/forbidden_proof_tokens.txt; then
+            cat audit-results-phase9/forbidden_proof_tokens.txt
+            exit 1
+          fi
+          : > audit-results-phase9/forbidden_proof_tokens.txt
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              --exclude-dir='audit-results-phase9' \
+              '^[[:space:]]*axiom[[:space:]]' \
+              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
+              > audit-results-phase9/project_axiom_declarations.txt; then
+            cat audit-results-phase9/project_axiom_declarations.txt
+            exit 1
+          fi
+          : > audit-results-phase9/project_axiom_declarations.txt
+
+      - name: Audit Phase 9 Lean correspondence declarations
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean ../../docs/formal_core_v3/audit/Phase9ContractAxiomAudit.lean \
+            2>&1 | tee audit-results-phase9/phase_9_axioms.txt
+          if grep -Fq 'sorryAx' audit-results-phase9/phase_9_axioms.txt; then
+            echo "sorryAx appears in the Phase 9 axiom report." >&2
+            exit 1
+          fi
+
+      - name: Recompute schema and reference under pinned environment
+        run: |
+          python python/rcp_rclm_runtime_v3/tools/validate_phase9_schema.py \
+            --schema python/rcp_rclm_executable_core_v3/contract/phase_9_contract.schema.json \
+            --out artifacts/runtime_v3_phase_9/pinned/schema_validation.json
+          python python/rcp_rclm_runtime_v3/tools/run_phase9_reference.py \
+            --out artifacts/runtime_v3_phase_9/pinned/reference.json
+          python python/rcp_rclm_runtime_v3/tools/validate_phase9_manifest.py \
+            --repo-root . \
+            --out artifacts/runtime_v3_phase_9/pinned/manifest_validation.json
+
+      - name: Retain pinned evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/runtime_v3_phase_9/pinned
+          cp lean/rcp_rclm_formal_core_v3/audit-results-phase9/* \
+            artifacts/runtime_v3_phase_9/pinned/
+          cp lean/rcp_rclm_formal_core_v3/lake-manifest.json \
+            artifacts/runtime_v3_phase_9/pinned/lake-manifest.json
+          cp python/rcp_rclm_runtime_v3/phase_9_manifest.json \
+            artifacts/runtime_v3_phase_9/pinned/phase_9_manifest.json
+          {
+            echo "commit=${GITHUB_SHA}"
+            echo "toolchain=$(cat lean/rcp_rclm_formal_core_v3/lean-toolchain)"
+            echo "v3_tree=$(git rev-parse HEAD:lean/rcp_rclm_formal_core_v3)"
+            echo "runtime_v3_tree=$(git rev-parse HEAD:python/rcp_rclm_runtime_v3)"
+            echo "contract_schema_sha256=$(sha256sum python/rcp_rclm_executable_core_v3/contract/phase_9_contract.schema.json | cut -d' ' -f1)"
+          } > artifacts/runtime_v3_phase_9/pinned/metadata.txt
+
+      - name: Upload pinned Phase 9 evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-9-pinned-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_9/pinned/
+          if-no-files-found: error
+          retention-days: 90
+
+  closure:
+    name: Verify Phase 9 workflow closure
+    runs-on: ubuntu-latest
+    needs:
+      - contract
+      - pinned-lean
+    steps:
+      - name: Emit closure record
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/runtime_v3_phase_9/final
+          {
+            echo "phase=9"
+            echo "commit=${GITHUB_SHA}"
+            echo "cross_platform=success"
+            echo "pinned_lean=success"
+            echo "claim=contract_only"
+          } > artifacts/runtime_v3_phase_9/final/closure.txt
+
+      - name: Upload closure record
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-9-final-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_9/final/
+          if-no-files-found: error
+          retention-days: 90

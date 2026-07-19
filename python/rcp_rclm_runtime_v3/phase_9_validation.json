@@ -1,0 +1,77 @@
+{
+  "schema_version": "rcp-rclm-runtime-v3-phase-9-validation-v1",
+  "validation_status": "phase9_contract_complete_at_declared_scope",
+  "source_main_commit": "ff5e11a6f99fb37af59f85a373a9defacd0b0ad2",
+  "local_validation": {
+    "focused_tests_passed": 10,
+    "source_quality_issues": 0,
+    "reference_accepted": true,
+    "schema_draft": "2020-12",
+    "schema_reference_errors": 0
+  },
+  "source_validation": {
+    "branch_head": "fb7a61b8083fcebf98f8c13c08a23ba8cfc59644",
+    "merge_test_commit": "215675f533fa47371f13857f9f032631288e20f8",
+    "workflow_run": 29677111722,
+    "workflow_conclusion": "success",
+    "cross_platform": true,
+    "pinned_lean": true,
+    "build_jobs": 2631,
+    "focused_tests_passed_per_platform": 10,
+    "source_quality_issues_per_platform": 0,
+    "schema_reference_errors_per_platform": 0,
+    "axiom_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "artifacts": {
+      "closure": {
+        "name": "runtime-v3-phase-9-final-29677111722-1",
+        "sha256": "2b8990a6de6270487ce14481af8c6f3b09abf0a66c524f9b1f3aa1c81258df76"
+      },
+      "pinned_lean": {
+        "name": "runtime-v3-phase-9-pinned-29677111722-1",
+        "sha256": "a8fc53ba86892828e41a1b526103d3f3678b45a4b37c03fa0b3f6c7ff0a3d94c"
+      },
+      "ubuntu": {
+        "name": "runtime-v3-phase-9-ubuntu-latest-29677111722-1",
+        "sha256": "c66a961846af0368212b6cdb7cc19494d7aa2bf6cd9aad217a2a7e469a921495"
+      },
+      "windows": {
+        "name": "runtime-v3-phase-9-windows-latest-29677111722-1",
+        "sha256": "8343b5213a9e4561e50c9da81d51915948b6882d290d2c0b2949b8c3740ad86f"
+      },
+      "macos": {
+        "name": "runtime-v3-phase-9-macos-latest-29677111722-1",
+        "sha256": "15c68fb1c4d19531808653be6d69f1dde5677703abfae8f0dde165e435228bc4"
+      }
+    }
+  },
+  "final_evidence_head": {
+    "exact_head": null,
+    "merge_test_commit": null,
+    "workflow_run": null,
+    "workflow_conclusion": null,
+    "artifact_name": null,
+    "artifact_sha256": null,
+    "record_location": "PR #29 description and exact-head closure comment"
+  },
+  "reference_hashes": {
+    "predecessor_state_hash": "84127baea242b390e91ecad239799fe2107b53ca64542ac0f6294b143ba73f4a",
+    "candidate_state_hash": "8bcd85f2d6f5ee5dde715598b0b89e51af00c9a3dd7cecb617e3af8c3809f8fa",
+    "update_hash": "5df08b901a04b88886ce2fc21e7e8b7a41178940d1dcf39bc5ba04eff0bc1bb0",
+    "certificate_hash": "ac518e5e1c1a66a5c92853a720c3a2f2e6dce7e5576e042c1c5cbb8c120eeff7",
+    "heldout_policy_hash": "71ff754164ae3320525f384cb59a9de5cd7db7546608ed3dae6ba93ee0bcb1c6",
+    "transition_report_hash": "c4a1d8f22a4dd41dc4c929dcc8ce41d2c5fc30241fcdd7bd03a4579b09c953eb"
+  },
+  "claim_boundary": {
+    "actual_compact_language_model": false,
+    "model_training": false,
+    "learned_proposal_authority": false,
+    "generator_self_modification": false,
+    "self_hosted_multi_generation_recursion": false,
+    "generic_frontier_expanding_successor_availability": false,
+    "autonomous_unbounded_rsi": false
+  }
+}
