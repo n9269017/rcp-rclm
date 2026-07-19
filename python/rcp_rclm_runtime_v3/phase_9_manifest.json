@@ -125,5 +125,5 @@
     "task_verifier": "pinned_lean_theorem_verifier_v1"
   },
   "source_main_commit": "ff5e11a6f99fb37af59f85a373a9defacd0b0ad2",
-  "status": "source_validated_pending_evidence_head_closure"
+  "status": "phase9_contract_complete_at_declared_scope"
 }
