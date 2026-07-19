@@ -1,0 +1,15 @@
+import RcpRclmFormalCoreV3
+
+#print axioms RcpRclmFormalCoreV3.Learned.learned_accepted_step_sound
+#print axioms RcpRclmFormalCoreV3.Learned.finite_learned_frontier_card_growth
+#print axioms RcpRclmFormalCoreV3.Learned.finite_learned_final_frontier_growth
+#print axioms RcpRclmFormalCoreV3.Learned.finite_learned_resource_bound
+#print axioms RcpRclmFormalCoreV3.Learned.finite_learned_goal_drift_bound
+#print axioms RcpRclmFormalCoreV3.Learned.finite_learned_information_nonregression
+#print axioms RcpRclmFormalCoreV3.Learned.finite_learned_composed_nonloss_bound
+#print axioms RcpRclmFormalCoreV3.Learned.finite_learned_endpoint_recovery_bound
+#print axioms RcpRclmFormalCoreV3.Learned.finite_learned_lyapunov_motion_bound
+#print axioms RcpRclmFormalCoreV3.Learned.conditional_infinite_learned_frontier_trajectory_exists
+#print axioms RcpRclmFormalCoreV3.Learned.infinite_learned_frontier_strict
+#print axioms RcpRclmFormalCoreV3.Learned.Reference.improvement_learned_accepted_step
+#print axioms RcpRclmFormalCoreV3.Learned.Reference.reference_frontier_card_growth
