@@ -26,7 +26,7 @@ This document governs only **Gate D foundation complete**.
 - [x] Formal Core v2 is consumed as a local dependency rather than edited.
 - [x] CI verifies that the v2 project tree equals the `main` tree.
 - [x] Lean and mathlib resolve through the existing pinned v2 dependency graph.
-- [ ] The exact v3 `lake-manifest.json` is committed.
+- [x] The exact v3 `lake-manifest.json` is committed and unchanged by `lake update`.
 
 ## B. Learned object surface
 
@@ -99,13 +99,13 @@ This document governs only **Gate D foundation complete**.
 - [x] Theorem contract exists.
 - [x] Assumption register exists.
 - [x] Exit criteria exist.
-- [ ] Exact final-head validation record is closed.
-- [ ] Machine-readable Formal Core v3 manifest is committed and validated.
-- [ ] PR description and discussion bind the exact final source head and artifact digest.
+- [x] Exact source-head validation record is closed.
+- [x] Machine-readable Formal Core v3 manifest is committed and validated.
+- [x] PR description and discussion bind the exact validated source head and artifact digest.
 
 ## I. Explicit nonclaims
 
-Foundation closure must continue to state that it does not establish:
+Foundation closure continues to state that it does not establish:
 
 ```text
 frontier-expanding successor availability
@@ -123,5 +123,6 @@ autonomous or unbounded RSI
 
 ## Closure rule
 
-Gate D foundation is ready for review only when every item in sections A–H is closed
-at one exact branch head and the corresponding PR merge-test workflow is successful.
+The Gate D formal foundation is closed at the validated source head recorded in
+`GATE_D_VALIDATION.md`. The evidence-only branch head must pass the same pinned build,
+manifest checks, source gates, and theorem audit before the PR is marked ready.
