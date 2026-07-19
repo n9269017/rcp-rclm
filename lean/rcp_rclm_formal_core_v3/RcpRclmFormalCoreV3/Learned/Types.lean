@@ -60,6 +60,7 @@ structure CertificatePacket
   generator : Generator
   proposal : Proposal
   generatorPackageHash : PackageHash
+  deriving DecidableEq
 
 end Learned
 end RcpRclmFormalCoreV3
