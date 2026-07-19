@@ -1,6 +1,6 @@
 {
   "schema_version": "rcp-rclm-runtime-v3-phase-9-validation-v1",
-  "validation_status": "local_contract_tests_complete_pending_authoritative_ci",
+  "validation_status": "implementation_validated_pending_exact_head_closure",
   "source_main_commit": "ff5e11a6f99fb37af59f85a373a9defacd0b0ad2",
   "local_validation": {
     "focused_tests_passed": 10,
@@ -9,10 +9,48 @@
     "schema_draft": "2020-12",
     "schema_reference_errors": 0
   },
-  "published_validation": {
+  "implementation_validation": {
+    "branch_head": "b61f5f8c5e7e687e7236f132055b250a6cf05faf",
+    "merge_test_commit": "9b72459fe51e882c13a3f79943cd6f158ac0b23f",
+    "workflow_run": 29676868118,
+    "workflow_conclusion": "success",
+    "cross_platform": true,
+    "pinned_lean": true,
+    "build_jobs": 2631,
+    "focused_tests_passed_per_platform": 10,
+    "source_quality_issues_per_platform": 0,
+    "schema_reference_errors_per_platform": 0,
+    "axiom_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "artifacts": {
+      "closure": {
+        "name": "runtime-v3-phase-9-final-29676868118-1",
+        "sha256": "bafbc45019768d208636cbbf058bbda427c68f151cd42b15ec7e78f45ed05ffa"
+      },
+      "pinned_lean": {
+        "name": "runtime-v3-phase-9-pinned-29676868118-1",
+        "sha256": "7e1c7b166723526bc532ead3b2b5636e54cdf406d27518e56a63e772f4242992"
+      },
+      "ubuntu": {
+        "name": "runtime-v3-phase-9-ubuntu-latest-29676868118-1",
+        "sha256": "9aa260b9cddcbe66c3f97af5651597fd6e5e7f7264ffc723feac59afd576f70d"
+      },
+      "windows": {
+        "name": "runtime-v3-phase-9-windows-latest-29676868118-1",
+        "sha256": "890d3f80383f3f7e90e591612eb08533f78973b54988547fe7291509f66080be"
+      },
+      "macos": {
+        "name": "runtime-v3-phase-9-macos-latest-29676868118-1",
+        "sha256": "a451af7ab7766c82ebcaaeb7c5c83e1d6eca6aeaec4cec005d4c9de0dc9c6b9e"
+      }
+    }
+  },
+  "final_validation": {
     "exact_head": null,
-    "cross_platform": false,
-    "pinned_lean": false,
+    "merge_test_commit": null,
     "workflow_run": null,
     "workflow_conclusion": null,
     "artifact_name": null,
