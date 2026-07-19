@@ -8,7 +8,6 @@ namespace Reference
 
 open RcpRclmFormalCoreV2
 open RcpRclmFormalCoreV2.RCP
-open RcpRclmFormalCoreV2.RCP.ClassicalFinite
 open RcpRclmFormalCoreV2.RCLM
 open RcpRclmFormalCoreV2.RCLM.ClassicalBinary
 
@@ -66,7 +65,7 @@ def packageHashBound
   hash = .root
 
 noncomputable def informationValue (state : ClassicalState) : ℝ :=
-  binaryGap - binaryProgress state.core
+  ClassicalFinite.binaryGap - ClassicalFinite.binaryProgress state.core
 
 noncomputable def learnedKernel : FrontierKernel
     (Task := Task)
@@ -138,7 +137,7 @@ theorem check_eq_true_iff
 
 theorem reference_specific_obligations :
     SpecificObligations learnedKernel
-      initialState improvementCandidate improvementPacket := by
+      initialState ClassicalBinary.improvementCandidate improvementPacket := by
   refine
     { protectedFrontierCertified := ?_
       protectedFrontierRetained := ?_
@@ -153,11 +152,11 @@ theorem reference_specific_obligations :
       resourceWithinBudget := ?_
       informationNonRegression := ?_ }
   · simp [improvementPacket, learnedKernel, frontier, initialState, canonicalState]
-  · simp [improvementPacket, learnedKernel, frontier, improvementCandidate,
-      targetState, canonicalState]
+  · simp [improvementPacket, learnedKernel, frontier,
+      ClassicalBinary.improvementCandidate, targetState, canonicalState]
   · constructor
-    · simp [learnedKernel, frontier, initialState, targetState,
-        improvementCandidate, canonicalState]
+    · simp [learnedKernel, frontier, initialState,
+        ClassicalBinary.improvementCandidate, targetState, canonicalState]
     · change 1 < ({Task.baseline, Task.frontierOne} : Finset Task).card
       decide
   · rfl
@@ -170,10 +169,11 @@ theorem reference_specific_obligations :
   · exact le_rfl
   · change informationValue targetState ≤ informationValue initialState + 0
     rw [informationValue, informationValue]
-    change binaryGap - binaryProgress .target ≤
-      binaryGap - binaryProgress .initial + 0
-    rw [binaryProgress_target, binaryProgress_initial]
-    simpa using binaryGap_pos.le
+    change ClassicalFinite.binaryGap - ClassicalFinite.binaryProgress .target ≤
+      ClassicalFinite.binaryGap - ClassicalFinite.binaryProgress .initial + 0
+    rw [ClassicalFinite.binaryProgress_target,
+      ClassicalFinite.binaryProgress_initial]
+    simpa using ClassicalFinite.binaryGap_pos.le
 
 noncomputable def checker : TrustedLearnedChecker learnedKernel ClassicalBinary.checker where
   check := check
@@ -190,7 +190,7 @@ noncomputable def checker : TrustedLearnedChecker learnedKernel ClassicalBinary.
         subst update
         subst next
         rw [baseEq]
-        exact improvement_check_accepts
+        exact ClassicalBinary.improvement_check_accepts
   learnedSound := by
     intro state candidate certificate stateAdmissible stateInvariant accepted
     have packet := (check_eq_true_iff state candidate certificate).1 accepted
@@ -214,13 +214,14 @@ noncomputable def checker : TrustedLearnedChecker learnedKernel ClassicalBinary.
             exact reference_specific_obligations
 
 theorem improvement_check_accepts_learned :
-    checker.check initialState improvementCandidate improvementPacket = true := by
+    checker.check initialState ClassicalBinary.improvementCandidate improvementPacket = true := by
+  change check initialState ClassicalBinary.improvementCandidate improvementPacket = true
   rw [check_eq_true_iff]
-  simp [ReferencePacket, improvementPacket, improvementCandidate]
+  simp [ReferencePacket, improvementPacket, ClassicalBinary.improvementCandidate]
 
 theorem improvement_learned_accepted_step :
     LearnedAcceptedStep learnedKernel
-      initialState improvementCandidate improvementPacket := by
+      initialState ClassicalBinary.improvementCandidate improvementPacket := by
   have initialAdmissible : kernel.admissible initialState := by
     constructor
     · decide
@@ -236,7 +237,7 @@ noncomputable def referenceTrajectory : FiniteLearnedTrajectory checker 1 where
   state
     | 0 => initialState
     | _ + 1 => targetState
-  candidate := fun _ => improvementCandidate
+  candidate := fun _ => ClassicalBinary.improvementCandidate
   certificate := fun _ => improvementPacket
   initialAdmissible := by
     constructor
