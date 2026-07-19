@@ -8,6 +8,7 @@ namespace Reference
 
 open RcpRclmFormalCoreV2
 open RcpRclmFormalCoreV2.RCP
+open RcpRclmFormalCoreV2.RCP.ClassicalFinite
 open RcpRclmFormalCoreV2.RCLM
 open RcpRclmFormalCoreV2.RCLM.ClassicalBinary
 
@@ -116,11 +117,13 @@ def ReferencePacket
     certificate.proposal = .improve ∧
     certificate.generatorPackageHash = .root
 
-def check
+noncomputable def check
     (state : ClassicalState)
     (candidate : Candidate ClassicalState ClassicalUpdate)
     (certificate :
       CertificatePacket ClassicalCertificate Task Generator Proposal PackageHash) : Bool :=
+  letI : Decidable (ReferencePacket state candidate certificate) :=
+    Classical.propDecidable _
   decide (ReferencePacket state candidate certificate)
 
 theorem check_eq_true_iff
@@ -130,6 +133,7 @@ theorem check_eq_true_iff
       CertificatePacket ClassicalCertificate Task Generator Proposal PackageHash) :
     check state candidate certificate = true ↔
       ReferencePacket state candidate certificate := by
+  classical
   simp [check]
 
 theorem reference_specific_obligations :
@@ -154,8 +158,8 @@ theorem reference_specific_obligations :
   · constructor
     · simp [learnedKernel, frontier, initialState, targetState,
         improvementCandidate, canonicalState]
-    · norm_num [learnedKernel, frontier, initialState, targetState,
-        improvementCandidate, canonicalState]
+    · change 1 < ({Task.baseline, Task.frontierOne} : Finset Task).card
+      decide
   · rfl
   · rfl
   · exact ⟨rfl, rfl, rfl⟩
@@ -211,7 +215,8 @@ noncomputable def checker : TrustedLearnedChecker learnedKernel ClassicalBinary.
 
 theorem improvement_check_accepts_learned :
     checker.check initialState improvementCandidate improvementPacket = true := by
-  rfl
+  rw [check_eq_true_iff]
+  simp [ReferencePacket, improvementPacket, improvementCandidate]
 
 theorem improvement_learned_accepted_step :
     LearnedAcceptedStep learnedKernel
@@ -246,7 +251,7 @@ noncomputable def referenceTrajectory : FiniteLearnedTrajectory checker 1 where
     have tZero : t = 0 :=
       Nat.eq_zero_of_le_zero (Nat.le_of_lt_succ bound)
     subst t
-    rfl
+    exact improvement_check_accepts_learned
   linked := by
     intro t bound
     have tZero : t = 0 :=
