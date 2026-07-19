@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 from rcp_rclm_runtime_v3.contract.reference import build_phase9_reference_fixture
@@ -13,8 +14,16 @@ from rcp_rclm_runtime_v3.contract.records import (
 )
 
 
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def _git_blob_sha256(root: Path, relative_path: str) -> str:
+    completed = subprocess.run(
+        ["git", "-C", str(root), "show", f"HEAD:{relative_path}"],
+        check=False,
+        capture_output=True,
+    )
+    if completed.returncode != 0:
+        stderr = completed.stderr.decode("utf-8", errors="replace")
+        raise RuntimeError(f"unable to read Git object {relative_path}: {stderr}")
+    return hashlib.sha256(completed.stdout).hexdigest()
 
 
 def main() -> int:
@@ -27,12 +36,14 @@ def main() -> int:
     runtime_root = root / "python/rcp_rclm_runtime_v3"
     manifest_path = runtime_root / "phase_9_manifest.json"
     validation_path = runtime_root / "phase_9_validation.json"
-    schema_path = root / "python/rcp_rclm_executable_core_v3/contract/phase_9_contract.schema.json"
-    lean_contract_path = (
-        root
-        / "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/ExecutableContract.lean"
+    schema_relative = (
+        "python/rcp_rclm_executable_core_v3/contract/phase_9_contract.schema.json"
     )
-    audit_path = root / "docs/formal_core_v3/audit/Phase9ContractAxiomAudit.lean"
+    lean_contract_relative = (
+        "lean/rcp_rclm_formal_core_v3/"
+        "RcpRclmFormalCoreV3/Learned/ExecutableContract.lean"
+    )
+    audit_relative = "docs/formal_core_v3/audit/Phase9ContractAxiomAudit.lean"
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     validation = json.loads(validation_path.read_text(encoding="utf-8"))
@@ -86,18 +97,23 @@ def main() -> int:
         errors.append("validation reference hashes do not match recomputation")
 
     expected_artifacts = {
-        "phase_9_contract_schema_sha256": _sha256(schema_path),
-        "lean_executable_contract_sha256": _sha256(lean_contract_path),
-        "phase_9_axiom_audit_sha256": _sha256(audit_path),
+        "phase_9_contract_schema_sha256": _git_blob_sha256(root, schema_relative),
+        "lean_executable_contract_sha256": _git_blob_sha256(
+            root, lean_contract_relative
+        ),
+        "phase_9_axiom_audit_sha256": _git_blob_sha256(root, audit_relative),
     }
     declared_artifacts = manifest.get("artifact_hashes")
     if declared_artifacts != expected_artifacts:
-        pending = manifest.get("status") == "implementation_started_pending_authoritative_ci"
+        pending = (
+            manifest.get("status")
+            == "implementation_started_pending_authoritative_ci"
+        )
         empty_pending = isinstance(declared_artifacts, dict) and all(
             value is None for value in declared_artifacts.values()
         )
         if not (pending and empty_pending):
-            errors.append("artifact hashes do not match repository bytes")
+            errors.append("artifact hashes do not match repository Git-object bytes")
 
     report = {
         "schema_version": "rcp-rclm-runtime-v3-phase-9-manifest-validation-v1",
@@ -108,7 +124,10 @@ def main() -> int:
         "ok": not errors,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+    args.out.write_text(
+        json.dumps(report, sort_keys=True, indent=2) + "\n",
+        encoding="utf-8",
+    )
     return 0 if not errors else 1
 
 
