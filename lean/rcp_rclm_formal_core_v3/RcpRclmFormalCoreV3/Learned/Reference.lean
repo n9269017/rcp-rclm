@@ -1,5 +1,4 @@
 import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Omega
 import RcpRclmFormalCoreV2.RCLM.ClassicalBinary
 import RcpRclmFormalCoreV3.Learned.Infinite
 
@@ -213,12 +212,14 @@ noncomputable def referenceTrajectory : FiniteLearnedTrajectory checker 1 where
     · rfl
   accepted := by
     intro t bound
-    have : t = 0 := by omega
+    have tZero : t = 0 :=
+      Nat.eq_zero_of_le_zero (Nat.le_of_lt_succ bound)
     subst t
     rfl
   linked := by
     intro t bound
-    have : t = 0 := by omega
+    have tZero : t = 0 :=
+      Nat.eq_zero_of_le_zero (Nat.le_of_lt_succ bound)
     subst t
     rfl
 
