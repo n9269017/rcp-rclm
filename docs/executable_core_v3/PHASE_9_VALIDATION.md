@@ -2,24 +2,26 @@
 
 ## Validation state
 
-The Phase 9 contract implementation is complete at the selected compact-model and Lean
-theorem-completion contract scope. One exact implementation head passed the Linux,
-Windows, macOS, schema, reference, manifest, pinned Lean, source-hygiene, axiom-audit,
-and closure jobs.
+The Phase 9 contract source is complete at the selected compact-model and Lean
+theorem-completion contract scope. One exact source head passed the Linux, Windows,
+macOS, schema, reference, manifest, pinned Lean, source-hygiene, axiom-audit, and closure
+jobs.
 
-A final evidence-only PR head must pass the same workflow before the PR is marked ready.
+The evidence records intentionally bind that already validated source head. The later
+evidence-only PR head must pass the same workflow and is recorded in the PR description
+and closure comment rather than through a self-referential source-file hash.
 
-## Validated implementation head
+## Validated source head
 
 ```text
 branch head:
-b61f5f8c5e7e687e7236f132055b250a6cf05faf
+fb7a61b8083fcebf98f8c13c08a23ba8cfc59644
 
 PR merge-test commit:
-9b72459fe51e882c13a3f79943cd6f158ac0b23f
+215675f533fa47371f13857f9f032631288e20f8
 
 workflow run:
-29676868118
+29677111722
 
 conclusion:
 success
@@ -121,7 +123,7 @@ transition report:
 c4a1d8f22a4dd41dc4c929dcc8ce41d2c5fc30241fcdd7bd03a4579b09c953eb
 ```
 
-## Artifact hashes
+## Contract artifact hashes
 
 ```text
 Phase 9 schema:
@@ -134,23 +136,23 @@ Phase 9 axiom audit:
 cbd36d1d4ac5de26d29fc3c17a2f7cda49afa69e07dc67e52fd7f1ff7561ef89
 ```
 
-Workflow artifact digests:
+Source-head workflow artifact digests:
 
 ```text
 closure:
-bafbc45019768d208636cbbf058bbda427c68f151cd42b15ec7e78f45ed05ffa
+2b8990a6de6270487ce14481af8c6f3b09abf0a66c524f9b1f3aa1c81258df76
 
 pinned Lean:
-7e1c7b166723526bc532ead3b2b5636e54cdf406d27518e56a63e772f4242992
+a8fc53ba86892828e41a1b526103d3f3678b45a4b37c03fa0b3f6c7ff0a3d94c
 
 Ubuntu:
-9aa260b9cddcbe66c3f97af5651597fd6e5e7f7264ffc723feac59afd576f70d
+c66a961846af0368212b6cdb7cc19494d7aa2bf6cd9aad217a2a7e469a921495
 
 Windows:
-890d3f80383f3f7e90e591612eb08533f78973b54988547fe7291509f66080be
+8343b5213a9e4561e50c9da81d51915948b6882d290d2c0b2949b8c3740ad86f
 
 macOS:
-a451af7ab7766c82ebcaaeb7c5c83e1d6eca6aeaec4cec005d4c9de0dc9c6b9e
+15c68fb1c4d19531808653be6d69f1dde5677703abfae8f0dde165e435228bc4
 ```
 
 ## Claim boundary
