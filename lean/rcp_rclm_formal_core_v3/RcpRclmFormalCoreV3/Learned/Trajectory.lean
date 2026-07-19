@@ -363,7 +363,7 @@ theorem finite_learned_information_nonregression
                 cumulativeInformationBudget trajectory t) +
               learned.informationBudget
                 (trajectory.state t) (trajectory.candidate t) :=
-          add_le_add_right previous _
+          add_le_add_left previous _
         _ = learned.informationValue (trajectory.state 0) +
               cumulativeInformationBudget trajectory (t + 1) := by
           simp only [cumulativeInformationBudget]
