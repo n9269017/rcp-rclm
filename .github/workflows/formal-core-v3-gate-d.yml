@@ -1,0 +1,170 @@
+name: Formal Core v3 Gate D learned frontier
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-v3-gate-d-learned-frontier
+    paths:
+      - "lean/rcp_rclm_formal_core_v3/**"
+      - "docs/formal_core_v3/**"
+      - ".github/workflows/formal-core-v3-gate-d.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "lean/rcp_rclm_formal_core_v3/**"
+      - "docs/formal_core_v3/**"
+      - ".github/workflows/formal-core-v3-gate-d.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and audit Gate D Formal Core v3
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Verify frozen v2 dependency is unchanged
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD:lean/rcp_rclm_formal_core_v2)" = \
+            "$(git rev-parse origin/main:lean/rcp_rclm_formal_core_v2)"
+
+      - name: Install pinned Lean toolchain through the validated v2 package
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          lake-package-directory: lean/rcp_rclm_formal_core_v2
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Resolve pinned dependency graph
+        working-directory: lean/rcp_rclm_formal_core_v3
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        run: lake update
+
+      - name: Validate pinned manifests and claim boundary
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code -- lake-manifest.json
+          python -m json.tool formalization_manifest.json >/dev/null
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          value = json.loads(Path("formalization_manifest.json").read_text(encoding="utf-8"))
+          if value.get("schema_version") != "rcp-rclm-formal-core-v3-gate-d-manifest-v1":
+              raise SystemExit("unexpected Gate D manifest schema")
+          dependency = value.get("formal_core_v2_dependency")
+          if not isinstance(dependency, dict) or dependency.get("required_unchanged") is not True:
+              raise SystemExit("v2 unchanged-dependency boundary is absent")
+          theorems = value.get("public_theorems")
+          if not isinstance(theorems, list) or len(theorems) != 13 or len(set(theorems)) != 13:
+              raise SystemExit("unexpected Gate D public theorem set")
+          boundary = value.get("claim_boundary")
+          if not isinstance(boundary, dict) or not boundary:
+              raise SystemExit("Gate D claim boundary is absent")
+          if any(item is not False for item in boundary.values()):
+              raise SystemExit("an unsupported Gate D claim is marked true")
+          PY
+
+      - name: Fetch official mathlib build cache
+        working-directory: lean/rcp_rclm_formal_core_v3
+        run: lake exe cache get
+
+      - name: Build Gate D Formal Core v3
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -u
+          mkdir -p audit-results
+          set +e
+          lake build > audit-results/lake_build.log 2>&1
+          build_status=$?
+          set -e
+          if [ "$build_status" -ne 0 ]; then
+            tail -n 260 audit-results/lake_build.log
+            exit "$build_status"
+          fi
+          tail -n 60 audit-results/lake_build.log
+
+      - name: Reject admitted proofs and project-local axioms
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
+              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
+              > audit-results/forbidden_proof_tokens.txt; then
+            cat audit-results/forbidden_proof_tokens.txt
+            exit 1
+          fi
+          : > audit-results/forbidden_proof_tokens.txt
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              '^[[:space:]]*axiom[[:space:]]' \
+              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
+              > audit-results/project_axiom_declarations.txt; then
+            cat audit-results/project_axiom_declarations.txt
+            exit 1
+          fi
+          : > audit-results/project_axiom_declarations.txt
+
+      - name: Print and validate Gate D theorem axioms
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean ../../docs/formal_core_v3/audit/GateDAxiomAudit.lean \
+            2>&1 | tee audit-results/gate_d_axioms.txt
+          if grep -Fq 'sorryAx' audit-results/gate_d_axioms.txt; then
+            echo "sorryAx appears in the Gate D theorem axiom report." >&2
+            exit 1
+          fi
+
+      - name: Record Gate D build metadata
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp lake-manifest.json audit-results/lake-manifest.json
+          cp formalization_manifest.json audit-results/formalization_manifest.json
+          {
+            echo "commit=${GITHUB_SHA}"
+            echo "toolchain=$(cat lean-toolchain)"
+            echo "v2_tree=$(git -C ../.. rev-parse HEAD:lean/rcp_rclm_formal_core_v2)"
+            echo "v3_tree=$(git -C ../.. rev-parse HEAD:lean/rcp_rclm_formal_core_v3)"
+            echo "lake_manifest_sha256=$(sha256sum lake-manifest.json | cut -d' ' -f1)"
+            echo "formalization_manifest_sha256=$(sha256sum formalization_manifest.json | cut -d' ' -f1)"
+          } > audit-results/audit_metadata.txt
+
+      - name: Upload Gate D audit artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: formal-core-v3-gate-d-${{ github.run_id }}-${{ github.run_attempt }}
+          path: lean/rcp_rclm_formal_core_v3/audit-results
+          if-no-files-found: warn
+          retention-days: 90
