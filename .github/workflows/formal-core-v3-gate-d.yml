@@ -39,10 +39,10 @@ jobs:
           test "$(git rev-parse HEAD:lean/rcp_rclm_formal_core_v2)" = \
             "$(git rev-parse origin/main:lean/rcp_rclm_formal_core_v2)"
 
-      - name: Install pinned Lean toolchain
+      - name: Install pinned Lean toolchain through the validated v2 package
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
         with:
-          lake-package-directory: lean/rcp_rclm_formal_core_v3
+          lake-package-directory: lean/rcp_rclm_formal_core_v2
           auto-config: false
           build: false
           test: false
