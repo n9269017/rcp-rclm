@@ -241,9 +241,9 @@ theorem finite_learned_resource_bound
       intro bound
       have stepBound : t < horizon := Nat.lt_of_succ_le bound
       have previous := inductionHypothesis (Nat.le_of_lt stepBound)
-      have local :=
+      have localBound :=
         (finite_learned_step_sound checker trajectory t stepBound).learnedObligations.resourceWithinBudget
-      exact Nat.add_le_add previous local
+      exact Nat.add_le_add previous localBound
 
 /-- Cumulative goal drift and its budget. -/
 def cumulativeGoalDrift
@@ -303,9 +303,9 @@ theorem finite_learned_goal_drift_bound
       intro bound
       have stepBound : t < horizon := Nat.lt_of_succ_le bound
       have previous := inductionHypothesis (Nat.le_of_lt stepBound)
-      have local :=
+      have localBound :=
         (finite_learned_step_sound checker trajectory t stepBound).learnedObligations.goalDriftWithinBudget
-      exact Nat.add_le_add previous local
+      exact Nat.add_le_add previous localBound
 
 /-- Cumulative information-regression budget. -/
 def cumulativeInformationBudget
@@ -351,14 +351,14 @@ theorem finite_learned_information_nonregression
       intro bound
       have stepBound : t < horizon := Nat.lt_of_succ_le bound
       have previous := inductionHypothesis (Nat.le_of_lt stepBound)
-      have local :=
+      have localBound :=
         (finite_learned_step_sound checker trajectory t stepBound).learnedObligations.informationNonRegression
       rw [trajectory.linked t stepBound]
       calc
         learned.informationValue (trajectory.candidate t).next
             ≤ learned.informationValue (trajectory.state t) +
                 learned.informationBudget
-                  (trajectory.state t) (trajectory.candidate t) := local
+                  (trajectory.state t) (trajectory.candidate t) := localBound
         _ ≤ (learned.informationValue (trajectory.state 0) +
                 cumulativeInformationBudget trajectory t) +
               learned.informationBudget
