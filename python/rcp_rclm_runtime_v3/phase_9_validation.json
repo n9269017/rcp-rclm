@@ -1,0 +1,38 @@
+{
+  "schema_version": "rcp-rclm-runtime-v3-phase-9-validation-v1",
+  "validation_status": "local_contract_tests_complete_pending_authoritative_ci",
+  "source_main_commit": "ff5e11a6f99fb37af59f85a373a9defacd0b0ad2",
+  "local_validation": {
+    "focused_tests_passed": 10,
+    "source_quality_issues": 0,
+    "reference_accepted": true,
+    "schema_draft": "2020-12",
+    "schema_reference_errors": 0
+  },
+  "published_validation": {
+    "exact_head": null,
+    "cross_platform": false,
+    "pinned_lean": false,
+    "workflow_run": null,
+    "workflow_conclusion": null,
+    "artifact_name": null,
+    "artifact_sha256": null
+  },
+  "reference_hashes": {
+    "predecessor_state_hash": "84127baea242b390e91ecad239799fe2107b53ca64542ac0f6294b143ba73f4a",
+    "candidate_state_hash": "8bcd85f2d6f5ee5dde715598b0b89e51af00c9a3dd7cecb617e3af8c3809f8fa",
+    "update_hash": "5df08b901a04b88886ce2fc21e7e8b7a41178940d1dcf39bc5ba04eff0bc1bb0",
+    "certificate_hash": "ac518e5e1c1a66a5c92853a720c3a2f2e6dce7e5576e042c1c5cbb8c120eeff7",
+    "heldout_policy_hash": "71ff754164ae3320525f384cb59a9de5cd7db7546608ed3dae6ba93ee0bcb1c6",
+    "transition_report_hash": "c4a1d8f22a4dd41dc4c929dcc8ce41d2c5fc30241fcdd7bd03a4579b09c953eb"
+  },
+  "claim_boundary": {
+    "actual_compact_language_model": false,
+    "model_training": false,
+    "learned_proposal_authority": false,
+    "generator_self_modification": false,
+    "self_hosted_multi_generation_recursion": false,
+    "generic_frontier_expanding_successor_availability": false,
+    "autonomous_unbounded_rsi": false
+  }
+}
