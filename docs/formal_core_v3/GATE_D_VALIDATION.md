@@ -7,7 +7,8 @@ one-step reference scope. The theorem stack, exact dependency manifest, document
 machine-readable claim record, source gates, and public theorem audit have passed at
 one exact source head.
 
-A final evidence-only head will rerun the same workflow before the PR is marked ready.
+The evidence-only closure head is the target of the final exact-head rerun recorded in
+the PR discussion before the PR is marked ready.
 
 ## Validated implementation head
 
