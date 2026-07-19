@@ -122,6 +122,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          cp lake-manifest.json audit-results/lake-manifest.json
           {
             echo "commit=${GITHUB_SHA}"
             echo "toolchain=$(cat lean-toolchain)"
