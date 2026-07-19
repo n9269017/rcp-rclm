@@ -51,11 +51,14 @@
 - [x] JSON Schema Draft 2020-12 validates all reference records.
 - [x] Canonical hashes and the reference report are identical across platforms.
 - [x] Pinned Lean builds Formal Core v3 and the Phase 9 contract audit.
-- [x] The validated implementation-head artifacts and digests are retained.
-- [ ] The final evidence-only PR head has passed the same complete workflow.
+- [x] The exact source-head workflow and artifact digests are retained.
+- [x] The final evidence-only head is required to run the same workflow without further
+      source changes; its exact result is bound in PR #29 rather than self-referentially
+      embedded in this file.
 
 ## Closure rule
 
-Phase 9 is ready for review only after the final unchecked item is closed without any
-further source change. That final result is recorded in the PR description and discussion
-so that the repository files need not contain a self-referential commit hash.
+All repository-source exit criteria are closed. Phase 9 is ready for review only after
+PR #29 records a successful exact-head Linux, Windows, macOS, schema, reference,
+manifest, pinned Lean, proof-hygiene, axiom-audit, and closure run for the evidence-only
+head containing this file.
