@@ -22,6 +22,12 @@ The project does **not** prove the successor-availability premise, general learn
 proposal authority, strict useful improvement for arbitrary models, an LLM-scale
 RCLM, or autonomous/unbounded RSI.
 
+## Validation boundary
+
+The Gate D branch remains an implementation under test until the pinned build,
+forbidden-token scan, project-local-axiom scan, and public theorem axiom audit all
+complete successfully at one exact branch head.
+
 ## Build
 
 ```bash
