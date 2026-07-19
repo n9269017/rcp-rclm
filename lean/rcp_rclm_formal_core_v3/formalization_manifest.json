@@ -1,7 +1,7 @@
 {
   "schema_version": "rcp-rclm-formal-core-v3-gate-d-manifest-v1",
   "phase_name": "RCP/RCLM Formal Core v3 - Gate D learned capability-frontier refinement",
-  "status": "foundation_implementation_validated_pending_final_head_closure",
+  "status": "gate_d_formal_foundation_complete_at_declared_reference_scope",
   "base_repository_commit": "7cd0a331b5ec43ec49ac815ed72a328c235736e3",
   "formal_core_v2_dependency": {
     "path": "../rcp_rclm_formal_core_v2",
@@ -76,12 +76,15 @@
     "artifact_sha256": "1e44ba91495b1779bd11ff5892b6f4798fcec08f9225c6b6f13d85312082459a"
   },
   "final_validation": {
-    "branch_head": null,
-    "merge_test_commit": null,
-    "workflow_run_id": null,
-    "workflow_conclusion": null,
-    "artifact_name": null,
-    "artifact_sha256": null
+    "validated_source_head": "411a89afe0549fc3190ee4f47d20a72fac37aa06",
+    "merge_test_commit": "f56f533f88693a87be6cddccaa86807e57bd70da",
+    "workflow_run_id": 29673625985,
+    "workflow_conclusion": "success",
+    "build_jobs": 2630,
+    "validated_v3_tree": "99d5e42311f5293d2df3fdb36f04fb968946e63d",
+    "formalization_manifest_sha256": "f312017dadab7a9b8506bb48be167446308f3127264c4aa4f0f050a6173cb1ca",
+    "artifact_name": "formal-core-v3-gate-d-29673625985-1",
+    "artifact_sha256": "a712bde46b6309b8a45429f9c9616cc1877a3c5946ecc1e33d5fc6d51bf0517e"
   },
   "claim_boundary": {
     "real_language_model_refinement": false,
