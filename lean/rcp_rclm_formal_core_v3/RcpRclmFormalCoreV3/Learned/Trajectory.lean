@@ -1,4 +1,3 @@
-import Mathlib.Tactic.Omega
 import Mathlib.Tactic.Ring
 import RcpRclmFormalCoreV2.RCP
 import RcpRclmFormalCoreV3.Learned.Kernel
@@ -159,7 +158,11 @@ theorem finite_learned_frontier_card_growth
       have previous := inductionHypothesis (Nat.le_of_lt stepBound)
       have stepCard :=
         (finite_learned_frontier_chain checker trajectory t stepBound).2
-      omega
+      have lifted :
+          (learned.frontier (trajectory.state 0)).card + (t + 1) ≤
+            (learned.frontier (trajectory.state t)).card + 1 := by
+        simpa [Nat.add_assoc] using Nat.add_le_add_right previous 1
+      exact le_trans lifted (Nat.succ_le_of_lt stepCard)
 
 /-- Final-frontier form of the Gate D finite strict-growth theorem. -/
 theorem finite_learned_final_frontier_growth
