@@ -1,8 +1,8 @@
 {
   "artifact_hashes": {
-    "lean_executable_contract_sha256": null,
-    "phase_9_axiom_audit_sha256": null,
-    "phase_9_contract_schema_sha256": null
+    "lean_executable_contract_sha256": "ef98e02f26e2977ed663a87ef99aa7decaf18351beb1772c656ca9fb5367e793",
+    "phase_9_axiom_audit_sha256": "cbd36d1d4ac5de26d29fc3c17a2f7cda49afa69e07dc67e52fd7f1ff7561ef89",
+    "phase_9_contract_schema_sha256": "646f00af321f7f243fb9005ece145159fb6bf3a86848d12113377fb4525995f5"
   },
   "claim_boundary": {
     "actual_compact_language_model": false,
@@ -29,6 +29,29 @@
     "generator_task_ids_visible_before_candidate_freeze": false,
     "training_backend_heldout_prompts_visible": false,
     "training_backend_reference_answers_visible": false
+  },
+  "implementation_validation": {
+    "artifact_digests": {
+      "closure": "bafbc45019768d208636cbbf058bbda427c68f151cd42b15ec7e78f45ed05ffa",
+      "macos": "a451af7ab7766c82ebcaaeb7c5c83e1d6eca6aeaec4cec005d4c9de0dc9c6b9e",
+      "pinned_lean": "7e1c7b166723526bc532ead3b2b5636e54cdf406d27518e56a63e772f4242992",
+      "ubuntu": "9aa260b9cddcbe66c3f97af5651597fd6e5e7f7264ffc723feac59afd576f70d",
+      "windows": "890d3f80383f3f7e90e591612eb08533f78973b54988547fe7291509f66080be"
+    },
+    "branch_head": "b61f5f8c5e7e687e7236f132055b250a6cf05faf",
+    "build_jobs": 2631,
+    "cross_platform": true,
+    "merge_test_commit": "9b72459fe51e882c13a3f79943cd6f158ac0b23f",
+    "no_project_local_axiom_declarations": true,
+    "no_sorry_or_admit": true,
+    "pinned_lean": true,
+    "public_theorem_axiom_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "workflow_conclusion": "success",
+    "workflow_run_id": 29676868118
   },
   "object_correspondence": [
     {
@@ -102,5 +125,5 @@
     "task_verifier": "pinned_lean_theorem_verifier_v1"
   },
   "source_main_commit": "ff5e11a6f99fb37af59f85a373a9defacd0b0ad2",
-  "status": "implementation_started_pending_authoritative_ci"
+  "status": "implementation_validated_pending_exact_head_closure"
 }
