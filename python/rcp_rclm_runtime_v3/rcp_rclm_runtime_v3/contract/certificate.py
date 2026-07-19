@@ -242,7 +242,7 @@ class LearnedCertificatePacket:
             )
 
     @staticmethod
-    def hash_field_names() -> tuple[str, ...]:
+    def hash_field_names() -> Sequence[str]:
         return (
             "predecessor_state_hash",
             "candidate_state_hash",
