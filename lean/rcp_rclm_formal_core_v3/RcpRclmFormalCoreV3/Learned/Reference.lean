@@ -55,7 +55,8 @@ def proposalBindsCandidate
     (candidate : Candidate ClassicalState ClassicalUpdate) : Prop :=
   state = initialState ∧
     proposal = .improve ∧
-    candidate = improvementCandidate
+    candidate.update = improvementUpdate ∧
+    candidate.next = targetState
 
 def packageHashBound
     (_state : ClassicalState)
@@ -107,8 +108,13 @@ def ReferencePacket
     (certificate :
       CertificatePacket ClassicalCertificate Task Generator Proposal PackageHash) : Prop :=
   state = initialState ∧
-    candidate = improvementCandidate ∧
-    certificate = improvementPacket
+    candidate.update = improvementUpdate ∧
+    candidate.next = targetState ∧
+    certificate.base = improvementCertificate ∧
+    certificate.protectedFrontier = { .baseline } ∧
+    certificate.generator = .boundedReference ∧
+    certificate.proposal = .improve ∧
+    certificate.generatorPackageHash = .root
 
 def check
     (state : ClassicalState)
@@ -153,7 +159,7 @@ theorem reference_specific_obligations :
   · rfl
   · rfl
   · exact ⟨rfl, rfl, rfl⟩
-  · exact ⟨rfl, rfl, rfl⟩
+  · exact ⟨rfl, rfl, rfl, rfl⟩
   · rfl
   · rfl
   · exact le_rfl
@@ -170,13 +176,38 @@ noncomputable def checker : TrustedLearnedChecker learnedKernel ClassicalBinary.
   refinesBase := by
     intro state candidate certificate accepted
     have packet := (check_eq_true_iff state candidate certificate).1 accepted
-    rcases packet with ⟨rfl, rfl, rfl⟩
-    exact improvement_check_accepts
+    rcases packet with
+      ⟨stateEq, updateEq, nextEq, baseEq, frontierEq, generatorEq,
+        proposalEq, hashEq⟩
+    subst state
+    cases candidate with
+    | mk update next =>
+        dsimp at updateEq nextEq
+        subst update
+        subst next
+        rw [baseEq]
+        exact improvement_check_accepts
   learnedSound := by
     intro state candidate certificate stateAdmissible stateInvariant accepted
     have packet := (check_eq_true_iff state candidate certificate).1 accepted
-    rcases packet with ⟨rfl, rfl, rfl⟩
-    exact reference_specific_obligations
+    rcases packet with
+      ⟨stateEq, updateEq, nextEq, baseEq, frontierEq, generatorEq,
+        proposalEq, hashEq⟩
+    subst state
+    cases candidate with
+    | mk update next =>
+        dsimp at updateEq nextEq
+        subst update
+        subst next
+        cases certificate with
+        | mk baseCertificate protectedFrontier generator proposal packageHash =>
+            dsimp at baseEq frontierEq generatorEq proposalEq hashEq
+            subst baseCertificate
+            subst protectedFrontier
+            subst generator
+            subst proposal
+            subst packageHash
+            exact reference_specific_obligations
 
 theorem improvement_check_accepts_learned :
     checker.check initialState improvementCandidate improvementPacket = true := by
