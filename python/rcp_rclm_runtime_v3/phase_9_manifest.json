@@ -32,16 +32,16 @@
   },
   "implementation_validation": {
     "artifact_digests": {
-      "closure": "bafbc45019768d208636cbbf058bbda427c68f151cd42b15ec7e78f45ed05ffa",
-      "macos": "a451af7ab7766c82ebcaaeb7c5c83e1d6eca6aeaec4cec005d4c9de0dc9c6b9e",
-      "pinned_lean": "7e1c7b166723526bc532ead3b2b5636e54cdf406d27518e56a63e772f4242992",
-      "ubuntu": "9aa260b9cddcbe66c3f97af5651597fd6e5e7f7264ffc723feac59afd576f70d",
-      "windows": "890d3f80383f3f7e90e591612eb08533f78973b54988547fe7291509f66080be"
+      "closure": "2b8990a6de6270487ce14481af8c6f3b09abf0a66c524f9b1f3aa1c81258df76",
+      "macos": "15c68fb1c4d19531808653be6d69f1dde5677703abfae8f0dde165e435228bc4",
+      "pinned_lean": "a8fc53ba86892828e41a1b526103d3f3678b45a4b37c03fa0b3f6c7ff0a3d94c",
+      "ubuntu": "c66a961846af0368212b6cdb7cc19494d7aa2bf6cd9aad217a2a7e469a921495",
+      "windows": "8343b5213a9e4561e50c9da81d51915948b6882d290d2c0b2949b8c3740ad86f"
     },
-    "branch_head": "b61f5f8c5e7e687e7236f132055b250a6cf05faf",
+    "branch_head": "fb7a61b8083fcebf98f8c13c08a23ba8cfc59644",
     "build_jobs": 2631,
     "cross_platform": true,
-    "merge_test_commit": "9b72459fe51e882c13a3f79943cd6f158ac0b23f",
+    "merge_test_commit": "215675f533fa47371f13857f9f032631288e20f8",
     "no_project_local_axiom_declarations": true,
     "no_sorry_or_admit": true,
     "pinned_lean": true,
@@ -51,7 +51,7 @@
       "Quot.sound"
     ],
     "workflow_conclusion": "success",
-    "workflow_run_id": 29676868118
+    "workflow_run_id": 29677111722
   },
   "object_correspondence": [
     {
@@ -125,5 +125,5 @@
     "task_verifier": "pinned_lean_theorem_verifier_v1"
   },
   "source_main_commit": "ff5e11a6f99fb37af59f85a373a9defacd0b0ad2",
-  "status": "implementation_validated_pending_exact_head_closure"
+  "status": "source_validated_pending_evidence_head_closure"
 }
