@@ -1,0 +1,100 @@
+{
+  "schema_version": "rcp-rclm-formal-core-v3-gate-d-manifest-v1",
+  "phase_name": "RCP/RCLM Formal Core v3 - Gate D learned capability-frontier refinement",
+  "status": "foundation_implementation_validated_pending_final_head_closure",
+  "base_repository_commit": "7cd0a331b5ec43ec49ac815ed72a328c235736e3",
+  "formal_core_v2_dependency": {
+    "path": "../rcp_rclm_formal_core_v2",
+    "required_unchanged": true,
+    "validated_tree": "1c5a32b4a5c7a2d78ba820e535eac3e69a2a85b8"
+  },
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.31.0",
+    "resolved_lake_manifest_sha256": "02921d2d60e7ef077c7fdb5fd184a7b4e9dc240d0f145cb1747ff9d99386151a"
+  },
+  "delivered_objects": {
+    "learned_package_state": true,
+    "learned_package_update": true,
+    "learned_certificate_packet": true,
+    "finite_capability_frontier": true,
+    "frontier_soundness": true,
+    "active_generator_binding": true,
+    "proposal_generation_binding": true,
+    "proposal_candidate_binding": true,
+    "active_package_hash_binding": true,
+    "goal_drift_budget": true,
+    "resource_budget": true,
+    "selected_information_nonregression": true,
+    "trusted_learned_checker_refinement": true,
+    "learned_accepted_step_soundness": true,
+    "finite_frontier_retention": true,
+    "finite_strict_frontier_growth": true,
+    "finite_frontier_cardinality_lower_bound": true,
+    "finite_resource_bound": true,
+    "finite_goal_drift_bound": true,
+    "finite_information_bound": true,
+    "inherited_protected_nonloss": true,
+    "inherited_endpoint_recovery": true,
+    "inherited_lyapunov_motion": true,
+    "inherited_trust_validity": true,
+    "explicit_frontier_expanding_successor_availability": true,
+    "conditional_infinite_learned_trajectory": true,
+    "strict_frontier_expansion_on_infinite_steps": true,
+    "concrete_gate_b_rclm_reference": true
+  },
+  "public_theorems": [
+    "RcpRclmFormalCoreV3.Learned.learned_accepted_step_sound",
+    "RcpRclmFormalCoreV3.Learned.finite_learned_frontier_card_growth",
+    "RcpRclmFormalCoreV3.Learned.finite_learned_final_frontier_growth",
+    "RcpRclmFormalCoreV3.Learned.finite_learned_resource_bound",
+    "RcpRclmFormalCoreV3.Learned.finite_learned_goal_drift_bound",
+    "RcpRclmFormalCoreV3.Learned.finite_learned_information_nonregression",
+    "RcpRclmFormalCoreV3.Learned.finite_learned_composed_nonloss_bound",
+    "RcpRclmFormalCoreV3.Learned.finite_learned_endpoint_recovery_bound",
+    "RcpRclmFormalCoreV3.Learned.finite_learned_lyapunov_motion_bound",
+    "RcpRclmFormalCoreV3.Learned.conditional_infinite_learned_frontier_trajectory_exists",
+    "RcpRclmFormalCoreV3.Learned.infinite_learned_frontier_strict",
+    "RcpRclmFormalCoreV3.Learned.Reference.improvement_learned_accepted_step",
+    "RcpRclmFormalCoreV3.Learned.Reference.reference_frontier_card_growth"
+  ],
+  "implementation_validation": {
+    "branch_head": "8cea1eabbc0f07abb4138a8afc0d7965f4dd637b",
+    "merge_test_commit": "bf6780970815fcca7a2b3de8b905f08fa42987b6",
+    "workflow_run_id": 29673278100,
+    "workflow_conclusion": "success",
+    "build_jobs": 2630,
+    "no_sorry_or_admit": true,
+    "no_sorry_ax": true,
+    "no_project_local_axiom_declarations": true,
+    "audited_public_theorem_count": 13,
+    "axiom_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "artifact_name": "formal-core-v3-gate-d-29673278100-1",
+    "artifact_sha256": "1e44ba91495b1779bd11ff5892b6f4798fcec08f9225c6b6f13d85312082459a"
+  },
+  "final_validation": {
+    "branch_head": null,
+    "merge_test_commit": null,
+    "workflow_run_id": null,
+    "workflow_conclusion": null,
+    "artifact_name": null,
+    "artifact_sha256": null
+  },
+  "claim_boundary": {
+    "real_language_model_refinement": false,
+    "independent_task_verifier_refinement": false,
+    "open_ended_learned_planner": false,
+    "generator_self_modification": false,
+    "self_hosted_multi_generation_recursion": false,
+    "generic_frontier_expanding_successor_availability": false,
+    "strict_broad_usefulness": false,
+    "arbitrary_learned_system_refinement": false,
+    "full_paper_i_equivalence": false,
+    "full_paper_ii_equivalence": false,
+    "general_noncommuting_quantum": false,
+    "autonomous_unbounded_rsi": false
+  }
+}
