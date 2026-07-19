@@ -1,6 +1,6 @@
 {
   "schema_version": "rcp-rclm-runtime-v3-phase-9-validation-v1",
-  "validation_status": "source_validated_pending_evidence_head_closure",
+  "validation_status": "phase9_contract_complete_at_declared_scope",
   "source_main_commit": "ff5e11a6f99fb37af59f85a373a9defacd0b0ad2",
   "local_validation": {
     "focused_tests_passed": 10,
