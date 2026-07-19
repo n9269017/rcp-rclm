@@ -7,6 +7,12 @@ on:
     paths:
       - ".phase9_completion/payload.b64"
       - ".github/workflows/apply-phase9-completion.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".phase9_completion/payload.b64"
+      - ".github/workflows/apply-phase9-completion.yml"
   workflow_dispatch:
 
 permissions:
