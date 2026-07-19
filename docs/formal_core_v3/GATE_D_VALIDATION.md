@@ -2,12 +2,12 @@
 
 ## Validation state
 
-The abstract Gate D theorem stack and one-step reference have completed an initial
-pinned build, forbidden-token scan, project-local-axiom scan, and public theorem
-axiom audit.
+The Gate D formal foundation is implementation-complete at the declared abstract and
+one-step reference scope. The theorem stack, exact dependency manifest, documentation,
+machine-readable claim record, source gates, and public theorem audit have passed at
+one exact source head.
 
-This record distinguishes the validated implementation head from the later
-documentation and manifest closure head.
+A final evidence-only head will rerun the same workflow before the PR is marked ready.
 
 ## Validated implementation head
 
@@ -25,6 +25,28 @@ conclusion:
 success
 ```
 
+This head closed the Lean implementation itself.
+
+## Validated source-and-documentation head
+
+```text
+branch head:
+411a89afe0549fc3190ee4f47d20a72fac37aa06
+
+PR merge-test commit:
+f56f533f88693a87be6cddccaa86807e57bd70da
+
+workflow run:
+29673625985
+
+conclusion:
+success
+```
+
+This head additionally contained the committed dependency graph, formalization
+manifest, theorem contract, scope, assumption register, exit criteria, and workflow
+manifest validation.
+
 ## Build result
 
 ```text
@@ -37,14 +59,18 @@ build jobs:
 v2 dependency tree:
 1c5a32b4a5c7a2d78ba820e535eac3e69a2a85b8
 
-v3 project tree:
-fefaa8c943c520f276d5b07428cbf3023839e07c
+validated v3 project tree:
+99d5e42311f5293d2df3fdb36f04fb968946e63d
 
 resolved v3 lake-manifest SHA-256:
 02921d2d60e7ef077c7fdb5fd184a7b4e9dc240d0f145cb1747ff9d99386151a
+
+validated formalization-manifest SHA-256:
+f312017dadab7a9b8506bb48be167446308f3127264c4aa4f0f050a6173cb1ca
 ```
 
-The workflow verifies that the v2 project tree is unchanged relative to `main`.
+The workflow verifies that the v2 project tree is unchanged relative to `main` and
+that `lake update` does not alter the committed v3 dependency manifest.
 
 ## Proof hygiene
 
@@ -90,17 +116,29 @@ Quot.sound
 These are the ordinary Lean/mathlib foundational dependencies already present in
 the validated v2 theorem stack, not Gate D project-local axioms.
 
-## Workflow artifact
+## Workflow artifacts
+
+Implementation artifact:
 
 ```text
-artifact name:
+name:
 formal-core-v3-gate-d-29673278100-1
 
-artifact digest:
+digest:
 sha256:1e44ba91495b1779bd11ff5892b6f4798fcec08f9225c6b6f13d85312082459a
 ```
 
-The artifact contains:
+Source-and-documentation artifact:
+
+```text
+name:
+formal-core-v3-gate-d-29673625985-1
+
+digest:
+sha256:a712bde46b6309b8a45429f9c9616cc1877a3c5946ecc1e33d5fc6d51bf0517e
+```
+
+The latter artifact contains:
 
 ```text
 lake_build.log
@@ -108,11 +146,13 @@ forbidden_proof_tokens.txt
 project_axiom_declarations.txt
 gate_d_axioms.txt
 audit_metadata.txt
+lake-manifest.json
+formalization_manifest.json
 ```
 
-## Implementation conclusions supported
+## Conclusions supported
 
-The validated implementation head supports:
+The validated source supports:
 
 ```text
 one-step Gate D checker soundness
@@ -125,21 +165,16 @@ conditional infinite learned trajectory under explicit successor availability
 one non-vacuous Gate B RCLM frontier-expansion reference
 ```
 
-## Final-head closure still required
+## Evidence-head revalidation
 
-Before Gate D foundation is marked ready for review, the repository must still:
-
-```text
-commit the exact v3 lake-manifest
-commit and validate the machine-readable v3 formalization manifest
-close every documentation exit criterion
-rerun the pinned build and audit at the exact final branch head
-record the final head, merge-test commit, workflow run, and artifact digest
-```
+The evidence records intentionally refer to the already validated source head rather
+than attempting a self-referential hash. After these evidence-only updates, the same
+pinned workflow must pass once more. The PR discussion will bind that final evidence
+head and workflow artifact without changing source files again.
 
 ## Claim boundary
 
 This validation does not establish a real learned language model, open-ended planning,
 generator self-modification, generic frontier-expanding successor availability,
-self-hosted multi-generation recursion, arbitrary learned-system refinement, or
-autonomous/unbounded RSI.
+self-hosted multi-generation recursion, arbitrary learned-system refinement, full
+Paper I or Paper II equivalence, or autonomous/unbounded RSI.
