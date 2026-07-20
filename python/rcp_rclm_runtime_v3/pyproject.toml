@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rcp-rclm-runtime-v3"
-version = "0.2.0"
-description = "Gate D Phase 9 contract and Phase 10 compact-transformer substrate, learned execution, and certified-language evidence"
+version = "0.3.0"
+description = "Gate D Phase 9 contract, complete Phase 10 learned successor, and Phase 11A active-model typed experiment proposal"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "See repository LICENSE and component licenses"}
