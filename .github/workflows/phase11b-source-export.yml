@@ -35,6 +35,7 @@ jobs:
       - name: Check out exact branch head
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
       - name: Record exact git object identities
