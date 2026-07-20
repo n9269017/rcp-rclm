@@ -8,6 +8,13 @@ on:
       - ".phase10b/**"
       - "scripts/apply_phase10b_payload.py"
       - ".github/workflows/apply-phase10b-payload.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".phase10b/**"
+      - "scripts/apply_phase10b_payload.py"
+      - ".github/workflows/apply-phase10b-payload.yml"
 
 permissions:
   contents: write
@@ -15,6 +22,7 @@ permissions:
 jobs:
   apply:
     name: Materialize Phase 10B source
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
