@@ -1,72 +1,54 @@
-# Phase 11A — active-model typed experiment proposal
+# Phase 11 — autonomous untrusted experiment planner and generator
 
 ## Status
 
-Phase 11A installs the first bounded model-facing generator and planner surface over the
-promoted Phase 10 compact model.  It demonstrates that the active predecessor model can
-emit a typed mutation program, receive an immutable host rejection, and emit a fresh
-program under the same precommitted budget.
+Phase 11 closes the first bounded active-model experiment cycle. One active predecessor
+package emits typed mutation programs, the immutable host rejects both an invalid proposal
+and a realized regressing candidate, and a later fresh model-generated candidate is accepted
+and atomically promoted. The promoted successor contains changed generation-2 generator and
+planner policies.
 
-The host-created bootstrap is recorded separately and is **not** counted as autonomous
-improvement.  Full Phase 11 remains open until model-generated candidates are realized,
-one candidate is rejected, a later candidate is accepted and promoted, and changed
-generator/planner bytes are installed in that promoted successor.
+The host-created active-generator bootstrap remains a separately declared starting-state
+construction and is **not** counted as autonomous improvement. The first use of the changed
+successor generator is intentionally reserved for Phase 12.
 
-## Dependency
+## Dependency and immutable authorities
 
-Phase 11A starts from merged Phase 10 head:
+Phase 11 starts from merged Phase 10 head:
 
 ```text
 52acaa820d75380b8766a2d7f4f78226645acc1f
 ```
 
-The Phase 10 model, tokenizer, architecture, protected tasks, selected information
-semantics, Phase 6 boundary, Phase 7 store, hardened checker, canonical serializer, and
-root trust anchor remain unchanged.
+The Runtime v2 checker, pinned Lean projects, root trust anchor, canonical serializer,
+package hashing, promotion authority, held-out answer store, and active ledger history remain
+outside the learned package. A model may emit a typed mutation program, but it cannot write
+directly into a candidate or alter those authorities.
 
-## Bootstrap separation
+## Active-generator bootstrap
 
-The Phase 10 package still described its generator and planner as external reference
-policies.  Phase 11 therefore requires one explicit bootstrap step before an active model
-can hold proposal authority.
+The promoted Phase 10 package still described generator and planner policies as external
+reference components. Phase 11 therefore installs one explicit bounded active package before
+model proposal authority is granted.
 
-The host installs a function-preserving active-generator package by:
+The bootstrap:
 
-1. copying the promoted Phase 10 learned package;
-2. retaining the existing `rfl` and `omega` transition columns exactly;
-3. writing two bounded proposal programs into previously unused transition columns;
-4. replacing the generator and planner policy artifacts with active model-facing policies;
-5. binding the proposal protocol into the Phase 9 self-hosting identity;
-6. retaining the exact model package, tensor, support-artifact, and policy hashes.
+1. retains the Phase 10 `rfl` and `omega` capabilities;
+2. installs position-addressed proposal behavior in unused exact-integer transition columns;
+3. installs active generator and planner policy artifacts;
+4. binds package, model, state, generator, planner, objective, and proposal-protocol hashes;
+5. leaves candidate construction and promotion entirely host-controlled.
 
-This changes the package and model identities, but the closure record explicitly states:
+The retained boundary is:
 
 ```text
 host_installed_active_generator_bootstrap = true
 bootstrap_counted_as_autonomous_improvement = false
 ```
 
-The bootstrap is a starting-state construction, not an accepted learned successor.
+## Typed mutation language
 
-## Selected generator profile
-
-The selected profile is:
-
-```text
-position_addressed_typed_mutation_v1
-```
-
-It is implemented inside the existing exact integer sparse execution surface.  Each
-proposal position addresses one reserved model state token.  The canonical transition
-scores produce one output byte with a strict positive margin.  `<eos>` terminates the
-program.
-
-This selected profile demonstrates model-owned proposal bytes.  It does not claim general
-native-float transformer generation or unconstrained natural-language planning.
-
-## Typed mutation grammar
-
-The model emits canonical ASCII only:
+The selected model emits canonical ASCII:
 
 ```text
 V1;O=<objective>;U=<updates>;D=<data>;A=<architecture>;
@@ -74,7 +56,7 @@ R=<wall,accelerators,steps,bytes,candidates,evaluations>;
 E=<components>;B=<rollback>;G=<generator-generation>;P=<planner-generation>
 ```
 
-The parsed object contains:
+The parsed object records:
 
 ```text
 proposal objective
@@ -89,130 +71,149 @@ successor generator generation
 successor planner generation
 ```
 
-Whitespace, reordered fields, duplicate update codes, unknown codes, missing rollback,
-noncanonical serialization, or binding mismatches fail closed.
+Whitespace, field reordering, duplicate or unknown codes, unsupported mutation classes,
+noncanonical serialization, absent exact rollback, budget overruns, or active-package and
+policy binding mismatches fail closed.
 
-## Fixed invocation budget
+## Precommitted total budget
 
-Both invocations use the same immutable budget:
-
-```text
-wall-clock seconds:  1
-accelerator count:   0
-training steps:      1
-output bytes:        96
-candidate count:     2
-evaluation calls:    2
-manual repairs:      0
-```
-
-The model may not write directly into a candidate package.
-
-## Frozen authorities
-
-The typed language cannot address:
+The selected Phase 11 trajectory uses one immutable ledger:
 
 ```text
-active ledger history
-canonical serializer
-hardened checker
-held-out answer store
-package hashing
-pinned Lean project
-promotion authority
-root trust anchor
+wall-clock seconds per invocation:  1
+accelerators:                       0
+training steps per candidate:       1
+output bytes per program:           96
+model generator invocations:        3
+candidate realizations:             2
+candidate evaluations:              2
+manual repairs:                      0
 ```
 
-Tokenizer and verification-policy updates are also forbidden in the selected Phase 11A
-surface.
+The invalid first proposal does not consume a candidate-realization slot. The alpha and beta
+candidates consume the two declared realization and evaluation slots.
 
-## First model-generated proposal: rejected
+## Invocation 0 — invalid program rejected
 
-The active model emits:
+The active model first emits:
 
 ```text
 V1;O=F;U=V;D=A;A=N;R=1,0,2,96,1,1;E=V;B=X;G=1;P=1
 ```
 
-The immutable host rejects it for two independent reasons:
+The immutable host rejects it for:
 
 ```text
 PHASE11_BUDGET_EXCEEDED
 PHASE11_FORBIDDEN_UPDATE_CLASS
 ```
 
-The proposal requests two training steps against a one-step ceiling and attempts to
-change the verification policy.  No active package mutation occurs.
+It requests two training steps against a one-step ceiling and attempts to mutate the
+verification policy. No candidate is realized and the active package is unchanged.
 
-## Fresh model-generated proposal: validated
+## Invocation 1 — alpha candidate realized and rejected
 
-The second invocation receives an observation hash containing the first validation report
-hash.  The active model then emits a different program:
-
-```text
-V1;O=F;U=WGP;D=A;A=N;R=1,0,1,96,1,1;E=WGP;B=X;G=2;P=2
-```
-
-It requests:
+After the first rejection, a fresh model invocation emits:
 
 ```text
-model-weight update
-generator-policy update
-planner-policy update
-exact predecessor rollback
-successor generator generation 2
-successor planner generation 2
+V1;O=F;U=WLGP;D=A;A=N;R=1,0,1,96,1,1;E=WLGP;B=X;G=2;P=2
 ```
 
-The host validates the program under the original budget.  No held-out task identifier,
-prompt, source, or reference answer is visible to either invocation.
+The host validates the typed program and realizes alpha through the inherited Phase 6
+boundary. Exact rollback succeeds. Alpha solves the selected new Phase 11 task and retains
+the Phase 10 `omega` task, but it changes the protected `R` transition so deterministic
+tie-breaking no longer emits `rfl`.
 
-## Stable reference
-
-The cross-platform reference binds:
+The lifecycle verdict is therefore:
 
 ```text
-active package:
-724fcda02a1124eeeb2f2c0207052d16705d6fdb95afc6b87a7f5e6b658e47c4
-
-active model:
-94a07482cf243964d54e6f9079103f7d1ca85745d351a0a28a9030cbb11ef023
-
-active generator:
-166966f0e0724c65f1137529fb774882cdeb88c2c1262ff243ad0709f8a12b8b
-
-active planner:
-6d3b7dff5117791ba50c7b0b89eddb07d8acaf1afb0deb56e32d06fcff55dff2
-
-proposal protocol:
-5fbf5cb884187dc37e492ce9cd0057f746d60138e9a542fa1723072a3914b7d8
-
-Phase 11A summary:
-fe32f0d879f26929505170fbf695657af02be623090cfc41b383aabc32e8312e
+candidate realized = true
+rollback exact = true
+new task solved = true
+protected capability retained = false
+verdict = reject
+reason = protected_capability_regression
 ```
 
-Ubuntu, Windows, and macOS produced byte-identical reference JSON.
+The rejection is written to the immutable Phase 7 ledger. The active package hash before
+and after that rejection is identical.
 
-## Claim boundary
+## Invocation 2 — beta candidate accepted and promoted
 
-Phase 11A establishes:
+A third fresh invocation is bound to alpha's rejection report and emits:
 
 ```text
-active predecessor model generated proposal bytes      yes
-proposal generated without held-out material            yes
-one model-generated proposal rejected                   yes
-fresh later typed program validated                     yes
-same fixed budget retained                              yes
-manual repair count                                     0
+V1;O=F;U=WLCGP;D=A;A=N;R=1,0,1,96,1,1;E=WLCGP;B=X;G=2;P=2
 ```
 
-It does not yet establish:
+The added curriculum update removes alpha's protected-marker conflict while retaining the
+new training signal. Beta is realized through Phase 6 and independently satisfies:
 
 ```text
-model-generated candidate realization
-model-generated candidate rejection after realization
-accepted and promoted model-generated candidate
-changed generator/planner bytes in a promoted successor
-recursive use of the modified successor generator
-Phase 11 completion
+exact rollback
+protected rfl retention
+Phase 10 omega retention
+new Phase 11 Lean task certification
+selected entropy/KL/diagonal-QRE non-regression
+strict selected information witness
+complete Gate D / Phase 9 transition acceptance
+pinned Gate B Lean bridge acceptance
+hardened checker acceptance
 ```
+
+Phase 7 then atomically promotes beta. Its immutable promoted package has the unchanged
+active predecessor as parent and ledger sequence number 2: one rejection followed by one
+promotion.
+
+## New selected Lean task
+
+The new held-out task is:
+
+```text
+task ID: lean.phase11.heldout.add_zero_macro
+model marker: S
+model completion: z
+```
+
+The pinned Lean source is:
+
+```lean
+import Mathlib
+
+macro "z" : tactic => `(tactic| simp)
+
+example (n : Nat) : n + 0 = n := by
+  z
+```
+
+The completion is generated by the candidate model and accepted only after independent Lean
+execution. Candidate self-report is not authoritative.
+
+## Installed successor policies
+
+The accepted candidate changes and binds:
+
+```text
+model weights
+adapter manifest
+data curriculum
+generator policy
+planner policy
+```
+
+The promoted generator and planner policy bytes differ from the active predecessor's. Both
+policies declare generation 2 and are verified inside the immutable promoted package.
+
+This establishes self-hosting readiness, not recursive use. The next proposal must be emitted
+by those installed generation-2 policies to satisfy the central Phase 12 condition.
+
+## Held-out and trust boundary
+
+No generator or training input contains the Phase 11 held-out task identifier, model prompt,
+Lean source, expected completion, or reference answer. Candidate generation and training use
+only the permitted training partition. Held-out evaluation begins only after candidate freeze.
+
+The selected implementation remains bounded to the exact compact sparse language-model
+profile and Lean theorem-completion class. It does not claim arbitrary native-float model
+generation, generic successor availability, autonomous unbounded RSI, or an infinite learned
+trajectory.
