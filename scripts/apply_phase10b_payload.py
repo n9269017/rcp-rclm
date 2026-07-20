@@ -46,10 +46,17 @@ TRANSPORT_CORRECTIONS = (
     (2, 1711, "a", "i"),
     (3, 2735, "s", "S"),
 )
+RUNTIME_WORKFLOW = ".github/workflows/runtime-v3-phase-10-learned.yml"
 
 
 def run(*args: str) -> str:
-    completed = subprocess.run(args, check=True, text=True, capture_output=True)
+    completed = subprocess.run(args, check=False, text=True, capture_output=True)
+    if completed.returncode != 0:
+        raise RuntimeError(
+            f"command failed ({completed.returncode}): {args!r}\n"
+            f"stdout:\n{completed.stdout}\n"
+            f"stderr:\n{completed.stderr}"
+        )
     return completed.stdout.strip()
 
 
@@ -124,9 +131,10 @@ def main() -> int:
         unknown = sorted(observed_paths - EXPECTED_PATHS)
         raise RuntimeError(f"payload path mismatch; missing={missing}; unknown={unknown}")
 
+    runtime_workflow = repo_root / RUNTIME_WORKFLOW
+    runtime_workflow.unlink()
     shutil.rmtree(parts_root)
     (repo_root / "scripts" / "apply_phase10b_payload.py").unlink()
-    (repo_root / ".github" / "workflows" / "apply-phase10b-payload.yml").unlink()
 
     run("git", "-C", str(repo_root), "config", "user.name", "github-actions[bot]")
     run("git", "-C", str(repo_root), "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com")
@@ -134,6 +142,8 @@ def main() -> int:
     staged = run("git", "-C", str(repo_root), "diff", "--cached", "--name-only")
     if not staged:
         raise RuntimeError("payload application produced no staged changes")
+    if any(path.startswith(".github/workflows/") for path in staged.splitlines()):
+        raise RuntimeError("action commit unexpectedly modifies a workflow file")
     run("git", "-C", str(repo_root), "commit", "-m", "Implement Phase 10 learned execution and frontier evidence")
     run("git", "-C", str(repo_root), "push", "origin", f"HEAD:{BRANCH}")
     return 0
