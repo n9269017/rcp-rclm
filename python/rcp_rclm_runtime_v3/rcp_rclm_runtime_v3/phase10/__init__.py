@@ -22,6 +22,12 @@ from rcp_rclm_runtime_v3.phase10.lifecycle import (
     phase10_phase6_budget,
     replay_phase10_phase6,
 )
+from rcp_rclm_runtime_v3.phase10.promotion import (
+    Phase10PromotionEvidence,
+    Phase10VerificationEvidence,
+    promote_phase10_candidate,
+    verify_phase10_candidate,
+)
 from rcp_rclm_runtime_v3.phase10.package import (
     ModelPackageManifest,
     build_reference_predecessor_package,
@@ -54,6 +60,8 @@ __all__ = [
     "Phase10InformationReport",
     "Phase10LearnedReference",
     "Phase10PackageReport",
+    "Phase10PromotionEvidence",
+    "Phase10VerificationEvidence",
     "Phase10Phase6Fixture",
     "Phase10ReferenceFixture",
     "PromptInformationEvidence",
@@ -72,9 +80,11 @@ __all__ = [
     "decode_completion",
     "empty_adapter_manifest",
     "phase10_phase6_budget",
+    "promote_phase10_candidate",
     "replay_phase10_phase6",
     "validate_conservative_extension",
     "validate_model_package",
     "verify_adapter_manifest",
     "verify_decoded_task",
+    "verify_phase10_candidate",
 ]

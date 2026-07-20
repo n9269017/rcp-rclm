@@ -61,7 +61,7 @@ def phase10_phase6_budget() -> Phase6ResourceBudgetRecord:
         max_file_count=512,
         max_total_bytes=134_217_728,
         max_changed_files=128,
-        max_written_bytes=33_554_432,
+        max_written_bytes=100_663_296,
         max_commands=256,
         max_snapshot_bytes=67_108_864,
     )

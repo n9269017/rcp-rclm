@@ -576,7 +576,7 @@ def promote_phase10_candidate(
     )
     if not result.accepted:
         raise ValueError("Phase 10 atomic promotion did not close")
-    _write_json(store_root / "phase10_promotion_report.json", result.to_json())
+    _write_json(evidence_path.parent / "phase10_promotion_report.json", result.to_json())
     return result
 
 
