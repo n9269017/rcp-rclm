@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rcp-rclm.org/schema/runtime-v3-phase-11a-generator-v1.json",
+  "title": "RCP/RCLM Runtime v3 Phase 11A autonomous typed-generator evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "accepted",
+    "phase10_merge_commit",
+    "active_package_hash",
+    "active_state_hash",
+    "active_model_identity_hash",
+    "active_generator_hash",
+    "active_planner_hash",
+    "proposal_protocol_hash",
+    "objective",
+    "objective_hash",
+    "bootstrap_report_hash",
+    "first_invocation_hash",
+    "first_program_hash",
+    "first_validation_hash",
+    "first_validation_accepted",
+    "first_reason_codes",
+    "second_invocation_hash",
+    "second_program_hash",
+    "second_validation_hash",
+    "second_validation_accepted",
+    "budget_hash",
+    "budget_ledger",
+    "manual_repair_count",
+    "heldout_material_consumed",
+    "claim_boundary",
+    "summary_hash"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "runtime.v3.phase11a.evidence_summary.v1"
+    },
+    "accepted": {
+      "const": true
+    },
+    "phase10_merge_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "active_package_hash": {"$ref": "#/$defs/Hash"},
+    "active_state_hash": {"$ref": "#/$defs/Hash"},
+    "active_model_identity_hash": {"$ref": "#/$defs/Hash"},
+    "active_generator_hash": {"$ref": "#/$defs/Hash"},
+    "active_planner_hash": {"$ref": "#/$defs/Hash"},
+    "proposal_protocol_hash": {"$ref": "#/$defs/Hash"},
+    "objective": {
+      "const": "expand_certified_frontier"
+    },
+    "objective_hash": {"$ref": "#/$defs/Hash"},
+    "bootstrap_report_hash": {"$ref": "#/$defs/Hash"},
+    "first_invocation_hash": {"$ref": "#/$defs/Hash"},
+    "first_program_hash": {"$ref": "#/$defs/Hash"},
+    "first_validation_hash": {"$ref": "#/$defs/Hash"},
+    "first_validation_accepted": {
+      "const": false
+    },
+    "first_reason_codes": {
+      "type": "array",
+      "prefixItems": [
+        {"const": "PHASE11_BUDGET_EXCEEDED"},
+        {"const": "PHASE11_FORBIDDEN_UPDATE_CLASS"}
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "second_invocation_hash": {"$ref": "#/$defs/Hash"},
+    "second_program_hash": {"$ref": "#/$defs/Hash"},
+    "second_validation_hash": {"$ref": "#/$defs/Hash"},
+    "second_validation_accepted": {
+      "const": true
+    },
+    "budget_hash": {"$ref": "#/$defs/Hash"},
+    "budget_ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "budget_hash",
+        "generator_invocations",
+        "candidate_count_consumed",
+        "evaluation_calls_consumed",
+        "manual_repair_count"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase11.budget_ledger.v1"},
+        "budget_hash": {"$ref": "#/$defs/Hash"},
+        "generator_invocations": {"const": 2},
+        "candidate_count_consumed": {"const": 2},
+        "evaluation_calls_consumed": {"const": 2},
+        "manual_repair_count": {"const": 0}
+      }
+    },
+    "manual_repair_count": {"const": 0},
+    "heldout_material_consumed": {"const": false},
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "host_installed_active_generator_bootstrap",
+        "bootstrap_counted_as_autonomous_improvement",
+        "active_predecessor_model_generated_proposal",
+        "model_generated_proposal_rejected",
+        "fresh_model_generated_typed_program_validated",
+        "model_generated_candidate_realized",
+        "model_generated_candidate_rejected",
+        "model_generated_candidate_promoted",
+        "successor_generator_planner_installed",
+        "modified_successor_generator_used_recursively",
+        "phase11_exit_closed"
+      ],
+      "properties": {
+        "host_installed_active_generator_bootstrap": {"const": true},
+        "bootstrap_counted_as_autonomous_improvement": {"const": false},
+        "active_predecessor_model_generated_proposal": {"const": true},
+        "model_generated_proposal_rejected": {"const": true},
+        "fresh_model_generated_typed_program_validated": {"const": true},
+        "model_generated_candidate_realized": {"const": false},
+        "model_generated_candidate_rejected": {"const": false},
+        "model_generated_candidate_promoted": {"const": false},
+        "successor_generator_planner_installed": {"const": false},
+        "modified_successor_generator_used_recursively": {"const": false},
+        "phase11_exit_closed": {"const": false}
+      }
+    },
+    "summary_hash": {"$ref": "#/$defs/Hash"}
+  },
+  "$defs": {
+    "Hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
