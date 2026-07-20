@@ -19,6 +19,47 @@ from rcp_rclm_runtime_v3.phase10.promotion import (
 )
 
 
+def _verification_context(error: BaseException) -> dict[str, object]:
+    current = error.__traceback__
+    while current is not None:
+        frame = current.tb_frame
+        evidence = frame.f_locals.get("evidence")
+        if frame.f_code.co_name == "verify_phase10_candidate" and evidence is not None:
+            checks = {
+                "predecessor_protected_solved": evidence.predecessor_protected.solved,
+                "predecessor_heldout_unsolved": not evidence.predecessor_heldout.solved,
+                "candidate_protected_solved": evidence.candidate_protected.solved,
+                "candidate_heldout_solved": evidence.candidate_heldout.solved,
+                "information_accepted": evidence.information_report.accepted,
+                "expected_task_reports_match": evidence.expected_task_reports_match,
+                "gate_b_lean_accepted": evidence.gate_b_lean.report.accepted,
+                "gate_b_source_guard_clean": evidence.gate_b_lean.source_guard.clean,
+                "hardened_checker_accepted": evidence.hardened_checker.accepted,
+                "candidate_unchanged": evidence.candidate_unchanged,
+                "training_modules_absent": not evidence.forbidden_training_modules_loaded,
+            }
+            return {
+                "verification_checks": checks,
+                "verification_failures": sorted(
+                    name for name, accepted in checks.items() if accepted is not True
+                ),
+                "forbidden_training_modules_loaded": list(
+                    evidence.forbidden_training_modules_loaded
+                ),
+                "gate_b_lean_report": evidence.gate_b_lean.report.to_json(),
+                "gate_b_source_guard": evidence.gate_b_lean.source_guard.to_json(),
+                "hardened_checker": evidence.hardened_checker.to_json(),
+                "task_reports": {
+                    "predecessor_protected": evidence.predecessor_protected.to_json(),
+                    "predecessor_heldout": evidence.predecessor_heldout.to_json(),
+                    "candidate_protected": evidence.candidate_protected.to_json(),
+                    "candidate_heldout": evidence.candidate_heldout.to_json(),
+                },
+            }
+        current = current.tb_next
+    return {}
+
+
 def _write_diagnostic(
     path: Path,
     *,
@@ -26,6 +67,7 @@ def _write_diagnostic(
     accepted: bool,
     detail: str,
     traceback_text: str,
+    context: dict[str, object],
 ) -> None:
     content = {
         "schema_id": "runtime.v3.phase10.closure_diagnostic.v1",
@@ -34,6 +76,7 @@ def _write_diagnostic(
         "detail": detail,
         "traceback": traceback_text,
         "traceback_sha256": sha256_hex(traceback_text.encode("utf-8")),
+        "context": context,
     }
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(canonical_json_bytes(content))
@@ -103,6 +146,7 @@ def main() -> int:
             accepted=closure.accepted,
             detail="Phase 10 closure completed",
             traceback_text="",
+            context={},
         )
         return 0 if closure.accepted else 1
     except Exception as exc:
@@ -113,6 +157,7 @@ def main() -> int:
             accepted=False,
             detail=f"{type(exc).__name__}: {exc}",
             traceback_text=traceback_text,
+            context=_verification_context(exc),
         )
         raise
 
