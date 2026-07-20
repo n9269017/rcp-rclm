@@ -85,32 +85,44 @@ jobs:
           --package-root python/rcp_rclm_runtime_v3
           --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/phase_10_tests.log
 
-      - name: Validate Phase 10 schemas
-        run: |
-          python python/rcp_rclm_runtime_v3/tools/validate_phase10_schema.py \
-            --schema python/rcp_rclm_executable_core_v3/contract/phase_10_substrate.schema.json \
-            --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/substrate_schema.json
-          python python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_schema.py \
-            --schema python/rcp_rclm_executable_core_v3/contract/phase_10_learned.schema.json \
-            --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/learned_schema.json
+      - name: Validate Phase 10 substrate schema
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase10_schema.py
+          --schema python/rcp_rclm_executable_core_v3/contract/phase_10_substrate.schema.json
+          --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/substrate_schema.json
 
-      - name: Recompute Phase 10 references
-        run: |
-          python python/rcp_rclm_runtime_v3/tools/run_phase10_reference.py \
-            --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/substrate_reference.json
-          python python/rcp_rclm_runtime_v3/tools/run_phase10_learned_reference.py \
-            --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/learned_reference.json
-          python python/rcp_rclm_runtime_v3/tools/run_phase10_lifecycle_reference.py \
-            --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/lifecycle_reference.json
+      - name: Validate Phase 10 learned schema
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_schema.py
+          --schema python/rcp_rclm_executable_core_v3/contract/phase_10_learned.schema.json
+          --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/learned_schema.json
 
-      - name: Validate Phase 10 manifests
-        run: |
-          python python/rcp_rclm_runtime_v3/tools/validate_phase10_manifest.py \
-            --repo-root . \
-            --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/substrate_manifest.json
-          python python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_manifest.py \
-            --repo-root . \
-            --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/learned_manifest.json
+      - name: Recompute Phase 10 substrate reference
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase10_reference.py
+          --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/substrate_reference.json
+
+      - name: Recompute Phase 10 learned reference
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase10_learned_reference.py
+          --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/learned_reference.json
+
+      - name: Recompute Phase 10 lifecycle reference
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase10_lifecycle_reference.py
+          --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/lifecycle_reference.json
+
+      - name: Validate Phase 10 substrate manifest
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase10_manifest.py
+          --repo-root .
+          --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/substrate_manifest.json
+
+      - name: Validate Phase 10 learned manifest
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_manifest.py
+          --repo-root .
+          --out artifacts/runtime_v3_phase_10_closure/${{ matrix.os }}/learned_manifest.json
 
       - name: Upload portable evidence
         if: always()
