@@ -16,9 +16,23 @@ class Phase10LifecycleTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        cls.temporary = tempfile.TemporaryDirectory(prefix="rcp-rclm-phase10-lifecycle-tests-")
+        cls.temporary = tempfile.TemporaryDirectory(
+            prefix="rcp-rclm-phase10-lifecycle-tests-"
+        )
         cls.root = Path(cls.temporary.name)
-        cls.fixture = build_phase10_phase6_fixture(cls.root / "fixture")
+        fixture_root = cls.root / "fixture"
+        try:
+            cls.fixture = build_phase10_phase6_fixture(fixture_root)
+        except ValueError as exc:
+            report_path = fixture_root / "retained" / "fixture.json"
+            detail = (
+                report_path.read_text(encoding="utf-8")
+                if report_path.is_file()
+                else "retained fixture report was not written"
+            )
+            raise AssertionError(
+                f"Phase 10 lifecycle fixture failed: {exc}; retained={detail}"
+            ) from exc
 
     @classmethod
     def tearDownClass(cls) -> None:
