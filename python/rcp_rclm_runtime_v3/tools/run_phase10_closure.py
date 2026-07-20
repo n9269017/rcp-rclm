@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import subprocess
 import tempfile
 import traceback
 from pathlib import Path
@@ -17,6 +18,35 @@ from rcp_rclm_runtime_v3.phase10.promotion import (
     promote_phase10_candidate,
     verify_phase10_candidate,
 )
+
+
+def _prewarm_pinned_lean_identity(repo_root: Path) -> dict[str, str]:
+    project_root = repo_root / "lean/rcp_rclm_formal_core_v2"
+    commands = {
+        "lean_version": ("lake", "env", "lean", "--version"),
+        "lake_version": ("lake", "--version"),
+        "lean_prefix": ("lake", "env", "lean", "--print-prefix"),
+    }
+    result: dict[str, str] = {}
+    for label, command in commands.items():
+        completed = subprocess.run(
+            command,
+            cwd=project_root,
+            capture_output=True,
+            check=False,
+            timeout=180,
+        )
+        if completed.returncode != 0:
+            detail = completed.stderr.decode("utf-8", errors="replace").strip()
+            raise RuntimeError(
+                f"pinned Lean identity prewarm failed for {label}: "
+                f"{detail or completed.returncode}"
+            )
+        output = completed.stdout.decode("utf-8", errors="strict").strip()
+        if not output:
+            raise RuntimeError(f"pinned Lean identity prewarm returned no output for {label}")
+        result[label] = sha256_hex(output.encode("utf-8"))
+    return result
 
 
 def _verification_context(error: BaseException) -> dict[str, object]:
@@ -94,8 +124,11 @@ def main() -> int:
     diagnostic = output.with_name("phase_10_closure_diagnostic.json")
     output.parent.mkdir(parents=True, exist_ok=True)
     stage = "initialize"
+    prewarm_hashes: dict[str, str] = {}
 
     try:
+        stage = "prewarm_pinned_lean_identity"
+        prewarm_hashes = _prewarm_pinned_lean_identity(repo_root)
         with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase10-closure-") as temporary:
             root = Path(temporary)
             stage = "build_phase6_fixture"
@@ -138,6 +171,7 @@ def main() -> int:
             )
             report = closure.to_json()
             report["report_hash"] = closure.report_hash
+            report["pinned_identity_prewarm_hashes"] = prewarm_hashes
 
         output.write_bytes(canonical_json_bytes(report))
         _write_diagnostic(
@@ -146,18 +180,20 @@ def main() -> int:
             accepted=closure.accepted,
             detail="Phase 10 closure completed",
             traceback_text="",
-            context={},
+            context={"pinned_identity_prewarm_hashes": prewarm_hashes},
         )
         return 0 if closure.accepted else 1
     except Exception as exc:
         traceback_text = traceback.format_exc()
+        context = _verification_context(exc)
+        context["pinned_identity_prewarm_hashes"] = prewarm_hashes
         _write_diagnostic(
             diagnostic,
             stage=stage,
             accepted=False,
             detail=f"{type(exc).__name__}: {exc}",
             traceback_text=traceback_text,
-            context=_verification_context(exc),
+            context=context,
         )
         raise
 
