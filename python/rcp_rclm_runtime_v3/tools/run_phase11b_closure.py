@@ -111,13 +111,52 @@ def main() -> int:
                 verification=verification,
                 promotion=promotion,
             )
+            reference_summary = reference.summary_json()
+            runtime_bindings = {
+                "schema_id": "runtime.v3.phase11b.runtime_bindings.v1",
+                "verification_report_hash": verification.report_hash,
+                "promotion_report_hash": promotion.report_hash,
+                "rejection_attempt_report_hash": promotion.rejection_attempt.report_hash,
+                "rejection_ledger_hash": promotion.rejection_ledger_hash,
+                "promotion_attempt_report_hash": promotion.promotion_attempt.report_hash,
+                "promotion_ledger_hash": promotion.promotion.ledger_entry.entry_hash,
+                "initial_active_package_hash": promotion.initial_active_package_hash,
+                "active_package_hash_after_rejection": (
+                    promotion.active_package_hash_after_rejection
+                ),
+                "promoted_package_hash": promotion.promotion.package_manifest.package_hash,
+                "parent_package_hash": promotion.promotion.package_manifest.parent_package_hash,
+                "ledger_sequence_number": (
+                    promotion.promotion.snapshot.pointer.ledger_sequence_number
+                ),
+                "installed_generator_bytes_hash": promotion.installed_generator_bytes_hash,
+                "installed_planner_bytes_hash": promotion.installed_planner_bytes_hash,
+                "active_generator_hash": reference.active.active_manifest.generator_policy_hash,
+                "successor_generator_hash": (
+                    reference.beta_candidate.manifest.generator_policy_hash
+                ),
+                "active_planner_hash": reference.active.active_manifest.planner_policy_hash,
+                "successor_planner_hash": (
+                    reference.beta_candidate.manifest.planner_policy_hash
+                ),
+                "rejection_preserved_active_package": (
+                    promotion.active_package_hash_after_rejection
+                    == promotion.initial_active_package_hash
+                ),
+                "promotion_parent_is_unchanged_active_package": (
+                    promotion.promotion.package_manifest.parent_package_hash
+                    == promotion.initial_active_package_hash
+                ),
+                "installed_generator_bytes_verified": True,
+                "installed_planner_bytes_verified": True,
+            }
             report = closure.to_json()
             report["report_hash"] = closure.report_hash
             report["pinned_identity_prewarm_hashes"] = prewarm_hashes
-            report["stable_reference_summary_hash"] = reference.summary_json()[
-                "summary_hash"
-            ]
+            report["reference_summary"] = reference_summary
+            report["stable_reference_summary_hash"] = reference_summary["summary_hash"]
             report["exact_runtime_reference_hash"] = reference.reference_hash
+            report["runtime_bindings"] = runtime_bindings
             report["untrusted_training_evidence_required_by_workflow"] = True
             report["claim_boundary"] = {
                 "one_active_predecessor_model": True,
@@ -128,6 +167,7 @@ def main() -> int:
                 "phase11_exit_closed": closure.accepted,
                 "phase12_required_for_recursive_use": True,
             }
+            report["final_report_hash"] = canonical_json_hash(report)
             if not closure.accepted:
                 raise ValueError("Phase 11B closure did not accept")
 
@@ -144,6 +184,10 @@ def main() -> int:
                     "context": {
                         "pinned_identity_prewarm_hashes": prewarm_hashes,
                         "report_hash": report["report_hash"],
+                        "final_report_hash": report["final_report_hash"],
+                        "runtime_bindings_hash": canonical_json_hash(
+                            report["runtime_bindings"]
+                        ),
                     },
                 }
             )
