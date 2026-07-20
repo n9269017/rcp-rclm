@@ -6,12 +6,17 @@ import tempfile
 import traceback
 from pathlib import Path
 
-from rcp_rclm_runtime.canonical.hashing import sha256_hex
+from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, sha256_hex
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes
 from rcp_rclm_runtime_v3.phase10.closure import (
     Phase10ClosureEvidence,
     remove_phase10_training_backend,
     replay_promoted_phase10_candidate,
+)
+from rcp_rclm_runtime_v3.phase10.closure_manifest import (
+    load_phase10_closure_manifest,
+    validate_phase10_closure_manifest,
+    validate_phase10_closure_report,
 )
 from rcp_rclm_runtime_v3.phase10.lifecycle import build_phase10_phase6_fixture
 from rcp_rclm_runtime_v3.phase10.promotion import (
@@ -142,8 +147,21 @@ def main() -> int:
     stage = "initialize"
     prewarm_hashes: dict[str, str] = {}
     closure_accepted = False
+    manifest_validation: dict[str, object] | None = None
 
     try:
+        stage = "validate_retained_closure_manifest"
+        manifest_validation = validate_phase10_closure_manifest(
+            repo_root,
+            recompute_reference=False,
+        )
+        if manifest_validation["ok"] is not True:
+            raise ValueError(
+                "retained Phase 10 closure manifest failed: "
+                f"{manifest_validation['failures']}"
+            )
+        retained_manifest = load_phase10_closure_manifest(repo_root)
+
         stage = "prewarm_pinned_lean_identity"
         prewarm_hashes = _prewarm_pinned_lean_identity(repo_root)
         with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase10-closure-") as temporary:
@@ -186,10 +204,30 @@ def main() -> int:
                 promotion=promotion,
                 replay=replay,
             )
-            closure_accepted = closure.accepted
             report = closure.to_json()
             report["report_hash"] = closure.report_hash
             report["pinned_identity_prewarm_hashes"] = prewarm_hashes
+
+            stage = "validate_closure_against_retained_manifest"
+            report_validation = validate_phase10_closure_report(
+                retained_manifest,
+                report,
+            )
+            closure_accepted = closure.accepted and report_validation["ok"] is True
+            if not closure_accepted:
+                raise ValueError(
+                    "Phase 10 closure report differs from the retained manifest: "
+                    f"{report_validation['failures']}"
+                )
+            report["retained_closure_manifest_hash"] = manifest_validation[
+                "manifest_hash"
+            ]
+            report["retained_manifest_validation_hash"] = canonical_json_hash(
+                manifest_validation
+            )
+            report["retained_report_validation_hash"] = canonical_json_hash(
+                report_validation
+            )
 
         output.write_bytes(canonical_json_bytes(report))
         _write_diagnostic(
@@ -198,13 +236,17 @@ def main() -> int:
             accepted=closure_accepted,
             detail="Phase 10 closure completed",
             traceback_text="",
-            context={"pinned_identity_prewarm_hashes": prewarm_hashes},
+            context={
+                "pinned_identity_prewarm_hashes": prewarm_hashes,
+                "retained_closure_manifest_hash": manifest_validation["manifest_hash"],
+            },
         )
         return 0 if closure_accepted else 1
     except Exception as exc:
         traceback_text = traceback.format_exc()
         context = _verification_context(exc)
         context["pinned_identity_prewarm_hashes"] = prewarm_hashes
+        context["retained_manifest_validation"] = manifest_validation
         _write_diagnostic(
             diagnostic,
             stage=stage,
