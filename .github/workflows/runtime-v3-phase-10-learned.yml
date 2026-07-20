@@ -1,6 +1,13 @@
 name: Runtime v3 Phase 10 learned compact-model execution
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned.lean"
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Phase10Information.lean"
+      - ".github/workflows/runtime-v3-phase-10-learned.yml"
   push:
     branches:
       - "agent/rcp-rclm-v3-phase-10-*"
