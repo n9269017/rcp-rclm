@@ -197,16 +197,10 @@ def main() -> int:
         traceback_text = traceback.format_exc()
         context: dict[str, object] = {
             "pinned_identity_prewarm_hashes": prewarm_hashes,
-            "reference_accepted": bool(reference and reference.accepted),
-            "verification_accepted": bool(verification and verification.accepted),
-            "promotion_accepted": bool(promotion and promotion.accepted),
+            "reference_constructed": reference is not None,
+            "verification_constructed": verification is not None,
+            "promotion_constructed": promotion is not None,
         }
-        if reference is not None:
-            context["reference_summary"] = reference.summary_json()
-        if verification is not None:
-            context["verification"] = verification.to_json()
-        if promotion is not None:
-            context["promotion"] = promotion.to_json()
         _write_diagnostic(
             diagnostic,
             stage=stage,

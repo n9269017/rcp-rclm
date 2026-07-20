@@ -766,6 +766,7 @@ def promote_phase11b_candidate(
 
     beta_root = root / "attempt-0001"
     beta_payloads: dict[str, object] = {
+        "policy.json": policy.to_json(),
         "generator_input.json": reference.beta_invocation.generator_input.to_json(),
         "invocation.json": reference.beta_invocation.to_json(),
         "program_validation.json": reference.beta_validation.to_json(),
