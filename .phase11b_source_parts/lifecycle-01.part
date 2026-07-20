@@ -1,0 +1,248 @@
+            "generator_input_hash": candidate.invocation.generator_input.input_hash,
+            "invocation_hash": candidate.invocation.report_hash,
+            "program_hash": candidate.invocation.program.program_hash,
+            "program_validation_hash": candidate.validation.report_hash,
+            "active_package_hash": active.active_manifest.package_hash,
+            "candidate_package_hash": candidate.manifest.package_hash,
+            "candidate_model_identity_hash": candidate.manifest.model_identity_hash,
+            "heldout_material_consumed": False,
+            "manual_repair_count": 0,
+        }
+    )
+    logical_update = canonical_rclm_update(ClassicalBinaryUpdateRecord("stay"))
+    update_json = logical_update.to_json()
+    component_kinds = tuple(
+        sorted(
+            {
+                operation.component_kind
+                for operation in operations
+                if operation.component_kind is not None
+            }
+        )
+    )
+    return Phase6SelectionRecord(
+        transition_id=f"phase11b-{candidate.kind}",
+        proposal_hash=proposal_hash,
+        generator_request_hash=candidate.invocation.generator_input.input_hash,
+        predecessor_package_id=predecessor.manifest.package_id,
+        predecessor_manifest_hash=predecessor.manifest.manifest_hash,
+        phase5_predecessor_manifest_hash=predecessor.manifest.phase5_manifest_hash,
+        selection_policy_id=PHASE11B_PHASE6_POLICY_ID,
+        selected_update=update_json,
+        selected_update_hash=canonical_json_hash(update_json),
+        operations=tuple(operations),
+        substantive_component_kinds=component_kinds,  # type: ignore[arg-type]
+    )
+
+
+@dataclass(frozen=True, slots=True)
+class Phase11BPhase6Evidence:
+    candidate: Phase11CandidateFixture
+    selection: Phase6SelectionRecord
+    phase6: Phase6PackageBuildEvidence
+    embedded_report: Mapping[str, object]
+
+    schema_id: ClassVar[str] = "runtime.v3.phase11b.phase6_evidence.v1"
+
+    @property
+    def candidate_root(self) -> Path:
+        if self.phase6.output_root is None:
+            raise ValueError("Phase 11B Phase 6 candidate is unavailable")
+        return self.phase6.output_root
+
+    @property
+    def embedded_candidate_root(self) -> Path:
+        return self.candidate_root / "payload" / EMBEDDED_PHASE11_ROOT
+
+    @property
+    def accepted(self) -> bool:
+        realization = self.phase6.report.realization
+        if (
+            not self.phase6.report.built
+            or self.phase6.output_root is None
+            or realization is None
+        ):
+            return False
+        manifest = load_package_manifest(self.embedded_candidate_root)
+        return (
+            self.embedded_report["accepted"] is True
+            and realization.rollback.verified
+            and manifest.package_hash == self.candidate.manifest.package_hash
+            and manifest.model_identity_hash
+            == self.candidate.manifest.model_identity_hash
+        )
+
+    @property
+    def evidence_hash(self) -> str:
+        return canonical_json_hash(self.to_json())
+
+    def to_json(self) -> dict[str, object]:
+        realization = self.phase6.report.realization
+        return {
+            "schema_id": self.schema_id,
+            "accepted": self.accepted,
+            "candidate_kind": self.candidate.kind,
+            "candidate_fixture_hash": self.candidate.fixture_hash,
+            "selection": self.selection.to_json(),
+            "phase6_report": self.phase6.report.to_json(),
+            "embedded_report": dict(self.embedded_report),
+            "rollback_verified": bool(realization and realization.rollback.verified),
+            "rollback_hash": (
+                None if realization is None else realization.rollback.rollback_hash
+            ),
+            "changed_file_count": (
+                0 if realization is None else len(realization.changes)
+            ),
+        }
+
+
+def _realize_candidate(
+    wrapper: LoadedPredecessorPackage,
+    active: Phase11BActiveFixture,
+    candidate: Phase11CandidateFixture,
+    output_root: Path,
+) -> Phase11BPhase6Evidence:
+    selection = _build_selection(wrapper, active, candidate)
+    phase6 = build_candidate_package(
+        wrapper.payload_root.parent,
+        selection,
+        phase11b_phase6_budget(),
+        output_root,
+    )
+    if phase6.output_root is None:
+        embedded_report: Mapping[str, object] = {
+            "accepted": False,
+            "report_hash": canonical_json_hash(
+                {"phase11b_phase6": "candidate_unavailable"}
+            ),
+        }
+    else:
+        verify_candidate_package(phase6.output_root)
+        embedded_report = validate_phase11b_candidate_package(
+            active,
+            candidate.invocation,
+            phase6.output_root / "payload" / EMBEDDED_PHASE11_ROOT,
+            candidate.kind,
+        )
+    evidence = Phase11BPhase6Evidence(
+        candidate=candidate,
+        selection=selection,
+        phase6=phase6,
+        embedded_report=embedded_report,
+    )
+    if not evidence.accepted:
+        raise ValueError(f"Phase 11B {candidate.kind} realization did not validate")
+    return evidence
+
+
+def _generate_replayed(
+    active: Phase11BActiveFixture,
+    generator_input: ModelGeneratorInput,
+) -> GeneratorInvocationReport:
+    first = generate_phase11b_program(active.active_package_root, generator_input)
+    second = generate_phase11b_program(active.active_package_root, generator_input)
+    if first.to_json() != second.to_json():
+        raise SchemaValidationError(
+            "phase11b.generator_replay",
+            "fresh deterministic model-generation replays differ",
+        )
+    return first
+
+
+def _model_input(
+    active: Phase11BActiveFixture,
+    *,
+    invocation_index: int,
+    observation: object,
+) -> ModelGeneratorInput:
+    return ModelGeneratorInput(
+        transition_id="phase11b-autonomous-candidate-sequence",
+        invocation_id=f"phase11b-generator-invocation-{invocation_index}",
+        invocation_index=invocation_index,
+        active_package_hash=active.active_manifest.package_hash,
+        active_state_hash=active.active_state.state_hash,
+        model_identity_hash=active.active_manifest.model_identity_hash,
+        active_generator_hash=active.active_manifest.generator_policy_hash,
+        active_planner_hash=active.active_manifest.planner_policy_hash,
+        proposal_protocol_hash=PHASE11B_PROPOSAL_PROTOCOL_HASH,
+        objective_hash=phase11b_objective_hash(),
+        observation_hash=canonical_json_hash(observation),
+        budget=active.budget,
+        manual_repair_count=0,
+    )
+
+
+@dataclass(frozen=True, slots=True)
+class Phase11BReference:
+    root: Path
+    active: Phase11BActiveFixture
+    wrapper_predecessor: LoadedPredecessorPackage
+    invalid_invocation: GeneratorInvocationReport
+    invalid_validation: ProgramValidationReport
+    alpha_invocation: GeneratorInvocationReport
+    alpha_validation: ProgramValidationReport
+    alpha_candidate: Phase11CandidateFixture
+    alpha_phase6: Phase11BPhase6Evidence
+    beta_invocation: GeneratorInvocationReport
+    beta_validation: ProgramValidationReport
+    beta_candidate: Phase11CandidateFixture
+    beta_phase6: Phase11BPhase6Evidence
+    lifecycle_certificate: LearnedCertificatePacket
+    lifecycle_transition: Phase9TransitionReport
+
+    schema_id: ClassVar[str] = "runtime.v3.phase11b.reference.v1"
+
+    @property
+    def accepted(self) -> bool:
+        invalid_reasons = {reason.value for reason in self.invalid_validation.reason_codes}
+        return (
+            self.active.accepted
+            and self.invalid_invocation.model_generated
+            and not self.invalid_validation.accepted
+            and "PHASE11_BUDGET_EXCEEDED" in invalid_reasons
+            and "PHASE11_FORBIDDEN_UPDATE_CLASS" in invalid_reasons
+            and self.alpha_invocation.model_generated
+            and self.alpha_validation.accepted
+            and self.alpha_candidate.structurally_valid
+            and self.alpha_phase6.accepted
+            and not self.alpha_candidate.evaluation.accepted
+            and self.alpha_candidate.evaluation.rejection_reason
+            == "protected_capability_regression"
+            and self.beta_invocation.model_generated
+            and self.beta_validation.accepted
+            and self.beta_candidate.structurally_valid
+            and self.beta_phase6.accepted
+            and self.beta_candidate.evaluation.accepted
+            and self.lifecycle_transition.accepted
+            and self.lifecycle_certificate.active_generator_hash
+            == self.active.active_manifest.generator_policy_hash
+            and self.lifecycle_certificate.active_planner_hash
+            == self.active.active_manifest.planner_policy_hash
+            and self.beta_candidate.manifest.generator_policy_hash
+            != self.active.active_manifest.generator_policy_hash
+            and self.beta_candidate.manifest.planner_policy_hash
+            != self.active.active_manifest.planner_policy_hash
+        )
+
+    @property
+    def reference_hash(self) -> str:
+        return canonical_json_hash(self.to_json())
+
+    def summary_json(self) -> dict[str, object]:
+        content = {
+            "schema_id": "runtime.v3.phase11b.evidence_summary.v1",
+            "contract_version": PHASE11B_CONTRACT_VERSION,
+            "accepted": self.accepted,
+            "active_package_hash": self.active.active_manifest.package_hash,
+            "active_state_hash": self.active.active_state.state_hash,
+            "active_generator_hash": self.active.active_manifest.generator_policy_hash,
+            "active_planner_hash": self.active.active_manifest.planner_policy_hash,
+            "invalid_invocation_hash": self.invalid_invocation.report_hash,
+            "invalid_validation_hash": self.invalid_validation.report_hash,
+            "alpha_invocation_hash": self.alpha_invocation.report_hash,
+            "alpha_candidate_fixture_hash": self.alpha_candidate.fixture_hash,
+            "alpha_phase6_hash": self.alpha_phase6.evidence_hash,
+            "alpha_rejection_reason": self.alpha_candidate.evaluation.rejection_reason,
+            "beta_invocation_hash": self.beta_invocation.report_hash,
+            "beta_candidate_fixture_hash": self.beta_candidate.fixture_hash,
+            "beta_phase6_hash": self.beta_phase6.evidence_hash,
