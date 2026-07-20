@@ -141,6 +141,7 @@ def main() -> int:
     output.parent.mkdir(parents=True, exist_ok=True)
     stage = "initialize"
     prewarm_hashes: dict[str, str] = {}
+    closure_accepted = False
 
     try:
         stage = "prewarm_pinned_lean_identity"
@@ -185,6 +186,7 @@ def main() -> int:
                 promotion=promotion,
                 replay=replay,
             )
+            closure_accepted = closure.accepted
             report = closure.to_json()
             report["report_hash"] = closure.report_hash
             report["pinned_identity_prewarm_hashes"] = prewarm_hashes
@@ -193,12 +195,12 @@ def main() -> int:
         _write_diagnostic(
             diagnostic,
             stage="complete",
-            accepted=closure.accepted,
+            accepted=closure_accepted,
             detail="Phase 10 closure completed",
             traceback_text="",
             context={"pinned_identity_prewarm_hashes": prewarm_hashes},
         )
-        return 0 if closure.accepted else 1
+        return 0 if closure_accepted else 1
     except Exception as exc:
         traceback_text = traceback.format_exc()
         context = _verification_context(exc)
