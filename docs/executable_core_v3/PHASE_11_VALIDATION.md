@@ -1,8 +1,8 @@
 # Phase 11 validation
 
-## Phase 11A exact code proof
+## Phase 11A historical code proof
 
-The active-model typed-proposal implementation closed at:
+The active-model typed-proposal slice first closed at:
 
 ```text
 validated branch head:
@@ -13,129 +13,213 @@ de744688afb97fe1fec5a06912656c171a295439
 
 workflow run:
 29724450584
+```
+
+That historical proof established the active-generator bootstrap, model-owned typed proposal
+bytes, immutable first rejection, fresh later validation, zero held-out material consumption,
+and zero manual repair. It did not claim candidate realization or promotion.
+
+## Full Phase 11 exact code proof
+
+The complete candidate lifecycle closed at the retained code-proof identity:
+
+```text
+validated branch head:
+47ff0a691be1bfbe055cd4fce517cef272407e3e
+
+PR merge-test commit:
+f70f302bfd47f897fe918870f4512a4bb6f7e1b6
+
+workflow run:
+29735942332
 
 workflow attempt:
 1
 ```
 
-Every job succeeded:
+Every required job succeeded:
 
 ```text
-Ubuntu Phase 9 and Phase 10 regression       success
-Windows Phase 9 and Phase 10 regression      success
-macOS Phase 9 and Phase 10 regression        success
-source-quality gate                           success
-focused Phase 11A tests                       success
-Draft 2020-12 evidence schema                 success
-canonical reference recomputation             success
-repository-root entry point                   success
-phase11a_slice_closed=true record              success
+Ubuntu complete lifecycle validation              success
+Windows complete lifecycle validation             success
+macOS complete lifecycle validation               success
+retained Phase 9 and complete Phase 10 regressions success
+complete Phase 11 tests                            success
+Phase 11A and Phase 11B Draft 2020-12 schemas     success
+portable lifecycle reference recomputation        success
+duplicate isolated alpha and beta training         success
+frozen Formal Core v2 build                        success
+complete Formal Core v3 build                      success
+proof-hygiene and axiom audits                     success
+pinned three-task Lean evaluation                  success
+alpha rejection ledger entry                       success
+unchanged active hash after alpha                   success
+beta atomic promotion                              success
+installed generation-2 policies                    success
+phase11_exit_closed=true                            success
 ```
 
-## Stable evidence
+## Stable portable lifecycle evidence
+
+The committed Phase 11 closure manifest binds the source-deterministic identities:
 
 ```text
 active package:
-724fcda02a1124eeeb2f2c0207052d16705d6fdb95afc6b87a7f5e6b658e47c4
+b3f953b0b00bd046e551681d6794056b71d084d076fb4d8efb5843558b550d5a
 
 active state:
-13e5f135b635b6282b9076b849b6ff1c6d4a59189744a52f76c17ba37ee0242e
-
-active model:
-94a07482cf243964d54e6f9079103f7d1ca85745d351a0a28a9030cbb11ef023
+3dd7ba6e57d09e2f48db81a1cc6926c23864603dc8c5d0b63a718571129eeee8
 
 active generator:
-166966f0e0724c65f1137529fb774882cdeb88c2c1262ff243ad0709f8a12b8b
+ec312fe617e37b1a790b9e93f2b4a366d8c084eeb646aabc0f660033890e18ee
 
 active planner:
-6d3b7dff5117791ba50c7b0b89eddb07d8acaf1afb0deb56e32d06fcff55dff2
+773cd804eb6aca05fc4ca81e4ed695806592ee5a7607085e3cf4cf35fbce32de
 
-bootstrap validation:
-6b36353fa52001b4a25fac297638d30a4f6408c44723083b2c578ca24a876966
+alpha invocation:
+73ba7202c1a3a81c0bdc1df4a5959d9b5e6a607a5a157a06afed29023be80b71
 
-proposal protocol:
-5fbf5cb884187dc37e492ce9cd0057f746d60138e9a542fa1723072a3914b7d8
+alpha Phase 6 fixture:
+543be894924895defaf4d0df4e3b15ba7fff4aa2e04059b8658d3809b682e342
 
-fixed budget:
-a01b0dc9454a4e59f0b9380dfa073009779c4d009c76628c36ac57c6f13a646e
+alpha Phase 6 report:
+9d552c07bf920636ad976cb9b6bc7082876801126fe2a2ce8a26a4e47ceed8f9
+
+beta invocation:
+5876003334d6ab51885c33856e12e34cb3f02d843cbd203f6e5b8ea1a58246a3
+
+beta Phase 6 fixture:
+f75d56c6293d51667fca2e1072c41e71fe8419c9a2ceb435d2d370b9d47f19f6
+
+beta Phase 6 report:
+abd1b7e702bd23524bdb3ad7e6c0d0af207f0f117a95e1b34dc3a03cc8fa3b10
+
+beta package:
+a30dbf363cb28b05a4448b50acf78123d7472605455718afbecf7acce0252094
+
+beta model:
+2d08e4127aec05077d88b1bd0d57211eed49ad937627eb7c62bfddf768fb6454
+
+successor generator:
+f69553a4e11dc352e7f9406dbc8722fdf48e30c18c4014d0495e67e85607f95a
+
+successor planner:
+b4d0c3ab75c4ed5aacf469e4a44915a67837e586b9f2aadd8023d4a3c6dd9c51
+
+lifecycle certificate:
+011d72f90d46a457214d0c68aa6f371c4878043b3356533cf32156acad149d6c
+
+Gate D / Phase 9 transition:
+d622c645ec647c88de96a3da4a6f431be08bc1d0261a4fda757beefc08c1b351
+
+portable summary:
+b1c95f9e5084dfb16da353c78ee4d0d401f0a1cb9f55476214a6c13ed2467823
 ```
 
-The first model invocation and rejection are:
+Ubuntu, Windows, and macOS produce byte-identical lifecycle summary JSON.
+
+## Exact runtime-bound evidence
+
+The pinned code-proof artifact separately retains environment-bound realization, verification,
+ledger, promotion, and installed-policy byte hashes. The authoritative report explicitly
+binds:
 
 ```text
-invocation:
-d33ef2b1399884fcf1b4669c2e9c46b59fcd8da997ea8c7a6bd800074c8ead1d
-
-program:
-0d602b6cdb2d44eedbd967cad1ec7c2e0d2c8db6f88bfcb15dccaecd3be95b10
-
-validation:
-25919209c90e7710cb50706ebad8d0085e66067eb8a95686205d01a79fac3c74
-
-reason codes:
-PHASE11_BUDGET_EXCEEDED
-PHASE11_FORBIDDEN_UPDATE_CLASS
+rejection attempt report
+rejection ledger entry
+initial active package hash
+active package hash after rejection
+promotion attempt report
+promotion ledger entry
+promoted immutable package
+promotion parent package
+ledger sequence number = 2
+installed generator-policy bytes
+installed planner-policy bytes
 ```
 
-The fresh second model invocation is:
+Stable semantic identities are not conflated with environment-bound Phase 6 and promotion
+records.
+
+The exact pinned report records:
 
 ```text
-invocation:
-ed14627f8debf0e2cac6007feea4bb0cc0456e39fbc906e6b5d547106988c926
+closure report:
+ab5d8da8dd3f1e08a584dee533da8612d21a50bf91ad948999f9c22f63c19c55
 
-program:
-cf34b0b9e153a99f63757d087f52a12cf3388c3b54c4afadad2b5815953f0dae
+final bound report:
+cce40c99c93da6fd7f03fa33aa5f8e4910bf6333d76e934314c6f7bca129ea2c
 
-validation:
-be71dd82defd33ab82ef736922ace696b8f453b7a493678d61a07acc3c862aa6
+authoritative verification:
+7c399601b8d6d2921c2a2b21bf79b05476ee30bbe8acbff82bf6bc8e12d8408b
 
-accepted:
-true
+promotion report:
+6e0e7fff29494700c30b4e6aff12dca61fe70880443c35a51cb8991646a5188b
+
+rejection attempt:
+b3da835d61fc5a9a92409a935ae9dc5033f46582a5aa9cff89fe529ab0e77725
+
+rejection ledger:
+beacba2dca55e1b9776281331f36e596514034ada30202618e8af36a3611ab79
+
+promotion attempt:
+d8ab3002265b82c0fad40ef10f7eada4996691eb3999f9b39f09d0b8eeb9b4f1
+
+promotion ledger:
+7865404c2baa08c17bf17e7db533928568189d3efbc2f888b972fa6fe0a5dc65
+
+initial and post-rejection active package:
+1d31259f02aebf44ce2b93fa69aa8e1fae723d528687f93f32db12bae631192a
+
+promoted immutable package:
+33df271aaac29b53c8207b907065ff89b2cbf90634d9badcc57b46749fc2250d
+
+installed generator bytes:
+4b2a1b4d021a1a84e8e9919c12ce62bfdd44b39d1e750a6ad4fb375dd6756234
+
+installed planner bytes:
+8965561a1442202eb0cbc4c2c27b85e136c467a7565bdc54ed3705dd12417ced
 ```
-
-The complete summary hash is:
-
-```text
-fe32f0d879f26929505170fbf695657af02be623090cfc41b383aabc32e8312e
-```
-
-The canonical summary file itself has SHA-256:
-
-```text
-ef286eaab9bee4a1ef4a752f25755b5e084a5af04056cf0a5df0a25f54b78663
-```
-
-Ubuntu, Windows, and macOS produced identical bytes.
 
 ## Code-proof artifacts
 
 ```text
 Ubuntu:
-8453735527
-sha256:248ef5e6b9d5c91be629aff8be4d235c95143a11314b270645a6d64d5c655e05
+8458362158
+sha256:a41018cb2cf42ec1fc71757b860091f9b5357d5b65c02dc6dff9ef9e56be0019
 
 Windows:
-8453754142
-sha256:ceea2b370652263daa69ab51ed6184e2d35c9c9f7c26d7a8aee0440992088296
+8458396969
+sha256:1f1e60e11a8ff0e95d7b924faed864b463bf28b5a1813d249cbb9d079d8bbce5
 
 macOS:
-8453740290
-sha256:35f960fd44e4b217c4d20d16fe6dbaa5e54acc9d50565e448347910bd035e61b
+8458364943
+sha256:40160a70f1a747383b9d29616c5d17950d3712481e90e37773b13d22310a48ac
+
+isolated training:
+8458345493
+sha256:f64bce98279a456dad7b6163bdea28f3ac0900c34c07211fcbacee9b186de0d5
+
+pinned rejection and promotion:
+8458530642
+sha256:ee277a387f78ed55d12fba6c50c6339003878697fa3b439f303a6b6e652606d1
 
 final closure:
-8453757707
-sha256:30b23dc8c4f754377a1407fea57f57278f63989c3505f0cb15923d93959b0f13
+8458533764
+sha256:0228670f800a711406193cc2aa5aeeb436c86a685558aa067c9b4e86bb9138a6
 ```
 
-## Final-head binding
+## Non-circular final-head binding
 
-The committed `phase_11_generator_manifest.json` retains the stable reference hashes and
-this exact code-proof run.  The final documentation and manifest head is rerun through the
-same full cross-platform workflow.  That later run is recorded in PR #31 without editing
-the source again, avoiding a self-referential commit or artifact digest.
+The committed closure manifest retains the prior exact code proof and all stable reference
+hashes. A later final documentation/manifest head is rerun through the same authoritative
+workflow. Its exact head, merge-test commit, workflow run, and artifact digests are recorded
+in PR #31 without editing the source again.
 
-## Remaining Phase 11 boundary
+## Claim boundary
 
-The code proof closes model-owned typed proposal generation and rejection behavior. It does
-not yet close candidate realization, candidate rejection after realization, accepted
-promotion, or installation of changed generator/planner bytes. Those are Phase 11B.
+Phase 11 proves one bounded active predecessor proposal cycle with one realized rejection and
+one later promotion. The promoted successor contains changed generation-2 generator and
+planner policies. It does **not** prove that those changed policies have already produced the
+next proposal. That recursive-use obligation is Phase 12. Generic successor availability and
+autonomous or unbounded RSI also remain unproved.
