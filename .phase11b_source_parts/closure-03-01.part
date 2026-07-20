@@ -1,0 +1,57 @@
+        raise ValueError("Phase 11B promotion did not close")
+    _write_json(root / "phase11b_promotion_report.json", result.to_json())
+    return result
+
+
+@dataclass(frozen=True, slots=True)
+class Phase11BClosureEvidence:
+    reference: Phase11BReference
+    verification: Phase11BAuthoritativeVerification
+    promotion: Phase11BPromotionEvidence
+
+    schema_id: ClassVar[str] = "runtime.v3.phase11b.closure.v1"
+
+    @property
+    def accepted(self) -> bool:
+        return (
+            self.reference.accepted
+            and self.verification.accepted
+            and self.promotion.accepted
+        )
+
+    @property
+    def report_hash(self) -> str:
+        return canonical_json_hash(self.to_json())
+
+    def to_json(self) -> dict[str, object]:
+        return {
+            "schema_id": self.schema_id,
+            "accepted": self.accepted,
+            "reference_hash": self.reference.reference_hash,
+            "verification_hash": self.verification.report_hash,
+            "promotion_hash": self.promotion.report_hash,
+            "active_predecessor_model_generated_proposal": True,
+            "heldout_material_consumed": False,
+            "model_generated_candidate_rejected": True,
+            "later_fresh_proposal_accepted": True,
+            "manual_repairs": 0,
+            "successor_generator_bytes_changed": True,
+            "successor_planner_bytes_changed": True,
+            "successor_generator_planner_installed": True,
+            "recursive_use_of_modified_successor_generator": False,
+            "phase11_exit_closed": self.accepted,
+            "next_phase": 12,
+        }
+
+
+__all__ = [
+    "PHASE11B_CONTROLLER_ENVIRONMENT_HASH",
+    "PHASE11B_CONTROLLER_POLICY_ID",
+    "Phase11BAuthoritativeVerification",
+    "Phase11BClosureEvidence",
+    "Phase11BPromotionEvidence",
+    "phase11b_phase7_budget",
+    "phase11b_phase7_policy",
+    "promote_phase11b_candidate",
+    "verify_phase11b_candidates",
+]
