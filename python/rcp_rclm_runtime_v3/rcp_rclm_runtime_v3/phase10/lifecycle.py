@@ -5,7 +5,7 @@ import shutil
 import sys
 import tempfile
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Final
 
@@ -34,7 +34,10 @@ from rcp_rclm_runtime.successor.workspace import (
 from rcp_rclm_runtime_v3.contract.certificate import HeldoutAccessPolicy, LearnedCertificatePacket
 from rcp_rclm_runtime_v3.contract.state import LearnedRCLMState
 from rcp_rclm_runtime_v3.contract.update import LearnedRCLMUpdate
-from rcp_rclm_runtime_v3.contract.validation import validate_phase9_transition
+from rcp_rclm_runtime_v3.contract.validation import (
+    Phase9TransitionReport,
+    validate_phase9_transition,
+)
 from rcp_rclm_runtime_v3.phase10.information import build_information_report
 from rcp_rclm_runtime_v3.phase10.learned_data import (
     HELDOUT_TASK,
@@ -211,6 +214,41 @@ def _candidate_transition_pairs() -> Sequence[tuple[int, int]]:
     return tuple(sorted({*PROTECTED_CHAIN, *LEARNED_CHAIN}))
 
 
+def _bind_lifecycle_certificate(
+    reference: Phase10LearnedReference,
+    phase6: Phase6PackageBuildEvidence,
+    candidate_report: Mapping[str, object],
+) -> tuple[LearnedCertificatePacket, Phase9TransitionReport]:
+    realization = phase6.report.realization
+    if realization is None or not realization.rollback.verified:
+        return reference.certificate, reference.transition_report
+    certificate = replace(
+        reference.certificate,
+        architecture_compatibility_hash=str(candidate_report["report_hash"]),
+        resource_evidence_hash=canonical_json_hash(
+            {
+                "schema_id": "runtime.v3.phase10.lifecycle_resource_evidence.v1",
+                "successor_training_semantic_hash": (
+                    reference.successor_training_semantic_hash
+                ),
+                "phase6_usage_hash": realization.resources.usage_hash,
+                "phase6_environment_hash": realization.environment.environment_hash,
+                "changed_file_count": len(realization.changes),
+                "rollback_hash": realization.rollback.rollback_hash,
+            }
+        ),
+        rollback_evidence_hash=realization.rollback.rollback_hash,
+    )
+    transition = validate_phase9_transition(
+        reference.predecessor_state,
+        reference.update,
+        reference.candidate_state,
+        certificate,
+        reference.heldout_policy,
+    )
+    return certificate, transition
+
+
 @dataclass(frozen=True, slots=True)
 class Phase10Phase6Fixture:
     root: Path
@@ -220,6 +258,8 @@ class Phase10Phase6Fixture:
     phase6: Phase6PackageBuildEvidence
     embedded_predecessor_report: Mapping[str, object]
     embedded_candidate_report: Mapping[str, object]
+    lifecycle_certificate: LearnedCertificatePacket
+    lifecycle_transition: Phase9TransitionReport
 
     @property
     def candidate_root(self) -> Path:
@@ -249,6 +289,9 @@ class Phase10Phase6Fixture:
             and self.embedded_predecessor_report["accepted"] is True
             and self.embedded_candidate_report["accepted"] is True
             and rollback_verified
+            and self.lifecycle_transition.accepted
+            and self.lifecycle_certificate.rollback_evidence_hash
+            == self.phase6.report.realization.rollback.rollback_hash
             and observed_candidate.package_hash
             == self.reference.candidate_manifest.package_hash
             and observed_candidate.model_identity_hash
@@ -266,6 +309,11 @@ class Phase10Phase6Fixture:
             ),
             "selection_hash": self.selection.selection_hash,
             "phase6_report_hash": self.phase6.report.report_hash,
+            "lifecycle_certificate_hash": self.lifecycle_certificate.certificate_hash,
+            "lifecycle_transition_report_hash": (
+                self.lifecycle_transition.semantic_report_hash
+            ),
+            "lifecycle_transition_accepted": self.lifecycle_transition.accepted,
             "phase6_candidate_manifest_hash": (
                 None
                 if self.phase6.report.candidate_manifest is None
@@ -341,6 +389,11 @@ def build_phase10_phase6_fixture(output_root: Path) -> Phase10Phase6Fixture:
             phase6.output_root / "payload" / EMBEDDED_PHASE10_ROOT,
             _candidate_transition_pairs(),
         )
+    lifecycle_certificate, lifecycle_transition = _bind_lifecycle_certificate(
+        reference,
+        phase6,
+        embedded_candidate_report,
+    )
     fixture = Phase10Phase6Fixture(
         root=root,
         reference=reference,
@@ -349,11 +402,21 @@ def build_phase10_phase6_fixture(output_root: Path) -> Phase10Phase6Fixture:
         phase6=phase6,
         embedded_predecessor_report=embedded_predecessor_report,
         embedded_candidate_report=embedded_candidate_report,
+        lifecycle_certificate=lifecycle_certificate,
+        lifecycle_transition=lifecycle_transition,
     )
     evidence_root = root / "retained"
     _write_json(evidence_root / "reference.json", reference.to_json())
     _write_json(evidence_root / "selection.json", selection.to_json())
     _write_json(evidence_root / "phase6_report.json", phase6.report.to_json())
+    _write_json(
+        evidence_root / "lifecycle_certificate.json",
+        lifecycle_certificate.to_json(),
+    )
+    _write_json(
+        evidence_root / "lifecycle_transition.json",
+        lifecycle_transition.to_json(),
+    )
     _write_json(evidence_root / "fixture.json", fixture.to_json())
     if not fixture.accepted:
         raise ValueError("Phase 10 Phase 6 fixture did not satisfy its exit conditions")
@@ -433,7 +496,12 @@ def replay_phase10_phase6(
     )
     candidate_state = LearnedRCLMState.from_json(reference_value["candidate_state"])
     update = LearnedRCLMUpdate.from_json(reference_value["update"])
-    certificate = LearnedCertificatePacket.from_json(reference_value["certificate"])
+    certificate = LearnedCertificatePacket.from_json(
+        load_json_strict(
+            (retained / "lifecycle_certificate.json").read_bytes(),
+            require_canonical=True,
+        )
+    )
     heldout_policy = HeldoutAccessPolicy.from_json(reference_value["heldout_policy"])
     transition = validate_phase9_transition(
         predecessor_state,
@@ -456,6 +524,11 @@ def replay_phase10_phase6(
     checks = {
         "phase6_realization_accepts": phase6.report.built,
         "rollback_verified": bool(realization and realization.rollback.verified),
+        "rollback_evidence_recomputed": bool(
+            realization
+            and certificate.rollback_evidence_hash
+            == realization.rollback.rollback_hash
+        ),
         "predecessor_package_accepts": predecessor_package_report["accepted"] is True,
         "candidate_package_accepts": candidate_package_report["accepted"] is True,
         "candidate_package_hash_matches": candidate_manifest.package_hash
@@ -486,6 +559,7 @@ def replay_phase10_phase6(
         "candidate_package_hash": candidate_manifest.package_hash,
         "candidate_model_identity_hash": candidate_manifest.model_identity_hash,
         "information_report_hash": information.report_hash,
+        "lifecycle_certificate_hash": certificate.certificate_hash,
         "phase9_transition_report_hash": transition.semantic_report_hash,
         "ok": not failures,
     }

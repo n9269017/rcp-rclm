@@ -188,7 +188,7 @@ class Phase10ClosureEvidence:
             and self.source_verification.accepted
             and self.promotion.accepted
             and self.replay.accepted
-            and self.fixture.reference.transition_report.accepted
+            and self.fixture.lifecycle_transition.accepted
             and self.fixture.reference.information_report.accepted
         )
 
@@ -214,7 +214,7 @@ class Phase10ClosureEvidence:
                 self.fixture.reference.candidate_manifest.model_identity_hash
             ),
             "phase9_transition_report_hash": (
-                self.fixture.reference.transition_report.semantic_report_hash
+                self.fixture.lifecycle_transition.semantic_report_hash
             ),
             "information_report_hash": (
                 self.fixture.reference.information_report.report_hash

@@ -50,6 +50,7 @@ from rcp_rclm_runtime.promotion.evaluator import (
 )
 from rcp_rclm_runtime_v3.phase10.policy import (
     PHASE10_CONTROLLER_ENVIRONMENT_HASH,
+    PHASE10_TRANSPORT_PROFILE,
     phase10_phase7_budget,
     phase10_phase7_policy,
 )
@@ -72,9 +73,7 @@ from rcp_rclm_runtime_v3.phase10.tasks import (
 
 PHASE10_PROMOTION_SCHEMA_ID: Final[str] = "runtime.v3.phase10.promotion.v1"
 PHASE10_VERIFICATION_SCHEMA_ID: Final[str] = "runtime.v3.phase10.verification.v1"
-PHASE10_PROMOTION_POLICY_NOTE: Final[str] = (
-    "phase10_specific_policy_over_immutable_runtime_v2_store"
-)
+PHASE10_PROMOTION_POLICY_NOTE: Final[str] = PHASE10_TRANSPORT_PROFILE
 
 
 def _write_json(path: Path, value: object) -> str:
@@ -277,7 +276,7 @@ def verify_phase10_candidate(
     )
     if not evidence.accepted:
         raise ValueError("Phase 10 authoritative verification did not accept")
-    if not fixture.reference.transition_report.accepted:
+    if not fixture.lifecycle_transition.accepted:
         raise ValueError("Phase 9/Gate D transition is not accepted")
     return evidence
 
@@ -356,7 +355,7 @@ def _attempt_stages(
                     verification.gate_b_certificate.certificate_hash
                 ),
                 "gate_d_certificate_hash": (
-                    fixture.reference.certificate.certificate_hash
+                    fixture.lifecycle_certificate.certificate_hash
                 ),
                 "constructed_outside_candidate": True,
             },
@@ -383,7 +382,7 @@ def _attempt_stages(
                 "hardened_report_hash": verification.hardened_checker.report_hash,
                 "checker_accepted": verification.hardened_checker.accepted,
                 "phase9_transition_report_hash": (
-                    fixture.reference.transition_report.semantic_report_hash
+                    fixture.lifecycle_transition.semantic_report_hash
                 ),
                 "candidate_unchanged": verification.candidate_unchanged,
             },
@@ -448,7 +447,7 @@ class Phase10PromotionEvidence:
                 self.fixture.reference.candidate_manifest.model_identity_hash
             ),
             "phase9_transition_report_hash": (
-                self.fixture.reference.transition_report.semantic_report_hash
+                self.fixture.lifecycle_transition.semantic_report_hash
             ),
             "rollback_verified": bool(
                 self.fixture.phase6.report.realization
@@ -491,8 +490,8 @@ def promote_phase10_candidate(
         "phase6_report.json": fixture.phase6.report.to_json(),
         "selection.json": fixture.selection.to_json(),
         "verification.json": verification.to_json(),
-        "phase9_transition.json": fixture.reference.transition_report.to_json(),
-        "gate_d_certificate.json": fixture.reference.certificate.to_json(),
+        "phase9_transition.json": fixture.lifecycle_transition.to_json(),
+        "gate_d_certificate.json": fixture.lifecycle_certificate.to_json(),
         "information.json": verification.information_report.to_json(),
         "gate_b_lean_report.json": verification.gate_b_lean.report.to_json(),
         "hardened_checker.json": verification.hardened_checker.to_json(),
@@ -508,7 +507,7 @@ def promote_phase10_candidate(
     combined_certificate_hash = canonical_json_hash(
         {
             "gate_b": verification.gate_b_certificate.to_json(),
-            "gate_d": fixture.reference.certificate.to_json(),
+            "gate_d": fixture.lifecycle_certificate.to_json(),
         }
     )
     combined_lean_hash = canonical_json_hash(
@@ -523,7 +522,7 @@ def promote_phase10_candidate(
     combined_checker_hash = canonical_json_hash(
         {
             "hardened": verification.hardened_checker.to_json(),
-            "gate_d": fixture.reference.transition_report.to_json(),
+            "gate_d": fixture.lifecycle_transition.to_json(),
         }
     )
     attempt = Phase7AttemptReport(

@@ -58,6 +58,11 @@ class Phase10LifecycleTests(unittest.TestCase):
         self.assertIsNotNone(fixture.phase6.report.realization)
         assert fixture.phase6.report.realization is not None
         self.assertTrue(fixture.phase6.report.realization.rollback.verified)
+        self.assertTrue(fixture.lifecycle_transition.accepted)
+        self.assertEqual(
+            fixture.lifecycle_certificate.rollback_evidence_hash,
+            fixture.phase6.report.realization.rollback.rollback_hash,
+        )
         self.assertGreater(len(fixture.phase6.report.realization.changes), 0)
         self.assertEqual(
             fixture.phase6.report.realization.substantive_component_kinds,
@@ -78,6 +83,7 @@ class Phase10LifecycleTests(unittest.TestCase):
         self.assertEqual(report["generator_invocations"], 0)
         self.assertEqual(report["forbidden_learned_modules_loaded"], [])
         self.assertTrue(report["checks"]["forbidden_training_modules_absent"])
+        self.assertTrue(report["checks"]["rollback_evidence_recomputed"])
 
     def test_fixture_round_trip_hashes_are_bound(self) -> None:
         value = self.fixture.to_json()
