@@ -51,6 +51,8 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: phase10b-materialization-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/phase10b-materialize.log
+          path: |
+            ${{ runner.temp }}/phase10b-materialize.log
+            .phase10b/payload.part*
           if-no-files-found: error
           retention-days: 7
