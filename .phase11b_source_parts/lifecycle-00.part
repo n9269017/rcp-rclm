@@ -1,0 +1,256 @@
+from __future__ import annotations
+
+import os
+import shutil
+import tempfile
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass, replace
+from pathlib import Path
+from typing import ClassVar, Final
+
+from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
+from rcp_rclm_runtime.canonical.json import canonical_json_bytes, load_json_strict
+from rcp_rclm_runtime.checker.reference import canonical_rclm_update
+from rcp_rclm_runtime.errors import SchemaValidationError
+from rcp_rclm_runtime.generator.reference import reference_generator_input
+from rcp_rclm_runtime.schema.update import ClassicalBinaryUpdateRecord
+from rcp_rclm_runtime.successor.package_builder import (
+    Phase6PackageBuildEvidence,
+    build_candidate_package,
+    verify_candidate_package,
+)
+from rcp_rclm_runtime.successor.record_budget import Phase6ResourceBudgetRecord
+from rcp_rclm_runtime.successor.record_operation import SelectedFileOperationRecord
+from rcp_rclm_runtime.successor.record_predecessor import Phase6PredecessorManifestRecord
+from rcp_rclm_runtime.successor.record_selection import Phase6SelectionRecord
+from rcp_rclm_runtime.successor.reference import build_reference_predecessor_package
+from rcp_rclm_runtime.successor.workspace import (
+    LoadedPredecessorPackage,
+    load_predecessor_package,
+    measure_payload_tree,
+    write_canonical_json,
+)
+
+from rcp_rclm_runtime_v3.contract.certificate import LearnedCertificatePacket
+from rcp_rclm_runtime_v3.contract.validation import (
+    Phase9TransitionReport,
+    validate_phase9_transition,
+)
+from rcp_rclm_runtime_v3.phase10.package import load_package_manifest
+from rcp_rclm_runtime_v3.phase11.phase11b_bootstrap import (
+    Phase11BActiveFixture,
+    build_phase11b_active_fixture,
+)
+from rcp_rclm_runtime_v3.phase11.phase11b_candidate import (
+    Phase11CandidateFixture,
+    build_phase11b_candidate_fixture,
+    validate_phase11b_candidate_package,
+)
+from rcp_rclm_runtime_v3.phase11.phase11b_constants import (
+    PHASE11B_CONTRACT_VERSION,
+    PHASE11B_PROPOSAL_PROTOCOL_HASH,
+)
+from rcp_rclm_runtime_v3.phase11.phase11b_program import (
+    generate_phase11b_program,
+    phase11b_objective_hash,
+    validate_phase11b_program,
+)
+from rcp_rclm_runtime_v3.phase11.records import (
+    GeneratorInvocationReport,
+    ModelGeneratorInput,
+    ProgramValidationReport,
+)
+
+EMBEDDED_PHASE11_ROOT: Final[str] = "model/weights/phase11_package"
+GENERATOR_PROJECTION_PATH: Final[str] = "policies/code_generation_policy.json"
+PLANNER_PROJECTION_PATH: Final[str] = "policies/planning_policy.json"
+TRAINING_PROJECTION_PATH: Final[str] = "policies/training_policy.json"
+PHASE11B_PHASE6_POLICY_ID: Final[str] = "rcp-rclm-phase11b-model-program-selector-v1"
+
+
+def phase11b_phase6_budget() -> Phase6ResourceBudgetRecord:
+    return Phase6ResourceBudgetRecord(
+        max_file_count=768,
+        max_total_bytes=201_326_592,
+        max_changed_files=192,
+        max_written_bytes=150_994_944,
+        max_commands=384,
+        max_snapshot_bytes=100_663_296,
+    )
+
+
+def _write_json(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(canonical_json_bytes(value))
+
+
+def _regular_file_map(root: Path) -> dict[str, Path]:
+    resolved = root.resolve(strict=True)
+    result: dict[str, Path] = {}
+    for path in resolved.rglob("*"):
+        if path.is_symlink():
+            raise SchemaValidationError("phase11b.lifecycle", "symlinks are forbidden")
+        if path.is_file():
+            result[path.relative_to(resolved).as_posix()] = path
+    return result
+
+
+def _policy_projection(package_root: Path, relative: str) -> object:
+    return load_json_strict(
+        (package_root.resolve(strict=True) / relative).read_bytes(),
+        require_canonical=True,
+    )
+
+
+def _training_projection(package_root: Path) -> dict[str, object]:
+    manifest = load_package_manifest(package_root.resolve(strict=True))
+    return {
+        "schema_id": "runtime.v3.phase11b.phase6_training_projection.v1",
+        "data_curriculum_hash": manifest.data_curriculum_hash,
+        "training_policy_hash": manifest.training_policy_hash,
+        "candidate_self_report_authoritative": False,
+    }
+
+
+def _build_wrapper_predecessor(
+    active: Phase11BActiveFixture,
+    output_root: Path,
+) -> LoadedPredecessorPackage:
+    resolved_output = output_root.resolve(strict=False)
+    if resolved_output.exists():
+        raise FileExistsError(f"Phase 11B wrapper already exists: {resolved_output}")
+    resolved_output.parent.mkdir(parents=True, exist_ok=True)
+    generator_input = reference_generator_input("target")
+    with tempfile.TemporaryDirectory(
+        prefix="rcp-rclm-phase11b-wrapper-",
+        dir=resolved_output.parent,
+    ) as temporary:
+        package_root = build_reference_predecessor_package(
+            generator_input,
+            Path(temporary) / "wrapper",
+        )
+        payload = package_root / "payload"
+        embedded = payload / EMBEDDED_PHASE11_ROOT
+        embedded.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(active.active_package_root, embedded, symlinks=False)
+        _write_json(
+            payload / GENERATOR_PROJECTION_PATH,
+            _policy_projection(active.active_package_root, "policies/generator_policy.json"),
+        )
+        _write_json(
+            payload / PLANNER_PROJECTION_PATH,
+            _policy_projection(active.active_package_root, "policies/planner_policy.json"),
+        )
+        _write_json(
+            payload / TRAINING_PROJECTION_PATH,
+            _training_projection(active.active_package_root),
+        )
+        manifest_value = load_json_strict(
+            (package_root / "manifest.json").read_bytes(),
+            require_canonical=True,
+        )
+        base_manifest = Phase6PredecessorManifestRecord.from_json(manifest_value)
+        measurement = measure_payload_tree(payload)
+        updated = Phase6PredecessorManifestRecord(
+            package_id="phase11b.active.wrapper.predecessor",
+            phase5_manifest_hash=base_manifest.phase5_manifest_hash,
+            payload_tree_hash=measurement.tree_hash,
+            state_path=base_manifest.state_path,
+            state_hash=base_manifest.state_hash,
+            file_count=measurement.file_count,
+            total_bytes=measurement.total_bytes,
+        )
+        write_canonical_json(package_root / "manifest.json", updated.to_json())
+        loaded = load_predecessor_package(package_root)
+        if loaded.manifest != updated:
+            raise ValueError("reopened Phase 11B wrapper manifest differs")
+        os.replace(package_root, resolved_output)
+    return load_predecessor_package(resolved_output)
+
+
+def _projection_operations(
+    predecessor: LoadedPredecessorPackage,
+    candidate: Phase11CandidateFixture,
+) -> Sequence[SelectedFileOperationRecord]:
+    record_by_path = {record.path: record for record in predecessor.measurement.records}
+    candidate_root = candidate.root.resolve(strict=True)
+    projected: dict[str, tuple[str, bytes]] = {
+        GENERATOR_PROJECTION_PATH: (
+            "code_generation_policy",
+            (candidate_root / "policies/generator_policy.json").read_bytes(),
+        ),
+        PLANNER_PROJECTION_PATH: (
+            "planning_policy",
+            (candidate_root / "policies/planner_policy.json").read_bytes(),
+        ),
+        TRAINING_PROJECTION_PATH: (
+            "training_policy",
+            canonical_json_bytes(_training_projection(candidate_root)),
+        ),
+    }
+    result: list[SelectedFileOperationRecord] = []
+    for path in sorted(projected, key=lambda item: item.encode("utf-8")):
+        component_kind, content = projected[path]
+        record = record_by_path[path]
+        if (predecessor.payload_root / path).read_bytes() == content:
+            continue
+        result.append(
+            SelectedFileOperationRecord.write(
+                path=path,
+                component_kind=component_kind,  # type: ignore[arg-type]
+                expected_before_hash=record.sha256,
+                expected_before_mode=record.mode,
+                after_mode="0644",
+                content=content,
+            )
+        )
+    return tuple(result)
+
+
+def _build_selection(
+    predecessor: LoadedPredecessorPackage,
+    active: Phase11BActiveFixture,
+    candidate: Phase11CandidateFixture,
+) -> Phase6SelectionRecord:
+    before_files = _regular_file_map(active.active_package_root)
+    after_files = _regular_file_map(candidate.root)
+    if set(before_files) != set(after_files):
+        raise SchemaValidationError(
+            "phase11b.lifecycle.file_set",
+            "model-generated successor must retain the canonical package file set",
+        )
+    record_by_path = {record.path: record for record in predecessor.measurement.records}
+    operations: list[SelectedFileOperationRecord] = []
+    for relative in sorted(after_files, key=lambda item: item.encode("utf-8")):
+        before_content = before_files[relative].read_bytes()
+        after_content = after_files[relative].read_bytes()
+        if before_content == after_content:
+            continue
+        wrapper_path = f"{EMBEDDED_PHASE11_ROOT}/{relative}"
+        before_record = record_by_path.get(wrapper_path)
+        if before_record is None:
+            raise SchemaValidationError(
+                "phase11b.lifecycle.selection",
+                f"wrapper predecessor is missing {wrapper_path}",
+            )
+        operations.append(
+            SelectedFileOperationRecord.write(
+                path=wrapper_path,
+                component_kind="model_weights",
+                expected_before_hash=before_record.sha256,
+                expected_before_mode=before_record.mode,
+                after_mode="0644",
+                content=after_content,
+            )
+        )
+    operations.extend(_projection_operations(predecessor, candidate))
+    operations.sort(key=lambda item: item.path.encode("utf-8"))
+    if not operations:
+        raise SchemaValidationError(
+            "phase11b.lifecycle.selection",
+            "model-generated successor must change at least one file",
+        )
+    proposal_hash = canonical_json_hash(
+        {
+            "schema_id": "runtime.v3.phase11b.phase6_proposal.v1",
+            "transition_id": candidate.invocation.generator_input.transition_id,
