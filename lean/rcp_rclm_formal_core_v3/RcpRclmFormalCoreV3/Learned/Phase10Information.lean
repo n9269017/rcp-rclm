@@ -72,18 +72,18 @@ structure SparseTransitionSemantics (Token : Type*) where
 def SparseProtectedAgreement
     {Token : Type*}
     (predecessor candidate : SparseTransitionSemantics Token)
-    (protected : Set Token) : Prop :=
-  ∀ token, token ∈ protected →
+    (protectedTokens : Set Token) : Prop :=
+  ∀ token, token ∈ protectedTokens →
     predecessor.nextToken token = candidate.nextToken token
 
 /-- Protected transition agreement preserves the selected next-token result exactly. -/
 theorem sparse_protected_transition_retained
     {Token : Type*}
     (predecessor candidate : SparseTransitionSemantics Token)
-    (protected : Set Token)
-    (agreement : SparseProtectedAgreement predecessor candidate protected)
+    (protectedTokens : Set Token)
+    (agreement : SparseProtectedAgreement predecessor candidate protectedTokens)
     {token : Token}
-    (member : token ∈ protected) :
+    (member : token ∈ protectedTokens) :
     candidate.nextToken token = predecessor.nextToken token := by
   exact (agreement token member).symm
 
