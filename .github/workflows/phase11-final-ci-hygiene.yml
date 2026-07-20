@@ -1,0 +1,78 @@
+name: Temporary Phase 11 final CI hygiene
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-v3-phase-11-autonomous-generator
+    paths:
+      - ".github/workflows/phase11-final-ci-hygiene.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phase11-final-ci-hygiene
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out exact hygiene head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Remove duplicate Phase 11 push trigger
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path(".github/workflows/runtime-v3-phase-11-generator.yml")
+          text = path.read_text(encoding="utf-8")
+          block = '''  push:
+              branches:
+                - "agent/rcp-rclm-v3-phase-11-*"
+              paths:
+                - "python/rcp_rclm_runtime_v3/**"
+                - "python/rcp_rclm_executable_core_v3/**"
+                - "lean/rcp_rclm_formal_core_v2/**"
+                - "lean/rcp_rclm_formal_core_v3/**"
+                - "docs/executable_core_v3/**"
+                - "docs/formal_core_v3/audit/Phase10InformationAxiomAudit.lean"
+                - "scripts/run_phase11_generator.py"
+                - "scripts/run_phase11_lifecycle.py"
+                - ".github/workflows/runtime-v3-phase-11-generator.yml"
+          '''
+          # The source block is two-space indented, not the Python literal's visual indentation.
+          block = "\n".join(line[10:] if line.startswith("          ") else line for line in block.splitlines()) + "\n"
+          if text.count(block) != 1:
+              raise SystemExit("unexpected Phase 11 push trigger block")
+          updated = text.replace(block, "")
+          with path.open("w", encoding="utf-8", newline="\n") as stream:
+              stream.write(updated)
+          PY
+          grep -n -A4 -B2 'workflow_dispatch' .github/workflows/runtime-v3-phase-11-generator.yml
+          if grep -Fq 'agent/rcp-rclm-v3-phase-11-*' .github/workflows/runtime-v3-phase-11-generator.yml; then
+            echo "Phase 11 branch push trigger remains" >&2
+            exit 1
+          fi
+
+      - name: Commit clean permanent workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/phase11-final-ci-hygiene.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- .github/workflows/runtime-v3-phase-11-generator.yml
+          git add -u -- .github/workflows/phase11-final-ci-hygiene.yml
+          git diff --cached --check
+          git commit -m "Remove duplicate Phase 11 branch workflow trigger"
+          git push origin HEAD:agent/rcp-rclm-v3-phase-11-autonomous-generator
