@@ -1,0 +1,44 @@
+name: Temporary Phase 11B source export
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-v3-phase-11-autonomous-generator
+    paths:
+      - ".github/workflows/phase11b-source-export.yml"
+      - "python/rcp_rclm_runtime_v3/**"
+      - "python/rcp_rclm_executable_core_v3/**"
+      - "docs/executable_core_v3/**"
+      - "scripts/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phase11b-source-export-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Retain exact source tree
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase11b-source-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .github/workflows/
+            docs/
+            lean/
+            python/
+            scripts/
+            README.md
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 7
