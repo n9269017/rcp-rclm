@@ -49,9 +49,25 @@ jobs:
         working-directory: lean/rcp_rclm_formal_core_v3
         run: lake build RcpRclmFormalCoreV3.Learned.TransformerExtension
 
-      - name: Compile Phase 10 information module verbosely
+      - name: Compile Phase 10 information module
         working-directory: lean/rcp_rclm_formal_core_v3
         shell: bash
         run: |
-          set -o pipefail
-          lake env lean RcpRclmFormalCoreV3/Learned/Phase10Information.lean 2>&1 | tee phase10_information_compile.log
+          set +e
+          lake env lean RcpRclmFormalCoreV3/Learned/Phase10Information.lean \
+            > phase10_information_compile.log 2>&1
+          status=$?
+          cat phase10_information_compile.log
+          echo "$status" > phase10_information_status.txt
+          exit "$status"
+
+      - name: Upload exact compiler diagnostic
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase10-lean-diagnostic-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            lean/rcp_rclm_formal_core_v3/phase10_information_compile.log
+            lean/rcp_rclm_formal_core_v3/phase10_information_status.txt
+          if-no-files-found: error
+          retention-days: 7
