@@ -71,7 +71,10 @@ def main() -> int:
     part_paths = sorted(parts_root.glob("payload.part*"), key=lambda path: path.name)
     if len(part_paths) != 7:
         raise RuntimeError(f"expected seven payload parts, found {len(part_paths)}")
-    encoded = "".join(path.read_text(encoding="ascii").strip() for path in part_paths)
+    encoded = "".join(
+        "".join(path.read_text(encoding="ascii").split())
+        for path in part_paths
+    )
     payload = base64.b64decode(encoded, validate=True)
     observed = hashlib.sha256(payload).hexdigest()
     if observed != PAYLOAD_SHA256:
