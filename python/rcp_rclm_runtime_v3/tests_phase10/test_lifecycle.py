@@ -6,7 +6,14 @@ from pathlib import Path
 
 from rcp_rclm_runtime_v3.phase10.lifecycle import (
     build_phase10_phase6_fixture,
+    phase10_phase6_budget,
     replay_phase10_phase6,
+)
+from rcp_rclm_runtime_v3.phase10.policy import (
+    PHASE10_CONTROLLER_POLICY_ID,
+    PHASE10_TRANSPORT_PROFILE,
+    phase10_phase7_budget,
+    phase10_phase7_policy,
 )
 
 
@@ -84,6 +91,24 @@ class Phase10LifecycleTests(unittest.TestCase):
             self.fixture.selection.selection_hash,
         )
         self.assertTrue(value["rollback_verified"])
+
+    def test_phase10_uses_unchanged_reviewed_phase7_transport(self) -> None:
+        policy = phase10_phase7_policy()
+        budget = phase10_phase7_budget()
+        self.assertEqual(policy.policy_id, PHASE10_CONTROLLER_POLICY_ID)
+        self.assertEqual(policy.scope, "pytorch_pilot_gate_b_stable")
+        self.assertEqual(policy.generator_backend, "pytorch_pilot_process")
+        self.assertEqual(policy.selector_backend, "pytorch_pilot_host_selector")
+        self.assertEqual(
+            policy.evaluator_backend,
+            "pytorch_pilot_exact_integer_evaluator",
+        )
+        self.assertEqual(policy.checker_backend, "phase4_hardened_checker")
+        self.assertEqual(budget.phase6_budget, phase10_phase6_budget())
+        self.assertEqual(
+            PHASE10_TRANSPORT_PROFILE,
+            "runtime_v2_pytorch_profile_reused_as_immutable_transport_only",
+        )
 
 
 if __name__ == "__main__":
