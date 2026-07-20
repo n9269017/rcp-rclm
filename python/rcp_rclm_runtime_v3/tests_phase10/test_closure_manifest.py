@@ -16,11 +16,11 @@ class Phase10ClosureManifestTests(unittest.TestCase):
         cls.report = validate_phase10_closure_manifest(cls.repo_root)
         cls.manifest = load_phase10_closure_manifest(cls.repo_root)
 
-    def test_manifest_recomputes_exact_reference_hashes(self) -> None:
+    def test_manifest_recomputes_cross_platform_stable_reference_hashes(self) -> None:
         self.assertTrue(self.report["ok"], self.report["failures"])
         self.assertEqual(
-            self.report["observed_reference_hashes"],
-            self.manifest["reference_hashes"],
+            self.report["observed_stable_reference_hashes"],
+            self.manifest["stable_reference_hashes"],
         )
 
     def test_code_proof_retains_every_required_artifact(self) -> None:
@@ -34,6 +34,24 @@ class Phase10ClosureManifestTests(unittest.TestCase):
             proof["branch_head"],
             "23a33e4078766b404387d1fa9bb2737c664d9e54",
         )
+
+    def test_environment_bound_hashes_are_not_cross_platform_references(self) -> None:
+        stable = self.manifest["stable_reference_hashes"]
+        runtime = self.manifest["code_proof"]["exact_runtime_hashes"]
+        self.assertEqual(
+            set(runtime),
+            {
+                "lifecycle_certificate_hash",
+                "lifecycle_transition_report_hash",
+                "phase6_fixture_hash",
+                "phase6_replay_report_hash",
+                "phase6_report_hash",
+            },
+        )
+        self.assertNotIn("phase6_report_hash", stable)
+        self.assertNotIn("lifecycle_transition_report_hash", stable)
+        self.assertIn("phase6_selection_hash", stable)
+        self.assertIn("rollback_hash", stable)
 
     def test_full_phase10_boundary_is_closed_but_bounded(self) -> None:
         boundary = self.manifest["claim_boundary"]
