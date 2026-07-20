@@ -339,11 +339,22 @@ jobs:
           fi
 
       - name: Execute authoritative Phase 11 rejection and promotion
-        run: >-
-          python python/rcp_rclm_runtime_v3/tools/run_phase11b_closure.py
-          --repo-root .
-          --lean-project-root lean/rcp_rclm_formal_core_v3
-          --out artifacts/runtime_v3_phase_11/pinned/phase_11_closure.json
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/runtime_v3_phase_11/pinned
+          set +e
+          python python/rcp_rclm_runtime_v3/tools/run_phase11b_closure.py \
+            --repo-root . \
+            --lean-project-root lean/rcp_rclm_formal_core_v3 \
+            --out artifacts/runtime_v3_phase_11/pinned/phase_11_closure.json \
+            2>&1 | tee artifacts/runtime_v3_phase_11/pinned/phase_11_closure_stdout.log
+          status=${PIPESTATUS[0]}
+          set -e
+          if [[ -f artifacts/runtime_v3_phase_11/pinned/phase_11_closure_diagnostic.json ]]; then
+            cat artifacts/runtime_v3_phase_11/pinned/phase_11_closure_diagnostic.json
+          fi
+          exit "${status}"
 
       - name: Validate authoritative closure schema
         run: >-
