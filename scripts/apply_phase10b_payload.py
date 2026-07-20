@@ -42,6 +42,10 @@ EXPECTED_PATHS = {
     "python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_schema.py",
     "scripts/run_phase10_learned.py",
 }
+TRANSPORT_CORRECTIONS = (
+    (2, 1711, "a", "i"),
+    (3, 2735, "s", "S"),
+)
 
 
 def run(*args: str) -> str:
@@ -71,10 +75,18 @@ def main() -> int:
     part_paths = sorted(parts_root.glob("payload.part*"), key=lambda path: path.name)
     if len(part_paths) != 7:
         raise RuntimeError(f"expected seven payload parts, found {len(part_paths)}")
-    encoded = "".join(
-        "".join(path.read_text(encoding="ascii").split())
+    encoded_parts = [
+        list("".join(path.read_text(encoding="ascii").split()))
         for path in part_paths
-    )
+    ]
+    for part_index, offset, observed, corrected in TRANSPORT_CORRECTIONS:
+        if encoded_parts[part_index][offset] != observed:
+            raise RuntimeError(
+                f"unexpected transport byte in part {part_index} at {offset}: "
+                f"{encoded_parts[part_index][offset]!r}"
+            )
+        encoded_parts[part_index][offset] = corrected
+    encoded = "".join("".join(part) for part in encoded_parts)
     payload = base64.b64decode(encoded, validate=True)
     observed = hashlib.sha256(payload).hexdigest()
     if observed != PAYLOAD_SHA256:
