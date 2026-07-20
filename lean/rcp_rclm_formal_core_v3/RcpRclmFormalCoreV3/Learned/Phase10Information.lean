@@ -1,13 +1,12 @@
+import Mathlib
 import RcpRclmFormalCoreV3.Learned.TransformerExtension
 
 namespace RcpRclmFormalCoreV3
 namespace Learned
 
-open scoped BigOperators
-
 /--
 Selected finite token-distribution Shannon entropy written from externally certified
-probability and logarithm values.  Runtime intervals bind the concrete values used by
+probability and logarithm values. Runtime intervals bind the concrete values used by
 Phase 10; this formal surface records the diagonal semantic identification.
 -/
 noncomputable def selectedTokenShannonEntropy
@@ -15,7 +14,8 @@ noncomputable def selectedTokenShannonEntropy
     [Fintype Token]
     (probability logProbability : Token → ℚ) : ℚ := by
   classical
-  exact -∑ token, probability token * logProbability token
+  exact -((Finset.univ : Finset Token).sum fun token =>
+    probability token * logProbability token)
 
 /--
 For a diagonal token density, the selected von Neumann entropy is the entropy of its
@@ -42,7 +42,7 @@ noncomputable def selectedTokenKL
     [Fintype Token]
     (probability logProbability logTarget : Token → ℚ) : ℚ := by
   classical
-  exact ∑ token,
+  exact (Finset.univ : Finset Token).sum fun token =>
     probability token * (logProbability token - logTarget token)
 
 /--
