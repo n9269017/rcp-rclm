@@ -55,4 +55,5 @@ jobs:
             ${{ runner.temp }}/phase10b-materialize.log
             .phase10b/payload.part*
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 7
