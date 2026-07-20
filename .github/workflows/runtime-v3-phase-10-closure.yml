@@ -207,6 +207,28 @@ jobs:
           use-mathlib-cache: false
           use-github-cache: false
 
+      - name: Resolve frozen Formal Core v2 dependencies
+        working-directory: lean/rcp_rclm_formal_core_v2
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        run: lake update
+
+      - name: Verify frozen Formal Core v2 manifest
+        working-directory: lean/rcp_rclm_formal_core_v2
+        run: git diff --exit-code -- lake-manifest.json
+
+      - name: Fetch official v2 mathlib cache
+        working-directory: lean/rcp_rclm_formal_core_v2
+        run: lake exe cache get
+
+      - name: Build frozen Formal Core v2 bridge
+        working-directory: lean/rcp_rclm_formal_core_v2
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p ../rcp_rclm_formal_core_v3/audit-results-phase10-closure
+          lake build 2>&1 | tee ../rcp_rclm_formal_core_v3/audit-results-phase10-closure/formal_core_v2_build.log
+
       - name: Resolve pinned dependency graph
         working-directory: lean/rcp_rclm_formal_core_v3
         env:
@@ -290,11 +312,14 @@ jobs:
           mkdir -p artifacts/runtime_v3_phase_10_closure/pinned
           cp lean/rcp_rclm_formal_core_v3/audit-results-phase10-closure/* \
             artifacts/runtime_v3_phase_10_closure/pinned/
+          cp lean/rcp_rclm_formal_core_v2/lake-manifest.json \
+            artifacts/runtime_v3_phase_10_closure/pinned/formal-core-v2-lake-manifest.json
           cp lean/rcp_rclm_formal_core_v3/lake-manifest.json \
             artifacts/runtime_v3_phase_10_closure/pinned/lake-manifest.json
           {
             echo "commit=${GITHUB_SHA}"
             echo "toolchain=$(cat lean/rcp_rclm_formal_core_v3/lean-toolchain)"
+            echo "formal_v2_tree=$(git rev-parse HEAD:lean/rcp_rclm_formal_core_v2)"
             echo "formal_tree=$(git rev-parse HEAD:lean/rcp_rclm_formal_core_v3)"
             echo "runtime_tree=$(git rev-parse HEAD:python/rcp_rclm_runtime_v3)"
             echo "training_invocations_during_replay=0"
