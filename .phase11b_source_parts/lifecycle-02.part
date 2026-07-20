@@ -1,0 +1,201 @@
+            "beta_candidate_package_hash": self.beta_candidate.manifest.package_hash,
+            "beta_candidate_model_identity_hash": (
+                self.beta_candidate.manifest.model_identity_hash
+            ),
+            "successor_generator_hash": self.beta_candidate.manifest.generator_policy_hash,
+            "successor_planner_hash": self.beta_candidate.manifest.planner_policy_hash,
+            "lifecycle_certificate_hash": self.lifecycle_certificate.certificate_hash,
+            "lifecycle_transition_hash": self.lifecycle_transition.semantic_report_hash,
+            "budget": {
+                "budget_hash": self.active.budget.budget_hash,
+                "generator_invocations": 3,
+                "candidate_realizations": 2,
+                "candidate_evaluations": 2,
+                "manual_repairs": 0,
+            },
+            "heldout_material_consumed": False,
+            "deterministic_generator_replay": True,
+            "proposal_invocations": 3,
+            "generator_replay_invocations": 3,
+            "claim_boundary": {
+                "model_generated_candidate_realized": True,
+                "model_generated_candidate_rejected": True,
+                "later_fresh_candidate_accepted": True,
+                "candidate_promoted": False,
+                "successor_generator_planner_installed": True,
+                "modified_successor_generator_used_recursively": False,
+                "phase11_exit_closed": False,
+            },
+        }
+        result = dict(content)
+        result["summary_hash"] = canonical_json_hash(content)
+        return result
+
+    def to_json(self) -> dict[str, object]:
+        return {
+            "schema_id": self.schema_id,
+            "accepted": self.accepted,
+            "active": self.active.to_json(),
+            "wrapper_predecessor_manifest": self.wrapper_predecessor.manifest.to_json(),
+            "invalid_invocation": self.invalid_invocation.to_json(),
+            "invalid_validation": self.invalid_validation.to_json(),
+            "alpha_invocation": self.alpha_invocation.to_json(),
+            "alpha_validation": self.alpha_validation.to_json(),
+            "alpha_candidate": self.alpha_candidate.to_json(),
+            "alpha_phase6": self.alpha_phase6.to_json(),
+            "beta_invocation": self.beta_invocation.to_json(),
+            "beta_validation": self.beta_validation.to_json(),
+            "beta_candidate": self.beta_candidate.to_json(),
+            "beta_phase6": self.beta_phase6.to_json(),
+            "lifecycle_certificate": self.lifecycle_certificate.to_json(),
+            "lifecycle_transition": self.lifecycle_transition.to_json(),
+            "summary": self.summary_json(),
+        }
+
+
+def build_phase11b_reference(output_root: Path) -> Phase11BReference:
+    root = output_root.resolve(strict=False)
+    if root.exists():
+        raise FileExistsError(f"Phase 11B reference already exists: {root}")
+    root.mkdir(parents=True, exist_ok=False)
+    active = build_phase11b_active_fixture(root / "active_fixture")
+    wrapper = _build_wrapper_predecessor(active, root / "wrapper_predecessor")
+
+    invalid_input = _model_input(
+        active,
+        invocation_index=0,
+        observation={
+            "schema_id": "runtime.v3.phase11b.observation.v1",
+            "active_state_hash": active.active_state.state_hash,
+            "prior_result": None,
+            "heldout_answer_material_present": False,
+        },
+    )
+    invalid_invocation = _generate_replayed(active, invalid_input)
+    invalid_validation = validate_phase11b_program(invalid_invocation)
+
+    alpha_input = _model_input(
+        active,
+        invocation_index=1,
+        observation={
+            "schema_id": "runtime.v3.phase11b.observation.v1",
+            "active_state_hash": active.active_state.state_hash,
+            "prior_validation_hash": invalid_validation.report_hash,
+            "prior_accepted": invalid_validation.accepted,
+            "active_package_unchanged": True,
+            "heldout_answer_material_present": False,
+        },
+    )
+    alpha_invocation = _generate_replayed(active, alpha_input)
+    alpha_validation = validate_phase11b_program(alpha_invocation)
+    alpha_candidate = build_phase11b_candidate_fixture(
+        active,
+        alpha_invocation,
+        alpha_validation,
+        root / "alpha_semantic_candidate",
+    )
+    alpha_phase6 = _realize_candidate(
+        wrapper,
+        active,
+        alpha_candidate,
+        root / "alpha_phase6_candidate",
+    )
+
+    beta_input = _model_input(
+        active,
+        invocation_index=2,
+        observation={
+            "schema_id": "runtime.v3.phase11b.observation.v1",
+            "active_state_hash": active.active_state.state_hash,
+            "prior_candidate_evaluation_hash": alpha_candidate.evaluation.report_hash,
+            "prior_candidate_phase6_hash": alpha_phase6.evidence_hash,
+            "prior_candidate_accepted": alpha_candidate.evaluation.accepted,
+            "prior_candidate_rejection_reason": (
+                alpha_candidate.evaluation.rejection_reason
+            ),
+            "active_package_unchanged": True,
+            "heldout_answer_material_present": False,
+        },
+    )
+    beta_invocation = _generate_replayed(active, beta_input)
+    beta_validation = validate_phase11b_program(beta_invocation)
+    beta_candidate = build_phase11b_candidate_fixture(
+        active,
+        beta_invocation,
+        beta_validation,
+        root / "beta_semantic_candidate",
+    )
+    beta_phase6 = _realize_candidate(
+        wrapper,
+        active,
+        beta_candidate,
+        root / "beta_phase6_candidate",
+    )
+    if (
+        beta_candidate.certificate is None
+        or beta_candidate.candidate_state is None
+        or beta_candidate.update is None
+        or beta_candidate.heldout_policy is None
+    ):
+        raise ValueError("beta candidate Gate D evidence is unavailable")
+    realization = beta_phase6.phase6.report.realization
+    if realization is None or not realization.rollback.verified:
+        raise ValueError("beta Phase 6 rollback is unavailable")
+    lifecycle_certificate = replace(
+        beta_candidate.certificate,
+        architecture_compatibility_hash=str(beta_phase6.embedded_report["report_hash"]),
+        resource_evidence_hash=canonical_json_hash(
+            {
+                "schema_id": "runtime.v3.phase11b.lifecycle_resource_evidence.v1",
+                "training_semantic_hash": beta_candidate.training_semantic_hash,
+                "phase6_usage_hash": realization.resources.usage_hash,
+                "phase6_environment_hash": realization.environment.environment_hash,
+                "changed_file_count": len(realization.changes),
+                "rollback_hash": realization.rollback.rollback_hash,
+                "generator_invocations": 3,
+                "candidate_realizations": 2,
+                "candidate_evaluations": 2,
+                "manual_repairs": 0,
+            }
+        ),
+        rollback_evidence_hash=realization.rollback.rollback_hash,
+    )
+    lifecycle_transition = validate_phase9_transition(
+        active.active_state,
+        beta_candidate.update,
+        beta_candidate.candidate_state,
+        lifecycle_certificate,
+        beta_candidate.heldout_policy,
+    )
+    reference = Phase11BReference(
+        root=root,
+        active=active,
+        wrapper_predecessor=wrapper,
+        invalid_invocation=invalid_invocation,
+        invalid_validation=invalid_validation,
+        alpha_invocation=alpha_invocation,
+        alpha_validation=alpha_validation,
+        alpha_candidate=alpha_candidate,
+        alpha_phase6=alpha_phase6,
+        beta_invocation=beta_invocation,
+        beta_validation=beta_validation,
+        beta_candidate=beta_candidate,
+        beta_phase6=beta_phase6,
+        lifecycle_certificate=lifecycle_certificate,
+        lifecycle_transition=lifecycle_transition,
+    )
+    if not reference.accepted:
+        raise ValueError("Phase 11B portable lifecycle did not close")
+    retained = root / "retained"
+    _write_json(retained / "reference.json", reference.to_json())
+    _write_json(retained / "summary.json", reference.summary_json())
+    return reference
+
+
+__all__ = [
+    "EMBEDDED_PHASE11_ROOT",
+    "Phase11BPhase6Evidence",
+    "Phase11BReference",
+    "build_phase11b_reference",
+    "phase11b_phase6_budget",
+]
