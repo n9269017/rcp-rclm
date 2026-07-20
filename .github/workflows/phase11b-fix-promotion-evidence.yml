@@ -1,0 +1,63 @@
+name: Temporary Phase 11B promotion evidence repair
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-v3-phase-11-autonomous-generator
+    paths:
+      - ".github/workflows/phase11b-fix-promotion-evidence.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Apply exact promotion evidence repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          closure = Path("python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/phase11b_closure.py")
+          text = closure.read_text(encoding="utf-8")
+          before = '''    beta_payloads: dict[str, object] = {\n        "generator_input.json": reference.beta_invocation.generator_input.to_json(),\n'''
+          after = '''    beta_payloads: dict[str, object] = {\n        "policy.json": policy.to_json(),\n        "generator_input.json": reference.beta_invocation.generator_input.to_json(),\n'''
+          if before not in text:
+              raise SystemExit("beta evidence insertion point is absent")
+          closure.write_text(text.replace(before, after, 1), encoding="utf-8", newline="\n")
+
+          runner = Path("python/rcp_rclm_runtime_v3/tools/run_phase11b_closure.py")
+          text = runner.read_text(encoding="utf-8")
+          before = '''        context: dict[str, object] = {\n            "pinned_identity_prewarm_hashes": prewarm_hashes,\n            "reference_accepted": bool(reference and reference.accepted),\n            "verification_accepted": bool(verification and verification.accepted),\n            "promotion_accepted": bool(promotion and promotion.accepted),\n        }\n        if reference is not None:\n            context["reference_summary"] = reference.summary_json()\n        if verification is not None:\n            context["verification"] = verification.to_json()\n        if promotion is not None:\n            context["promotion"] = promotion.to_json()\n'''
+          after = '''        context: dict[str, object] = {\n            "pinned_identity_prewarm_hashes": prewarm_hashes,\n            "reference_constructed": reference is not None,\n            "verification_constructed": verification is not None,\n            "promotion_constructed": promotion is not None,\n        }\n'''
+          if before not in text:
+              raise SystemExit("diagnostic context replacement point is absent")
+          runner.write_text(text.replace(before, after, 1), encoding="utf-8", newline="\n")
+          PY
+
+      - name: Compile repaired sources
+        run: >-
+          python -m compileall -q
+          python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/phase11b_closure.py
+          python/rcp_rclm_runtime_v3/tools/run_phase11b_closure.py
+
+      - name: Commit repaired sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/phase11b_closure.py \
+            python/rcp_rclm_runtime_v3/tools/run_phase11b_closure.py
+          git commit -m "Bind Phase 11 promotion policy evidence"
+          git push origin HEAD:agent/rcp-rclm-v3-phase-11-autonomous-generator
