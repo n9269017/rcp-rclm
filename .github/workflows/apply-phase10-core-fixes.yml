@@ -1,0 +1,33 @@
+name: Apply Phase 10 core integration fixes
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "scripts/apply_phase10_core_fixes.py"
+      - ".github/workflows/apply-phase10-core-fixes.yml"
+  push:
+    branches:
+      - agent/rcp-rclm-v3-phase-10-substrate
+    paths:
+      - "scripts/apply_phase10_core_fixes.py"
+      - ".github/workflows/apply-phase10-core-fixes.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out Phase 10 branch
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: agent/rcp-rclm-v3-phase-10-substrate
+          fetch-depth: 0
+
+      - name: Apply exact source replacements
+        run: python scripts/apply_phase10_core_fixes.py
