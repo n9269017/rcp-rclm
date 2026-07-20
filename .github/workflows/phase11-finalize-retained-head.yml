@@ -1,6 +1,11 @@
 name: Temporary Phase 11 retained closure finalizer
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/phase11-finalize-retained-head.yml"
   push:
     branches:
       - agent/rcp-rclm-v3-phase-11-autonomous-generator
@@ -24,7 +29,7 @@ jobs:
       - name: Check out exact finalizer head
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
       - name: Set up Python
