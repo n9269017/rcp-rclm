@@ -11,7 +11,9 @@ Phase 10 — promoted compact-language-model successor: complete at declared sel
 Phase 10A — canonical 13.2M transformer package and zero-LoRA extension: complete
 Phase 10B — learned sparse execution, Lean frontier expansion, and KL/QRE evidence: complete
 Phase 10 lifecycle — Phase 6 realization, Phase 7 promotion, rollback, and worker-free replay: complete
-Phase 11 — autonomous experiment planner and generator: not started
+Phase 11 — autonomous experiment planner and generator: in progress
+Phase 11A — active-model typed proposal, rejection, and fresh validation: complete at declared slice scope
+Phase 11B — model-generated candidate realization, rejection, promotion, and installed successor policies: not started
 Phase 12 — self-hosted multi-generation recursion: not started
 Phase 13 — broader independent adversarial closure: not started
 ```
@@ -82,6 +84,25 @@ Cross-platform validation compares stable semantic hashes only. Environment-boun
 and lifecycle hashes remain attached to the exact pinned code-proof run rather than being
 misclassified as portable model identities.
 
+## Phase 11A
+
+The first Phase 11 slice adds:
+
+- an explicit host-installed active generator/planner bootstrap that is not counted as
+  autonomous improvement;
+- a canonical typed mutation-program grammar;
+- a fixed wall-clock, accelerator, training-step, output-byte, candidate, and evaluation
+  budget;
+- model-generated proposal bytes from the active predecessor package;
+- immutable rejection of a forbidden and over-budget first program;
+- a fresh second model invocation bound to the first rejection report;
+- validation of a weight, generator, and planner update program under the original budget;
+- zero held-out material consumption and zero manual repair;
+- byte-identical evidence on Ubuntu, Windows, and macOS.
+
+Phase 11A does not realize or promote the validated program. The candidate lifecycle and
+installation of changed generator/planner bytes remain Phase 11B.
+
 ## Reading order
 
 ```text
@@ -95,4 +116,7 @@ misclassified as portable model identities.
 8. PHASE_10_LIFECYCLE.md
 9. PHASE_10_EXIT_CRITERIA.md
 10. PHASE_10_VALIDATION.md
+11. PHASE_11_GENERATOR.md
+12. PHASE_11_EXIT_CRITERIA.md
+13. PHASE_11_VALIDATION.md
 ```
