@@ -1,0 +1,25 @@
+    snapshot_after_rejection, rejection_entry = append_phase7_nonpromotion(
+        snapshot,
+        alpha_attempt,
+        policy,
+        event="rejection",
+    )
+    if snapshot_after_rejection.pointer.active_package_hash != initial_hash:
+        raise ValueError("rejected Phase 11B attempt changed the active package")
+
+    beta_root = root / "attempt-0001"
+    beta_payloads: dict[str, object] = {
+        "generator_input.json": reference.beta_invocation.generator_input.to_json(),
+        "invocation.json": reference.beta_invocation.to_json(),
+        "program_validation.json": reference.beta_validation.to_json(),
+        "selection.json": reference.beta_phase6.selection.to_json(),
+        "phase6_report.json": reference.beta_phase6.phase6.report.to_json(),
+        "candidate_evaluation.json": reference.beta_candidate.evaluation.to_json(),
+        "verification.json": verification.to_json(),
+        "gate_d_certificate.json": reference.lifecycle_certificate.to_json(),
+        "phase9_transition.json": reference.lifecycle_transition.to_json(),
+        "information.json": verification.information_report.to_json(),
+        "gate_b_lean_report.json": verification.gate_b_lean.report.to_json(),
+        "hardened_checker.json": verification.hardened_checker.to_json(),
+        "task_beta_protected.json": verification.beta_protected.to_json(),
+        "task_beta_phase10_heldout.json": (
