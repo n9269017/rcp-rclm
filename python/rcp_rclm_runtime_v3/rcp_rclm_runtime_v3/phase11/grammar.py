@@ -40,15 +40,23 @@ def _parse_codes(
     value: str,
     mapping: dict[str, str],
     path: str,
-) -> tuple[str, ...]:
+) -> Sequence[str]:
     if not value:
         raise SchemaValidationError(path, "at least one code is required")
     if len(set(value)) != len(value):
         raise SchemaValidationError(path, "duplicate code")
     unknown = tuple(code for code in value if code not in mapping)
     if unknown:
-        raise SchemaValidationError(path, f"unsupported code sequence: {''.join(unknown)}")
-    return tuple(sorted((mapping[code] for code in value), key=lambda item: item.encode("utf-8")))
+        raise SchemaValidationError(
+            path,
+            f"unsupported code sequence: {''.join(unknown)}",
+        )
+    return tuple(
+        sorted(
+            (mapping[code] for code in value),
+            key=lambda item: item.encode("utf-8"),
+        )
+    )
 
 
 def parse_typed_mutation_program(raw: bytes) -> TypedMutationProgram:
@@ -60,13 +68,19 @@ def parse_typed_mutation_program(raw: bytes) -> TypedMutationProgram:
         raise SchemaValidationError("phase11.program", "whitespace is forbidden")
     parts = text.split(";")
     if parts[0] != PHASE11_PROGRAM_VERSION:
-        raise SchemaValidationError("phase11.program.version", "unsupported program version")
+        raise SchemaValidationError(
+            "phase11.program.version",
+            "unsupported program version",
+        )
     if len(parts) != len(_FIELD_ORDER) + 1:
         raise SchemaValidationError("phase11.program", "field count mismatch")
     fields: dict[str, str] = {}
     for expected_key, part in zip(_FIELD_ORDER, parts[1:], strict=True):
         if "=" not in part:
-            raise SchemaValidationError("phase11.program", "field assignment is missing")
+            raise SchemaValidationError(
+                "phase11.program",
+                "field assignment is missing",
+            )
         key, value = part.split("=", 1)
         if key != expected_key:
             raise SchemaValidationError(
@@ -76,22 +90,43 @@ def parse_typed_mutation_program(raw: bytes) -> TypedMutationProgram:
         fields[key] = value
 
     if fields["O"] != "F":
-        raise SchemaValidationError("phase11.program.objective", "unsupported objective code")
+        raise SchemaValidationError(
+            "phase11.program.objective",
+            "unsupported objective code",
+        )
     if fields["D"] != "A":
-        raise SchemaValidationError("phase11.program.data", "unsupported data-selection code")
+        raise SchemaValidationError(
+            "phase11.program.data",
+            "unsupported data-selection code",
+        )
     if fields["A"] != "N":
-        raise SchemaValidationError("phase11.program.architecture", "unsupported architecture code")
+        raise SchemaValidationError(
+            "phase11.program.architecture",
+            "unsupported architecture code",
+        )
     if fields["B"] != "X":
-        raise SchemaValidationError("phase11.program.rollback", "unsupported rollback code")
+        raise SchemaValidationError(
+            "phase11.program.rollback",
+            "unsupported rollback code",
+        )
 
     resource_fields = fields["R"].split(",")
     if len(resource_fields) != 6:
-        raise SchemaValidationError("phase11.program.resource", "expected six resource integers")
+        raise SchemaValidationError(
+            "phase11.program.resource",
+            "expected six resource integers",
+        )
     resource_values = tuple(
-        _parse_positive_int(value, f"phase11.program.resource[{index}]", minimum=0)
+        _parse_positive_int(
+            value,
+            f"phase11.program.resource[{index}]",
+            minimum=0,
+        )
         for index, value in enumerate(resource_fields)
     )
-    wall_clock, accelerators, training_steps, output_bytes, candidates, evaluations = resource_values
+    wall_clock, accelerators, training_steps, output_bytes, candidates, evaluations = (
+        resource_values
+    )
     if wall_clock < 1 or output_bytes < 1 or candidates < 1 or evaluations < 1:
         raise SchemaValidationError(
             "phase11.program.resource",
@@ -152,7 +187,10 @@ def parse_typed_mutation_program(raw: bytes) -> TypedMutationProgram:
         ),
     )
     if encode_typed_mutation_program(program) != raw:
-        raise SchemaValidationError("phase11.program", "program is not in canonical form")
+        raise SchemaValidationError(
+            "phase11.program",
+            "program is not in canonical form",
+        )
     return program
 
 
@@ -172,7 +210,10 @@ def _codes_for_values(
 
 def encode_typed_mutation_program(program: TypedMutationProgram) -> bytes:
     if program.objective != PHASE11_OBJECTIVE:
-        raise SchemaValidationError("phase11.program.objective", "unsupported objective")
+        raise SchemaValidationError(
+            "phase11.program.objective",
+            "unsupported objective",
+        )
     request = program.resource_request
     update_codes = _codes_for_values(
         program.selected_update_classes,
