@@ -14,26 +14,13 @@ on:
       - "scripts/run_phase11_generator.py"
       - "scripts/run_phase11_lifecycle.py"
       - ".github/workflows/runtime-v3-phase-11-generator.yml"
-  push:
-    branches:
-      - "agent/rcp-rclm-v3-phase-11-*"
-    paths:
-      - "python/rcp_rclm_runtime_v3/**"
-      - "python/rcp_rclm_executable_core_v3/**"
-      - "lean/rcp_rclm_formal_core_v2/**"
-      - "lean/rcp_rclm_formal_core_v3/**"
-      - "docs/executable_core_v3/**"
-      - "docs/formal_core_v3/audit/Phase10InformationAxiomAudit.lean"
-      - "scripts/run_phase11_generator.py"
-      - "scripts/run_phase11_lifecycle.py"
-      - ".github/workflows/runtime-v3-phase-11-generator.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.head.ref || github.ref_name }}
   cancel-in-progress: true
 
 jobs:
