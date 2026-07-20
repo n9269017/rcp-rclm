@@ -13,8 +13,6 @@ from typing import ClassVar, Literal
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, sha256_hex
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes, load_json_strict
 from rcp_rclm_runtime.errors import SchemaValidationError
-from rcp_rclm_runtime.mathematics.rational import Rational
-
 from rcp_rclm_runtime_v3.contract.certificate import HeldoutAccessPolicy, LearnedCertificatePacket
 from rcp_rclm_runtime_v3.contract.common import SELECTED_TASK_CLASS
 from rcp_rclm_runtime_v3.contract.state import (
@@ -100,7 +98,7 @@ def _support_from_package(root: Path) -> dict[str, dict[str, object]]:
 
 def _kind_from_program(invocation: GeneratorInvocationReport) -> CandidateKind:
     selected = set(invocation.program.selected_update_classes)
-    expected_base = {"weight_update", "generator_update", "planner_update"}
+    expected_base = {"weight_update", "adapter_update", "generator_update", "planner_update"}
     if selected == expected_base:
         return "alpha_rejected"
     if selected == expected_base | {"data_curriculum_update"}:
@@ -174,12 +172,6 @@ def _successor_support(
     selection_id = _selection_id(kind)
     if kind == "beta_promoted":
         values["training/data_curriculum.json"] = phase11b_training_manifest(selection_id)
-    training_hash = phase11b_training_semantic_hash(
-        active_manifest,
-        invocation,
-        kind,
-        candidate_tensor_sha256,
-    )
     values["policies/generator_policy.json"] = {
         "schema_id": "runtime.v3.phase11b.successor_generator_policy.v1",
         "policy": "installed_self_hosted_typed_mutation_generator",
@@ -203,16 +195,6 @@ def _successor_support(
         "bounded_within_run": True,
         "fresh_proposal_after_rejection": True,
         "recursive_use_demonstrated": False,
-    }
-    values["training/training_policy.json"] = {
-        "schema_id": "runtime.v3.phase11b.training_policy.v1",
-        "backend_authority": "untrusted_external_only",
-        "authoritative_evaluation_permitted": False,
-        "objective": "model_programmed_sparse_transition_update_v1",
-        "optimizer": invocation.program.training_policy.optimizer,
-        "optimizer_steps": invocation.program.training_policy.steps,
-        "training_semantic_hash": training_hash,
-        "heldout_material_consumed": False,
     }
     return values
 
@@ -597,23 +579,28 @@ def _update(
     candidate: LearnedRCLMState,
 ) -> LearnedRCLMUpdate:
     specs = {
+        "adapter_manifest": (
+            "0001-adapter-binding-update",
+            "adapter_update",
+            "model/adapters/manifest.json",
+        ),
         "data_curriculum": (
-            "0001-data-curriculum-update",
+            "0002-data-curriculum-update",
             "data_curriculum_update",
             "training/data_curriculum.json",
         ),
         "generator_policy": (
-            "0002-generator-policy-update",
+            "0003-generator-policy-update",
             "generator_update",
             "policies/generator_policy.json",
         ),
         "model_weights": (
-            "0003-model-weight-update",
+            "0004-model-weight-update",
             "weight_update",
             "model/tensors",
         ),
         "planner_policy": (
-            "0004-planner-policy-update",
+            "0005-planner-policy-update",
             "planner_update",
             "policies/planner_policy.json",
         ),
