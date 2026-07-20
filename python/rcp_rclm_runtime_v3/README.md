@@ -1,7 +1,8 @@
 # RCP/RCLM Runtime v3
 
-This package implements the executable correspondence for Formal Core v3 Gate D and the
-selected compact language-model successor lifecycle.
+This package implements the executable correspondence for Formal Core v3 Gate D, the
+selected compact language-model successor lifecycle, and the first active-model proposal
+surface.
 
 ## Phase 9 contract
 
@@ -79,6 +80,32 @@ independent replay with training, generator, and planner invocations equal to ze
 This distinction prevents operating-system identity from being mistaken for a semantic
 model difference while preserving the complete exact-run evidence.
 
+## Phase 11A active-model typed proposal
+
+`rcp_rclm_runtime_v3.phase11` begins the autonomous generator program with a bounded
+selected profile:
+
+```text
+host-installed active generator/planner bootstrap
+bootstrap excluded from autonomous-improvement counting
+canonical typed mutation-program grammar
+fixed per-run wall-clock, accelerator, step, byte, candidate, and evaluation budgets
+active predecessor model emits proposal bytes
+first proposal rejected for budget and immutable-policy violations
+fresh second model invocation bound to the rejection report
+second typed program validates under the original budget
+held-out material consumed = false
+manual repair count = 0
+```
+
+The active package retains the Phase 10 `rfl` and `omega` capabilities exactly. Generator,
+planner, model, package, state, proposal-protocol, invocation, validation, and budget hashes
+are canonical and included in the retained evidence.
+
+Phase 11A does not realize or promote the validated program. Model-generated candidate
+rejection, accepted promotion, and installation of changed successor generator/planner
+bytes remain Phase 11B.
+
 ## Build and test
 
 Install Runtime v2 and Runtime v3:
@@ -88,7 +115,7 @@ python -m pip install --no-deps -e python/rcp_rclm_runtime_v2
 python -m pip install -e "python/rcp_rclm_runtime_v3[test]"
 ```
 
-Install the optional training dependency only for the untrusted training job:
+Install the optional training dependency only for the untrusted Phase 10 training job:
 
 ```bash
 python -m pip install -e "python/rcp_rclm_runtime_v3[phase10-train]"
@@ -105,17 +132,24 @@ python python/rcp_rclm_runtime_v3/tools/run_phase10_tests.py \
   --package-root python/rcp_rclm_runtime_v3 \
   --out artifacts/runtime_v3_phase_10/tests.log
 
-python python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_manifest.py \
-  --repo-root . \
-  --out artifacts/runtime_v3_phase_10/learned_manifest.json
+python python/rcp_rclm_runtime_v3/tools/run_phase11_tests.py \
+  --package-root python/rcp_rclm_runtime_v3 \
+  --out artifacts/runtime_v3_phase_11/tests.log
 
 python python/rcp_rclm_runtime_v3/tools/validate_phase10_closure_manifest.py \
   --repo-root . \
   --out artifacts/runtime_v3_phase_10/closure_manifest.json
+
+python python/rcp_rclm_runtime_v3/tools/validate_phase11_manifest.py \
+  --repo-root . \
+  --out artifacts/runtime_v3_phase_11/manifest.json
+
+python python/rcp_rclm_runtime_v3/tools/run_phase11_reference.py \
+  --out artifacts/runtime_v3_phase_11/reference.json
 ```
 
-The authoritative promotion and worker-free replay command additionally requires the
-pinned Lean toolchain and built Formal Core v2/v3 projects:
+The authoritative Phase 10 promotion and worker-free replay command additionally requires
+the pinned Lean toolchain and built Formal Core v2/v3 projects:
 
 ```bash
 python python/rcp_rclm_runtime_v3/tools/run_phase10_closure.py \
@@ -126,7 +160,8 @@ python python/rcp_rclm_runtime_v3/tools/run_phase10_closure.py \
 
 ## Claim boundary
 
-Phase 10 is complete at its declared selected scope: one compact decoder family, one Lean
-theorem-completion task class, and one promoted learned successor with independent replay.
-It does not establish general native-float transformer equivalence, generic successor
-availability, recursive self-hosting, or autonomous/unbounded recursive self-improvement.
+Phase 10 remains complete at its declared selected scope. Phase 11A additionally establishes
+active-model typed proposal generation, immutable rejection, and a fresh validated program.
+It does not yet establish a promoted model-generated candidate, installed modified successor
+generator/planner bytes, recursive use of that modified generator, generic successor
+availability, or autonomous/unbounded recursive self-improvement.
