@@ -25,13 +25,20 @@ class Phase10LifecycleTests(unittest.TestCase):
             cls.fixture = build_phase10_phase6_fixture(fixture_root)
         except ValueError as exc:
             report_path = fixture_root / "retained" / "fixture.json"
+            phase6_path = fixture_root / "retained" / "phase6_report.json"
             detail = (
                 report_path.read_text(encoding="utf-8")
                 if report_path.is_file()
                 else "retained fixture report was not written"
             )
+            phase6_detail = (
+                phase6_path.read_text(encoding="utf-8")
+                if phase6_path.is_file()
+                else "retained Phase 6 report was not written"
+            )
             raise AssertionError(
-                f"Phase 10 lifecycle fixture failed: {exc}; retained={detail}"
+                "Phase 10 lifecycle fixture failed: "
+                f"{exc}; retained={detail}; phase6={phase6_detail}"
             ) from exc
 
     @classmethod
