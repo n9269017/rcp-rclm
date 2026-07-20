@@ -6,10 +6,16 @@ on:
       - agent/rcp-rclm-v3-phase-10-substrate
     paths:
       - ".github/workflows/phase10-pinned-diagnostic.yml"
+      - "python/rcp_rclm_runtime_v3/tools/run_phase10_closure.py"
+      - "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/**"
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: phase10-pinned-diagnostic-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   diagnose:
