@@ -1,7 +1,7 @@
 # RCP/RCLM Runtime v3
 
 This package implements the executable correspondence for Formal Core v3 Gate D and the
-selected compact language-model substrate and learned execution path.
+selected compact language-model successor lifecycle.
 
 ## Phase 9 contract
 
@@ -15,28 +15,28 @@ The Phase 9 layer provides immutable Python records and deterministic validation
 - typed substantive update operations;
 - held-out task and reference-answer isolation;
 - learned certificate evidence hashes;
-- active-generator and proposal-protocol self-hosting bindings;
+- active-generator and proposal-protocol bindings;
 - exact frontier retention and strict expansion.
 
 ## Phase 10A substrate
 
-`rcp_rclm_runtime_v3.phase10` provides:
+`rcp_rclm_runtime_v3.phase10` defines the canonical model substrate:
 
 ```text
 fixed 13.2M decoder-only transformer architecture
 fixed 260-token UTF-8 byte tokenizer
-canonical int16 tensor specifications and raw-file hashes
-complete model package manifests
+canonical little-endian int16 tensors and raw-file hashes
+complete model, policy, data, optimizer, RNG, and environment manifests
 Phase 9 ModelIdentity reconstruction
 rank-8 zero-output LoRA extension
 exact recovery to the predecessor identity
 fail-closed package and extension validation
-deterministic reference-package construction
 ```
 
 ## Phase 10B learned execution
 
-The selected learned reference additionally provides:
+The learned reference adds one deliberately narrow but genuine formal-language execution
+profile:
 
 ```text
 nontrivial sparse compact-model weights
@@ -51,9 +51,33 @@ accepting Phase 9 learned frontier transition
 ```
 
 The trusted package imports no PyTorch, NumPy, random-number backend, or native
-floating-point acceptance source.  PyTorch appears only in the isolated worker under
-`tools/`; its output must equal host-recomputed canonical bytes.  Model binaries are
-generated in temporary validation workspaces and are not committed.
+floating-point acceptance source. PyTorch is used only by the isolated worker under
+`tools/`; every accepted tensor byte is independently recomputed by the host.
+
+## Full Phase 10 lifecycle closure
+
+The selected learned successor is realized and closed through the inherited Runtime v2
+trust boundary:
+
+```text
+Phase 6 isolated realization
+canonical rollback archive and byte-exact restoration
+pinned Lean task verification
+hardened Gate B checker
+complete Gate D / Phase 9 transition validation
+Phase 7 atomic content-addressed promotion
+physical removal of the training worker and entry points
+independent replay with training, generator, and planner invocations equal to zero
+```
+
+`phase_10_closure_manifest.json` separates two kinds of evidence:
+
+- `stable_reference_hashes` are recomputed identically on Linux, Windows, and macOS;
+- `code_proof.exact_runtime_hashes` retain environment-bound Phase 6 and lifecycle hashes
+  from the exact successful pinned code-proof run.
+
+This distinction prevents operating-system identity from being mistaken for a semantic
+model difference while preserving the complete exact-run evidence.
 
 ## Build and test
 
@@ -64,13 +88,13 @@ python -m pip install --no-deps -e python/rcp_rclm_runtime_v2
 python -m pip install -e "python/rcp_rclm_runtime_v3[test]"
 ```
 
-Install the optional training worker dependency only for the untrusted training job:
+Install the optional training dependency only for the untrusted training job:
 
 ```bash
 python -m pip install -e "python/rcp_rclm_runtime_v3[phase10-train]"
 ```
 
-Run the focused suites and references:
+Run the focused suites and retained-reference validators:
 
 ```bash
 python python/rcp_rclm_runtime_v3/tools/run_phase9_tests.py \
@@ -81,21 +105,28 @@ python python/rcp_rclm_runtime_v3/tools/run_phase10_tests.py \
   --package-root python/rcp_rclm_runtime_v3 \
   --out artifacts/runtime_v3_phase_10/tests.log
 
-python python/rcp_rclm_runtime_v3/tools/run_phase10_learned_reference.py \
-  --out artifacts/runtime_v3_phase_10/learned_reference.json
-
-python python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_schema.py \
-  --schema python/rcp_rclm_executable_core_v3/contract/phase_10_learned.schema.json \
-  --out artifacts/runtime_v3_phase_10/learned_schema.json
-
 python python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_manifest.py \
   --repo-root . \
   --out artifacts/runtime_v3_phase_10/learned_manifest.json
+
+python python/rcp_rclm_runtime_v3/tools/validate_phase10_closure_manifest.py \
+  --repo-root . \
+  --out artifacts/runtime_v3_phase_10/closure_manifest.json
+```
+
+The authoritative promotion and worker-free replay command additionally requires the
+pinned Lean toolchain and built Formal Core v2/v3 projects:
+
+```bash
+python python/rcp_rclm_runtime_v3/tools/run_phase10_closure.py \
+  --repo-root . \
+  --lean-project-root lean/rcp_rclm_formal_core_v3 \
+  --out artifacts/runtime_v3_phase_10/phase_10_closure.json
 ```
 
 ## Claim boundary
 
-The package now establishes a selected learned compact-model execution path, protected
-and held-out Lean task certification, selected information evidence, and exact Phase 9
-frontier expansion.  It does not yet establish Phase 6 realization, atomic promotion,
-training-free independent replay, self-hosted recursion, or autonomous/unbounded RSI.
+Phase 10 is complete at its declared selected scope: one compact decoder family, one Lean
+theorem-completion task class, and one promoted learned successor with independent replay.
+It does not establish general native-float transformer equivalence, generic successor
+availability, recursive self-hosting, or autonomous/unbounded recursive self-improvement.
