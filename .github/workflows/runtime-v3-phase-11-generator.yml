@@ -127,17 +127,16 @@ jobs:
           test ! -e .github/workflows/phase11b-source-export.yml
           git diff --check
 
-      - name: Commit the clean final Phase 11 source head
+      - name: Publish validated non-workflow Phase 11 records
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf .phase11_final_payload
-          rm .github/workflows/phase11-finalize-retained-head.yml
+          git restore --source=HEAD -- .github/workflows/runtime-v3-phase-11-generator.yml
+          git rm -r -- .phase11_final_payload
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- .github/workflows/runtime-v3-phase-11-generator.yml docs/executable_core_v3/README.md docs/executable_core_v3/PHASE_11_VALIDATION.md python/rcp_rclm_runtime_v3/README.md python/rcp_rclm_runtime_v3/phase_11_closure_manifest.json python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/closure_manifest.py python/rcp_rclm_runtime_v3/tests_phase11/test_phase11_closure_manifest.py
-          git add -u -- .phase11_final_payload .github/workflows/phase11-finalize-retained-head.yml
-          git commit -m "Finalize Phase 11 retained closure head"
+          git add -- docs/executable_core_v3/README.md docs/executable_core_v3/PHASE_11_VALIDATION.md python/rcp_rclm_runtime_v3/README.md python/rcp_rclm_runtime_v3/phase_11_closure_manifest.json python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/closure_manifest.py python/rcp_rclm_runtime_v3/tests_phase11/test_phase11_closure_manifest.py
+          git commit -m "Publish final Phase 11 retained closure records"
           git push origin HEAD:agent/rcp-rclm-v3-phase-11-autonomous-generator
 
       - name: Upload materializer validation
