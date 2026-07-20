@@ -7,10 +7,7 @@ from pathlib import Path
 from typing import Final
 
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, validate_hash256
-from rcp_rclm_runtime_v3.phase10.lifecycle import (
-    build_phase10_phase6_fixture,
-    replay_phase10_phase6,
-)
+from rcp_rclm_runtime_v3.phase10.lifecycle import build_phase10_phase6_fixture
 
 PHASE10_CLOSURE_MANIFEST_RELATIVE_PATH: Final[Path] = Path(
     "python/rcp_rclm_runtime_v3/phase_10_closure_manifest.json"
@@ -21,7 +18,7 @@ PHASE10B_MANIFEST_RELATIVE_PATH: Final[Path] = Path(
 
 _EXPECTED_STATUS: Final[str] = "phase10_exit_closed_at_exact_code_proof"
 _EXPECTED_SCHEMA_VERSION: Final[str] = (
-    "rcp-rclm-runtime-v3-phase-10-closure-manifest-v1"
+    "rcp-rclm-runtime-v3-phase-10-closure-manifest-v2"
 )
 _EXPECTED_CLAIM_BOUNDARY: Final[dict[str, bool]] = {
     "actual_promoted_learned_successor": True,
@@ -50,6 +47,36 @@ _EXPECTED_REPORT_BOUNDARY: Final[dict[str, bool]] = {
 _EXPECTED_ARTIFACT_KINDS: Final[frozenset[str]] = frozenset(
     {"final", "macos", "pinned", "training", "ubuntu", "windows"}
 )
+_STABLE_REFERENCE_KEYS: Final[frozenset[str]] = frozenset(
+    {
+        "candidate_model_identity_hash",
+        "candidate_package_hash",
+        "information_report_hash",
+        "phase10b_transition_report_hash",
+        "phase6_selection_hash",
+        "predecessor_model_identity_hash",
+        "predecessor_package_hash",
+        "rollback_hash",
+    }
+)
+_EXACT_RUNTIME_HASH_KEYS: Final[frozenset[str]] = frozenset(
+    {
+        "lifecycle_certificate_hash",
+        "lifecycle_transition_report_hash",
+        "phase6_fixture_hash",
+        "phase6_replay_report_hash",
+        "phase6_report_hash",
+    }
+)
+_CLOSURE_REPORT_HASH_KEYS: Final[frozenset[str]] = frozenset(
+    {
+        "promoted_package_hash",
+        "promotion_report_hash",
+        "replay_report_hash",
+        "report_hash",
+        "source_verification_hash",
+    }
+)
 _HEX40: Final[re.Pattern[str]] = re.compile(r"^[0-9a-f]{40}$")
 _SHA256_DIGEST: Final[re.Pattern[str]] = re.compile(r"^sha256:[0-9a-f]{64}$")
 
@@ -74,6 +101,14 @@ def _valid_hash(value: object) -> bool:
     except ValueError:
         return False
     return True
+
+
+def _valid_hash_map(value: object, expected_keys: frozenset[str]) -> bool:
+    return (
+        isinstance(value, dict)
+        and set(value) == expected_keys
+        and all(_valid_hash(item) for item in value.values())
+    )
 
 
 def _expected_artifact_name(kind: str, run_id: int, attempt: int) -> str:
@@ -108,11 +143,12 @@ def _validate_code_proof(value: object) -> bool:
         return False
     if isinstance(attempt, bool) or not isinstance(attempt, int) or attempt < 1:
         return False
-
-    closure_report = value.get("closure_report")
-    if not isinstance(closure_report, dict) or not closure_report:
+    if not _valid_hash_map(value.get("closure_report"), _CLOSURE_REPORT_HASH_KEYS):
         return False
-    if not all(_valid_hash(item) for item in closure_report.values()):
+    if not _valid_hash_map(
+        value.get("exact_runtime_hashes"),
+        _EXACT_RUNTIME_HASH_KEYS,
+    ):
         return False
 
     git_trees = value.get("git_trees")
@@ -150,14 +186,12 @@ def _validate_code_proof(value: object) -> bool:
     return True
 
 
-def _recompute_reference_hashes(repo_root: Path) -> dict[str, str]:
-    with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase10-closure-manifest-") as temporary:
-        temporary_root = Path(temporary)
-        fixture = build_phase10_phase6_fixture(temporary_root / "fixture")
-        replay = replay_phase10_phase6(
-            fixture.root,
-            temporary_root / "replay_candidate",
-        )
+def _recompute_stable_reference_hashes(repo_root: Path) -> dict[str, str]:
+    del repo_root  # The fixture is source-deterministic and uses no repository mutation.
+    with tempfile.TemporaryDirectory(
+        prefix="rcp-rclm-phase10-closure-manifest-"
+    ) as temporary:
+        fixture = build_phase10_phase6_fixture(Path(temporary) / "fixture")
         realization = fixture.phase6.report.realization
         if realization is None:
             raise ValueError("Phase 10 closure manifest requires Phase 6 realization")
@@ -167,16 +201,10 @@ def _recompute_reference_hashes(repo_root: Path) -> dict[str, str]:
             ),
             "candidate_package_hash": fixture.reference.candidate_manifest.package_hash,
             "information_report_hash": fixture.reference.information_report.report_hash,
-            "lifecycle_certificate_hash": fixture.lifecycle_certificate.certificate_hash,
-            "lifecycle_transition_report_hash": (
-                fixture.lifecycle_transition.semantic_report_hash
-            ),
             "phase10b_transition_report_hash": (
                 fixture.reference.transition_report.semantic_report_hash
             ),
-            "phase6_fixture_hash": str(fixture.to_json()["fixture_hash"]),
-            "phase6_replay_report_hash": str(replay["report_hash"]),
-            "phase6_report_hash": fixture.phase6.report.report_hash,
+            "phase6_selection_hash": fixture.selection.selection_hash,
             "predecessor_model_identity_hash": (
                 fixture.reference.predecessor_manifest.model_identity_hash
             ),
@@ -223,24 +251,23 @@ def validate_phase10_closure_manifest(
         == "phase10b_learned_execution_complete_at_declared_scope"
     )
 
-    declared_reference = manifest.get("reference_hashes")
-    observed_reference: dict[str, str] | None = None
+    declared_stable = manifest.get("stable_reference_hashes")
+    observed_stable: dict[str, str] | None = None
     if recompute_reference:
-        observed_reference = _recompute_reference_hashes(root)
-        checks["reference_hashes"] = declared_reference == observed_reference
+        observed_stable = _recompute_stable_reference_hashes(root)
+        checks["stable_reference_hashes"] = declared_stable == observed_stable
     else:
-        checks["reference_hash_shape"] = (
-            isinstance(declared_reference, dict)
-            and bool(declared_reference)
-            and all(_valid_hash(value) for value in declared_reference.values())
+        checks["stable_reference_hash_shape"] = _valid_hash_map(
+            declared_stable,
+            _STABLE_REFERENCE_KEYS,
         )
 
     failures = sorted(name for name, accepted in checks.items() if accepted is not True)
     return {
-        "schema_version": "rcp-rclm-runtime-v3-phase-10-closure-validation-v1",
+        "schema_version": "rcp-rclm-runtime-v3-phase-10-closure-validation-v2",
         "manifest_hash": canonical_json_hash(manifest),
         "checks": checks,
-        "observed_reference_hashes": observed_reference,
+        "observed_stable_reference_hashes": observed_stable,
         "failures": failures,
         "ok": not failures,
     }
@@ -250,9 +277,9 @@ def validate_phase10_closure_report(
     manifest: dict[str, object],
     report: dict[str, object],
 ) -> dict[str, object]:
-    reference = manifest.get("reference_hashes")
-    if not isinstance(reference, dict):
-        raise ValueError("Phase 10 closure manifest reference hashes are absent")
+    stable = manifest.get("stable_reference_hashes")
+    if not isinstance(stable, dict):
+        raise ValueError("Phase 10 stable reference hashes are absent")
     checks = {
         "accepted": report.get("accepted") is True,
         "phase10_exit_closed": report.get("phase10_exit_closed") is True,
@@ -275,15 +302,18 @@ def validate_phase10_closure_report(
             "lean.phase10.protected.reflexive_seven",
         ],
         "candidate_model_identity_hash": report.get("candidate_model_identity_hash")
-        == reference.get("candidate_model_identity_hash"),
+        == stable.get("candidate_model_identity_hash"),
         "predecessor_model_identity_hash": report.get("predecessor_model_identity_hash")
-        == reference.get("predecessor_model_identity_hash"),
-        "phase6_fixture_hash": report.get("phase6_fixture_hash")
-        == reference.get("phase6_fixture_hash"),
+        == stable.get("predecessor_model_identity_hash"),
         "information_report_hash": report.get("information_report_hash")
-        == reference.get("information_report_hash"),
-        "phase9_transition_report_hash": report.get("phase9_transition_report_hash")
-        == reference.get("lifecycle_transition_report_hash"),
+        == stable.get("information_report_hash"),
+        "environment_bound_hashes": all(
+            _valid_hash(report.get(name))
+            for name in (
+                "phase6_fixture_hash",
+                "phase9_transition_report_hash",
+            )
+        ),
         "run_specific_hashes": all(
             _valid_hash(report.get(name))
             for name in (
@@ -297,7 +327,7 @@ def validate_phase10_closure_report(
     }
     failures = sorted(name for name, accepted in checks.items() if accepted is not True)
     return {
-        "schema_version": "rcp-rclm-runtime-v3-phase-10-report-validation-v1",
+        "schema_version": "rcp-rclm-runtime-v3-phase-10-report-validation-v2",
         "checks": checks,
         "failures": failures,
         "ok": not failures,
