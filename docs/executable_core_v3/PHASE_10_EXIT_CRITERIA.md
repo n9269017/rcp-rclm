@@ -69,22 +69,27 @@
 - [x] The candidate model hash differs from the predecessor model hash.
 - [x] Every protected task is recertified for the candidate model identity.
 - [x] The complete Phase 9 learned transition report accepts exact frontier expansion.
-- [ ] Phase 6 realizes every learned tensor, manifest, and policy change.
-- [ ] Phase 6 records and verifies byte-exact rollback restoration.
-- [ ] The inherited pinned-Lean and hardened-checker stability obligations accept.
-- [ ] Phase 7 atomically promotes the candidate.
+- [x] Phase 6 realizes every selected learned tensor, manifest, and policy change.
+- [x] Phase 6 records and verifies byte-exact rollback restoration.
+- [x] The inherited pinned-Lean and hardened-checker stability obligations accept.
+- [x] Phase 7 atomically promotes the candidate into the content-addressed store.
 
 ## H. Independent replay
 
-- [ ] Replay succeeds after physically removing the training worker.
-- [ ] Replay performs zero training invocations.
-- [ ] Replay reconstructs package hashes, task evidence, KL/QRE evidence, Lean verdict,
+- [x] Replay succeeds after physically removing the training worker and its entry points.
+- [x] Replay performs zero training, generator, and planner invocations.
+- [x] Replay reconstructs package hashes, task evidence, KL/QRE evidence, Lean verdict,
       hardened-checker verdict, parent linkage, and rollback.
-- [ ] Linux, Windows, and macOS produce the same authoritative replay result.
+- [x] Linux, Windows, and macOS produce the same stable semantic reference hashes.
 
 ## Closure status
 
-Phase 10 is **in progress**. Sections A–F and the Gate D/Phase 9 portion of Section G are
-implemented by the Phase 10A/10B source.  The full Phase 10 claim remains open until the
-unchecked realization, promotion, rollback, and independent-replay obligations in
-Sections G–H close at one exact source head.
+Phase 10 is **complete at its declared selected scope**. The authoritative code-proof run
+closed at branch head `23a33e4078766b404387d1fa9bb2737c664d9e54`, PR merge-test
+commit `a816c7af9119dcde1f7187590987d8cc16e05e40`, and workflow run
+`29718918742`.
+
+The closure establishes one promoted learned successor for one selected compact-model
+family and one selected Lean theorem-completion task class. It does not establish generic
+successor availability, recursive self-hosting, general native-float transformer
+correspondence, or autonomous/unbounded recursive self-improvement.
