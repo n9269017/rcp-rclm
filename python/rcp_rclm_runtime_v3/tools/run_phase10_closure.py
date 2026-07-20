@@ -68,6 +68,20 @@ def _verification_context(error: BaseException) -> dict[str, object]:
                 "candidate_unchanged": evidence.candidate_unchanged,
                 "training_modules_absent": not evidence.forbidden_training_modules_loaded,
             }
+            compilation = evidence.gate_b_lean.compilation
+            compiler_output: dict[str, object]
+            if compilation is None:
+                compiler_output = {"invoked": False}
+            else:
+                compiler_output = {
+                    "invoked": True,
+                    "command": list(compilation.command),
+                    "source_name": compilation.source_name,
+                    "exit_code": compilation.exit_code,
+                    "timed_out": compilation.timed_out,
+                    "stdout": compilation.stdout.decode("utf-8", errors="replace"),
+                    "stderr": compilation.stderr.decode("utf-8", errors="replace"),
+                }
             return {
                 "verification_checks": checks,
                 "verification_failures": sorted(
@@ -76,6 +90,8 @@ def _verification_context(error: BaseException) -> dict[str, object]:
                 "forbidden_training_modules_loaded": list(
                     evidence.forbidden_training_modules_loaded
                 ),
+                "gate_b_generated_source": evidence.gate_b_lean.generated.source_text,
+                "gate_b_compilation": compiler_output,
                 "gate_b_lean_report": evidence.gate_b_lean.report.to_json(),
                 "gate_b_source_guard": evidence.gate_b_lean.source_guard.to_json(),
                 "hardened_checker": evidence.hardened_checker.to_json(),
