@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rcp-rclm-runtime-v3"
-version = "0.1.0"
-description = "Phase 9 learned-language-model refinement contract and immutable Gate D runtime records for RCP/RCLM Formal Core v3"
+version = "0.2.0"
+description = "Gate D learned-language-model contract and Phase 10 canonical compact-transformer substrate for RCP/RCLM Formal Core v3"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "See repository LICENSE and component licenses"}

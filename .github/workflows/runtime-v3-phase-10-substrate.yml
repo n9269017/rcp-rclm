@@ -1,0 +1,283 @@
+name: Runtime v3 Phase 10 compact-transformer substrate
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "python/rcp_rclm_runtime_v3/**"
+      - "python/rcp_rclm_executable_core_v3/**"
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned.lean"
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/TransformerExtension.lean"
+      - "docs/executable_core_v3/**"
+      - "docs/formal_core_v3/audit/Phase10TransformerExtensionAxiomAudit.lean"
+      - "scripts/run_phase10_substrate.py"
+      - ".github/workflows/runtime-v3-phase-10-substrate.yml"
+  push:
+    branches:
+      - "agent/rcp-rclm-v3-phase-10-*"
+    paths:
+      - "python/rcp_rclm_runtime_v3/**"
+      - "python/rcp_rclm_executable_core_v3/**"
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned.lean"
+      - "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/TransformerExtension.lean"
+      - "docs/executable_core_v3/**"
+      - "docs/formal_core_v3/audit/Phase10TransformerExtensionAxiomAudit.lean"
+      - "scripts/run_phase10_substrate.py"
+      - ".github/workflows/runtime-v3-phase-10-substrate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  substrate:
+    name: Validate Phase 10A substrate (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - "3.11"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Runtime v2 and Runtime v3
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+
+      - name: Compile Phase 9 and Phase 10 Python source
+        run: >-
+          python -m compileall -q
+          python/rcp_rclm_runtime_v3
+          scripts/run_phase9_contract.py
+          scripts/run_phase10_substrate.py
+
+      - name: Validate deterministic source quality
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_source_quality.py
+          --package-root python/rcp_rclm_runtime_v3
+          --out artifacts/runtime_v3_phase_10/${{ matrix.os }}/source_quality.json
+
+      - name: Re-run focused Phase 9 contract tests
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase9_tests.py
+          --package-root python/rcp_rclm_runtime_v3
+          --out artifacts/runtime_v3_phase_10/${{ matrix.os }}/phase_9_tests.log
+
+      - name: Run focused Phase 10 substrate tests
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase10_tests.py
+          --package-root python/rcp_rclm_runtime_v3
+          --out artifacts/runtime_v3_phase_10/${{ matrix.os }}/phase_10_tests.log
+
+      - name: Validate Phase 10 Draft 2020-12 schema
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase10_schema.py
+          --schema python/rcp_rclm_executable_core_v3/contract/phase_10_substrate.schema.json
+          --out artifacts/runtime_v3_phase_10/${{ matrix.os }}/schema_validation.json
+
+      - name: Recompute compact-transformer reference
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase10_reference.py
+          --out artifacts/runtime_v3_phase_10/${{ matrix.os }}/reference.json
+
+      - name: Validate Phase 10 manifest and retained hashes
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase10_manifest.py
+          --repo-root .
+          --out artifacts/runtime_v3_phase_10/${{ matrix.os }}/manifest_validation.json
+
+      - name: Run repository-root Phase 10 entry point
+        run: >-
+          python scripts/run_phase10_substrate.py
+          --out artifacts/runtime_v3_phase_10/${{ matrix.os }}/entry_point.json
+
+      - name: Upload platform evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-10-substrate-${{ matrix.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_10/${{ matrix.os }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  pinned-lean:
+    name: Validate Phase 10A formal bridge with pinned Lean
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+
+    steps:
+      - name: Check out repository with formal history
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install Runtime v2 and Runtime v3
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+
+      - name: Install pinned Lean toolchain through Formal Core v3
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          lake-package-directory: lean/rcp_rclm_formal_core_v2
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Resolve pinned dependency graph
+        working-directory: lean/rcp_rclm_formal_core_v3
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        run: lake update
+
+      - name: Verify committed dependency manifest remains exact
+        working-directory: lean/rcp_rclm_formal_core_v3
+        run: git diff --exit-code -- lake-manifest.json
+
+      - name: Fetch official mathlib build cache
+        working-directory: lean/rcp_rclm_formal_core_v3
+        run: lake exe cache get
+
+      - name: Build Formal Core v3 with transformer extension
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results-phase10
+          lake build > audit-results-phase10/lake_build.log 2>&1
+          tail -n 60 audit-results-phase10/lake_build.log
+
+      - name: Reject forbidden proof tokens and local axioms
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              --exclude-dir='audit-results-phase9' \
+              --exclude-dir='audit-results-phase10' \
+              '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
+              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
+              > audit-results-phase10/forbidden_proof_tokens.txt; then
+            cat audit-results-phase10/forbidden_proof_tokens.txt
+            exit 1
+          fi
+          : > audit-results-phase10/forbidden_proof_tokens.txt
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              --exclude-dir='audit-results-phase9' \
+              --exclude-dir='audit-results-phase10' \
+              '^[[:space:]]*axiom[[:space:]]' \
+              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
+              > audit-results-phase10/project_axiom_declarations.txt; then
+            cat audit-results-phase10/project_axiom_declarations.txt
+            exit 1
+          fi
+          : > audit-results-phase10/project_axiom_declarations.txt
+
+      - name: Audit Phase 10 transformer-extension theorems
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean ../../docs/formal_core_v3/audit/Phase10TransformerExtensionAxiomAudit.lean \
+            2>&1 | tee audit-results-phase10/phase_10_axioms.txt
+          if grep -Fq 'sorryAx' audit-results-phase10/phase_10_axioms.txt; then
+            echo "sorryAx appears in the Phase 10 axiom report." >&2
+            exit 1
+          fi
+
+      - name: Recompute Phase 10 evidence under pinned environment
+        run: |
+          python python/rcp_rclm_runtime_v3/tools/validate_phase10_schema.py \
+            --schema python/rcp_rclm_executable_core_v3/contract/phase_10_substrate.schema.json \
+            --out artifacts/runtime_v3_phase_10/pinned/schema_validation.json
+          python python/rcp_rclm_runtime_v3/tools/run_phase10_reference.py \
+            --out artifacts/runtime_v3_phase_10/pinned/reference.json
+          python python/rcp_rclm_runtime_v3/tools/validate_phase10_manifest.py \
+            --repo-root . \
+            --out artifacts/runtime_v3_phase_10/pinned/manifest_validation.json
+
+      - name: Retain pinned evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/runtime_v3_phase_10/pinned
+          cp lean/rcp_rclm_formal_core_v3/audit-results-phase10/* \
+            artifacts/runtime_v3_phase_10/pinned/
+          cp lean/rcp_rclm_formal_core_v3/lake-manifest.json \
+            artifacts/runtime_v3_phase_10/pinned/lake-manifest.json
+          cp python/rcp_rclm_runtime_v3/phase_10_manifest.json \
+            artifacts/runtime_v3_phase_10/pinned/phase_10_manifest.json
+          {
+            echo "commit=${GITHUB_SHA}"
+            echo "toolchain=$(cat lean/rcp_rclm_formal_core_v3/lean-toolchain)"
+            echo "formal_tree=$(git rev-parse HEAD:lean/rcp_rclm_formal_core_v3)"
+            echo "runtime_tree=$(git rev-parse HEAD:python/rcp_rclm_runtime_v3)"
+            echo "schema_sha256=$(sha256sum python/rcp_rclm_executable_core_v3/contract/phase_10_substrate.schema.json | cut -d' ' -f1)"
+          } > artifacts/runtime_v3_phase_10/pinned/metadata.txt
+
+      - name: Upload pinned Phase 10 evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-10-substrate-pinned-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_10/pinned/
+          if-no-files-found: error
+          retention-days: 90
+
+  closure:
+    name: Verify Phase 10A workflow closure
+    runs-on: ubuntu-latest
+    needs:
+      - substrate
+      - pinned-lean
+    steps:
+      - name: Emit closure record
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/runtime_v3_phase_10/final
+          {
+            echo "phase=10A"
+            echo "commit=${GITHUB_SHA}"
+            echo "cross_platform=success"
+            echo "pinned_lean=success"
+            echo "claim=canonical_compact_transformer_substrate_only"
+            echo "phase10_exit_closed=false"
+          } > artifacts/runtime_v3_phase_10/final/closure.txt
+
+      - name: Upload closure record
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-10-substrate-final-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_10/final/
+          if-no-files-found: error
+          retention-days: 90

@@ -4,3 +4,4 @@ import RcpRclmFormalCoreV3.Learned.Trajectory
 import RcpRclmFormalCoreV3.Learned.Infinite
 import RcpRclmFormalCoreV3.Learned.Reference
 import RcpRclmFormalCoreV3.Learned.ExecutableContract
+import RcpRclmFormalCoreV3.Learned.TransformerExtension
