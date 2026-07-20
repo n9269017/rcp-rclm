@@ -90,7 +90,7 @@ def main() -> int:
                 sha256_hex(candidate_tensor)
                 == successor_first.report.candidate_tensor_sha256
             ),
-            "heldout_material_consumed": False,
+            "heldout_material_absent": True,
         }
         failures = sorted(name for name, accepted in checks.items() if accepted is not True)
         report = {
@@ -106,6 +106,7 @@ def main() -> int:
             "predecessor_model_identity_hash": predecessor.model_identity_hash,
             "candidate_model_identity_hash": candidate.model_identity_hash,
             "training_invocations": 4,
+            "heldout_material_consumed": False,
             "authoritative_host_recomputation": True,
             "torch_used_for_acceptance": False,
             "ok": not failures,
