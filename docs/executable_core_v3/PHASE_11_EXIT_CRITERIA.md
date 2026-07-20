@@ -17,7 +17,7 @@
 - [x] The host-created bootstrap is explicitly excluded from the autonomous-improvement
       count.
 
-## C. Typed mutation program
+## C. Typed mutation program and immutable budget
 
 - [x] The program records objective, update classes, training policy, data selection,
       architecture mutation, resources, expected components, rollback, and successor
@@ -29,41 +29,56 @@
 - [x] Every invocation is bounded by wall-clock, accelerator, training-step, output-byte,
       candidate-count, and evaluation-call ceilings.
 
-## D. Phase 11A active-model proposal sequence
+## D. Active-model proposal sequence
 
-- [x] The active predecessor model itself emits the first proposal bytes.
-- [x] The proposal is generated without held-out task identifiers, prompts, source, or
-      reference answers.
-- [x] The first proposal is rejected by immutable host policy.
-- [x] Rejection includes an independent resource violation and forbidden update class.
-- [x] A second fresh invocation is bound to the first rejection report.
-- [x] The second model output is a different canonical typed program.
-- [x] The second program validates under the original fixed budget.
-- [x] Manual repair count is zero.
-- [x] Ubuntu, Windows, and macOS produce byte-identical stable reference evidence.
+- [x] The active predecessor model itself emits proposal bytes.
+- [x] Proposals are generated without held-out task identifiers, prompts, source, or answers.
+- [x] The first proposal is rejected for an independent resource violation and forbidden
+      update class.
+- [x] Later invocations are fresh and bound to prior rejection evidence.
+- [x] Manual repair count remains zero.
 
 ## E. Model-generated candidate lifecycle
 
-- [ ] The host realizes a candidate from a model-generated typed program through Phase 6.
-- [ ] At least one model-generated candidate is rejected without changing the active package.
-- [ ] A later fresh model-generated candidate is accepted within the original total budget.
-- [ ] No operator repair occurs between attempts.
-- [ ] The accepted candidate satisfies complete Gate D / Phase 9 frontier obligations.
-- [ ] Phase 7 atomically promotes the accepted candidate.
+- [x] The host realizes alpha from a model-generated typed program through Phase 6.
+- [x] Alpha's exact rollback path is verified.
+- [x] Alpha is rejected for protected-capability regression after realization.
+- [x] The rejection ledger entry leaves the active package hash unchanged.
+- [x] A later fresh model invocation produces beta within the original total budget.
+- [x] The host realizes beta through Phase 6 with exact rollback.
+- [x] Beta retains every predecessor frontier task.
+- [x] Beta independently solves one new held-out Lean task.
+- [x] Beta satisfies selected entropy/KL/diagonal-QRE obligations.
+- [x] Beta satisfies complete Gate D / Phase 9 frontier obligations.
+- [x] Phase 7 atomically promotes beta with the unchanged active package as parent.
+- [x] The final immutable ledger sequence is two: rejection, then promotion.
 
 ## F. Installed successor generator and planner
 
-- [ ] The promoted successor's generator bytes differ from the active predecessor's.
-- [ ] The promoted successor's planner bytes differ from the active predecessor's.
-- [ ] The successor hashes bind the changed generator and planner artifacts.
-- [ ] The changed policies are installed in the active promoted package.
-- [ ] The successor remains ready to produce the next proposal without claiming that it has
+- [x] The promoted successor's generator bytes differ from the active predecessor's.
+- [x] The promoted successor's planner bytes differ from the active predecessor's.
+- [x] The successor hashes bind the changed generator and planner artifacts.
+- [x] Generation-2 generator and planner files are installed in the immutable promoted package.
+- [x] The successor remains ready to produce the next proposal without claiming that it has
       already done so.
+
+## G. Authoritative closure evidence
+
+- [x] Ubuntu, Windows, and macOS recompute byte-identical portable lifecycle evidence.
+- [x] Duplicate isolated alpha and beta worker executions reproduce host-expected tensors.
+- [x] Frozen Formal Core v2 and complete Formal Core v3 build under the pinned toolchain.
+- [x] Proof-token, local-axiom, and selected-information theorem audits pass.
+- [x] The pinned run independently executes all three selected Lean tasks.
+- [x] The final record binds the rejection ledger, unchanged active hash, promotion parent,
+      ledger sequence, and installed generator/planner bytes.
+- [x] The terminal workflow records `phase11_exit_closed=true`.
 
 ## Closure status
 
-Phase 11A is **complete at its declared typed-proposal scope**. Full Phase 11 remains in
-progress until Sections E–F close at one exact source head.
+Phase 11 is **complete at its declared selected scope**: one active predecessor model emits
+bounded typed programs, one realized model-generated candidate is rejected without changing
+the active package, and a later fresh model-generated candidate is promoted with changed
+generator and planner policies installed.
 
 The recursive-use condition intentionally remains outside Phase 11. Producing the next
 proposal with the modified successor generator is the central Phase 12 condition.
