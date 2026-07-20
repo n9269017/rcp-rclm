@@ -48,10 +48,10 @@ from rcp_rclm_runtime.promotion.evaluator import (
     Phase7EvaluationEvidence,
     evaluate_realized_candidate,
 )
-from rcp_rclm_runtime.torch_backend.pilot_policy import (
-    PYTORCH_PILOT_CONTROLLER_ENVIRONMENT_HASH,
-    pytorch_pilot_phase7_budget,
-    pytorch_pilot_phase7_policy,
+from rcp_rclm_runtime_v3.phase10.policy import (
+    PHASE10_CONTROLLER_ENVIRONMENT_HASH,
+    phase10_phase7_budget,
+    phase10_phase7_policy,
 )
 from rcp_rclm_runtime_v3.phase10.information import (
     Phase10InformationReport,
@@ -73,7 +73,7 @@ from rcp_rclm_runtime_v3.phase10.tasks import (
 PHASE10_PROMOTION_SCHEMA_ID: Final[str] = "runtime.v3.phase10.promotion.v1"
 PHASE10_VERIFICATION_SCHEMA_ID: Final[str] = "runtime.v3.phase10.verification.v1"
 PHASE10_PROMOTION_POLICY_NOTE: Final[str] = (
-    "immutable_runtime_v2_pytorch_policy_reused_as_transport_only"
+    "phase10_specific_policy_over_immutable_runtime_v2_store"
 )
 
 
@@ -244,7 +244,7 @@ def verify_phase10_candidate(
         resource_record=reference_resource_record(
             budget_units=1,
             consumed_units=1,
-            environment_hash=PYTORCH_PILOT_CONTROLLER_ENVIRONMENT_HASH,
+            environment_hash=PHASE10_CONTROLLER_ENVIRONMENT_HASH,
         ),
         protected_distinctions=reference_protected_distinctions(
             "gate_b_classical"
@@ -467,8 +467,8 @@ def promote_phase10_candidate(
 ) -> Phase10PromotionEvidence:
     if not fixture.accepted or not verification.accepted:
         raise ValueError("Phase 10 candidate is not eligible for promotion")
-    policy = pytorch_pilot_phase7_policy()
-    budget = pytorch_pilot_phase7_budget()
+    policy = phase10_phase7_policy()
+    budget = phase10_phase7_budget()
     snapshot = bootstrap_phase7_store(
         store_root,
         fixture.wrapper_predecessor.payload_root.parent,
