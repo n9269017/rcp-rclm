@@ -78,16 +78,20 @@
 
 - [x] Replay succeeds after physically removing the training worker and its entry points.
 - [x] Replay performs zero training, generator, and planner invocations.
-- [x] Replay reconstructs package hashes, task evidence, KL/QRE evidence, Lean verdict,
-      hardened-checker verdict, parent linkage, and rollback.
-- [x] Linux, Windows, and macOS produce the same stable semantic reference hashes.
+- [x] Replay reconstructs the candidate package, task evidence, KL/QRE evidence, Lean
+      verdict, hardened-checker verdict, parent linkage, and rollback.
+- [x] Linux, Windows, and macOS reproduce the same stable semantic reference hashes.
+- [x] Environment-bound Phase 6 report, fixture, certificate, lifecycle-transition, and
+      replay-report hashes are retained under the exact pinned code-proof run rather than
+      incorrectly required to match across operating systems.
 
 ## Closure status
 
-Phase 10 is **complete at its declared selected scope**. The authoritative code-proof run
+Phase 10 is **complete at its declared selected scope**. The retained exact code proof
 closed at branch head `23a33e4078766b404387d1fa9bb2737c664d9e54`, PR merge-test
 commit `a816c7af9119dcde1f7187590987d8cc16e05e40`, and workflow run
-`29718918742`.
+`29718918742`. The final repository head is bound non-circularly by its successful workflow
+artifacts and the PR record.
 
 The closure establishes one promoted learned successor for one selected compact-model
 family and one selected Lean theorem-completion task class. It does not establish generic
