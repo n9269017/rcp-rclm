@@ -1,0 +1,5 @@
+import RcpRclmFormalCoreV3.Learned.TransformerExtension
+
+#print axioms RcpRclmFormalCoreV3.Learned.recover_adapter_extension_exact
+#print axioms RcpRclmFormalCoreV3.Learned.lora_zero_output_preserves
+#print axioms RcpRclmFormalCoreV3.Learned.lora_zero_output_preserves_function

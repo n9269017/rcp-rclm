@@ -1,0 +1,110 @@
+{
+  "artifact_hashes": {
+    "phase_10_information_lean_sha256": "54e74fec11b73e92af5bd76cd1215358635995d63ead8e210d1ed15c369895b2",
+    "phase_10_learned_schema_sha256": "91be881affc94cc3a730d7cdbbdbba45e30ffeeef7561e8372f3dd4942889cb0",
+    "phase_10_learned_workflow_sha256": "266085536fed3ed34ea51643971bf8d6343874ed2a3c690772c61046402237a9",
+    "phase_10_training_worker_sha256": "c5b1e8735c29f0b338c4e3f1366c6bf9c7f45f20475459b3c4646ab3741c53a8"
+  },
+  "authoritative_validation": {
+    "artifacts": {
+      "final": {
+        "digest": "sha256:2b4173f7a220b96c1e8152729164e2b6d50d5040462e54acc444b70f6b0d3743",
+        "id": 8451691344,
+        "name": "runtime-v3-phase-10-closure-final-29718918742-1"
+      },
+      "macos": {
+        "digest": "sha256:bd8d1ad8bdd90e3e52a34bf88b627b81f1f0775ee6769d880245a0aa1668e353",
+        "id": 8451598925,
+        "name": "runtime-v3-phase-10-closure-macos-latest-29718918742-1"
+      },
+      "pinned": {
+        "digest": "sha256:9fd060ecc8a53f24afc32b3f604aeb49a8b2c96766dbfa9bd3279a816814f24d",
+        "id": 8451689152,
+        "name": "runtime-v3-phase-10-closure-pinned-29718918742-1"
+      },
+      "training": {
+        "digest": "sha256:54deab0c37d084bf085c74a147b312eff3f546d16bfd7f426ad08fb420ab2f82",
+        "id": 8451604917,
+        "name": "runtime-v3-phase-10-closure-training-29718918742-1"
+      },
+      "ubuntu": {
+        "digest": "sha256:54ea7129b24bdd716f5f9485022a974106662b1c52590111ee325f72babe97f3",
+        "id": 8451593999,
+        "name": "runtime-v3-phase-10-closure-ubuntu-latest-29718918742-1"
+      },
+      "windows": {
+        "digest": "sha256:b970bd229890690223e39e91658a718b47eb3ca483c3fdd673f66b86a1273a7f",
+        "id": 8451606352,
+        "name": "runtime-v3-phase-10-closure-windows-latest-29718918742-1"
+      }
+    },
+    "branch_head": "23a33e4078766b404387d1fa9bb2737c664d9e54",
+    "pr_merge_test_commit": "a816c7af9119dcde1f7187590987d8cc16e05e40",
+    "proof_scope": "phase10b_revalidated_inside_full_phase10_closure",
+    "workflow_run_attempt": 1,
+    "workflow_run_id": 29718918742
+  },
+  "claim_boundary": {
+    "atomic_promotion": false,
+    "authoritative_exact_sparse_inference": true,
+    "full_native_float_transformer_equivalence": false,
+    "independent_replay_without_training": false,
+    "new_heldout_lean_task_certified": true,
+    "phase10_exit_closed": false,
+    "phase6_realization_and_rollback": false,
+    "phase9_gate_d_transition_accepts": true,
+    "selected_entropy_kl_diagonal_qre": true,
+    "trained_nontrivial_compact_model_weights": true,
+    "untrusted_isolated_training_worker": true
+  },
+  "full_phase10_closure_manifest": "python/rcp_rclm_runtime_v3/phase_10_closure_manifest.json",
+  "phase_name": "RCLM v3 Phase 10B - learned compact-model execution and certified language capability",
+  "reference_hashes": {
+    "candidate_model_identity_hash": "5451b8dce561cc59b32953e6ed8606fc98c4bd0e80fd87bdec06fb8d9e03173d",
+    "candidate_package_hash": "982a10efc8a517568ad169159b985cbeebd1f0cd65a6347a30e7a5dd20047949",
+    "information_report_hash": "9fc8165c37408ecba7fa9b7edc719898c89499b273865579ea33919603726e61",
+    "phase9_transition_report_hash": "679622c69e7e6e68416f2675e66186731461ffc358b10a22fe0879292a8cc09f",
+    "predecessor_model_identity_hash": "1f4f6cf62b435056e76a75c580f2d65b96506995560237dfd4e4c90179aef70c",
+    "predecessor_package_hash": "f03d496cf4fc1940ed0ebba0284e8c2586f7d19670e90b97694e0c16e152c29a",
+    "summary_hash": "f753c1e674184f97442f44446ad2470aec520852c1a1d5dff047b85ae5925de9"
+  },
+  "required_source_paths": [
+    ".github/workflows/runtime-v3-phase-10-learned.yml",
+    "docs/executable_core_v3/PHASE_10_LEARNED.md",
+    "docs/formal_core_v3/audit/Phase10InformationAxiomAudit.lean",
+    "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Phase10Information.lean",
+    "python/rcp_rclm_executable_core_v3/contract/phase_10_learned.schema.json",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/information.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/learned_data.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/learned_package.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/learned_reference.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/sparse_profile.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/tasks.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/training_process.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/training_protocol.py",
+    "python/rcp_rclm_runtime_v3/tests_phase10/test_learned_substrate.py",
+    "python/rcp_rclm_runtime_v3/tools/phase10_training_worker.py",
+    "python/rcp_rclm_runtime_v3/tools/run_phase10_lean_tasks.py",
+    "python/rcp_rclm_runtime_v3/tools/run_phase10_learned_reference.py",
+    "python/rcp_rclm_runtime_v3/tools/run_phase10_training_reference.py",
+    "python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_manifest.py",
+    "python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_schema.py",
+    "scripts/run_phase10_learned.py"
+  ],
+  "schema_version": "rcp-rclm-runtime-v3-phase-10b-manifest-v1",
+  "selected_profile": {
+    "architecture_id": "rclm-compact-decoder-13m-v1",
+    "authoritative_distribution": "exact_dyadic_logit_v1",
+    "authoritative_inference": "sparse_last_token_transition_v1",
+    "candidate_completion": "omega",
+    "candidate_update": "model.layers.00.attn_output.weight",
+    "decoding": "greedy_lowest_token_id_tiebreak",
+    "heldout_task_id": "lean.phase10.heldout.linear_gap",
+    "model_family": "compact_decoder_only_transformer_v1",
+    "protected_completion": "rfl",
+    "protected_task_id": "lean.phase10.protected.reflexive_seven",
+    "training_backend": "untrusted_pytorch_cpu_float64_sgd_v1"
+  },
+  "source_phase10a_head": "95a4679291b25da5093d757cc6e7baf5461a8a6a",
+  "status": "phase10b_learned_execution_complete_at_declared_scope"
+}

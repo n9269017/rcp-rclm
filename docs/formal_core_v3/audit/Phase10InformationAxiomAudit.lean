@@ -1,0 +1,5 @@
+import RcpRclmFormalCoreV3.Learned.Phase10Information
+
+#print axioms RcpRclmFormalCoreV3.Learned.selected_token_von_neumann_eq_shannon
+#print axioms RcpRclmFormalCoreV3.Learned.selected_token_diagonal_qre_eq_kl
+#print axioms RcpRclmFormalCoreV3.Learned.sparse_protected_transition_retained

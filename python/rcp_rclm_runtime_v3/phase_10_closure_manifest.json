@@ -1,0 +1,114 @@
+{
+  "claim_boundary": {
+    "actual_promoted_learned_successor": true,
+    "atomic_content_addressed_promotion": true,
+    "authoritative_exact_sparse_inference": true,
+    "autonomous_unbounded_rsi": false,
+    "full_native_float_transformer_equivalence": false,
+    "generic_successor_availability": false,
+    "independent_replay_without_training": true,
+    "phase10_exit_closed": true,
+    "phase6_realization_and_rollback": true,
+    "phase9_gate_d_transition_accepts": true,
+    "recursive_self_hosting": false,
+    "selected_entropy_kl_diagonal_qre": true,
+    "selected_lean_task_frontier_expansion": true,
+    "untrusted_isolated_training_worker": true
+  },
+  "code_proof": {
+    "artifacts": {
+      "final": {
+        "digest": "sha256:2b4173f7a220b96c1e8152729164e2b6d50d5040462e54acc444b70f6b0d3743",
+        "id": 8451691344,
+        "name": "runtime-v3-phase-10-closure-final-29718918742-1"
+      },
+      "macos": {
+        "digest": "sha256:bd8d1ad8bdd90e3e52a34bf88b627b81f1f0775ee6769d880245a0aa1668e353",
+        "id": 8451598925,
+        "name": "runtime-v3-phase-10-closure-macos-latest-29718918742-1"
+      },
+      "pinned": {
+        "digest": "sha256:9fd060ecc8a53f24afc32b3f604aeb49a8b2c96766dbfa9bd3279a816814f24d",
+        "id": 8451689152,
+        "name": "runtime-v3-phase-10-closure-pinned-29718918742-1"
+      },
+      "training": {
+        "digest": "sha256:54deab0c37d084bf085c74a147b312eff3f546d16bfd7f426ad08fb420ab2f82",
+        "id": 8451604917,
+        "name": "runtime-v3-phase-10-closure-training-29718918742-1"
+      },
+      "ubuntu": {
+        "digest": "sha256:54ea7129b24bdd716f5f9485022a974106662b1c52590111ee325f72babe97f3",
+        "id": 8451593999,
+        "name": "runtime-v3-phase-10-closure-ubuntu-latest-29718918742-1"
+      },
+      "windows": {
+        "digest": "sha256:b970bd229890690223e39e91658a718b47eb3ca483c3fdd673f66b86a1273a7f",
+        "id": 8451606352,
+        "name": "runtime-v3-phase-10-closure-windows-latest-29718918742-1"
+      }
+    },
+    "branch_head": "23a33e4078766b404387d1fa9bb2737c664d9e54",
+    "closure_report": {
+      "promoted_package_hash": "fdd88b005d44f11eedac5786e9cdbacc5bcd9ea45a2de3909a77726152c37fad",
+      "promotion_report_hash": "21d7c627725abea938fe499ad61f1a7564fa97bd505bb5837d0da2651f83c0dc",
+      "replay_report_hash": "06e8b8308035ea2867dd0da6273f61d01dc9037bbf6ed8ef9c3473b1e654b5f9",
+      "report_hash": "8276e32bed768cfaa2f4bc3ba462e473b0f257b798f86697283f49bf7a82623f",
+      "source_verification_hash": "fd138526b10c98f486b8ce9ebde2e6c4233fe89f1688dcccca841f0d3d05d44f"
+    },
+    "exact_runtime_hashes": {
+      "lifecycle_certificate_hash": "dcb59da84452657bd838c917e6918f0fa1067ba171b5d4b078335a894f55be1f",
+      "lifecycle_transition_report_hash": "e028404025d513870b93574d18557bd33e35d4b008b841d8f797f44189c3d24e",
+      "phase6_fixture_hash": "2714c4e92c72c5b361731f92d725de2ee981ecea095b56d6a662ca17e1b93698",
+      "phase6_replay_report_hash": "a2d3993de1d1fb856c2399250067cba32c75e87fb4c8d22254d6b87acf5e4397",
+      "phase6_report_hash": "09d52f3b0f13cfb7dda1864cbd023c9c95e58c644a18e5eff718afe7ad02abab"
+    },
+    "git_trees": {
+      "formal_core_v2": "1c5a32b4a5c7a2d78ba820e535eac3e69a2a85b8",
+      "formal_core_v3": "e7be21343acfb94277f9120e638c70593315fddd",
+      "runtime_v3": "235a7c0f4b2cdf4ad7d24fbd79f70742961eb12d"
+    },
+    "pr_merge_test_commit": "a816c7af9119dcde1f7187590987d8cc16e05e40",
+    "workflow_run_attempt": 1,
+    "workflow_run_id": 29718918742
+  },
+  "dependency": {
+    "phase10a_manifest": "python/rcp_rclm_runtime_v3/phase_10_manifest.json",
+    "phase10b_manifest": "python/rcp_rclm_runtime_v3/phase_10_learned_manifest.json",
+    "runtime_v2_required_unchanged": true
+  },
+  "non_circular_exact_head_binding": {
+    "artifact_self_digest_is_not_embedded": true,
+    "committed_manifest_binds_stable_reference_hashes": true,
+    "committed_manifest_retains_prior_exact_code_proof": true,
+    "final_head_is_bound_by_workflow_artifacts_and_pr_record": true
+  },
+  "phase_name": "RCLM v3 Phase 10 - promoted learned successor and independent replay",
+  "required_source_paths": [
+    ".github/workflows/runtime-v3-phase-10-closure.yml",
+    "docs/executable_core_v3/PHASE_10_EXIT_CRITERIA.md",
+    "docs/executable_core_v3/PHASE_10_VALIDATION.md",
+    "python/rcp_rclm_runtime_v3/phase_10_closure_manifest.json",
+    "python/rcp_rclm_runtime_v3/phase_10_learned_manifest.json",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/closure.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/closure_manifest.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/lifecycle.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/policy.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/promotion.py",
+    "python/rcp_rclm_runtime_v3/tests_phase10/test_closure_manifest.py",
+    "python/rcp_rclm_runtime_v3/tools/run_phase10_closure.py",
+    "python/rcp_rclm_runtime_v3/tools/validate_phase10_closure_manifest.py"
+  ],
+  "schema_version": "rcp-rclm-runtime-v3-phase-10-closure-manifest-v2",
+  "stable_reference_hashes": {
+    "candidate_model_identity_hash": "5451b8dce561cc59b32953e6ed8606fc98c4bd0e80fd87bdec06fb8d9e03173d",
+    "candidate_package_hash": "982a10efc8a517568ad169159b985cbeebd1f0cd65a6347a30e7a5dd20047949",
+    "information_report_hash": "9fc8165c37408ecba7fa9b7edc719898c89499b273865579ea33919603726e61",
+    "phase10b_transition_report_hash": "679622c69e7e6e68416f2675e66186731461ffc358b10a22fe0879292a8cc09f",
+    "phase6_selection_hash": "8043c9828a04abf1da028bcedf8409e3374f758093e0a7d134d02e78f3bb1276",
+    "predecessor_model_identity_hash": "1f4f6cf62b435056e76a75c580f2d65b96506995560237dfd4e4c90179aef70c",
+    "predecessor_package_hash": "f03d496cf4fc1940ed0ebba0284e8c2586f7d19670e90b97694e0c16e152c29a",
+    "rollback_hash": "5203ca71056162b5714c56a158faf5c108bd4f6e8dcb0d73f900f648c0c171b7"
+  },
+  "status": "phase10_exit_closed_at_exact_code_proof"
+}

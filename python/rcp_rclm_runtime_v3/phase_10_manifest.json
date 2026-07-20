@@ -1,0 +1,104 @@
+{
+  "architecture": {
+    "activation": "silu_gated",
+    "architecture_hash": "6b00c2df239868a4e7359cd2ee9e0292a9c877d06e893248bb36521450e32a0a",
+    "architecture_id": "rclm-compact-decoder-13m-v1",
+    "attention": "causal_scaled_dot_product",
+    "base_parameter_count": 13195840,
+    "context_length": 512,
+    "extended_parameter_count": 13625920,
+    "head_count": 5,
+    "head_width": 64,
+    "layer_count": 8,
+    "lora_alpha": 8,
+    "lora_parameter_count": 430080,
+    "lora_rank": 8,
+    "mlp_hidden_width": 1280,
+    "model_family": "compact_decoder_only_transformer_v1",
+    "model_width": 320,
+    "normalization": "rms_norm",
+    "position_encoding": "rotary_v1",
+    "tensor_byte_order": "little",
+    "tensor_dtype": "int16",
+    "vocabulary_size": 260
+  },
+  "artifact_hashes": {
+    "phase_10_schema_sha256": "1bc6353d868ef98b7154c12fa06913d3c46f00a81d798d492f60d05a32e8a424",
+    "phase_10_transformer_axiom_audit_sha256": "8343518e4cf9cf12b1646e4f435f4f2b80e0abe9a51db5411f560ce9d6c43fe3",
+    "transformer_extension_lean_sha256": "a57f5b81c2b90d3e2b49ed8da2c21e21b45b976b75ed6533951efcf1ce348dc5"
+  },
+  "claim_boundary": {
+    "actual_compact_language_model_training": false,
+    "actual_promoted_learned_successor": false,
+    "authoritative_deterministic_inference": false,
+    "canonical_compact_transformer_package": true,
+    "frontier_expansion": false,
+    "independent_replay_without_retraining": false,
+    "kl_qre_evidence": false,
+    "lean_task_completion": false,
+    "phase_10_exit_closed": false,
+    "zero_lora_conservative_extension": true
+  },
+  "dependency": {
+    "phase_9_merge_commit": "40515cb24442e221a319457a333aa64cfc4dc078",
+    "phase_9_status_required": "phase9_contract_complete_at_declared_scope",
+    "runtime_v2_required_unchanged": true
+  },
+  "formal_bridge": {
+    "recovery_theorem": "RcpRclmFormalCoreV3.Learned.recover_adapter_extension_exact",
+    "zero_lora_function_theorem": "RcpRclmFormalCoreV3.Learned.lora_zero_output_preserves_function",
+    "zero_lora_pointwise_theorem": "RcpRclmFormalCoreV3.Learned.lora_zero_output_preserves"
+  },
+  "object_correspondence": [
+    {
+      "python": "rcp_rclm_runtime_v3.phase10.architecture.CompactTransformerArchitecture",
+      "schema": "#/$defs/Architecture",
+      "semantic_object": "compact_transformer_architecture"
+    },
+    {
+      "python": "rcp_rclm_runtime_v3.phase10.tokenizer.ByteTokenizerManifest",
+      "schema": "#/$defs/TokenizerManifest",
+      "semantic_object": "fixed_tokenizer"
+    },
+    {
+      "python": "rcp_rclm_runtime_v3.phase10.tensors.TensorManifest",
+      "schema": "#/$defs/TensorManifest",
+      "semantic_object": "canonical_tensor_manifest"
+    },
+    {
+      "python": "rcp_rclm_runtime_v3.phase10.adapters.LoRAAdapterManifest",
+      "schema": "#/$defs/AdapterManifest",
+      "semantic_object": "lora_adapter_manifest"
+    },
+    {
+      "python": "rcp_rclm_runtime_v3.phase10.package.ModelPackageManifest",
+      "schema": "#/$defs/ModelPackageManifest",
+      "semantic_object": "compact_model_package"
+    },
+    {
+      "lean": "RcpRclmFormalCoreV3.Learned.lora_zero_output_preserves",
+      "python": "rcp_rclm_runtime_v3.phase10.validation.validate_conservative_extension",
+      "schema": "#/$defs/ExtensionReport",
+      "semantic_object": "zero_lora_conservative_extension"
+    }
+  ],
+  "phase_name": "Executable Core v3 Phase 10A - canonical compact transformer substrate",
+  "reference_hashes": {
+    "extension_report_hash": "6372cbbe7e0b2a01896cb22edbb4226a88b490273f6c451c9bc2f4db94d0bc2a",
+    "predecessor_model_identity_hash": "e360f49bc573d814bf8f13ac91a9888ceae21e3a2a4dd5a59cf8b13be31223bb",
+    "predecessor_package_hash": "1bcea7aff72d5c3f6027631d419ca730c980b3b1e2b72c60fd3b40750db69df5",
+    "predecessor_report_hash": "1c40e7c13712155d4b14ebdf1554a87745d4c544274d761b18ac401b076a1146",
+    "reference_hash": "e9368750ffd4d729ec7e39c7b323c0b5d375ec9f150dd47bd0beb0df1658d8d9",
+    "successor_model_identity_hash": "dc72411ccdfa7b1c060fba790999d62356a308d1cc5a9b089bdaef57000274fb",
+    "successor_package_hash": "7325101f8dc927d6f9047a530ea4682d20979f90c0e261cafd053a8a29f405ca",
+    "successor_report_hash": "05614fcb73b0b5dd8cde3d8d8fe4156c711837958a23ff78fea9d95f33ac9f9f"
+  },
+  "schema_version": "rcp-rclm-runtime-v3-phase-10-substrate-manifest-v1",
+  "status": "phase10_substrate_started_not_exit_closed",
+  "tokenizer": {
+    "tokenizer_id": "rclm-utf8-byte-tokenizer-v1",
+    "tokenizer_manifest_hash": "c9a94464e1927ef4b90d6f3ff4751acd797a3121e92e62b9be81e9700f145179",
+    "tokenizer_raw_hash": "b1eec973c9555f094f0ed805ab37b0ecac4cb3a7defba23d99ddc38ed5383d7d",
+    "vocabulary_hash": "5d7622157c6c8f623551ae8554ebcee6613b17670cb6af81329c8052036bbca5"
+  }
+}
