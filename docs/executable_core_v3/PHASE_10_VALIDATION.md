@@ -16,9 +16,9 @@ conservative extension.
 
 ## Phase 10B retained learned-execution proof
 
-The retained Phase 10B manifest is now in
-`phase10b_learned_execution_complete_at_declared_scope` status. Its exact stable reference
-hashes are:
+The retained Phase 10B manifest is in
+`phase10b_learned_execution_complete_at_declared_scope` status. Its exact portable
+reference hashes are:
 
 ```text
 predecessor model identity:
@@ -100,9 +100,48 @@ independent replay report:
 06e8b8308035ea2867dd0da6273f61d01dc9037bbf6ed8ef9c3473b1e654b5f9
 ```
 
-The promoted-package and report hashes are run-specific because they include the exact
-controller, Lean runtime, PR merge-test, and evidence bindings. The stable semantic
-references are retained separately:
+## Portable semantic references
+
+`phase_10_closure_manifest.json` version 2 distinguishes semantic references that must be
+identical on every supported operating system from exact runtime records that necessarily
+include operating-system and execution-environment identity.
+
+The portable reference set is:
+
+```text
+predecessor model identity:
+1f4f6cf62b435056e76a75c580f2d65b96506995560237dfd4e4c90179aef70c
+
+candidate model identity:
+5451b8dce561cc59b32953e6ed8606fc98c4bd0e80fd87bdec06fb8d9e03173d
+
+predecessor learned package:
+f03d496cf4fc1940ed0ebba0284e8c2586f7d19670e90b97694e0c16e152c29a
+
+candidate learned package:
+982a10efc8a517568ad169159b985cbeebd1f0cd65a6347a30e7a5dd20047949
+
+Phase 10B transition:
+679622c69e7e6e68416f2675e66186731461ffc358b10a22fe0879292a8cc09f
+
+Phase 6 selection:
+8043c9828a04abf1da028bcedf8409e3374f758093e0a7d134d02e78f3bb1276
+
+information report:
+9fc8165c37408ecba7fa9b7edc719898c89499b273865579ea33919603726e61
+
+rollback archive and restoration:
+5203ca71056162b5714c56a158faf5c108bd4f6e8dcb0d73f900f648c0c171b7
+```
+
+These values are independently recomputed by the complete Phase 10 test suite on Ubuntu,
+Windows, and macOS.
+
+## Exact runtime-bound records
+
+The following records include the Phase 6 environment or lifecycle certificate and are
+therefore retained under the exact pinned code-proof run rather than compared across
+operating systems:
 
 ```text
 Phase 6 fixture:
@@ -117,12 +156,12 @@ dcb59da84452657bd838c917e6918f0fa1067ba171b5d4b078335a894f55be1f
 lifecycle Gate D transition:
 e028404025d513870b93574d18557bd33e35d4b008b841d8f797f44189c3d24e
 
-rollback:
-5203ca71056162b5714c56a158faf5c108bd4f6e8dcb0d73f900f648c0c171b7
-
-Phase 6 worker-free replay:
+Phase 6 worker-free replay report:
 a2d3993de1d1fb856c2399250067cba32c75e87fb4c8d22254d6b87acf5e4397
 ```
+
+This classification preserves exact-run auditability without falsely treating platform
+identity as a semantic model or rollback discrepancy.
 
 ## Authoritative workflow artifacts
 
@@ -148,13 +187,13 @@ sha256:2b4173f7a220b96c1e8152729164e2b6d50d5040462e54acc444b70f6b0d3743
 
 ## Non-circular final-head binding
 
-A committed source file cannot contain the digest of an artifact that is produced only
-after that source commit exists. The repository therefore uses two complementary records:
+A committed source file cannot contain the digest of an artifact produced only after that
+source commit exists. The repository therefore uses two complementary records:
 
-1. `phase_10_closure_manifest.json` binds the stable semantic hashes and retains the exact
-   successful code-proof run and its artifact digests.
-2. The final retained-record head is rerun through the complete workflow. Its current
-   commit, merge-test commit, closure report, and artifact digests are recorded in the PR
+1. `phase_10_closure_manifest.json` binds the portable semantic hashes and retains the
+   exact successful code-proof run, its runtime-bound hashes, and its artifact digests.
+2. The final repository head is rerun through the complete workflow. Its head commit,
+   PR merge-test commit, closure report, and artifact digests are recorded in the PR
    description, which does not alter the source head.
 
 This preserves exact-head evidence without a self-referential commit or artifact digest.
