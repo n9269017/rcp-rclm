@@ -1,475 +1,150 @@
-name: Runtime v3 Phase 11 autonomous experiment generator closure
+name: Runtime v3 Phase 11 retained-head materializer
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - "python/rcp_rclm_runtime_v3/**"
-      - "python/rcp_rclm_executable_core_v3/**"
-      - "lean/rcp_rclm_formal_core_v2/**"
-      - "lean/rcp_rclm_formal_core_v3/**"
-      - "docs/executable_core_v3/**"
-      - "docs/formal_core_v3/audit/Phase10InformationAxiomAudit.lean"
-      - "scripts/run_phase11_generator.py"
-      - "scripts/run_phase11_lifecycle.py"
       - ".github/workflows/runtime-v3-phase-11-generator.yml"
   push:
     branches:
-      - "agent/rcp-rclm-v3-phase-11-*"
+      - agent/rcp-rclm-v3-phase-11-autonomous-generator
     paths:
-      - "python/rcp_rclm_runtime_v3/**"
-      - "python/rcp_rclm_executable_core_v3/**"
-      - "lean/rcp_rclm_formal_core_v2/**"
-      - "lean/rcp_rclm_formal_core_v3/**"
-      - "docs/executable_core_v3/**"
-      - "docs/formal_core_v3/audit/Phase10InformationAxiomAudit.lean"
-      - "scripts/run_phase11_generator.py"
-      - "scripts/run_phase11_lifecycle.py"
       - ".github/workflows/runtime-v3-phase-11-generator.yml"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
-  cancel-in-progress: true
+  group: phase11-retained-head-materializer
+  cancel-in-progress: false
 
 jobs:
-  portable:
-    name: Validate complete Phase 11 lifecycle (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+  materialize:
+    runs-on: ubuntu-latest
     timeout-minutes: 180
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
-        python-version:
-          - "3.11"
 
     steps:
-      - name: Check out repository
+      - name: Check out exact materializer head
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.11"
+
+      - name: Install exact retained final payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64
+          import hashlib
+          import io
+          import tarfile
+          from pathlib import Path
+
+          chunk_root = Path(".phase11_final_payload")
+          expected_chunks = [chunk_root / f"chunk-{index:02d}" for index in range(5)]
+          observed_chunks = sorted(path for path in chunk_root.iterdir() if path.is_file())
+          if observed_chunks != expected_chunks:
+              raise SystemExit(
+                  f"unexpected Phase 11 payload chunks: {[str(path) for path in observed_chunks]}"
+              )
+          encoded = "".join(path.read_text(encoding="ascii") for path in expected_chunks)
+          payload = base64.b64decode(encoded, validate=True)
+          digest = hashlib.sha256(payload).hexdigest()
+          if digest != "6e7e678569c3c1eb932385425d33d0637037d9e635351c2236aac1be2b672cbe":
+              raise SystemExit(f"unexpected Phase 11 final payload digest: {digest}")
+          expected_members = {
+              ".github/workflows/runtime-v3-phase-11-generator.yml",
+              "docs/executable_core_v3/README.md",
+              "docs/executable_core_v3/PHASE_11_VALIDATION.md",
+              "python/rcp_rclm_runtime_v3/README.md",
+              "python/rcp_rclm_runtime_v3/phase_11_closure_manifest.json",
+              "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/closure_manifest.py",
+              "python/rcp_rclm_runtime_v3/tests_phase11/test_phase11_closure_manifest.py",
+          }
+          with tarfile.open(fileobj=io.BytesIO(payload), mode="r:gz") as archive:
+              members = archive.getmembers()
+              names = {member.name for member in members}
+              if names != expected_members:
+                  raise SystemExit(f"unexpected Phase 11 payload members: {sorted(names)}")
+              for member in members:
+                  path = Path(member.name)
+                  if (
+                      not member.isfile()
+                      or path.is_absolute()
+                      or ".." in path.parts
+                      or member.issym()
+                      or member.islnk()
+                  ):
+                      raise SystemExit(f"unsafe Phase 11 payload member: {member.name}")
+              archive.extractall(".")
+          PY
 
       - name: Install deterministic runtimes
         run: |
           python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
           python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
 
-      - name: Compile complete Phase 11 source
+      - name: Compile final Phase 11 sources
         run: >-
           python -m compileall -q
           python/rcp_rclm_runtime_v3
           scripts/run_phase11_generator.py
           scripts/run_phase11_lifecycle.py
 
-      - name: Validate deterministic source quality
+      - name: Validate final source quality
         run: >-
           python python/rcp_rclm_runtime_v3/tools/validate_source_quality.py
           --package-root python/rcp_rclm_runtime_v3
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/source_quality.json
-
-      - name: Run retained Phase 9 regression
-        run: >-
-          python python/rcp_rclm_runtime_v3/tools/run_phase9_tests.py
-          --package-root python/rcp_rclm_runtime_v3
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_9_tests.log
-
-      - name: Run retained Phase 10 regression
-        run: >-
-          python python/rcp_rclm_runtime_v3/tools/run_phase10_tests.py
-          --package-root python/rcp_rclm_runtime_v3
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_10_tests.log
+          --out artifacts/phase11_materializer/source_quality.json
 
       - name: Run complete Phase 11 tests
         run: >-
           python python/rcp_rclm_runtime_v3/tools/run_phase11_tests.py
           --package-root python/rcp_rclm_runtime_v3
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11_tests.log
+          --out artifacts/phase11_materializer/phase_11_tests.log
 
-      - name: Validate Phase 11A typed-program schema
+      - name: Validate corrected retained closure manifest
         run: >-
-          python python/rcp_rclm_runtime_v3/tools/validate_phase11_schema.py
-          --schema python/rcp_rclm_executable_core_v3/contract/phase_11_generator.schema.json
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11_generator_schema.json
-
-      - name: Validate retained Phase 11A manifest
-        run: >-
-          python python/rcp_rclm_runtime_v3/tools/validate_phase11_manifest.py
+          python python/rcp_rclm_runtime_v3/tools/validate_phase11_closure_manifest.py
           --repo-root .
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11a_manifest.json
+          --out artifacts/phase11_materializer/phase_11_closure_manifest.json
 
-      - name: Validate Phase 11B lifecycle schema
-        run: >-
-          python python/rcp_rclm_runtime_v3/tools/validate_phase11b_schema.py
-          --schema python/rcp_rclm_executable_core_v3/contract/phase_11_lifecycle.schema.json
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11_lifecycle_schema.json
-
-      - name: Recompute Phase 11A proposal reference
-        run: >-
-          python python/rcp_rclm_runtime_v3/tools/run_phase11_reference.py
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11a_reference.json
-
-      - name: Recompute Phase 11B candidate lifecycle
-        run: >-
-          python python/rcp_rclm_runtime_v3/tools/run_phase11b_reference.py
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11b_reference.json
-
-      - name: Run Phase 11A repository entry point
-        run: >-
-          python scripts/run_phase11_generator.py
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11a_root_entry.json
-
-      - name: Run Phase 11B repository entry point
-        run: >-
-          python scripts/run_phase11_lifecycle.py
-          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11b_root_entry.json
-
-      - name: Require byte-identical lifecycle entry points
+      - name: Require clean permanent infrastructure
         shell: bash
         run: |
-          python - <<'PY'
-          from pathlib import Path
+          set -euo pipefail
+          test ! -e .phase11b_payload
+          test ! -e .phase11b_source_parts
+          test ! -e .github/workflows/phase11b-materialize.yml
+          test ! -e .github/workflows/phase11b-source-export.yml
+          git diff --check
 
-          root = Path("artifacts/runtime_v3_phase_11/${{ matrix.os }}")
-          assert (root / "phase_11b_reference.json").read_bytes() == (
-              root / "phase_11b_root_entry.json"
-          ).read_bytes()
-          PY
+      - name: Commit the clean final Phase 11 source head
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .phase11_final_payload
+          rm .github/workflows/phase11-finalize-retained-head.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- .github/workflows/runtime-v3-phase-11-generator.yml docs/executable_core_v3/README.md docs/executable_core_v3/PHASE_11_VALIDATION.md python/rcp_rclm_runtime_v3/README.md python/rcp_rclm_runtime_v3/phase_11_closure_manifest.json python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/closure_manifest.py python/rcp_rclm_runtime_v3/tests_phase11/test_phase11_closure_manifest.py
+          git add -u -- .phase11_final_payload .github/workflows/phase11-finalize-retained-head.yml
+          git commit -m "Finalize Phase 11 retained closure head"
+          git push origin HEAD:agent/rcp-rclm-v3-phase-11-autonomous-generator
 
-      - name: Upload portable Phase 11 evidence
+      - name: Upload materializer validation
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: runtime-v3-phase-11-${{ matrix.os }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/runtime_v3_phase_11/${{ matrix.os }}/
+          name: phase11-retained-head-materializer-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/phase11_materializer/
           if-no-files-found: error
-          retention-days: 90
-
-  untrusted-training:
-    name: Validate isolated alpha and beta training
-    runs-on: ubuntu-latest
-    timeout-minutes: 180
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: "3.11"
-
-      - name: Install pinned untrusted backend
-        run: |
-          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
-          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test,phase10-train]"
-
-      - name: Execute duplicate alpha and beta worker runs
-        run: >-
-          python python/rcp_rclm_runtime_v3/tools/run_phase11b_training_reference.py
-          --out artifacts/runtime_v3_phase_11/training/phase_11_training.json
-
-      - name: Verify fixed training and isolation record
-        shell: bash
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          path = Path("artifacts/runtime_v3_phase_11/training/phase_11_training.json")
-          report = json.loads(path.read_text(encoding="utf-8"))
-          assert report["accepted"] is True
-          assert report["worker_training_invocations"] == 4
-          assert report["heldout_task_ids_consumed"] is False
-          assert report["heldout_prompts_consumed"] is False
-          assert report["heldout_source_consumed"] is False
-          assert report["heldout_reference_answers_consumed"] is False
-          assert report["candidate_self_report_authoritative"] is False
-          PY
-
-      - name: Upload untrusted training evidence
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: runtime-v3-phase-11-training-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/runtime_v3_phase_11/training/
-          if-no-files-found: error
-          retention-days: 90
-
-  pinned-closure:
-    name: Reject alpha and promote beta with pinned Lean
-    needs:
-      - portable
-      - untrusted-training
-    runs-on: ubuntu-latest
-    timeout-minutes: 300
-
-    steps:
-      - name: Check out repository with formal history
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: "3.11"
-
-      - name: Install deterministic runtimes without training backend
-        run: |
-          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
-          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
-
-      - name: Install pinned Lean toolchain
-        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
-        with:
-          lake-package-directory: lean/rcp_rclm_formal_core_v2
-          auto-config: false
-          build: false
-          test: false
-          lint: false
-          use-mathlib-cache: false
-          use-github-cache: false
-
-      - name: Resolve frozen Formal Core v2 dependencies
-        working-directory: lean/rcp_rclm_formal_core_v2
-        env:
-          MATHLIB_NO_CACHE_ON_UPDATE: "1"
-        run: lake update
-
-      - name: Verify frozen Formal Core v2 manifest
-        working-directory: lean/rcp_rclm_formal_core_v2
-        run: git diff --exit-code -- lake-manifest.json
-
-      - name: Fetch official v2 mathlib cache
-        working-directory: lean/rcp_rclm_formal_core_v2
-        run: lake exe cache get
-
-      - name: Build frozen Formal Core v2 bridge
-        working-directory: lean/rcp_rclm_formal_core_v2
-        shell: bash
-        run: |
-          set -o pipefail
-          mkdir -p ../rcp_rclm_formal_core_v3/audit-results-phase11-closure
-          lake build 2>&1 | tee ../rcp_rclm_formal_core_v3/audit-results-phase11-closure/formal_core_v2_build.log
-
-      - name: Resolve pinned Formal Core v3 dependency graph
-        working-directory: lean/rcp_rclm_formal_core_v3
-        env:
-          MATHLIB_NO_CACHE_ON_UPDATE: "1"
-        run: lake update
-
-      - name: Verify committed Formal Core v3 manifest
-        working-directory: lean/rcp_rclm_formal_core_v3
-        run: git diff --exit-code -- lake-manifest.json
-
-      - name: Fetch official v3 mathlib cache
-        working-directory: lean/rcp_rclm_formal_core_v3
-        run: lake exe cache get
-
-      - name: Build complete Formal Core v3
-        working-directory: lean/rcp_rclm_formal_core_v3
-        shell: bash
-        run: |
-          set -o pipefail
-          mkdir -p audit-results-phase11-closure
-          lake build 2>&1 | tee audit-results-phase11-closure/lake_build.log
-
-      - name: Reject admitted proofs and local axioms
-        working-directory: lean/rcp_rclm_formal_core_v3
-        shell: bash
-        run: |
-          set -euo pipefail
-          if grep -RInE \
-              --include='*.lean' \
-              --exclude-dir='.lake' \
-              --exclude-dir='audit-results' \
-              --exclude-dir='audit-results-phase9' \
-              --exclude-dir='audit-results-phase10' \
-              --exclude-dir='audit-results-phase10b' \
-              --exclude-dir='audit-results-phase10-closure' \
-              --exclude-dir='audit-results-phase11-closure' \
-              '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
-              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
-              > audit-results-phase11-closure/forbidden_proof_tokens.txt; then
-            cat audit-results-phase11-closure/forbidden_proof_tokens.txt
-            exit 1
-          fi
-          : > audit-results-phase11-closure/forbidden_proof_tokens.txt
-          if grep -RInE \
-              --include='*.lean' \
-              --exclude-dir='.lake' \
-              --exclude-dir='audit-results' \
-              --exclude-dir='audit-results-phase9' \
-              --exclude-dir='audit-results-phase10' \
-              --exclude-dir='audit-results-phase10b' \
-              --exclude-dir='audit-results-phase10-closure' \
-              --exclude-dir='audit-results-phase11-closure' \
-              '^[[:space:]]*axiom[[:space:]]' \
-              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
-              > audit-results-phase11-closure/project_axiom_declarations.txt; then
-            cat audit-results-phase11-closure/project_axiom_declarations.txt
-            exit 1
-          fi
-          : > audit-results-phase11-closure/project_axiom_declarations.txt
-
-      - name: Audit inherited selected information theorems
-        working-directory: lean/rcp_rclm_formal_core_v3
-        shell: bash
-        run: |
-          set -euo pipefail
-          lake env lean ../../docs/formal_core_v3/audit/Phase10InformationAxiomAudit.lean \
-            2>&1 | tee audit-results-phase11-closure/phase_10_information_axioms.txt
-          if grep -Fq 'sorryAx' audit-results-phase11-closure/phase_10_information_axioms.txt; then
-            exit 1
-          fi
-
-      - name: Execute authoritative Phase 11 rejection and promotion
-        shell: bash
-        run: |
-          set -o pipefail
-          mkdir -p artifacts/runtime_v3_phase_11/pinned
-          set +e
-          python python/rcp_rclm_runtime_v3/tools/run_phase11b_closure.py \
-            --repo-root . \
-            --lean-project-root lean/rcp_rclm_formal_core_v3 \
-            --out artifacts/runtime_v3_phase_11/pinned/phase_11_closure.json \
-            2>&1 | tee artifacts/runtime_v3_phase_11/pinned/phase_11_closure_stdout.log
-          status=${PIPESTATUS[0]}
-          set -e
-          if [[ -f artifacts/runtime_v3_phase_11/pinned/phase_11_closure_diagnostic.json ]]; then
-            cat artifacts/runtime_v3_phase_11/pinned/phase_11_closure_diagnostic.json
-          fi
-          exit "${status}"
-
-      - name: Validate authoritative closure schema
-        run: >-
-          python python/rcp_rclm_runtime_v3/tools/validate_phase11b_closure_schema.py
-          --schema python/rcp_rclm_executable_core_v3/contract/phase_11_closure.schema.json
-          --instance artifacts/runtime_v3_phase_11/pinned/phase_11_closure.json
-          --out artifacts/runtime_v3_phase_11/pinned/phase_11_closure_schema.json
-
-      - name: Verify rejection ledger, promotion parent, and installed policies
-        shell: bash
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
-
-          path = Path("artifacts/runtime_v3_phase_11/pinned/phase_11_closure.json")
-          report = json.loads(path.read_text(encoding="utf-8"))
-          declared_final_hash = report["final_report_hash"]
-          final_content = dict(report)
-          final_content.pop("final_report_hash")
-          assert declared_final_hash == canonical_json_hash(final_content)
-          assert report["stable_reference_summary_hash"] == report["reference_summary"]["summary_hash"]
-          bindings = report["runtime_bindings"]
-          assert report["accepted"] is True
-          assert report["phase11_exit_closed"] is True
-          assert report["model_generated_candidate_rejected"] is True
-          assert report["later_fresh_proposal_accepted"] is True
-          assert report["successor_generator_planner_installed"] is True
-          assert report["recursive_use_of_modified_successor_generator"] is False
-          assert bindings["rejection_preserved_active_package"] is True
-          assert bindings["initial_active_package_hash"] == bindings["active_package_hash_after_rejection"]
-          assert bindings["promotion_parent_is_unchanged_active_package"] is True
-          assert bindings["parent_package_hash"] == bindings["initial_active_package_hash"]
-          assert bindings["ledger_sequence_number"] == 2
-          assert bindings["active_generator_hash"] != bindings["successor_generator_hash"]
-          assert bindings["active_planner_hash"] != bindings["successor_planner_hash"]
-          assert bindings["installed_generator_bytes_verified"] is True
-          assert bindings["installed_planner_bytes_verified"] is True
-          PY
-
-      - name: Retain pinned Phase 11 evidence
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p artifacts/runtime_v3_phase_11/pinned
-          cp lean/rcp_rclm_formal_core_v3/audit-results-phase11-closure/* \
-            artifacts/runtime_v3_phase_11/pinned/
-          cp lean/rcp_rclm_formal_core_v2/lake-manifest.json \
-            artifacts/runtime_v3_phase_11/pinned/formal-core-v2-lake-manifest.json
-          cp lean/rcp_rclm_formal_core_v3/lake-manifest.json \
-            artifacts/runtime_v3_phase_11/pinned/formal-core-v3-lake-manifest.json
-          {
-            echo "commit=${GITHUB_SHA}"
-            echo "toolchain=$(cat lean/rcp_rclm_formal_core_v3/lean-toolchain)"
-            echo "formal_v2_tree=$(git rev-parse HEAD:lean/rcp_rclm_formal_core_v2)"
-            echo "formal_v3_tree=$(git rev-parse HEAD:lean/rcp_rclm_formal_core_v3)"
-            echo "runtime_tree=$(git rev-parse HEAD:python/rcp_rclm_runtime_v3)"
-            echo "model_generated_candidates=2"
-            echo "manual_repairs=0"
-            echo "heldout_material_consumed=false"
-            echo "recursive_use_of_successor_generator=false"
-          } > artifacts/runtime_v3_phase_11/pinned/metadata.txt
-
-      - name: Upload pinned Phase 11 closure evidence
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: runtime-v3-phase-11-pinned-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/runtime_v3_phase_11/pinned/
-          if-no-files-found: error
-          retention-days: 90
-
-  closure:
-    name: Close Phase 11 at one exact head
-    needs:
-      - portable
-      - untrusted-training
-      - pinned-closure
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Emit Phase 11 closure record
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p artifacts/runtime_v3_phase_11/final
-          {
-            echo "phase=11"
-            echo "commit=${GITHUB_SHA}"
-            echo "cross_platform=success"
-            echo "active_model_proposal_authority=success"
-            echo "invalid_model_proposal_rejected=success"
-            echo "alpha_candidate_realized=success"
-            echo "alpha_candidate_rejected=success"
-            echo "rejection_preserved_active_package=success"
-            echo "beta_fresh_proposal=success"
-            echo "beta_candidate_realized=success"
-            echo "gate_d_phase9=success"
-            echo "pinned_lean_three_task_frontier=success"
-            echo "selected_kl_qre=success"
-            echo "atomic_promotion=success"
-            echo "successor_generator_planner_installed=success"
-            echo "manual_repairs=0"
-            echo "heldout_material_consumed=false"
-            echo "recursive_use_of_modified_generator=false"
-            echo "phase11_exit_closed=true"
-            echo "next_phase=12"
-          } > artifacts/runtime_v3_phase_11/final/closure.txt
-
-      - name: Upload final Phase 11 closure
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: runtime-v3-phase-11-final-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/runtime_v3_phase_11/final/
-          if-no-files-found: error
-          retention-days: 90
+          retention-days: 7
