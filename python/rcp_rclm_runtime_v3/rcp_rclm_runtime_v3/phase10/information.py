@@ -42,7 +42,10 @@ def _target_distribution(target_token_id: int) -> Sequence[Rational]:
 
 
 def _entropy(distribution: Sequence[Rational]) -> IntervalEvidence:
-    terms = [-(IntervalEvidence.exact(probability, PRECISION_BITS) * _log(probability)) for probability in distribution]
+    terms = [
+        -(IntervalEvidence.exact(probability, PRECISION_BITS) * _log(probability))
+        for probability in distribution
+    ]
     return sum_intervals(terms, PRECISION_BITS)
 
 
@@ -166,7 +169,30 @@ class Phase10InformationReport:
     schema_id: ClassVar[str] = "runtime.v3.phase10.information_report.v1"
 
     @property
+    def protected_density_unchanged(self) -> bool:
+        predecessor_steps = tuple(self.protected_predecessor.steps)
+        candidate_steps = tuple(self.protected_candidate.steps)
+        if (
+            self.protected_predecessor.task_id != self.protected_candidate.task_id
+            or self.protected_predecessor.prompt_hash != self.protected_candidate.prompt_hash
+            or len(predecessor_steps) != len(candidate_steps)
+        ):
+            return False
+        return all(
+            predecessor.position == candidate.position
+            and predecessor.current_token_id == candidate.current_token_id
+            and predecessor.target_token_id == candidate.target_token_id
+            and predecessor.score_vector_hash == candidate.score_vector_hash
+            and predecessor.density_hash == candidate.density_hash
+            for predecessor, candidate in zip(
+                predecessor_steps, candidate_steps, strict=True
+            )
+        )
+
+    @property
     def protected_regression_interval(self) -> IntervalEvidence:
+        if self.protected_density_unchanged:
+            return IntervalEvidence.exact(Rational.zero(), PRECISION_BITS)
         return (
             self.protected_candidate.kl_qre_sum_interval
             - self.protected_predecessor.kl_qre_sum_interval
@@ -203,6 +229,7 @@ class Phase10InformationReport:
             "heldout_predecessor": self.heldout_predecessor.to_json(),
             "heldout_candidate": self.heldout_candidate.to_json(),
             "protected_budget": self.protected_budget.to_json(),
+            "protected_density_unchanged": self.protected_density_unchanged,
             "protected_regression_interval": self.protected_regression_interval.to_json(),
             "heldout_improvement_interval": self.heldout_improvement_interval.to_json(),
             "protected_nonregression": self.protected_nonregression,
