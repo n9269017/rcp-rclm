@@ -28,10 +28,10 @@ INVALID_PROGRAM_TEXT: Final[str] = (
     "V1;O=F;U=V;D=A;A=N;R=1,0,2,96,1,1;E=V;B=X;G=1;P=1"
 )
 ALPHA_PROGRAM_TEXT: Final[str] = (
-    "V1;O=F;U=WGP;D=A;A=N;R=1,0,1,96,1,1;E=WGP;B=X;G=2;P=2"
+    "V1;O=F;U=WLGP;D=A;A=N;R=1,0,1,96,1,1;E=WLGP;B=X;G=2;P=2"
 )
 BETA_PROGRAM_TEXT: Final[str] = (
-    "V1;O=F;U=WCGP;D=A;A=N;R=1,0,1,96,1,1;E=WCGP;B=X;G=2;P=2"
+    "V1;O=F;U=WLCGP;D=A;A=N;R=1,0,1,96,1,1;E=WLCGP;B=X;G=2;P=2"
 )
 INVALID_PROGRAM_BYTES: Final[bytes] = INVALID_PROGRAM_TEXT.encode("ascii")
 ALPHA_PROGRAM_BYTES: Final[bytes] = ALPHA_PROGRAM_TEXT.encode("ascii")
@@ -72,6 +72,7 @@ PHASE11B_PROPOSAL_PROTOCOL_HASH: Final[str] = canonical_json_hash(
 
 UPDATE_CODE_TO_CLASS_V2: Final[Mapping[str, str]] = {
     "W": "weight_update",
+    "L": "adapter_update",
     "C": "data_curriculum_update",
     "G": "generator_update",
     "P": "planner_update",
@@ -79,6 +80,7 @@ UPDATE_CODE_TO_CLASS_V2: Final[Mapping[str, str]] = {
 }
 COMPONENT_CODE_TO_COMPONENT_V2: Final[Mapping[str, str]] = {
     "W": "model_weights",
+    "L": "adapter_manifest",
     "C": "data_curriculum",
     "G": "generator_policy",
     "P": "planner_policy",
@@ -88,12 +90,13 @@ UPDATE_CLASS_TO_COMPONENT_V2: Final[Mapping[str, str]] = {
     value: COMPONENT_CODE_TO_COMPONENT_V2[key]
     for key, value in UPDATE_CODE_TO_CLASS_V2.items()
 }
-UPDATE_CODE_ORDER_V2: Final[Sequence[str]] = ("W", "C", "G", "P", "V")
-COMPONENT_CODE_ORDER_V2: Final[Sequence[str]] = ("W", "C", "G", "P", "V")
+UPDATE_CODE_ORDER_V2: Final[Sequence[str]] = ("W", "L", "C", "G", "P", "V")
+COMPONENT_CODE_ORDER_V2: Final[Sequence[str]] = ("W", "L", "C", "G", "P", "V")
 
 ALLOWED_UPDATE_CLASSES_V2: Final[frozenset[str]] = frozenset(
     {
         "weight_update",
+        "adapter_update",
         "data_curriculum_update",
         "generator_update",
         "planner_update",
