@@ -1,0 +1,264 @@
+from __future__ import annotations
+
+import sys
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
+from pathlib import Path
+from typing import ClassVar, Final
+
+from rcp_rclm_runtime.canonical.hashing import (
+    build_tree_records,
+    canonical_json_hash,
+    semantic_tree_hash,
+    sha256_hex,
+)
+from rcp_rclm_runtime.canonical.json import canonical_json_bytes
+from rcp_rclm_runtime.checker.hardened import (
+    Phase4HardenedReport,
+    Phase4HardenedRequest,
+    check_hardened_transition,
+)
+from rcp_rclm_runtime.checker.integrity import build_reference_package_integrity
+from rcp_rclm_runtime.checker.records import Phase3CheckerRequest
+from rcp_rclm_runtime.checker.reference import (
+    build_lean_reference_packet,
+    canonical_rclm_certificate,
+    reference_protected_distinctions,
+    reference_resource_record,
+    reference_trust_anchor,
+)
+from rcp_rclm_runtime.lean_bridge.compiler import LeanCompiler, PinnedLeanProject
+from rcp_rclm_runtime.lean_bridge.verifier import (
+    LeanBridgeVerificationEvidence,
+    LeanReferenceVerifier,
+)
+from rcp_rclm_runtime.promotion._record_common import Phase7ReasonCode
+from rcp_rclm_runtime.promotion.certificate import Phase7CertificateEvidence
+from rcp_rclm_runtime.promotion.evaluator import (
+    Phase7EvaluationEvidence,
+    evaluate_realized_candidate,
+)
+from rcp_rclm_runtime.promotion.policy import phase7_run_id
+from rcp_rclm_runtime.promotion.record_attempt import Phase7AttemptReport
+from rcp_rclm_runtime.promotion.record_policy import (
+    Phase7ControllerBudgetRecord,
+    Phase7ControllerPolicyRecord,
+)
+from rcp_rclm_runtime.promotion.record_stage import Phase7StageResult
+from rcp_rclm_runtime.promotion.store_transactions import (
+    append_phase7_nonpromotion,
+    promote_phase7_candidate,
+)
+from rcp_rclm_runtime.promotion.store_types import Phase7PromotionCommit
+from rcp_rclm_runtime.promotion.store_verifier import (
+    bootstrap_phase7_store,
+    load_active_phase7_store,
+    verify_immutable_phase7_package,
+)
+from rcp_rclm_runtime.schema.verdict import FrozenHashMap
+
+from rcp_rclm_runtime_v3.phase10.learned_data import HELDOUT_TASK, PROTECTED_TASK
+from rcp_rclm_runtime_v3.phase10.package import load_package_manifest
+from rcp_rclm_runtime_v3.phase10.policy import phase10_phase7_policy
+from rcp_rclm_runtime_v3.phase10.tasks import TaskVerifierReport, verify_decoded_task
+from rcp_rclm_runtime_v3.phase11.phase11b_candidate import Phase11BInformationReport
+from rcp_rclm_runtime_v3.phase11.phase11b_lifecycle import (
+    EMBEDDED_PHASE11_ROOT,
+    Phase11BReference,
+    phase11b_phase6_budget,
+)
+from rcp_rclm_runtime_v3.phase11.phase11b_tasks import (
+    PHASE11B_NEW_TASK,
+    verify_phase11b_task,
+)
+
+PHASE11B_CONTROLLER_POLICY_ID: Final[str] = (
+    "rcp-rclm-v3-phase11-model-generated-controller-v1"
+)
+PHASE11B_CONTROLLER_ENVIRONMENT_HASH: Final[str] = canonical_json_hash(
+    {
+        "schema_id": "runtime.v3.phase11b.controller_environment.v1",
+        "policy_id": PHASE11B_CONTROLLER_POLICY_ID,
+        "network": "disabled",
+        "accelerators": 0,
+        "manual_repair": "forbidden",
+        "candidate_direct_write": "forbidden",
+        "model_evaluator": "framework_independent_exact_integer",
+        "task_verifier": "pinned_lean_theorem_verifier_v1",
+        "outer_checker": "phase4_hardened_plus_gate_d_phase9",
+        "rejection_preserves_active_package": True,
+    }
+)
+
+
+def phase11b_phase7_policy() -> Phase7ControllerPolicyRecord:
+    base = phase10_phase7_policy()
+    return Phase7ControllerPolicyRecord(
+        policy_id=PHASE11B_CONTROLLER_POLICY_ID,
+        scope=base.scope,
+        generator_backend=base.generator_backend,
+        selector_backend=base.selector_backend,
+        realizer_backend=base.realizer_backend,
+        evaluator_backend=base.evaluator_backend,
+        checker_backend=base.checker_backend,
+        require_two_run_generator_replay=base.require_two_run_generator_replay,
+        require_public_package_verification=base.require_public_package_verification,
+        require_lean_acceptance=base.require_lean_acceptance,
+        require_checker_acceptance=base.require_checker_acceptance,
+        allow_manual_repair=False,
+        allow_candidate_mutation=False,
+    )
+
+
+def phase11b_phase7_budget() -> Phase7ControllerBudgetRecord:
+    return Phase7ControllerBudgetRecord(
+        max_attempts=2,
+        max_attempt_units=2,
+        attempt_unit_cost=1,
+        max_promotions=1,
+        phase6_budget=phase11b_phase6_budget(),
+    )
+
+
+def _directory_tree_hash(root: Path) -> str:
+    return semantic_tree_hash(build_tree_records(root.resolve(strict=True)))
+
+
+def _forbidden_training_modules() -> Sequence[str]:
+    return tuple(
+        sorted(
+            name
+            for name in sys.modules
+            if name == "torch"
+            or name.startswith("torch.")
+            or name.endswith("phase10.training_process")
+            or name.endswith("phase10_training_worker")
+        )
+    )
+
+
+def _certification_matches(
+    reference: Phase11BReference,
+    report: TaskVerifierReport,
+) -> bool:
+    state = reference.beta_candidate.candidate_state
+    if state is None:
+        return False
+    certification = state.task_ledger.certification_by_task_id.get(report.task_id)
+    return bool(certification and certification.verifier_report_hash == report.report_hash)
+
+
+@dataclass(frozen=True, slots=True)
+class Phase11BAuthoritativeVerification:
+    logical_evaluation: Phase7EvaluationEvidence
+    active_protected: TaskVerifierReport
+    active_phase10_heldout: TaskVerifierReport
+    active_phase11_heldout: TaskVerifierReport
+    alpha_protected: TaskVerifierReport
+    alpha_phase10_heldout: TaskVerifierReport
+    alpha_phase11_heldout: TaskVerifierReport
+    beta_protected: TaskVerifierReport
+    beta_phase10_heldout: TaskVerifierReport
+    beta_phase11_heldout: TaskVerifierReport
+    information_report: Phase11BInformationReport
+    gate_b_certificate: Phase7CertificateEvidence
+    gate_b_lean: LeanBridgeVerificationEvidence
+    hardened_checker: Phase4HardenedReport
+    alpha_tree_hash_before: str
+    alpha_tree_hash_after: str
+    beta_tree_hash_before: str
+    beta_tree_hash_after: str
+    expected_task_reports_match: bool
+    forbidden_training_modules_loaded: Sequence[str]
+
+    schema_id: ClassVar[str] = "runtime.v3.phase11b.authoritative_verification.v1"
+
+    @property
+    def alpha_unchanged(self) -> bool:
+        return self.alpha_tree_hash_before == self.alpha_tree_hash_after
+
+    @property
+    def beta_unchanged(self) -> bool:
+        return self.beta_tree_hash_before == self.beta_tree_hash_after
+
+    @property
+    def alpha_rejected(self) -> bool:
+        return (
+            not self.alpha_protected.solved
+            and self.alpha_phase10_heldout.solved
+            and self.alpha_phase11_heldout.solved
+        )
+
+    @property
+    def beta_accepted(self) -> bool:
+        return (
+            self.active_protected.solved
+            and self.active_phase10_heldout.solved
+            and not self.active_phase11_heldout.solved
+            and self.beta_protected.solved
+            and self.beta_phase10_heldout.solved
+            and self.beta_phase11_heldout.solved
+            and self.information_report.accepted
+            and self.expected_task_reports_match
+            and self.gate_b_lean.report.accepted
+            and self.gate_b_lean.source_guard.clean
+            and self.hardened_checker.accepted
+            and self.beta_unchanged
+            and not self.forbidden_training_modules_loaded
+        )
+
+    @property
+    def accepted(self) -> bool:
+        return self.alpha_rejected and self.alpha_unchanged and self.beta_accepted
+
+    @property
+    def report_hash(self) -> str:
+        return canonical_json_hash(self.to_json())
+
+    def to_json(self) -> dict[str, object]:
+        return {
+            "schema_id": self.schema_id,
+            "accepted": self.accepted,
+            "alpha_rejected": self.alpha_rejected,
+            "beta_accepted": self.beta_accepted,
+            "logical_evaluation": self.logical_evaluation.to_json(),
+            "active_protected": self.active_protected.to_json(),
+            "active_phase10_heldout": self.active_phase10_heldout.to_json(),
+            "active_phase11_heldout": self.active_phase11_heldout.to_json(),
+            "alpha_protected": self.alpha_protected.to_json(),
+            "alpha_phase10_heldout": self.alpha_phase10_heldout.to_json(),
+            "alpha_phase11_heldout": self.alpha_phase11_heldout.to_json(),
+            "beta_protected": self.beta_protected.to_json(),
+            "beta_phase10_heldout": self.beta_phase10_heldout.to_json(),
+            "beta_phase11_heldout": self.beta_phase11_heldout.to_json(),
+            "information_report": self.information_report.to_json(),
+            "gate_b_certificate": self.gate_b_certificate.to_json(),
+            "gate_b_lean_report": self.gate_b_lean.report.to_json(),
+            "gate_b_source_guard": self.gate_b_lean.source_guard.to_json(),
+            "hardened_checker": self.hardened_checker.to_json(),
+            "alpha_tree_hash_before": self.alpha_tree_hash_before,
+            "alpha_tree_hash_after": self.alpha_tree_hash_after,
+            "alpha_unchanged": self.alpha_unchanged,
+            "beta_tree_hash_before": self.beta_tree_hash_before,
+            "beta_tree_hash_after": self.beta_tree_hash_after,
+            "beta_unchanged": self.beta_unchanged,
+            "expected_task_reports_match": self.expected_task_reports_match,
+            "forbidden_training_modules_loaded": list(
+                self.forbidden_training_modules_loaded
+            ),
+            "training_invocations_during_verification": 0,
+            "candidate_self_report_consumed": False,
+        }
+
+
+def verify_phase11b_candidates(
+    reference: Phase11BReference,
+    *,
+    repo_root: Path,
+    lean_project_root: Path,
+) -> Phase11BAuthoritativeVerification:
+    active_root = reference.wrapper_predecessor.payload_root / EMBEDDED_PHASE11_ROOT
+    alpha_root = reference.alpha_phase6.embedded_candidate_root
+    beta_root = reference.beta_phase6.embedded_candidate_root
+    alpha_tree_before = _directory_tree_hash(reference.alpha_phase6.candidate_root)
+    beta_tree_before = _directory_tree_hash(reference.beta_phase6.candidate_root)
