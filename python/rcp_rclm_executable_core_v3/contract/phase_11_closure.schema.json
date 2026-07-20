@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rcp-rclm.org/schema/runtime-v3-phase-11-closure-v1.json",
+  "title": "RCP/RCLM Runtime v3 Phase 11 autonomous generator closure",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "accepted",
+    "reference_hash",
+    "verification_hash",
+    "promotion_hash",
+    "active_predecessor_model_generated_proposal",
+    "heldout_material_consumed",
+    "model_generated_candidate_rejected",
+    "later_fresh_proposal_accepted",
+    "manual_repairs",
+    "successor_generator_bytes_changed",
+    "successor_planner_bytes_changed",
+    "successor_generator_planner_installed",
+    "recursive_use_of_modified_successor_generator",
+    "phase11_exit_closed",
+    "next_phase",
+    "report_hash",
+    "pinned_identity_prewarm_hashes",
+    "stable_reference_summary_hash",
+    "exact_runtime_reference_hash",
+    "untrusted_training_evidence_required_by_workflow",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_id": {"const": "runtime.v3.phase11b.closure.v1"},
+    "accepted": {"const": true},
+    "reference_hash": {"$ref": "#/$defs/Hash"},
+    "verification_hash": {"$ref": "#/$defs/Hash"},
+    "promotion_hash": {"$ref": "#/$defs/Hash"},
+    "active_predecessor_model_generated_proposal": {"const": true},
+    "heldout_material_consumed": {"const": false},
+    "model_generated_candidate_rejected": {"const": true},
+    "later_fresh_proposal_accepted": {"const": true},
+    "manual_repairs": {"const": 0},
+    "successor_generator_bytes_changed": {"const": true},
+    "successor_planner_bytes_changed": {"const": true},
+    "successor_generator_planner_installed": {"const": true},
+    "recursive_use_of_modified_successor_generator": {"const": false},
+    "phase11_exit_closed": {"const": true},
+    "next_phase": {"const": 12},
+    "report_hash": {"$ref": "#/$defs/Hash"},
+    "pinned_identity_prewarm_hashes": {"type": "object"},
+    "stable_reference_summary_hash": {"$ref": "#/$defs/Hash"},
+    "exact_runtime_reference_hash": {"$ref": "#/$defs/Hash"},
+    "untrusted_training_evidence_required_by_workflow": {"const": true},
+    "claim_boundary": {
+      "type": "object",
+      "required": [
+        "one_active_predecessor_model",
+        "one_model_generated_candidate_rejected",
+        "one_later_fresh_model_generated_candidate_promoted",
+        "successor_generator_planner_installed",
+        "successor_generator_used_recursively",
+        "phase11_exit_closed",
+        "phase12_required_for_recursive_use"
+      ],
+      "properties": {
+        "one_active_predecessor_model": {"const": true},
+        "one_model_generated_candidate_rejected": {"const": true},
+        "one_later_fresh_model_generated_candidate_promoted": {"const": true},
+        "successor_generator_planner_installed": {"const": true},
+        "successor_generator_used_recursively": {"const": false},
+        "phase11_exit_closed": {"const": true},
+        "phase12_required_for_recursive_use": {"const": true}
+      }
+    }
+  },
+  "$defs": {
+    "Hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
