@@ -95,6 +95,12 @@ jobs:
           --schema python/rcp_rclm_executable_core_v3/contract/phase_11_generator.schema.json
           --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11_schema.json
 
+      - name: Validate retained Phase 11A manifest
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase11_manifest.py
+          --repo-root .
+          --out artifacts/runtime_v3_phase_11/${{ matrix.os }}/phase_11_manifest.json
+
       - name: Recompute Phase 11A reference
         run: >-
           python python/rcp_rclm_runtime_v3/tools/run_phase11_reference.py
@@ -131,6 +137,7 @@ jobs:
             echo "slice=11A"
             echo "commit=${GITHUB_SHA}"
             echo "cross_platform=success"
+            echo "retained_manifest=success"
             echo "host_installed_active_generator_bootstrap=success"
             echo "active_model_generated_proposal=success"
             echo "model_generated_proposal_rejected=success"
