@@ -1,0 +1,113 @@
+                "constructed_outside_candidate": True,
+            },
+        ),
+        _stage(
+            "lean_bridge",
+            "pass",
+            (),
+            {
+                "gate_b_lean_report_hash": verification.gate_b_lean.report.report_hash,
+                "beta_protected_report_hash": verification.beta_protected.report_hash,
+                "beta_phase10_heldout_report_hash": (
+                    verification.beta_phase10_heldout.report_hash
+                ),
+                "beta_phase11_heldout_report_hash": (
+                    verification.beta_phase11_heldout.report_hash
+                ),
+            },
+        ),
+        _stage(
+            "hardened_checker",
+            "pass",
+            (),
+            {
+                "hardened_report_hash": verification.hardened_checker.report_hash,
+                "checker_accepted": verification.hardened_checker.accepted,
+                "phase9_transition_hash": (
+                    reference.lifecycle_transition.semantic_report_hash
+                ),
+                "candidate_unchanged": verification.beta_unchanged,
+            },
+        ),
+        _stage(
+            "fallback_rollback",
+            "pass",
+            (),
+            {
+                "rollback_verified": realization.rollback.verified,
+                "archive_hash": realization.rollback.archive_hash,
+                "restored_tree_hash": realization.rollback.restored_tree_hash,
+            },
+        ),
+    )
+
+
+@dataclass(frozen=True, slots=True)
+class Phase11BPromotionEvidence:
+    reference: Phase11BReference
+    verification: Phase11BAuthoritativeVerification
+    rejection_attempt: Phase7AttemptReport
+    rejection_ledger_hash: str
+    promotion_attempt: Phase7AttemptReport
+    promotion: Phase7PromotionCommit
+    initial_active_package_hash: str
+    active_package_hash_after_rejection: str
+    installed_generator_bytes_hash: str
+    installed_planner_bytes_hash: str
+
+    schema_id: ClassVar[str] = "runtime.v3.phase11b.promotion.v1"
+
+    @property
+    def accepted(self) -> bool:
+        pointer = self.promotion.snapshot.pointer
+        return (
+            self.reference.accepted
+            and self.verification.accepted
+            and self.rejection_attempt.verdict == "reject"
+            and self.active_package_hash_after_rejection
+            == self.initial_active_package_hash
+            and self.promotion_attempt.verdict == "accept"
+            and self.promotion.package_manifest.parent_package_hash
+            == self.initial_active_package_hash
+            and pointer.active_package_hash
+            == self.promotion.package_manifest.package_hash
+            and pointer.ledger_sequence_number == 2
+            and self.installed_generator_bytes_hash
+            == sha256_hex(
+                (
+                    self.reference.beta_candidate.root
+                    / "policies/generator_policy.json"
+                ).read_bytes()
+            )
+            and self.installed_planner_bytes_hash
+            == sha256_hex(
+                (
+                    self.reference.beta_candidate.root
+                    / "policies/planner_policy.json"
+                ).read_bytes()
+            )
+            and self.reference.beta_candidate.manifest.generator_policy_hash
+            != self.reference.active.active_manifest.generator_policy_hash
+            and self.reference.beta_candidate.manifest.planner_policy_hash
+            != self.reference.active.active_manifest.planner_policy_hash
+        )
+
+    @property
+    def report_hash(self) -> str:
+        return canonical_json_hash(self.to_json())
+
+    def to_json(self) -> dict[str, object]:
+        return {
+            "schema_id": self.schema_id,
+            "accepted": self.accepted,
+            "reference_hash": self.reference.reference_hash,
+            "verification_hash": self.verification.report_hash,
+            "rejection_attempt": self.rejection_attempt.to_json(),
+            "rejection_ledger_hash": self.rejection_ledger_hash,
+            "active_package_hash_before_rejection": self.initial_active_package_hash,
+            "active_package_hash_after_rejection": (
+                self.active_package_hash_after_rejection
+            ),
+            "promotion_attempt": self.promotion_attempt.to_json(),
+            "promoted_package_hash": self.promotion.package_manifest.package_hash,
+            "promoted_package_id": self.promotion.package_manifest.package_id,
