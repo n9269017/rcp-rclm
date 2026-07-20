@@ -38,7 +38,7 @@ def _require_hash(value: str, path: str) -> None:
     validate_hash256(value, path)
 
 
-def _sorted_unique(values: Sequence[str], path: str) -> tuple[str, ...]:
+def _sorted_unique(values: Sequence[str], path: str) -> Sequence[str]:
     normalized = tuple(values)
     if any(not isinstance(item, str) or not item for item in normalized):
         raise SchemaValidationError(path, "entries must be nonempty strings")
@@ -176,8 +176,16 @@ class TrainingDirective:
 
     def __post_init__(self) -> None:
         if self.optimizer != "sgd":
-            raise SchemaValidationError("phase11.training.optimizer", "selected slice permits SGD")
-        require_structural_integer(self.steps, "phase11.training.steps", minimum=0, maximum=10_000)
+            raise SchemaValidationError(
+                "phase11.training.optimizer",
+                "selected slice permits SGD",
+            )
+        require_structural_integer(
+            self.steps,
+            "phase11.training.steps",
+            minimum=0,
+            maximum=10_000,
+        )
         require_structural_integer(
             self.learning_rate_numerator,
             "phase11.training.learning_rate_numerator",
@@ -190,7 +198,12 @@ class TrainingDirective:
             minimum=1,
             maximum=10_000,
         )
-        require_structural_integer(self.seed, "phase11.training.seed", minimum=0, maximum=2**31 - 1)
+        require_structural_integer(
+            self.seed,
+            "phase11.training.seed",
+            minimum=0,
+            maximum=2**31 - 1,
+        )
 
     def to_json(self) -> dict[str, object]:
         return {
@@ -214,7 +227,10 @@ class DataSelectionDirective:
 
     def __post_init__(self) -> None:
         if self.selection_id != PHASE11_DATA_SELECTION:
-            raise SchemaValidationError("phase11.data.selection_id", "unsupported data selection")
+            raise SchemaValidationError(
+                "phase11.data.selection_id",
+                "unsupported data selection",
+            )
         for name in (
             "heldout_task_ids_visible",
             "heldout_prompts_visible",
@@ -253,9 +269,20 @@ class ArchitectureMutationDirective:
 
     def __post_init__(self) -> None:
         if self.kind != PHASE11_ARCHITECTURE_MUTATION:
-            raise SchemaValidationError("phase11.architecture.kind", "unsupported architecture mutation")
-        require_structural_integer(self.lora_rank, "phase11.architecture.lora_rank", minimum=0, maximum=64)
-        normalized = _sorted_unique(tuple(self.target_modules), "phase11.architecture.target_modules")
+            raise SchemaValidationError(
+                "phase11.architecture.kind",
+                "unsupported architecture mutation",
+            )
+        require_structural_integer(
+            self.lora_rank,
+            "phase11.architecture.lora_rank",
+            minimum=0,
+            maximum=64,
+        )
+        normalized = _sorted_unique(
+            tuple(self.target_modules),
+            "phase11.architecture.target_modules",
+        )
         if self.kind == "none" and (self.lora_rank != 0 or normalized):
             raise SchemaValidationError(
                 "phase11.architecture",
@@ -281,7 +308,10 @@ class RollbackDeclaration:
 
     def __post_init__(self) -> None:
         if self.mode != PHASE11_ROLLBACK_MODE:
-            raise SchemaValidationError("phase11.rollback.mode", "unsupported rollback mode")
+            raise SchemaValidationError(
+                "phase11.rollback.mode",
+                "unsupported rollback mode",
+            )
         if not isinstance(self.predecessor_bytes_required, bool):
             raise SchemaValidationError(
                 "phase11.rollback.predecessor_bytes_required",
@@ -318,13 +348,22 @@ class TypedMutationProgram:
 
     def __post_init__(self) -> None:
         if self.program_version != PHASE11_PROGRAM_VERSION:
-            raise SchemaValidationError("phase11.program.program_version", "unsupported version")
+            raise SchemaValidationError(
+                "phase11.program.program_version",
+                "unsupported version",
+            )
         if self.objective != PHASE11_OBJECTIVE:
-            raise SchemaValidationError("phase11.program.objective", "unsupported objective")
+            raise SchemaValidationError(
+                "phase11.program.objective",
+                "unsupported objective",
+            )
         object.__setattr__(
             self,
             "selected_update_classes",
-            _sorted_unique(tuple(self.selected_update_classes), "phase11.program.selected_update_classes"),
+            _sorted_unique(
+                tuple(self.selected_update_classes),
+                "phase11.program.selected_update_classes",
+            ),
         )
         object.__setattr__(
             self,
@@ -419,9 +458,15 @@ class ModelGeneratorInput:
             maximum=1_000_000,
         )
         if self.manual_repair_count != 0:
-            raise SchemaValidationError("phase11.input.manual_repair_count", "manual repair is forbidden")
+            raise SchemaValidationError(
+                "phase11.input.manual_repair_count",
+                "manual repair is forbidden",
+            )
         if self.contract_version != PHASE11_SLICE_VERSION:
-            raise SchemaValidationError("phase11.input.contract_version", "version mismatch")
+            raise SchemaValidationError(
+                "phase11.input.contract_version",
+                "version mismatch",
+            )
 
     @property
     def input_hash(self) -> str:
@@ -466,10 +511,22 @@ class GeneratorDecodeStep:
                 minimum=0,
                 maximum=1_000_000,
             )
-        if isinstance(self.selected_score, bool) or not isinstance(self.selected_score, int):
-            raise SchemaValidationError("phase11.decode_step.selected_score", "expected integer")
-        if isinstance(self.runner_up_score, bool) or not isinstance(self.runner_up_score, int):
-            raise SchemaValidationError("phase11.decode_step.runner_up_score", "expected integer")
+        if isinstance(self.selected_score, bool) or not isinstance(
+            self.selected_score,
+            int,
+        ):
+            raise SchemaValidationError(
+                "phase11.decode_step.selected_score",
+                "expected integer",
+            )
+        if isinstance(self.runner_up_score, bool) or not isinstance(
+            self.runner_up_score,
+            int,
+        ):
+            raise SchemaValidationError(
+                "phase11.decode_step.runner_up_score",
+                "expected integer",
+            )
         _require_hash(self.distribution_hash, "phase11.decode_step.distribution_hash")
 
     @property
@@ -506,7 +563,10 @@ class GeneratorInvocationReport:
 
     def __post_init__(self) -> None:
         require_string(self.program_text, "phase11.invocation.program_text")
-        _require_hash(self.program_raw_sha256, "phase11.invocation.program_raw_sha256")
+        _require_hash(
+            self.program_raw_sha256,
+            "phase11.invocation.program_raw_sha256",
+        )
         for name in (
             "package_hash",
             "model_identity_hash",
@@ -516,9 +576,15 @@ class GeneratorInvocationReport:
             _require_hash(getattr(self, name), f"phase11.invocation.{name}")
         object.__setattr__(self, "steps", tuple(self.steps))
         if not isinstance(self.stopped_on_eos, bool):
-            raise SchemaValidationError("phase11.invocation.stopped_on_eos", "expected Boolean")
+            raise SchemaValidationError(
+                "phase11.invocation.stopped_on_eos",
+                "expected Boolean",
+            )
         if not self.steps:
-            raise SchemaValidationError("phase11.invocation.steps", "at least one model step is required")
+            raise SchemaValidationError(
+                "phase11.invocation.steps",
+                "at least one model step is required",
+            )
 
     @property
     def model_generated(self) -> bool:
@@ -526,7 +592,10 @@ class GeneratorInvocationReport:
 
     @property
     def output_within_budget(self) -> bool:
-        return len(self.program_text.encode("ascii")) <= self.generator_input.budget.max_output_bytes
+        return (
+            len(self.program_text.encode("ascii"))
+            <= self.generator_input.budget.max_output_bytes
+        )
 
     @property
     def report_hash(self) -> str:
@@ -566,14 +635,20 @@ class ProgramValidationReport:
         _require_hash(self.program_hash, "phase11.validation.program_hash")
         normalized = tuple(self.reason_codes)
         if len(set(normalized)) != len(normalized):
-            raise SchemaValidationError("phase11.validation.reason_codes", "duplicate reason code")
+            raise SchemaValidationError(
+                "phase11.validation.reason_codes",
+                "duplicate reason code",
+            )
         object.__setattr__(
             self,
             "reason_codes",
             tuple(sorted(normalized, key=lambda item: item.value.encode("utf-8"))),
         )
         if any(not isinstance(value, bool) for value in self.binding_checks.values()):
-            raise SchemaValidationError("phase11.validation.binding_checks", "checks must be Boolean")
+            raise SchemaValidationError(
+                "phase11.validation.binding_checks",
+                "checks must be Boolean",
+            )
 
     @property
     def accepted(self) -> bool:
@@ -591,7 +666,10 @@ class ProgramValidationReport:
             "reason_codes": [reason.value for reason in self.reason_codes],
             "binding_checks": {
                 key: self.binding_checks[key]
-                for key in sorted(self.binding_checks, key=lambda item: item.encode("utf-8"))
+                for key in sorted(
+                    self.binding_checks,
+                    key=lambda item: item.encode("utf-8"),
+                )
             },
             "accepted": self.accepted,
         }
@@ -622,7 +700,10 @@ class BudgetLedger:
                 maximum=1_000_000,
             )
         if self.manual_repair_count != 0:
-            raise SchemaValidationError("phase11.ledger.manual_repair_count", "manual repair is forbidden")
+            raise SchemaValidationError(
+                "phase11.ledger.manual_repair_count",
+                "manual repair is forbidden",
+            )
 
     def to_json(self) -> dict[str, object]:
         return {
