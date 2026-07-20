@@ -12,6 +12,11 @@ from rcp_rclm_runtime_v3.phase11.grammar import (
     encode_typed_mutation_program,
     parse_typed_mutation_program,
 )
+from rcp_rclm_runtime_v3.phase11.manifest import (
+    PHASE11_MANIFEST_RELATIVE_PATH,
+    load_phase11_manifest,
+    validate_phase11_manifest,
+)
 from rcp_rclm_runtime_v3.phase11.records import (
     ArchitectureMutationDirective,
     BudgetLedger,
@@ -41,6 +46,7 @@ __all__ = [
     "GeneratorInvocationReport",
     "InvocationBudget",
     "ModelGeneratorInput",
+    "PHASE11_MANIFEST_RELATIVE_PATH",
     "Phase11AReference",
     "Phase11BootstrapFixture",
     "Phase11ReasonCode",
@@ -54,8 +60,10 @@ __all__ = [
     "default_phase11_budget",
     "encode_typed_mutation_program",
     "generate_typed_mutation_program",
+    "load_phase11_manifest",
     "parse_typed_mutation_program",
     "phase11_objective_hash",
     "validate_generated_program",
     "validate_phase11_bootstrap_package",
+    "validate_phase11_manifest",
 ]
