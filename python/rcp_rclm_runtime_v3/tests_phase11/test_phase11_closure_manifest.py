@@ -17,11 +17,38 @@ class Phase11ClosureManifestTests(unittest.TestCase):
         cls.report = validate_phase11_closure_manifest(cls.repo_root)
 
     def test_manifest_recomputes_portable_lifecycle_hashes(self) -> None:
-        self.assertTrue(self.report["ok"], self.report["failures"])
+        self.assertTrue(self.report["ok"], self.report)
         self.assertEqual(
             self.report["observed_stable_reference_hashes"],
             self.manifest["stable_reference_hashes"],
         )
+
+    def test_runtime_bound_lifecycle_hashes_are_separated(self) -> None:
+        stable = self.manifest["stable_reference_hashes"]
+        exact = self.manifest["code_proof"]["exact_runtime_hashes"]
+        self.assertIn("portable_summary_hash", stable)
+        self.assertNotIn("alpha_phase6_hash", stable)
+        self.assertNotIn("beta_phase6_hash", stable)
+        for name in (
+            "alpha_phase6_hash",
+            "beta_candidate_fixture_hash",
+            "beta_invocation_hash",
+            "beta_phase6_hash",
+            "lifecycle_certificate_hash",
+            "lifecycle_transition_hash",
+            "summary_hash",
+        ):
+            self.assertNotIn(name, stable)
+        for name in (
+            "alpha_phase6_hash",
+            "beta_candidate_fixture_hash",
+            "beta_invocation_hash",
+            "beta_phase6_hash",
+            "lifecycle_certificate_hash",
+            "lifecycle_transition_hash",
+            "reference_summary_hash",
+        ):
+            self.assertIn(name, exact)
 
     def test_code_proof_retains_all_six_artifacts(self) -> None:
         proof = self.manifest["code_proof"]
@@ -30,7 +57,10 @@ class Phase11ClosureManifestTests(unittest.TestCase):
             {"final", "macos", "pinned", "training", "ubuntu", "windows"},
         )
         self.assertEqual(proof["workflow_run_attempt"], 1)
-        self.assertEqual(set(proof["git_trees"]), {"formal_core_v2", "formal_core_v3", "runtime_v3"})
+        self.assertEqual(
+            set(proof["git_trees"]),
+            {"formal_core_v2", "formal_core_v3", "runtime_v3"},
+        )
 
     def test_phase11_closes_without_preclaiming_phase12(self) -> None:
         boundary = self.manifest["claim_boundary"]

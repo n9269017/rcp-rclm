@@ -40,28 +40,29 @@ workflow attempt:
 Every required job succeeded:
 
 ```text
-Ubuntu complete lifecycle validation              success
-Windows complete lifecycle validation             success
-macOS complete lifecycle validation               success
+Ubuntu complete lifecycle validation               success
+Windows complete lifecycle validation              success
+macOS complete lifecycle validation                success
 retained Phase 9 and complete Phase 10 regressions success
 complete Phase 11 tests                            success
 Phase 11A and Phase 11B Draft 2020-12 schemas     success
-portable lifecycle reference recomputation        success
 duplicate isolated alpha and beta training         success
 frozen Formal Core v2 build                        success
 complete Formal Core v3 build                      success
 proof-hygiene and axiom audits                     success
 pinned three-task Lean evaluation                  success
 alpha rejection ledger entry                       success
-unchanged active hash after alpha                   success
+unchanged active hash after alpha                  success
 beta atomic promotion                              success
-installed generation-2 policies                    success
-phase11_exit_closed=true                            success
+installed generation-2 policies                   success
+phase11_exit_closed=true                           success
 ```
 
-## Stable portable lifecycle evidence
+## Corrected portable evidence boundary
 
-The committed Phase 11 closure manifest binds the source-deterministic identities:
+The final retained-manifest validation distinguishes source-deterministic identities from the
+runtime observation chain. The portable set is intentionally limited to values that do not
+consume Phase 6 environment records:
 
 ```text
 active package:
@@ -76,28 +77,22 @@ ec312fe617e37b1a790b9e93f2b4a366d8c084eeb646aabc0f660033890e18ee
 active planner:
 773cd804eb6aca05fc4ca81e4ed695806592ee5a7607085e3cf4cf35fbce32de
 
+invalid invocation:
+4e95a22f9d880536dec7f01f758013d4adc1cf0a1c3ef8bd5a3877b0a7bc4744
+
+invalid validation:
+37fa6c13c60aa3ca5815d4ad8b4c4826ad545730d6f9bad952286697b2f05625
+
 alpha invocation:
 73ba7202c1a3a81c0bdc1df4a5959d9b5e6a607a5a157a06afed29023be80b71
 
-alpha Phase 6 fixture:
+alpha semantic candidate fixture:
 543be894924895defaf4d0df4e3b15ba7fff4aa2e04059b8658d3809b682e342
 
-alpha Phase 6 report:
-9d552c07bf920636ad976cb9b6bc7082876801126fe2a2ce8a26a4e47ceed8f9
-
-beta invocation:
-5876003334d6ab51885c33856e12e34cb3f02d843cbd203f6e5b8ea1a58246a3
-
-beta Phase 6 fixture:
-f75d56c6293d51667fca2e1072c41e71fe8419c9a2ceb435d2d370b9d47f19f6
-
-beta Phase 6 report:
-abd1b7e702bd23524bdb3ad7e6c0d0af207f0f117a95e1b34dc3a03cc8fa3b10
-
-beta package:
+beta semantic package:
 a30dbf363cb28b05a4448b50acf78123d7472605455718afbecf7acce0252094
 
-beta model:
+beta semantic model identity:
 2d08e4127aec05077d88b1bd0d57211eed49ad937627eb7c62bfddf768fb6454
 
 successor generator:
@@ -106,42 +101,66 @@ f69553a4e11dc352e7f9406dbc8722fdf48e30c18c4014d0495e67e85607f95a
 successor planner:
 b4d0c3ab75c4ed5aacf469e4a44915a67837e586b9f2aadd8023d4a3c6dd9c51
 
+portable component-map summary:
+23fa8143ae6f1cc4ddc5b1d024ec507a0523d0c518d734ba971107c18ab38460
+```
+
+The retained validator recomputes this component map independently on Linux, Windows, and
+macOS. It does not compare full Phase 6 evidence objects across operating systems.
+
+## Why beta's observation chain is runtime-bound
+
+Beta is deliberately fresh and rejection-led: its model input includes alpha's realized
+Phase 6 evidence hash. Phase 6 evidence binds platform-observed file modes, environment
+records, resource usage, and rollback measurements. Consequently, the following identities
+are exact-run evidence rather than portable semantic identities:
+
+```text
+alpha Phase 6 evidence
+beta generator invocation
+beta candidate fixture
+beta Phase 6 evidence
+lifecycle certificate
+lifecycle transition
+full lifecycle summary
+```
+
+Classifying those values as portable caused the documentation-finalization head to pass on
+Ubuntu but fail retained-manifest recomputation on Windows and macOS. The final workflow fixes
+that category error instead of weakening the runtime binding.
+
+The retained code-proof values are:
+
+```text
+alpha Phase 6 evidence:
+9d552c07bf920636ad976cb9b6bc7082876801126fe2a2ce8a26a4e47ceed8f9
+
+beta invocation:
+5876003334d6ab51885c33856e12e34cb3f02d843cbd203f6e5b8ea1a58246a3
+
+beta candidate fixture:
+f75d56c6293d51667fca2e1072c41e71fe8419c9a2ceb435d2d370b9d47f19f6
+
+beta Phase 6 evidence:
+abd1b7e702bd23524bdb3ad7e6c0d0af207f0f117a95e1b34dc3a03cc8fa3b10
+
 lifecycle certificate:
 011d72f90d46a457214d0c68aa6f371c4878043b3356533cf32156acad149d6c
 
 Gate D / Phase 9 transition:
 d622c645ec647c88de96a3da4a6f431be08bc1d0261a4fda757beefc08c1b351
 
-portable summary:
+full runtime summary:
 b1c95f9e5084dfb16da353c78ee4d0d401f0a1cb9f55476214a6c13ed2467823
 ```
 
-Ubuntu, Windows, and macOS produce byte-identical lifecycle summary JSON.
+These hashes remain retained as evidence for the exact pinned code-proof run. A later final
+head is required to reproduce the same relationships and portable identities, not to pretend
+that an operating-system observation is a model identity.
 
-## Exact runtime-bound evidence
+## Authoritative rejection and promotion evidence
 
-The pinned code-proof artifact separately retains environment-bound realization, verification,
-ledger, promotion, and installed-policy byte hashes. The authoritative report explicitly
-binds:
-
-```text
-rejection attempt report
-rejection ledger entry
-initial active package hash
-active package hash after rejection
-promotion attempt report
-promotion ledger entry
-promoted immutable package
-promotion parent package
-ledger sequence number = 2
-installed generator-policy bytes
-installed planner-policy bytes
-```
-
-Stable semantic identities are not conflated with environment-bound Phase 6 and promotion
-records.
-
-The exact pinned report records:
+The pinned code-proof report records:
 
 ```text
 closure report:
@@ -149,6 +168,9 @@ ab5d8da8dd3f1e08a584dee533da8612d21a50bf91ad948999f9c22f63c19c55
 
 final bound report:
 cce40c99c93da6fd7f03fa33aa5f8e4910bf6333d76e934314c6f7bca129ea2c
+
+exact runtime reference:
+85dc2e0fc804f7c4f548223a85b66b73c55bb61ad639fa3e8cc0a7938e2bbdb1
 
 authoritative verification:
 7c399601b8d6d2921c2a2b21bf79b05476ee30bbe8acbff82bf6bc8e12d8408b
@@ -179,7 +201,14 @@ installed generator bytes:
 
 installed planner bytes:
 8965561a1442202eb0cbc4c2c27b85e136c467a7565bdc54ed3705dd12417ced
+
+final ledger sequence:
+2
 ```
+
+The initial active package, the post-alpha active package, and beta's promotion parent are
+identical. The immutable promoted package contains the verified generation-2 generator and
+planner bytes.
 
 ## Code-proof artifacts
 
@@ -211,14 +240,15 @@ sha256:0228670f800a711406193cc2aa5aeeb436c86a685558aa067c9b4e86bb9138a6
 
 ## Non-circular final-head binding
 
-The committed closure manifest retains the prior exact code proof and all stable reference
-hashes. A later final documentation/manifest head is rerun through the same authoritative
-workflow. Its exact head, merge-test commit, workflow run, and artifact digests are recorded
-in PR #31 without editing the source again.
+The committed closure manifest retains the prior exact code proof and the corrected portable
+component map. The final documentation, manifest, validator, and permanent workflow head is
+run through the same complete authoritative workflow. Its exact branch head, PR merge-test
+commit, workflow run, and six artifact digests are recorded in PR #31 without another source
+edit.
 
 ## Claim boundary
 
-Phase 11 proves one bounded active predecessor proposal cycle with one realized rejection and
+Phase 11 proves one bounded active-predecessor proposal cycle with one realized rejection and
 one later promotion. The promoted successor contains changed generation-2 generator and
 planner policies. It does **not** prove that those changed policies have already produced the
 next proposal. That recursive-use obligation is Phase 12. Generic successor availability and

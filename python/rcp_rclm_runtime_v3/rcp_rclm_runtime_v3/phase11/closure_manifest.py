@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import re
 import tempfile
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Final
 
@@ -41,41 +41,56 @@ _EXPECTED_CLAIM_BOUNDARY: Final[dict[str, bool]] = {
     "untrusted_isolated_training_worker": True,
     "zero_manual_repairs": True,
 }
+_EXPECTED_SELECTED_SCOPE: Final[dict[str, object]] = {
+    "active_predecessor_count": 1,
+    "model_family": "compact_decoder_only_transformer_v1",
+    "model_generated_candidate_realizations": 2,
+    "model_generator_invocations": 3,
+    "promoted_candidate_count": 1,
+    "recursive_successor_use_deferred_to_phase": 12,
+    "rejected_candidate_count": 1,
+    "successor_generator_generation": 2,
+    "successor_planner_generation": 2,
+    "task_class": "lean_theorem_completion_v1",
+}
 _EXPECTED_ARTIFACT_KINDS: Final[frozenset[str]] = frozenset(
     {"final", "macos", "pinned", "training", "ubuntu", "windows"}
 )
-_STABLE_REFERENCE_KEYS: Final[Sequence[str]] = (
+_STABLE_REFERENCE_COMPONENT_KEYS: Final[Sequence[str]] = (
     "active_generator_hash",
     "active_package_hash",
     "active_planner_hash",
     "active_state_hash",
     "alpha_candidate_fixture_hash",
     "alpha_invocation_hash",
-    "alpha_phase6_hash",
-    "beta_candidate_fixture_hash",
     "beta_candidate_model_identity_hash",
     "beta_candidate_package_hash",
-    "beta_invocation_hash",
-    "beta_phase6_hash",
     "invalid_invocation_hash",
     "invalid_validation_hash",
-    "lifecycle_certificate_hash",
-    "lifecycle_transition_hash",
     "successor_generator_hash",
     "successor_planner_hash",
-    "summary_hash",
+)
+_STABLE_REFERENCE_KEYS: Final[frozenset[str]] = frozenset(
+    (*_STABLE_REFERENCE_COMPONENT_KEYS, "portable_summary_hash")
 )
 _EXACT_RUNTIME_HASH_KEYS: Final[frozenset[str]] = frozenset(
     {
         "active_package_hash_after_rejection",
+        "alpha_phase6_hash",
+        "beta_candidate_fixture_hash",
+        "beta_invocation_hash",
+        "beta_phase6_hash",
         "initial_active_package_hash",
         "installed_generator_bytes_hash",
         "installed_planner_bytes_hash",
+        "lifecycle_certificate_hash",
+        "lifecycle_transition_hash",
         "parent_package_hash",
         "promoted_package_hash",
         "promotion_attempt_report_hash",
         "promotion_ledger_hash",
         "promotion_report_hash",
+        "reference_summary_hash",
         "rejection_attempt_report_hash",
         "rejection_ledger_hash",
         "verification_report_hash",
@@ -124,6 +139,22 @@ def _valid_hash_map(value: object, expected_keys: frozenset[str]) -> bool:
     )
 
 
+def _portable_reference_hashes(summary: Mapping[str, object]) -> dict[str, str]:
+    result: dict[str, str] = {}
+    for name in _STABLE_REFERENCE_COMPONENT_KEYS:
+        value = summary.get(name)
+        if not _valid_hash(value):
+            raise ValueError(f"Phase 11 portable summary is missing a valid {name}")
+        result[name] = str(value)
+    result["portable_summary_hash"] = canonical_json_hash(
+        {
+            "schema_id": "runtime.v3.phase11b.portable_reference_hashes.v1",
+            "hashes": result,
+        }
+    )
+    return result
+
+
 def _expected_artifact_name(kind: str, run_id: int, attempt: int) -> str:
     suffix = f"{run_id}-{attempt}"
     if kind == "ubuntu":
@@ -156,12 +187,23 @@ def _validate_code_proof(value: object) -> bool:
         return False
     if isinstance(attempt, bool) or not isinstance(attempt, int) or attempt < 1:
         return False
-    if not _valid_hash_map(value.get("closure_report"), _CLOSURE_REPORT_HASH_KEYS):
+    closure_report = value.get("closure_report")
+    runtime_hashes = value.get("exact_runtime_hashes")
+    if not _valid_hash_map(closure_report, _CLOSURE_REPORT_HASH_KEYS):
         return False
-    if not _valid_hash_map(
-        value.get("exact_runtime_hashes"),
-        _EXACT_RUNTIME_HASH_KEYS,
-    ):
+    if not _valid_hash_map(runtime_hashes, _EXACT_RUNTIME_HASH_KEYS):
+        return False
+    if not isinstance(closure_report, dict) or not isinstance(runtime_hashes, dict):
+        return False
+    if closure_report["promotion_hash"] != runtime_hashes["promotion_report_hash"]:
+        return False
+    if runtime_hashes["initial_active_package_hash"] != runtime_hashes[
+        "active_package_hash_after_rejection"
+    ]:
+        return False
+    if runtime_hashes["initial_active_package_hash"] != runtime_hashes[
+        "parent_package_hash"
+    ]:
         return False
     if value.get("runtime_claims") != {
         "installed_generator_bytes_verified": True,
@@ -170,6 +212,8 @@ def _validate_code_proof(value: object) -> bool:
         "promotion_parent_is_unchanged_active_package": True,
         "rejection_preserved_active_package": True,
     }:
+        return False
+    if value.get("pinned_toolchain") != "leanprover/lean4:v4.31.0":
         return False
 
     git_trees = value.get("git_trees")
@@ -212,7 +256,7 @@ def _recompute_stable_reference_hashes() -> dict[str, str]:
         prefix="rcp-rclm-phase11-closure-manifest-"
     ) as temporary:
         summary = build_phase11b_reference(Path(temporary) / "reference").summary_json()
-    return {name: str(summary[name]) for name in _STABLE_REFERENCE_KEYS}
+    return _portable_reference_hashes(summary)
 
 
 def validate_phase11_closure_manifest(
@@ -226,6 +270,7 @@ def validate_phase11_closure_manifest(
         "schema_version": manifest.get("schema_version") == _EXPECTED_SCHEMA_VERSION,
         "status": manifest.get("status") == _EXPECTED_STATUS,
         "claim_boundary": manifest.get("claim_boundary") == _EXPECTED_CLAIM_BOUNDARY,
+        "selected_scope": manifest.get("selected_scope") == _EXPECTED_SELECTED_SCOPE,
         "code_proof": _validate_code_proof(manifest.get("code_proof")),
         "dependency": manifest.get("dependency")
         == {
@@ -268,7 +313,7 @@ def validate_phase11_closure_manifest(
     else:
         checks["stable_reference_hash_shape"] = _valid_hash_map(
             declared_stable,
-            frozenset(_STABLE_REFERENCE_KEYS),
+            _STABLE_REFERENCE_KEYS,
         )
 
     failures = sorted(name for name, accepted in checks.items() if accepted is not True)
@@ -311,11 +356,26 @@ def validate_phase11_closure_report(
         "runtime_bindings_shape": isinstance(bindings, dict),
     }
     if isinstance(summary, dict):
-        checks["stable_summary_hash"] = (
+        checks["runtime_summary_self_binding"] = (
             report.get("stable_reference_summary_hash") == summary.get("summary_hash")
         )
-        for name in _STABLE_REFERENCE_KEYS:
-            checks[f"stable_{name}"] = summary.get(name) == stable.get(name)
+        checks["runtime_phase6_hashes"] = all(
+            _valid_hash(summary.get(name))
+            for name in (
+                "alpha_phase6_hash",
+                "beta_candidate_fixture_hash",
+                "beta_invocation_hash",
+                "beta_phase6_hash",
+                "lifecycle_certificate_hash",
+                "lifecycle_transition_hash",
+                "summary_hash",
+            )
+        )
+        try:
+            observed_portable = _portable_reference_hashes(summary)
+        except ValueError:
+            observed_portable = None
+        checks["portable_reference_hashes"] = observed_portable == stable
     if isinstance(bindings, dict):
         checks.update(
             {
