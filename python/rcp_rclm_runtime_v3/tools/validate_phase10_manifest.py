@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 import tempfile
 from pathlib import Path
 
@@ -12,15 +13,16 @@ from rcp_rclm_runtime_v3.phase10.reference import build_phase10_reference_fixtur
 from rcp_rclm_runtime_v3.phase10.tokenizer import ByteTokenizerManifest
 
 
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as source:
-        while True:
-            chunk = source.read(1024 * 1024)
-            if not chunk:
-                break
-            digest.update(chunk)
-    return digest.hexdigest()
+def _git_blob_sha256(root: Path, relative_path: str) -> str:
+    completed = subprocess.run(
+        ["git", "-C", str(root), "show", f"HEAD:{relative_path}"],
+        check=False,
+        capture_output=True,
+    )
+    if completed.returncode != 0:
+        stderr = completed.stderr.decode("utf-8", errors="replace")
+        raise RuntimeError(f"unable to read Git object {relative_path}: {stderr}")
+    return hashlib.sha256(completed.stdout).hexdigest()
 
 
 def main() -> int:
@@ -50,26 +52,25 @@ def main() -> int:
     checks["tokenizer_manifest_hash"] = tokenizer_record["tokenizer_manifest_hash"] == tokenizer.manifest_hash
 
     paths = {
-        "phase_10_schema_sha256": repo_root
-        / "python"
-        / "rcp_rclm_executable_core_v3"
-        / "contract"
-        / "phase_10_substrate.schema.json",
-        "transformer_extension_lean_sha256": repo_root
-        / "lean"
-        / "rcp_rclm_formal_core_v3"
-        / "RcpRclmFormalCoreV3"
-        / "Learned"
-        / "TransformerExtension.lean",
-        "phase_10_transformer_axiom_audit_sha256": repo_root
-        / "docs"
-        / "formal_core_v3"
-        / "audit"
-        / "Phase10TransformerExtensionAxiomAudit.lean",
+        "phase_10_schema_sha256": (
+            "python/rcp_rclm_executable_core_v3/contract/"
+            "phase_10_substrate.schema.json"
+        ),
+        "transformer_extension_lean_sha256": (
+            "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/"
+            "Learned/TransformerExtension.lean"
+        ),
+        "phase_10_transformer_axiom_audit_sha256": (
+            "docs/formal_core_v3/audit/"
+            "Phase10TransformerExtensionAxiomAudit.lean"
+        ),
     }
     artifact_hashes = manifest["artifact_hashes"]
-    for name, path in paths.items():
-        checks[name] = path.is_file() and artifact_hashes[name] == _sha256(path)
+    for name, relative_path in paths.items():
+        checks[name] = (
+            (repo_root / relative_path).is_file()
+            and artifact_hashes[name] == _git_blob_sha256(repo_root, relative_path)
+        )
 
     required_source_paths = (
         "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/__init__.py",
