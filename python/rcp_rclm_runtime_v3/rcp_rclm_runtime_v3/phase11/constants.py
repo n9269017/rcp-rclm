@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from typing import Final
 
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
@@ -39,7 +40,7 @@ PROPOSAL_PROTOCOL: Final[dict[str, object]] = {
 }
 PROPOSAL_PROTOCOL_HASH: Final[str] = canonical_json_hash(PROPOSAL_PROTOCOL)
 
-FROZEN_AUTHORITIES: Final[tuple[str, ...]] = (
+FROZEN_AUTHORITIES: Final[Sequence[str]] = (
     "active_ledger_history",
     "canonical_serializer",
     "hardened_checker",
@@ -50,7 +51,7 @@ FROZEN_AUTHORITIES: Final[tuple[str, ...]] = (
     "root_trust_anchor",
 )
 
-ALLOWED_UPDATE_CLASSES: Final[tuple[str, ...]] = (
+ALLOWED_UPDATE_CLASSES: Final[Sequence[str]] = (
     "architecture_extension",
     "data_curriculum_update",
     "generator_update",
@@ -65,7 +66,7 @@ ALLOWED_UPDATE_CLASSES: Final[tuple[str, ...]] = (
     "weight_update",
 )
 
-FORBIDDEN_UPDATE_CLASSES: Final[tuple[str, ...]] = (
+FORBIDDEN_UPDATE_CLASSES: Final[Sequence[str]] = (
     "tokenizer_update",
     "verification_policy_update",
 )
