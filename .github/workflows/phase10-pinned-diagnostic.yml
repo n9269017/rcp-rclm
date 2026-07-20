@@ -56,6 +56,24 @@ jobs:
           use-mathlib-cache: false
           use-github-cache: false
 
+      - name: Resolve frozen Formal Core v2 dependencies
+        working-directory: lean/rcp_rclm_formal_core_v2
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        run: lake update
+
+      - name: Verify frozen Formal Core v2 manifest
+        working-directory: lean/rcp_rclm_formal_core_v2
+        run: git diff --exit-code -- lake-manifest.json
+
+      - name: Fetch official v2 mathlib cache
+        working-directory: lean/rcp_rclm_formal_core_v2
+        run: lake exe cache get
+
+      - name: Build frozen Formal Core v2 bridge
+        working-directory: lean/rcp_rclm_formal_core_v2
+        run: lake build
+
       - name: Resolve pinned dependency graph
         working-directory: lean/rcp_rclm_formal_core_v3
         env:
