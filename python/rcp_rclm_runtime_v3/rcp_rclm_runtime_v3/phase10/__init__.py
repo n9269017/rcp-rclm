@@ -15,6 +15,13 @@ from rcp_rclm_runtime_v3.phase10.learned_reference import (
     Phase10LearnedReference,
     build_phase10_learned_reference,
 )
+from rcp_rclm_runtime_v3.phase10.lifecycle import (
+    EMBEDDED_PHASE10_ROOT,
+    Phase10Phase6Fixture,
+    build_phase10_phase6_fixture,
+    phase10_phase6_budget,
+    replay_phase10_phase6,
+)
 from rcp_rclm_runtime_v3.phase10.package import (
     ModelPackageManifest,
     build_reference_predecessor_package,
@@ -28,11 +35,6 @@ from rcp_rclm_runtime_v3.phase10.sparse_profile import DecodeResult, decode_comp
 from rcp_rclm_runtime_v3.phase10.tasks import TaskVerifierReport, verify_decoded_task
 from rcp_rclm_runtime_v3.phase10.tensors import TensorManifest, TensorRecord, TensorSpec
 from rcp_rclm_runtime_v3.phase10.tokenizer import ByteTokenizer, ByteTokenizerManifest
-from rcp_rclm_runtime_v3.phase10.training_process import (
-    TrainingProcessEvidence,
-    run_training_process,
-    run_training_twice,
-)
 from rcp_rclm_runtime_v3.phase10.validation import (
     ConservativeExtensionReport,
     Phase10PackageReport,
@@ -46,11 +48,13 @@ __all__ = [
     "CompactTransformerArchitecture",
     "ConservativeExtensionReport",
     "DecodeResult",
+    "EMBEDDED_PHASE10_ROOT",
     "LoRAAdapterManifest",
     "ModelPackageManifest",
     "Phase10InformationReport",
     "Phase10LearnedReference",
     "Phase10PackageReport",
+    "Phase10Phase6Fixture",
     "Phase10ReferenceFixture",
     "PromptInformationEvidence",
     "TaskVerifierReport",
@@ -58,17 +62,17 @@ __all__ = [
     "TensorRecord",
     "TensorSpec",
     "TokenInformationEvidence",
-    "TrainingProcessEvidence",
     "build_information_report",
     "build_phase10_learned_reference",
+    "build_phase10_phase6_fixture",
     "build_phase10_reference_fixture",
     "build_reference_predecessor_package",
     "build_zero_lora_extension_package",
     "create_zero_output_lora_manifest",
     "decode_completion",
     "empty_adapter_manifest",
-    "run_training_process",
-    "run_training_twice",
+    "phase10_phase6_budget",
+    "replay_phase10_phase6",
     "validate_conservative_extension",
     "validate_model_package",
     "verify_adapter_manifest",
