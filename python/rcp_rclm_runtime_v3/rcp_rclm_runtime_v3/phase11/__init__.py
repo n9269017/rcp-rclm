@@ -60,11 +60,6 @@ from rcp_rclm_runtime_v3.phase11.phase11b_tasks import (
     phase11b_training_manifest,
     verify_phase11b_task,
 )
-from rcp_rclm_runtime_v3.phase11.phase11b_training import (
-    Phase11BTrainingEvidence,
-    phase11b_training_request,
-    run_phase11b_training,
-)
 from rcp_rclm_runtime_v3.phase11.records import (
     ArchitectureMutationDirective,
     BudgetLedger,
@@ -108,7 +103,6 @@ __all__ = [
     "Phase11BPhase6Evidence",
     "Phase11BPromotionEvidence",
     "Phase11BReference",
-    "Phase11BTrainingEvidence",
     "Phase11BootstrapFixture",
     "Phase11CandidateEvaluation",
     "Phase11CandidateFixture",
@@ -138,10 +132,8 @@ __all__ = [
     "phase11b_phase7_budget",
     "phase11b_phase7_policy",
     "phase11b_training_manifest",
-    "phase11b_training_request",
     "phase11b_training_semantic_hash",
     "promote_phase11b_candidate",
-    "run_phase11b_training",
     "validate_generated_program",
     "validate_phase11_bootstrap_package",
     "validate_phase11_closure_manifest",
