@@ -203,10 +203,9 @@ jobs:
         working-directory: lean/rcp_rclm_formal_core_v3
         shell: bash
         run: |
-          set -euo pipefail
+          set -o pipefail
           mkdir -p audit-results-phase10b
-          lake build > audit-results-phase10b/lake_build.log 2>&1
-          tail -n 60 audit-results-phase10b/lake_build.log
+          lake build 2>&1 | tee audit-results-phase10b/lake_build.log
 
       - name: Reject forbidden proof tokens and local axioms
         working-directory: lean/rcp_rclm_formal_core_v3
