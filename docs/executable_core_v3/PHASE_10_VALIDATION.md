@@ -1,71 +1,67 @@
-# Phase 10A substrate validation
+# Phase 10 validation
 
-## Validation state
+## Phase 10A exact-head closure
 
-The canonical compact-transformer substrate and zero-output LoRA extension are
-implementation-complete locally and are entering exact-head CI validation. This record
-must not be read as full Phase 10 completion.
-
-The local deterministic reference currently reports:
+The canonical compact-transformer package and zero-output LoRA extension closed at
+validated branch head:
 
 ```text
-architecture hash:
-6b00c2df239868a4e7359cd2ee9e0292a9c877d06e893248bb36521450e32a0a
+95a4679291b25da5093d757cc6e7baf5461a8a6a
+```
 
-predecessor package hash:
-1bcea7aff72d5c3f6027631d419ca730c980b3b1e2b72c60fd3b40750db69df5
+with PR merge-test commit:
 
-zero-LoRA package hash:
-7325101f8dc927d6f9047a530ea4682d20979f90c0e261cafd053a8a29f405ca
+```text
+482f065308cf4735d36959bf06fbe12f1e27ea3e
+```
 
-predecessor model identity:
+and successful workflow:
+
+```text
+29710470650
+```
+
+That exact head passed Ubuntu, Windows, macOS, pinned Lean, proof-hygiene, schema,
+manifest, deterministic reference, and closure jobs.  The Phase 10A closure explicitly
+records `phase10_exit_closed=false`.
+
+The retained Phase 10A model identities are:
+
+```text
+predecessor:
 e360f49bc573d814bf8f13ac91a9888ceae21e3a2a4dd5a59cf8b13be31223bb
 
-zero-LoRA model identity:
+zero-LoRA extension:
 dc72411ccdfa7b1c060fba790999d62356a308d1cc5a9b089bdaef57000274fb
-
-conservative-extension report:
-6372cbbe7e0b2a01896cb22edbb4226a88b490273f6c451c9bc2f4db94d0bc2a
-
-complete reference hash:
-e9368750ffd4d729ec7e39c7b323c0b5d375ec9f150dd47bd0beb0df1658d8d9
 ```
 
-Local checks completed:
+## Phase 10B implementation validation
+
+Phase 10B adds the selected learned execution and certified-language slice.  The source
+must close at one exact head with:
 
 ```text
-Python compilation:                  success
-focused Phase 10 tests:             10 passed
-source-quality findings:            0
-Draft 2020-12 schema validation:    success
-manifest/hash recomputation:        success
-predecessor package validation:     accept
-zero-LoRA package validation:       accept
-conservative-extension validation: accept
-```
-
-## CI closure required
-
-The branch workflow must still establish at one exact head:
-
-```text
-Ubuntu deterministic reference and tests
-Windows deterministic reference and tests
-macOS deterministic reference and tests
-identical cross-platform hashes
-pinned Lean build
-forbidden-token and local-axiom scans
-Phase 10 transformer-extension axiom audit
-Phase 9 regression tests
+Ubuntu learned-reference and Phase 9 regression validation
+Windows learned-reference and Phase 9 regression validation
+macOS learned-reference and Phase 9 regression validation
+two fresh bootstrap PyTorch worker invocations
+two fresh successor PyTorch worker invocations
+host-exact tensor-byte recomputation
+pinned Lean compilation of the protected completion
+pinned Lean compilation of the new held-out completion
+rejection of the predecessor on the held-out task
+selected information theorem axiom audit
+exact Phase 9 learned-transition acceptance
 workflow closure artifact
 ```
 
-After that run succeeds, this record should be amended with the exact branch head,
-merge-test commit, run identifier, and artifact digests.
+The Phase 10B machine-readable manifest remains in
+`implementation_started_pending_authoritative_ci` status until that exact-head run
+succeeds and its reference and artifact hashes are committed.
 
-## Claim boundary
+## Full Phase 10 boundary
 
-This validation covers a real compact-transformer **package graph** and conservative
-adapter extension. The reference weights are structural zeros. It does not establish a
-trained language model, task-frontier expansion, KL/QRE evidence, promotion, replay, or
-full Phase 10 closure.
+Even after Phase 10B closure, full Phase 10 remains open until the learned candidate is
+realized through Phase 6, rollback is byte-exact, the inherited pinned-Lean and hardened
+checker gates accept, Phase 7 atomically promotes the package, and independent replay
+succeeds with the training worker absent and zero training invocations.

@@ -28,47 +28,63 @@
 
 ## D. Actual learned language model
 
-- [ ] The base package contains trained, nontrivial language-model weights.
-- [ ] The training backend is isolated and treated as untrusted computation.
-- [ ] Training-data provenance and curriculum evidence are independently checked.
-- [ ] Held-out prompts and reference answers remain unavailable before candidate freeze.
-- [ ] The candidate contains a genuine learned weight or adapter update.
+- [x] The base package contains nontrivial canonical language-model weights at the selected
+      sparse transformer execution profile.
+- [x] A separate PyTorch CPU training/export worker performs genuine one-step SGD updates.
+- [x] The worker is isolated, source scanned, invoked with `-I -B`, and treated as untrusted.
+- [x] Host integer arithmetic recomputes and byte-compares every accepted candidate tensor.
+- [x] Training-data provenance and curriculum evidence are independently hash bound.
+- [x] Held-out task IDs, prompts, source, and reference answers remain unavailable before
+      candidate freeze.
+- [x] The candidate contains a genuine learned model-weight update.
+- [x] Two fresh worker invocations are required to produce identical output.
 
 ## E. Authoritative inference and formal-language evaluation
 
-- [ ] Deterministic CPU inference over canonical package tensors is implemented.
-- [ ] Decoding policy and tie-breaking are fixed and hash bound.
-- [ ] At least one protected Lean theorem-completion task is solved by the predecessor.
-- [ ] Every protected predecessor task is solved by the candidate.
-- [ ] At least one new held-out Lean task is solved only by the candidate.
-- [ ] Every task success is established by the pinned independent Lean verifier.
+- [x] Deterministic CPU inference over canonical package tensors is implemented for the
+      selected `sparse_last_token_transition_v1` profile.
+- [x] The selected execution profile is fail-closed and does not claim general
+      native-float transformer equivalence.
+- [x] Decoding policy, maximum length, distribution normalization, and tie-breaking are
+      fixed and hash bound.
+- [x] At least one protected Lean theorem-completion task is solved by the predecessor.
+- [x] Every protected predecessor task is solved by the candidate.
+- [x] At least one new held-out Lean task is solved only by the candidate.
+- [x] Every accepted task success is established by the pinned independent Lean verifier.
+- [x] Candidate self-reported task success is never consumed.
 
 ## F. Information-theoretic evidence
 
-- [ ] Model-output density records are constructed from actual model distributions.
-- [ ] Selected entropy and KL/diagonal-QRE values are recomputed independently.
-- [ ] Protected KL/QRE non-regression is certified by exact arithmetic or outward intervals.
-- [ ] Any strict information witness is bound to the actual predecessor and candidate.
+- [x] Strictly positive exact model-output distributions are constructed from canonical
+      model scores.
+- [x] Each distribution is represented as a selected diagonal token density.
+- [x] Shannon/von Neumann entropy intervals are recomputed independently.
+- [x] KL/diagonal-QRE intervals are recomputed independently.
+- [x] Protected KL/QRE non-regression is certified with exact zero regression.
+- [x] A strict held-out information witness has a positive certified lower endpoint.
+- [x] Formal Core v3 records the selected diagonal entropy and QRE/KL identities.
 
-## G. Successor realization and promotion
+## G. Gate D refinement, realization, and promotion
 
-- [ ] The candidate model hash differs from the predecessor model hash.
-- [ ] The complete Phase 9/Gate D transition report accepts.
-- [ ] Phase 6 realization records every changed file and component.
-- [ ] Rollback restoration is byte exact.
-- [ ] Pinned Lean and the hardened checker both accept.
+- [x] The candidate model hash differs from the predecessor model hash.
+- [x] Every protected task is recertified for the candidate model identity.
+- [x] The complete Phase 9 learned transition report accepts exact frontier expansion.
+- [ ] Phase 6 realizes every learned tensor, manifest, and policy change.
+- [ ] Phase 6 records and verifies byte-exact rollback restoration.
+- [ ] The inherited pinned-Lean and hardened-checker stability obligations accept.
 - [ ] Phase 7 atomically promotes the candidate.
 
 ## H. Independent replay
 
-- [ ] Replay succeeds after removing the training worker.
+- [ ] Replay succeeds after physically removing the training worker.
 - [ ] Replay performs zero training invocations.
 - [ ] Replay reconstructs package hashes, task evidence, KL/QRE evidence, Lean verdict,
       hardened-checker verdict, parent linkage, and rollback.
-- [ ] Linux, Windows, and macOS produce the same authoritative result.
+- [ ] Linux, Windows, and macOS produce the same authoritative replay result.
 
 ## Closure status
 
-Phase 10 is **in progress**. Sections A–C close the canonical substrate and conservative
-extension slice. The full Phase 10 claim remains open until Sections D–H are all closed
-at one exact source head.
+Phase 10 is **in progress**. Sections A–F and the Gate D/Phase 9 portion of Section G are
+implemented by the Phase 10A/10B source.  The full Phase 10 claim remains open until the
+unchecked realization, promotion, rollback, and independent-replay obligations in
+Sections G–H close at one exact source head.

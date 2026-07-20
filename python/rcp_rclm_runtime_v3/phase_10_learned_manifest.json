@@ -1,0 +1,70 @@
+{
+  "artifact_hashes": {
+    "phase_10_information_lean_sha256": null,
+    "phase_10_learned_schema_sha256": null,
+    "phase_10_learned_workflow_sha256": null,
+    "phase_10_training_worker_sha256": null
+  },
+  "claim_boundary": {
+    "atomic_promotion": false,
+    "authoritative_exact_sparse_inference": true,
+    "full_native_float_transformer_equivalence": false,
+    "independent_replay_without_training": false,
+    "new_heldout_lean_task_certified": true,
+    "phase10_exit_closed": false,
+    "phase6_realization_and_rollback": false,
+    "phase9_gate_d_transition_accepts": true,
+    "selected_entropy_kl_diagonal_qre": true,
+    "trained_nontrivial_compact_model_weights": true,
+    "untrusted_isolated_training_worker": true
+  },
+  "phase_name": "RCLM v3 Phase 10B - learned compact-model execution and certified language capability",
+  "reference_hashes": {
+    "candidate_model_identity_hash": null,
+    "candidate_package_hash": null,
+    "information_report_hash": null,
+    "phase9_transition_report_hash": null,
+    "predecessor_model_identity_hash": null,
+    "predecessor_package_hash": null,
+    "summary_hash": null
+  },
+  "required_source_paths": [
+    ".github/workflows/runtime-v3-phase-10-learned.yml",
+    "docs/executable_core_v3/PHASE_10_LEARNED.md",
+    "docs/formal_core_v3/audit/Phase10InformationAxiomAudit.lean",
+    "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Phase10Information.lean",
+    "python/rcp_rclm_executable_core_v3/contract/phase_10_learned.schema.json",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/information.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/learned_data.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/learned_package.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/learned_reference.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/sparse_profile.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/tasks.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/training_process.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/training_protocol.py",
+    "python/rcp_rclm_runtime_v3/tests_phase10/test_learned_substrate.py",
+    "python/rcp_rclm_runtime_v3/tools/phase10_training_worker.py",
+    "python/rcp_rclm_runtime_v3/tools/run_phase10_lean_tasks.py",
+    "python/rcp_rclm_runtime_v3/tools/run_phase10_learned_reference.py",
+    "python/rcp_rclm_runtime_v3/tools/run_phase10_training_reference.py",
+    "python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_manifest.py",
+    "python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_schema.py",
+    "scripts/run_phase10_learned.py"
+  ],
+  "schema_version": "rcp-rclm-runtime-v3-phase-10b-manifest-v1",
+  "selected_profile": {
+    "architecture_id": "rclm-compact-decoder-13m-v1",
+    "authoritative_distribution": "exact_dyadic_logit_v1",
+    "authoritative_inference": "sparse_last_token_transition_v1",
+    "candidate_completion": "omega",
+    "candidate_update": "model.layers.00.attn_output.weight",
+    "decoding": "greedy_lowest_token_id_tiebreak",
+    "heldout_task_id": "lean.phase10.heldout.linear_gap",
+    "model_family": "compact_decoder_only_transformer_v1",
+    "protected_completion": "rfl",
+    "protected_task_id": "lean.phase10.protected.reflexive_seven",
+    "training_backend": "untrusted_pytorch_cpu_float64_sgd_v1"
+  },
+  "source_phase10a_head": "95a4679291b25da5093d757cc6e7baf5461a8a6a",
+  "status": "implementation_started_pending_authoritative_ci"
+}

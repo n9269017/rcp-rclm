@@ -1,7 +1,7 @@
 # RCP/RCLM Runtime v3
 
 This package implements the executable correspondence for Formal Core v3 Gate D and the
-first canonical substrate for a real compact language model.
+selected compact language-model substrate and learned execution path.
 
 ## Phase 9 contract
 
@@ -20,7 +20,7 @@ The Phase 9 layer provides immutable Python records and deterministic validation
 
 ## Phase 10A substrate
 
-`rcp_rclm_runtime_v3.phase10` adds:
+`rcp_rclm_runtime_v3.phase10` provides:
 
 ```text
 fixed 13.2M decoder-only transformer architecture
@@ -34,9 +34,26 @@ fail-closed package and extension validation
 deterministic reference-package construction
 ```
 
-The trusted Runtime v3 package imports no PyTorch, NumPy, random-number backend, or
-native floating-point acceptance source. Model binaries are generated in temporary
-validation workspaces and are not committed.
+## Phase 10B learned execution
+
+The selected learned reference additionally provides:
+
+```text
+nontrivial sparse compact-model weights
+isolated untrusted PyTorch CPU SGD worker
+host-exact candidate tensor recomputation
+integer deterministic decoding
+exact dyadic token distributions
+protected Lean task retention
+new held-out Lean task certification
+entropy/KL/diagonal-QRE interval evidence
+accepting Phase 9 learned frontier transition
+```
+
+The trusted package imports no PyTorch, NumPy, random-number backend, or native
+floating-point acceptance source.  PyTorch appears only in the isolated worker under
+`tools/`; its output must equal host-recomputed canonical bytes.  Model binaries are
+generated in temporary validation workspaces and are not committed.
 
 ## Build and test
 
@@ -47,7 +64,13 @@ python -m pip install --no-deps -e python/rcp_rclm_runtime_v2
 python -m pip install -e "python/rcp_rclm_runtime_v3[test]"
 ```
 
-Run the focused suites and reference:
+Install the optional training worker dependency only for the untrusted training job:
+
+```bash
+python -m pip install -e "python/rcp_rclm_runtime_v3[phase10-train]"
+```
+
+Run the focused suites and references:
 
 ```bash
 python python/rcp_rclm_runtime_v3/tools/run_phase9_tests.py \
@@ -58,21 +81,21 @@ python python/rcp_rclm_runtime_v3/tools/run_phase10_tests.py \
   --package-root python/rcp_rclm_runtime_v3 \
   --out artifacts/runtime_v3_phase_10/tests.log
 
-python python/rcp_rclm_runtime_v3/tools/validate_phase10_schema.py \
-  --schema python/rcp_rclm_executable_core_v3/contract/phase_10_substrate.schema.json \
-  --out artifacts/runtime_v3_phase_10/schema.json
+python python/rcp_rclm_runtime_v3/tools/run_phase10_learned_reference.py \
+  --out artifacts/runtime_v3_phase_10/learned_reference.json
 
-python python/rcp_rclm_runtime_v3/tools/run_phase10_reference.py \
-  --out artifacts/runtime_v3_phase_10/reference.json
+python python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_schema.py \
+  --schema python/rcp_rclm_executable_core_v3/contract/phase_10_learned.schema.json \
+  --out artifacts/runtime_v3_phase_10/learned_schema.json
 
-python python/rcp_rclm_runtime_v3/tools/validate_phase10_manifest.py \
+python python/rcp_rclm_runtime_v3/tools/validate_phase10_learned_manifest.py \
   --repo-root . \
-  --out artifacts/runtime_v3_phase_10/manifest.json
+  --out artifacts/runtime_v3_phase_10/learned_manifest.json
 ```
 
 ## Claim boundary
 
-The package does not yet establish a trained compact language model, deterministic
-authoritative inference, a newly certified Lean task, KL/QRE evidence, promotion,
-independent replay, self-hosted recursion, or autonomous/unbounded RSI. Those remain the
-open Phase 10 and later-phase obligations.
+The package now establishes a selected learned compact-model execution path, protected
+and held-out Lean task certification, selected information evidence, and exact Phase 9
+frontier expansion.  It does not yet establish Phase 6 realization, atomic promotion,
+training-free independent replay, self-hosted recursion, or autonomous/unbounded RSI.
