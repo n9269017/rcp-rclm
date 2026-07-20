@@ -38,4 +38,19 @@ jobs:
           python-version: "3.11"
 
       - name: Verify and apply payload
-        run: python scripts/apply_phase10b_payload.py
+        shell: bash
+        run: |
+          set +e
+          python scripts/apply_phase10b_payload.py > "${RUNNER_TEMP}/phase10b-materialize.log" 2>&1
+          status=$?
+          cat "${RUNNER_TEMP}/phase10b-materialize.log"
+          exit "$status"
+
+      - name: Upload materialization diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase10b-materialization-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/phase10b-materialize.log
+          if-no-files-found: error
+          retention-days: 7
