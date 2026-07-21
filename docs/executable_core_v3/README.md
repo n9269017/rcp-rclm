@@ -17,15 +17,17 @@ Phase 11A — active-model typed proposal, rejection, and fresh validation: comp
 Phase 11 lifecycle — realized alpha rejection, fresh beta promotion, and generation-2 policy installation: complete
 Phase 12 — self-hosted multi-generation recursion: in progress
 Phase 12A — promoted generation-2 generator used recursively; first stale proposal rejected: complete and merged
-Phase 12B — M0 -> M1 model-weight successor, frontier 3 -> 4, and first recursive promotion: complete at selected slice scope
-Phase 12 remaining chain — M1 -> M2 -> M3 -> M4: open
+Phase 12B — M0 -> M1 model-weight successor and frontier 3 -> 4: complete and merged
+Phase 12C — M1 -> M2 memory/retrieval successor and frontier 4 -> 5: implemented at selected slice scope
+Phase 12 remaining chain — M2 -> M3 -> M4: open
 Phase 13 — broader independent adversarial closure: not started
 ```
 
 Phase 12A closes the architectural handoff deferred by Phase 11: the promoted successor's own
-changed generator is the source of a later proposal. Phase 12B then carries a fresh proposal from
-the same active generation-2 package through model-weight realization, strict frontier expansion,
-and atomic promotion. The complete four-promotion `M0 -> M4` chain remains open.
+changed generator is the source of a later proposal. Phase 12B carries a fresh proposal from that
+active package through model-weight realization and atomic promotion. Phase 12C uses the generator
+and planner inside promoted `M1`, retains a second fail-closed rejection, installs package-bound
+memory and retrieval, and promotes `M2`. The complete four-promotion `M0 -> M4` chain remains open.
 
 ## Phase 9
 
@@ -94,24 +96,17 @@ misclassified as portable model identities.
 Phase 11 adds one bounded model-facing experiment controller over the promoted Phase 10
 package:
 
-- a host-installed active generator/planner bootstrap, excluded from the autonomous-
-  improvement count;
+- a host-installed active generator/planner bootstrap, excluded from the autonomous-improvement
+  count;
 - a canonical typed mutation-program grammar and immutable total budget;
-- three deterministic active-model proposal invocations with no held-out material;
-- rejection of an invalid, over-budget proposal before realization;
+- deterministic active-model proposal invocations with no held-out material;
+- rejection of an invalid proposal before realization;
 - Phase 6 realization and exact rollback of an alpha candidate;
-- rejection of alpha for protected-capability regression while leaving the active package
-  unchanged;
-- an immutable rejection-ledger entry;
+- rejection of alpha for protected-capability regression while leaving the active package unchanged;
 - a fresh beta proposal bound to alpha's rejection evidence;
 - duplicate isolated alpha and beta worker execution with host-exact tensor recomputation;
-- Phase 6 realization and exact rollback of beta;
-- retention of the protected `rfl` and Phase 10 `omega` tasks;
-- certification of one new held-out Lean task under the pinned toolchain;
-- selected entropy/KL/diagonal-QRE and strict-information obligations;
-- complete Gate D / Phase 9 and hardened Gate B acceptance;
+- Phase 6 realization, exact rollback, Gate D, pinned Lean, and hardened verification of beta;
 - Phase 7 atomic promotion with the unchanged active package as parent;
-- ledger sequence number two: rejection followed by promotion;
 - generation-2 generator and planner bytes installed inside the immutable promoted package;
 - a terminal `phase11_exit_closed=true` record.
 
@@ -122,17 +117,12 @@ Phase 6, ledger, promotion, and installed-byte evidence.
 
 The first Phase 12 slice:
 
-- reconstructs the promoted Phase 11 beta semantic package;
-- binds it to the retained Phase 11 closure manifest;
-- verifies the installed generation-2 generator, planner, and proposal-protocol identities;
-- uses the promoted successor itself to emit the next typed mutation program;
+- reconstructs and binds the promoted Phase 11 semantic package;
+- uses the promoted generation-2 successor to emit the next typed mutation program;
 - independently replays the exact model decode;
-- rejects the program because it requests generator/planner generation 2 while generation 2
-  is already active;
+- rejects the stale generator/planner-generation request;
 - proves the active package tree is unchanged;
-- consumes no held-out material and permits no manual repair;
-- records one Phase 12 rejection, zero candidate realizations, zero promotions, and zero
-  frontier expansions.
+- consumes no held-out material and permits no manual repair.
 
 This is the first recursive use of a modified successor generator in the project.
 
@@ -140,32 +130,55 @@ This is the first recursive use of a modified successor generator in the project
 
 The second Phase 12 slice:
 
-- binds a fresh rejection-conditioned invocation to the unchanged active generation-2 package;
-- uses the installed planner to project the rejected draft onto the first frozen component slot;
-- emits a canonical weight-only mutation program with no manual repair;
+- produces a fresh rejection-conditioned proposal from the unchanged active package;
+- selects only the `model_weights` transition slot;
 - runs duplicate isolated untrusted training and host-exact tensor recomputation;
 - realizes `M1` through Phase 6 and verifies exact rollback;
 - retains all three tasks in `F0`;
-- certifies `lean.phase12.generation1.le_refl_macro` as a new held-out task;
-- proves selected KL/QRE non-regression and a strict new-task information witness;
-- accepts the complete Gate D / Phase 9 transition with only `model_weights` changed;
-- independently validates the four-task frontier with pinned Lean and the hardened checker;
-- writes the Phase 12A rejection to the immutable ledger without moving the active pointer;
-- atomically promotes `M1` with the unchanged `M0` store package as parent;
-- reopens the immutable package and verifies the unchanged generation-2 generator/planner;
-- advances the certified frontier from cardinality three to four;
-- records one accepted Phase 12 promotion, one retained rejection, and zero manual repairs.
+- certifies `lean.phase12.generation1.le_refl_macro`;
+- satisfies selected KL/QRE, Gate D / Phase 9, pinned Lean, and hardened-checker obligations;
+- records the Phase 12A rejection without moving the active pointer;
+- atomically promotes `M1` with `M0` as parent;
+- advances the frontier from cardinality three to four.
 
-The generation-2 generator and planner remain active in `M1`; their use for the authoritative
-`M1 -> M2` memory/retrieval proposal is the next boundary.
+The generation-2 generator and planner remain active inside `M1`.
+
+## Phase 12C memory and retrieval promotion
+
+The third Phase 12 slice:
+
+- uses the generator and planner inside promoted `M1` as the authoritative proposal source;
+- rejects a retrieval-only proposal because the frozen schedule also requires memory-state change;
+- leaves `M1` unchanged after that second rejection;
+- produces a fresh `memory_update + retrieval_update` program with zero training steps;
+- installs one package-bound memory entry and one exact-marker retrieval rule;
+- realizes `M2` through Phase 6 and verifies exact rollback to `M1`;
+- retains every task in the four-element `F1` frontier;
+- certifies `lean.phase12.generation2.zero_le_macro` through retrieval-assisted deterministic decoding and pinned Lean;
+- accepts selected KL/QRE non-regression and a strict new-task information witness;
+- accepts Gate D / Phase 9 with exactly `memory_state` and `retrieval_policy` changed;
+- appends the second rejection without moving the active pointer;
+- atomically promotes `M2` with the unchanged `M1` store package as parent;
+- verifies the installed memory/retrieval bytes and unchanged generation-2 generator/planner;
+- advances the frontier from cardinality four to five;
+- reaches two accepted promotions, two retained rejections, and zero manual repairs.
+
+No PyTorch or other training backend is used for `M1 -> M2`. The new semantic capability comes
+from independently verified composition of the unchanged compact model with changed package-bound
+memory and retrieval components.
 
 ## Full Phase 12 boundary
 
-The remaining Phase 12 program must autonomously execute three additional accepted promotions
-under the precommitted total budget. The generator inside every promoted package must be the source
-of the following proposal. Each accepted transition must retain its predecessor frontier, add one
-newly certified Lean task, satisfy selected information and resource obligations, and preserve the
-immutable trust boundary.
+Two accepted promotions remain under the original total budget:
+
+```text
+M2 -> M3  generator and planner self-modification
+M3 -> M4  typed architecture or adapter and optimizer modification
+```
+
+The generator inside each promoted package must be the source of the following proposal. Every
+accepted transition must retain its predecessor frontier, add one newly certified Lean task,
+satisfy selected information and resource obligations, and preserve the immutable trust boundary.
 
 ## Reading order
 
