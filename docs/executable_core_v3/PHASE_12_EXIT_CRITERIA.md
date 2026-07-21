@@ -50,15 +50,40 @@
 - [x] Phase 12B emits `phase12b_first_promotion_closed=true`.
 - [x] Phase 12B correctly keeps `phase12_exit_closed=false`.
 
-## Full Phase 12 trajectory
+## Phase 12C memory and retrieval promotion
+
+- [x] The generator and planner inside promoted `M1` produce the authoritative next proposals.
+- [x] A retrieval-only proposal is rejected for incomplete component coverage.
+- [x] The second rejected attempt leaves the active `M1` package unchanged.
+- [x] A fresh rejection-conditioned memory/retrieval proposal is generated under the original budget.
+- [x] The canonical accepted program selects `memory_update` and `retrieval_update` only.
+- [x] No model training is invoked for `M1 -> M2`.
+- [x] `M1 -> M2` is realized through the inherited Phase 6 boundary.
+- [x] The Phase 6 rollback archive restores `M1` exactly.
+- [x] `M2` retains all four tasks in `F1`.
+- [x] `M2` solves one new retrieval-backed held-out Lean task.
+- [x] The selected information report proves protected KL/QRE non-regression and a strict new-task witness.
+- [x] The complete Gate D / Phase 9 transition accepts with `changed_components = {memory_state, retrieval_policy}`.
+- [x] Pinned Lean verifies the five-task frontier after candidate freeze.
+- [x] The inherited Gate B Lean bridge and hardened checker accept.
+- [x] The second rejected attempt is written to the immutable Phase 7 ledger without moving the active pointer.
+- [x] `M2` is atomically promoted with the unchanged `M1` store package as parent.
+- [x] The reopened immutable promoted package contains the expected memory and retrieval bytes.
+- [x] The generation-2 generator and planner remain installed unchanged for `M2 -> M3`.
+- [x] The certified frontier satisfies `F1 ⊊ F2` and `|F2| = 5`.
+- [x] The cumulative prefix records four generator invocations, two rejections, two realizations, two evaluations, two promotions, two frontier expansions, and zero manual repairs.
+- [x] Phase 12C emits `phase12c_memory_retrieval_promotion_closed=true`.
+- [x] Phase 12C correctly keeps `phase12_exit_closed=false`.
+
+## Remaining full Phase 12 trajectory
 
 - [x] A fresh proposal is produced after the first rejection under the original total budget.
 - [x] The fresh proposal is produced by the generator/planner inside the unchanged active package.
 - [x] `M0 -> M1` is realized, independently verified, and atomically promoted.
 - [x] `M0 -> M1` contains a genuine model-weight update.
-- [ ] The generator inside `M1` produces the authoritative proposal for `M1 -> M2`.
-- [ ] `M1 -> M2` is realized, independently verified, and atomically promoted.
-- [ ] `M1 -> M2` contains a substantive memory or retrieval update.
+- [x] The generator inside `M1` produces the authoritative proposal for `M1 -> M2`.
+- [x] `M1 -> M2` is realized, independently verified, and atomically promoted.
+- [x] `M1 -> M2` contains a substantive memory and retrieval update.
 - [ ] The generator inside `M2` produces the authoritative proposal for `M2 -> M3`.
 - [ ] `M2 -> M3` is realized, independently verified, and atomically promoted.
 - [ ] `M2 -> M3` contains a generator/planner self-modification.
@@ -72,16 +97,16 @@
 - [ ] Every accepted transition satisfies selected entropy/KL/diagonal-QRE obligations.
 - [ ] Every transition remains within the precommitted resource budget.
 - [ ] Every transition satisfies the selected goal-drift bound.
-- [ ] At least two rejected attempts are retained without changing the active package.
-- [ ] The total manual repair count is zero.
-- [ ] No operator modification occurs between attempts in the authoritative run.
+- [x] At least two rejected attempts are retained without changing the active package.
+- [ ] The total manual repair count is zero for the complete four-promotion run.
+- [ ] No operator modification occurs between attempts in the complete authoritative run.
 - [ ] The complete chain passes Linux, Windows, and macOS validation.
 - [ ] The complete chain passes pinned Lean and hardened-checker validation.
 - [ ] The final workflow emits `phase12_exit_closed=true`.
 
 ## Explicit non-claims
 
-Phase 12 does not close merely because one recursive proposal or one accepted recursive successor
-exists. Full closure requires all four accepted promotions and strict frontier expansions. Even
-after full Phase 12 closure, generic successor availability, autonomous unbounded RSI, and the
-conditional infinite premise remain separate claims.
+Phase 12 does not close merely because two recursive promotions have succeeded. Full closure
+requires all four accepted promotions and strict frontier expansions. Even after full Phase 12
+closure, generic successor availability, autonomous unbounded RSI, and the conditional infinite
+premise remain separate claims.
