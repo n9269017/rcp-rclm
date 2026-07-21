@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rcp-rclm.example/schemas/runtime-v3-phase-12b-first-promotion.json",
+  "title": "RCP/RCLM Runtime v3 Phase 12B first self-hosted promotion evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "accepted",
+    "phase12a_reference_hash",
+    "active_package_hash",
+    "active_state_hash",
+    "active_generator_hash",
+    "active_planner_hash",
+    "first_rejection_validation_hash",
+    "proposal_hash",
+    "proposal_validation_hash",
+    "deterministic_proposal_replay",
+    "semantic_candidate_hash",
+    "candidate_package_hash",
+    "candidate_model_identity_hash",
+    "phase6_hash",
+    "lifecycle_certificate_hash",
+    "lifecycle_transition_hash",
+    "frontier_before",
+    "frontier_after",
+    "new_task_ids",
+    "changed_components",
+    "progress_ledger",
+    "heldout_material_consumed",
+    "manual_repairs",
+    "claim_boundary",
+    "summary_hash"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "runtime.v3.phase12b.evidence_summary.v1"
+    },
+    "accepted": {
+      "const": true
+    },
+    "phase12a_reference_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "active_package_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "active_state_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "active_generator_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "active_planner_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "first_rejection_validation_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "proposal_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "proposal_validation_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "deterministic_proposal_replay": {
+      "const": true
+    },
+    "semantic_candidate_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "candidate_package_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "candidate_model_identity_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "phase6_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "lifecycle_certificate_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "lifecycle_transition_hash": {
+      "$ref": "#/$defs/hash"
+    },
+    "frontier_before": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "frontier_after": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "new_task_ids": {
+      "const": [
+        "lean.phase12.generation1.le_refl_macro"
+      ]
+    },
+    "changed_components": {
+      "const": [
+        "model_weights"
+      ]
+    },
+    "progress_ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "total_budget_hash",
+        "generator_invocations",
+        "rejected_attempts",
+        "candidate_realizations",
+        "candidate_evaluations",
+        "accepted_promotions",
+        "frontier_expansions",
+        "manual_repairs",
+        "target_frontier_cardinality"
+      ],
+      "properties": {
+        "schema_id": {
+          "const": "runtime.v3.phase12.progress_ledger.v1"
+        },
+        "total_budget_hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "generator_invocations": {
+          "const": 2
+        },
+        "rejected_attempts": {
+          "const": 1
+        },
+        "candidate_realizations": {
+          "const": 1
+        },
+        "candidate_evaluations": {
+          "const": 1
+        },
+        "accepted_promotions": {
+          "const": 0
+        },
+        "frontier_expansions": {
+          "const": 0
+        },
+        "manual_repairs": {
+          "const": 0
+        },
+        "target_frontier_cardinality": {
+          "const": 7
+        }
+      }
+    },
+    "heldout_material_consumed": {
+      "const": false
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "phase12a_recursive_rejection_retained",
+        "fresh_rejection_conditioned_proposal_generated",
+        "proposal_source_active_generation2_package",
+        "first_phase12_candidate_realized",
+        "first_phase12_gate_d_transition_accepted",
+        "first_phase12_promotion",
+        "accepted_phase12_promotions",
+        "strict_phase12_frontier_expansions",
+        "phase12_exit_closed"
+      ],
+      "properties": {
+        "phase12a_recursive_rejection_retained": {
+          "const": true
+        },
+        "fresh_rejection_conditioned_proposal_generated": {
+          "const": true
+        },
+        "proposal_source_active_generation2_package": {
+          "const": true
+        },
+        "first_phase12_candidate_realized": {
+          "const": true
+        },
+        "first_phase12_gate_d_transition_accepted": {
+          "const": true
+        },
+        "first_phase12_promotion": {
+          "const": false
+        },
+        "accepted_phase12_promotions": {
+          "const": 0
+        },
+        "strict_phase12_frontier_expansions": {
+          "const": 0
+        },
+        "phase12_exit_closed": {
+          "const": false
+        }
+      }
+    },
+    "summary_hash": {
+      "$ref": "#/$defs/hash"
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

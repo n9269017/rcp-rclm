@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rcp-rclm-runtime-v3"
-version = "0.5.0"
-description = "Gate D, complete Phase 10 and Phase 11, and the Phase 12 self-hosted recursive-start contract"
+version = "0.6.0"
+description = "Gate D, complete Phase 10 and Phase 11, and the first accepted self-hosted Phase 12 successor"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "See repository LICENSE and component licenses"}

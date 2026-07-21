@@ -91,7 +91,7 @@ This is a genuine recursive invocation: the proposal is generated from the model
 bytes inside the promoted generation-2 successor, not from the Phase 11 predecessor generator.
 The exact decode is independently replayed.
 
-## Fail-closed first rejection
+### Fail-closed first rejection
 
 The emitted program requests generator and planner updates while declaring successor generation
 2 for both. The active package is already generation 2. The immutable Phase 12 validator
@@ -116,6 +116,123 @@ manual repairs:          0
 
 This rejection is part of the Phase 12 trajectory budget. It is not counted as improvement.
 
+## Phase 12B — first accepted recursive successor
+
+The second slice resumes from the same unchanged generation-2 package. The fresh invocation is
+bound to the Phase 12A draft invocation, its fail-closed validation report, the unchanged active
+state, the first transition in the frozen component schedule, and the original total budget.
+
+The installed planner has an explicit `fresh_proposal_after_rejection` capability. It projects the
+active package's rejected draft onto transition zero of the precommitted schedule and emits the
+canonical typed mutation program:
+
+```text
+V1;O=F;U=W;D=A;A=N;R=1,0,1,96,1,1;E=W;B=X;G=2;P=2
+```
+
+The authoritative proposal relation is therefore package-bound to both installed generation-2
+components:
+
+```text
+proposal source = active generation-2 generator plus active generation-2 planner
+selected update = model_weights only
+successor generator generation = 2, unchanged
+successor planner generation = 2, unchanged
+manual repair = 0
+held-out material visible = false
+```
+
+The proposal is recomputed twice and must be byte-identical. The active package tree is unchanged
+by proposal generation.
+
+### Selected M0 to M1 capability
+
+The first accepted successor adds one sparse model-weight chain for a new held-out Lean task:
+
+```lean
+import Mathlib
+
+macro "q" : tactic => `(tactic| omega)
+
+example (n : Nat) : n <= n := by
+  q
+```
+
+The held-out task ID is:
+
+```text
+lean.phase12.generation1.le_refl_macro
+```
+
+Training input exposes only a generic prompt hash, the marker token `T`, the completion token `q`,
+and the selected transition pairs. The held-out task ID, prompt, Lean source, and reference answer
+remain outside generator, planner, and training-worker access. Two isolated untrusted worker runs
+must agree with host-exact tensor recomputation.
+
+### Realization, verification, and frontier growth
+
+The host builds `M1` through the inherited Phase 6 boundary. The realized candidate:
+
+```text
+changes only model_weights
+retains the Phase 10 protected rfl task
+retains the Phase 10 omega task
+retains the Phase 11 z task
+solves the new Phase 12 q task
+preserves the generation-2 generator policy
+preserves the generation-2 planner policy
+has exact rollback to M0
+```
+
+The resulting frontier relation is:
+
+```text
+F0 = {
+  lean.phase10.heldout.linear_gap,
+  lean.phase10.protected.reflexive_seven,
+  lean.phase11.heldout.add_zero_macro
+}
+
+F1 = F0 union {lean.phase12.generation1.le_refl_macro}
+
+F0 subsetneq F1
+|F0| = 3
+|F1| = 4
+```
+
+The checker independently recomputes exact deterministic decoding, invokes pinned Lean after
+candidate freeze, verifies all predecessor task certifications, certifies the new task, recomputes
+selected token-density evidence, and requires:
+
+```text
+protected KL/QRE non-regression
+strict positive new-task information witness
+complete Gate D / Phase 9 transition acceptance
+inherited Gate B Lean-bridge acceptance
+hardened-checker acceptance
+candidate immutability during verification
+```
+
+### Rejection ledger and first atomic promotion
+
+The authoritative Phase 7 run first records the Phase 12A stale-generation proposal as a
+non-promotion ledger entry. The active pointer remains on `M0`. The later accepted attempt then
+promotes the realized `M1` package atomically with that unchanged active store package as parent.
+The reopened immutable package must contain the expected semantic `M1` package and the unchanged
+generation-2 generator and planner bytes.
+
+The completed trajectory prefix records:
+
+```text
+generator invocations:   2
+rejected attempts:       1
+candidate realizations:  1
+candidate evaluations:   1
+accepted promotions:     1
+frontier expansions:     1
+manual repairs:          0
+```
+
 ## Trust boundary
 
 The active package controls proposal bytes through its bound generator and planner policies. It
@@ -135,17 +252,18 @@ the immutable ledger
 
 Candidate self-report remains non-authoritative.
 
-## Claim boundary
+## Current claim boundary
 
-Phase 12A establishes:
+The completed Phase 12 prefix now establishes:
 
 ```text
-Phase 12 has begun
-the promoted generation-2 successor is bound to retained Phase 11 evidence
-the changed successor generator has been used recursively
-its first proposal is model-generated and deterministically replayed
-the stale generation request is rejected fail-closed
-the active package remains unchanged
+the promoted generation-2 successor has been used recursively
+one package-generated recursive proposal was rejected fail-closed
+one later fresh package-generated proposal was accepted
+M0 -> M1 is a genuine model-weight successor
+M1 retains all of F0 and adds one certified Lean capability
+F0 subsetneq F1 and |F1| = 4
+M1 is atomically promoted
 held-out material consumed = false
 manual repairs = 0
 ```
@@ -153,13 +271,14 @@ manual repairs = 0
 It does not yet establish:
 
 ```text
-an accepted Phase 12 promotion
-a Phase 12 frontier expansion
-the four-promotion M0 -> M4 chain
+M1 -> M2 memory/retrieval promotion
+M2 -> M3 generator/planner self-modification
+M3 -> M4 architecture/optimizer promotion
+the complete four-promotion M0 -> M4 chain
+|F4| >= 7
 generic frontier-expanding successor availability
 an autonomous or unbounded RSI trajectory
 ```
 
-The next slice must produce a fresh rejection-conditioned proposal from the same active
-successor under the original total budget and carry the first accepted Phase 12 successor through
-realization, verification, and promotion.
+The next slice must use the generator and planner inside promoted `M1` to produce the authoritative
+memory/retrieval proposal for `M1 -> M2` under the remaining precommitted budget.
