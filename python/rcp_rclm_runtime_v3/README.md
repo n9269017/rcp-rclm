@@ -1,8 +1,8 @@
 # RCP/RCLM Runtime v3
 
 This package implements the executable correspondence for Formal Core v3 Gate D, the
-selected compact language-model successor lifecycle, and the first complete bounded
-active-model experiment cycle through realized rejection and atomic promotion.
+selected compact language-model successor lifecycle, the first complete bounded active-model
+experiment cycle, and the first recursive use of a promoted successor generator.
 
 ## Phase 9 contract
 
@@ -132,6 +132,41 @@ Beta's proposal consumes alpha's Phase 6 rejection observation, so its invocatio
 all downstream certificate identities are correctly retained as runtime-bound rather than
 presented as cross-platform semantic identities.
 
+## Phase 12A recursive successor-generator start
+
+`rcp_rclm_runtime_v3.phase12` freezes the selected four-promotion trajectory contract and
+performs the first recursive invocation:
+
+```text
+Phase 11 promoted beta semantic package reconstructed
+retained Phase 11 closure manifest bound
+changed generation-2 generator policy loaded from the active package
+changed generation-2 planner policy loaded from the active package
+installed Phase 11 proposal protocol verified
+model decoding performed from the successor package
+exact typed program independently replayed
+stale generation request rejected fail-closed
+active package tree unchanged
+held-out material consumed = false
+manual repair count = 0
+accepted Phase 12 promotions = 0
+phase12_exit_closed = false
+```
+
+The successor emits:
+
+```text
+V1;O=F;U=WLCGP;D=A;A=N;R=1,0,1,96,1,1;E=WLCGP;B=X;G=2;P=2
+```
+
+Because generator and planner generation 2 are already active, a program selecting generator
+and planner updates must request a strictly newer generation. The immutable validator therefore
+returns exactly `PHASE12_GENERATION_NOT_ADVANCED`. Rejection happens before Phase 6 realization
+and cannot modify the active package.
+
+The complete Phase 12 target remains four accepted promotions with four strict frontier
+expansions. The first slice records recursive use and one rejection only.
+
 ## Build and test
 
 Install Runtime v2 and Runtime v3:
@@ -162,6 +197,10 @@ python python/rcp_rclm_runtime_v3/tools/run_phase11_tests.py \
   --package-root python/rcp_rclm_runtime_v3 \
   --out artifacts/runtime_v3_phase_11/tests.log
 
+python python/rcp_rclm_runtime_v3/tools/run_phase12_tests.py \
+  --package-root python/rcp_rclm_runtime_v3 \
+  --out artifacts/runtime_v3_phase_12/tests.log
+
 python python/rcp_rclm_runtime_v3/tools/validate_phase10_closure_manifest.py \
   --repo-root . \
   --out artifacts/runtime_v3_phase_10/closure_manifest.json
@@ -174,8 +213,14 @@ python python/rcp_rclm_runtime_v3/tools/validate_phase11_closure_manifest.py \
   --repo-root . \
   --out artifacts/runtime_v3_phase_11/closure_manifest.json
 
-python python/rcp_rclm_runtime_v3/tools/run_phase11b_reference.py \
-  --out artifacts/runtime_v3_phase_11/reference.json
+python python/rcp_rclm_runtime_v3/tools/run_phase12_reference.py \
+  --repo-root . \
+  --out artifacts/runtime_v3_phase_12/reference.json
+
+python python/rcp_rclm_runtime_v3/tools/validate_phase12_schema.py \
+  --schema python/rcp_rclm_executable_core_v3/contract/phase_12_recursive_start.schema.json \
+  --instance artifacts/runtime_v3_phase_12/reference.json \
+  --out artifacts/runtime_v3_phase_12/schema.json
 ```
 
 The authoritative Phase 11 rejection and promotion additionally requires the pinned Lean
@@ -195,9 +240,8 @@ python python/rcp_rclm_runtime_v3/tools/validate_phase11_closure_manifest.py \
 
 ## Claim boundary
 
-Phase 11 establishes one active predecessor, one invalid proposal rejection, one realized
-model-generated candidate rejection, one later fresh model-generated candidate promotion,
-and installation of changed generation-2 generator and planner policies. It does not establish
-recursive use of those modified policies, generic successor availability, arbitrary
-native-float equivalence, or autonomous/unbounded recursive self-improvement. Recursive use is
-reserved for Phase 12.
+Phase 12A establishes the first recursive use of the changed generation-2 successor generator,
+a deterministic model-generated proposal, a fail-closed stale-generation rejection, and exact
+preservation of the active package. It does not establish an accepted Phase 12 successor, a
+Phase 12 frontier expansion, the four-promotion recursive chain, generic successor availability,
+or autonomous/unbounded recursive self-improvement.
