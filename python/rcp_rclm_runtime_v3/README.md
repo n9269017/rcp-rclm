@@ -2,7 +2,8 @@
 
 This package implements the executable correspondence for Formal Core v3 Gate D, the
 selected compact language-model successor lifecycle, the first complete bounded active-model
-experiment cycle, and the first recursive use of a promoted successor generator.
+experiment cycle, recursive use of a promoted successor generator, and the first accepted
+self-hosted Phase 12 successor.
 
 ## Phase 9 contract
 
@@ -71,11 +72,8 @@ physical removal of the training worker and entry points
 independent replay with training, generator, and planner invocations equal to zero
 ```
 
-`phase_10_closure_manifest.json` separates two kinds of evidence:
-
-- `stable_reference_hashes` are recomputed identically on Linux, Windows, and macOS;
-- `code_proof.exact_runtime_hashes` retain environment-bound Phase 6 and lifecycle hashes
-  from the exact successful pinned code-proof run.
+`phase_10_closure_manifest.json` separates stable semantic identities from environment-bound
+Phase 6 and lifecycle evidence.
 
 ## Full Phase 11 active-model lifecycle
 
@@ -109,28 +107,11 @@ phase11_exit_closed = true
 Candidate generation and training remain untrusted. The host independently rebuilds accepted
 bytes, evaluates decoded tasks, invokes pinned Lean after candidate freeze, constructs
 certificates outside the candidate, runs the hardened checker, controls the Phase 7 ledger,
-and performs the atomic promotion.
-
-The alpha rejection and beta promotion are explicit store transactions. Alpha's rejection
-entry does not move the active pointer. Beta's promoted package names that unchanged active
-package as its parent, and the reopened immutable package is checked to contain the expected
-successor generator and planner files.
-
-## Retained Phase 11 evidence boundary
+and performs atomic promotion.
 
 `phase_11_closure_manifest.json` deliberately separates portable semantic identities from
-exact-run evidence:
-
-- `stable_reference_hashes` covers active identities, the invalid and alpha proposal chain,
-  the alpha semantic candidate, beta's semantic package/model identities, and the changed
-  successor policy hashes;
-- `code_proof.exact_runtime_hashes` covers Phase 6 reports, beta's rejection-bound invocation
-  and fixture, lifecycle certificate and transition, ledger entries, promotion records, and
-  installed policy-byte hashes.
-
-Beta's proposal consumes alpha's Phase 6 rejection observation, so its invocation hash and
-all downstream certificate identities are correctly retained as runtime-bound rather than
-presented as cross-platform semantic identities.
+exact-run Phase 6, rejection-observation, certificate, ledger, promotion, and installed-byte
+identities.
 
 ## Phase 12A recursive successor-generator start
 
@@ -160,12 +141,77 @@ V1;O=F;U=WLCGP;D=A;A=N;R=1,0,1,96,1,1;E=WLCGP;B=X;G=2;P=2
 ```
 
 Because generator and planner generation 2 are already active, a program selecting generator
-and planner updates must request a strictly newer generation. The immutable validator therefore
-returns exactly `PHASE12_GENERATION_NOT_ADVANCED`. Rejection happens before Phase 6 realization
-and cannot modify the active package.
+and planner updates must request a strictly newer generation. The immutable validator returns
+exactly `PHASE12_GENERATION_NOT_ADVANCED`. Rejection occurs before Phase 6 realization and cannot
+modify the active package.
 
-The complete Phase 12 target remains four accepted promotions with four strict frontier
-expansions. The first slice records recursive use and one rejection only.
+## Phase 12B first accepted self-hosted successor
+
+The next bounded invocation is conditioned on the retained Phase 12A rejection and comes from the
+same unchanged generation-2 package. The installed planner projects the active package's rejected
+draft onto transition zero of the frozen schedule and emits:
+
+```text
+V1;O=F;U=W;D=A;A=N;R=1,0,1,96,1,1;E=W;B=X;G=2;P=2
+```
+
+The program is bound to the active package, model, generator, planner, trajectory protocol,
+objective, prior draft, prior validation, transition index, and original total budget. It changes
+only model weights and leaves the generation-2 generator and planner unchanged.
+
+The selected new held-out task is:
+
+```lean
+import Mathlib
+
+macro "q" : tactic => `(tactic| omega)
+
+example (n : Nat) : n <= n := by
+  q
+```
+
+The Phase 12B runtime establishes:
+
+```text
+fresh rejection-conditioned proposal replay is byte-identical
+held-out task IDs, prompts, source, and answers remain unavailable
+isolated worker run 1 = isolated worker run 2 = host-exact tensor
+M1 realized through Phase 6
+M1 rollback to M0 verified exactly
+protected rfl retained
+Phase 10 omega retained
+Phase 11 z retained
+new Phase 12 q task certified
+protected KL/QRE non-regression accepted
+strict new-task information witness accepted
+Gate D / Phase 9 changed_components = [model_weights]
+pinned Lean and hardened checker accepted
+Phase 12A rejection appended without moving the active pointer
+M1 atomically promoted with unchanged M0 store package as parent
+reopened immutable package contains the expected M1 semantic package
+generation-2 generator/planner remain installed for M1 -> M2
+```
+
+The certified frontier advances from three tasks to four:
+
+```text
+F0 subsetneq F1
+|F0| = 3
+|F1| = 4
+```
+
+The completed Phase 12 prefix records:
+
+```text
+generator invocations:   2
+rejected attempts:       1
+candidate realizations:  1
+candidate evaluations:   1
+accepted promotions:     1
+frontier expansions:     1
+manual repairs:          0
+phase12_exit_closed:      false
+```
 
 ## Build and test
 
@@ -182,7 +228,7 @@ Install the optional training dependency only for isolated untrusted training jo
 python -m pip install -e "python/rcp_rclm_runtime_v3[phase10-train]"
 ```
 
-Run the focused suites and retained-reference validators:
+Run the focused suites and portable Phase 12 references:
 
 ```bash
 python python/rcp_rclm_runtime_v3/tools/run_phase9_tests.py \
@@ -201,47 +247,44 @@ python python/rcp_rclm_runtime_v3/tools/run_phase12_tests.py \
   --package-root python/rcp_rclm_runtime_v3 \
   --out artifacts/runtime_v3_phase_12/tests.log
 
-python python/rcp_rclm_runtime_v3/tools/validate_phase10_closure_manifest.py \
-  --repo-root . \
-  --out artifacts/runtime_v3_phase_10/closure_manifest.json
-
-python python/rcp_rclm_runtime_v3/tools/validate_phase11_manifest.py \
-  --repo-root . \
-  --out artifacts/runtime_v3_phase_11/generator_manifest.json
-
-python python/rcp_rclm_runtime_v3/tools/validate_phase11_closure_manifest.py \
-  --repo-root . \
-  --out artifacts/runtime_v3_phase_11/closure_manifest.json
-
 python python/rcp_rclm_runtime_v3/tools/run_phase12_reference.py \
   --repo-root . \
-  --out artifacts/runtime_v3_phase_12/reference.json
+  --out artifacts/runtime_v3_phase_12/phase12a_reference.json
 
-python python/rcp_rclm_runtime_v3/tools/validate_phase12_schema.py \
-  --schema python/rcp_rclm_executable_core_v3/contract/phase_12_recursive_start.schema.json \
-  --instance artifacts/runtime_v3_phase_12/reference.json \
-  --out artifacts/runtime_v3_phase_12/schema.json
+python python/rcp_rclm_runtime_v3/tools/run_phase12b_reference.py \
+  --repo-root . \
+  --out artifacts/runtime_v3_phase_12/phase12b_reference.json
+
+python python/rcp_rclm_runtime_v3/tools/validate_phase12b_schema.py \
+  --schema python/rcp_rclm_executable_core_v3/contract/phase_12_first_promotion.schema.json \
+  --instance artifacts/runtime_v3_phase_12/phase12b_reference.json \
+  --out artifacts/runtime_v3_phase_12/phase12b_schema.json
 ```
 
-The authoritative Phase 11 rejection and promotion additionally requires the pinned Lean
-toolchain and built Formal Core v2/v3 projects:
+Run the isolated Phase 12B worker only in the untrusted training environment:
 
 ```bash
-python python/rcp_rclm_runtime_v3/tools/run_phase11b_closure.py \
+python python/rcp_rclm_runtime_v3/tools/run_phase12b_training_reference.py \
+  --repo-root . \
+  --out artifacts/runtime_v3_phase_12/phase12b_training.json
+```
+
+The authoritative first promotion additionally requires the pinned Lean toolchain and built
+Formal Core v2/v3 projects:
+
+```bash
+python python/rcp_rclm_runtime_v3/tools/run_phase12b_closure.py \
   --repo-root . \
   --lean-project-root lean/rcp_rclm_formal_core_v3 \
-  --out artifacts/runtime_v3_phase_11/phase_11_closure.json
-
-python python/rcp_rclm_runtime_v3/tools/validate_phase11_closure_manifest.py \
-  --repo-root . \
-  --report artifacts/runtime_v3_phase_11/phase_11_closure.json \
-  --out artifacts/runtime_v3_phase_11/retained_closure_validation.json
+  --out artifacts/runtime_v3_phase_12/phase12b_closure.json
 ```
 
 ## Claim boundary
 
-Phase 12A establishes the first recursive use of the changed generation-2 successor generator,
-a deterministic model-generated proposal, a fail-closed stale-generation rejection, and exact
-preservation of the active package. It does not establish an accepted Phase 12 successor, a
-Phase 12 frontier expansion, the four-promotion recursive chain, generic successor availability,
-or autonomous/unbounded recursive self-improvement.
+The completed prefix establishes one recursive fail-closed rejection followed by one later fresh,
+accepted, model-weight successor promotion. It establishes `F0 subsetneq F1` and leaves the active
+generation-2 generator and planner installed in `M1`.
+
+It does not establish `M1 -> M2`, `M2 -> M3`, `M3 -> M4`, the complete four-promotion recursive
+chain, generic successor availability, arbitrary native-float equivalence, or autonomous/unbounded
+recursive self-improvement.
