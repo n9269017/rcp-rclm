@@ -8,12 +8,14 @@ from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
 from rcp_rclm_runtime_v3.phase11.phase11b_constants import (
     BETA_BANK_START,
     BETA_PROGRAM_BYTES,
+    PHASE11B_PROPOSAL_PROTOCOL_HASH,
 )
 
 PHASE12A_CONTRACT_VERSION: Final[str] = "rcp-rclm-executable-v3-phase-12a"
 PHASE12_TRAJECTORY_ID: Final[str] = "phase12-self-hosted-four-promotion-trajectory-v1"
 PHASE12_ACTIVE_GENERATOR_GENERATION: Final[int] = 2
 PHASE12_ACTIVE_PLANNER_GENERATION: Final[int] = 2
+PHASE12_ACTIVE_PROPOSAL_PROTOCOL_HASH: Final[str] = PHASE11B_PROPOSAL_PROTOCOL_HASH
 PHASE12_REQUIRED_ACCEPTED_PROMOTIONS: Final[int] = 4
 PHASE12_REQUIRED_REJECTED_ATTEMPTS: Final[int] = 2
 PHASE12_INITIAL_FRONTIER_CARDINALITY: Final[int] = 3
@@ -75,6 +77,7 @@ PHASE12_PROPOSAL_PROTOCOL: Final[dict[str, object]] = {
     "trajectory_id": PHASE12_TRAJECTORY_ID,
     "typed_program_version": "V1",
     "authoritative_source": "active_package_generator_and_planner",
+    "active_package_proposal_protocol_hash": PHASE12_ACTIVE_PROPOSAL_PROTOCOL_HASH,
     "initial_active_generator_generation": PHASE12_ACTIVE_GENERATOR_GENERATION,
     "initial_active_planner_generation": PHASE12_ACTIVE_PLANNER_GENERATION,
     "candidate_direct_write": False,
