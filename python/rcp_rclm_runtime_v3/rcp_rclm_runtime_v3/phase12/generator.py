@@ -24,6 +24,7 @@ from rcp_rclm_runtime_v3.phase11.records import (
 from rcp_rclm_runtime_v3.phase12.constants import (
     PHASE12_ACTIVE_GENERATOR_GENERATION,
     PHASE12_ACTIVE_PLANNER_GENERATION,
+    PHASE12_ACTIVE_PROPOSAL_PROTOCOL_HASH,
     PHASE12_EXPECTED_FIRST_PROGRAM_BYTES,
     PHASE12_PROPOSAL_PROTOCOL_HASH,
     PHASE12_RECURSIVE_BANK_CAPACITY,
@@ -45,6 +46,7 @@ def phase12_objective_hash() -> str:
             "protected_capability_retention_required": True,
             "selected_information_nonregression_required": True,
             "candidate_self_report_authoritative": False,
+            "trajectory_protocol_hash": PHASE12_PROPOSAL_PROTOCOL_HASH,
         }
     )
 
@@ -84,6 +86,8 @@ def _validate_successor_policy(
         raise SchemaValidationError("phase12.generator.policy", "unexpected generator policy")
     if generator.get("generation") != PHASE12_ACTIVE_GENERATOR_GENERATION:
         raise SchemaValidationError("phase12.generator.policy", "generation mismatch")
+    if generator.get("proposal_protocol_hash") != PHASE12_ACTIVE_PROPOSAL_PROTOCOL_HASH:
+        raise SchemaValidationError("phase12.generator.policy", "proposal protocol mismatch")
     if generator.get("next_proposal_authority") is not True:
         raise SchemaValidationError("phase12.generator.policy", "proposal authority is disabled")
     if generator.get("direct_candidate_write") is not False:
@@ -122,6 +126,7 @@ def phase12_generator_input(
             "accepted_phase12_promotions": 0,
             "prior_phase12_rejections": 0,
             "heldout_answer_material_present": False,
+            "phase12_trajectory_protocol_hash": PHASE12_PROPOSAL_PROTOCOL_HASH,
         }
     )
     return ModelGeneratorInput(
@@ -133,7 +138,7 @@ def phase12_generator_input(
         model_identity_hash=manifest.model_identity_hash,
         active_generator_hash=manifest.generator_policy_hash,
         active_planner_hash=manifest.planner_policy_hash,
-        proposal_protocol_hash=PHASE12_PROPOSAL_PROTOCOL_HASH,
+        proposal_protocol_hash=PHASE12_ACTIVE_PROPOSAL_PROTOCOL_HASH,
         objective_hash=phase12_objective_hash(),
         observation_hash=observation_hash,
         budget=phase12_first_invocation_budget(),
@@ -155,8 +160,8 @@ def generate_phase12_first_program(
         (generator_input.active_planner_hash, manifest.planner_policy_hash, "planner"),
         (
             generator_input.proposal_protocol_hash,
-            PHASE12_PROPOSAL_PROTOCOL_HASH,
-            "proposal protocol",
+            PHASE12_ACTIVE_PROPOSAL_PROTOCOL_HASH,
+            "active package proposal protocol",
         ),
         (generator_input.objective_hash, phase12_objective_hash(), "objective"),
     )
@@ -236,7 +241,8 @@ def validate_phase12_first_program(
             invocation.planner_policy_hash == generator_input.active_planner_hash
         ),
         "proposal_protocol_bound": (
-            generator_input.proposal_protocol_hash == PHASE12_PROPOSAL_PROTOCOL_HASH
+            generator_input.proposal_protocol_hash
+            == PHASE12_ACTIVE_PROPOSAL_PROTOCOL_HASH
         ),
         "objective_bound": generator_input.objective_hash == phase12_objective_hash(),
         "model_generated": invocation.model_generated,
