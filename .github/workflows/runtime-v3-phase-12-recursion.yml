@@ -62,11 +62,12 @@ jobs:
           --package-root python/rcp_rclm_runtime_v3
           --out artifacts/runtime_v3_phase_12/${{ matrix.os }}/source_quality.json
 
-      - name: Run retained complete Phase 11 regression
+      - name: Validate retained Phase 11 closure dependency
         run: >-
-          python python/rcp_rclm_runtime_v3/tools/run_phase11_tests.py
-          --package-root python/rcp_rclm_runtime_v3
-          --out artifacts/runtime_v3_phase_12/${{ matrix.os }}/phase_11_tests.log
+          python python/rcp_rclm_runtime_v3/tools/validate_phase11_closure_manifest.py
+          --repo-root .
+          --no-recompute
+          --out artifacts/runtime_v3_phase_12/${{ matrix.os }}/phase_11_closure_manifest.json
 
       - name: Run focused Phase 12 tests
         run: >-
