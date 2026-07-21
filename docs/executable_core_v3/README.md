@@ -2,7 +2,7 @@
 
 Executable Core v3 implements the learned capability-frontier refinement introduced by
 Formal Core v3 Gate D and carries the selected compact learned successor through bounded
-proposal, realization, rejection, and promotion lifecycles.
+proposal, realization, rejection, promotion, and recursive-proposal lifecycles.
 
 ## Current status
 
@@ -15,14 +15,16 @@ Phase 10 lifecycle — Phase 6 realization, Phase 7 promotion, rollback, and wor
 Phase 11 — autonomous experiment planner and generator: complete at declared selected scope
 Phase 11A — active-model typed proposal, rejection, and fresh validation: complete historical slice
 Phase 11 lifecycle — realized alpha rejection, fresh beta promotion, and generation-2 policy installation: complete
-Phase 12 — recursive use of the promoted generation-2 generator: next, not started
+Phase 12 — self-hosted multi-generation recursion: begun
+Phase 12A — promoted generation-2 generator used recursively; first stale proposal rejected: implemented
+Phase 12 full four-promotion trajectory — in progress
 Phase 13 — broader independent adversarial closure: not started
 ```
 
-Phase 11 closes one bounded active-predecessor experiment cycle. It does not claim generic
-successor availability, arbitrary native-float model generation, an unbounded learned
-trajectory, or recursive use of the newly installed generator. The latter is the central
-Phase 12 condition.
+Phase 12A closes the architectural handoff deferred by Phase 11: the promoted successor's own
+changed generator is now the source of a later proposal. The first recursive proposal is rejected
+fail-closed and does not count as an accepted successor or frontier expansion. The four-promotion
+`M0 -> M4` chain remains open.
 
 ## Phase 9
 
@@ -122,12 +124,32 @@ package:
 This separation is necessary because beta's proposal is intentionally bound to alpha's
 realized rejection observation, which includes environment-bound Phase 6 evidence.
 
-## Phase 12 boundary
+## Phase 12A recursive start
 
-The promoted successor is self-hosting-ready because its changed generation-2 generator and
-planner are installed and cryptographically bound. Phase 11 does not claim that those changed
-policies have already emitted another proposal. Phase 12 begins when the promoted successor
-itself is used to generate the next bounded experiment program.
+The first Phase 12 slice:
+
+- reconstructs the promoted Phase 11 beta semantic package;
+- binds it to the retained Phase 11 closure manifest;
+- verifies the installed generation-2 generator, planner, and proposal-protocol identities;
+- uses the promoted successor itself to emit the next typed mutation program;
+- independently replays the exact model decode;
+- rejects the program because it requests generator/planner generation 2 while generation 2
+  is already active;
+- proves the active package tree is unchanged;
+- consumes no held-out material and permits no manual repair;
+- records one Phase 12 rejection, zero candidate realizations, zero promotions, and zero
+  frontier expansions.
+
+This is the first recursive use of a modified successor generator in the project. It is not yet
+the first accepted Phase 12 transition.
+
+## Full Phase 12 boundary
+
+The remaining Phase 12 program must autonomously execute four accepted promotions under the
+precommitted total budget. The generator inside every promoted package must be the source of the
+following proposal. Each accepted transition must retain its predecessor frontier, add one newly
+certified Lean task, satisfy selected information and resource obligations, and preserve the
+immutable trust boundary.
 
 ## Reading order
 
@@ -145,4 +167,7 @@ itself is used to generate the next bounded experiment program.
 11. PHASE_11_GENERATOR.md
 12. PHASE_11_EXIT_CRITERIA.md
 13. PHASE_11_VALIDATION.md
+14. PHASE_12_RECURSION.md
+15. PHASE_12_EXIT_CRITERIA.md
+16. PHASE_12_VALIDATION.md
 ```
