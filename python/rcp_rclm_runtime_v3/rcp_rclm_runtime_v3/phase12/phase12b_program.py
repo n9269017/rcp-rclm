@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import ClassVar, TYPE_CHECKING
@@ -119,7 +120,7 @@ class Phase12ProposalValidationReport:
     proposal_hash: str
     program_hash: str
     binding_checks: dict[str, bool]
-    reason_codes: tuple[str, ...]
+    reason_codes: Sequence[str]
 
     schema_id: ClassVar[str] = "runtime.v3.phase12.proposal_validation.v1"
 
