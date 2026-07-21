@@ -2,8 +2,8 @@
 
 This package implements the executable correspondence for Formal Core v3 Gate D, the
 selected compact language-model successor lifecycle, the first complete bounded active-model
-experiment cycle, recursive use of a promoted successor generator, and the first accepted
-self-hosted Phase 12 successor.
+experiment cycle, recursive use of promoted successor generators, and the first two accepted
+self-hosted Phase 12 successors.
 
 ## Phase 9 contract
 
@@ -53,13 +53,13 @@ accepting Phase 9 learned frontier transition
 ```
 
 The trusted package imports no PyTorch, NumPy, random-number backend, or native
-floating-point acceptance source. PyTorch is used only by the isolated worker under
-`tools/`; every accepted tensor byte is independently recomputed by the host.
+floating-point acceptance source. PyTorch is used only by explicit isolated worker entry points;
+every accepted tensor byte is independently recomputed by the host.
 
 ## Full Phase 10 lifecycle closure
 
-The selected learned successor is realized and closed through the inherited Runtime v2
-trust boundary:
+The selected learned successor is realized and closed through the inherited Runtime v2 trust
+boundary:
 
 ```text
 Phase 6 isolated realization
@@ -71,9 +71,6 @@ Phase 7 atomic content-addressed promotion
 physical removal of the training worker and entry points
 independent replay with training, generator, and planner invocations equal to zero
 ```
-
-`phase_10_closure_manifest.json` separates stable semantic identities from environment-bound
-Phase 6 and lifecycle evidence.
 
 ## Full Phase 11 active-model lifecycle
 
@@ -97,7 +94,6 @@ new Phase 11 held-out Lean task certified
 selected entropy/KL/diagonal-QRE obligations accepted
 complete Gate D / Phase 9 transition accepted
 beta atomically promoted with unchanged active parent
-final ledger sequence number = 2
 changed generation-2 generator and planner installed in immutable promoted package
 held-out material consumed = false
 manual repair count = 0
@@ -109,10 +105,6 @@ bytes, evaluates decoded tasks, invokes pinned Lean after candidate freeze, cons
 certificates outside the candidate, runs the hardened checker, controls the Phase 7 ledger,
 and performs atomic promotion.
 
-`phase_11_closure_manifest.json` deliberately separates portable semantic identities from
-exact-run Phase 6, rejection-observation, certificate, ledger, promotion, and installed-byte
-identities.
-
 ## Phase 12A recursive successor-generator start
 
 `rcp_rclm_runtime_v3.phase12` freezes the selected four-promotion trajectory contract and
@@ -121,17 +113,13 @@ performs the first recursive invocation:
 ```text
 Phase 11 promoted beta semantic package reconstructed
 retained Phase 11 closure manifest bound
-changed generation-2 generator policy loaded from the active package
-changed generation-2 planner policy loaded from the active package
-installed Phase 11 proposal protocol verified
+changed generation-2 generator and planner loaded from the active package
 model decoding performed from the successor package
 exact typed program independently replayed
 stale generation request rejected fail-closed
 active package tree unchanged
 held-out material consumed = false
 manual repair count = 0
-accepted Phase 12 promotions = 0
-phase12_exit_closed = false
 ```
 
 The successor emits:
@@ -140,26 +128,22 @@ The successor emits:
 V1;O=F;U=WLCGP;D=A;A=N;R=1,0,1,96,1,1;E=WLCGP;B=X;G=2;P=2
 ```
 
-Because generator and planner generation 2 are already active, a program selecting generator
-and planner updates must request a strictly newer generation. The immutable validator returns
-exactly `PHASE12_GENERATION_NOT_ADVANCED`. Rejection occurs before Phase 6 realization and cannot
-modify the active package.
+Because generator and planner generation 2 are already active, the immutable validator returns
+`PHASE12_GENERATION_NOT_ADVANCED`. Rejection occurs before Phase 6 realization and cannot modify
+the active package.
 
 ## Phase 12B first accepted self-hosted successor
 
 The next bounded invocation is conditioned on the retained Phase 12A rejection and comes from the
-same unchanged generation-2 package. The installed planner projects the active package's rejected
-draft onto transition zero of the frozen schedule and emits:
+same unchanged generation-2 package. The installed planner projects the rejected draft onto
+transition zero of the frozen schedule and emits:
 
 ```text
 V1;O=F;U=W;D=A;A=N;R=1,0,1,96,1,1;E=W;B=X;G=2;P=2
 ```
 
-The program is bound to the active package, model, generator, planner, trajectory protocol,
-objective, prior draft, prior validation, transition index, and original total budget. It changes
-only model weights and leaves the generation-2 generator and planner unchanged.
-
-The selected new held-out task is:
+The program changes only model weights and leaves the generation-2 generator and planner
+unchanged. The selected new held-out task is:
 
 ```lean
 import Mathlib
@@ -178,9 +162,7 @@ held-out task IDs, prompts, source, and answers remain unavailable
 isolated worker run 1 = isolated worker run 2 = host-exact tensor
 M1 realized through Phase 6
 M1 rollback to M0 verified exactly
-protected rfl retained
-Phase 10 omega retained
-Phase 11 z retained
+three predecessor tasks retained
 new Phase 12 q task certified
 protected KL/QRE non-regression accepted
 strict new-task information witness accepted
@@ -188,27 +170,97 @@ Gate D / Phase 9 changed_components = [model_weights]
 pinned Lean and hardened checker accepted
 Phase 12A rejection appended without moving the active pointer
 M1 atomically promoted with unchanged M0 store package as parent
-reopened immutable package contains the expected M1 semantic package
 generation-2 generator/planner remain installed for M1 -> M2
 ```
 
-The certified frontier advances from three tasks to four:
+The certified frontier advances from three tasks to four.
+
+## Phase 12C memory and retrieval successor
+
+The next two invocations come from the generator and planner inside promoted `M1`.
+
+The first proposal is:
 
 ```text
-F0 subsetneq F1
-|F0| = 3
-|F1| = 4
+V1;O=F;U=R;D=A;A=N;R=1,0,0,96,1,1;E=R;B=X;G=2;P=2
 ```
 
-The completed Phase 12 prefix records:
+It is rejected before realization because transition one of the frozen schedule requires both
+memory and retrieval change. The rejection reason is exactly:
 
 ```text
-generator invocations:   2
-rejected attempts:       1
-candidate realizations:  1
-candidate evaluations:   1
-accepted promotions:     1
-frontier expansions:     1
+PHASE12C_COMPONENT_SCHEDULE_INCOMPLETE
+```
+
+The active `M1` package remains unchanged. A fresh rejection-conditioned invocation then emits:
+
+```text
+V1;O=F;U=MR;D=A;A=N;R=1,0,0,96,1,1;E=MR;B=X;G=2;P=2
+```
+
+This program requests zero training steps and changes exactly:
+
+```text
+memory_state
+retrieval_policy
+```
+
+The candidate installs one package-bound certified-capability memory entry and one deterministic
+exact-terminal-byte retrieval rule. Query marker `U` is routed to the already certified `T -> q ->
+EOS` compact-model path. The new held-out task is:
+
+```lean
+import Mathlib
+
+macro "q" : tactic => `(tactic| omega)
+
+example (n : Nat) : 0 <= n := by
+  q
+```
+
+The Phase 12C runtime establishes:
+
+```text
+M1 generator/planner are the authoritative source of both proposals
+second rejection is deterministic and leaves M1 unchanged
+fresh memory/retrieval proposal is deterministic
+held-out task ID, prompt, source, and answer remain unavailable to generation
+no training backend is invoked for M1 -> M2
+model identity remains unchanged
+memory state and retrieval policy both change
+M2 realized through Phase 6
+wrapper projections equal embedded memory/retrieval manifests
+M2 rollback to M1 verified exactly
+all four F1 tasks retained
+new retrieval-backed Lean task certified
+protected KL/QRE non-regression accepted
+strict new-task information witness accepted
+Gate D / Phase 9 changed_components = [memory_state, retrieval_policy]
+pinned Lean and hardened checker accepted
+second rejection appended without moving the active pointer
+M2 atomically promoted with unchanged M1 store package as parent
+installed memory/retrieval bytes verified
+unchanged generation-2 generator/planner remain installed for M2 -> M3
+```
+
+The certified frontier advances:
+
+```text
+F0 subsetneq F1 subsetneq F2
+|F0| = 3
+|F1| = 4
+|F2| = 5
+```
+
+The cumulative trajectory prefix records:
+
+```text
+generator invocations:   4
+rejected attempts:       2
+candidate realizations:  2
+candidate evaluations:   2
+accepted promotions:     2
+frontier expansions:     2
 manual repairs:          0
 phase12_exit_closed:      false
 ```
@@ -228,21 +280,9 @@ Install the optional training dependency only for isolated untrusted training jo
 python -m pip install -e "python/rcp_rclm_runtime_v3[phase10-train]"
 ```
 
-Run the focused suites and portable Phase 12 references:
+Run the complete focused suites and portable Phase 12 references:
 
 ```bash
-python python/rcp_rclm_runtime_v3/tools/run_phase9_tests.py \
-  --package-root python/rcp_rclm_runtime_v3 \
-  --out artifacts/runtime_v3_phase_9/tests.log
-
-python python/rcp_rclm_runtime_v3/tools/run_phase10_tests.py \
-  --package-root python/rcp_rclm_runtime_v3 \
-  --out artifacts/runtime_v3_phase_10/tests.log
-
-python python/rcp_rclm_runtime_v3/tools/run_phase11_tests.py \
-  --package-root python/rcp_rclm_runtime_v3 \
-  --out artifacts/runtime_v3_phase_11/tests.log
-
 python python/rcp_rclm_runtime_v3/tools/run_phase12_tests.py \
   --package-root python/rcp_rclm_runtime_v3 \
   --out artifacts/runtime_v3_phase_12/tests.log
@@ -255,36 +295,37 @@ python python/rcp_rclm_runtime_v3/tools/run_phase12b_reference.py \
   --repo-root . \
   --out artifacts/runtime_v3_phase_12/phase12b_reference.json
 
-python python/rcp_rclm_runtime_v3/tools/validate_phase12b_schema.py \
-  --schema python/rcp_rclm_executable_core_v3/contract/phase_12_first_promotion.schema.json \
-  --instance artifacts/runtime_v3_phase_12/phase12b_reference.json \
-  --out artifacts/runtime_v3_phase_12/phase12b_schema.json
-```
-
-Run the isolated Phase 12B worker only in the untrusted training environment:
-
-```bash
-python python/rcp_rclm_runtime_v3/tools/run_phase12b_training_reference.py \
+python python/rcp_rclm_runtime_v3/tools/run_phase12c_reference.py \
   --repo-root . \
-  --out artifacts/runtime_v3_phase_12/phase12b_training.json
+  --out artifacts/runtime_v3_phase_12/phase12c_reference.json
+
+python python/rcp_rclm_runtime_v3/tools/validate_phase12c_schema.py \
+  --schema python/rcp_rclm_executable_core_v3/contract/phase_12_memory_retrieval.schema.json \
+  --instance artifacts/runtime_v3_phase_12/phase12c_reference.json \
+  --out artifacts/runtime_v3_phase_12/phase12c_schema.json
 ```
 
-The authoritative first promotion additionally requires the pinned Lean toolchain and built
+The authoritative second promotion additionally requires the pinned Lean toolchain and built
 Formal Core v2/v3 projects:
 
 ```bash
-python python/rcp_rclm_runtime_v3/tools/run_phase12b_closure.py \
+python python/rcp_rclm_runtime_v3/tools/run_phase12c_closure.py \
   --repo-root . \
   --lean-project-root lean/rcp_rclm_formal_core_v3 \
-  --out artifacts/runtime_v3_phase_12/phase12b_closure.json
+  --out artifacts/runtime_v3_phase_12/phase12c_closure.json
 ```
 
 ## Claim boundary
 
-The completed prefix establishes one recursive fail-closed rejection followed by one later fresh,
-accepted, model-weight successor promotion. It establishes `F0 subsetneq F1` and leaves the active
-generation-2 generator and planner installed in `M1`.
+The completed prefix establishes two fail-closed rejections and two later accepted recursive
+promotions:
 
-It does not establish `M1 -> M2`, `M2 -> M3`, `M3 -> M4`, the complete four-promotion recursive
-chain, generic successor availability, arbitrary native-float equivalence, or autonomous/unbounded
-recursive self-improvement.
+```text
+M0 -> M1  model-weight successor
+M1 -> M2  memory and retrieval successor
+```
+
+It establishes `F0 subsetneq F1 subsetneq F2` and leaves the generation-2 generator and planner
+installed in `M2`. It does not establish `M2 -> M3`, `M3 -> M4`, the complete four-promotion
+recursive chain, generic successor availability, arbitrary native-float equivalence, or
+autonomous/unbounded recursive self-improvement.
