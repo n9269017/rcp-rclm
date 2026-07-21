@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rcp-rclm.org/schema/runtime-v3-phase-11-closure-v1.json",
+  "title": "RCP/RCLM Runtime v3 Phase 11 autonomous generator closure",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "accepted",
+    "reference_hash",
+    "verification_hash",
+    "promotion_hash",
+    "active_predecessor_model_generated_proposal",
+    "heldout_material_consumed",
+    "model_generated_candidate_rejected",
+    "later_fresh_proposal_accepted",
+    "manual_repairs",
+    "successor_generator_bytes_changed",
+    "successor_planner_bytes_changed",
+    "successor_generator_planner_installed",
+    "recursive_use_of_modified_successor_generator",
+    "phase11_exit_closed",
+    "next_phase",
+    "report_hash",
+    "pinned_identity_prewarm_hashes",
+    "reference_summary",
+    "stable_reference_summary_hash",
+    "exact_runtime_reference_hash",
+    "runtime_bindings",
+    "untrusted_training_evidence_required_by_workflow",
+    "claim_boundary",
+    "final_report_hash"
+  ],
+  "properties": {
+    "schema_id": {"const": "runtime.v3.phase11b.closure.v1"},
+    "accepted": {"const": true},
+    "reference_hash": {"$ref": "#/$defs/Hash"},
+    "verification_hash": {"$ref": "#/$defs/Hash"},
+    "promotion_hash": {"$ref": "#/$defs/Hash"},
+    "active_predecessor_model_generated_proposal": {"const": true},
+    "heldout_material_consumed": {"const": false},
+    "model_generated_candidate_rejected": {"const": true},
+    "later_fresh_proposal_accepted": {"const": true},
+    "manual_repairs": {"const": 0},
+    "successor_generator_bytes_changed": {"const": true},
+    "successor_planner_bytes_changed": {"const": true},
+    "successor_generator_planner_installed": {"const": true},
+    "recursive_use_of_modified_successor_generator": {"const": false},
+    "phase11_exit_closed": {"const": true},
+    "next_phase": {"const": 12},
+    "report_hash": {"$ref": "#/$defs/Hash"},
+    "pinned_identity_prewarm_hashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lake_version", "lean_prefix", "lean_version"],
+      "properties": {
+        "lake_version": {"$ref": "#/$defs/Hash"},
+        "lean_prefix": {"$ref": "#/$defs/Hash"},
+        "lean_version": {"$ref": "#/$defs/Hash"}
+      }
+    },
+    "reference_summary": {
+      "type": "object",
+      "required": ["accepted", "summary_hash", "claim_boundary"],
+      "properties": {
+        "accepted": {"const": true},
+        "summary_hash": {"$ref": "#/$defs/Hash"},
+        "claim_boundary": {
+          "type": "object",
+          "required": ["candidate_promoted", "phase11_exit_closed"],
+          "properties": {
+            "candidate_promoted": {"const": false},
+            "phase11_exit_closed": {"const": false}
+          }
+        }
+      }
+    },
+    "stable_reference_summary_hash": {"$ref": "#/$defs/Hash"},
+    "exact_runtime_reference_hash": {"$ref": "#/$defs/Hash"},
+    "runtime_bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "verification_report_hash",
+        "promotion_report_hash",
+        "rejection_attempt_report_hash",
+        "rejection_ledger_hash",
+        "promotion_attempt_report_hash",
+        "promotion_ledger_hash",
+        "initial_active_package_hash",
+        "active_package_hash_after_rejection",
+        "promoted_package_hash",
+        "parent_package_hash",
+        "ledger_sequence_number",
+        "installed_generator_bytes_hash",
+        "installed_planner_bytes_hash",
+        "active_generator_hash",
+        "successor_generator_hash",
+        "active_planner_hash",
+        "successor_planner_hash",
+        "rejection_preserved_active_package",
+        "promotion_parent_is_unchanged_active_package",
+        "installed_generator_bytes_verified",
+        "installed_planner_bytes_verified"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase11b.runtime_bindings.v1"},
+        "verification_report_hash": {"$ref": "#/$defs/Hash"},
+        "promotion_report_hash": {"$ref": "#/$defs/Hash"},
+        "rejection_attempt_report_hash": {"$ref": "#/$defs/Hash"},
+        "rejection_ledger_hash": {"$ref": "#/$defs/Hash"},
+        "promotion_attempt_report_hash": {"$ref": "#/$defs/Hash"},
+        "promotion_ledger_hash": {"$ref": "#/$defs/Hash"},
+        "initial_active_package_hash": {"$ref": "#/$defs/Hash"},
+        "active_package_hash_after_rejection": {"$ref": "#/$defs/Hash"},
+        "promoted_package_hash": {"$ref": "#/$defs/Hash"},
+        "parent_package_hash": {"$ref": "#/$defs/Hash"},
+        "ledger_sequence_number": {"const": 2},
+        "installed_generator_bytes_hash": {"$ref": "#/$defs/Hash"},
+        "installed_planner_bytes_hash": {"$ref": "#/$defs/Hash"},
+        "active_generator_hash": {"$ref": "#/$defs/Hash"},
+        "successor_generator_hash": {"$ref": "#/$defs/Hash"},
+        "active_planner_hash": {"$ref": "#/$defs/Hash"},
+        "successor_planner_hash": {"$ref": "#/$defs/Hash"},
+        "rejection_preserved_active_package": {"const": true},
+        "promotion_parent_is_unchanged_active_package": {"const": true},
+        "installed_generator_bytes_verified": {"const": true},
+        "installed_planner_bytes_verified": {"const": true}
+      }
+    },
+    "untrusted_training_evidence_required_by_workflow": {"const": true},
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "one_active_predecessor_model",
+        "one_model_generated_candidate_rejected",
+        "one_later_fresh_model_generated_candidate_promoted",
+        "successor_generator_planner_installed",
+        "successor_generator_used_recursively",
+        "phase11_exit_closed",
+        "phase12_required_for_recursive_use"
+      ],
+      "properties": {
+        "one_active_predecessor_model": {"const": true},
+        "one_model_generated_candidate_rejected": {"const": true},
+        "one_later_fresh_model_generated_candidate_promoted": {"const": true},
+        "successor_generator_planner_installed": {"const": true},
+        "successor_generator_used_recursively": {"const": false},
+        "phase11_exit_closed": {"const": true},
+        "phase12_required_for_recursive_use": {"const": true}
+      }
+    },
+    "final_report_hash": {"$ref": "#/$defs/Hash"}
+  },
+  "$defs": {
+    "Hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

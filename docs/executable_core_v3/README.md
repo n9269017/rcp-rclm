@@ -1,7 +1,8 @@
 # Executable Core v3 documentation
 
 Executable Core v3 implements the learned capability-frontier refinement introduced by
-Formal Core v3 Gate D.
+Formal Core v3 Gate D and carries the selected compact learned successor through bounded
+proposal, realization, rejection, and promotion lifecycles.
 
 ## Current status
 
@@ -11,14 +12,17 @@ Phase 10 — promoted compact-language-model successor: complete at declared sel
 Phase 10A — canonical 13.2M transformer package and zero-LoRA extension: complete
 Phase 10B — learned sparse execution, Lean frontier expansion, and KL/QRE evidence: complete
 Phase 10 lifecycle — Phase 6 realization, Phase 7 promotion, rollback, and worker-free replay: complete
-Phase 11 — autonomous experiment planner and generator: not started
-Phase 12 — self-hosted multi-generation recursion: not started
+Phase 11 — autonomous experiment planner and generator: complete at declared selected scope
+Phase 11A — active-model typed proposal, rejection, and fresh validation: complete historical slice
+Phase 11 lifecycle — realized alpha rejection, fresh beta promotion, and generation-2 policy installation: complete
+Phase 12 — recursive use of the promoted generation-2 generator: next, not started
 Phase 13 — broader independent adversarial closure: not started
 ```
 
-The Phase 10 independent replay is the bounded replay obligation for the one selected
-successor. It does not pre-empt the broader multi-generation and adversarial work reserved
-for later phases.
+Phase 11 closes one bounded active-predecessor experiment cycle. It does not claim generic
+successor availability, arbitrary native-float model generation, an unbounded learned
+trajectory, or recursive use of the newly installed generator. The latter is the central
+Phase 12 condition.
 
 ## Phase 9
 
@@ -67,7 +71,7 @@ transformer execution.
 
 ## Full Phase 10 closure
 
-The final lifecycle layer establishes:
+The final Phase 10 lifecycle layer establishes:
 
 - Phase 6 realization of the learned tensor and manifest changes;
 - canonical byte-exact rollback restoration;
@@ -82,6 +86,49 @@ Cross-platform validation compares stable semantic hashes only. Environment-boun
 and lifecycle hashes remain attached to the exact pinned code-proof run rather than being
 misclassified as portable model identities.
 
+## Full Phase 11 closure
+
+Phase 11 adds one bounded model-facing experiment controller over the promoted Phase 10
+package:
+
+- a host-installed active generator/planner bootstrap, excluded from the autonomous-
+  improvement count;
+- a canonical typed mutation-program grammar and immutable total budget;
+- three deterministic active-model proposal invocations with no held-out material;
+- rejection of an invalid, over-budget proposal before realization;
+- Phase 6 realization and exact rollback of an alpha candidate;
+- rejection of alpha for protected-capability regression while leaving the active package
+  unchanged;
+- an immutable rejection-ledger entry;
+- a fresh beta proposal bound to alpha's rejection evidence;
+- duplicate isolated alpha and beta worker execution with host-exact tensor recomputation;
+- Phase 6 realization and exact rollback of beta;
+- retention of the protected `rfl` and Phase 10 `omega` tasks;
+- certification of one new held-out Lean task under the pinned toolchain;
+- selected entropy/KL/diagonal-QRE and strict-information obligations;
+- complete Gate D / Phase 9 and hardened Gate B acceptance;
+- Phase 7 atomic promotion with the unchanged active package as parent;
+- ledger sequence number two: rejection followed by promotion;
+- generation-2 generator and planner bytes installed inside the immutable promoted package;
+- a terminal `phase11_exit_closed=true` record.
+
+`phase_11_closure_manifest.json` keeps two evidence classes separate:
+
+- `stable_reference_hashes` contains only source-deterministic semantic identities that
+  recompute across Linux, Windows, and macOS;
+- `code_proof.exact_runtime_hashes` retains Phase 6, rejection-observation, certificate,
+  ledger, promotion, and installed-byte identities from the exact pinned code-proof run.
+
+This separation is necessary because beta's proposal is intentionally bound to alpha's
+realized rejection observation, which includes environment-bound Phase 6 evidence.
+
+## Phase 12 boundary
+
+The promoted successor is self-hosting-ready because its changed generation-2 generator and
+planner are installed and cryptographically bound. Phase 11 does not claim that those changed
+policies have already emitted another proposal. Phase 12 begins when the promoted successor
+itself is used to generate the next bounded experiment program.
+
 ## Reading order
 
 ```text
@@ -95,4 +142,7 @@ misclassified as portable model identities.
 8. PHASE_10_LIFECYCLE.md
 9. PHASE_10_EXIT_CRITERIA.md
 10. PHASE_10_VALIDATION.md
+11. PHASE_11_GENERATOR.md
+12. PHASE_11_EXIT_CRITERIA.md
+13. PHASE_11_VALIDATION.md
 ```

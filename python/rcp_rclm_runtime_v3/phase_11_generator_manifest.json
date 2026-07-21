@@ -1,0 +1,103 @@
+{
+  "claim_boundary": {
+    "active_predecessor_model_generated_proposal": true,
+    "bootstrap_counted_as_autonomous_improvement": false,
+    "fresh_model_generated_typed_program_validated": true,
+    "host_installed_active_generator_bootstrap": true,
+    "model_generated_candidate_promoted": false,
+    "model_generated_candidate_realized": false,
+    "model_generated_candidate_rejected": false,
+    "model_generated_proposal_rejected": true,
+    "modified_successor_generator_used_recursively": false,
+    "phase11_exit_closed": false,
+    "successor_generator_planner_installed": false
+  },
+  "code_proof": {
+    "artifacts": {
+      "final": {
+        "digest": "sha256:30b23dc8c4f754377a1407fea57f57278f63989c3505f0cb15923d93959b0f13",
+        "id": 8453757707,
+        "name": "runtime-v3-phase-11a-final-29724450584-1"
+      },
+      "macos": {
+        "digest": "sha256:35f960fd44e4b217c4d20d16fe6dbaa5e54acc9d50565e448347910bd035e61b",
+        "id": 8453740290,
+        "name": "runtime-v3-phase-11a-macos-latest-29724450584-1"
+      },
+      "ubuntu": {
+        "digest": "sha256:248ef5e6b9d5c91be629aff8be4d235c95143a11314b270645a6d64d5c655e05",
+        "id": 8453735527,
+        "name": "runtime-v3-phase-11a-ubuntu-latest-29724450584-1"
+      },
+      "windows": {
+        "digest": "sha256:ceea2b370652263daa69ab51ed6184e2d35c9c9f7c26d7a8aee0440992088296",
+        "id": 8453754142,
+        "name": "runtime-v3-phase-11a-windows-latest-29724450584-1"
+      }
+    },
+    "branch_head": "4d408f4ec6ff62e1b60a6e2344a252d05bc1c9eb",
+    "cross_platform_reference_file_sha256": "ef286eaab9bee4a1ef4a752f25755b5e084a5af04056cf0a5df0a25f54b78663",
+    "pr_merge_test_commit": "de744688afb97fe1fec5a06912656c171a295439",
+    "workflow_run_attempt": 1,
+    "workflow_run_id": 29724450584
+  },
+  "dependency": {
+    "phase10_merge_commit": "52acaa820d75380b8766a2d7f4f78226645acc1f",
+    "phase10_required_complete": true,
+    "runtime_v2_trust_boundary_required_unchanged": true
+  },
+  "fixed_invocation_budget": {
+    "accelerator_count": 0,
+    "candidate_count": 2,
+    "evaluation_calls": 2,
+    "output_bytes": 96,
+    "training_steps": 1,
+    "wall_clock_seconds": 1
+  },
+  "phase_name": "RCLM v3 Phase 11A - active-model typed experiment proposal",
+  "reference_hashes": {
+    "active_generator_hash": "166966f0e0724c65f1137529fb774882cdeb88c2c1262ff243ad0709f8a12b8b",
+    "active_model_identity_hash": "94a07482cf243964d54e6f9079103f7d1ca85745d351a0a28a9030cbb11ef023",
+    "active_package_hash": "724fcda02a1124eeeb2f2c0207052d16705d6fdb95afc6b87a7f5e6b658e47c4",
+    "active_planner_hash": "6d3b7dff5117791ba50c7b0b89eddb07d8acaf1afb0deb56e32d06fcff55dff2",
+    "active_state_hash": "13e5f135b635b6282b9076b849b6ff1c6d4a59189744a52f76c17ba37ee0242e",
+    "bootstrap_report_hash": "6b36353fa52001b4a25fac297638d30a4f6408c44723083b2c578ca24a876966",
+    "budget_hash": "a01b0dc9454a4e59f0b9380dfa073009779c4d009c76628c36ac57c6f13a646e",
+    "first_invocation_hash": "d33ef2b1399884fcf1b4669c2e9c46b59fcd8da997ea8c7a6bd800074c8ead1d",
+    "first_program_hash": "0d602b6cdb2d44eedbd967cad1ec7c2e0d2c8db6f88bfcb15dccaecd3be95b10",
+    "first_validation_hash": "25919209c90e7710cb50706ebad8d0085e66067eb8a95686205d01a79fac3c74",
+    "objective_hash": "4535fea658adb666939c580c78c2ddc55d1c0d93fcb3d1c3dcd29c9199a988b9",
+    "proposal_protocol_hash": "5fbf5cb884187dc37e492ce9cd0057f746d60138e9a542fa1723072a3914b7d8",
+    "second_invocation_hash": "ed14627f8debf0e2cac6007feea4bb0cc0456e39fbc906e6b5d547106988c926",
+    "second_program_hash": "cf34b0b9e153a99f63757d087f52a12cf3388c3b54c4afadad2b5815953f0dae",
+    "second_validation_hash": "be71dd82defd33ab82ef736922ace696b8f453b7a493678d61a07acc3c862aa6",
+    "summary_hash": "fe32f0d879f26929505170fbf695657af02be623090cfc41b383aabc32e8312e"
+  },
+  "rejection_contract": {
+    "first_reason_codes": [
+      "PHASE11_BUDGET_EXCEEDED",
+      "PHASE11_FORBIDDEN_UPDATE_CLASS"
+    ],
+    "first_validation_accepted": false,
+    "heldout_material_consumed": false,
+    "manual_repair_count": 0,
+    "second_validation_accepted": true
+  },
+  "required_source_paths": [
+    ".github/workflows/runtime-v3-phase-11-generator.yml",
+    "python/rcp_rclm_executable_core_v3/contract/phase_11_generator.schema.json",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/bootstrap.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/constants.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/generator.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/grammar.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/records.py",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase11/reference.py",
+    "python/rcp_rclm_runtime_v3/tests_phase11/test_phase11a_reference.py",
+    "python/rcp_rclm_runtime_v3/tools/run_phase11_reference.py",
+    "python/rcp_rclm_runtime_v3/tools/run_phase11_tests.py",
+    "python/rcp_rclm_runtime_v3/tools/validate_phase11_schema.py",
+    "scripts/run_phase11_generator.py"
+  ],
+  "schema_version": "rcp-rclm-runtime-v3-phase-11a-manifest-v1",
+  "status": "phase11a_active_model_typed_proposal_complete_at_declared_scope"
+}
