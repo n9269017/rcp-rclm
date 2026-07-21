@@ -3,3 +3,4 @@ from rcp_rclm_runtime_v3.contract.reference import *
 from rcp_rclm_runtime_v3.contract.validation import *
 from rcp_rclm_runtime_v3.phase10 import *
 from rcp_rclm_runtime_v3.phase11 import *
+from rcp_rclm_runtime_v3.phase12 import *

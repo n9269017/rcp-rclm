@@ -1,0 +1,337 @@
+{
+  "$id": "https://rcp-rclm.invalid/runtime-v3/phase-12-recursive-start.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "active_generator_generation": {
+      "const": 2
+    },
+    "active_generator_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "active_model_identity_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "active_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "active_package_unchanged_after_rejection": {
+      "const": true
+    },
+    "active_planner_generation": {
+      "const": 2
+    },
+    "active_planner_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "active_state_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "claim_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_phase12_promotions": {
+          "const": 0
+        },
+        "first_phase12_model_generated_attempt_rejected": {
+          "const": true
+        },
+        "four_promotion_chain_complete": {
+          "const": false
+        },
+        "generation2_successor_generator_used_recursively": {
+          "const": true
+        },
+        "phase11_promoted_successor_reconstructed": {
+          "const": true
+        },
+        "phase12_begun": {
+          "const": true
+        },
+        "phase12_exit_closed": {
+          "const": false
+        },
+        "rejection_preserved_active_package": {
+          "const": true
+        },
+        "strict_phase12_frontier_expansions": {
+          "const": 0
+        }
+      },
+      "required": [
+        "phase12_begun",
+        "phase11_promoted_successor_reconstructed",
+        "generation2_successor_generator_used_recursively",
+        "first_phase12_model_generated_attempt_rejected",
+        "rejection_preserved_active_package",
+        "accepted_phase12_promotions",
+        "strict_phase12_frontier_expansions",
+        "four_promotion_chain_complete",
+        "phase12_exit_closed"
+      ],
+      "type": "object"
+    },
+    "component_schedule": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "required_components": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "transition_index": {
+            "maximum": 3,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "transition_index",
+          "required_components",
+          "description"
+        ],
+        "type": "object"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array"
+    },
+    "contract_version": {
+      "const": "rcp-rclm-executable-v3-phase-12a"
+    },
+    "deterministic_generator_replay": {
+      "const": true
+    },
+    "first_invocation_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "first_program_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "first_program_text": {
+      "const": "V1;O=F;U=WLCGP;D=A;A=N;R=1,0,1,96,1,1;E=WLCGP;B=X;G=2;P=2"
+    },
+    "first_reason_codes": {
+      "items": false,
+      "maxItems": 1,
+      "minItems": 1,
+      "prefixItems": [
+        {
+          "const": "PHASE12_GENERATION_NOT_ADVANCED"
+        }
+      ],
+      "type": "array"
+    },
+    "first_validation_accepted": {
+      "const": false
+    },
+    "first_validation_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "frontier_before": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "frontier_before_cardinality": {
+      "const": 3
+    },
+    "heldout_material_consumed": {
+      "const": false
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "phase11_closure_manifest_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase11_merge_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "progress_ledger": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_promotions": {
+          "const": 0
+        },
+        "candidate_evaluations": {
+          "const": 0
+        },
+        "candidate_realizations": {
+          "const": 0
+        },
+        "frontier_expansions": {
+          "const": 0
+        },
+        "generator_invocations": {
+          "const": 1
+        },
+        "manual_repairs": {
+          "const": 0
+        },
+        "rejected_attempts": {
+          "const": 1
+        },
+        "schema_id": {
+          "const": "runtime.v3.phase12.progress_ledger.v1"
+        },
+        "target_frontier_cardinality": {
+          "const": 7
+        },
+        "total_budget_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_id",
+        "total_budget_hash",
+        "generator_invocations",
+        "rejected_attempts",
+        "candidate_realizations",
+        "candidate_evaluations",
+        "accepted_promotions",
+        "frontier_expansions",
+        "manual_repairs",
+        "target_frontier_cardinality"
+      ],
+      "type": "object"
+    },
+    "promoted_semantic_binding": {
+      "const": true
+    },
+    "promoted_semantic_checks": {
+      "additionalProperties": false,
+      "properties": {
+        "beta_model_bound": {
+          "const": true
+        },
+        "beta_package_bound": {
+          "const": true
+        },
+        "phase11_atomic_promotion": {
+          "const": true
+        },
+        "phase11_exit_closed": {
+          "const": true
+        },
+        "phase11_manifest_shape": {
+          "const": true
+        },
+        "successor_generator_bound": {
+          "const": true
+        },
+        "successor_planner_bound": {
+          "const": true
+        }
+      },
+      "required": [
+        "beta_model_bound",
+        "beta_package_bound",
+        "phase11_atomic_promotion",
+        "phase11_exit_closed",
+        "phase11_manifest_shape",
+        "successor_generator_bound",
+        "successor_planner_bound"
+      ],
+      "type": "object"
+    },
+    "proposal_protocol_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "recursive_successor_generator_used": {
+      "const": true
+    },
+    "requested_generator_generation": {
+      "const": 2
+    },
+    "requested_planner_generation": {
+      "const": 2
+    },
+    "required_accepted_promotions": {
+      "const": 4
+    },
+    "required_rejected_attempts": {
+      "const": 2
+    },
+    "schema_id": {
+      "const": "runtime.v3.phase12a.evidence_summary.v1"
+    },
+    "summary_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "target_frontier_cardinality": {
+      "const": 7
+    }
+  },
+  "required": [
+    "schema_id",
+    "contract_version",
+    "accepted",
+    "phase11_merge_commit",
+    "phase11_closure_manifest_hash",
+    "active_package_hash",
+    "active_state_hash",
+    "active_model_identity_hash",
+    "active_generator_hash",
+    "active_planner_hash",
+    "active_generator_generation",
+    "active_planner_generation",
+    "proposal_protocol_hash",
+    "promoted_semantic_binding",
+    "promoted_semantic_checks",
+    "first_invocation_hash",
+    "first_program_hash",
+    "first_program_text",
+    "first_validation_hash",
+    "first_validation_accepted",
+    "first_reason_codes",
+    "requested_generator_generation",
+    "requested_planner_generation",
+    "deterministic_generator_replay",
+    "recursive_successor_generator_used",
+    "active_package_unchanged_after_rejection",
+    "heldout_material_consumed",
+    "manual_repairs",
+    "frontier_before",
+    "frontier_before_cardinality",
+    "target_frontier_cardinality",
+    "required_accepted_promotions",
+    "required_rejected_attempts",
+    "component_schedule",
+    "progress_ledger",
+    "claim_boundary",
+    "summary_hash"
+  ],
+  "title": "RCLM v3 Phase 12A recursive successor-generator start evidence",
+  "type": "object"
+}
