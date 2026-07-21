@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from enum import StrEnum
 from typing import ClassVar
@@ -107,7 +108,7 @@ class Phase12StartValidationReport:
     requested_generator_generation: int
     requested_planner_generation: int
     binding_checks: dict[str, bool]
-    reason_codes: tuple[Phase12StartReasonCode, ...]
+    reason_codes: Sequence[Phase12StartReasonCode]
 
     schema_id: ClassVar[str] = "runtime.v3.phase12.start_validation.v1"
 
