@@ -35,22 +35,46 @@ jobs:
           python-version: "3.11"
 
       - name: Decode and materialize Phase 12D
+        id: materialize
         shell: bash
         run: |
-          set -euo pipefail
-          cat .phase12d_payload/part* | base64 --decode > /tmp/phase12d-payload.tar.gz
-          mkdir -p /tmp/phase12d-payload
-          tar -xzf /tmp/phase12d-payload.tar.gz -C /tmp/phase12d-payload
-          python /tmp/phase12d-payload/materialize.py \
-            --repo-root "$GITHUB_WORKSPACE" \
-            --payload-root /tmp/phase12d-payload
+          set +e
+          mkdir -p artifacts/phase12d-materializer
+          {
+            set -x
+            cat .phase12d_payload/part* | base64 --decode > /tmp/phase12d-payload.tar.gz
+            mkdir -p /tmp/phase12d-payload
+            tar -xzf /tmp/phase12d-payload.tar.gz -C /tmp/phase12d-payload
+            python /tmp/phase12d-payload/materialize.py \
+              --repo-root "$GITHUB_WORKSPACE" \
+              --payload-root /tmp/phase12d-payload
+            python -m compileall -q \
+              python/rcp_rclm_runtime_v3 \
+              scripts/run_phase12_generator_planner.py
+          } > artifacts/phase12d-materializer/materializer.log 2>&1
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          tail -n 80 artifacts/phase12d-materializer/materializer.log
+          exit 0
+
+      - name: Upload materializer diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase12d-materializer-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/phase12d-materializer/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Remove transport and one-shot workflow
+        if: steps.materialize.outputs.status == '0'
+        shell: bash
+        run: |
           rm -rf .phase12d_payload
           rm -f .github/workflows/phase12d-materializer.yml
-          python -m compileall -q \
-            python/rcp_rclm_runtime_v3 \
-            scripts/run_phase12_generator_planner.py
 
       - name: Commit materialized source
+        if: steps.materialize.outputs.status == '0'
         shell: bash
         run: |
           set -euo pipefail
@@ -59,3 +83,8 @@ jobs:
           git add -A
           git commit -m "Implement Phase 12D generator and planner successor"
           git push origin HEAD
+
+      - name: Fail if materialization failed
+        if: steps.materialize.outputs.status != '0'
+        shell: bash
+        run: exit 1
