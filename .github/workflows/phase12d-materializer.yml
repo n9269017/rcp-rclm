@@ -66,12 +66,12 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
-      - name: Remove transport and one-shot workflow
+      - name: Remove transport but retain workflow publication boundary
         if: steps.materialize.outputs.status == '0'
         shell: bash
         run: |
           rm -rf .phase12d_payload
-          rm -f .github/workflows/phase12d-materializer.yml
+          rm -f .github/workflows/runtime-v3-phase-12-generator-planner.yml
 
       - name: Commit materialized source
         if: steps.materialize.outputs.status == '0'
