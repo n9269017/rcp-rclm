@@ -1,0 +1,146 @@
+name: Runtime v3 Phase 13 independent replay boundary
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "python/rcp_rclm_runtime_v3/**"
+      - "python/rcp_rclm_executable_core_v3/**"
+      - "docs/executable_core_v3/**"
+      - "scripts/run_phase13_replay.py"
+      - ".github/workflows/runtime-v3-phase-13-replay-boundary.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  portable:
+    name: Validate Phase 13A replay boundary (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - "3.11"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install deterministic runtimes
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+
+      - name: Compile Phase 13A source
+        run: >-
+          python -m compileall -q
+          python/rcp_rclm_runtime_v3
+          scripts/run_phase13_replay.py
+
+      - name: Validate deterministic source quality
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_source_quality.py
+          --package-root python/rcp_rclm_runtime_v3
+          --out artifacts/runtime_v3_phase_13a/${{ matrix.os }}/source_quality.json
+
+      - name: Run focused Phase 13A tests
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase13_tests.py
+          --package-root python/rcp_rclm_runtime_v3
+          --out artifacts/runtime_v3_phase_13a/${{ matrix.os }}/phase_13_tests.log
+
+      - name: Recompute Phase 13A reference
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase13_reference.py
+          --repo-root .
+          --out artifacts/runtime_v3_phase_13a/${{ matrix.os }}/phase_13_reference.json
+
+      - name: Validate Phase 13A Draft 2020-12 schema
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase13_schema.py
+          --schema python/rcp_rclm_executable_core_v3/contract/phase_13_replay_boundary.schema.json
+          --instance artifacts/runtime_v3_phase_13a/${{ matrix.os }}/phase_13_reference.json
+          --out artifacts/runtime_v3_phase_13a/${{ matrix.os }}/phase_13_schema.json
+
+      - name: Run repository Phase 13A entry point
+        run: >-
+          python scripts/run_phase13_replay.py
+          --repo-root .
+          --out artifacts/runtime_v3_phase_13a/${{ matrix.os }}/phase_13_root_entry.json
+
+      - name: Require byte-identical entry points and replay boundary
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("artifacts/runtime_v3_phase_13a/${{ matrix.os }}")
+          assert (root / "phase_13_reference.json").read_bytes() == (
+              root / "phase_13_root_entry.json"
+          ).read_bytes()
+          report = json.loads((root / "phase_13_reference.json").read_text(encoding="utf-8"))
+          assert report["phase13a_slice_closed"] is True
+          assert report["phase13_exit_closed"] is False
+          assert report["counters"]["training_invocations"] == 0
+          assert report["counters"]["generator_invocations"] == 0
+          assert report["counters"]["planner_invocations"] == 0
+          assert report["forbidden_modules_loaded"] == []
+          assert report["forbidden_paths_present"] == []
+          assert report["attack_suite"]["case_count"] == 21
+          assert report["attack_suite"]["all_passed"] is True
+          PY
+
+      - name: Upload portable Phase 13A evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-13a-${{ matrix.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_13a/${{ matrix.os }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  closure:
+    name: Close Phase 13A replay-boundary slice
+    needs:
+      - portable
+    runs-on: ubuntu-latest
+    steps:
+      - name: Emit closure record
+        shell: bash
+        run: |
+          mkdir -p artifacts/runtime_v3_phase_13a/final
+          cat > artifacts/runtime_v3_phase_13a/final/phase13a_exit.txt <<'EOF'
+          phase13a_slice_closed=true
+          phase13_exit_closed=false
+          training_invocations=0
+          generator_invocations=0
+          planner_invocations=0
+          adversarial_cases=21
+          EOF
+
+      - name: Upload Phase 13A closure
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-13a-closure-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_13a/final/
+          if-no-files-found: error
+          retention-days: 90
