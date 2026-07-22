@@ -38,22 +38,29 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p artifacts/phase12e-restore
-          cat .phase12e_restore/part* | base64 --decode > artifacts/phase12e-restore/phase12e-restore.tar.gz
+          mkdir -p /tmp/phase12e-restore-artifact
+          cat .phase12e_restore/part* | base64 --decode > /tmp/phase12e-restore-artifact/phase12e-restore.tar.gz
           printf '%s  %s\n' \
             '475c48aa9e511b36e669020a307fe4d2960fa4c9350e9a7767de79efae8a56ec' \
-            'artifacts/phase12e-restore/phase12e-restore.tar.gz' | sha256sum -c -
-          tar -xzf artifacts/phase12e-restore/phase12e-restore.tar.gz -C "$GITHUB_WORKSPACE"
+            '/tmp/phase12e-restore-artifact/phase12e-restore.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/phase12e-restore-artifact/phase12e-restore.tar.gz -C "$GITHUB_WORKSPACE"
+          cp .github/workflows/runtime-v3-phase-12-complete.yml \
+            /tmp/phase12e-restore-artifact/runtime-v3-phase-12-complete.yml
+          rm -f .github/workflows/runtime-v3-phase-12-complete.yml
           rm -rf .phase12e_restore
-          rm -f .github/workflows/phase12e-restore-materializer.yml
           python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
           python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
           python -m compileall -q python/rcp_rclm_runtime_v3 scripts/run_phase12_complete.py
           python python/rcp_rclm_runtime_v3/tools/validate_source_quality.py \
             --package-root python/rcp_rclm_runtime_v3 \
-            --out artifacts/phase12e-restore/source_quality.json
+            --out /tmp/phase12e-restore-artifact/source_quality.json
+          rm -rf \
+            python/rcp_rclm_runtime_v2/rcp_rclm_runtime_v2.egg-info \
+            python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3.egg-info \
+            python/rcp_rclm_runtime_v2/rcp_rclm_runtime_v2/__pycache__ \
+            python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/__pycache__
 
-      - name: Commit and push restored source
+      - name: Commit and push restored non-workflow source
         id: push
         shell: bash
         continue-on-error: true
@@ -62,18 +69,18 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git status --short | tee artifacts/phase12e-restore/git-status.txt
+          git status --short | tee /tmp/phase12e-restore-artifact/git-status.txt
           git commit -m "Restore complete Phase 12E source for independent replay" \
-            2>&1 | tee artifacts/phase12e-restore/git-commit.txt
+            2>&1 | tee /tmp/phase12e-restore-artifact/git-commit.txt
           git push origin HEAD:${{ github.event.pull_request.head.ref }} \
-            2>&1 | tee artifacts/phase12e-restore/git-push.txt
+            2>&1 | tee /tmp/phase12e-restore-artifact/git-push.txt
 
       - name: Upload restoration source and diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: phase12e-restore-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/phase12e-restore/
+          path: /tmp/phase12e-restore-artifact/
           if-no-files-found: error
           retention-days: 7
 
