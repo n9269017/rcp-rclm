@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rcp-rclm.example/schemas/runtime-v3-phase-13a-replay-boundary.json",
+  "title": "RCP/RCLM Runtime v3 Phase 13A replay boundary evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "contract_version",
+    "contract_hash",
+    "replay_profile",
+    "retained_manifest",
+    "retained_manifest_hash",
+    "source_guard",
+    "source_guard_hash",
+    "counters",
+    "forbidden_modules_loaded",
+    "forbidden_paths_present",
+    "phase12_required_paths_present",
+    "phase12_required_paths_missing",
+    "phase12_dependency_complete",
+    "attack_suite",
+    "attack_suite_hash",
+    "replay_boundary_closed",
+    "phase13a_slice_closed",
+    "phase13_exit_closed",
+    "report_hash"
+  ],
+  "properties": {
+    "schema_id": {"const": "runtime.v3.phase13a.replay_boundary_report.v1"},
+    "contract_version": {"const": "rcp-rclm-executable-v3-phase-13a"},
+    "contract_hash": {"$ref": "#/$defs/hash"},
+    "replay_profile": {"const": "retained_evidence_worker_free_replay_v1"},
+    "retained_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "files", "missing_declared_paths", "excluded_forbidden_paths"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase13a.retained_evidence_manifest.v1"},
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["schema_id", "path", "size", "sha256"],
+            "properties": {
+              "schema_id": {"const": "runtime.v3.phase13a.retained_file.v1"},
+              "path": {"type": "string", "minLength": 1},
+              "size": {"type": "integer", "minimum": 0},
+              "sha256": {"$ref": "#/$defs/hash"}
+            }
+          }
+        },
+        "missing_declared_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "excluded_forbidden_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "retained_manifest_hash": {"$ref": "#/$defs/hash"},
+    "source_guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "file_hashes", "findings", "clean"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase13a.replay_source_guard.v1"},
+        "file_hashes": {
+          "type": "object",
+          "minProperties": 5,
+          "additionalProperties": {"$ref": "#/$defs/hash"}
+        },
+        "findings": {"type": "array", "maxItems": 0},
+        "clean": {"const": true}
+      }
+    },
+    "source_guard_hash": {"$ref": "#/$defs/hash"},
+    "counters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "training_invocations", "generator_invocations", "planner_invocations", "accepted"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase13a.replay_invocation_counters.v1"},
+        "training_invocations": {"const": 0},
+        "generator_invocations": {"const": 0},
+        "planner_invocations": {"const": 0},
+        "accepted": {"const": true}
+      }
+    },
+    "forbidden_modules_loaded": {"type": "array", "maxItems": 0},
+    "forbidden_paths_present": {"type": "array", "maxItems": 0},
+    "phase12_required_paths_present": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "phase12_required_paths_missing": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "phase12_dependency_complete": {"type": "boolean"},
+    "attack_suite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "suite_version", "case_count", "passed_count", "failed_count", "all_passed", "results"],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase13a.attack_suite.v1"},
+        "suite_version": {"const": "phase13-adversarial-closure-v1"},
+        "case_count": {"const": 21},
+        "passed_count": {"const": 21},
+        "failed_count": {"const": 0},
+        "all_passed": {"const": true},
+        "results": {
+          "type": "array",
+          "minItems": 21,
+          "maxItems": 21,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "schema_id", "attack_id", "expected_reason_code", "first_reason_codes",
+              "second_reason_codes", "first_observation_hash", "second_observation_hash",
+              "deterministic", "passed"
+            ],
+            "properties": {
+              "schema_id": {"const": "runtime.v3.phase13a.attack_result.v1"},
+              "attack_id": {"type": "string", "minLength": 1},
+              "expected_reason_code": {"type": "string", "pattern": "^PHASE13_"},
+              "first_reason_codes": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+              "second_reason_codes": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+              "first_observation_hash": {"$ref": "#/$defs/hash"},
+              "second_observation_hash": {"$ref": "#/$defs/hash"},
+              "deterministic": {"const": true},
+              "passed": {"const": true}
+            }
+          }
+        }
+      }
+    },
+    "attack_suite_hash": {"$ref": "#/$defs/hash"},
+    "replay_boundary_closed": {"const": true},
+    "phase13a_slice_closed": {"const": true},
+    "phase13_exit_closed": {"const": false},
+    "report_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}
