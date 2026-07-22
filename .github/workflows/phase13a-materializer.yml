@@ -1,0 +1,73 @@
+name: Materialize Phase 13A replay boundary
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-v3-phase-13-independent-replay
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phase13a-materializer
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install and validate Phase 13A implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .phase13a_payload/part* | base64 --decode > /tmp/phase13a-implementation.tar.gz
+          printf '%s  %s\n' \
+            '7470ab389978efc78bb9d945d4870abbd8258498a62357fb0ded3f66a8e762ec' \
+            '/tmp/phase13a-implementation.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/phase13a-implementation.tar.gz -C "$GITHUB_WORKSPACE"
+          rm -rf .phase13a_payload
+          rm -f .github/workflows/phase13a-materializer.yml
+          rm -f .github/workflows/phase13-phase12e-artifact-export.yml
+
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m compileall -q python/rcp_rclm_runtime_v3 scripts/run_phase13_replay.py
+          python python/rcp_rclm_runtime_v3/tools/validate_source_quality.py \
+            --package-root python/rcp_rclm_runtime_v3 \
+            --out /tmp/phase13a-source-quality.json
+          python python/rcp_rclm_runtime_v3/tools/run_phase13_tests.py \
+            --package-root python/rcp_rclm_runtime_v3 \
+            --out /tmp/phase13a-tests.log
+          python python/rcp_rclm_runtime_v3/tools/run_phase13_reference.py \
+            --repo-root . \
+            --out /tmp/phase13a-reference.json
+          python python/rcp_rclm_runtime_v3/tools/validate_phase13_schema.py \
+            --schema python/rcp_rclm_executable_core_v3/contract/phase_13_replay_boundary.schema.json \
+            --instance /tmp/phase13a-reference.json \
+            --out /tmp/phase13a-schema.json
+          python scripts/run_phase13_replay.py \
+            --repo-root . \
+            --out /tmp/phase13a-root-entry.json
+          cmp /tmp/phase13a-reference.json /tmp/phase13a-root-entry.json
+
+      - name: Commit transparent Phase 13A source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Implement Phase 13A independent replay boundary"
+          git push origin HEAD
