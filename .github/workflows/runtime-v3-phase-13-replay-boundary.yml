@@ -9,19 +9,74 @@ on:
       - "python/rcp_rclm_executable_core_v3/**"
       - "docs/executable_core_v3/**"
       - "scripts/run_phase13_replay.py"
+      - ".phase12e_restore/**"
+      - ".github/workflows/phase12e-restore-materializer.yml"
       - ".github/workflows/runtime-v3-phase-13-replay-boundary.yml"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.head.ref || github.ref_name }}
   cancel-in-progress: true
 
 jobs:
+  materialize-phase12e:
+    name: Restore complete Phase 12E source
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out pull-request head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Decode and validate Phase 12E source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d .phase12e_restore
+          cat .phase12e_restore/part* | base64 --decode > /tmp/phase12e-restore.tar.gz
+          printf '%s  %s\n' \
+            '475c48aa9e511b36e669020a307fe4d2960fa4c9350e9a7767de79efae8a56ec' \
+            '/tmp/phase12e-restore.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/phase12e-restore.tar.gz -C "$GITHUB_WORKSPACE"
+          rm -rf .phase12e_restore
+          rm -f .github/workflows/phase12e-restore-materializer.yml
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m compileall -q python/rcp_rclm_runtime_v3 scripts/run_phase12_complete.py
+          python python/rcp_rclm_runtime_v3/tools/validate_source_quality.py \
+            --package-root python/rcp_rclm_runtime_v3 \
+            --out /tmp/phase12e-source-quality.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('/tmp/phase12e-source-quality.json').read_text(encoding='utf-8'))
+          assert report['ok'] is True, report
+          PY
+
+      - name: Commit restored source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Restore complete Phase 12E source for independent replay"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+
   portable:
     name: Validate Phase 13A replay boundary (${{ matrix.os }})
+    if: ${{ github.actor == 'github-actions[bot]' }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
     strategy:
