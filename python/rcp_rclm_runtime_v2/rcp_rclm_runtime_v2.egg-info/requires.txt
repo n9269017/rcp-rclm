@@ -1,3 +1,0 @@
-
-[torch-pilot]
-torch==2.10.0
