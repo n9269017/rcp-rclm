@@ -34,18 +34,15 @@ jobs:
           python - <<'PY'
           from pathlib import Path
 
-          def replace_once(text: str, old: str, new: str, label: str) -> str:
-              count = text.count(old)
-              if count != 1:
-                  raise RuntimeError(f"{label}: expected one occurrence, found {count}")
-              return text.replace(old, new, 1)
+          def read(path: str) -> str:
+              return Path(path).read_text(encoding="utf-8")
 
-          def write(path: Path, text: str) -> None:
-              path.write_text(text, encoding="utf-8", newline="\n")
+          def write(path: str, text: str) -> None:
+              Path(path).write_text(text, encoding="utf-8", newline="\n")
 
-          path = Path("docs/executable_core_v3/PHASE_12_EXIT_CRITERIA.md")
-          text = path.read_text(encoding="utf-8")
-          section = '''## Phase 12D generator/planner self-modification slice
+          exit_path = "docs/executable_core_v3/PHASE_12_EXIT_CRITERIA.md"
+          text = read(exit_path)
+          section = """## Phase 12D generator/planner self-modification slice
 
           - [x] The generator and planner inside promoted `M2` produce the authoritative `M2 -> M3` proposal.
           - [x] The proposal is bound to the active `M2` package, model, generation-2 generator, generation-2 planner, transition index two, and original total budget.
@@ -69,16 +66,26 @@ jobs:
           - [x] Phase 12D emits `phase12d_generator_planner_promotion_closed=true`.
           - [x] Phase 12D correctly keeps `phase12_exit_closed=false`.
 
-          '''.replace("          ", "")
-          text = replace_once(text, "## Full Phase 12 trajectory\n", section + "## Full Phase 12 trajectory\n", "exit criteria section")
-          text = replace_once(text, "- [ ] The generator inside `M2` produces the authoritative proposal for `M2 -> M3`.\n", "- [x] The generator inside `M2` produces the authoritative proposal for `M2 -> M3`.\n", "M2 generator criterion")
-          text = replace_once(text, "- [ ] `M2 -> M3` is realized, independently verified, and atomically promoted.\n", "- [x] `M2 -> M3` is realized, independently verified, and atomically promoted.\n", "M2 promotion criterion")
-          text = replace_once(text, "- [ ] `M2 -> M3` contains a generator/planner self-modification.\n", "- [x] `M2 -> M3` contains a generator/planner self-modification.\n", "M2 component criterion")
-          write(path, text)
+          """.replace("          ", "")
+          if "## Phase 12D generator/planner self-modification slice" not in text:
+              text = text.replace("## Full Phase 12 trajectory\n", section + "## Full Phase 12 trajectory\n", 1)
+          text = text.replace(
+              "- [ ] The generator inside `M2` produces the authoritative proposal for `M2 -> M3`.\n",
+              "- [x] The generator inside `M2` produces the authoritative proposal for `M2 -> M3`.\n",
+          )
+          text = text.replace(
+              "- [ ] `M2 -> M3` is realized, independently verified, and atomically promoted.\n",
+              "- [x] `M2 -> M3` is realized, independently verified, and atomically promoted.\n",
+          )
+          text = text.replace(
+              "- [ ] `M2 -> M3` contains a generator/planner self-modification.\n",
+              "- [x] `M2 -> M3` contains a generator/planner self-modification.\n",
+          )
+          write(exit_path, text)
 
-          path = Path("docs/executable_core_v3/PHASE_12_RECURSION.md")
-          text = path.read_text(encoding="utf-8")
-          section = '''## Phase 12D — generation-3 generator/planner successor
+          recursion_path = "docs/executable_core_v3/PHASE_12_RECURSION.md"
+          text = read(recursion_path)
+          section = """## Phase 12D — generation-3 generator/planner successor
 
           The third accepted transition begins from promoted `M2`. Its unchanged generation-2 generator and
           planner produce the authoritative typed program:
@@ -128,20 +135,47 @@ jobs:
           manual repairs:          0
           ```
 
-          '''.replace("          ", "")
-          text = replace_once(text, "## Trust boundary\n", section + "## Trust boundary\n", "recursion Phase 12D section")
-          text = replace_once(text, "M1 -> M2 is a substantive memory/retrieval successor\n", "M1 -> M2 is a substantive memory/retrieval successor\nM2 -> M3 is a substantive generator/planner self-modification\n", "recursion claim transition")
-          text = replace_once(text, "two later package-generated proposals were accepted\n", "three later package-generated proposals were accepted\n", "recursion accepted count")
-          text = replace_once(text, "F0 subsetneq F1 subsetneq F2\n", "F0 subsetneq F1 subsetneq F2 subsetneq F3\n", "recursion frontier chain")
-          text = replace_once(text, "|F2| = 5\n", "|F3| = 6\n", "recursion frontier cardinality")
-          text = replace_once(text, "M1 and M2 are atomically promoted\n", "M1, M2, and M3 are atomically promoted\n", "recursion promoted packages")
-          text = replace_once(text, "M2 -> M3 generator/planner self-modification\n", "", "recursion nonclaim removal")
-          text = replace_once(text, "The next slice must use the generation-2 generator and planner inside promoted `M2` to produce\nthe authoritative generator/planner self-modification proposal for `M2 -> M3`.\n", "The final slice must use the newly installed generation-3 generator and planner inside promoted\n`M3` to produce the authoritative architecture/adapter and optimizer proposal for `M3 -> M4`.\n", "recursion next boundary")
-          write(path, text)
+          """.replace("          ", "")
+          if "## Phase 12D — generation-3 generator/planner successor" not in text:
+              text = text.replace("## Trust boundary\n", section + "## Trust boundary\n", 1)
+          claim = """## Current claim boundary
 
-          path = Path("docs/executable_core_v3/PHASE_12_VALIDATION.md")
-          text = path.read_text(encoding="utf-8")
-          section = '''## Phase 12D generator/planner self-modification
+          The completed Phase 12 prefix now establishes:
+
+          ```text
+          the promoted generation-2 successor has been used recursively
+          M0 -> M1 is a genuine model-weight successor
+          M1 -> M2 is a substantive memory/retrieval successor
+          M2 -> M3 is a substantive generator/planner self-modification
+          two package-generated attempts were rejected fail-closed
+          three later package-generated proposals were accepted
+          F0 subsetneq F1 subsetneq F2 subsetneq F3
+          |F3| = 6
+          M1, M2, and M3 are atomically promoted
+          generation-3 generator/planner proposal authority is installed in M3
+          held-out material consumed = false
+          manual repairs = 0
+          ```
+
+          It does not yet establish:
+
+          ```text
+          M3 -> M4 architecture/optimizer promotion
+          the complete four-promotion M0 -> M4 chain
+          |F4| >= 7
+          generic frontier-expanding successor availability
+          an autonomous or unbounded RSI trajectory
+          ```
+
+          The final slice must use the newly installed generation-3 generator and planner inside promoted
+          `M3` to produce the authoritative architecture/adapter and optimizer proposal for `M3 -> M4`.
+          """.replace("          ", "")
+          text = text.split("## Current claim boundary\n", 1)[0] + claim
+          write(recursion_path, text)
+
+          validation_path = "docs/executable_core_v3/PHASE_12_VALIDATION.md"
+          text = read(validation_path)
+          section = """## Phase 12D generator/planner self-modification
 
           The third accepted recursive transition validates:
 
@@ -231,17 +265,50 @@ jobs:
           | Pinned promotion | `8517091551` | `sha256:7a6f5bd74ee340b023fc839f682bd15dd38e0da4e838c935bab9515de03e8b0d` |
           | Final closure | `8517093451` | `sha256:0f2ab95d98f38ec96491278a8a70e054016d2b018056eff20324ef396e2252c8` |
 
-          '''.replace("          ", "")
-          text = replace_once(text, "## Evidence boundary\n", section + "## Evidence boundary\n", "validation Phase 12D section")
-          text = replace_once(text, "A green Phase 12C workflow proves the second accepted self-hosted transition and strict frontier\nexpansion `F1 subsetneq F2`. It does not prove `M2 -> M3`, `M3 -> M4`, the full four-promotion\nchain, generic successor availability, or autonomous/unbounded RSI. Those remain explicit open\ncriteria in `PHASE_12_EXIT_CRITERIA.md`.\n", "A green Phase 12D workflow proves the third accepted self-hosted transition, generator/planner\nself-modification, and strict frontier expansion `F2 subsetneq F3`. It does not prove `M3 -> M4`,\nthe full four-promotion chain, generic successor availability, or autonomous/unbounded RSI. Those\nremain explicit open criteria in `PHASE_12_EXIT_CRITERIA.md`.\n", "validation claim boundary")
-          write(path, text)
+          """.replace("          ", "")
+          if "## Phase 12D generator/planner self-modification" not in text:
+              text = text.replace("## Evidence boundary\n", section + "## Evidence boundary\n", 1)
+          tail = """## Evidence boundary
 
-          path = Path("docs/executable_core_v3/README.md")
-          text = path.read_text(encoding="utf-8")
-          text = replace_once(text, "Phase 12 remaining chain — M2 -> M3 -> M4: open\n", "Phase 12D — M2 -> M3 generation-3 generator/planner successor, frontier 5 -> 6: complete at selected slice scope\nPhase 12 remaining chain — M3 -> M4: open\n", "docs index status")
-          section = '''## Phase 12D generator/planner self-modification
+          Portable Phase 12D identities stop at deterministic proposal reports, semantic generator/planner
+          policies, the semantic candidate, task frontier, information report, and Gate D correspondence.
+          Phase 6 environment identity, pinned verification, cumulative ledger entries, content-addressed
+          promotion records, installed policy-byte hashes, and immutable store package hashes remain attached
+          to the exact authoritative run.
 
-          The third Phase 12 slice:
+          The active semantic model package is nested inside the Runtime v2 Phase 6/7 transport package.
+          The semantic package parent relation and the Phase 7 content-addressed store parent relation are
+          both checked, but they are not conflated into one hash namespace.
+
+          ## Claim boundary
+
+          A green Phase 12D workflow proves the third accepted self-hosted transition, generator/planner
+          self-modification, and strict frontier prefix:
+
+          ```text
+          F0 subsetneq F1 subsetneq F2 subsetneq F3
+          |F3| = 6
+          ```
+
+          It does not prove `M3 -> M4`, the full four-promotion chain, generic successor availability, or
+          autonomous/unbounded RSI. Those remain explicit open criteria in `PHASE_12_EXIT_CRITERIA.md`.
+          """.replace("          ", "")
+          text = text.split("## Evidence boundary\n", 1)[0] + tail
+          write(validation_path, text)
+
+          index_path = "docs/executable_core_v3/README.md"
+          text = read(index_path)
+          text = text.replace(
+              "Phase 12C — M1 -> M2 memory/retrieval successor and frontier 4 -> 5: implemented at selected slice scope\n",
+              "Phase 12C — M1 -> M2 memory/retrieval successor and frontier 4 -> 5: complete and merged\n",
+          )
+          text = text.replace(
+              "Phase 12 remaining chain — M2 -> M3 -> M4: open\n",
+              "Phase 12D — M2 -> M3 generation-3 generator/planner successor and frontier 5 -> 6: complete at selected slice scope\nPhase 12 remaining chain — M3 -> M4: open\n",
+          )
+          section = """## Phase 12D generator/planner self-modification
+
+          The fourth Phase 12 slice:
 
           - uses the generation-2 generator and planner inside promoted `M2` as proposal authority;
           - emits a typed `generator_update + planner_update` program requesting generation 3;
@@ -256,15 +323,34 @@ jobs:
 
           The newly installed generation-3 package must generate the final `M3 -> M4` proposal.
 
-          '''.replace("          ", "")
-          text = replace_once(text, "## Full Phase 12 boundary\n", section + "## Full Phase 12 boundary\n", "docs index Phase 12D section")
-          text = replace_once(text, "The remaining Phase 12 program must autonomously execute three additional accepted promotions\n", "The remaining Phase 12 program must autonomously execute one additional accepted promotion\n", "docs index remaining count")
-          write(path, text)
+          """.replace("          ", "")
+          if "## Phase 12D generator/planner self-modification" not in text:
+              text = text.replace("## Full Phase 12 boundary\n", section + "## Full Phase 12 boundary\n", 1)
+          before, rest = text.split("## Full Phase 12 boundary\n", 1)
+          _, reading = rest.split("## Reading order\n", 1)
+          boundary = """## Full Phase 12 boundary
 
-          path = Path("python/rcp_rclm_runtime_v3/README.md")
-          text = path.read_text(encoding="utf-8")
-          text = replace_once(text, "experiment cycle, recursive use of promoted successor generators, and the first two accepted\nself-hosted Phase 12 successors.\n", "experiment cycle, recursive use of promoted successor generators, and the first three accepted\nself-hosted Phase 12 successors.\n", "runtime README introduction")
-          section = '''## Phase 12D generation-3 generator/planner successor
+          One accepted promotion remains under the original total budget:
+
+          ```text
+          M3 -> M4  typed architecture or adapter and optimizer modification
+          ```
+
+          The newly installed generation-3 generator inside `M3` must be the source of the final proposal.
+          The successor must retain all six predecessor capabilities, add one newly certified Lean task,
+          satisfy selected information and resource obligations, and preserve the immutable trust boundary.
+
+          """.replace("          ", "")
+          text = before + boundary + "## Reading order\n" + reading
+          write(index_path, text)
+
+          runtime_path = "python/rcp_rclm_runtime_v3/README.md"
+          text = read(runtime_path)
+          text = text.replace(
+              "experiment cycle, recursive use of promoted successor generators, and the first two accepted\nself-hosted Phase 12 successors.\n",
+              "experiment cycle, recursive use of promoted successor generators, and the first three accepted\nself-hosted Phase 12 successors.\n",
+          )
+          section = """## Phase 12D generation-3 generator/planner successor
 
           Promoted `M2` uses its installed generation-2 generator and planner to emit:
 
@@ -294,9 +380,26 @@ jobs:
           phase12_exit_closed = false
           ```
 
-          '''.replace("          ", "")
-          text = replace_once(text, "## Build and test\n", section + "## Build and test\n", "runtime README Phase 12D section")
-          commands = '''
+          """.replace("          ", "")
+          if "## Phase 12D generation-3 generator/planner successor" not in text:
+              text = text.replace("## Build and test\n", section + "## Build and test\n", 1)
+          before = text.split("## Build and test\n", 1)[0]
+          build_and_claim = """## Build and test
+
+          Install Runtime v2 and Runtime v3:
+
+          ```bash
+          python -m pip install --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install -e "python/rcp_rclm_runtime_v3[test]"
+          ```
+
+          Run the focused Phase 12 suite and portable references:
+
+          ```bash
+          python python/rcp_rclm_runtime_v3/tools/run_phase12_tests.py \\
+            --package-root python/rcp_rclm_runtime_v3 \\
+            --out artifacts/runtime_v3_phase_12/tests.log
+
           python python/rcp_rclm_runtime_v3/tools/run_phase12d_reference.py \\
             --repo-root . \\
             --out artifacts/runtime_v3_phase_12/phase12d_reference.json
@@ -305,10 +408,36 @@ jobs:
             --schema python/rcp_rclm_executable_core_v3/contract/phase_12_generator_planner.schema.json \\
             --instance artifacts/runtime_v3_phase_12/phase12d_reference.json \\
             --out artifacts/runtime_v3_phase_12/phase12d_schema.json
-          '''.replace("          ", "")
-          text = replace_once(text, "```\n\nThe authoritative first promotion", commands + "```\n\nThe authoritative first promotion", "runtime README commands")
-          text = replace_once(text, "It does not establish `M2 -> M3`, `M3 -> M4`, the complete four-promotion recursive\nchain, generic successor availability, arbitrary native-float equivalence, or autonomous/unbounded\nrecursive self-improvement.\n", "It does not establish `M3 -> M4`, the complete four-promotion recursive chain, generic successor\navailability, arbitrary native-float equivalence, or autonomous/unbounded recursive self-improvement.\n", "runtime README claim boundary")
-          write(path, text)
+          ```
+
+          The authoritative third promotion additionally requires the pinned Lean toolchain and built Formal
+          Core v2/v3 projects:
+
+          ```bash
+          python python/rcp_rclm_runtime_v3/tools/run_phase12d_closure.py \\
+            --repo-root . \\
+            --lean-project-root lean/rcp_rclm_formal_core_v3 \\
+            --out artifacts/runtime_v3_phase_12/phase12d_closure.json
+          ```
+
+          ## Claim boundary
+
+          The completed prefix establishes two fail-closed rejections and three later accepted recursive
+          promotions:
+
+          ```text
+          M0 -> M1  model-weight successor
+          M1 -> M2  memory and retrieval successor
+          M2 -> M3  generator and planner successor
+          ```
+
+          It establishes `F0 subsetneq F1 subsetneq F2 subsetneq F3`, installs generation-3 proposal authority
+          in `M3`, and leaves only `M3 -> M4` open. It does not establish the complete four-promotion recursive
+          chain, generic successor availability, arbitrary native-float equivalence, or autonomous/unbounded
+          recursive self-improvement.
+          """.replace("          ", "")
+          text = before + build_and_claim
+          write(runtime_path, text)
           PY
 
       - name: Commit finalized documentation
