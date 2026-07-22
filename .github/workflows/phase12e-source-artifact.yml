@@ -1,0 +1,62 @@
+name: Publish temporary Phase 12E validation source
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-v3-phase-12-generator-planner
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phase12e-source-artifact
+  cancel-in-progress: false
+
+jobs:
+  export:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Create minimal source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/phase12e-source
+          tar -czf artifacts/phase12e-source/rcp-rclm-phase12e-source.tar.gz \
+            python/rcp_rclm_runtime_v2 \
+            python/rcp_rclm_runtime_v3 \
+            python/rcp_rclm_executable_core_v3 \
+            scripts \
+            lean \
+            docs/formal_core_v3
+          sha256sum artifacts/phase12e-source/rcp-rclm-phase12e-source.tar.gz \
+            > artifacts/phase12e-source/sha256.txt
+
+      - name: Upload source archive
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase12e-source-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/phase12e-source/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Retain artifact locator and remove snapshot transport
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .phase12e_min_snapshot .phase12e_source_snapshot
+          printf '{"artifact_name":"phase12e-source-%s-%s","run_attempt":%s,"run_id":%s}\n' \
+            "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" "$GITHUB_RUN_ATTEMPT" "$GITHUB_RUN_ID" \
+            > .phase12e_source_artifact.json
+          rm -f .github/workflows/phase12e-source-artifact.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Retain temporary Phase 12E source artifact locator"
+          git push origin HEAD
