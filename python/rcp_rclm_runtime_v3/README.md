@@ -2,7 +2,7 @@
 
 This package implements the executable correspondence for Formal Core v3 Gate D, the
 selected compact language-model successor lifecycle, the first complete bounded active-model
-experiment cycle, recursive use of promoted successor generators, and the first two accepted
+experiment cycle, recursive use of promoted successor generators, and the first three accepted
 self-hosted Phase 12 successors.
 
 ## Phase 9 contract
@@ -265,6 +265,36 @@ manual repairs:          0
 phase12_exit_closed:      false
 ```
 
+## Phase 12D generation-3 generator/planner successor
+
+Promoted `M2` uses its installed generation-2 generator and planner to emit:
+
+```text
+V1;O=F;U=GP;D=A;A=N;R=1,0,0,96,1,1;E=GP;B=X;G=3;P=3
+```
+
+The selected transition establishes:
+
+```text
+authoritative proposal source = generator/planner inside M2
+generator and planner policies changed to generation 3
+zero training steps
+M3 realized through Phase 6
+exact rollback from M3 to M2
+five predecessor capabilities retained
+one new held-out Lean capability certified
+selected KL/QRE non-regression and strict witness accepted
+Gate D / Phase 9 and hardened Gate B accepted
+M3 atomically promoted with M2 as parent
+generation-3 next-proposal authority installed
+F2 subsetneq F3
+|F3| = 6
+accepted Phase 12 promotions = 3
+retained Phase 12 rejections = 2
+manual repairs = 0
+phase12_exit_closed = false
+```
+
 ## Build and test
 
 Install Runtime v2 and Runtime v3:
@@ -274,58 +304,45 @@ python -m pip install --no-deps -e python/rcp_rclm_runtime_v2
 python -m pip install -e "python/rcp_rclm_runtime_v3[test]"
 ```
 
-Install the optional training dependency only for isolated untrusted training jobs:
-
-```bash
-python -m pip install -e "python/rcp_rclm_runtime_v3[phase10-train]"
-```
-
-Run the complete focused suites and portable Phase 12 references:
+Run the focused Phase 12 suite and portable references:
 
 ```bash
 python python/rcp_rclm_runtime_v3/tools/run_phase12_tests.py \
   --package-root python/rcp_rclm_runtime_v3 \
   --out artifacts/runtime_v3_phase_12/tests.log
 
-python python/rcp_rclm_runtime_v3/tools/run_phase12_reference.py \
+python python/rcp_rclm_runtime_v3/tools/run_phase12d_reference.py \
   --repo-root . \
-  --out artifacts/runtime_v3_phase_12/phase12a_reference.json
+  --out artifacts/runtime_v3_phase_12/phase12d_reference.json
 
-python python/rcp_rclm_runtime_v3/tools/run_phase12b_reference.py \
-  --repo-root . \
-  --out artifacts/runtime_v3_phase_12/phase12b_reference.json
-
-python python/rcp_rclm_runtime_v3/tools/run_phase12c_reference.py \
-  --repo-root . \
-  --out artifacts/runtime_v3_phase_12/phase12c_reference.json
-
-python python/rcp_rclm_runtime_v3/tools/validate_phase12c_schema.py \
-  --schema python/rcp_rclm_executable_core_v3/contract/phase_12_memory_retrieval.schema.json \
-  --instance artifacts/runtime_v3_phase_12/phase12c_reference.json \
-  --out artifacts/runtime_v3_phase_12/phase12c_schema.json
+python python/rcp_rclm_runtime_v3/tools/validate_phase12d_schema.py \
+  --schema python/rcp_rclm_executable_core_v3/contract/phase_12_generator_planner.schema.json \
+  --instance artifacts/runtime_v3_phase_12/phase12d_reference.json \
+  --out artifacts/runtime_v3_phase_12/phase12d_schema.json
 ```
 
-The authoritative second promotion additionally requires the pinned Lean toolchain and built
-Formal Core v2/v3 projects:
+The authoritative third promotion additionally requires the pinned Lean toolchain and built Formal
+Core v2/v3 projects:
 
 ```bash
-python python/rcp_rclm_runtime_v3/tools/run_phase12c_closure.py \
+python python/rcp_rclm_runtime_v3/tools/run_phase12d_closure.py \
   --repo-root . \
   --lean-project-root lean/rcp_rclm_formal_core_v3 \
-  --out artifacts/runtime_v3_phase_12/phase12c_closure.json
+  --out artifacts/runtime_v3_phase_12/phase12d_closure.json
 ```
 
 ## Claim boundary
 
-The completed prefix establishes two fail-closed rejections and two later accepted recursive
+The completed prefix establishes two fail-closed rejections and three later accepted recursive
 promotions:
 
 ```text
 M0 -> M1  model-weight successor
 M1 -> M2  memory and retrieval successor
+M2 -> M3  generator and planner successor
 ```
 
-It establishes `F0 subsetneq F1 subsetneq F2` and leaves the generation-2 generator and planner
-installed in `M2`. It does not establish `M2 -> M3`, `M3 -> M4`, the complete four-promotion
-recursive chain, generic successor availability, arbitrary native-float equivalence, or
-autonomous/unbounded recursive self-improvement.
+It establishes `F0 subsetneq F1 subsetneq F2 subsetneq F3`, installs generation-3 proposal authority
+in `M3`, and leaves only `M3 -> M4` open. It does not establish the complete four-promotion recursive
+chain, generic successor availability, arbitrary native-float equivalence, or autonomous/unbounded
+recursive self-improvement.

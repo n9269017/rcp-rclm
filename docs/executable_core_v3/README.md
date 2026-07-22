@@ -18,8 +18,9 @@ Phase 11 lifecycle — realized alpha rejection, fresh beta promotion, and gener
 Phase 12 — self-hosted multi-generation recursion: in progress
 Phase 12A — promoted generation-2 generator used recursively; first stale proposal rejected: complete and merged
 Phase 12B — M0 -> M1 model-weight successor and frontier 3 -> 4: complete and merged
-Phase 12C — M1 -> M2 memory/retrieval successor and frontier 4 -> 5: implemented at selected slice scope
-Phase 12 remaining chain — M2 -> M3 -> M4: open
+Phase 12C — M1 -> M2 memory/retrieval successor and frontier 4 -> 5: complete and merged
+Phase 12D — M2 -> M3 generation-3 generator/planner successor and frontier 5 -> 6: complete at selected slice scope
+Phase 12 remaining chain — M3 -> M4: open
 Phase 13 — broader independent adversarial closure: not started
 ```
 
@@ -167,17 +168,33 @@ No PyTorch or other training backend is used for `M1 -> M2`. The new semantic ca
 from independently verified composition of the unchanged compact model with changed package-bound
 memory and retrieval components.
 
+## Phase 12D generator/planner self-modification
+
+The fourth Phase 12 slice:
+
+- uses the generation-2 generator and planner inside promoted `M2` as proposal authority;
+- emits a typed `generator_update + planner_update` program requesting generation 3;
+- consumes no training step and permits no additional rejection;
+- realizes `M3` through Phase 6 and verifies exact rollback;
+- retains all five tasks in `F2` and certifies one new held-out Lean task;
+- accepts selected information, Gate D / Phase 9, pinned Lean, and hardened-checker obligations;
+- atomically promotes `M3` with `M2` as parent;
+- installs generation-3 generator and planner bytes with next-proposal authority;
+- advances the certified frontier from cardinality five to six;
+- records three accepted Phase 12 promotions, two retained rejections, and zero manual repairs.
+
+The newly installed generation-3 package must generate the final `M3 -> M4` proposal.
+
 ## Full Phase 12 boundary
 
-Two accepted promotions remain under the original total budget:
+One accepted promotion remains under the original total budget:
 
 ```text
-M2 -> M3  generator and planner self-modification
 M3 -> M4  typed architecture or adapter and optimizer modification
 ```
 
-The generator inside each promoted package must be the source of the following proposal. Every
-accepted transition must retain its predecessor frontier, add one newly certified Lean task,
+The newly installed generation-3 generator inside `M3` must be the source of the final proposal.
+The successor must retain all six predecessor capabilities, add one newly certified Lean task,
 satisfy selected information and resource obligations, and preserve the immutable trust boundary.
 
 ## Reading order
