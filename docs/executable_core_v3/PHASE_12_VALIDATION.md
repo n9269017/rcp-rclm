@@ -183,13 +183,103 @@ phase12_exit_closed=false
 Exact source, merge-test, workflow, report, and artifact identities are recorded in the pull-request
 description only after one complete exact-head run, avoiding an evidence-binding loop.
 
+## Phase 12D generator/planner self-modification
+
+The third accepted recursive transition validates:
+
+```text
+authoritative proposal source = generator/planner inside promoted M2
+typed update = generator_policy plus planner_policy
+successor policy generation = 3
+training steps for transition = 0
+five predecessor tasks retained
+one new held-out Lean task certified
+selected KL/QRE non-regression accepted
+strict new-task information witness accepted
+Gate D / Phase 9 transition accepted
+M3 atomically promoted with M2 as parent
+generation-3 proposal authority installed
+accepted Phase 12 promotions = 3
+rejected Phase 12 attempts = 2
+frontier cardinality = 6
+phase12_exit_closed = false
+```
+
+The exact code proof passed at:
+
+```text
+validated branch head:
+3b432d29891340de4a8eb1abcc192df507226040
+
+PR merge-test commit:
+ec1022d0b35ba3e9d922c422e9c8dac24b95899e
+
+workflow:
+29886974524
+```
+
+Portable semantic bindings:
+
+```text
+proposal:
+adae651dd468da9ba3e298483f1d20bca2a6d68952b03d3f9ba6870fbd6efa5e
+
+proposal validation:
+fc292c7421f5b6867708dc2373a68bcb89895f26de8b190f89b97b176003c6f4
+
+semantic candidate:
+9233b4e759df160009946ff0553169ee0a47925327778a044dc9b78057e8852d
+
+candidate package:
+e2d5acbf01f3f9bdb1eab556d8f215ccbaf4f72cf2bd543aae71864f6f4f7bc6
+
+candidate model:
+379021b5fee92acf5d03bd89ae564193aa21aab5622d687e3bf294d18cb9249f
+
+Phase 6 lifecycle:
+8e81b267735ea98a4c1d007ac887a289b5fb41b7e0633d75a885262d70462b3f
+
+Gate D lifecycle certificate:
+0dd6257d4b8020374ccafb3909ed7ad3e31df851903aa599f9783741fa2d8c8c
+
+Gate D transition:
+c73b41ae8b864cbc2dcf54c13e62b434fb595fcafd4fe5d71ec690829b45b9ec
+
+portable summary:
+9b266b55f19c55b72e71aa8e9f3ac21c9097326e160e592e4d2ae84bda2da1c3
+```
+
+Authoritative runtime bindings:
+
+```text
+reference:
+aee26163af74b4e42bf0a56c462e912985407526e8f4395ddfc5142386f108bd
+
+verification:
+5b66b8fe7300d528fca93a04a203beae3dfe0d57bf84bebf85e3e60655f3f87e
+
+promotion:
+71e3b9e027d14fb80e736aa74806f64bbc7bdc046dbce30b6e135d86274d2c37
+
+closure:
+9106d70c9a683f1724c433b21ada901390d6befabf597e46e0b09c2a5971c3d4
+```
+
+| Evidence | Artifact ID | SHA-256 digest |
+|---|---:|---|
+| Ubuntu | `8516901165` | `sha256:6f0da783e2ba57580b3655b28cd7b1eafea0d8b0cc232d4be145abd0deafcd8c` |
+| Windows | `8516950968` | `sha256:ed3606e171ac5aba5a6fa6fa876b5635a05d4b5bd739f1f99ba8e87434df7a15` |
+| macOS | `8516911574` | `sha256:9431ee3cd06aaf975bb627ace41adba79bb96ee92ca4fb0ab305ca26858643b1` |
+| Pinned promotion | `8517091551` | `sha256:7a6f5bd74ee340b023fc839f682bd15dd38e0da4e838c935bab9515de03e8b0d` |
+| Final closure | `8517093451` | `sha256:0f2ab95d98f38ec96491278a8a70e054016d2b018056eff20324ef396e2252c8` |
+
 ## Evidence boundary
 
-Portable Phase 12C identities stop at deterministic proposal reports, semantic memory/retrieval
-manifests, the semantic candidate, task frontier, information report, and Gate D correspondence.
+Portable Phase 12D identities stop at deterministic proposal reports, semantic generator/planner
+policies, the semantic candidate, task frontier, information report, and Gate D correspondence.
 Phase 6 environment identity, pinned verification, cumulative ledger entries, content-addressed
-promotion records, and immutable store package hashes remain attached to the exact authoritative
-run.
+promotion records, installed policy-byte hashes, and immutable store package hashes remain attached
+to the exact authoritative run.
 
 The active semantic model package is nested inside the Runtime v2 Phase 6/7 transport package.
 The semantic package parent relation and the Phase 7 content-addressed store parent relation are
@@ -197,14 +287,13 @@ both checked, but they are not conflated into one hash namespace.
 
 ## Claim boundary
 
-A green Phase 12C workflow proves the second accepted self-hosted transition and strict frontier
-prefix:
+A green Phase 12D workflow proves the third accepted self-hosted transition, generator/planner
+self-modification, and strict frontier prefix:
 
 ```text
-F0 subsetneq F1 subsetneq F2
-|F2| = 5
+F0 subsetneq F1 subsetneq F2 subsetneq F3
+|F3| = 6
 ```
 
-It does not prove `M2 -> M3`, `M3 -> M4`, the full four-promotion chain, generic successor
-availability, or autonomous/unbounded RSI. Those remain explicit open criteria in
-`PHASE_12_EXIT_CRITERIA.md`.
+It does not prove `M3 -> M4`, the full four-promotion chain, generic successor availability, or
+autonomous/unbounded RSI. Those remain explicit open criteria in `PHASE_12_EXIT_CRITERIA.md`.

@@ -236,6 +236,56 @@ frontier expansions:     2
 manual repairs:          0
 ```
 
+## Phase 12D — generation-3 generator/planner successor
+
+The third accepted transition begins from promoted `M2`. Its unchanged generation-2 generator and
+planner produce the authoritative typed program:
+
+```text
+V1;O=F;U=GP;D=A;A=N;R=1,0,0,96,1,1;E=GP;B=X;G=3;P=3
+```
+
+The rejection budget is already exhausted, so this invocation must be accepted without a new
+rejected attempt. The program changes exactly the generator and planner policy components, requests
+generation 3 for both, uses zero training steps, and preserves the model, memory, retrieval,
+architecture, adapter, tokenizer, and optimizer identities.
+
+The selected new held-out task is:
+
+```lean
+import Mathlib
+
+macro "q" : tactic => `(tactic| omega)
+
+example (n : Nat) : n < n + 1 := by
+  q
+```
+
+The generation-3 planner installs a deterministic route from marker `V` to the already certified
+`U -> T -> q -> EOS` memory/retrieval/model path. The new generator and planner bytes are installed
+inside the promoted `M3` package and are assigned next-proposal authority for `M3 -> M4`.
+
+The resulting frontier relation is:
+
+```text
+F3 = F2 union {lean.phase12.generation3.lt_succ_planner_macro}
+F2 subsetneq F3
+|F2| = 5
+|F3| = 6
+```
+
+The cumulative bounded trajectory prefix is:
+
+```text
+generator invocations:   5
+rejected attempts:       2
+candidate realizations:  3
+candidate evaluations:   3
+accepted promotions:     3
+frontier expansions:     3
+manual repairs:0
+```
+
 ## Trust boundary
 
 The active package controls proposal bytes through its bound generator and planner policies. It
@@ -265,11 +315,13 @@ The completed Phase 12 prefix now establishes:
 the promoted generation-2 successor has been used recursively
 M0 -> M1 is a genuine model-weight successor
 M1 -> M2 is a substantive memory/retrieval successor
+M2 -> M3 is a substantive generator/planner self-modification
 two package-generated attempts were rejected fail-closed
-two later package-generated proposals were accepted
-F0 subsetneq F1 subsetneq F2
-|F2| = 5
-M1 and M2 are atomically promoted
+three later package-generated proposals were accepted
+F0 subsetneq F1 subsetneq F2 subsetneq F3
+|F3| = 6
+M1, M2, and M3 are atomically promoted
+generation-3 generator/planner proposal authority is installed in M3
 held-out material consumed = false
 manual repairs = 0
 ```
@@ -277,7 +329,6 @@ manual repairs = 0
 It does not yet establish:
 
 ```text
-M2 -> M3 generator/planner self-modification
 M3 -> M4 architecture/optimizer promotion
 the complete four-promotion M0 -> M4 chain
 |F4| >= 7
@@ -285,6 +336,5 @@ generic frontier-expanding successor availability
 an autonomous or unbounded RSI trajectory
 ```
 
-The next slice must use the generator and planner inside promoted `M2` to propose and install a
-changed generation-3 generator/planner pair, retain all five capabilities, add one new certified
-Lean task, and promote `M3` under the remaining precommitted budget.
+The final slice must use the newly installed generation-3 generator and planner inside promoted
+`M3` to produce the authoritative architecture/adapter and optimizer proposal for `M3 -> M4`.

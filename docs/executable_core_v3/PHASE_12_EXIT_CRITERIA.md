@@ -84,9 +84,9 @@
 - [x] The generator inside `M1` produces the authoritative proposal for `M1 -> M2`.
 - [x] `M1 -> M2` is realized, independently verified, and atomically promoted.
 - [x] `M1 -> M2` contains a substantive memory and retrieval update.
-- [ ] The generator inside `M2` produces the authoritative proposal for `M2 -> M3`.
-- [ ] `M2 -> M3` is realized, independently verified, and atomically promoted.
-- [ ] `M2 -> M3` contains a generator/planner self-modification.
+- [x] The generator inside `M2` produces the authoritative proposal for `M2 -> M3`.
+- [x] `M2 -> M3` is realized, independently verified, and atomically promoted.
+- [x] `M2 -> M3` contains a generator/planner self-modification.
 - [ ] The modified generator inside `M3` produces the authoritative proposal for `M3 -> M4`.
 - [ ] `M3 -> M4` is realized, independently verified, and atomically promoted.
 - [ ] `M3 -> M4` contains a typed architecture or adapter and optimizer modification.

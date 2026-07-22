@@ -1,0 +1,386 @@
+name: Runtime v3 Phase 12 generator and planner successor
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "python/rcp_rclm_runtime_v3/**"
+      - "python/rcp_rclm_executable_core_v3/**"
+      - "docs/executable_core_v3/**"
+      - "scripts/run_phase12_generator_planner.py"
+      - ".github/workflows/runtime-v3-phase-12-generator-planner.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  portable:
+    name: Validate Phase 12D generator/planner successor (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - "3.11"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install deterministic runtimes
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+
+      - name: Compile complete Phase 12D source
+        run: >-
+          python -m compileall -q
+          python/rcp_rclm_runtime_v3
+          scripts/run_phase12_generator_planner.py
+
+      - name: Validate deterministic source quality
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_source_quality.py
+          --package-root python/rcp_rclm_runtime_v3
+          --out artifacts/runtime_v3_phase_12d/${{ matrix.os }}/source_quality.json
+
+      - name: Validate retained Phase 11 closure dependency
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase11_closure_manifest.py
+          --repo-root .
+          --no-recompute
+          --out artifacts/runtime_v3_phase_12d/${{ matrix.os }}/phase_11_closure_manifest.json
+
+      - name: Run complete focused Phase 12 tests
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase12_tests.py
+          --package-root python/rcp_rclm_runtime_v3
+          --out artifacts/runtime_v3_phase_12d/${{ matrix.os }}/phase_12_tests.log
+
+      - name: Recompute Phase 12D reference
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/run_phase12d_reference.py
+          --repo-root .
+          --out artifacts/runtime_v3_phase_12d/${{ matrix.os }}/phase_12d_reference.json
+
+      - name: Validate Phase 12D Draft 2020-12 schema
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase12d_schema.py
+          --schema python/rcp_rclm_executable_core_v3/contract/phase_12_generator_planner.schema.json
+          --instance artifacts/runtime_v3_phase_12d/${{ matrix.os }}/phase_12d_reference.json
+          --out artifacts/runtime_v3_phase_12d/${{ matrix.os }}/phase_12d_schema.json
+
+      - name: Run repository Phase 12D entry point
+        run: >-
+          python scripts/run_phase12_generator_planner.py
+          --repo-root .
+          --out artifacts/runtime_v3_phase_12d/${{ matrix.os }}/phase_12d_root_entry.json
+
+      - name: Require byte-identical Phase 12D entry points
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path("artifacts/runtime_v3_phase_12d/${{ matrix.os }}")
+          assert (root / "phase_12d_reference.json").read_bytes() == (
+              root / "phase_12d_root_entry.json"
+          ).read_bytes()
+          PY
+
+      - name: Verify portable Phase 12D boundary
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("artifacts/runtime_v3_phase_12d/${{ matrix.os }}/phase_12d_reference.json")
+          report = json.loads(path.read_text(encoding="utf-8"))
+          assert report["accepted"] is True
+          assert report["deterministic_replay"] is True
+          assert len(report["frontier_before"]) == 5
+          assert len(report["frontier_after"]) == 6
+          assert report["new_task_ids"] == [
+              "lean.phase12.generation3.lt_succ_planner_macro"
+          ]
+          assert report["changed_components"] == [
+              "generator_policy",
+              "planner_policy",
+          ]
+          ledger = report["progress_ledger"]
+          assert ledger["generator_invocations"] == 5
+          assert ledger["rejected_attempts"] == 2
+          assert ledger["candidate_realizations"] == 3
+          assert ledger["candidate_evaluations"] == 3
+          assert ledger["accepted_promotions"] == 2
+          assert ledger["frontier_expansions"] == 2
+          assert ledger["manual_repairs"] == 0
+          assert report["heldout_material_consumed"] is False
+          PY
+
+      - name: Upload portable Phase 12D evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-12d-${{ matrix.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_12d/${{ matrix.os }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  pinned-closure:
+    name: Promote M3 generator/planner successor with pinned Lean
+    needs:
+      - portable
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Check out repository with formal history
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic runtimes without training backend
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+
+      - name: Install pinned Lean toolchain
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          lake-package-directory: lean/rcp_rclm_formal_core_v2
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Resolve frozen Formal Core v2 dependencies
+        working-directory: lean/rcp_rclm_formal_core_v2
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        run: lake update
+
+      - name: Verify frozen Formal Core v2 manifest
+        working-directory: lean/rcp_rclm_formal_core_v2
+        run: git diff --exit-code -- lake-manifest.json
+
+      - name: Fetch official v2 mathlib cache
+        working-directory: lean/rcp_rclm_formal_core_v2
+        run: lake exe cache get
+
+      - name: Build frozen Formal Core v2 bridge
+        working-directory: lean/rcp_rclm_formal_core_v2
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p ../rcp_rclm_formal_core_v3/audit-results-phase12d-closure
+          lake build 2>&1 | tee ../rcp_rclm_formal_core_v3/audit-results-phase12d-closure/formal_core_v2_build.log
+
+      - name: Resolve pinned Formal Core v3 dependency graph
+        working-directory: lean/rcp_rclm_formal_core_v3
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        run: lake update
+
+      - name: Verify committed Formal Core v3 manifest
+        working-directory: lean/rcp_rclm_formal_core_v3
+        run: git diff --exit-code -- lake-manifest.json
+
+      - name: Fetch official v3 mathlib cache
+        working-directory: lean/rcp_rclm_formal_core_v3
+        run: lake exe cache get
+
+      - name: Build complete Formal Core v3
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p audit-results-phase12d-closure
+          lake build 2>&1 | tee audit-results-phase12d-closure/lake_build.log
+
+      - name: Reject admitted proofs and local axioms
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              --exclude-dir='audit-results-phase9' \
+              --exclude-dir='audit-results-phase10' \
+              --exclude-dir='audit-results-phase10b' \
+              --exclude-dir='audit-results-phase10-closure' \
+              --exclude-dir='audit-results-phase11-closure' \
+              --exclude-dir='audit-results-phase12b-closure' \
+              --exclude-dir='audit-results-phase12c-closure' \
+              --exclude-dir='audit-results-phase12d-closure' \
+              '(^|[^[:alnum:]_])(sorryAx|sorry|admit)([^[:alnum:]_]|$)' \
+              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
+              > audit-results-phase12d-closure/forbidden_proof_tokens.txt; then
+            cat audit-results-phase12d-closure/forbidden_proof_tokens.txt
+            exit 1
+          fi
+          : > audit-results-phase12d-closure/forbidden_proof_tokens.txt
+          if grep -RInE \
+              --include='*.lean' \
+              --exclude-dir='.lake' \
+              --exclude-dir='audit-results' \
+              --exclude-dir='audit-results-phase9' \
+              --exclude-dir='audit-results-phase10' \
+              --exclude-dir='audit-results-phase10b' \
+              --exclude-dir='audit-results-phase10-closure' \
+              --exclude-dir='audit-results-phase11-closure' \
+              --exclude-dir='audit-results-phase12b-closure' \
+              --exclude-dir='audit-results-phase12c-closure' \
+              --exclude-dir='audit-results-phase12d-closure' \
+              '^[[:space:]]*axiom[[:space:]]' \
+              RcpRclmFormalCoreV3 RcpRclmFormalCoreV3.lean \
+              > audit-results-phase12d-closure/project_axiom_declarations.txt; then
+            cat audit-results-phase12d-closure/project_axiom_declarations.txt
+            exit 1
+          fi
+          : > audit-results-phase12d-closure/project_axiom_declarations.txt
+
+      - name: Audit inherited selected information theorems
+        working-directory: lean/rcp_rclm_formal_core_v3
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean ../../docs/formal_core_v3/audit/Phase10InformationAxiomAudit.lean \
+            2>&1 | tee audit-results-phase12d-closure/phase_10_information_axioms.txt
+          if grep -Fq 'sorryAx' audit-results-phase12d-closure/phase_10_information_axioms.txt; then
+            exit 1
+          fi
+
+      - name: Execute authoritative Phase 12D promotion
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/runtime_v3_phase_12d/pinned
+          python python/rcp_rclm_runtime_v3/tools/run_phase12d_closure.py \
+            --repo-root . \
+            --lean-project-root lean/rcp_rclm_formal_core_v3 \
+            --out artifacts/runtime_v3_phase_12d/pinned/phase_12d_closure.json \
+            2>&1 | tee artifacts/runtime_v3_phase_12d/pinned/phase_12d_closure_stdout.log
+
+      - name: Verify M3 promotion, frontier growth, and installed policies
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("artifacts/runtime_v3_phase_12d/pinned/phase_12d_closure.json")
+          report = json.loads(path.read_text(encoding="utf-8"))
+          assert report["accepted"] is True
+          assert report["phase12a_recursive_rejection_retained"] is True
+          assert report["phase12b_first_promotion_retained"] is True
+          assert report["phase12c_second_rejection_and_promotion_retained"] is True
+          assert report["m2_to_m3_candidate_realized"] is True
+          assert report["m2_to_m3_frontier_expansion"] is True
+          assert report["m2_to_m3_generator_planner_self_modification"] is True
+          assert report["m2_to_m3_atomic_promotion"] is True
+          assert report["generation3_generator_planner_installed"] is True
+          assert report["frontier_cardinality_before"] == 5
+          assert report["frontier_cardinality_after"] == 6
+          assert report["accepted_phase12_promotions"] == 3
+          assert report["rejected_phase12_attempts"] == 2
+          assert report["manual_repairs"] == 0
+          assert report["heldout_material_consumed"] is False
+          assert report["phase12d_generator_planner_promotion_closed"] is True
+          assert report["phase12_exit_closed"] is False
+          PY
+
+      - name: Retain pinned Phase 12D evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp lean/rcp_rclm_formal_core_v3/audit-results-phase12d-closure/* \
+            artifacts/runtime_v3_phase_12d/pinned/
+          cp lean/rcp_rclm_formal_core_v2/lake-manifest.json \
+            artifacts/runtime_v3_phase_12d/pinned/formal-core-v2-lake-manifest.json
+          cp lean/rcp_rclm_formal_core_v3/lake-manifest.json \
+            artifacts/runtime_v3_phase_12d/pinned/formal-core-v3-lake-manifest.json
+          {
+            echo "commit=${GITHUB_SHA}"
+            echo "toolchain=$(cat lean/rcp_rclm_formal_core_v3/lean-toolchain)"
+            echo "accepted_phase12_promotions=3"
+            echo "rejected_phase12_attempts=2"
+            echo "frontier_cardinality=6"
+            echo "training_invocations_for_phase12d=0"
+            echo "manual_repairs=0"
+            echo "heldout_material_consumed=false"
+          } > artifacts/runtime_v3_phase_12d/pinned/metadata.txt
+
+      - name: Upload pinned Phase 12D closure evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-12d-pinned-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_12d/pinned/
+          if-no-files-found: error
+          retention-days: 90
+
+  closure:
+    name: Close Phase 12D generator/planner promotion slice
+    needs:
+      - portable
+      - pinned-closure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Emit Phase 12D closure record
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/runtime_v3_phase_12d/final
+          {
+            echo "phase=12"
+            echo "slice=12D"
+            echo "commit=${GITHUB_SHA}"
+            echo "cross_platform=success"
+            echo "m2_generator_proposal_authority=success"
+            echo "generator_planner_realization=success"
+            echo "generation3_policies_installed=success"
+            echo "frontier_cardinality=6"
+            echo "accepted_phase12_promotions=3"
+            echo "rejected_phase12_attempts=2"
+            echo "manual_repairs=0"
+            echo "phase12d_generator_planner_promotion_closed=true"
+            echo "phase12_exit_closed=false"
+          } > artifacts/runtime_v3_phase_12d/final/closure.txt
+
+      - name: Upload final Phase 12D closure
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v3-phase-12d-final-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v3_phase_12d/final/
+          if-no-files-found: error
+          retention-days: 90
