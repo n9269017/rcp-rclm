@@ -41,7 +41,7 @@ jobs:
             > artifacts/phase13-source/sha256.txt
 
       - name: Upload source archive
-        uses: actions/upload-artifact@ea165f8d65b5b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: phase13-source-${{ github.run_id }}-${{ github.run_attempt }}
           path: artifacts/phase13-source/
