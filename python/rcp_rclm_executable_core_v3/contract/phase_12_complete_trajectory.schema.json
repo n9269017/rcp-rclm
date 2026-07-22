@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rcp-rclm.example/schemas/runtime-v3-phase-12e-complete-trajectory.json",
+  "title": "RCP/RCLM Runtime v3 Phase 12E complete trajectory evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "accepted",
+    "phase12d_reference_hash",
+    "active_package_hash",
+    "active_state_hash",
+    "active_model_identity_hash",
+    "active_generator_hash",
+    "active_planner_hash",
+    "proposal_hash",
+    "proposal_validation_hash",
+    "deterministic_replay",
+    "semantic_candidate_hash",
+    "candidate_package_hash",
+    "candidate_model_identity_hash",
+    "candidate_adapter_hash",
+    "candidate_optimizer_hash",
+    "phase6_hash",
+    "lifecycle_certificate_hash",
+    "lifecycle_transition_hash",
+    "frontier_before",
+    "frontier_after",
+    "new_task_ids",
+    "changed_components",
+    "progress_ledger",
+    "heldout_material_consumed",
+    "manual_repairs",
+    "claim_boundary",
+    "summary_hash"
+  ],
+  "properties": {
+    "schema_id": {"const": "runtime.v3.phase12e.evidence_summary.v1"},
+    "accepted": {"const": true},
+    "phase12d_reference_hash": {"$ref": "#/$defs/hash"},
+    "active_package_hash": {"$ref": "#/$defs/hash"},
+    "active_state_hash": {"$ref": "#/$defs/hash"},
+    "active_model_identity_hash": {"$ref": "#/$defs/hash"},
+    "active_generator_hash": {"$ref": "#/$defs/hash"},
+    "active_planner_hash": {"$ref": "#/$defs/hash"},
+    "proposal_hash": {"$ref": "#/$defs/hash"},
+    "proposal_validation_hash": {"$ref": "#/$defs/hash"},
+    "deterministic_replay": {"const": true},
+    "semantic_candidate_hash": {"$ref": "#/$defs/hash"},
+    "candidate_package_hash": {"$ref": "#/$defs/hash"},
+    "candidate_model_identity_hash": {"$ref": "#/$defs/hash"},
+    "candidate_adapter_hash": {"$ref": "#/$defs/hash"},
+    "candidate_optimizer_hash": {"$ref": "#/$defs/hash"},
+    "phase6_hash": {"$ref": "#/$defs/hash"},
+    "lifecycle_certificate_hash": {"$ref": "#/$defs/hash"},
+    "lifecycle_transition_hash": {"$ref": "#/$defs/hash"},
+    "frontier_before": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "frontier_after": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "new_task_ids": {
+      "const": ["lean.phase12.generation4.lt_add_two_adapter_macro"]
+    },
+    "changed_components": {
+      "const": ["adapter_manifest", "model_architecture", "optimizer_policy"]
+    },
+    "progress_ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "total_budget_hash",
+        "generator_invocations",
+        "rejected_attempts",
+        "candidate_realizations",
+        "candidate_evaluations",
+        "accepted_promotions",
+        "frontier_expansions",
+        "manual_repairs",
+        "target_frontier_cardinality"
+      ],
+      "properties": {
+        "schema_id": {"const": "runtime.v3.phase12.progress_ledger.v1"},
+        "total_budget_hash": {"$ref": "#/$defs/hash"},
+        "generator_invocations": {"const": 6},
+        "rejected_attempts": {"const": 2},
+        "candidate_realizations": {"const": 4},
+        "candidate_evaluations": {"const": 4},
+        "accepted_promotions": {"const": 3},
+        "frontier_expansions": {"const": 3},
+        "manual_repairs": {"const": 0},
+        "target_frontier_cardinality": {"const": 7}
+      }
+    },
+    "heldout_material_consumed": {"const": false},
+    "manual_repairs": {"const": 0},
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "m3_generator_used_for_authoritative_proposal",
+        "m3_to_m4_candidate_realized",
+        "m3_to_m4_gate_d_transition_accepted",
+        "trained_lora_adapter_installed",
+        "optimizer_policy_updated",
+        "m3_to_m4_promotion",
+        "accepted_phase12_promotions",
+        "strict_phase12_frontier_expansions",
+        "frontier_cardinality",
+        "phase12_exit_closed"
+      ],
+      "properties": {
+        "m3_generator_used_for_authoritative_proposal": {"const": true},
+        "m3_to_m4_candidate_realized": {"const": true},
+        "m3_to_m4_gate_d_transition_accepted": {"const": true},
+        "trained_lora_adapter_installed": {"const": true},
+        "optimizer_policy_updated": {"const": true},
+        "m3_to_m4_promotion": {"const": false},
+        "accepted_phase12_promotions": {"const": 3},
+        "strict_phase12_frontier_expansions": {"const": 3},
+        "frontier_cardinality": {"const": 7},
+        "phase12_exit_closed": {"const": false}
+      }
+    },
+    "summary_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
