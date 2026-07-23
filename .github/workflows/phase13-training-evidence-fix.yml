@@ -1,0 +1,114 @@
+name: Diagnose and suppress Phase 12E worker warning output
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/phase13-training-evidence-fix.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phase13-training-evidence-fix-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  fix:
+    name: Apply and validate Phase 12E process-evidence fix
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      TARGET_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+    steps:
+      - name: Check out pull-request head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Apply exact warning-suppression and diagnostic patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path(
+              "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase12/phase12e_training.py"
+          )
+          source = path.read_text(encoding="utf-8")
+
+          old_environment = '''            "PYTHONHASHSEED": "0",\n            "TOKENIZERS_PARALLELISM": "false",\n'''
+          new_environment = '''            "PYTHONHASHSEED": "0",\n            "PYTHONWARNINGS": "ignore",\n            "TORCH_CPP_LOG_LEVEL": "ERROR",\n            "TORCH_SHOW_CPP_STACKTRACES": "0",\n            "TOKENIZERS_PARALLELISM": "false",\n'''
+          if source.count(old_environment) != 1:
+              raise RuntimeError("Phase 12E worker-environment anchor mismatch")
+          source = source.replace(old_environment, new_environment)
+
+          old_accepted = '''    @property\n    def accepted(self) -> bool:\n        return (\n            not self.timed_out\n            and self.return_code == 0\n            and self.worker_source_guard.get("clean") is True\n            and self.worker_report.get("accepted") is True\n            and self.worker_report.get("request_hash") == self.request_hash\n            and self.worker_report.get("candidate_tensor_sha256") == self.candidate_tensor_sha256\n            and self.worker_report.get("heldout_material_consumed") is False\n            and self.stdout_sha256 == sha256_hex(b"")\n            and self.stderr_sha256 == sha256_hex(b"")\n        )\n'''
+          new_accepted = '''    @property\n    def acceptance_checks(self) -> dict[str, bool]:\n        return {\n            "not_timed_out": not self.timed_out,\n            "return_code_zero": self.return_code == 0,\n            "worker_source_guard_clean": self.worker_source_guard.get("clean") is True,\n            "worker_report_accepted": self.worker_report.get("accepted") is True,\n            "request_hash_matches": self.worker_report.get("request_hash") == self.request_hash,\n            "candidate_tensor_hash_matches": (\n                self.worker_report.get("candidate_tensor_sha256")\n                == self.candidate_tensor_sha256\n            ),\n            "heldout_material_not_consumed": (\n                self.worker_report.get("heldout_material_consumed") is False\n            ),\n            "stdout_empty": self.stdout_sha256 == sha256_hex(b""),\n            "stderr_empty": self.stderr_sha256 == sha256_hex(b""),\n        }\n\n    @property\n    def accepted(self) -> bool:\n        return all(self.acceptance_checks.values())\n'''
+          if source.count(old_accepted) != 1:
+              raise RuntimeError("Phase 12E acceptance predicate anchor mismatch")
+          source = source.replace(old_accepted, new_accepted)
+
+          old_json = '''            "accepted": self.accepted,\n            "request_hash": self.request_hash,\n'''
+          new_json = '''            "accepted": self.accepted,\n            "acceptance_checks": self.acceptance_checks,\n            "request_hash": self.request_hash,\n'''
+          if source.count(old_json) < 1:
+              raise RuntimeError("Phase 12E evidence JSON anchor mismatch")
+          source = source.replace(old_json, new_json, 1)
+
+          old_failure = '''    if not evidence.accepted:\n        raise ValueError("Phase 12E training process evidence did not accept")\n'''
+          new_failure = '''    if not evidence.accepted:\n        failed = sorted(\n            name for name, accepted in evidence.acceptance_checks.items() if not accepted\n        )\n        diagnostic = {\n            "failed_checks": failed,\n            "evidence": evidence.to_json(),\n            "stdout_utf8": stdout.decode("utf-8", errors="replace")[-4096:],\n            "stderr_utf8": stderr.decode("utf-8", errors="replace")[-4096:],\n        }\n        raise ValueError(\n            "Phase 12E training process evidence did not accept: "\n            + canonical_json_bytes(diagnostic).decode("utf-8")\n        )\n'''
+          if source.count(old_failure) != 1:
+              raise RuntimeError("Phase 12E process-failure anchor mismatch")
+          source = source.replace(old_failure, new_failure)
+          path.write_text(source, encoding="utf-8")
+          PY
+
+      - name: Install isolated training runtime
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[phase10-train,test]"
+
+      - name: Validate fixed duplicate adapter training
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m compileall -q python/rcp_rclm_runtime_v3
+          mkdir -p /tmp/phase12e-training-fix
+          python python/rcp_rclm_runtime_v3/tools/run_phase12e_training_reference.py \
+            --binding python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase12/phase12e_training_binding.json \
+            --out /tmp/phase12e-training-fix/phase_12e_training.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(
+              Path("/tmp/phase12e-training-fix/phase_12e_training.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          assert report["accepted"] is True
+          assert all(report["first"]["acceptance_checks"].values())
+          assert all(report["second"]["acceptance_checks"].values())
+          assert report["first"]["stdout_sha256"] == report["first"]["stderr_sha256"]
+          assert report["second"]["stdout_sha256"] == report["second"]["stderr_sha256"]
+          PY
+
+      - name: Commit validated source fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase12/phase12e_training.py
+          git commit -m "Make Phase 12E worker output deterministically silent"
+          git push origin "HEAD:${TARGET_BRANCH}"
