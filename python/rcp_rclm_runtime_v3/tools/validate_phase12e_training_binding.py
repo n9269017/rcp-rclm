@@ -22,10 +22,10 @@ def main() -> int:
         raise TypeError("Phase 12E summary must be an object")
     binding = load_phase12e_training_binding(args.binding, summary=summary)
     report = {
-        "schema_id": "runtime.v3.phase12e.training_binding_validation.v1",
+        "schema_id": "runtime.v3.phase12e.training_binding_validation.v2",
         "accepted": True,
         "binding_hash": binding["binding_hash"],
-        "source_summary_hash": binding["source_summary_hash"],
+        "source_semantic_hash": binding["source_semantic_hash"],
         "candidate_package_hash": binding["request"]["candidate_package_hash"],
         "candidate_adapter_manifest_hash": binding["request"][
             "candidate_adapter_manifest_hash"
