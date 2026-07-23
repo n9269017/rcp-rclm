@@ -10,7 +10,10 @@ from rcp_rclm_runtime.canonical.json import canonical_json_bytes, load_json_stri
 from rcp_rclm_runtime.errors import SchemaValidationError
 
 from rcp_rclm_runtime_v3.phase10.architecture import CompactTransformerArchitecture
-from rcp_rclm_runtime_v3.phase12.phase12e_program import PHASE12E_TRANSITION_ID
+from rcp_rclm_runtime_v3.phase12.phase12e_program import (
+    PHASE12E_ACCEPTED_PROGRAM_BYTES,
+    PHASE12E_TRANSITION_ID,
+)
 from rcp_rclm_runtime_v3.phase12.phase12e_tasks import (
     PHASE12E_ADAPTER_ROUTE_MAGIC,
     phase12e_adapter_training_manifest,
@@ -69,10 +72,6 @@ def phase12e_training_source_semantic_claim(
         )
     return {
         "schema_id": "runtime.v3.phase12e.training_source_semantic_claim.v1",
-        "proposal_hash": _require_hash(
-            summary.get("proposal_hash"),
-            "phase12e.training_binding.summary.proposal_hash",
-        ),
         "active_package_hash": _require_hash(
             summary.get("active_package_hash"),
             "phase12e.training_binding.summary.active_package_hash",
@@ -124,7 +123,7 @@ def build_phase12e_training_binding(
     request = {
         "schema_id": "runtime.v3.phase12e.training_request.v1",
         "transition_id": PHASE12E_TRANSITION_ID,
-        "proposal_hash": claim["proposal_hash"],
+        "proposal_program_sha256": sha256_hex(PHASE12E_ACCEPTED_PROGRAM_BYTES),
         "active_package_hash": claim["active_package_hash"],
         "candidate_package_hash": claim["candidate_package_hash"],
         "candidate_adapter_manifest_hash": claim[
