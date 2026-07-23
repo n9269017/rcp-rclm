@@ -18,7 +18,7 @@ from rcp_rclm_runtime_v3.phase12.phase12e_tasks import (
 )
 
 PHASE12E_TRAINING_BINDING_SCHEMA_ID: Final[str] = (
-    "runtime.v3.phase12e.training_binding.v1"
+    "runtime.v3.phase12e.training_binding.v2"
 )
 PHASE12E_TRAINING_SEED: Final[int] = 4213
 
@@ -42,7 +42,7 @@ def _expected_tensor_bytes(element_count: int) -> bytes:
     return struct.pack("<" + "h" * element_count, *values)
 
 
-def build_phase12e_training_binding(
+def phase12e_training_source_semantic_claim(
     summary: Mapping[str, object],
 ) -> dict[str, object]:
     if summary.get("schema_id") != "runtime.v3.phase12e.evidence_summary.v1":
@@ -61,14 +61,14 @@ def build_phase12e_training_binding(
             "phase12e.training_binding.summary.changed_components",
             "unexpected Phase 12E changed-component surface",
         )
-    architecture = CompactTransformerArchitecture()
-    spec = selected_phase12e_adapter_spec(architecture)
-    manifest = phase12e_adapter_training_manifest(
-        tensor_element_count=spec.element_count
-    )
-    request = {
-        "schema_id": "runtime.v3.phase12e.training_request.v1",
-        "transition_id": PHASE12E_TRANSITION_ID,
+    new_tasks = summary.get("new_task_ids")
+    if new_tasks != ["lean.phase12.generation4.lt_add_two_adapter_macro"]:
+        raise SchemaValidationError(
+            "phase12e.training_binding.summary.new_task_ids",
+            "unexpected Phase 12E frontier witness",
+        )
+    return {
+        "schema_id": "runtime.v3.phase12e.training_source_semantic_claim.v1",
         "proposal_hash": _require_hash(
             summary.get("proposal_hash"),
             "phase12e.training_binding.summary.proposal_hash",
@@ -85,6 +85,51 @@ def build_phase12e_training_binding(
             summary.get("candidate_adapter_hash"),
             "phase12e.training_binding.summary.candidate_adapter_hash",
         ),
+        "candidate_model_identity_hash": _require_hash(
+            summary.get("candidate_model_identity_hash"),
+            "phase12e.training_binding.summary.candidate_model_identity_hash",
+        ),
+        "candidate_optimizer_hash": _require_hash(
+            summary.get("candidate_optimizer_hash"),
+            "phase12e.training_binding.summary.candidate_optimizer_hash",
+        ),
+        "changed_components": list(changed),
+        "new_task_ids": list(new_tasks),
+        "frontier_cardinality_before": len(tuple(summary.get("frontier_before", ()))),
+        "frontier_cardinality_after": len(tuple(summary.get("frontier_after", ()))),
+        "heldout_material_consumed": summary.get("heldout_material_consumed"),
+        "manual_repairs": summary.get("manual_repairs"),
+    }
+
+
+def build_phase12e_training_binding(
+    summary: Mapping[str, object],
+) -> dict[str, object]:
+    claim = phase12e_training_source_semantic_claim(summary)
+    if claim["frontier_cardinality_before"] != 6 or claim["frontier_cardinality_after"] != 7:
+        raise SchemaValidationError(
+            "phase12e.training_binding.summary.frontier",
+            "expected the selected six-to-seven frontier expansion",
+        )
+    if claim["heldout_material_consumed"] is not False or claim["manual_repairs"] != 0:
+        raise SchemaValidationError(
+            "phase12e.training_binding.summary.boundary",
+            "held-out material or manual repair entered the selected transition",
+        )
+    architecture = CompactTransformerArchitecture()
+    spec = selected_phase12e_adapter_spec(architecture)
+    manifest = phase12e_adapter_training_manifest(
+        tensor_element_count=spec.element_count
+    )
+    request = {
+        "schema_id": "runtime.v3.phase12e.training_request.v1",
+        "transition_id": PHASE12E_TRANSITION_ID,
+        "proposal_hash": claim["proposal_hash"],
+        "active_package_hash": claim["active_package_hash"],
+        "candidate_package_hash": claim["candidate_package_hash"],
+        "candidate_adapter_manifest_hash": claim[
+            "candidate_adapter_manifest_hash"
+        ],
         "training_data_manifest_hash": str(manifest["manifest_hash"]),
         "adapter_tensor_name": spec.name,
         "adapter_tensor_path": spec.path,
@@ -102,10 +147,7 @@ def build_phase12e_training_binding(
         "semantic_candidate_tensor_hash": sha256_hex(
             _expected_tensor_bytes(spec.element_count)
         ),
-        "source_summary_hash": _require_hash(
-            summary.get("summary_hash"),
-            "phase12e.training_binding.summary.summary_hash",
-        ),
+        "source_semantic_hash": canonical_json_hash(claim),
         "candidate_self_report_authoritative": False,
     }
     result = dict(content)
@@ -126,7 +168,7 @@ def validate_phase12e_training_binding(
         "request",
         "request_hash",
         "semantic_candidate_tensor_hash",
-        "source_summary_hash",
+        "source_semantic_hash",
         "candidate_self_report_authoritative",
         "binding_hash",
     }
@@ -168,8 +210,8 @@ def validate_phase12e_training_binding(
             "selected tensor hash differs from the exact route witness",
         )
     _require_hash(
-        binding["source_summary_hash"],
-        "phase12e.training_binding.source_summary_hash",
+        binding["source_semantic_hash"],
+        "phase12e.training_binding.source_semantic_hash",
     )
     content = {key: binding[key] for key in binding if key != "binding_hash"}
     if canonical_json_hash(content) != _require_hash(
@@ -183,7 +225,7 @@ def validate_phase12e_training_binding(
         if canonical_json_bytes(binding) != canonical_json_bytes(expected):
             raise SchemaValidationError(
                 "phase12e.training_binding",
-                "retained binding differs from the portable Phase 12E summary",
+                "retained binding differs from the portable Phase 12E semantic claim",
             )
     return binding
 
@@ -202,5 +244,6 @@ __all__ = [
     "PHASE12E_TRAINING_SEED",
     "build_phase12e_training_binding",
     "load_phase12e_training_binding",
+    "phase12e_training_source_semantic_claim",
     "validate_phase12e_training_binding",
 ]
