@@ -2,7 +2,14 @@ from __future__ import annotations
 
 import argparse
 import struct
+import warnings
 from pathlib import Path
+
+warnings.filterwarnings(
+    "ignore",
+    message=r"Failed to initialize NumPy.*",
+    category=UserWarning,
+)
 
 import torch
 

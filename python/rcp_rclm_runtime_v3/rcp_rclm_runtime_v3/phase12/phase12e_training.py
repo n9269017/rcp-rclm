@@ -28,7 +28,15 @@ if TYPE_CHECKING:
 
 PHASE12E_TRAINING_SCHEMA_ID: Final[str] = "runtime.v3.phase12e.training_request.v1"
 _ALLOWED_IMPORTS: Final[frozenset[str]] = frozenset(
-    {"__future__", "argparse", "pathlib", "struct", "torch", "rcp_rclm_runtime"}
+    {
+        "__future__",
+        "argparse",
+        "pathlib",
+        "struct",
+        "torch",
+        "warnings",
+        "rcp_rclm_runtime",
+    }
 )
 _FORBIDDEN_CALLS: Final[frozenset[str]] = frozenset(
     {"eval", "exec", "compile", "__import__", "open", "breakpoint"}
@@ -140,18 +148,27 @@ class Phase12ETrainingProcessEvidence:
     schema_id: ClassVar[str] = "runtime.v3.phase12e.training_process_evidence.v1"
 
     @property
+    def acceptance_checks(self) -> dict[str, bool]:
+        return {
+            "not_timed_out": not self.timed_out,
+            "return_code_zero": self.return_code == 0,
+            "worker_source_guard_clean": self.worker_source_guard.get("clean") is True,
+            "worker_report_accepted": self.worker_report.get("accepted") is True,
+            "request_hash_matches": self.worker_report.get("request_hash") == self.request_hash,
+            "candidate_tensor_hash_matches": (
+                self.worker_report.get("candidate_tensor_sha256")
+                == self.candidate_tensor_sha256
+            ),
+            "heldout_material_not_consumed": (
+                self.worker_report.get("heldout_material_consumed") is False
+            ),
+            "stdout_empty": self.stdout_sha256 == sha256_hex(b""),
+            "stderr_empty": self.stderr_sha256 == sha256_hex(b""),
+        }
+
+    @property
     def accepted(self) -> bool:
-        return (
-            not self.timed_out
-            and self.return_code == 0
-            and self.worker_source_guard.get("clean") is True
-            and self.worker_report.get("accepted") is True
-            and self.worker_report.get("request_hash") == self.request_hash
-            and self.worker_report.get("candidate_tensor_sha256") == self.candidate_tensor_sha256
-            and self.worker_report.get("heldout_material_consumed") is False
-            and self.stdout_sha256 == sha256_hex(b"")
-            and self.stderr_sha256 == sha256_hex(b"")
-        )
+        return all(self.acceptance_checks.values())
 
     @property
     def evidence_hash(self) -> str:
@@ -161,6 +178,7 @@ class Phase12ETrainingProcessEvidence:
         return {
             "schema_id": self.schema_id,
             "accepted": self.accepted,
+            "acceptance_checks": self.acceptance_checks,
             "request_hash": self.request_hash,
             "worker_source_guard": dict(self.worker_source_guard),
             "worker_report": dict(self.worker_report),
@@ -264,7 +282,19 @@ def _run_worker(
         output_root=root,
     )
     if not evidence.accepted:
-        raise ValueError("Phase 12E training process evidence did not accept")
+        failed = sorted(
+            name for name, accepted in evidence.acceptance_checks.items() if not accepted
+        )
+        diagnostic = {
+            "failed_checks": failed,
+            "evidence": evidence.to_json(),
+            "stdout_utf8": stdout.decode("utf-8", errors="replace")[-4096:],
+            "stderr_utf8": stderr.decode("utf-8", errors="replace")[-4096:],
+        }
+        raise ValueError(
+            "Phase 12E training process evidence did not accept: "
+            + canonical_json_bytes(diagnostic).decode("utf-8")
+        )
     return evidence
 
 
