@@ -9,19 +9,22 @@ import sys
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
-from typing import ClassVar, Final
+from typing import TYPE_CHECKING, ClassVar, Final
 
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, sha256_hex
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes, load_json_strict
 from rcp_rclm_runtime.errors import SchemaValidationError
 
 from rcp_rclm_runtime_v3.phase10.package import load_package_components
-from rcp_rclm_runtime_v3.phase12.phase12e_lifecycle import Phase12EReference
 from rcp_rclm_runtime_v3.phase12.phase12e_tasks import (
     PHASE12E_ADAPTER_ROUTE_MAGIC,
     phase12e_adapter_training_manifest,
     selected_phase12e_adapter_spec,
 )
+
+
+if TYPE_CHECKING:
+    from rcp_rclm_runtime_v3.phase12.phase12e_lifecycle import Phase12EReference
 
 PHASE12E_TRAINING_SCHEMA_ID: Final[str] = "runtime.v3.phase12e.training_request.v1"
 _ALLOWED_IMPORTS: Final[frozenset[str]] = frozenset(
@@ -308,8 +311,9 @@ class Phase12ETrainingEvidence:
         }
 
 
-def run_phase12e_training(
-    reference: Phase12EReference,
+def run_phase12e_training_request(
+    request: dict[str, object],
+    semantic_candidate_tensor_hash: str,
     output_root: Path,
     *,
     worker_source: Path | None = None,
@@ -318,24 +322,38 @@ def run_phase12e_training(
     if root.exists():
         raise FileExistsError(f"Phase 12E training root already exists: {root}")
     root.mkdir(parents=True, exist_ok=False)
-    request = phase12e_training_request(reference)
     worker = (worker_source or default_phase12e_worker_source()).resolve(strict=True)
     first = _run_worker(request, root / "first", worker_source=worker)
     second = _run_worker(request, root / "second", worker_source=worker)
+    evidence = Phase12ETrainingEvidence(
+        request=request,
+        first=first,
+        second=second,
+        semantic_candidate_tensor_hash=semantic_candidate_tensor_hash,
+    )
+    if not evidence.accepted:
+        raise ValueError("Phase 12E duplicate untrusted training replay did not close")
+    return evidence
+
+
+def run_phase12e_training(
+    reference: "Phase12EReference",
+    output_root: Path,
+    *,
+    worker_source: Path | None = None,
+) -> Phase12ETrainingEvidence:
+    request = phase12e_training_request(reference)
     _, architecture, _, _, adapter = load_package_components(reference.semantic_candidate.root)
     selected = selected_phase12e_adapter_spec(architecture)
     record = next((item for item in adapter.records if item.spec.name == selected.name), None)
     if record is None:
         raise SchemaValidationError("phase12e.training", "selected candidate adapter is missing")
-    evidence = Phase12ETrainingEvidence(
-        request=request,
-        first=first,
-        second=second,
-        semantic_candidate_tensor_hash=record.sha256,
+    return run_phase12e_training_request(
+        request,
+        record.sha256,
+        output_root,
+        worker_source=worker_source,
     )
-    if not evidence.accepted:
-        raise ValueError("Phase 12E duplicate untrusted training replay did not close")
-    return evidence
 
 
 __all__ = [
@@ -344,4 +362,5 @@ __all__ = [
     "default_phase12e_worker_source",
     "phase12e_training_request",
     "run_phase12e_training",
+    "run_phase12e_training_request",
 ]
