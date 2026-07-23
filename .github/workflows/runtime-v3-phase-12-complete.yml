@@ -85,6 +85,13 @@ jobs:
           --repo-root .
           --out artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12_reference.json
 
+      - name: Validate retained Phase 12E training binding
+        run: >-
+          python python/rcp_rclm_runtime_v3/tools/validate_phase12e_training_binding.py
+          --summary artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12_reference.json
+          --binding python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase12/phase12e_training_binding.json
+          --out artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12e_training_binding.json
+
       - name: Validate complete Phase 12 Draft 2020-12 schema
         run: >-
           python python/rcp_rclm_runtime_v3/tools/validate_phase12e_schema.py
@@ -149,7 +156,7 @@ jobs:
     if: ${{ github.actor != 'github-actions[bot]' }}
     name: Validate duplicate isolated Phase 12E adapter training
     runs-on: ubuntu-latest
-    timeout-minutes: 420
+    timeout-minutes: 45
     steps:
       - name: Check out repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
@@ -166,7 +173,7 @@ jobs:
       - name: Run duplicate isolated one-step adapter training
         run: >-
           python python/rcp_rclm_runtime_v3/tools/run_phase12e_training_reference.py
-          --repo-root .
+          --binding python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase12/phase12e_training_binding.json
           --out artifacts/runtime_v3_phase_12_complete/training/phase_12e_training.json
       - name: Verify isolated training boundary
         shell: bash
@@ -184,6 +191,8 @@ jobs:
           assert report["heldout_source_consumed"] is False
           assert report["heldout_reference_answers_consumed"] is False
           assert report["candidate_self_report_authoritative"] is False
+          assert report["binding_hash"] == "545e92a78f86703f9081418d8a76e3861261be9ff640853ab88a064222838b31"
+          assert report["semantic_candidate_tensor_hash"] == "eca5b8e8f126965047155360b96a796265c24c323ad038e04d455f6be12b84ab"
           PY
       - name: Upload isolated training evidence
         if: always()
