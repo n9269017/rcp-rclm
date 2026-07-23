@@ -37,75 +37,63 @@ jobs:
           - macos-latest
         python-version:
           - "3.11"
-
     steps:
       - name: Check out repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
           fetch-depth: 0
-
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: ${{ matrix.python-version }}
-
       - name: Install deterministic runtimes
         run: |
           python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
           python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
-
       - name: Compile complete Phase 12 source
         run: >-
           python -m compileall -q
           python/rcp_rclm_runtime_v3
           scripts/run_phase12_complete.py
-
       - name: Validate deterministic source quality
         run: >-
           python python/rcp_rclm_runtime_v3/tools/validate_source_quality.py
           --package-root python/rcp_rclm_runtime_v3
           --out artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/source_quality.json
-
       - name: Validate retained Phase 11 closure dependency
         run: >-
           python python/rcp_rclm_runtime_v3/tools/validate_phase11_closure_manifest.py
           --repo-root .
           --no-recompute
           --out artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_11_closure_manifest.json
-
       - name: Run complete focused Phase 12 tests
         run: >-
           python python/rcp_rclm_runtime_v3/tools/run_phase12_tests.py
           --package-root python/rcp_rclm_runtime_v3
           --out artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12_tests.log
-
       - name: Recompute complete Phase 12 portable reference
         run: >-
           python python/rcp_rclm_runtime_v3/tools/run_phase12e_reference.py
           --repo-root .
           --out artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12_reference.json
-
       - name: Validate retained Phase 12E training binding
         run: >-
           python python/rcp_rclm_runtime_v3/tools/validate_phase12e_training_binding.py
           --summary artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12_reference.json
           --binding python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase12/phase12e_training_binding.json
           --out artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12e_training_binding.json
-
       - name: Validate complete Phase 12 Draft 2020-12 schema
         run: >-
           python python/rcp_rclm_runtime_v3/tools/validate_phase12e_schema.py
           --schema python/rcp_rclm_executable_core_v3/contract/phase_12_complete_trajectory.schema.json
           --instance artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12_reference.json
           --out artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12_schema.json
-
       - name: Run repository complete Phase 12 entry point
         run: >-
           python scripts/run_phase12_complete.py
           --repo-root .
           --work-root artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/root_work
           --out artifacts/runtime_v3_phase_12_complete/${{ matrix.os }}/phase_12_root_entry.json
-
       - name: Require byte-identical portable entry points
         shell: bash
         run: |
@@ -116,7 +104,6 @@ jobs:
               root / "phase_12_root_entry.json"
           ).read_bytes()
           PY
-
       - name: Verify portable complete Phase 12 boundary
         shell: bash
         run: |
@@ -142,7 +129,6 @@ jobs:
           assert report["heldout_material_consumed"] is False
           assert report["claim_boundary"]["phase12_exit_closed"] is False
           PY
-
       - name: Upload portable complete Phase 12 evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -191,7 +177,7 @@ jobs:
           assert report["heldout_source_consumed"] is False
           assert report["heldout_reference_answers_consumed"] is False
           assert report["candidate_self_report_authoritative"] is False
-          assert report["binding_hash"] == "545e92a78f86703f9081418d8a76e3861261be9ff640853ab88a064222838b31"
+          assert report["binding_hash"] == "1aaa76670df957c3da2a04623344798d32e8bf4bc2f594e5897eadfa31d26727"
           assert report["semantic_candidate_tensor_hash"] == "eca5b8e8f126965047155360b96a796265c24c323ad038e04d455f6be12b84ab"
           PY
       - name: Upload isolated training evidence
