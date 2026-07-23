@@ -39,7 +39,7 @@ def main() -> int:
         )
         report = evidence.to_json()
         report["binding_hash"] = binding["binding_hash"]
-        report["source_summary_hash"] = binding["source_summary_hash"]
+        report["source_semantic_hash"] = binding["source_semantic_hash"]
         report["report_hash"] = evidence.report_hash
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_bytes(canonical_json_bytes(report))
