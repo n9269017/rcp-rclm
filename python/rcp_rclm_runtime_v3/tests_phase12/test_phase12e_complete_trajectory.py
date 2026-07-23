@@ -8,6 +8,10 @@ from rcp_rclm_runtime_v3.phase10.constants import EXTENDED_PARAMETER_COUNT
 from rcp_rclm_runtime_v3.phase12.phase12e_lifecycle import build_phase12e_reference
 from rcp_rclm_runtime_v3.phase12.phase12e_program import PHASE12E_ACCEPTED_PROGRAM_BYTES
 from rcp_rclm_runtime_v3.phase12.phase12e_tasks import PHASE12E_NEW_TASK_ID
+from rcp_rclm_runtime_v3.phase12.phase12e_training_binding import (
+    build_phase12e_training_binding,
+    load_phase12e_training_binding,
+)
 
 
 class Phase12ECompleteTrajectoryTests(unittest.TestCase):
@@ -92,6 +96,22 @@ class Phase12ECompleteTrajectoryTests(unittest.TestCase):
         self.assertEqual(ledger.accepted_promotions, 3)
         self.assertEqual(ledger.frontier_expansions, 3)
         self.assertEqual(ledger.manual_repairs, 0)
+
+    def test_retained_training_binding_matches_portable_reference(self) -> None:
+        summary = self.reference.summary_json()
+        expected = build_phase12e_training_binding(summary)
+        binding_path = (
+            Path(__file__).resolve().parents[1]
+            / "rcp_rclm_runtime_v3"
+            / "phase12"
+            / "phase12e_training_binding.json"
+        )
+        observed = load_phase12e_training_binding(binding_path, summary=summary)
+        self.assertEqual(observed, expected)
+        self.assertEqual(
+            observed["semantic_candidate_tensor_hash"],
+            "eca5b8e8f126965047155360b96a796265c24c323ad038e04d455f6be12b84ab",
+        )
 
     def test_portable_boundary_waits_for_atomic_promotion(self) -> None:
         summary = self.reference.summary_json()
