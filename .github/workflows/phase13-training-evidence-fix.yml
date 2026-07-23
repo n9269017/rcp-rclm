@@ -35,42 +35,52 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Apply exact warning-suppression and diagnostic patch
+      - name: Apply exact warning suppression and acceptance diagnostics
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
 
-          path = Path(
+          training_path = Path(
               "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase12/phase12e_training.py"
           )
-          source = path.read_text(encoding="utf-8")
-
-          old_environment = '''            "PYTHONHASHSEED": "0",\n            "TOKENIZERS_PARALLELISM": "false",\n'''
-          new_environment = '''            "PYTHONHASHSEED": "0",\n            "PYTHONWARNINGS": "ignore",\n            "TORCH_CPP_LOG_LEVEL": "ERROR",\n            "TORCH_SHOW_CPP_STACKTRACES": "0",\n            "TOKENIZERS_PARALLELISM": "false",\n'''
-          if source.count(old_environment) != 1:
-              raise RuntimeError("Phase 12E worker-environment anchor mismatch")
-          source = source.replace(old_environment, new_environment)
+          training = training_path.read_text(encoding="utf-8")
+          old_imports = '''    {"__future__", "argparse", "pathlib", "struct", "torch", "rcp_rclm_runtime"}\n'''
+          new_imports = '''    {\n        "__future__",\n        "argparse",\n        "pathlib",\n        "struct",\n        "torch",\n        "warnings",\n        "rcp_rclm_runtime",\n    }\n'''
+          if training.count(old_imports) != 1:
+              raise RuntimeError("Phase 12E allowed-import anchor mismatch")
+          training = training.replace(old_imports, new_imports)
 
           old_accepted = '''    @property\n    def accepted(self) -> bool:\n        return (\n            not self.timed_out\n            and self.return_code == 0\n            and self.worker_source_guard.get("clean") is True\n            and self.worker_report.get("accepted") is True\n            and self.worker_report.get("request_hash") == self.request_hash\n            and self.worker_report.get("candidate_tensor_sha256") == self.candidate_tensor_sha256\n            and self.worker_report.get("heldout_material_consumed") is False\n            and self.stdout_sha256 == sha256_hex(b"")\n            and self.stderr_sha256 == sha256_hex(b"")\n        )\n'''
           new_accepted = '''    @property\n    def acceptance_checks(self) -> dict[str, bool]:\n        return {\n            "not_timed_out": not self.timed_out,\n            "return_code_zero": self.return_code == 0,\n            "worker_source_guard_clean": self.worker_source_guard.get("clean") is True,\n            "worker_report_accepted": self.worker_report.get("accepted") is True,\n            "request_hash_matches": self.worker_report.get("request_hash") == self.request_hash,\n            "candidate_tensor_hash_matches": (\n                self.worker_report.get("candidate_tensor_sha256")\n                == self.candidate_tensor_sha256\n            ),\n            "heldout_material_not_consumed": (\n                self.worker_report.get("heldout_material_consumed") is False\n            ),\n            "stdout_empty": self.stdout_sha256 == sha256_hex(b""),\n            "stderr_empty": self.stderr_sha256 == sha256_hex(b""),\n        }\n\n    @property\n    def accepted(self) -> bool:\n        return all(self.acceptance_checks.values())\n'''
-          if source.count(old_accepted) != 1:
+          if training.count(old_accepted) == 1:
+              training = training.replace(old_accepted, new_accepted)
+          elif "def acceptance_checks(self)" not in training:
               raise RuntimeError("Phase 12E acceptance predicate anchor mismatch")
-          source = source.replace(old_accepted, new_accepted)
 
           old_json = '''            "accepted": self.accepted,\n            "request_hash": self.request_hash,\n'''
           new_json = '''            "accepted": self.accepted,\n            "acceptance_checks": self.acceptance_checks,\n            "request_hash": self.request_hash,\n'''
-          if source.count(old_json) < 1:
+          if training.count(old_json) == 1:
+              training = training.replace(old_json, new_json, 1)
+          elif '"acceptance_checks": self.acceptance_checks' not in training:
               raise RuntimeError("Phase 12E evidence JSON anchor mismatch")
-          source = source.replace(old_json, new_json, 1)
 
           old_failure = '''    if not evidence.accepted:\n        raise ValueError("Phase 12E training process evidence did not accept")\n'''
           new_failure = '''    if not evidence.accepted:\n        failed = sorted(\n            name for name, accepted in evidence.acceptance_checks.items() if not accepted\n        )\n        diagnostic = {\n            "failed_checks": failed,\n            "evidence": evidence.to_json(),\n            "stdout_utf8": stdout.decode("utf-8", errors="replace")[-4096:],\n            "stderr_utf8": stderr.decode("utf-8", errors="replace")[-4096:],\n        }\n        raise ValueError(\n            "Phase 12E training process evidence did not accept: "\n            + canonical_json_bytes(diagnostic).decode("utf-8")\n        )\n'''
-          if source.count(old_failure) != 1:
+          if training.count(old_failure) == 1:
+              training = training.replace(old_failure, new_failure)
+          elif "failed_checks" not in training:
               raise RuntimeError("Phase 12E process-failure anchor mismatch")
-          source = source.replace(old_failure, new_failure)
-          path.write_text(source, encoding="utf-8")
+          training_path.write_text(training, encoding="utf-8")
+
+          worker_path = Path("python/rcp_rclm_runtime_v3/tools/phase12e_training_worker.py")
+          worker = worker_path.read_text(encoding="utf-8")
+          old_worker_import = '''import argparse\nimport struct\nfrom pathlib import Path\n\nimport torch\n'''
+          new_worker_import = '''import argparse\nimport struct\nimport warnings\nfrom pathlib import Path\n\nwarnings.filterwarnings(\n    "ignore",\n    message=r"Failed to initialize NumPy.*",\n    category=UserWarning,\n)\n\nimport torch\n'''
+          if worker.count(old_worker_import) != 1:
+              raise RuntimeError("Phase 12E worker warning-filter anchor mismatch")
+          worker_path.write_text(worker.replace(old_worker_import, new_worker_import), encoding="utf-8")
           PY
 
       - name: Install isolated training runtime
@@ -109,6 +119,8 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase12/phase12e_training.py
+          git add \
+            python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase12/phase12e_training.py \
+            python/rcp_rclm_runtime_v3/tools/phase12e_training_worker.py
           git commit -m "Make Phase 12E worker output deterministically silent"
           git push origin "HEAD:${TARGET_BRANCH}"
