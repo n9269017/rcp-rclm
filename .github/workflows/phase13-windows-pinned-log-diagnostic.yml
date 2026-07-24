@@ -1,0 +1,47 @@
+name: Retain Phase 13 Windows pinned failure log
+
+on:
+  pull_request:
+    branches:
+      - agent/rcp-rclm-v3-phase-13-independent-replay
+    paths:
+      - ".github/workflows/phase13-windows-pinned-log-diagnostic.yml"
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  retain-log:
+    name: Retain exact Windows pinned failure log
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch and summarize failed job log
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/phase13-windows-pinned-log
+          curl --fail --location --silent --show-error \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/n9269017/rcp-rclm/actions/jobs/89396633382/logs" \
+            --output artifacts/phase13-windows-pinned-log/windows.log
+          tail -n 320 artifacts/phase13-windows-pinned-log/windows.log \
+            > artifacts/phase13-windows-pinned-log/windows-tail.log
+          grep -nEi 'traceback|error|exception|failed|assert|schema|filenotfound|timeout|exit code|return code' \
+            artifacts/phase13-windows-pinned-log/windows.log \
+            > artifacts/phase13-windows-pinned-log/windows-matches.log || true
+          cat artifacts/phase13-windows-pinned-log/windows-matches.log
+          cat artifacts/phase13-windows-pinned-log/windows-tail.log
+
+      - name: Upload exact diagnostic
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase13-windows-pinned-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/phase13-windows-pinned-log/
+          if-no-files-found: error
+          retention-days: 7
