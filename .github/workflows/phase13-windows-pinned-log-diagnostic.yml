@@ -13,11 +13,11 @@ permissions:
 
 jobs:
   retain-log:
-    name: Retain exact Windows launcher probe log
+    name: Retain exact Windows run 3 pinned failure
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Fetch and summarize launcher probe log
+      - name: Fetch and summarize failed job log
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -28,124 +28,20 @@ jobs:
             --header "Accept: application/vnd.github+json" \
             --header "Authorization: Bearer ${GH_TOKEN}" \
             --header "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/n9269017/rcp-rclm/actions/jobs/89405599931/logs" \
-            --output artifacts/phase13-windows-pinned-log/windows-launcher-probe.log
-          tail -n 240 artifacts/phase13-windows-pinned-log/windows-launcher-probe.log \
-            > artifacts/phase13-windows-pinned-log/windows-launcher-probe-tail.log
-          grep -nEi 'home|elan|lake|path|traceback|error|exception|failed|not found|exit code|return code' \
-            artifacts/phase13-windows-pinned-log/windows-launcher-probe.log \
-            > artifacts/phase13-windows-pinned-log/windows-launcher-probe-matches.log || true
-          cat artifacts/phase13-windows-pinned-log/windows-launcher-probe-matches.log
-          cat artifacts/phase13-windows-pinned-log/windows-launcher-probe-tail.log
+            "https://api.github.com/repos/n9269017/rcp-rclm/actions/jobs/89408537314/logs" \
+            --output artifacts/phase13-windows-pinned-log/windows.log
+          tail -n 360 artifacts/phase13-windows-pinned-log/windows.log \
+            > artifacts/phase13-windows-pinned-log/windows-tail.log
+          grep -nEi 'traceback|error|exception|failed|assert|schema|filenotfound|timeout|exit code|return code|mismatch|different' \
+            artifacts/phase13-windows-pinned-log/windows.log \
+            > artifacts/phase13-windows-pinned-log/windows-matches.log || true
+          cat artifacts/phase13-windows-pinned-log/windows-matches.log
+          cat artifacts/phase13-windows-pinned-log/windows-tail.log
 
       - name: Upload exact diagnostic
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: phase13-windows-launcher-probe-log-${{ github.run_id }}-${{ github.run_attempt }}
+          name: phase13-windows-run3-failure-${{ github.run_id }}-${{ github.run_attempt }}
           path: artifacts/phase13-windows-pinned-log/
-          if-no-files-found: error
-          retention-days: 7
-
-  probe-launcher:
-    name: Probe native Windows pinned Lake launcher
-    runs-on: windows-latest
-    timeout-minutes: 20
-    steps:
-      - name: Check out diagnostic source
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: "3.11"
-
-      - name: Install pinned Lean toolchain
-        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
-        with:
-          lake-package-directory: lean/rcp_rclm_formal_core_v3
-          auto-config: false
-          build: false
-          test: false
-          lint: false
-          use-mathlib-cache: false
-          use-github-cache: false
-
-      - name: Record native launcher candidates from PowerShell Python
-        shell: pwsh
-        run: |
-          New-Item -ItemType Directory -Force artifacts/phase13-windows-launcher-probe | Out-Null
-          @'
-          from __future__ import annotations
-
-          import json
-          import os
-          import shutil
-          import subprocess
-          from pathlib import Path
-
-          home = Path.home()
-          elan_home = Path(os.environ.get("ELAN_HOME", home / ".elan"))
-          candidate_paths = [
-              elan_home / "bin" / "lake.exe",
-              elan_home / "bin" / "lake",
-              home / ".elan" / "bin" / "lake.exe",
-              home / ".elan" / "bin" / "lake",
-          ]
-          unique_candidates: list[Path] = []
-          for candidate in candidate_paths:
-              if candidate not in unique_candidates:
-                  unique_candidates.append(candidate)
-          records = []
-          for candidate in unique_candidates:
-              record: dict[str, object] = {
-                  "path": str(candidate),
-                  "exists": candidate.exists(),
-                  "is_file": candidate.is_file(),
-              }
-              if candidate.is_file():
-                  completed = subprocess.run(
-                      [str(candidate), "--version"],
-                      capture_output=True,
-                      check=False,
-                      timeout=30,
-                  )
-                  record.update(
-                      {
-                          "returncode": completed.returncode,
-                          "stdout": completed.stdout.decode("utf-8", errors="replace"),
-                          "stderr": completed.stderr.decode("utf-8", errors="replace"),
-                      }
-                  )
-              records.append(record)
-          payload = {
-              "home": str(home),
-              "elan_home_environment": os.environ.get("ELAN_HOME"),
-              "path_environment": os.environ.get("PATH"),
-              "which_lake": shutil.which("lake"),
-              "which_lake_exe": shutil.which("lake.exe"),
-              "elan_bin_entries": sorted(
-                  item.name for item in (elan_home / "bin").iterdir()
-              ) if (elan_home / "bin").is_dir() else [],
-              "candidates": records,
-          }
-          output = Path("artifacts/phase13-windows-launcher-probe/probe.json")
-          output.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
-          print(output.read_text(encoding="utf-8"))
-          if not any(
-              record.get("is_file") is True and record.get("returncode") == 0
-              for record in records
-          ):
-              raise SystemExit("no directly invokable pinned Lake launcher was found")
-          '@ | Set-Content -Encoding utf8 artifacts/phase13-windows-launcher-probe/probe.py
-          python artifacts/phase13-windows-launcher-probe/probe.py
-
-      - name: Upload launcher probe
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: phase13-windows-launcher-probe-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/phase13-windows-launcher-probe/
           if-no-files-found: error
           retention-days: 7
