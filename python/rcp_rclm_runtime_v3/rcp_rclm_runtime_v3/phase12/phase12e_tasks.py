@@ -2,8 +2,6 @@ from __future__ import annotations
 
 import re
 import struct
-import subprocess
-import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from collections.abc import Sequence
@@ -12,6 +10,7 @@ from typing import ClassVar, Final
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, sha256_hex
 from rcp_rclm_runtime.canonical.json import load_json_strict
 from rcp_rclm_runtime.errors import SchemaValidationError
+from rcp_rclm_runtime_v3.phase10.lean_process import run_pinned_lean_source
 
 from rcp_rclm_runtime_v3.phase10.adapters import LoRAAdapterManifest, expected_lora_tensor_specs
 from rcp_rclm_runtime_v3.phase10.learned_data import LeanCompletionTask
@@ -331,16 +330,12 @@ def verify_phase12e_task(package_root: Path, lean_project_root: Path) -> TaskVer
     lower_source = source.lower()
     if any(token.lower() in lower_source for token in _FORBIDDEN_SOURCE_TOKENS):
         raise SchemaValidationError("phase12e.lean.source", "forbidden proof token")
-    with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase12e-lean-") as temporary:
-        source_path = Path(temporary) / "Phase12Generation4Task.lean"
-        source_path.write_bytes(source_bytes)
-        completed = subprocess.run(
-            ["lake", "env", "lean", str(source_path)],
-            cwd=lean_project_root.resolve(strict=True),
-            capture_output=True,
-            check=False,
-            timeout=60,
-        )
+    completed = run_pinned_lean_source(
+        source_bytes,
+        lean_project_root,
+        temporary_prefix="rcp-rclm-phase12e-lean-",
+        source_file_name="Phase12Generation4Task.lean",
+    )
     return TaskVerifierReport(
         task_id=PHASE12E_NEW_TASK.task_id,
         model_identity_hash=decode.model_identity_hash,
