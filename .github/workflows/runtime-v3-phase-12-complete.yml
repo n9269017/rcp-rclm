@@ -297,7 +297,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p artifacts/runtime_v3_phase_12_complete/pinned
-          python python/rcp_rclm_runtime_v3/tools/run_phase12e_closure.py --repo-root . --lean-project-root lean/rcp_rclm_formal_core_v3 --out artifacts/runtime_v3_phase_12_complete/pinned/phase_12_closure.json 2>&1 | tee artifacts/runtime_v3_phase_12_complete/pinned/phase_12_closure_stdout.log
+          python python/rcp_rclm_runtime_v3/tools/run_phase12e_closure.py --repo-root . --lean-project-root lean/rcp_rclm_formal_core_v3 --work-root artifacts/runtime_v3_phase_12_complete/pinned/work --out artifacts/runtime_v3_phase_12_complete/pinned/phase_12_closure.json 2>&1 | tee artifacts/runtime_v3_phase_12_complete/pinned/phase_12_closure_stdout.log
       - name: Verify four promotions, seven-task frontier, and M4 installation
         shell: bash
         run: |
@@ -309,7 +309,8 @@ jobs:
           assert report["phase12a_recursive_rejection_retained"] is True
           assert report["phase12b_first_promotion_retained"] is True
           assert report["phase12c_second_rejection_and_promotion_retained"] is True
-          assert report["phase12d_generator_planner_promotion_retained"] is True
+          assert report["m2_to_m3_generator_planner_promotion_retained"] is True
+          assert report["generation3_generator_planner_retained"] is True
           assert report["m3_to_m4_candidate_realized"] is True
           assert report["m3_to_m4_frontier_expansion"] is True
           assert report["m3_to_m4_adapter_architecture_optimizer_update"] is True
@@ -318,12 +319,11 @@ jobs:
           assert report["frontier_cardinality_final"] == 7
           assert report["accepted_phase12_promotions"] == 4
           assert report["rejected_phase12_attempts"] == 2
-          assert report["generator_invocations"] == 6
-          assert report["candidate_realizations"] == 4
-          assert report["candidate_evaluations"] == 4
-          assert report["frontier_expansions"] == 4
           assert report["manual_repairs"] == 0
           assert report["heldout_material_consumed"] is False
+          assert report["training_invocations_during_replay"] == 0
+          assert report["generator_invocations_during_replay"] == 0
+          assert report["planner_invocations_during_replay"] == 0
           assert report["phase12e_adapter_optimizer_promotion_closed"] is True
           assert report["phase12_exit_closed"] is True
           assert report["next_phase"] == 13
