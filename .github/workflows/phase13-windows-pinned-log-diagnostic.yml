@@ -13,35 +13,39 @@ permissions:
 
 jobs:
   retain-log:
-    name: Retain exact Windows run 3 pinned failure
+    name: Retain exact Phase 2 cross-platform unit failures
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Fetch and summarize failed job log
+      - name: Fetch and summarize failed job logs
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p artifacts/phase13-windows-pinned-log
-          curl --fail --location --silent --show-error \
-            --header "Accept: application/vnd.github+json" \
-            --header "Authorization: Bearer ${GH_TOKEN}" \
-            --header "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/n9269017/rcp-rclm/actions/jobs/89408537314/logs" \
-            --output artifacts/phase13-windows-pinned-log/windows.log
-          tail -n 360 artifacts/phase13-windows-pinned-log/windows.log \
-            > artifacts/phase13-windows-pinned-log/windows-tail.log
-          grep -nEi 'traceback|error|exception|failed|assert|schema|filenotfound|timeout|exit code|return code|mismatch|different' \
-            artifacts/phase13-windows-pinned-log/windows.log \
-            > artifacts/phase13-windows-pinned-log/windows-matches.log || true
-          cat artifacts/phase13-windows-pinned-log/windows-matches.log
-          cat artifacts/phase13-windows-pinned-log/windows-tail.log
+          mkdir -p artifacts/phase13-phase2-unit-logs
+          for pair in windows:89412259872 macos:89412259915; do
+            label="${pair%%:*}"
+            job_id="${pair##*:}"
+            curl --fail --location --silent --show-error \
+              --header "Accept: application/vnd.github+json" \
+              --header "Authorization: Bearer ${GH_TOKEN}" \
+              --header "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/n9269017/rcp-rclm/actions/jobs/${job_id}/logs" \
+              --output "artifacts/phase13-phase2-unit-logs/${label}.log"
+            tail -n 220 "artifacts/phase13-phase2-unit-logs/${label}.log" \
+              > "artifacts/phase13-phase2-unit-logs/${label}-tail.log"
+            grep -nEi 'traceback|error|exception|failed|assert|failure|expected|actual|not equal' \
+              "artifacts/phase13-phase2-unit-logs/${label}.log" \
+              > "artifacts/phase13-phase2-unit-logs/${label}-matches.log" || true
+            cat "artifacts/phase13-phase2-unit-logs/${label}-matches.log"
+            cat "artifacts/phase13-phase2-unit-logs/${label}-tail.log"
+          done
 
-      - name: Upload exact diagnostic
+      - name: Upload exact diagnostics
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: phase13-windows-run3-failure-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/phase13-windows-pinned-log/
+          name: phase13-phase2-unit-failures-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/phase13-phase2-unit-logs/
           if-no-files-found: error
           retention-days: 7
