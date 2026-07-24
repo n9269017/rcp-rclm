@@ -14,7 +14,7 @@ from rcp_rclm_runtime_v3.phase10.lean_process import (
 
 
 class Phase13PinnedLeanProcessTests(unittest.TestCase):
-    def test_resolves_platform_launcher_and_uses_bounded_timeout(self) -> None:
+    def test_resolves_path_launcher_and_uses_bounded_timeout(self) -> None:
         source = b"import Mathlib\nexample : True := by trivial\n"
         with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase13-lean-process-") as temporary:
             project = Path(temporary)
@@ -37,6 +37,7 @@ class Phase13PinnedLeanProcessTests(unittest.TestCase):
                 return subprocess.CompletedProcess(command, 0, b"", b"")
 
             with (
+                mock.patch.dict("os.environ", {}, clear=True),
                 mock.patch(
                     "rcp_rclm_runtime_v3.phase10.lean_process.shutil.which",
                     return_value="C:/elan/bin/lake.exe",
@@ -60,15 +61,91 @@ class Phase13PinnedLeanProcessTests(unittest.TestCase):
         self.assertTrue(observed["capture_output"])
         self.assertFalse(observed["check"])
 
-    def test_missing_platform_launcher_fails_closed(self) -> None:
-        with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase13-lean-missing-") as temporary:
-            with mock.patch(
-                "rcp_rclm_runtime_v3.phase10.lean_process.shutil.which",
-                return_value=None,
+    def test_native_elan_launcher_is_used_when_windows_path_is_not_native(self) -> None:
+        source = b"example : True := by trivial\n"
+        with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase13-native-elan-") as temporary:
+            project = Path(temporary)
+            elan_home = project / "elan-home"
+            launcher = elan_home / "bin" / "lake.exe"
+            launcher.parent.mkdir(parents=True)
+            launcher.write_bytes(b"pinned native Elan launcher fixture")
+            observed: dict[str, object] = {}
+
+            def completed_process(
+                command: list[str],
+                *,
+                cwd: Path,
+                capture_output: bool,
+                check: bool,
+                timeout: int,
+            ) -> subprocess.CompletedProcess[bytes]:
+                observed["command"] = command
+                observed["cwd"] = cwd
+                return subprocess.CompletedProcess(command, 0, b"", b"")
+
+            with (
+                mock.patch.dict(
+                    "os.environ",
+                    {"ELAN_HOME": str(elan_home.resolve())},
+                    clear=True,
+                ),
+                mock.patch(
+                    "rcp_rclm_runtime_v3.phase10.lean_process.shutil.which",
+                    return_value=None,
+                ),
+                mock.patch(
+                    "rcp_rclm_runtime_v3.phase10.lean_process.subprocess.run",
+                    side_effect=completed_process,
+                ),
+            ):
+                result = run_pinned_lean_source(
+                    source,
+                    project,
+                    temporary_prefix="phase13-test-",
+                    source_file_name="SelectedTask.lean",
+                )
+
+        self.assertEqual(result.returncode, 0)
+        self.assertEqual(observed["command"][0], str(launcher.resolve()))
+        self.assertEqual(observed["cwd"], project.resolve())
+
+    def test_relative_elan_home_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase13-relative-elan-") as temporary:
+            with (
+                mock.patch.dict("os.environ", {"ELAN_HOME": "relative/elan"}, clear=True),
+                mock.patch(
+                    "rcp_rclm_runtime_v3.phase10.lean_process.shutil.which",
+                    return_value=None,
+                ),
             ):
                 with self.assertRaisesRegex(
                     SchemaValidationError,
-                    "pinned lake executable is unavailable",
+                    "ELAN_HOME must be an absolute path",
+                ):
+                    run_pinned_lean_source(
+                        b"example : True := by trivial\n",
+                        Path(temporary),
+                        temporary_prefix="phase13-test-",
+                        source_file_name="SelectedTask.lean",
+                    )
+
+    def test_missing_platform_launcher_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase13-lean-missing-") as temporary:
+            missing_home = Path(temporary) / "missing-elan"
+            with (
+                mock.patch.dict(
+                    "os.environ",
+                    {"ELAN_HOME": str(missing_home.resolve())},
+                    clear=True,
+                ),
+                mock.patch(
+                    "rcp_rclm_runtime_v3.phase10.lean_process.shutil.which",
+                    return_value=None,
+                ),
+            ):
+                with self.assertRaisesRegex(
+                    SchemaValidationError,
+                    "native Elan home",
                 ):
                     run_pinned_lean_source(
                         b"example : True := by trivial\n",
@@ -80,6 +157,7 @@ class Phase13PinnedLeanProcessTests(unittest.TestCase):
     def test_timeout_is_fail_visible_and_remains_bounded(self) -> None:
         with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase13-lean-timeout-") as temporary:
             with (
+                mock.patch.dict("os.environ", {}, clear=True),
                 mock.patch(
                     "rcp_rclm_runtime_v3.phase10.lean_process.shutil.which",
                     return_value="/opt/elan/bin/lake",
