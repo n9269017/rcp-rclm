@@ -1,0 +1,49 @@
+name: Fetch prior Phase 13 pinned failure logs
+
+on:
+  pull_request:
+    branches:
+      - agent/rcp-rclm-v3-phase-13-independent-replay
+    paths:
+      - ".github/workflows/phase13-prior-log-fetch.yml"
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  fetch-prior-logs:
+    name: Retain prior pinned failure logs
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download exact failed job logs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/phase13-prior-logs
+          for pair in \
+            "macos:89390224984" \
+            "windows:89390224986"
+          do
+            label="${pair%%:*}"
+            job_id="${pair##*:}"
+            curl --fail --location --silent --show-error \
+              --header "Accept: application/vnd.github+json" \
+              --header "Authorization: Bearer ${GH_TOKEN}" \
+              --header "X-GitHub-Api-Version: 2026-03-10" \
+              "https://api.github.com/repos/n9269017/rcp-rclm/actions/jobs/${job_id}/logs" \
+              --output "artifacts/phase13-prior-logs/${label}.log"
+            tail -n 160 "artifacts/phase13-prior-logs/${label}.log" \
+              > "artifacts/phase13-prior-logs/${label}-tail.log"
+          done
+
+      - name: Upload prior pinned failure logs
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase13-prior-pinned-failure-logs-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/phase13-prior-logs/
+          if-no-files-found: error
+          retention-days: 7
