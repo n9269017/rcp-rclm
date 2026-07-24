@@ -26,6 +26,14 @@ _REPLAY_SOURCE_FILES = (
     "attacks.py",
     "boundary.py",
     "reference.py",
+    "full_records.py",
+    "bundle.py",
+    "structural.py",
+    "store_replay.py",
+    "pinned_replay.py",
+    "full_replay.py",
+    "source.py",
+    "closure.py",
 )
 _FORBIDDEN_IMPORTS = (
     "importlib",

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rcp-rclm.example/schemas/runtime-v3-phase-13-complete-replay.json",
+  "title": "RCP/RCLM Runtime v3 complete Phase 13 independent replay closure",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "contract_version",
+    "source_head",
+    "bundle_manifest_hash",
+    "phase13a_report_hash",
+    "structural_report_hash",
+    "pinned_report_hash",
+    "pinned_entry_hashes",
+    "portable_entry_hashes",
+    "closure_checks",
+    "accepted",
+    "phase13_exit_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "properties": {
+    "schema_id": {"const": "runtime.v3.phase13.exit_report.v1"},
+    "contract_version": {"const": "rcp-rclm-executable-v3-phase-13-exit-v1"},
+    "source_head": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "bundle_manifest_hash": {"$ref": "#/$defs/hash"},
+    "phase13a_report_hash": {"$ref": "#/$defs/hash"},
+    "structural_report_hash": {"$ref": "#/$defs/hash"},
+    "pinned_report_hash": {"$ref": "#/$defs/hash"},
+    "pinned_entry_hashes": {"$ref": "#/$defs/platformHashes"},
+    "portable_entry_hashes": {"$ref": "#/$defs/platformHashes"},
+    "closure_checks": {
+      "type": "object",
+      "minProperties": 10,
+      "additionalProperties": {"const": true}
+    },
+    "accepted": {"const": true},
+    "phase13_exit_closed": {"const": true},
+    "next_phase": {"const": 14},
+    "report_hash": {"$ref": "#/$defs/hash"}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "platformHashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["macos", "ubuntu", "windows"],
+      "properties": {
+        "macos": {"$ref": "#/$defs/hash"},
+        "ubuntu": {"$ref": "#/$defs/hash"},
+        "windows": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}
