@@ -6,6 +6,11 @@ on:
       - agent/phase13-pinned-diagnostics
     paths:
       - ".github/workflows/phase13-pinned-diagnostics.yml"
+  pull_request:
+    branches:
+      - agent/rcp-rclm-v3-phase-13-independent-replay
+    paths:
+      - ".github/workflows/phase13-pinned-diagnostics.yml"
 
 permissions:
   actions: read
