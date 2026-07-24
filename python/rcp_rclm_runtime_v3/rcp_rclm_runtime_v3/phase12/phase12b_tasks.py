@@ -1,14 +1,13 @@
 from __future__ import annotations
 
 import re
-import subprocess
-import tempfile
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Final
 
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, sha256_hex
 from rcp_rclm_runtime.errors import SchemaValidationError
+from rcp_rclm_runtime_v3.phase10.lean_process import run_pinned_lean_source
 
 from rcp_rclm_runtime_v3.phase10.constants import EOS_TOKEN_ID
 from rcp_rclm_runtime_v3.phase10.learned_data import LeanCompletionTask
@@ -171,16 +170,12 @@ def verify_phase12b_task(
     lower_source = source.lower()
     if any(token.lower() in lower_source for token in _FORBIDDEN_SOURCE_TOKENS):
         raise SchemaValidationError("phase12b.lean.source", "forbidden proof token")
-    with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase12b-lean-") as temporary:
-        source_path = Path(temporary) / "Phase12Generation1Task.lean"
-        source_path.write_bytes(source_bytes)
-        completed = subprocess.run(
-            ["lake", "env", "lean", str(source_path)],
-            cwd=lean_project_root.resolve(strict=True),
-            capture_output=True,
-            check=False,
-            timeout=120,
-        )
+    completed = run_pinned_lean_source(
+        source_bytes,
+        lean_project_root,
+        temporary_prefix="rcp-rclm-phase12b-lean-",
+        source_file_name="Phase12Generation1Task.lean",
+    )
     if completed.returncode == 0 and (completed.stdout or completed.stderr):
         raise SchemaValidationError(
             "phase12b.lean.output",

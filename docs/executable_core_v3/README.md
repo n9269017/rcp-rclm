@@ -217,3 +217,7 @@ satisfy selected information and resource obligations, and preserve the immutabl
 15. PHASE_12_EXIT_CRITERIA.md
 16. PHASE_12_VALIDATION.md
 ```
+
+## Phase 13 — independent replay and adversarial closure
+
+Phase 13A is active. The replay-only contract, zero-invocation counters, source guard, retained-evidence manifest, and complete 21-case selected adversarial registry are implemented. Full `M0 → M4` replay remains open and `phase13_exit_closed` remains false. See `PHASE_13_REPLAY.md` and `PHASE_13_EXIT_CRITERIA.md`.

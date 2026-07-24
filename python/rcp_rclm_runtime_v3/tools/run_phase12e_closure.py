@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import tempfile
+from contextlib import nullcontext
 from pathlib import Path
 
 from rcp_rclm_runtime.canonical.json import canonical_json_bytes
@@ -13,10 +14,19 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", type=Path, required=True)
     parser.add_argument("--lean-project-root", type=Path, required=True)
+    parser.add_argument("--work-root", type=Path)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
-    with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase12e-closure-") as temporary:
-        root = Path(temporary)
+    context = (
+        nullcontext(str(args.work_root))
+        if args.work_root is not None
+        else tempfile.TemporaryDirectory(prefix="rcp-rclm-phase12e-closure-")
+    )
+    with context as temporary:
+        root = Path(temporary).resolve(strict=False)
+        if root.exists() and any(root.iterdir()):
+            raise FileExistsError(f"Phase 12E closure work root is not empty: {root}")
+        root.mkdir(parents=True, exist_ok=True)
         reference = build_phase12e_reference(
             root / "reference",
             repo_root=args.repo_root,

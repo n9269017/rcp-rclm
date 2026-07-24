@@ -249,6 +249,45 @@ class LeanCompilationResult:
         }
 
 
+def _native_elan_lake_candidates(
+    environment: Mapping[str, str],
+) -> Sequence[Path]:
+    configured = environment.get("ELAN_HOME")
+    if configured is None:
+        elan_home = Path.home() / ".elan"
+    else:
+        elan_home = Path(configured)
+        if not elan_home.is_absolute():
+            raise LeanCompilerBridgeError(
+                "ELAN_HOME_INVALID",
+                "ELAN_HOME",
+                "ELAN_HOME must be an absolute path",
+            )
+    return (
+        elan_home / "bin" / "lake.exe",
+        elan_home / "bin" / "lake",
+    )
+
+
+def _resolve_lake_command(
+    lake_command: str | None,
+    environment: Mapping[str, str],
+) -> str:
+    if lake_command is not None:
+        return lake_command
+    discovered = shutil.which("lake", path=environment.get("PATH"))
+    if discovered is not None:
+        return discovered
+    for candidate in _native_elan_lake_candidates(environment):
+        if candidate.is_file():
+            return str(candidate)
+    raise LeanCompilerBridgeError(
+        "LAKE_NOT_FOUND",
+        "lake",
+        "Lake executable was not found on PATH or in the native Elan home",
+    )
+
+
 class LeanCompiler:
     def __init__(
         self,
@@ -269,17 +308,11 @@ class LeanCompiler:
                 "timeout_seconds",
                 "timeout must be between 1 and 3600 seconds",
             )
-        resolved_lake = lake_command or shutil.which("lake")
-        if not resolved_lake:
-            raise LeanCompilerBridgeError(
-                "LAKE_NOT_FOUND",
-                "lake",
-                "Lake executable was not found on PATH",
-            )
+        self._environment = dict(os.environ if environment is None else environment)
+        resolved_lake = _resolve_lake_command(lake_command, self._environment)
         self._project = project
         self._lake_command = resolved_lake
         self._timeout_seconds = timeout_seconds
-        self._environment = dict(os.environ if environment is None else environment)
         self._environment["ELAN_TOOLCHAIN"] = LEAN_TOOLCHAIN
         self._runtime_identity_cache: LeanToolchainRuntimeIdentity | None = None
 

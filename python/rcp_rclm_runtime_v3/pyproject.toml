@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rcp-rclm-runtime-v3"
-version = "0.8.0"
-description = "Gate D, complete Phase 10 and Phase 11, and three accepted self-hosted Phase 12 successors"
+version = "0.10.0"
+description = "Gate D, self-hosted Phase 12 trajectory surfaces, and Phase 13 replay-boundary contract"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "See repository LICENSE and component licenses"}
@@ -21,7 +21,7 @@ classifiers = [
 
 [project.optional-dependencies]
 test = ["jsonschema==4.23.0"]
-phase10-train = ["torch==2.10.0"]
+phase10-train = ["numpy==2.3.5", "torch==2.10.0"]
 
 [tool.setuptools.packages.find]
 where = ["."]
