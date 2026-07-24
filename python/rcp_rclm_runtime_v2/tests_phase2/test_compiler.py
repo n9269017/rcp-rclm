@@ -108,7 +108,7 @@ class LeanCompilerTests(unittest.TestCase):
                     timeout_seconds=30,
                     environment=environment,
                 )
-            self.assertEqual(compiler._lake_command, str(launcher))
+            self.assertTrue(Path(compiler._lake_command).samefile(launcher))
             which_mock.assert_called_once_with(
                 "lake",
                 path=environment["PATH"],
