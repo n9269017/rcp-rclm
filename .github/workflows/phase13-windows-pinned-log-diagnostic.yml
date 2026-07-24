@@ -13,11 +13,11 @@ permissions:
 
 jobs:
   retain-log:
-    name: Retain exact Windows pinned failure log
+    name: Retain exact Windows launcher probe log
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Fetch and summarize failed job log
+      - name: Fetch and summarize launcher probe log
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -28,20 +28,20 @@ jobs:
             --header "Accept: application/vnd.github+json" \
             --header "Authorization: Bearer ${GH_TOKEN}" \
             --header "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/n9269017/rcp-rclm/actions/jobs/89396633382/logs" \
-            --output artifacts/phase13-windows-pinned-log/windows.log
-          tail -n 320 artifacts/phase13-windows-pinned-log/windows.log \
-            > artifacts/phase13-windows-pinned-log/windows-tail.log
-          grep -nEi 'traceback|error|exception|failed|assert|schema|filenotfound|timeout|exit code|return code' \
-            artifacts/phase13-windows-pinned-log/windows.log \
-            > artifacts/phase13-windows-pinned-log/windows-matches.log || true
-          cat artifacts/phase13-windows-pinned-log/windows-matches.log
-          cat artifacts/phase13-windows-pinned-log/windows-tail.log
+            "https://api.github.com/repos/n9269017/rcp-rclm/actions/jobs/89405599931/logs" \
+            --output artifacts/phase13-windows-pinned-log/windows-launcher-probe.log
+          tail -n 240 artifacts/phase13-windows-pinned-log/windows-launcher-probe.log \
+            > artifacts/phase13-windows-pinned-log/windows-launcher-probe-tail.log
+          grep -nEi 'home|elan|lake|path|traceback|error|exception|failed|not found|exit code|return code' \
+            artifacts/phase13-windows-pinned-log/windows-launcher-probe.log \
+            > artifacts/phase13-windows-pinned-log/windows-launcher-probe-matches.log || true
+          cat artifacts/phase13-windows-pinned-log/windows-launcher-probe-matches.log
+          cat artifacts/phase13-windows-pinned-log/windows-launcher-probe-tail.log
 
       - name: Upload exact diagnostic
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: phase13-windows-pinned-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          name: phase13-windows-launcher-probe-log-${{ github.run_id }}-${{ github.run_attempt }}
           path: artifacts/phase13-windows-pinned-log/
           if-no-files-found: error
           retention-days: 7
@@ -142,6 +142,7 @@ jobs:
           python artifacts/phase13-windows-launcher-probe/probe.py
 
       - name: Upload launcher probe
+        if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: phase13-windows-launcher-probe-${{ github.run_id }}-${{ github.run_attempt }}
