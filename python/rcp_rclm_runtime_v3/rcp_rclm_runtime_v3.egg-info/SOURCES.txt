@@ -25,6 +25,7 @@ rcp_rclm_runtime_v3/phase10/constants.py
 rcp_rclm_runtime_v3/phase10/extension_reports.py
 rcp_rclm_runtime_v3/phase10/extension_validation.py
 rcp_rclm_runtime_v3/phase10/information.py
+rcp_rclm_runtime_v3/phase10/lean_process.py
 rcp_rclm_runtime_v3/phase10/learned_data.py
 rcp_rclm_runtime_v3/phase10/learned_package.py
 rcp_rclm_runtime_v3/phase10/learned_reference.py

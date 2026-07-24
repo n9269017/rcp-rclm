@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 import re
-import subprocess
-import tempfile
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,6 +8,7 @@ from typing import ClassVar, Final
 
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, sha256_hex
 from rcp_rclm_runtime.errors import SchemaValidationError
+from rcp_rclm_runtime_v3.phase10.lean_process import run_pinned_lean_source
 from rcp_rclm_runtime_v3.phase10.learned_data import LeanCompletionTask
 from rcp_rclm_runtime_v3.phase10.sparse_profile import DecodeResult, decode_completion
 
@@ -113,17 +112,12 @@ def verify_decoded_task(
     lower_source = source.lower()
     if any(token.lower() in lower_source for token in _FORBIDDEN_SOURCE_TOKENS):
         raise SchemaValidationError("phase10.lean.source", "forbidden proof token")
-    project = lean_project_root.resolve(strict=True)
-    with tempfile.TemporaryDirectory(prefix="rcp-rclm-phase10-lean-") as temporary:
-        source_path = Path(temporary) / "Phase10Task.lean"
-        source_path.write_bytes(source_bytes)
-        completed = subprocess.run(
-            ["lake", "env", "lean", str(source_path)],
-            cwd=project,
-            capture_output=True,
-            check=False,
-            timeout=120,
-        )
+    completed = run_pinned_lean_source(
+        source_bytes,
+        lean_project_root,
+        temporary_prefix="rcp-rclm-phase10-lean-",
+        source_file_name="Phase10Task.lean",
+    )
     if completed.returncode == 0 and (completed.stdout or completed.stderr):
         raise SchemaValidationError(
             "phase10.lean.output", "successful selected task must produce empty stdout and stderr"

@@ -1,3 +1,4 @@
+* text=auto eol=lf
 .gitattributes text eol=lf
 .github/workflows/runtime-v2-phase-1.yml text eol=lf
 docs/executable_core_v2/** text eol=lf
