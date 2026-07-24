@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import os
 import shutil
 import subprocess
 import tempfile
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Final
@@ -17,6 +19,40 @@ class PinnedLeanProcessResult:
     returncode: int
     stdout: bytes
     stderr: bytes
+
+
+def _native_elan_lake_candidates() -> Sequence[Path]:
+    configured = os.environ.get("ELAN_HOME")
+    if configured is None:
+        elan_home = Path.home() / ".elan"
+    else:
+        elan_home = Path(configured)
+        if not elan_home.is_absolute():
+            raise SchemaValidationError(
+                "lean.process.elan_home",
+                "ELAN_HOME must be an absolute path",
+            )
+    return (
+        elan_home / "bin" / "lake.exe",
+        elan_home / "bin" / "lake",
+    )
+
+
+def _resolve_pinned_lake_executable() -> str:
+    discovered = shutil.which("lake")
+    if discovered is not None:
+        return discovered
+    for candidate in _native_elan_lake_candidates():
+        try:
+            resolved = candidate.resolve(strict=True)
+        except OSError:
+            continue
+        if resolved.is_file():
+            return str(resolved)
+    raise SchemaValidationError(
+        "lean.process.executable",
+        "the pinned Lake executable is unavailable on PATH and in the native Elan home",
+    )
 
 
 def run_pinned_lean_source(
@@ -39,12 +75,7 @@ def run_pinned_lean_source(
             "lean.process.timeout_seconds",
             "expected a positive integer timeout",
         )
-    lake_executable = shutil.which("lake")
-    if lake_executable is None:
-        raise SchemaValidationError(
-            "lean.process.executable",
-            "the pinned lake executable is unavailable on PATH",
-        )
+    lake_executable = _resolve_pinned_lake_executable()
     project = lean_project_root.resolve(strict=True)
     with tempfile.TemporaryDirectory(prefix=temporary_prefix) as temporary:
         source_path = Path(temporary) / source_file_name
