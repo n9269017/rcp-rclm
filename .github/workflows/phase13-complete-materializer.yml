@@ -89,3 +89,5 @@ jobs:
           git diff --cached --check
           git commit -m "Complete Phase 13 independent replay closure"
           git push origin HEAD:${GITHUB_REF_NAME}
+
+# Registered after initial branch-only workflow creation.
