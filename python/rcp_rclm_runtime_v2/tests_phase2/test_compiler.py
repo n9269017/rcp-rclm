@@ -88,6 +88,70 @@ class LeanCompilerTests(unittest.TestCase):
             self.assertIn("version 4.31.0", result.toolchain_identity.lean_version)
             self.assertEqual(result.toolchain_identity.lean_prefix, "/lean/prefix")
 
+    def test_native_elan_launcher_is_used_when_path_lookup_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            elan_home = root / "elan-home"
+            launcher = elan_home / "bin" / "lake.exe"
+            launcher.parent.mkdir(parents=True)
+            launcher.write_bytes(b"native Elan Lake launcher fixture")
+            environment = {
+                "ELAN_HOME": str(elan_home.resolve()),
+                "PATH": "/c/Users/runneradmin/.elan/bin",
+            }
+            with patch(
+                "rcp_rclm_runtime.lean_bridge.compiler.shutil.which",
+                return_value=None,
+            ) as which_mock:
+                compiler = LeanCompiler(
+                    _project_record(root),
+                    timeout_seconds=30,
+                    environment=environment,
+                )
+            self.assertEqual(compiler._lake_command, str(launcher))
+            which_mock.assert_called_once_with(
+                "lake",
+                path=environment["PATH"],
+            )
+
+    def test_relative_elan_home_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            with patch(
+                "rcp_rclm_runtime.lean_bridge.compiler.shutil.which",
+                return_value=None,
+            ):
+                with self.assertRaises(LeanCompilerBridgeError) as captured:
+                    LeanCompiler(
+                        _project_record(root),
+                        timeout_seconds=30,
+                        environment={
+                            "ELAN_HOME": "relative/elan",
+                            "PATH": "",
+                        },
+                    )
+            self.assertEqual(captured.exception.code, "ELAN_HOME_INVALID")
+            self.assertEqual(captured.exception.path, "ELAN_HOME")
+
+    def test_missing_path_and_native_elan_launcher_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            with patch(
+                "rcp_rclm_runtime.lean_bridge.compiler.shutil.which",
+                return_value=None,
+            ):
+                with self.assertRaises(LeanCompilerBridgeError) as captured:
+                    LeanCompiler(
+                        _project_record(root),
+                        timeout_seconds=30,
+                        environment={
+                            "ELAN_HOME": str((root / "missing-elan").resolve()),
+                            "PATH": "",
+                        },
+                    )
+            self.assertEqual(captured.exception.code, "LAKE_NOT_FOUND")
+            self.assertIn("native Elan home", captured.exception.detail)
+
     def test_forbidden_source_is_rejected_before_subprocess(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
