@@ -7,7 +7,7 @@ authors:
   - name: "Nicolas (GitHub: n9269017)"
 url: "https://github.com/n9269017/rcp-rclm"
 repository-code: "https://github.com/n9269017/rcp-rclm"
-license: "MIT AND CC-BY-4.0"
+license-url: "https://github.com/n9269017/rcp-rclm/blob/main/LICENSE"
 keywords:
   - recursive self-improvement
   - robust reflective successor theorem
