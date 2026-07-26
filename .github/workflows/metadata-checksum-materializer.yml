@@ -1,0 +1,102 @@
+name: Validate citation and materialize complete checksum manifest
+
+on:
+  push:
+    branches:
+      - agent/v3-metadata-finalization-no-readme
+    paths:
+      - .github/workflows/metadata-checksum-materializer.yml
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact metadata branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/v3-metadata-finalization-no-readme
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Validate Citation File Format 1.2 metadata
+        uses: citation-file-format/cffconvert-github-action@2.0.0
+        with:
+          args: "--validate"
+
+      - name: Remove one-shot materializer from the retained tree
+        shell: bash
+        run: git rm .github/workflows/metadata-checksum-materializer.yml
+
+      - name: Generate canonical tracked-file SHA-256 manifest
+        shell: bash
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import re
+          import subprocess
+          from pathlib import Path
+
+          manifest_path = "SHA256SUMS.txt"
+          raw_paths = subprocess.check_output(["git", "ls-files", "-z"])
+          paths = sorted(
+              item.decode("utf-8", "surrogateescape")
+              for item in raw_paths.split(b"\0")
+              if item
+          )
+          paths = [path for path in paths if path != manifest_path]
+
+          lines: list[str] = []
+          for path in paths:
+              blob = subprocess.check_output(["git", "show", f":{path}"])
+              lines.append(f"{hashlib.sha256(blob).hexdigest()}  {path}\n")
+
+          Path(manifest_path).write_text(
+              "".join(lines),
+              encoding="utf-8",
+              newline="\n",
+          )
+
+          manifest_lines = Path(manifest_path).read_text(encoding="utf-8").splitlines()
+          pattern = re.compile(r"^([0-9a-f]{64})  (.+)$")
+          observed: dict[str, str] = {}
+          for line_number, line in enumerate(manifest_lines, start=1):
+              match = pattern.fullmatch(line)
+              if match is None:
+                  raise SystemExit(f"invalid manifest line {line_number}: {line!r}")
+              digest, path = match.groups()
+              if path in observed:
+                  raise SystemExit(f"duplicate manifest path: {path}")
+              observed[path] = digest
+
+          if set(observed) != set(paths):
+              missing = sorted(set(paths) - set(observed))
+              extra = sorted(set(observed) - set(paths))
+              raise SystemExit(f"manifest coverage mismatch; missing={missing}, extra={extra}")
+
+          readme_blob = subprocess.check_output(["git", "show", ":README.md"])
+          readme_digest = hashlib.sha256(readme_blob).hexdigest()
+          if observed.get("README.md") != readme_digest:
+              raise SystemExit("README checksum is missing or incorrect")
+
+          if ".github/workflows/metadata-checksum-materializer.yml" in observed:
+              raise SystemExit("one-shot workflow leaked into retained checksum surface")
+
+          print(f"tracked files covered: {len(paths)}")
+          print(f"README SHA-256: {readme_digest}")
+          print(f"manifest SHA-256: {hashlib.sha256(Path(manifest_path).read_bytes()).hexdigest()}")
+          PY
+
+      - name: Commit generated manifest and retire materializer
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add SHA256SUMS.txt
+          git diff --cached --check
+          git commit -m "Validate citation and regenerate complete checksum manifest"
+          git push origin HEAD:agent/v3-metadata-finalization-no-readme
