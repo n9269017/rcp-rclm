@@ -63,6 +63,15 @@ jobs:
           MATHLIB_NO_CACHE_ON_UPDATE: "1"
         run: lake update
 
+      - name: Retain resolved dependency manifest for diagnostics
+        working-directory: lean/rcp_rclm_formal_core_v4
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-results
+          cp lake-manifest.json audit-results/resolved-lake-manifest.json
+          git diff -- lake-manifest.json > audit-results/lake-manifest.diff || true
+
       - name: Validate pinned manifest and Gate E claim boundary
         working-directory: lean/rcp_rclm_formal_core_v4
         shell: bash
