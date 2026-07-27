@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/n9269017/rcp-rclm/blob/main/python/rcp_rclm_executable_core_v4/contract/gate_e_autonomous_search.schema.json",
+  "title": "RCP/RCLM Gate E autonomous bounded-search report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "contract_version",
+    "source_package_hash",
+    "history_hash",
+    "challenge_commitment_hash",
+    "route_hints",
+    "predecessor_frontier",
+    "attempts",
+    "enumeration_hash",
+    "search_budget",
+    "manual_repairs",
+    "heldout_material_visible_before_freeze",
+    "result_kind",
+    "selected_attempt_index",
+    "exhaustion",
+    "gate_e_closed",
+    "phase14_exit_closed",
+    "report_hash"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "runtime.v4.gatee.autonomous_search_report.v1"
+    },
+    "contract_version": {
+      "const": "rcp-rclm-executable-v4-gate-e-v1"
+    },
+    "source_package_hash": {
+      "$ref": "#/$defs/hash256"
+    },
+    "history_hash": {
+      "$ref": "#/$defs/hash256"
+    },
+    "challenge_commitment_hash": {
+      "$ref": "#/$defs/hash256"
+    },
+    "route_hints": {
+      "$ref": "#/$defs/routeHints"
+    },
+    "predecessor_frontier": {
+      "$ref": "#/$defs/frontier"
+    },
+    "attempts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/attempt"
+      }
+    },
+    "enumeration_hash": {
+      "$ref": "#/$defs/hash256"
+    },
+    "search_budget": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "heldout_material_visible_before_freeze": {
+      "const": false
+    },
+    "result_kind": {
+      "enum": [
+        "promoted",
+        "exhausted"
+      ]
+    },
+    "selected_attempt_index": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "exhaustion": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/exhaustion"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "phase14_exit_closed": {
+      "const": false
+    },
+    "report_hash": {
+      "$ref": "#/$defs/hash256"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "result_kind": {
+            "const": "promoted"
+          }
+        },
+        "required": [
+          "result_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "selected_attempt_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "exhaustion": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "result_kind": {
+            "const": "exhausted"
+          }
+        },
+        "required": [
+          "result_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "selected_attempt_index": {
+            "type": "null"
+          },
+          "exhaustion": {
+            "$ref": "#/$defs/exhaustion"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "hash256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sortedStringArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "routeHints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "accepted_program_bytes_present",
+        "expected_candidate_hash_present",
+        "expected_final_model_identity_present",
+        "expected_new_capability_present",
+        "host_selected_objective_present",
+        "next_successful_transition_index_present",
+        "required_successful_component_set_present"
+      ],
+      "properties": {
+        "schema_id": {
+          "const": "runtime.v4.gatee.route_hint_policy.v1"
+        },
+        "accepted_program_bytes_present": {
+          "const": false
+        },
+        "expected_candidate_hash_present": {
+          "const": false
+        },
+        "expected_final_model_identity_present": {
+          "const": false
+        },
+        "expected_new_capability_present": {
+          "const": false
+        },
+        "host_selected_objective_present": {
+          "const": false
+        },
+        "next_successful_transition_index_present": {
+          "const": false
+        },
+        "required_successful_component_set_present": {
+          "const": false
+        }
+      }
+    },
+    "frontier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "capability_tasks",
+        "recursive_productivity_tasks"
+      ],
+      "properties": {
+        "schema_id": {
+          "const": "runtime.v4.gatee.frontier_snapshot.v1"
+        },
+        "capability_tasks": {
+          "$ref": "#/$defs/sortedStringArray"
+        },
+        "recursive_productivity_tasks": {
+          "$ref": "#/$defs/sortedStringArray"
+        }
+      }
+    },
+    "attempt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "attempt_index",
+        "objective_id",
+        "update_kinds",
+        "program_hash",
+        "candidate_hash",
+        "gate_d_certificate_hash",
+        "package_generated",
+        "evaluator_accepted",
+        "reason_codes",
+        "capability_frontier_after",
+        "recursive_productivity_frontier_after",
+        "search_cost",
+        "attempt_hash"
+      ],
+      "properties": {
+        "schema_id": {
+          "const": "runtime.v4.gatee.search_attempt.v1"
+        },
+        "attempt_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "objective_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "update_kinds": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/sortedStringArray"
+            },
+            {
+              "minItems": 1
+            }
+          ]
+        },
+        "program_hash": {
+          "$ref": "#/$defs/hash256"
+        },
+        "candidate_hash": {
+          "$ref": "#/$defs/hash256"
+        },
+        "gate_d_certificate_hash": {
+          "$ref": "#/$defs/hash256"
+        },
+        "package_generated": {
+          "const": true
+        },
+        "evaluator_accepted": {
+          "type": "boolean"
+        },
+        "reason_codes": {
+          "$ref": "#/$defs/sortedStringArray"
+        },
+        "capability_frontier_after": {
+          "$ref": "#/$defs/sortedStringArray"
+        },
+        "recursive_productivity_frontier_after": {
+          "$ref": "#/$defs/sortedStringArray"
+        },
+        "search_cost": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attempt_hash": {
+          "$ref": "#/$defs/hash256"
+        }
+      }
+    },
+    "exhaustion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "enumeration_hash",
+        "attempt_hashes",
+        "complete_coverage",
+        "all_attempts_classified",
+        "no_accepted_attempt"
+      ],
+      "properties": {
+        "schema_id": {
+          "const": "runtime.v4.gatee.search_exhaustion_certificate.v1"
+        },
+        "enumeration_hash": {
+          "$ref": "#/$defs/hash256"
+        },
+        "attempt_hashes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/hash256"
+          },
+          "uniqueItems": true
+        },
+        "complete_coverage": {
+          "const": true
+        },
+        "all_attempts_classified": {
+          "const": true
+        },
+        "no_accepted_attempt": {
+          "const": true
+        }
+      }
+    }
+  }
+}
