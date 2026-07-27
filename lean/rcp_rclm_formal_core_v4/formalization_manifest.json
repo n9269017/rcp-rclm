@@ -1,0 +1,68 @@
+{
+  "schema_version": "rcp-rclm-formal-core-v4-gate-e-manifest-v1",
+  "phase_name": "RCP/RCLM Formal Core v4 - Gate E constructive endogenous successor availability",
+  "status": "gate_e_formal_foundation_pending_ci_validation",
+  "base_repository_commit": "61576903938b6ca988665fc0e82b3870aaf7f38b",
+  "formal_core_v3_dependency": {
+    "path": "../rcp_rclm_formal_core_v3",
+    "required_unchanged": true
+  },
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.31.0",
+    "mathlib": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+  },
+  "delivered_objects": {
+    "search_history": true,
+    "fresh_challenge_source": true,
+    "endogenous_objective": true,
+    "endogenous_mutation_program": true,
+    "recursive_productivity_task": true,
+    "gate_e_certificate_packet": true,
+    "search_attempt": true,
+    "candidate_enumerator": true,
+    "fair_search_policy": true,
+    "gate_e_kernel": true,
+    "trusted_autonomous_checker": true,
+    "autonomous_accepted_step": true,
+    "deterministic_first_accepted_search": true,
+    "proof_carrying_search_exhaustion": true,
+    "relative_bounded_search_completeness": true,
+    "recursive_productivity_retention": true,
+    "strict_recursive_productivity_witness": true,
+    "finite_autonomous_trajectory": true,
+    "finite_capability_frontier_growth": true,
+    "finite_recursive_productivity_retention": true,
+    "finite_autonomous_search_resource_bound": true,
+    "constructive_successor_availability": true,
+    "conditional_infinite_autonomous_trajectory": true,
+    "forbidden_route_hint_object": true
+  },
+  "public_theorems": [
+    "RcpRclmFormalCoreV4.Autonomous.autonomous_accepted_step_sound",
+    "RcpRclmFormalCoreV4.Autonomous.recursive_productivity_retained",
+    "RcpRclmFormalCoreV4.Autonomous.recursive_productivity_strictly_expands_when_witnessed",
+    "RcpRclmFormalCoreV4.Autonomous.firstAccepted_sound",
+    "RcpRclmFormalCoreV4.Autonomous.firstAccepted_none",
+    "RcpRclmFormalCoreV4.Autonomous.bounded_search_complete",
+    "RcpRclmFormalCoreV4.Autonomous.search_exhaustion_sound",
+    "RcpRclmFormalCoreV4.Autonomous.nonstagnation_or_certified_exhaustion",
+    "RcpRclmFormalCoreV4.Autonomous.finite_autonomous_frontier_growth",
+    "RcpRclmFormalCoreV4.Autonomous.finite_recursive_productivity_retained",
+    "RcpRclmFormalCoreV4.Autonomous.finite_autonomous_resource_bound",
+    "RcpRclmFormalCoreV4.Autonomous.constructive_successor_availability_on_declared_class",
+    "RcpRclmFormalCoreV4.Autonomous.conditional_infinite_autonomous_rclm_trajectory_exists"
+  ],
+  "claim_boundary": {
+    "schedule_free_phase14_trajectory": false,
+    "generic_accepted_candidate_existence": false,
+    "generic_successor_availability": false,
+    "open_ended_generator_completeness": false,
+    "broad_external_usefulness": false,
+    "empirically_unbounded_rsi": false,
+    "mutable_trusted_checker": false,
+    "general_noncommuting_quantum": false,
+    "asynchronous_autonomous_daemon": false,
+    "gate_e_closed": false,
+    "phase14_exit_closed": false
+  }
+}
