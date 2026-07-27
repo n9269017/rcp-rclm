@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
+
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
 from rcp_rclm_runtime.errors import SchemaValidationError
 
@@ -8,33 +10,55 @@ from rcp_rclm_runtime_v4.gatee.records import AutonomousSearchReport
 from rcp_rclm_runtime_v4.gatee.search import all_attempts_rejected, select_first_accepted
 
 
-def _require_subset(left: tuple[str, ...], right: tuple[str, ...], path: str) -> None:
-    missing = sorted(set(left) - set(right), key=lambda item: item.encode("utf-8"))
+def _require_subset(
+    left: Sequence[str],
+    right: Sequence[str],
+    path: str,
+) -> None:
+    missing = sorted(
+        set(left) - set(right),
+        key=lambda item: item.encode("utf-8"),
+    )
     if missing:
-        raise SchemaValidationError(path, f"frontier regression: {missing}")
+        raise SchemaValidationError(
+            path,
+            f"frontier regression: {missing}",
+        )
 
 
 def validate_report(report: AutonomousSearchReport) -> dict[str, object]:
     expected_indices = tuple(range(len(report.attempts)))
-    observed_indices = tuple(attempt.attempt_index for attempt in report.attempts)
+    observed_indices = tuple(
+        attempt.attempt_index for attempt in report.attempts
+    )
     if observed_indices != expected_indices:
         raise SchemaValidationError(
             "report.attempts",
             f"attempt indices must be contiguous from zero; observed={observed_indices}",
         )
 
-    attempt_hashes = tuple(attempt.attempt_hash for attempt in report.attempts)
+    attempt_hashes = tuple(
+        attempt.attempt_hash for attempt in report.attempts
+    )
     if len(set(attempt_hashes)) != len(attempt_hashes):
-        raise SchemaValidationError("report.attempts", "duplicate canonical attempt hash")
+        raise SchemaValidationError(
+            "report.attempts",
+            "duplicate canonical attempt hash",
+        )
 
-    total_search_cost = sum(attempt.search_cost for attempt in report.attempts)
+    total_search_cost = sum(
+        attempt.search_cost for attempt in report.attempts
+    )
     if total_search_cost > report.search_budget:
         raise SchemaValidationError(
             "report.search_budget",
             f"search cost {total_search_cost} exceeds budget {report.search_budget}",
         )
     if report.manual_repairs != 0:
-        raise SchemaValidationError("report.manual_repairs", "manual repair is forbidden")
+        raise SchemaValidationError(
+            "report.manual_repairs",
+            "manual repair is forbidden",
+        )
     if report.heldout_material_visible_before_freeze:
         raise SchemaValidationError(
             "report.heldout_material_visible_before_freeze",
@@ -42,14 +66,24 @@ def validate_report(report: AutonomousSearchReport) -> dict[str, object]:
         )
 
     first_accepted = select_first_accepted(report.attempts)
-    predecessor_capabilities = report.predecessor_frontier.capability_tasks
-    predecessor_recursive = report.predecessor_frontier.recursive_productivity_tasks
+    predecessor_capabilities = (
+        report.predecessor_frontier.capability_tasks
+    )
+    predecessor_recursive = (
+        report.predecessor_frontier.recursive_productivity_tasks
+    )
 
     if report.result_kind == RESULT_PROMOTED:
         if report.exhaustion is not None:
-            raise SchemaValidationError("report.exhaustion", "promoted search cannot include exhaustion")
+            raise SchemaValidationError(
+                "report.exhaustion",
+                "promoted search cannot include exhaustion",
+            )
         if first_accepted is None:
-            raise SchemaValidationError("report.result_kind", "promotion requires an accepted attempt")
+            raise SchemaValidationError(
+                "report.result_kind",
+                "promotion requires an accepted attempt",
+            )
         if report.selected_attempt_index != first_accepted.attempt_index:
             raise SchemaValidationError(
                 "report.selected_attempt_index",
@@ -60,7 +94,9 @@ def validate_report(report: AutonomousSearchReport) -> dict[str, object]:
             first_accepted.capability_frontier_after,
             "report.selected.capability_frontier_after",
         )
-        if len(first_accepted.capability_frontier_after) <= len(predecessor_capabilities):
+        if len(first_accepted.capability_frontier_after) <= len(
+            predecessor_capabilities
+        ):
             raise SchemaValidationError(
                 "report.selected.capability_frontier_after",
                 "accepted successor must strictly expand the capability frontier",
@@ -79,17 +115,32 @@ def validate_report(report: AutonomousSearchReport) -> dict[str, object]:
                 "exhausted search cannot select an attempt",
             )
         if report.exhaustion is None:
-            raise SchemaValidationError("report.exhaustion", "exhausted result requires a certificate")
+            raise SchemaValidationError(
+                "report.exhaustion",
+                "exhausted result requires a certificate",
+            )
         if not all_attempts_rejected(report.attempts):
-            raise SchemaValidationError("report.exhaustion", "accepted attempt exists in exhausted search")
+            raise SchemaValidationError(
+                "report.exhaustion",
+                "accepted attempt exists in exhausted search",
+            )
         if report.exhaustion.enumeration_hash != report.enumeration_hash:
-            raise SchemaValidationError("report.exhaustion.enumeration_hash", "enumeration hash mismatch")
-        if report.exhaustion.attempt_hashes != attempt_hashes:
-            raise SchemaValidationError("report.exhaustion.attempt_hashes", "attempt hash order mismatch")
+            raise SchemaValidationError(
+                "report.exhaustion.enumeration_hash",
+                "enumeration hash mismatch",
+            )
+        if tuple(report.exhaustion.attempt_hashes) != attempt_hashes:
+            raise SchemaValidationError(
+                "report.exhaustion.attempt_hashes",
+                "attempt hash order mismatch",
+            )
         selected_attempt_hash = None
         exhaustion_verified = True
     else:
-        raise SchemaValidationError("report.result_kind", "unreachable result kind")
+        raise SchemaValidationError(
+            "report.result_kind",
+            "unreachable result kind",
+        )
 
     stable_summary = {
         "schema_id": "runtime.v4.gatee.validation_report.v1",
@@ -114,5 +165,7 @@ def validate_report(report: AutonomousSearchReport) -> dict[str, object]:
         "phase14_exit_closed": False,
         "report_hash": report.report_hash,
     }
-    stable_summary["validation_hash"] = canonical_json_hash(stable_summary)
+    stable_summary["validation_hash"] = canonical_json_hash(
+        stable_summary
+    )
     return stable_summary
