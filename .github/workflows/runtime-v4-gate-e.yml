@@ -33,6 +33,8 @@ jobs:
     name: Validate Gate E contract (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 45
+    env:
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
     strategy:
       fail-fast: false
       matrix:
@@ -44,8 +46,27 @@ jobs:
           - "3.11"
 
     steps:
-      - name: Check out repository
+      - name: Check out exact source head
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Verify exact checkout
+        shell: python
+        run: |
+          import os
+          import subprocess
+
+          source_sha = os.environ["SOURCE_SHA"]
+          observed = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"],
+              text=True,
+          ).strip()
+          if observed != source_sha:
+              raise SystemExit(
+                  f"exact-head checkout mismatch: expected={source_sha} observed={observed}"
+              )
 
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -133,6 +154,40 @@ jobs:
           --schema python/rcp_rclm_executable_core_v4/contract/gate_e_autonomous_search.schema.json
           --instance artifacts/runtime_v4_gate_e/${{ matrix.os }}/exhaustion_tool.json
           --out artifacts/runtime_v4_gate_e/${{ matrix.os }}/exhaustion_schema_validation.json
+
+      - name: Record exact source binding
+        shell: python
+        run: |
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          source_sha = os.environ["SOURCE_SHA"]
+          observed = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"],
+              text=True,
+          ).strip()
+          if observed != source_sha:
+              raise SystemExit("source head changed during Gate E validation")
+          source_tree = subprocess.check_output(
+              ["git", "rev-parse", "HEAD^{tree}"],
+              text=True,
+          ).strip()
+          root = Path("artifacts/runtime_v4_gate_e/${{ matrix.os }}")
+          root.mkdir(parents=True, exist_ok=True)
+          value = {
+              "schema_id": "runtime.v4.gatee.source_binding.v1",
+              "source_head": source_sha,
+              "source_tree": source_tree,
+              "runner": "${{ matrix.os }}",
+              "python_version": "${{ matrix.python-version }}",
+          }
+          (root / "source_binding.json").write_text(
+              json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
 
       - name: Upload platform evidence
         if: always()
