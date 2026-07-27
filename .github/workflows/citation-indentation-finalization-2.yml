@@ -1,0 +1,123 @@
+name: Validate requested citation representation and regenerate checksums
+
+on:
+  push:
+    branches:
+      - agent/citation-indentation-finalization-2
+    paths:
+      - .github/workflows/citation-indentation-finalization-2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact citation branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/citation-indentation-finalization-2
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Require requested author representation and terminal blank line
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("CITATION.cff")
+          text = path.read_text(encoding="utf-8")
+          raw = path.read_bytes()
+
+          if "family-names:" in text:
+              raise SystemExit("family-names must be absent")
+          if text.count('given-names: "Nicolas Calder"') != 2:
+              raise SystemExit("expected exactly two Nicolas Calder given-name entries")
+          if not raw.endswith(b"\n\n") or raw.endswith(b"\n\n\n"):
+              raise SystemExit("CITATION.cff must end with exactly one blank line")
+          PY
+
+      - name: Validate Citation File Format 1.2 metadata
+        uses: citation-file-format/cffconvert-github-action@2.0.0
+        with:
+          args: "--validate"
+
+      - name: Retire one-shot validator
+        shell: bash
+        run: git rm .github/workflows/citation-indentation-finalization-2.yml
+
+      - name: Regenerate canonical tracked-file SHA-256 manifest
+        shell: bash
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import re
+          import subprocess
+          from pathlib import Path
+
+          manifest_path = "SHA256SUMS.txt"
+          raw_paths = subprocess.check_output(["git", "ls-files", "-z"])
+          paths = sorted(
+              item.decode("utf-8", "surrogateescape")
+              for item in raw_paths.split(b"\0")
+              if item
+          )
+          paths = [path for path in paths if path != manifest_path]
+
+          lines: list[str] = []
+          observed: dict[str, str] = {}
+          for path in paths:
+              blob = subprocess.check_output(["git", "show", f":{path}"])
+              digest = hashlib.sha256(blob).hexdigest()
+              observed[path] = digest
+              lines.append(f"{digest}  {path}\n")
+
+          Path(manifest_path).write_text(
+              "".join(lines),
+              encoding="utf-8",
+              newline="\n",
+          )
+
+          parsed: dict[str, str] = {}
+          pattern = re.compile(r"^([0-9a-f]{64})  (.+)$")
+          for line_number, line in enumerate(
+              Path(manifest_path).read_text(encoding="utf-8").splitlines(),
+              start=1,
+          ):
+              match = pattern.fullmatch(line)
+              if match is None:
+                  raise SystemExit(f"invalid manifest line {line_number}: {line!r}")
+              digest, path = match.groups()
+              if path in parsed:
+                  raise SystemExit(f"duplicate manifest path: {path}")
+              parsed[path] = digest
+
+          if parsed != observed:
+              raise SystemExit("manifest content does not match canonical tracked-file digests")
+
+          citation_digest = hashlib.sha256(Path("CITATION.cff").read_bytes()).hexdigest()
+          if parsed.get("CITATION.cff") != citation_digest:
+              raise SystemExit("CITATION.cff checksum is missing or incorrect")
+          if ".github/workflows/citation-indentation-finalization-2.yml" in parsed:
+              raise SystemExit("one-shot workflow leaked into retained checksum surface")
+
+          print(f"tracked files covered: {len(paths)}")
+          print(f"CITATION.cff SHA-256: {citation_digest}")
+          print(f"manifest SHA-256: {hashlib.sha256(Path(manifest_path).read_bytes()).hexdigest()}")
+          PY
+          git add SHA256SUMS.txt
+
+      - name: Commit requested citation update
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --cached --check
+          git commit \
+            -m "Indentation addition to citation file and checksum" \
+            -m "Record the full paper author name in both CFF author surfaces and regenerate the canonical tracked-file checksum manifest."
+          git push origin HEAD:agent/citation-indentation-finalization-2
