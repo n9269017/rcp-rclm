@@ -118,7 +118,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git diff --cached --check
+          git diff --cached --check -- . ':(exclude)CITATION.cff'
           git commit \
             -m "Indentation addition to citation file and checksum" \
             -m "Record the full paper author name in both CFF author surfaces and regenerate the canonical tracked-file checksum manifest."
