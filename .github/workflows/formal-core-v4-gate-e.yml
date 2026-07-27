@@ -31,17 +31,21 @@ jobs:
     name: Build and audit Gate E Formal Core v4
     runs-on: ubuntu-latest
     timeout-minutes: 180
+    env:
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
 
     steps:
-      - name: Check out repository
+      - name: Check out exact source head
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
-      - name: Verify frozen v3 dependency is unchanged
+      - name: Verify exact checkout and frozen v3 dependency
         shell: bash
         run: |
           set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${SOURCE_SHA}"
           git fetch origin main --quiet
           test "$(git rev-parse HEAD:lean/rcp_rclm_formal_core_v3)" = \
             "$(git rev-parse origin/main:lean/rcp_rclm_formal_core_v3)"
@@ -165,10 +169,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          test "$(git -C ../.. rev-parse HEAD)" = "${SOURCE_SHA}"
           cp lake-manifest.json audit-results/lake-manifest.json
           cp formalization_manifest.json audit-results/formalization_manifest.json
           {
-            echo "commit=${GITHUB_SHA}"
+            echo "source_head=${SOURCE_SHA}"
+            echo "source_tree=$(git -C ../.. rev-parse HEAD^{tree})"
             echo "toolchain=$(cat lean-toolchain)"
             echo "v3_tree=$(git -C ../.. rev-parse HEAD:lean/rcp_rclm_formal_core_v3)"
             echo "v4_tree=$(git -C ../.. rev-parse HEAD:lean/rcp_rclm_formal_core_v4)"
