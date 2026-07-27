@@ -4,7 +4,8 @@ title: "RCP/RCLM Reflective Successor Verification: Papers, Lean Proofs, and Con
 version: "v3-phase13-closure"
 date-released: "2026-07-26"
 authors:
-  - given-names: "Nicolas"
+  - family-names: "Calder"
+    given-names: "Nicolas"
     alias: "n9269017"
 url: "https://github.com/n9269017/rcp-rclm"
 repository-code: "https://github.com/n9269017/rcp-rclm"
@@ -22,7 +23,8 @@ preferred-citation:
   type: article
   title: "Recursive Coherence Preservation / RCP-II: A Domain-Relative Robust Reflective Successor Theorem for Certified RCP Seed-Library Classes"
   authors:
-    - given-names: "Nicolas"
+    - family-names: "Calder"
+      given-names: "Nicolas"
       alias: "n9269017"
   year: 2026
   notes: "Paper I of a two-paper package; the companion RCLM architecture paper, Lean projects, executable runtimes, and retained validation artifacts are included in the repository."
