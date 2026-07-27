@@ -132,7 +132,7 @@ theorem bounded_search_complete
       rcases acceptedExists with ⟨attempt, member, accepted⟩
       exact False.elim ((firstAccepted_none checker state found attempt member) accepted)
   | some attempt =>
-      exact ⟨attempt, found⟩
+      exact ⟨attempt, rfl⟩
 
 /-- Proof-carrying bounded-search exhaustion. -/
 structure SearchExhaustionCertificate
@@ -203,9 +203,9 @@ theorem nonstagnation_or_certified_exhaustion
       certificate.attempts = attempts) := by
   cases found : firstAccepted checker state attempts with
   | none =>
-      exact Or.inr ⟨⟨attempts, found⟩, rfl⟩
+      exact Or.inr ⟨⟨attempts, rfl⟩, rfl⟩
   | some attempt =>
-      exact Or.inl ⟨attempt, found, firstAccepted_sound checker state found⟩
+      exact Or.inl ⟨attempt, rfl, firstAccepted_sound checker state found⟩
 
 /-- Package-bound deterministic bounded-search engine. -/
 structure AutonomousImprover
