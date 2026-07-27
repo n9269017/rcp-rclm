@@ -143,10 +143,10 @@ theorem finite_recursive_productivity_retained
       intro bound
       have stepBound : t < horizon := Nat.lt_of_succ_le bound
       have previous := inductionHypothesis (Nat.le_of_lt stepBound)
-      have local := recursive_productivity_retained
+      have stepRetention := recursive_productivity_retained
         (finite_autonomous_step_sound checker trajectory t stepBound)
       rw [trajectory.linked t stepBound]
-      exact fun task member => local (previous member)
+      exact fun task member => stepRetention (previous member)
 
 /-- Cumulative autonomous search cost. -/
 def cumulativeSearchCost
@@ -222,8 +222,8 @@ theorem finite_autonomous_resource_bound
       have stepBound : t < horizon := Nat.lt_of_succ_le bound
       have previous := inductionHypothesis (Nat.le_of_lt stepBound)
       have acceptedStep := finite_autonomous_step_sound checker trajectory t stepBound
-      have local := acceptedStep.autonomousObligations.searchWithinBudget
-      exact Nat.add_le_add previous local
+      have stepBudget := acceptedStep.autonomousObligations.searchWithinBudget
+      exact Nat.add_le_add previous stepBudget
 
 end Autonomous
 end RcpRclmFormalCoreV4
