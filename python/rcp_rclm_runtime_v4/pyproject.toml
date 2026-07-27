@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rcp-rclm-runtime-v4"
+version = "0.1.0"
+description = "Gate E constructive successor-availability and schedule-free search contract"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "See repository LICENSE and component licenses"}
+authors = [{name = "RCP/RCLM project"}]
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+test = ["jsonschema==4.23.0"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rcp_rclm_runtime_v4*"]
+
+[tool.setuptools.package-data]
+rcp_rclm_runtime_v4 = ["py.typed"]

@@ -1,0 +1,10 @@
+name = "rcp_rclm_formal_core_v4"
+version = "0.1.0"
+defaultTargets = ["RcpRclmFormalCoreV4"]
+
+[[lean_lib]]
+name = "RcpRclmFormalCoreV4"
+
+[[require]]
+name = "rcp_rclm_formal_core_v3"
+path = "../rcp_rclm_formal_core_v3"
