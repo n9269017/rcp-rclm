@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import ClassVar
 
@@ -29,8 +30,16 @@ def _nonnegative_int(value: object, path: str) -> int:
     return value
 
 
-def _sorted_unique(values: tuple[str, ...], path: str, *, nonempty: bool = False) -> tuple[str, ...]:
-    normalized = tuple(_nonempty_text(value, f"{path}[{index}]") for index, value in enumerate(values))
+def _sorted_unique(
+    values: Sequence[str],
+    path: str,
+    *,
+    nonempty: bool = False,
+) -> Sequence[str]:
+    normalized = tuple(
+        _nonempty_text(value, f"{path}[{index}]")
+        for index, value in enumerate(values)
+    )
     if nonempty and not normalized:
         raise SchemaValidationError(path, "at least one entry is required")
     if len(set(normalized)) != len(normalized):
@@ -58,9 +67,15 @@ class RouteHintPolicy:
             if field_name == "schema_id":
                 continue
             if not isinstance(value, bool):
-                raise SchemaValidationError(f"route_hints.{field_name}", "expected Boolean")
+                raise SchemaValidationError(
+                    f"route_hints.{field_name}",
+                    "expected Boolean",
+                )
             if value:
-                raise SchemaValidationError(f"route_hints.{field_name}", "forbidden host route hint")
+                raise SchemaValidationError(
+                    f"route_hints.{field_name}",
+                    "forbidden host route hint",
+                )
 
     def to_json(self) -> dict[str, object]:
         return {
@@ -77,8 +92,8 @@ class RouteHintPolicy:
 
 @dataclass(frozen=True, slots=True)
 class FrontierSnapshot:
-    capability_tasks: tuple[str, ...]
-    recursive_productivity_tasks: tuple[str, ...]
+    capability_tasks: Sequence[str]
+    recursive_productivity_tasks: Sequence[str]
 
     schema_id: ClassVar[str] = FRONTIER_SCHEMA_ID
 
@@ -105,7 +120,9 @@ class FrontierSnapshot:
         return {
             "schema_id": self.schema_id,
             "capability_tasks": list(self.capability_tasks),
-            "recursive_productivity_tasks": list(self.recursive_productivity_tasks),
+            "recursive_productivity_tasks": list(
+                self.recursive_productivity_tasks
+            ),
         }
 
 
@@ -113,15 +130,15 @@ class FrontierSnapshot:
 class AttemptRecord:
     attempt_index: int
     objective_id: str
-    update_kinds: tuple[str, ...]
+    update_kinds: Sequence[str]
     program_hash: str
     candidate_hash: str
     gate_d_certificate_hash: str
     package_generated: bool
     evaluator_accepted: bool
-    reason_codes: tuple[str, ...]
-    capability_frontier_after: tuple[str, ...]
-    recursive_productivity_frontier_after: tuple[str, ...]
+    reason_codes: Sequence[str]
+    capability_frontier_after: Sequence[str]
+    recursive_productivity_frontier_after: Sequence[str]
     search_cost: int
 
     schema_id: ClassVar[str] = ATTEMPT_SCHEMA_ID
@@ -132,24 +149,43 @@ class AttemptRecord:
         object.__setattr__(
             self,
             "update_kinds",
-            _sorted_unique(self.update_kinds, "attempt.update_kinds", nonempty=True),
+            _sorted_unique(
+                self.update_kinds,
+                "attempt.update_kinds",
+                nonempty=True,
+            ),
         )
         validate_hash256(self.program_hash, "attempt.program_hash")
         validate_hash256(self.candidate_hash, "attempt.candidate_hash")
-        validate_hash256(self.gate_d_certificate_hash, "attempt.gate_d_certificate_hash")
+        validate_hash256(
+            self.gate_d_certificate_hash,
+            "attempt.gate_d_certificate_hash",
+        )
         if not isinstance(self.package_generated, bool) or not self.package_generated:
-            raise SchemaValidationError("attempt.package_generated", "active package generation is required")
+            raise SchemaValidationError(
+                "attempt.package_generated",
+                "active package generation is required",
+            )
         if not isinstance(self.evaluator_accepted, bool):
-            raise SchemaValidationError("attempt.evaluator_accepted", "expected Boolean")
+            raise SchemaValidationError(
+                "attempt.evaluator_accepted",
+                "expected Boolean",
+            )
         object.__setattr__(
             self,
             "reason_codes",
             _sorted_unique(self.reason_codes, "attempt.reason_codes"),
         )
         if self.evaluator_accepted and self.reason_codes:
-            raise SchemaValidationError("attempt.reason_codes", "accepted attempt must have no rejection reasons")
+            raise SchemaValidationError(
+                "attempt.reason_codes",
+                "accepted attempt must have no rejection reasons",
+            )
         if not self.evaluator_accepted and not self.reason_codes:
-            raise SchemaValidationError("attempt.reason_codes", "rejected attempt requires a reason")
+            raise SchemaValidationError(
+                "attempt.reason_codes",
+                "rejected attempt requires a reason",
+            )
         object.__setattr__(
             self,
             "capability_frontier_after",
@@ -184,7 +220,9 @@ class AttemptRecord:
             "package_generated": self.package_generated,
             "evaluator_accepted": self.evaluator_accepted,
             "reason_codes": list(self.reason_codes),
-            "capability_frontier_after": list(self.capability_frontier_after),
+            "capability_frontier_after": list(
+                self.capability_frontier_after
+            ),
             "recursive_productivity_frontier_after": list(
                 self.recursive_productivity_frontier_after
             ),
@@ -204,7 +242,9 @@ class AttemptRecord:
             "package_generated": self.package_generated,
             "evaluator_accepted": self.evaluator_accepted,
             "reason_codes": list(self.reason_codes),
-            "capability_frontier_after": list(self.capability_frontier_after),
+            "capability_frontier_after": list(
+                self.capability_frontier_after
+            ),
             "recursive_productivity_frontier_after": list(
                 self.recursive_productivity_frontier_after
             ),
@@ -216,7 +256,7 @@ class AttemptRecord:
 @dataclass(frozen=True, slots=True)
 class SearchExhaustionCertificate:
     enumeration_hash: str
-    attempt_hashes: tuple[str, ...]
+    attempt_hashes: Sequence[str]
     complete_coverage: bool
     all_attempts_classified: bool
     no_accepted_attempt: bool
@@ -224,15 +264,32 @@ class SearchExhaustionCertificate:
     schema_id: ClassVar[str] = EXHAUSTION_SCHEMA_ID
 
     def __post_init__(self) -> None:
-        validate_hash256(self.enumeration_hash, "exhaustion.enumeration_hash")
+        validate_hash256(
+            self.enumeration_hash,
+            "exhaustion.enumeration_hash",
+        )
         if not self.attempt_hashes:
-            raise SchemaValidationError("exhaustion.attempt_hashes", "at least one attempt is required")
-        for index, value in enumerate(self.attempt_hashes):
-            validate_hash256(value, f"exhaustion.attempt_hashes[{index}]")
-        if len(set(self.attempt_hashes)) != len(self.attempt_hashes):
-            raise SchemaValidationError("exhaustion.attempt_hashes", "duplicate attempt hash")
+            raise SchemaValidationError(
+                "exhaustion.attempt_hashes",
+                "at least one attempt is required",
+            )
+        normalized_hashes = tuple(self.attempt_hashes)
+        for index, value in enumerate(normalized_hashes):
+            validate_hash256(
+                value,
+                f"exhaustion.attempt_hashes[{index}]",
+            )
+        if len(set(normalized_hashes)) != len(normalized_hashes):
+            raise SchemaValidationError(
+                "exhaustion.attempt_hashes",
+                "duplicate attempt hash",
+            )
+        object.__setattr__(self, "attempt_hashes", normalized_hashes)
         if self.complete_coverage is not True:
-            raise SchemaValidationError("exhaustion.complete_coverage", "complete coverage is required")
+            raise SchemaValidationError(
+                "exhaustion.complete_coverage",
+                "complete coverage is required",
+            )
         if self.all_attempts_classified is not True:
             raise SchemaValidationError(
                 "exhaustion.all_attempts_classified",
@@ -262,7 +319,7 @@ class AutonomousSearchReport:
     challenge_commitment_hash: str
     route_hints: RouteHintPolicy
     predecessor_frontier: FrontierSnapshot
-    attempts: tuple[AttemptRecord, ...]
+    attempts: Sequence[AttemptRecord]
     search_budget: int
     manual_repairs: int
     heldout_material_visible_before_freeze: bool
@@ -274,26 +331,47 @@ class AutonomousSearchReport:
     contract_version: ClassVar[str] = CONTRACT_VERSION
 
     def __post_init__(self) -> None:
-        validate_hash256(self.source_package_hash, "report.source_package_hash")
+        validate_hash256(
+            self.source_package_hash,
+            "report.source_package_hash",
+        )
         validate_hash256(self.history_hash, "report.history_hash")
-        validate_hash256(self.challenge_commitment_hash, "report.challenge_commitment_hash")
+        validate_hash256(
+            self.challenge_commitment_hash,
+            "report.challenge_commitment_hash",
+        )
         if not self.attempts:
-            raise SchemaValidationError("report.attempts", "at least one attempt is required")
+            raise SchemaValidationError(
+                "report.attempts",
+                "at least one attempt is required",
+            )
+        object.__setattr__(self, "attempts", tuple(self.attempts))
         _nonnegative_int(self.search_budget, "report.search_budget")
         _nonnegative_int(self.manual_repairs, "report.manual_repairs")
-        if not isinstance(self.heldout_material_visible_before_freeze, bool):
+        if not isinstance(
+            self.heldout_material_visible_before_freeze,
+            bool,
+        ):
             raise SchemaValidationError(
                 "report.heldout_material_visible_before_freeze",
                 "expected Boolean",
             )
         if self.result_kind not in RESULT_KINDS:
-            raise SchemaValidationError("report.result_kind", "unsupported result kind")
+            raise SchemaValidationError(
+                "report.result_kind",
+                "unsupported result kind",
+            )
         if self.selected_attempt_index is not None:
-            _nonnegative_int(self.selected_attempt_index, "report.selected_attempt_index")
+            _nonnegative_int(
+                self.selected_attempt_index,
+                "report.selected_attempt_index",
+            )
 
     @property
     def enumeration_hash(self) -> str:
-        return canonical_json_hash([attempt.attempt_hash for attempt in self.attempts])
+        return canonical_json_hash(
+            [attempt.attempt_hash for attempt in self.attempts]
+        )
 
     @property
     def report_hash(self) -> str:
@@ -312,10 +390,14 @@ class AutonomousSearchReport:
             "enumeration_hash": self.enumeration_hash,
             "search_budget": self.search_budget,
             "manual_repairs": self.manual_repairs,
-            "heldout_material_visible_before_freeze": self.heldout_material_visible_before_freeze,
+            "heldout_material_visible_before_freeze": (
+                self.heldout_material_visible_before_freeze
+            ),
             "result_kind": self.result_kind,
             "selected_attempt_index": self.selected_attempt_index,
-            "exhaustion": None if self.exhaustion is None else self.exhaustion.to_json(),
+            "exhaustion": (
+                None if self.exhaustion is None else self.exhaustion.to_json()
+            ),
             "gate_e_closed": False,
             "phase14_exit_closed": False,
         }
