@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
+
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash
 
 from rcp_rclm_runtime_v4.gatee.constants import RESULT_EXHAUSTED, RESULT_PROMOTED
@@ -17,7 +19,7 @@ def _hash(label: str) -> str:
     return canonical_json_hash({"gate_e_reference_label": label})
 
 
-def _ordered(*values: str) -> tuple[str, ...]:
+def _ordered(*values: str) -> Sequence[str]:
     return tuple(sorted(values, key=lambda item: item.encode("utf-8")))
 
 
@@ -45,7 +47,9 @@ def build_promotion_reference() -> AutonomousSearchReport:
             evaluator_accepted=False,
             reason_codes=("PROTECTED_CAPABILITY_REGRESSION",),
             capability_frontier_after=predecessor.capability_tasks,
-            recursive_productivity_frontier_after=predecessor.recursive_productivity_tasks,
+            recursive_productivity_frontier_after=(
+                predecessor.recursive_productivity_tasks
+            ),
             search_cost=2,
         ),
         AttemptRecord(
@@ -101,7 +105,9 @@ def build_exhaustion_reference() -> AutonomousSearchReport:
             evaluator_accepted=False,
             reason_codes=("NO_STRICT_FRONTIER_EXPANSION",),
             capability_frontier_after=predecessor.capability_tasks,
-            recursive_productivity_frontier_after=predecessor.recursive_productivity_tasks,
+            recursive_productivity_frontier_after=(
+                predecessor.recursive_productivity_tasks
+            ),
             search_cost=2,
         ),
         AttemptRecord(
@@ -115,7 +121,9 @@ def build_exhaustion_reference() -> AutonomousSearchReport:
             evaluator_accepted=False,
             reason_codes=("INFORMATION_NONREGRESSION_FAILED",),
             capability_frontier_after=predecessor.capability_tasks,
-            recursive_productivity_frontier_after=predecessor.recursive_productivity_tasks,
+            recursive_productivity_frontier_after=(
+                predecessor.recursive_productivity_tasks
+            ),
             search_cost=2,
         ),
     )
