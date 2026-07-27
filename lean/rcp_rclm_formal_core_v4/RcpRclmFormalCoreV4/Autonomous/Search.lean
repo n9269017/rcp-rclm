@@ -203,7 +203,7 @@ theorem nonstagnation_or_certified_exhaustion
       certificate.attempts = attempts) := by
   cases found : firstAccepted checker state attempts with
   | none =>
-      exact Or.inr ⟨⟨attempts, rfl⟩, rfl⟩
+      exact Or.inr ⟨⟨attempts, found⟩, rfl⟩
   | some attempt =>
       exact Or.inl ⟨attempt, rfl, firstAccepted_sound checker state found⟩
 
