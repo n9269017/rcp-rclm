@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Final
+from typing import ClassVar
 
 from rcp_rclm_runtime.canonical.hashing import canonical_json_hash, validate_hash256
 from rcp_rclm_runtime.errors import SchemaValidationError
@@ -51,7 +51,7 @@ class RouteHintPolicy:
     expected_final_model_identity_present: bool = False
     host_selected_objective_present: bool = False
 
-    schema_id: Final[str] = ROUTE_HINT_SCHEMA_ID
+    schema_id: ClassVar[str] = ROUTE_HINT_SCHEMA_ID
 
     def __post_init__(self) -> None:
         for field_name, value in self.to_json().items():
@@ -80,7 +80,7 @@ class FrontierSnapshot:
     capability_tasks: tuple[str, ...]
     recursive_productivity_tasks: tuple[str, ...]
 
-    schema_id: Final[str] = FRONTIER_SCHEMA_ID
+    schema_id: ClassVar[str] = FRONTIER_SCHEMA_ID
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -124,7 +124,7 @@ class AttemptRecord:
     recursive_productivity_frontier_after: tuple[str, ...]
     search_cost: int
 
-    schema_id: Final[str] = ATTEMPT_SCHEMA_ID
+    schema_id: ClassVar[str] = ATTEMPT_SCHEMA_ID
 
     def __post_init__(self) -> None:
         _nonnegative_int(self.attempt_index, "attempt.attempt_index")
@@ -170,7 +170,7 @@ class AttemptRecord:
 
     @property
     def attempt_hash(self) -> str:
-        return canonical_json_hash(self.to_json())
+        return self.attempt_hash_without_self()
 
     def to_json(self) -> dict[str, object]:
         return {
@@ -189,7 +189,7 @@ class AttemptRecord:
                 self.recursive_productivity_frontier_after
             ),
             "search_cost": self.search_cost,
-            "attempt_hash": self.attempt_hash_without_self(),
+            "attempt_hash": self.attempt_hash,
         }
 
     def attempt_hash_without_self(self) -> str:
@@ -221,7 +221,7 @@ class SearchExhaustionCertificate:
     all_attempts_classified: bool
     no_accepted_attempt: bool
 
-    schema_id: Final[str] = EXHAUSTION_SCHEMA_ID
+    schema_id: ClassVar[str] = EXHAUSTION_SCHEMA_ID
 
     def __post_init__(self) -> None:
         validate_hash256(self.enumeration_hash, "exhaustion.enumeration_hash")
@@ -270,8 +270,8 @@ class AutonomousSearchReport:
     selected_attempt_index: int | None
     exhaustion: SearchExhaustionCertificate | None
 
-    schema_id: Final[str] = REPORT_SCHEMA_ID
-    contract_version: Final[str] = CONTRACT_VERSION
+    schema_id: ClassVar[str] = REPORT_SCHEMA_ID
+    contract_version: ClassVar[str] = CONTRACT_VERSION
 
     def __post_init__(self) -> None:
         validate_hash256(self.source_package_hash, "report.source_package_hash")
