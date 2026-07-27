@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from typing import Final
 
 CONTRACT_VERSION: Final[str] = "rcp-rclm-executable-v4-gate-e-v1"
@@ -9,7 +10,7 @@ FRONTIER_SCHEMA_ID: Final[str] = "runtime.v4.gatee.frontier_snapshot.v1"
 ATTEMPT_SCHEMA_ID: Final[str] = "runtime.v4.gatee.search_attempt.v1"
 EXHAUSTION_SCHEMA_ID: Final[str] = "runtime.v4.gatee.search_exhaustion_certificate.v1"
 
-FORBIDDEN_ROUTE_HINT_FIELDS: Final[tuple[str, ...]] = (
+FORBIDDEN_ROUTE_HINT_FIELDS: Final[Sequence[str]] = (
     "accepted_program_bytes_present",
     "expected_candidate_hash_present",
     "expected_final_model_identity_present",
