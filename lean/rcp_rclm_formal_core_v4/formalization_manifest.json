@@ -1,7 +1,7 @@
 {
   "schema_version": "rcp-rclm-formal-core-v4-gate-e-manifest-v1",
   "phase_name": "RCP/RCLM Formal Core v4 - Gate E constructive endogenous successor availability",
-  "status": "gate_e_formal_foundation_pending_ci_validation",
+  "status": "gate_e_formal_foundation_closed",
   "base_repository_commit": "61576903938b6ca988665fc0e82b3870aaf7f38b",
   "formal_core_v3_dependency": {
     "path": "../rcp_rclm_formal_core_v3",
@@ -10,6 +10,13 @@
   "toolchain": {
     "lean": "leanprover/lean4:v4.31.0",
     "mathlib": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+  },
+  "foundation_boundary": {
+    "formal_foundation_closed": true,
+    "runtime_contract_foundation_validated": true,
+    "schedule_free_learned_trajectory_closed": false,
+    "full_gate_e_closed": false,
+    "phase14_exit_closed": false
   },
   "delivered_objects": {
     "search_history": true,
