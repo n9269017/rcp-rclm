@@ -6,6 +6,11 @@ on:
       - agent/rcp-rclm-v4-phase-14-schedule-free-loop
     paths:
       - .github/workflows/phase14-source-export.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/phase14-source-export.yml
 
 permissions:
   contents: read
@@ -15,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Check out exact branch head
+      - name: Check out exact Phase 14 head
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
-          ref: agent/rcp-rclm-v4-phase-14-schedule-free-loop
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
       - name: Export repository source without Git metadata
         shell: bash
