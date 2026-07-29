@@ -49,6 +49,7 @@ def _checker_semantic_fingerprint(value: Mapping[str, object]) -> str:
     checker = normalized.get("checker_report")
     if isinstance(checker, Mapping):
         checker_copy = dict(checker)
+        checker_copy.pop("artifact_hashes", None)
         lean = checker_copy.get("lean_bridge_result")
         if isinstance(lean, Mapping):
             lean_copy = dict(lean)
