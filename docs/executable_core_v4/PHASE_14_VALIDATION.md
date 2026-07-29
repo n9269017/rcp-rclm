@@ -46,4 +46,3 @@ All schemas use JSON Schema Draft 2020-12. Canonical report or manifest hashes a
 ## Local portable result
 
 The source was exercised locally against the retained certified `M4` artifact before publication. The portable result produced four promotions, two rejections, all four update families, a capability frontier of eleven, a recursive-productivity frontier of eight, a worker-free replay with nine immutable packages and sixty-two task replays, and ten successful adversarial rejections. Local development omits the pinned Lean executable; authoritative CI must replace every simulated outer-envelope result with the real pinned verifier before closure.
-
