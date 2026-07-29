@@ -1,0 +1,329 @@
+{
+  "$defs": {
+    "replay": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted": {
+          "const": true
+        },
+        "accepted_promotions": {
+          "minimum": 4,
+          "type": "integer"
+        },
+        "bundle_manifest_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "distinct_update_families": {
+          "items": {
+            "enum": [
+              "model_weights",
+              "memory_retrieval",
+              "generator_planner",
+              "adapter_optimizer"
+            ]
+          },
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "final_semantic_package_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "final_store_package_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "forbidden_worker_modules": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "gate_d_replays": {
+          "minimum": 4,
+          "type": "integer"
+        },
+        "gate_e_closed": {
+          "const": false
+        },
+        "gate_e_replays": {
+          "minimum": 4,
+          "type": "integer"
+        },
+        "generator_invocations": {
+          "const": 0
+        },
+        "history_count": {
+          "minimum": 6,
+          "type": "integer"
+        },
+        "immutable_packages_verified": {
+          "minimum": 9,
+          "type": "integer"
+        },
+        "manual_repairs": {
+          "const": 0
+        },
+        "outer_replays": {
+          "minimum": 4,
+          "type": "integer"
+        },
+        "phase14_exit_closed": {
+          "const": false
+        },
+        "pinned_lean": {
+          "type": "boolean"
+        },
+        "planner_invocations": {
+          "const": 0
+        },
+        "platform_id": {
+          "enum": [
+            "ubuntu",
+            "windows",
+            "macos"
+          ]
+        },
+        "proposal_worker_invocations": {
+          "const": 0
+        },
+        "rejected_attempts": {
+          "minimum": 2,
+          "type": "integer"
+        },
+        "report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "schema_id": {
+          "const": "runtime.v4.phase14.replay_report.v1"
+        },
+        "source_head": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "source_tree": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "task_replays": {
+          "minimum": 6,
+          "type": "integer"
+        },
+        "training_invocations": {
+          "const": 0
+        },
+        "trajectory_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_id",
+        "source_head",
+        "source_tree",
+        "platform_id",
+        "bundle_manifest_hash",
+        "trajectory_report_hash",
+        "final_store_package_hash",
+        "final_semantic_package_hash",
+        "history_count",
+        "accepted_promotions",
+        "rejected_attempts",
+        "distinct_update_families",
+        "task_replays",
+        "gate_d_replays",
+        "gate_e_replays",
+        "outer_replays",
+        "immutable_packages_verified",
+        "pinned_lean",
+        "training_invocations",
+        "proposal_worker_invocations",
+        "generator_invocations",
+        "planner_invocations",
+        "manual_repairs",
+        "forbidden_worker_modules",
+        "accepted",
+        "gate_e_closed",
+        "phase14_exit_closed",
+        "report_hash"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/n9269017/rcp-rclm/blob/main/python/rcp_rclm_executable_core_v4/contract/phase_14_closure.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "accepted_promotions": {
+      "minimum": 4,
+      "type": "integer"
+    },
+    "all_replays_accepted": {
+      "const": true
+    },
+    "all_replays_pinned": {
+      "const": true
+    },
+    "all_semantic_bindings_agree": {
+      "const": true
+    },
+    "all_source_bindings_agree": {
+      "const": true
+    },
+    "attack_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "bundle_manifest_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "final_frontier_cardinality": {
+      "minimum": 11,
+      "type": "integer"
+    },
+    "final_semantic_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "final_store_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "generator_invocations_during_replay": {
+      "const": 0
+    },
+    "heldout_material_visible_before_freeze": {
+      "const": false
+    },
+    "host_provided_successful_route": {
+      "const": false
+    },
+    "initial_frontier_cardinality": {
+      "minimum": 7,
+      "type": "integer"
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "next_phase": {
+      "const": 15
+    },
+    "phase14_exit_closed": {
+      "const": true
+    },
+    "planner_invocations_during_replay": {
+      "const": 0
+    },
+    "platforms": {
+      "const": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ]
+    },
+    "proposal_worker_invocations_during_replay": {
+      "const": 0
+    },
+    "rejected_attempts": {
+      "minimum": 2,
+      "type": "integer"
+    },
+    "replay_report_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "replay_reports": {
+      "items": {
+        "$ref": "#/$defs/replay"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase14.closure_report.v1"
+    },
+    "source_head": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "source_tree": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "substantive_update_families": {
+      "items": {
+        "enum": [
+          "model_weights",
+          "memory_retrieval",
+          "generator_planner",
+          "adapter_optimizer"
+        ]
+      },
+      "minItems": 3,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "training_invocations_during_replay": {
+      "const": 0
+    },
+    "trajectory_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "accepted",
+    "accepted_promotions",
+    "all_replays_accepted",
+    "all_replays_pinned",
+    "all_semantic_bindings_agree",
+    "all_source_bindings_agree",
+    "attack_report_hash",
+    "bundle_manifest_hash",
+    "final_frontier_cardinality",
+    "final_semantic_package_hash",
+    "final_store_package_hash",
+    "gate_e_closed",
+    "initial_frontier_cardinality",
+    "next_phase",
+    "phase14_exit_closed",
+    "rejected_attempts",
+    "replay_report_hashes",
+    "replay_reports",
+    "report_hash",
+    "schema_id",
+    "source_head",
+    "source_tree",
+    "substantive_update_families",
+    "trajectory_report_hash",
+    "platforms",
+    "manual_repairs",
+    "host_provided_successful_route",
+    "heldout_material_visible_before_freeze",
+    "proposal_worker_invocations_during_replay",
+    "training_invocations_during_replay",
+    "generator_invocations_during_replay",
+    "planner_invocations_during_replay"
+  ],
+  "title": "RCP/RCLM Phase 14 final closure report",
+  "type": "object"
+}

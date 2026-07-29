@@ -20,3 +20,7 @@ Semantic validation beyond JSON shape is implemented by Runtime v4. In particula
 runtime recomputes attempt hashes, enumeration hashes, report hashes, first-accepted
 selection, frontier retention/expansion, recursive-productivity retention, total search cost,
 and exhaustion consistency.
+
+## Phase 14 schemas
+
+The `phase_14_*` Draft 2020-12 schemas cover the intermediate trajectory, content-addressed bundle, worker-free replay, adversarial suite, and final closure report. Intermediate schemas require `phase14_exit_closed=false`; only `phase_14_closure.schema.json` permits and requires the final closed exit.
