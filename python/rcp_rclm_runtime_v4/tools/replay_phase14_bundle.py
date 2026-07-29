@@ -16,10 +16,16 @@ def main() -> int:
     parser.add_argument("--platform-id", choices=("ubuntu", "windows", "macos"), required=True)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
+    repo_root = args.repo_root.resolve(strict=True)
+    lean_project_root = (
+        args.lean_project_root
+        if args.lean_project_root is not None
+        else repo_root / "lean/rcp_rclm_formal_core_v3"
+    )
     report = replay_phase14_bundle(
         bundle_root=args.bundle_root,
-        repo_root=args.repo_root,
-        lean_project_root=args.lean_project_root,
+        repo_root=repo_root,
+        lean_project_root=lean_project_root,
         source_head=args.source_head,
         platform_id=args.platform_id,
     )
