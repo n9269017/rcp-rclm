@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from typing import ClassVar
@@ -33,6 +34,33 @@ from rcp_rclm_runtime_v4.phase14.realization import Phase14RealizedCandidate
 
 def directory_tree_hash(root: Path) -> str:
     return semantic_tree_hash(build_tree_records(root.resolve(strict=True)))
+
+
+def _lean_semantic_fingerprint(value: Mapping[str, object]) -> str:
+    normalized = dict(value)
+    normalized.pop("compiler_duration_ms", None)
+    normalized.pop("toolchain_runtime_hash", None)
+    return canonical_json_hash(normalized)
+
+
+def _checker_semantic_fingerprint(value: Mapping[str, object]) -> str:
+    normalized = dict(value)
+    normalized.pop("artifact_hashes", None)
+    checker = normalized.get("checker_report")
+    if isinstance(checker, Mapping):
+        checker_copy = dict(checker)
+        lean = checker_copy.get("lean_bridge_result")
+        if isinstance(lean, Mapping):
+            lean_copy = dict(lean)
+            evidence = lean_copy.get("evidence")
+            if isinstance(evidence, Mapping):
+                evidence_copy = dict(evidence)
+                evidence_copy.pop("report_hash", None)
+                evidence_copy.pop("toolchain_runtime_hash", None)
+                lean_copy["evidence"] = evidence_copy
+            checker_copy["lean_bridge_result"] = lean_copy
+        normalized["checker_report"] = checker_copy
+    return canonical_json_hash(normalized)
 
 
 @dataclass(frozen=True, slots=True)
@@ -160,11 +188,13 @@ def verify_outer_envelope(
         )
         lean_hash = canonical_json_hash(
             {
-                "report": lean.report.to_json(),
+                "report_semantic_hash": _lean_semantic_fingerprint(
+                    lean.report.to_json()
+                ),
                 "source_guard": lean.source_guard.to_json(),
             }
         )
-        checker_hash = hardened.report_hash
+        checker_hash = _checker_semantic_fingerprint(hardened.to_json())
         accepted = (
             lean.report.accepted
             and lean.source_guard.clean
