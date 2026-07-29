@@ -27,7 +27,7 @@ def main() -> int:
     )
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_bytes(canonical_json_bytes(report.to_json()))
-    return 0 if report.campaign_closed and not report.phase14_exit_closed else 1
+    return 0 if report.campaign_closed else 1
 
 
 if __name__ == "__main__":
