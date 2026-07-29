@@ -6,6 +6,11 @@ on:
       - agent/rcp-rclm-v4-phase-14-schedule-free-loop-v2
     paths:
       - .github/workflows/phase14-capture-pinned-replay-fix.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/phase14-capture-pinned-replay-fix.yml
 
 permissions:
   contents: write
@@ -83,4 +88,3 @@ jobs:
           git diff --cached --check
           git commit -m "Pin Phase 14 capture replay to Formal Core v3"
           git push origin HEAD:agent/rcp-rclm-v4-phase-14-schedule-free-loop-v2
-
