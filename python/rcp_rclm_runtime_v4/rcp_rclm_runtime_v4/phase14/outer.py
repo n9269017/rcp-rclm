@@ -44,23 +44,21 @@ def _lean_semantic_fingerprint(value: Mapping[str, object]) -> str:
 
 
 def _checker_semantic_fingerprint(value: Mapping[str, object]) -> str:
-    normalized = dict(value)
+    checker = value.get("checker_report")
+    if not isinstance(checker, Mapping):
+        return canonical_json_hash({"checker_report": None})
+    normalized = dict(checker)
     normalized.pop("artifact_hashes", None)
-    checker = normalized.get("checker_report")
-    if isinstance(checker, Mapping):
-        checker_copy = dict(checker)
-        checker_copy.pop("artifact_hashes", None)
-        lean = checker_copy.get("lean_bridge_result")
-        if isinstance(lean, Mapping):
-            lean_copy = dict(lean)
-            evidence = lean_copy.get("evidence")
-            if isinstance(evidence, Mapping):
-                evidence_copy = dict(evidence)
-                evidence_copy.pop("report_hash", None)
-                evidence_copy.pop("toolchain_runtime_hash", None)
-                lean_copy["evidence"] = evidence_copy
-            checker_copy["lean_bridge_result"] = lean_copy
-        normalized["checker_report"] = checker_copy
+    lean = normalized.get("lean_bridge_result")
+    if isinstance(lean, Mapping):
+        lean_copy = dict(lean)
+        evidence = lean_copy.get("evidence")
+        if isinstance(evidence, Mapping):
+            evidence_copy = dict(evidence)
+            evidence_copy.pop("report_hash", None)
+            evidence_copy.pop("toolchain_runtime_hash", None)
+            lean_copy["evidence"] = evidence_copy
+        normalized["lean_bridge_result"] = lean_copy
     return canonical_json_hash(normalized)
 
 
