@@ -47,10 +47,37 @@ def evaluate_source_quality(package_root: Path) -> dict[str, object]:
         except SyntaxError as exc:
             issues.append(QualityIssue(relative, exc.lineno or 1, "PYTHON_SYNTAX_ERROR", exc.msg))
             continue
+        annotation_nodes: set[ast.AST] = set()
+        for declaration in ast.walk(tree):
+            annotations: list[ast.AST] = []
+            if isinstance(declaration, ast.AnnAssign):
+                annotations.append(declaration.annotation)
+            elif isinstance(declaration, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                if declaration.returns is not None:
+                    annotations.append(declaration.returns)
+                annotations.extend(
+                    argument.annotation
+                    for argument in (
+                        *declaration.args.posonlyargs,
+                        *declaration.args.args,
+                        *declaration.args.kwonlyargs,
+                    )
+                    if argument.annotation is not None
+                )
+                if declaration.args.vararg is not None and declaration.args.vararg.annotation is not None:
+                    annotations.append(declaration.args.vararg.annotation)
+                if declaration.args.kwarg is not None and declaration.args.kwarg.annotation is not None:
+                    annotations.append(declaration.args.kwarg.annotation)
+            for annotation in annotations:
+                annotation_nodes.update(ast.walk(annotation))
         for node in ast.walk(tree):
             if isinstance(node, ast.Pass):
                 issues.append(QualityIssue(relative, node.lineno, "PYTHON_PASS_FORBIDDEN", "pass statement"))
-            if isinstance(node, ast.Constant) and node.value is Ellipsis:
+            if (
+                isinstance(node, ast.Constant)
+                and node.value is Ellipsis
+                and node not in annotation_nodes
+            ):
                 issues.append(QualityIssue(relative, node.lineno, "PYTHON_ELLIPSIS_FORBIDDEN", "ellipsis expression"))
             if path.is_relative_to(runtime_root):
                 imported_roots: set[str] = set()

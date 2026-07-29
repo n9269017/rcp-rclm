@@ -1,0 +1,65 @@
+{
+  "$defs": {
+    "case": {
+      "additionalProperties": false,
+      "properties": {
+        "attack_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "reason": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "rejected": {
+          "const": true
+        },
+        "schema_id": {
+          "const": "runtime.v4.phase14.attack_result.v1"
+        }
+      },
+      "required": [
+        "schema_id",
+        "attack_id",
+        "rejected",
+        "reason"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/n9269017/rcp-rclm/blob/main/python/rcp_rclm_executable_core_v4/contract/phase_14_attack_suite.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "case_count": {
+      "minimum": 10,
+      "type": "integer"
+    },
+    "cases": {
+      "items": {
+        "$ref": "#/$defs/case"
+      },
+      "minItems": 10,
+      "type": "array"
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase14.attack_suite.v1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "cases",
+    "case_count",
+    "accepted",
+    "report_hash"
+  ],
+  "title": "RCP/RCLM Phase 14 adversarial suite",
+  "type": "object"
+}

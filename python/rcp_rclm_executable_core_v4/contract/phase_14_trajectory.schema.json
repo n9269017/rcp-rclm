@@ -1,0 +1,356 @@
+{
+  "$defs": {
+    "attempt": {
+      "additionalProperties": false,
+      "properties": {
+        "active_store_package_hash_after": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "active_store_package_hash_before": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "candidate_phase6_tree_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "candidate_semantic_package_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "challenge_commitment_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "challenge_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "gate_d_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "gate_e_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "global_attempt_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "hidden_task_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "local_attempt_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "phase7_ledger_entry_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "program_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "program_variant": {
+          "enum": [
+            "probe",
+            "recover",
+            "direct"
+          ]
+        },
+        "proposal_enumeration_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "reason_codes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "recursive_productivity_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "rejection_conditioned": {
+          "type": "boolean"
+        },
+        "schema_id": {
+          "const": "runtime.v4.phase14.attempt_summary.v1"
+        },
+        "update_family": {
+          "enum": [
+            "model_weights",
+            "memory_retrieval",
+            "generator_planner",
+            "adapter_optimizer"
+          ]
+        },
+        "verdict": {
+          "enum": [
+            "accept",
+            "reject"
+          ]
+        }
+      },
+      "required": [
+        "schema_id",
+        "global_attempt_index",
+        "challenge_index",
+        "challenge_commitment_hash",
+        "local_attempt_index",
+        "update_family",
+        "program_variant",
+        "program_hash",
+        "proposal_enumeration_hash",
+        "candidate_semantic_package_hash",
+        "candidate_phase6_tree_hash",
+        "verdict",
+        "reason_codes",
+        "hidden_task_report_hash",
+        "gate_d_report_hash",
+        "gate_e_report_hash",
+        "recursive_productivity_report_hash",
+        "active_store_package_hash_before",
+        "active_store_package_hash_after",
+        "phase7_ledger_entry_hash",
+        "rejection_conditioned"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/n9269017/rcp-rclm/blob/main/python/rcp_rclm_executable_core_v4/contract/phase_14_trajectory.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "accepted_promotions": {
+      "minimum": 4,
+      "type": "integer"
+    },
+    "answer_store_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "attempts": {
+      "items": {
+        "$ref": "#/$defs/attempt"
+      },
+      "minItems": 6,
+      "type": "array"
+    },
+    "challenge_count": {
+      "minimum": 4,
+      "type": "integer"
+    },
+    "challenge_gate_e_report_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minItems": 4,
+      "type": "array"
+    },
+    "challenge_gate_e_validation_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minItems": 4,
+      "type": "array"
+    },
+    "challenge_manifest_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "expected_accepted_program_bytes_present": {
+      "const": false
+    },
+    "expected_candidate_hash_present": {
+      "const": false
+    },
+    "expected_final_model_identity_present": {
+      "const": false
+    },
+    "expected_new_capability_present": {
+      "const": false
+    },
+    "external_validation_challenge_count": {
+      "minimum": 4,
+      "type": "integer"
+    },
+    "final_capability_frontier": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 11,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "final_recursive_productivity_frontier": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "final_semantic_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "final_store_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "four_promotion_threshold_encoded_in_package_policy": {
+      "const": false
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "heldout_material_visible_before_freeze": {
+      "const": false
+    },
+    "host_provided_successful_route": {
+      "const": false
+    },
+    "initial_capability_frontier": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 7,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "initial_m4_semantic_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "initial_recursive_productivity_frontier": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "initial_store_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "next_phase": {
+      "const": 14
+    },
+    "phase13_bundle_manifest_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase13_exit_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase14_campaign_closed": {
+      "const": true
+    },
+    "phase14_exit_closed": {
+      "const": false
+    },
+    "rejected_attempts": {
+      "minimum": 2,
+      "type": "integer"
+    },
+    "rejection_conditioned_recovery": {
+      "const": true
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase14.trajectory_report.v1"
+    },
+    "source_head": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "source_tree": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "substantive_update_families": {
+      "items": {
+        "enum": [
+          "model_weights",
+          "memory_retrieval",
+          "generator_planner",
+          "adapter_optimizer"
+        ]
+      },
+      "minItems": 3,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "trajectory_id": {
+      "const": "phase14-schedule-free-m4-successor-closure-v1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "trajectory_id",
+    "source_head",
+    "source_tree",
+    "phase13_exit_report_hash",
+    "phase13_bundle_manifest_hash",
+    "initial_store_package_hash",
+    "initial_m4_semantic_package_hash",
+    "final_store_package_hash",
+    "final_semantic_package_hash",
+    "initial_capability_frontier",
+    "final_capability_frontier",
+    "initial_recursive_productivity_frontier",
+    "final_recursive_productivity_frontier",
+    "attempts",
+    "challenge_manifest_hash",
+    "answer_store_hash",
+    "challenge_count",
+    "challenge_gate_e_report_hashes",
+    "challenge_gate_e_validation_hashes",
+    "accepted_promotions",
+    "rejected_attempts",
+    "substantive_update_families",
+    "rejection_conditioned_recovery",
+    "manual_repairs",
+    "heldout_material_visible_before_freeze",
+    "host_provided_successful_route",
+    "expected_candidate_hash_present",
+    "expected_new_capability_present",
+    "expected_final_model_identity_present",
+    "expected_accepted_program_bytes_present",
+    "four_promotion_threshold_encoded_in_package_policy",
+    "external_validation_challenge_count",
+    "accepted",
+    "phase14_campaign_closed",
+    "phase14_exit_closed",
+    "gate_e_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "RCP/RCLM Phase 14 schedule-free trajectory report",
+  "type": "object"
+}

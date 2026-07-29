@@ -1,0 +1,713 @@
+name: Runtime v4 Phase 14 schedule-free learned successor closure
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/runtime-v4-phase-14.yml"
+      - "docs/executable_core_v4/PHASE_14*.md"
+      - "python/rcp_rclm_executable_core_v4/contract/phase_14*.json"
+      - "python/rcp_rclm_runtime_v4/README.md"
+      - "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase14/**"
+      - "python/rcp_rclm_runtime_v4/tests_phase14/**"
+      - "python/rcp_rclm_runtime_v4/tools/*phase14*"
+      - "python/rcp_rclm_runtime_v4/tools/validate_source_quality.py"
+      - "scripts/*phase14*"
+      - "SHA256SUMS.txt"
+  push:
+    branches:
+      - agent/rcp-rclm-v4-phase-14-schedule-free-loop-v2
+    paths:
+      - ".github/workflows/runtime-v4-phase-14.yml"
+      - "docs/executable_core_v4/PHASE_14*.md"
+      - "python/rcp_rclm_executable_core_v4/contract/phase_14*.json"
+      - "python/rcp_rclm_runtime_v4/README.md"
+      - "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase14/**"
+      - "python/rcp_rclm_runtime_v4/tests_phase14/**"
+      - "python/rcp_rclm_runtime_v4/tools/*phase14*"
+      - "python/rcp_rclm_runtime_v4/tools/validate_source_quality.py"
+      - "scripts/*phase14*"
+      - "SHA256SUMS.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PHASE14_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+  PHASE13_RUN_ID: "30071529144"
+  PHASE13_SOURCE_HEAD: "f7708932cdde13f6403aef43e3a152ce5ce5ce93"
+  PHASE13_TRAJECTORY_ARTIFACT: "runtime-v3-phase-13-trajectory-30071529144-1"
+  PHASE13_FINAL_ARTIFACT: "runtime-v3-phase-13-final-30071529144-1"
+  PHASE13_BUNDLE_MANIFEST_HASH: "8fb457b08aaf587dd408b686ff66b0df7ea4079f74257c7fbc283bbf01e56da8"
+  PHASE13_EXIT_REPORT_HASH: "1967dad3254e7c62c33971929d6937b4e62722260719a2360162b27deaefb49f"
+  PHASE13_M4_SEMANTIC_PACKAGE_HASH: "e153216d08df0ce74e43864f9398e49930fbbf1d24220142e03ff6084b9126a1"
+
+concurrency:
+  group: phase14-complete-${{ github.event_name }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    name: Validate Phase 14 source contract (${{ matrix.label }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            label: ubuntu
+          - os: windows-latest
+            label: windows
+          - os: macos-latest
+            label: macos
+    steps:
+      - name: Check out exact Phase 14 source head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.PHASE14_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Verify exact checkout
+        shell: python
+        run: |
+          import os
+          import subprocess
+
+          expected = os.environ["PHASE14_SOURCE_HEAD"]
+          observed = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"],
+              text=True,
+          ).strip()
+          if observed != expected:
+              raise SystemExit(
+                  f"exact-head checkout mismatch: expected={expected} observed={observed}"
+              )
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic Runtime v2-v4 stack
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+      - name: Compile Phase 14 source and entry points
+        run: >-
+          python -m compileall -q
+          python/rcp_rclm_runtime_v4
+          scripts/run_phase14_trajectory.py
+          scripts/build_phase14_bundle.py
+          scripts/replay_phase14_bundle.py
+          scripts/run_phase14_attacks.py
+          scripts/close_phase14.py
+
+      - name: Validate deterministic source quality
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/validate_source_quality.py
+          --package-root python/rcp_rclm_runtime_v4
+          --out artifacts/runtime_v4_phase14/contract/${{ matrix.label }}/source_quality.json
+
+      - name: Run focused Phase 14 tests
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/run_phase14_tests.py
+          --package-root python/rcp_rclm_runtime_v4
+          --out artifacts/runtime_v4_phase14/contract/${{ matrix.label }}/phase14_tests.log
+
+      - name: Validate all Draft 2020-12 schema definitions
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+
+          root = Path("python/rcp_rclm_executable_core_v4/contract")
+          paths = sorted(root.glob("phase_14*.schema.json"))
+          expected = {
+              "phase_14_attack_suite.schema.json",
+              "phase_14_bundle.schema.json",
+              "phase_14_closure.schema.json",
+              "phase_14_replay.schema.json",
+              "phase_14_trajectory.schema.json",
+          }
+          observed = {path.name for path in paths}
+          if observed != expected:
+              raise SystemExit(
+                  f"Phase 14 schema set mismatch: expected={sorted(expected)} observed={sorted(observed)}"
+              )
+          for path in paths:
+              Draft202012Validator.check_schema(
+                  json.loads(path.read_text(encoding="utf-8"))
+              )
+
+      - name: Reject successful-route field regressions
+        shell: python
+        run: |
+          import ast
+          from pathlib import Path
+
+          root = Path("python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase14")
+          forbidden = {
+              "expected_family",
+              "next_successful_transition_index",
+              "required_successful_component_set",
+              "accepted_program_bytes",
+              "expected_candidate_hash",
+              "expected_new_capability",
+              "expected_final_model_identity",
+              "host_selected_objective",
+          }
+          findings = []
+          for path in sorted(root.glob("*.py")):
+              if path.name in {"attacks.py", "constants.py"}:
+                  continue
+              tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+              for node in ast.walk(tree):
+                  if isinstance(node, (ast.Name, ast.Attribute)):
+                      value = node.id if isinstance(node, ast.Name) else node.attr
+                      if value in forbidden:
+                          findings.append(f"{path}:{getattr(node, 'lineno', 1)}:{value}")
+                  if isinstance(node, ast.Dict):
+                      for key, value in zip(node.keys, node.values):
+                          if (
+                              isinstance(key, ast.Constant)
+                              and key.value in forbidden
+                              and not (
+                                  isinstance(value, ast.Constant)
+                                  and value.value is False
+                              )
+                          ):
+                              findings.append(
+                                  f"{path}:{getattr(key, 'lineno', 1)}:{key.value}"
+                              )
+          if findings:
+              raise SystemExit("forbidden successful-route fields: " + ", ".join(findings))
+
+      - name: Upload source-contract evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase14-contract-${{ matrix.label }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/contract/${{ matrix.label }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  capture:
+    name: Run authoritative M4 to M8 schedule-free campaign
+    needs: contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 600
+    steps:
+      - name: Check out exact Phase 14 source head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.PHASE14_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Verify exact checkout and record source tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          observed="$(git rev-parse HEAD)"
+          if [ "$observed" != "$PHASE14_SOURCE_HEAD" ]; then
+            echo "exact-head checkout mismatch: expected=$PHASE14_SOURCE_HEAD observed=$observed" >&2
+            exit 1
+          fi
+          echo "PHASE14_SOURCE_TREE=$(git rev-parse 'HEAD^{tree}')" >> "$GITHUB_ENV"
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic Runtime v2-v4 stack
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+      - name: Install pinned Lean toolchain
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          lake-package-directory: lean/rcp_rclm_formal_core_v2
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Resolve and build frozen Formal Core v2
+        working-directory: lean/rcp_rclm_formal_core_v2
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake update
+          git diff --exit-code -- lake-manifest.json
+          lake exe cache get
+          lake build
+
+      - name: Resolve and build pinned Formal Core v3
+        working-directory: lean/rcp_rclm_formal_core_v3
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake update
+          git diff --exit-code -- lake-manifest.json
+          lake exe cache get
+          lake build
+
+      - name: Resolve and build Gate E Formal Core v4
+        working-directory: lean/rcp_rclm_formal_core_v4
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake update
+          git diff --exit-code -- lake-manifest.json
+          lake exe cache get
+          lake build
+
+      - name: Download exact certified Phase 13 trajectory
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: ${{ env.PHASE13_TRAJECTORY_ARTIFACT }}
+          path: artifacts/runtime_v4_phase14/source/phase13_trajectory
+          github-token: ${{ github.token }}
+          repository: n9269017/rcp-rclm
+          run-id: ${{ env.PHASE13_RUN_ID }}
+
+      - name: Download exact certified Phase 13 exit report
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: ${{ env.PHASE13_FINAL_ARTIFACT }}
+          path: artifacts/runtime_v4_phase14/source/phase13_final
+          github-token: ${{ github.token }}
+          repository: n9269017/rcp-rclm
+          run-id: ${{ env.PHASE13_RUN_ID }}
+
+      - name: Verify retained Phase 13 source and M4 boundary
+        shell: python
+        run: |
+          import json
+          import os
+          from pathlib import Path
+
+          from rcp_rclm_runtime.promotion.store_verifier import load_active_phase7_store
+          from rcp_rclm_runtime_v3.phase12.phase12b_closure import phase12b_phase7_policy
+          from rcp_rclm_runtime_v3.phase12.phase12b_lifecycle import EMBEDDED_PHASE12_ROOT
+          from rcp_rclm_runtime_v3.phase10.package import load_package_manifest
+          from rcp_rclm_runtime_v3.phase13.bundle import verify_phase13_trajectory_bundle
+
+          trajectory_root = Path(
+              "artifacts/runtime_v4_phase14/source/phase13_trajectory/trajectory_bundle"
+          )
+          manifest = verify_phase13_trajectory_bundle(trajectory_root)
+          if manifest.source_head != os.environ["PHASE13_SOURCE_HEAD"]:
+              raise SystemExit("Phase 13 source head mismatch")
+          if manifest.manifest_hash != os.environ["PHASE13_BUNDLE_MANIFEST_HASH"]:
+              raise SystemExit("Phase 13 bundle manifest mismatch")
+
+          final_root = Path("artifacts/runtime_v4_phase14/source/phase13_final")
+          tool = json.loads((final_root / "phase13_exit.json").read_text(encoding="utf-8"))
+          root = json.loads((final_root / "phase13_exit_root.json").read_text(encoding="utf-8"))
+          if tool != root:
+              raise SystemExit("Phase 13 final entry points differ")
+          if not (
+              tool.get("accepted") is True
+              and tool.get("phase13_exit_closed") is True
+              and tool.get("next_phase") == 14
+              and tool.get("source_head") == os.environ["PHASE13_SOURCE_HEAD"]
+              and tool.get("bundle_manifest_hash") == os.environ["PHASE13_BUNDLE_MANIFEST_HASH"]
+              and tool.get("report_hash") == os.environ["PHASE13_EXIT_REPORT_HASH"]
+          ):
+              raise SystemExit("Phase 13 final closure binding failed")
+
+          store_root = trajectory_root / "trajectory/store"
+          runs_root = store_root / "runs"
+          if not runs_root.exists():
+              runs_root.mkdir(parents=False, exist_ok=False)
+          snapshot = load_active_phase7_store(store_root, phase12b_phase7_policy())
+          semantic_root = (
+              snapshot.package_root
+              / "predecessor/payload"
+              / EMBEDDED_PHASE12_ROOT
+          )
+          semantic = load_package_manifest(semantic_root)
+          if semantic.package_hash != os.environ["PHASE13_M4_SEMANTIC_PACKAGE_HASH"]:
+              raise SystemExit("certified M4 semantic package hash mismatch")
+
+      - name: Run authoritative schedule-free Phase 14 campaign
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/runtime_v4_phase14/capture
+          python python/rcp_rclm_runtime_v4/tools/run_phase14_trajectory.py \
+            --source-store-root artifacts/runtime_v4_phase14/source/phase13_trajectory/trajectory_bundle/trajectory/store \
+            --work-root artifacts/runtime_v4_phase14/work/phase14_campaign \
+            --repo-root . \
+            --lean-project-root lean/rcp_rclm_formal_core_v3 \
+            --source-head "$PHASE14_SOURCE_HEAD" \
+            --source-tree "$PHASE14_SOURCE_TREE" \
+            --out artifacts/runtime_v4_phase14/capture/phase14_trajectory.json \
+            2>&1 | tee artifacts/runtime_v4_phase14/capture/phase14_trajectory_stdout.log
+
+      - name: Run Phase 14 adversarial suite against certified M4
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/run_phase14_attacks.py
+          --store-root artifacts/runtime_v4_phase14/source/phase13_trajectory/trajectory_bundle/trajectory/store
+          --repo-root .
+          --out artifacts/runtime_v4_phase14/capture/phase14_attacks.json
+
+      - name: Build worker-free Phase 14 trajectory bundle
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/build_phase14_bundle.py
+          --campaign-root artifacts/runtime_v4_phase14/work/phase14_campaign
+          --bundle-root artifacts/runtime_v4_phase14/capture_export/phase14_bundle
+          --out artifacts/runtime_v4_phase14/capture/phase14_bundle_manifest.json
+
+      - name: Run capture-side worker-free replay sanity check
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/replay_phase14_bundle.py
+          --bundle-root artifacts/runtime_v4_phase14/capture_export/phase14_bundle
+          --repo-root .
+          --source-head "$PHASE14_SOURCE_HEAD"
+          --platform-id ubuntu
+          --out artifacts/runtime_v4_phase14/capture/phase14_replay_sanity.json
+
+      - name: Validate capture Draft 2020-12 schemas
+        shell: bash
+        run: |
+          set -euo pipefail
+          python python/rcp_rclm_runtime_v4/tools/validate_phase14_schema.py \
+            --schema python/rcp_rclm_executable_core_v4/contract/phase_14_trajectory.schema.json \
+            --instance artifacts/runtime_v4_phase14/capture/phase14_trajectory.json \
+            --out artifacts/runtime_v4_phase14/capture/phase14_trajectory_schema.json
+          python python/rcp_rclm_runtime_v4/tools/validate_phase14_schema.py \
+            --schema python/rcp_rclm_executable_core_v4/contract/phase_14_bundle.schema.json \
+            --instance artifacts/runtime_v4_phase14/capture/phase14_bundle_manifest.json \
+            --out artifacts/runtime_v4_phase14/capture/phase14_bundle_schema.json
+          python python/rcp_rclm_runtime_v4/tools/validate_phase14_schema.py \
+            --schema python/rcp_rclm_executable_core_v4/contract/phase_14_attack_suite.schema.json \
+            --instance artifacts/runtime_v4_phase14/capture/phase14_attacks.json \
+            --out artifacts/runtime_v4_phase14/capture/phase14_attacks_schema.json
+          python python/rcp_rclm_runtime_v4/tools/validate_phase14_schema.py \
+            --schema python/rcp_rclm_executable_core_v4/contract/phase_14_replay.schema.json \
+            --instance artifacts/runtime_v4_phase14/capture/phase14_replay_sanity.json \
+            --out artifacts/runtime_v4_phase14/capture/phase14_replay_sanity_schema.json
+
+      - name: Assert the authoritative campaign boundary
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          report = json.loads(
+              Path("artifacts/runtime_v4_phase14/capture/phase14_trajectory.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          if not (
+              report["accepted"] is True
+              and report["phase14_campaign_closed"] is True
+              and report["phase14_exit_closed"] is False
+              and report["gate_e_closed"] is False
+              and report["next_phase"] == 14
+              and report["accepted_promotions"] >= 4
+              and report["rejected_attempts"] >= 2
+              and len(report["substantive_update_families"]) >= 3
+              and report["rejection_conditioned_recovery"] is True
+              and report["manual_repairs"] == 0
+              and report["host_provided_successful_route"] is False
+                            and report["four_promotion_threshold_encoded_in_package_policy"] is False
+          ):
+              raise SystemExit("authoritative Phase 14 campaign boundary failed")
+
+      - name: Upload exact Phase 14 bundle
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase14-bundle-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/capture_export/
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 9
+
+      - name: Upload capture and adversarial audit
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase14-capture-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/capture/
+          if-no-files-found: error
+          retention-days: 90
+
+  replay:
+    name: Pinned worker-free Phase 14 replay (${{ matrix.label }})
+    needs: capture
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 600
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            label: ubuntu
+          - os: windows-latest
+            label: windows
+          - os: macos-latest
+            label: macos
+    steps:
+      - name: Check out exact Phase 14 source head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.PHASE14_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Verify exact checkout
+        shell: python
+        run: |
+          import os
+          import subprocess
+
+          observed = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"],
+              text=True,
+          ).strip()
+          if observed != os.environ["PHASE14_SOURCE_HEAD"]:
+              raise SystemExit("Phase 14 replay exact-head checkout mismatch")
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic Runtime v2-v4 stack without learned workers
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+      - name: Download exact Phase 14 bundle
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase14-bundle-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/input
+
+      - name: Install pinned Lean toolchain
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          lake-package-directory: lean/rcp_rclm_formal_core_v2
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Resolve and build frozen Formal Core v2
+        working-directory: lean/rcp_rclm_formal_core_v2
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake update
+          git diff --exit-code -- lake-manifest.json
+          lake exe cache get
+          lake build
+
+      - name: Resolve and build pinned Formal Core v3
+        working-directory: lean/rcp_rclm_formal_core_v3
+        env:
+          MATHLIB_NO_CACHE_ON_UPDATE: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake update
+          git diff --exit-code -- lake-manifest.json
+          lake exe cache get
+          lake build
+
+      - name: Run pinned worker-free replay
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/replay_phase14_bundle.py
+          --bundle-root artifacts/runtime_v4_phase14/input/phase14_bundle
+          --repo-root .
+          --lean-project-root lean/rcp_rclm_formal_core_v3
+          --source-head "${{ env.PHASE14_SOURCE_HEAD }}"
+          --platform-id ${{ matrix.label }}
+          --out artifacts/runtime_v4_phase14/replay/${{ matrix.label }}/phase14_replay_${{ matrix.label }}.json
+
+      - name: Validate replay Draft 2020-12 schema
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/validate_phase14_schema.py
+          --schema python/rcp_rclm_executable_core_v4/contract/phase_14_replay.schema.json
+          --instance artifacts/runtime_v4_phase14/replay/${{ matrix.label }}/phase14_replay_${{ matrix.label }}.json
+          --out artifacts/runtime_v4_phase14/replay/${{ matrix.label }}/phase14_replay_schema_${{ matrix.label }}.json
+
+      - name: Assert pinned zero-worker replay boundary
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          path = Path(
+              "artifacts/runtime_v4_phase14/replay/${{ matrix.label }}/phase14_replay_${{ matrix.label }}.json"
+          )
+          report = json.loads(path.read_text(encoding="utf-8"))
+          if not (
+              report["accepted"] is True
+              and report["platform_id"] == "${{ matrix.label }}"
+              and report["pinned_lean"] is True
+              and report["phase14_exit_closed"] is False
+              and report["gate_e_closed"] is False
+              and report["proposal_worker_invocations"] == 0
+              and report["generator_invocations"] == 0
+              and report["planner_invocations"] == 0
+              and report["training_invocations"] == 0
+              and report["manual_repairs"] == 0
+                        ):
+              raise SystemExit("pinned Phase 14 replay boundary failed")
+
+      - name: Upload pinned replay report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase14-replay-${{ matrix.label }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/replay/${{ matrix.label }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  close:
+    name: Close Phase 14 at one exact source head
+    needs:
+      - capture
+      - replay
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out exact Phase 14 source head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.PHASE14_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic Runtime v2-v4 stack
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+      - name: Download authoritative capture audit
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase14-capture-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/close/capture
+
+      - name: Download Ubuntu replay
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase14-replay-ubuntu-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/close/replay/ubuntu
+
+      - name: Download Windows replay
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase14-replay-windows-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/close/replay/windows
+
+      - name: Download macOS replay
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase14-replay-macos-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/close/replay/macos
+
+      - name: Emit tool Phase 14 exit report
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/close_phase14.py
+          --trajectory artifacts/runtime_v4_phase14/close/capture/phase14_trajectory.json
+          --bundle-manifest artifacts/runtime_v4_phase14/close/capture/phase14_bundle_manifest.json
+          --attacks artifacts/runtime_v4_phase14/close/capture/phase14_attacks.json
+          --ubuntu artifacts/runtime_v4_phase14/close/replay/ubuntu/phase14_replay_ubuntu.json
+          --windows artifacts/runtime_v4_phase14/close/replay/windows/phase14_replay_windows.json
+          --macos artifacts/runtime_v4_phase14/close/replay/macos/phase14_replay_macos.json
+          --out artifacts/runtime_v4_phase14/final/phase14_exit.json
+
+      - name: Emit repository Phase 14 exit report
+        run: >-
+          python scripts/close_phase14.py
+          --trajectory artifacts/runtime_v4_phase14/close/capture/phase14_trajectory.json
+          --bundle-manifest artifacts/runtime_v4_phase14/close/capture/phase14_bundle_manifest.json
+          --attacks artifacts/runtime_v4_phase14/close/capture/phase14_attacks.json
+          --ubuntu artifacts/runtime_v4_phase14/close/replay/ubuntu/phase14_replay_ubuntu.json
+          --windows artifacts/runtime_v4_phase14/close/replay/windows/phase14_replay_windows.json
+          --macos artifacts/runtime_v4_phase14/close/replay/macos/phase14_replay_macos.json
+          --out artifacts/runtime_v4_phase14/final/phase14_exit_root.json
+
+      - name: Require byte-identical Phase 14 closure entry points
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmp \
+            artifacts/runtime_v4_phase14/final/phase14_exit.json \
+            artifacts/runtime_v4_phase14/final/phase14_exit_root.json
+
+      - name: Validate final Draft 2020-12 closure schema
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/validate_phase14_schema.py
+          --schema python/rcp_rclm_executable_core_v4/contract/phase_14_closure.schema.json
+          --instance artifacts/runtime_v4_phase14/final/phase14_exit.json
+          --out artifacts/runtime_v4_phase14/final/phase14_exit_schema.json
+
+      - name: Assert final Phase 14 claim boundary
+        shell: python
+        run: |
+          import json
+          import os
+          from pathlib import Path
+
+          report = json.loads(
+              Path("artifacts/runtime_v4_phase14/final/phase14_exit.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          if not (
+              report["accepted"] is True
+              and report["source_head"] == os.environ["PHASE14_SOURCE_HEAD"]
+              and report["phase14_exit_closed"] is True
+              and report["gate_e_closed"] is False
+              and report["next_phase"] == 15
+              and report["accepted_promotions"] >= 4
+              and report["rejected_attempts"] >= 2
+              and len(report["substantive_update_families"]) >= 3
+              and report["manual_repairs"] == 0
+              and report["proposal_worker_invocations_during_replay"] == 0
+              and report["generator_invocations_during_replay"] == 0
+              and report["planner_invocations_during_replay"] == 0
+              and report["training_invocations_during_replay"] == 0
+          ):
+              raise SystemExit("final Phase 14 closure boundary failed")
+
+      - name: Upload final Phase 14 closure artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase14-final-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase14/final/
+          if-no-files-found: error
+          retention-days: 90
