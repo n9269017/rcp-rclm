@@ -1,0 +1,9 @@
+{
+  "content_hash_valid": true,
+  "errors": [],
+  "instance": "phase14_attacks.json",
+  "ok": true,
+  "schema": "phase_14_attack_suite.schema.json",
+  "schema_id": "runtime.v4.phase14.schema_validation.v1",
+  "schema_valid": true
+}
