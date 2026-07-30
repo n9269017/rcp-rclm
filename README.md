@@ -2,7 +2,9 @@
 
 This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1
 certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
-Phases 0–8**, and the first bounded **PyTorch learned-successor pilot**.
+Phases 0–8**, the first bounded **PyTorch learned-successor pilot**, and the later
+**Formal/Executable Core v3** work through Gate D and Phases 9–13 plus
+**Formal/Executable Core v4** through the Gate E foundation and Phase 14.
 
 The project proves and executes a conditional successor-verification architecture. The
 formal layer supplies the theorem kernel and the selected finite classical/diagonal
@@ -12,10 +14,10 @@ filesystem realization and rollback, atomic promotion, and independent replay. T
 PyTorch pilot adds one optional untrusted CPU-only training backend without moving
 PyTorch into the checker or any other source-of-truth component.
 
-The repository establishes a finite theorem-to-runtime refinement witness at the declared
-reference scope. It does **not** prove autonomous or unbounded recursive self-improvement,
-generator completeness, useful strict improvement at every step, or general
-noncommuting quantum semantics.
+The repository establishes finite theorem-to-runtime refinement witnesses at the declared
+reference scopes, including the selected schedule-free Phase 14 trajectory. It does **not**
+prove generic successor availability, full Gate E closure, open-horizon/asynchronous or
+unbounded RSI, or general noncommuting quantum semantics.
 
 ## Authoritative status
 
@@ -36,35 +38,34 @@ noncommuting quantum semantics.
 | Phase 7 | Complete and cross-platform validated | Fixed-budget retries, pinned Lean/checker admission, immutable parent-linked packages, hash-chained ledger, atomic active pointer, and rollback fallback |
 | Phase 8 | Complete and cross-platform/pinned-Lean validated | Portable retained evidence, zero-generator replay, fresh realization/certificate/Lean/checker recomputation, two promotions, two bounded rejections, and a three-package chain |
 | First PyTorch learned-successor pilot | Complete at the declared tiny CPU-only scope | Two deterministic proposal runs, one genuine SGD update, canonical int64 weight package, exact framework-independent evaluation, protected-metric non-regression, fail-closed admission, atomic promotion/rejection, rollback, and zero-training replay |
-| Larger/open-ended learned generators and benchmarks | Open | No learned proposal authority, GPU reproducibility, LLM-scale training, architecture search, external benchmark claim, or autonomous RSI |
+| Formal/Executable Cores v3–v4 — v3: Gate D + Phases 9–13; v4: Gate E + Phase 14 | Phase 14 complete at the declared selected scope; Gate E remains partially open; Phase 15 is next | v3 consists of Gate D and Phases 9–13, culminating in independent replay of the certified `M0 → M4` learned-successor trajectory. v4 consists of Gate E and Phase 14; Gate E adds constructive bounded search, exhaustion, and recursive-productivity objects. Phase 14 closes a schedule-free `M4 → M8` trajectory with four accepted promotions, two retained fail-closed rejections, four substantive update families, zero manual repairs, and pinned worker-free replay on Ubuntu, Windows, and macOS. The result remains finite, domain-relative, and package-bound; generic successor availability, full Gate E closure, open-horizon/asynchronous RSI, general noncommuting semantics, and empirically unbounded RSI remain open. |
 
-Formal documentation is indexed at
-[`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md). Executable documentation
-is indexed at [`docs/executable_core_v2/README.md`](docs/executable_core_v2/README.md).
+Formal and executable v2 documentation is indexed at
+[`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md) and
+[`docs/executable_core_v2/README.md`](docs/executable_core_v2/README.md). The later
+v3/v4 records are under `docs/formal_core_v3/`, `docs/executable_core_v3/`,
+`docs/formal_core_v4/`, and `docs/executable_core_v4/`.
 
 ## Pinned formal project
 
-The active Lean project is:
+The pinned Lean projects are:
 
 ```text
-lean/rcp_rclm_formal_core_v2/
+lean/rcp_rclm_formal_core_v2/   Gates A–C
+lean/rcp_rclm_formal_core_v3/   Gate D; imports v2
+lean/rcp_rclm_formal_core_v4/   Gate E; imports v3 and v2
 ```
 
-It pins:
+All three pin:
 
 ```text
 Lean:    leanprover/lean4:v4.31.0
 mathlib: fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
 ```
 
-The frozen formal source commit used by Runtime v2 is:
-
-```text
-012de4a55f326107f53f0e215c8aec62859d0bbf
-```
-
-The historical v1 project remains under `lean/rcp_rclm_can_lean4/`; v2 does not overwrite
-or silently broaden that certificate.
+The frozen formal source commit used by Runtime v2 remains
+`012de4a55f326107f53f0e215c8aec62859d0bbf`. The historical v1 project remains under
+`lean/rcp_rclm_can_lean4/`; the later cores import rather than overwrite their predecessors.
 
 ## Repository map
 
@@ -74,11 +75,17 @@ papers/
   paper-II-rclm-architecture/
 
 lean/
-  rcp_rclm_formal_core_v2/       active pinned Formal Core v2
+  rcp_rclm_formal_core_v4/       Gate E Formal Core v4
+  rcp_rclm_formal_core_v3/       Gate D Formal Core v3
+  rcp_rclm_formal_core_v2/       Gates A–C Formal Core v2
   rcp_rclm_can_lean4/            historical v1 certificate
 
-docs/formal_core_v2/             theorem, gate, audit, and reproduction records
-docs/executable_core_v2/         Phase 0–8 and PyTorch-pilot architecture/validation
+docs/formal_core_v2/             Gates A–C theorem/audit records
+docs/executable_core_v2/         Phase 0–8 and PyTorch-pilot records
+docs/formal_core_v3/             Gate D theorem/audit records
+docs/executable_core_v3/         Phase 9–13 architecture/validation
+docs/formal_core_v4/             Gate E theorem/audit records
+docs/executable_core_v4/         Gate E and Phase 14 architecture/validation
 
 python/rcp_rclm_executable_core_v2/
   contract/                       strict executable schemas
@@ -99,6 +106,11 @@ python/rcp_rclm_runtime_v2/
   tests*/                         Phase-specific regression suites
   tests_pytorch_pilot/            learned proposal/admission/replay tests
   tools/                          conformance and artifact runners
+
+python/rcp_rclm_executable_core_v3/  Gate D and Phase 9–13 schemas
+python/rcp_rclm_runtime_v3/          learned trajectory and independent replay
+python/rcp_rclm_executable_core_v4/  Gate E and Phase 14 schemas
+python/rcp_rclm_runtime_v4/          bounded search and schedule-free closure
 
 scripts/
   check_candidate.py
@@ -137,8 +149,11 @@ infinite closure only under an explicit successor-availability premise. Checker 
 is not generator completeness.
 
 Gate B instantiates the theorem with exact finite classical objects. Gate C instantiates
-the selected two-level commuting/diagonal quantum reference. The latter does not imply a
-general noncommuting theorem.
+the selected two-level commuting/diagonal quantum reference. Gate D adds learned package,
+update, certificate, capability-frontier, and accepted-step objects, with infinite growth still
+conditional on successor availability. Gate E adds bounded endogenous search, certified
+exhaustion, and recursive-productivity retention; it does not prove generic candidate existence
+or a general noncommuting theorem.
 
 ## Executable theorem-to-runtime path
 
@@ -152,6 +167,12 @@ Phase 5A run the bounded untrusted reference proposal process
 Phase 6  realize actual filesystem candidates and verified rollback snapshots
 Phase 7  promote or reject through Lean/checker-controlled atomic transactions
 Phase 8  replay retained transitions without invoking the original generator
+Phase 9  freeze the Gate D learned-state/update/certificate contract
+Phase 10 instantiate the compact learned substrate and lifecycle
+Phase 11 install package-bound self-hosted generator/planner authority
+Phase 12 construct the certified M0 → M4 multi-component successor trajectory
+Phase 13 independently replay and adversarially close M0 → M4 without learned workers
+Phase 14 discover and replay the schedule-free M4 → M8 trajectory with rejection recovery
 ```
 
 The validated finite reference trajectory is:
@@ -260,6 +281,12 @@ python -m unittest discover -s tests_phase8 -v
 python -m unittest discover -s tests_pytorch_pilot -v
 ```
 
+Formal Core v3/v4 and Runtime v3/v4 are additionally pinned and exercised by
+`.github/workflows/formal-core-v3-gate-d.yml`,
+`.github/workflows/formal-core-v4-gate-e.yml`, the `runtime-v3-*` workflows, and
+`.github/workflows/runtime-v4-phase-14.yml`; permanent Phase 14 closure evidence is retained
+under `artifacts/releases/v4-phase14-closure/`.
+
 Principal repository-root entry points include:
 
 ```bash
@@ -273,11 +300,11 @@ python scripts/replay_pytorch_pilot.py --repo-root . --store-root artifacts/pyto
 
 ## Next research boundary
 
-Later optional work may introduce learned experiment selection, proposal ranking, planners,
-adapters/LoRA, optimizer-policy changes, or architecture changes. Every such component
-must remain inside the successor package hash boundary and outside checker authority.
-Large external benchmarks should follow—not precede—the corresponding deterministic
-containment, rollback, promotion, and replay evidence.
+Phase 15 is next: dynamic hidden challenges and a materially more capable RCLM substrate,
+while the root verifier, post-freeze evaluation boundary, package hashes, rollback, and promotion
+authority remain external and fail-closed. Gate E remains open until later open-horizon trajectory
+and independent adversarial closure work; general noncommuting semantics remain a subsequent
+mathematical extension rather than a Phase 15 claim.
 
 ## Claim boundary
 
@@ -285,20 +312,22 @@ The repository does **not** establish:
 
 ```text
 exact full Paper I or Paper II semantic equivalence
-arbitrary learned-system entry or learned proposal authority
+arbitrary learned-system entry or general learned proposal authority beyond the declared packages
+generic accepted-candidate existence or generic successor availability
 arbitrary or unbounded generator/proof-search completeness
 strict useful improvement at every recursive step
-general noncommuting QRE or arbitrary CPTP data processing
-Petz or approximate recovery
+full Gate E closure or arbitrary-domain/open-horizon/asynchronous RSI
+general noncommuting QRE, arbitrary CPTP data processing, or Petz recovery
 general Python-to-Lean refinement beyond the declared packets
-independent replay beyond the declared finite reference and tiny-model pilot scopes
-GPU reproducibility or LLM-scale learned refinement
-external benchmark performance
-autonomous or unbounded RSI
+independent replay beyond the declared Phase 8, Phase 13, and Phase 14 scopes
+GPU reproducibility, LLM-scale learned refinement, or external benchmark performance
+empirically unbounded RSI
 ```
 
 ## Citation and licenses
 
 Use `CITATION.cff` for the package citation and cite the companion manuscripts for
-paper-level claims. Papers and documentation are intended for CC BY 4.0; Lean code and
-software utilities are intended for MIT. See `LICENSE` and `LICENSES/`.
+paper-level claims. Papers and documentation are licensed under CC BY 4.0; Lean code and
+software utilities are licensed under MIT. See `LICENSE`, `LICENSES/`, and
+`RELEASE_NOTES.md`. Zenodo DOI identifiers will be added only after the corresponding records
+are published; no placeholder DOI is asserted here.
