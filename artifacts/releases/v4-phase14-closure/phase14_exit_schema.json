@@ -1,0 +1,9 @@
+{
+  "content_hash_valid": true,
+  "errors": [],
+  "instance": "phase14_exit.json",
+  "ok": true,
+  "schema": "phase_14_closure.schema.json",
+  "schema_id": "runtime.v4.phase14.schema_validation.v1",
+  "schema_valid": true
+}

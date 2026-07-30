@@ -1,8 +1,8 @@
 cff-version: 1.2.0
+type: software
 message: "If you use this work, please cite the repository release and the companion RCP/RCLM papers."
 title: "RCP/RCLM Reflective Successor Verification: Papers, Lean Proofs, and Controlled Executable Artifacts"
-version: "v3-phase13-closure"
-date-released: "2026-07-26"
+version: "v4-phase14-closure"
 authors:
   - given-names: "Nicolas Calder"
     alias: "n9269017"

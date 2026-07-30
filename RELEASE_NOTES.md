@@ -1,5 +1,78 @@
 # Release Notes
 
+## v4-phase14-closure - 2026-07-29
+
+This repository state records the Formal Core v4 Gate E foundation and the
+Executable Core v4 Phase 14 schedule-free successor-closure result while
+preserving the earlier v1-v3 claim boundaries.
+
+### Included
+
+- Formal Core v4 Gate E constructive endogenous successor-availability and
+  recursive-productivity foundation.
+- Executable Core v4 Phase 14 schedule-free `M4 -> M8` trajectory beginning
+  from the exact certified Phase 13 `M4` package.
+- Four accepted promotions across four substantive update families:
+  model weights, memory/retrieval, generator/planner, and adapter/optimizer.
+- Two retained fail-closed rejections followed by package-generated,
+  rejection-conditioned recovery.
+- Capability-frontier expansion from cardinality 7 to cardinality 11.
+- Zero manual repairs, zero pre-freeze held-out visibility, and zero
+  host-provided successful-route fields.
+- Pinned worker-free replay on Ubuntu, Windows, and macOS.
+- Final three-report aggregation, byte-identical closure entry points, and
+  Draft 2020-12 schema validation.
+- A compact permanent Phase 14 evidence package under
+  `artifacts/releases/v4-phase14-closure/`.
+
+### Phase 14 closure evidence
+
+```text
+certified Phase 14 source head:
+363235f7d5f03508aeeac85c6319533a900dbb00
+
+authoritative closure workflow:
+30429512027
+
+final closure artifact:
+8719247901
+
+final closure artifact SHA-256:
+5c489ddb6508c393d72ecf74f9703bc99c2518d8d2e007cc228d24e88762cb21
+
+Phase 14 merge:
+e549590c6f3c35497939a107d589f66f2720e0c8
+
+post-merge hygiene merge:
+1517a235f76c80125a6d9f670e9bd87ab7da1046
+```
+
+### Accepted boundary
+
+```json
+{
+  "accepted": true,
+  "phase14_exit_closed": true,
+  "gate_e_closed": false,
+  "next_phase": 15
+}
+```
+
+### Scope limitation
+
+This is a short, selected, domain-relative, package-bound schedule-free
+successor trajectory. It does not establish generic accepted-candidate
+existence, generic successor availability, arbitrary hidden-task competence,
+open-horizon continuation, asynchronous autonomous operation, full Gate E
+closure, general noncommuting quantum semantics, or empirically unbounded RSI.
+
+### Publication-date boundary
+
+`CITATION.cff` identifies version `v4-phase14-closure` and resource type
+`software`. Its `date-released` field is intentionally omitted in this
+pre-release preparation commit; it must be set to the actual public GitHub
+release date in the final publication-freeze pass.
+
 ## v3-phase13-closure - 2026-07-26
 
 This repository state closes the selected Formal Core v3 and Executable Core v3
