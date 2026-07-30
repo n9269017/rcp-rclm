@@ -1,0 +1,37 @@
+{
+  "creators": [
+    {
+      "name": "Nicolas Calder"
+    }
+  ],
+  "title": "RCP/RCLM Reflective Successor Verification: Papers, Lean Proofs, and Controlled Executable Artifacts",
+  "description": "Formal and executable RCP/RCLM instantiation package through Formal Core v4 Gate E and Executable Core v4 Phase 14, including the companion papers, Lean projects, Python runtimes, PowerShell and shell tooling, schemas, workflows, controlled artifacts, and retained cross-platform replay evidence. Phase 14 closes a finite, domain-relative, package-bound schedule-free M4-to-M8 trajectory; it does not establish generic successor availability, full Gate E closure, open-horizon or asynchronous RSI, general noncommuting semantics, or empirically unbounded RSI.",
+  "version": "v4-phase14-closure",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://doi.org/10.5281/zenodo.21710273",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "https://doi.org/10.5281/zenodo.21710376",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-preprint"
+    }
+  ],
+  "keywords": [
+    "recursive self-improvement",
+    "recursive coherence preservation",
+    "recursive coherence language model",
+    "robust reflective successor theorem",
+    "formal verification",
+    "Lean 4",
+    "proof-carrying successors",
+    "schedule-free successor search",
+    "independent replay"
+  ],
+  "license": "mit",
+  "upload_type": "software",
+  "language": "eng"
+}
