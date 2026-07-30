@@ -1,6 +1,13 @@
 # Release Notes
 
-## v4-phase14-closure - 2026-07-29
+## v4-phase14-closure - 2026-07-31
+
+### Published DOI records
+
+- Software concept DOI (all versions): `10.5281/zenodo.21710857`
+- Software version DOI (`v4-phase14-closure`): `10.5281/zenodo.21710858`
+- Paper I DOI: `10.5281/zenodo.21710273`
+- Paper II DOI: `10.5281/zenodo.21710376`
 
 This repository state records the Formal Core v4 Gate E foundation and the
 Executable Core v4 Phase 14 schedule-free successor-closure result while
@@ -65,13 +72,6 @@ successor trajectory. It does not establish generic accepted-candidate
 existence, generic successor availability, arbitrary hidden-task competence,
 open-horizon continuation, asynchronous autonomous operation, full Gate E
 closure, general noncommuting quantum semantics, or empirically unbounded RSI.
-
-### Publication-date boundary
-
-`CITATION.cff` identifies version `v4-phase14-closure` and resource type
-`software`. Its `date-released` field is intentionally omitted in this
-pre-release preparation commit; it must be set to the actual public GitHub
-release date in the final publication-freeze pass.
 
 ## v3-phase13-closure - 2026-07-26
 

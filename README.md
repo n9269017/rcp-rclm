@@ -1,5 +1,7 @@
 # RCP/RCLM — Reflective Successor Verification
 
+[![Software DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21710857.svg)](https://doi.org/10.5281/zenodo.21710857)
+
 This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1
 certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
 Phases 0–8**, the first bounded **PyTorch learned-successor pilot**, and the later
@@ -329,5 +331,7 @@ empirically unbounded RSI
 Use `CITATION.cff` for the package citation and cite the companion manuscripts for
 paper-level claims. Papers and documentation are licensed under CC BY 4.0; Lean code and
 software utilities are licensed under MIT. See `LICENSE`, `LICENSES/`, and
-`RELEASE_NOTES.md`. Zenodo DOI identifiers will be added only after the corresponding records
-are published; no placeholder DOI is asserted here.
+`RELEASE_NOTES.md`. Published records: [Paper I](https://doi.org/10.5281/zenodo.21710273),
+[Paper II](https://doi.org/10.5281/zenodo.21710376), and the
+[software series](https://doi.org/10.5281/zenodo.21710857); the exact Phase 14 software snapshot is
+[version DOI 10.5281/zenodo.21710858](https://doi.org/10.5281/zenodo.21710858).
