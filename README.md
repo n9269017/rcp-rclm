@@ -2,7 +2,9 @@
 
 This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1
 certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
-Phases 0–8**, and the first bounded **PyTorch learned-successor pilot**.
+Phases 0–8**, the first bounded **PyTorch learned-successor pilot**, and the later
+**Formal/Executable Core v3–v4** work through Gate D, Phases 9–13, the Gate E formal
+foundation, and Phase 14.
 
 The project proves and executes a conditional successor-verification architecture. The
 formal layer supplies the theorem kernel and the selected finite classical/diagonal
@@ -36,7 +38,7 @@ noncommuting quantum semantics.
 | Phase 7 | Complete and cross-platform validated | Fixed-budget retries, pinned Lean/checker admission, immutable parent-linked packages, hash-chained ledger, atomic active pointer, and rollback fallback |
 | Phase 8 | Complete and cross-platform/pinned-Lean validated | Portable retained evidence, zero-generator replay, fresh realization/certificate/Lean/checker recomputation, two promotions, two bounded rejections, and a three-package chain |
 | First PyTorch learned-successor pilot | Complete at the declared tiny CPU-only scope | Two deterministic proposal runs, one genuine SGD update, canonical int64 weight package, exact framework-independent evaluation, protected-metric non-regression, fail-closed admission, atomic promotion/rejection, rollback, and zero-training replay |
-| Larger/open-ended learned generators and benchmarks | Open | No learned proposal authority, GPU reproducibility, LLM-scale training, architecture search, external benchmark claim, or autonomous RSI |
+| Formal/Executable Cores v3–v4 — Gate D through Phase 14 | Complete at the declared selected scope; Gate E remains partially open | Gate D and Phases 9–13 formalize and independently replay the certified `M0 → M4` learned-successor trajectory. Gate E adds constructive bounded search and recursive-productivity objects. Phase 14 closes a schedule-free `M4 → M8` trajectory with four accepted promotions, two retained fail-closed rejections, four substantive update families, zero manual repairs, and pinned worker-free replay on Ubuntu, Windows, and macOS. The result is finite, domain-relative, and package-bound; it does not establish generic successor availability, full Gate E closure, open-horizon/asynchronous RSI, general noncommuting semantics, or empirically unbounded RSI. |
 
 Formal documentation is indexed at
 [`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md). Executable documentation
