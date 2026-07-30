@@ -1,0 +1,150 @@
+name: Temporary minimal Gate D through Phase 14 README finalizer
+
+on:
+  push:
+    branches:
+      - agent/v4-phase14-minimal-readme-finalization
+    paths:
+      - .github/workflows/v4-phase14-minimal-readme-finalizer.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact README finalization branch
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: agent/v4-phase14-minimal-readme-finalization
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Apply the minimal README update and regenerate checksums
+        shell: python
+        run: |
+          from __future__ import annotations
+
+          import hashlib
+          import subprocess
+          from pathlib import Path
+
+          workflow = Path(
+              ".github/workflows/v4-phase14-minimal-readme-finalizer.yml"
+          )
+          readme_path = Path("README.md")
+          readme = readme_path.read_text(encoding="utf-8")
+
+          old_intro = (
+              "This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1\n"
+              "certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2\n"
+              "Phases 0–8**, and the first bounded **PyTorch learned-successor pilot**.\n"
+          )
+          new_intro = (
+              "This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1\n"
+              "certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2\n"
+              "Phases 0–8**, the first bounded **PyTorch learned-successor pilot**, and the later\n"
+              "**Formal/Executable Core v3–v4** work through Gate D, Phases 9–13, the Gate E formal\n"
+              "foundation, and Phase 14.\n"
+          )
+          if readme.count(old_intro) != 1:
+              raise SystemExit("README introductory anchor did not match exactly once")
+          readme = readme.replace(old_intro, new_intro, 1)
+
+          old_row = (
+              "| Larger/open-ended learned generators and benchmarks | Open | "
+              "No learned proposal authority, GPU reproducibility, LLM-scale training, "
+              "architecture search, external benchmark claim, or autonomous RSI |"
+          )
+          new_row = (
+              "| Formal/Executable Cores v3–v4 — Gate D through Phase 14 | "
+              "Complete at the declared selected scope; Gate E remains partially open | "
+              "Gate D and Phases 9–13 formalize and independently replay the certified "
+              "`M0 → M4` learned-successor trajectory. Gate E adds constructive bounded "
+              "search and recursive-productivity objects. Phase 14 closes a schedule-free "
+              "`M4 → M8` trajectory with four accepted promotions, two retained fail-closed "
+              "rejections, four substantive update families, zero manual repairs, and pinned "
+              "worker-free replay on Ubuntu, Windows, and macOS. The result is finite, "
+              "domain-relative, and package-bound; it does not establish generic successor "
+              "availability, full Gate E closure, open-horizon/asynchronous RSI, general "
+              "noncommuting semantics, or empirically unbounded RSI. |"
+          )
+          if readme.count(old_row) != 1:
+              raise SystemExit("README v3-v4 status-row anchor did not match exactly once")
+          readme = readme.replace(old_row, new_row, 1)
+
+          if readme.count("Formal/Executable Cores v3–v4 — Gate D through Phase 14") != 1:
+              raise SystemExit("README must contain exactly one combined v3-v4 status row")
+          if "## Pinned formal project" not in readme or "## Citation and licenses" not in readme:
+              raise SystemExit("README structure changed unexpectedly")
+          readme_path.write_text(readme, encoding="utf-8", newline="\n")
+
+          workflow.unlink()
+
+          raw = subprocess.check_output(
+              ["git", "ls-files", "-co", "--exclude-standard", "-z"]
+          )
+          paths = [value.decode("utf-8") for value in raw.split(b"\0") if value]
+          excluded = {
+              "SHA256SUMS.txt",
+              str(workflow),
+          }
+          retained = sorted(
+              (path for path in paths if path not in excluded),
+              key=lambda path: path.encode("utf-8"),
+          )
+          if len(retained) != 1742:
+              raise SystemExit(
+                  f"unexpected retained checksum surface: {len(retained)}"
+              )
+          lines = [
+              f"{hashlib.sha256(Path(path).read_bytes()).hexdigest()}  {path}"
+              for path in retained
+          ]
+          Path("SHA256SUMS.txt").write_text(
+              "\n".join(lines) + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
+
+          expected_readme_hash = hashlib.sha256(readme_path.read_bytes()).hexdigest()
+          manifest_line = f"{expected_readme_hash}  README.md"
+          manifest = Path("SHA256SUMS.txt").read_text(encoding="utf-8").splitlines()
+          if manifest.count(manifest_line) != 1:
+              raise SystemExit("README checksum binding is missing or duplicated")
+
+      - name: Validate and publish the final two-file surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git diff --cached --check
+
+          mapfile -t changed < <(git diff --cached --name-only | sort)
+          expected=(
+            ".github/workflows/v4-phase14-minimal-readme-finalizer.yml"
+            "README.md"
+            "SHA256SUMS.txt"
+          )
+          if [ "${changed[*]}" != "${expected[*]}" ]; then
+            printf 'Unexpected staged paths:\n%s\n' "${changed[*]}" >&2
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Add concise Gate D through Phase 14 README status [skip ci]"
+          git push origin HEAD:agent/v4-phase14-minimal-readme-finalization
+
+          mapfile -t retained < <(git diff --name-only origin/main...HEAD | sort)
+          expected_retained=("README.md" "SHA256SUMS.txt")
+          if [ "${retained[*]}" != "${expected_retained[*]}" ]; then
+            printf 'Unexpected retained PR paths:\n%s\n' "${retained[*]}" >&2
+            exit 1
+          fi
