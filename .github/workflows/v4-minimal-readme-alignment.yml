@@ -1,0 +1,306 @@
+name: Temporary minimal v3 and v4 README alignment
+
+on:
+  push:
+    branches:
+      - agent/v4-phase14-minimal-readme-finalization
+    paths:
+      - .github/workflows/v4-minimal-readme-alignment.yml
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out README branch
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: agent/v4-phase14-minimal-readme-finalization
+          fetch-depth: 0
+
+      - name: Apply exact minimal README alignment
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("README.md")
+          text = path.read_text(encoding="utf-8")
+
+          replacements = [
+              (
+                  """This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1
+          certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
+          Phases 0–8**, the first bounded **PyTorch learned-successor pilot**, and the later
+          **Formal/Executable Core v3–v4** work through Gate D, Phases 9–13, the Gate E formal
+          foundation, and Phase 14.
+          """,
+                  """This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1
+          certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
+          Phases 0–8**, the first bounded **PyTorch learned-successor pilot**, and the later
+          **Formal/Executable Core v3** work through Gate D and Phases 9–13 plus
+          **Formal/Executable Core v4** through the Gate E foundation and Phase 14.
+          """,
+              ),
+              (
+                  """The repository establishes a finite theorem-to-runtime refinement witness at the declared
+          reference scope. It does **not** prove autonomous or unbounded recursive self-improvement,
+          generator completeness, useful strict improvement at every step, or general
+          noncommuting quantum semantics.
+          """,
+                  """The repository establishes finite theorem-to-runtime refinement witnesses at the declared
+          reference scopes, including the selected schedule-free Phase 14 trajectory. It does **not**
+          prove generic successor availability, full Gate E closure, open-horizon/asynchronous or
+          unbounded RSI, or general noncommuting quantum semantics.
+          """,
+              ),
+              (
+                  """| Formal/Executable Cores v3–v4 — Gate D through Phase 14 | Complete at the declared selected scope; Gate E remains partially open | Gate D and Phases 9–13 formalize and independently replay the certified `M0 → M4` learned-successor trajectory. Gate E adds constructive bounded search and recursive-productivity objects. Phase 14 closes a schedule-free `M4 → M8` trajectory with four accepted promotions, two retained fail-closed rejections, four substantive update families, zero manual repairs, and pinned worker-free replay on Ubuntu, Windows, and macOS. The result is finite, domain-relative, and package-bound; it does not establish generic successor availability, full Gate E closure, open-horizon/asynchronous RSI, general noncommuting semantics, or empirically unbounded RSI. |
+          """,
+                  """| Formal/Executable Cores v3–v4 — v3: Gate D + Phases 9–13; v4: Gate E + Phase 14 | Phase 14 complete at the declared selected scope; Gate E remains partially open; Phase 15 is next | v3 consists of Gate D and Phases 9–13, culminating in independent replay of the certified `M0 → M4` learned-successor trajectory. v4 consists of Gate E and Phase 14; Gate E adds constructive bounded search, exhaustion, and recursive-productivity objects. Phase 14 closes a schedule-free `M4 → M8` trajectory with four accepted promotions, two retained fail-closed rejections, four substantive update families, zero manual repairs, and pinned worker-free replay on Ubuntu, Windows, and macOS. The result remains finite, domain-relative, and package-bound; generic successor availability, full Gate E closure, open-horizon/asynchronous RSI, general noncommuting semantics, and empirically unbounded RSI remain open. |
+          """,
+              ),
+              (
+                  """Formal documentation is indexed at
+          [`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md). Executable documentation
+          is indexed at [`docs/executable_core_v2/README.md`](docs/executable_core_v2/README.md).
+          """,
+                  """Formal and executable v2 documentation is indexed at
+          [`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md) and
+          [`docs/executable_core_v2/README.md`](docs/executable_core_v2/README.md). The later
+          v3/v4 records are under `docs/formal_core_v3/`, `docs/executable_core_v3/`,
+          `docs/formal_core_v4/`, and `docs/executable_core_v4/`.
+          """,
+              ),
+              (
+                  """The active Lean project is:
+
+          ```text
+          lean/rcp_rclm_formal_core_v2/
+          ```
+
+          It pins:
+
+          ```text
+          Lean:    leanprover/lean4:v4.31.0
+          mathlib: fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          ```
+
+          The frozen formal source commit used by Runtime v2 is:
+
+          ```text
+          012de4a55f326107f53f0e215c8aec62859d0bbf
+          ```
+
+          The historical v1 project remains under `lean/rcp_rclm_can_lean4/`; v2 does not overwrite
+          or silently broaden that certificate.
+          """,
+                  """The pinned Lean projects are:
+
+          ```text
+          lean/rcp_rclm_formal_core_v2/   Gates A–C
+          lean/rcp_rclm_formal_core_v3/   Gate D; imports v2
+          lean/rcp_rclm_formal_core_v4/   Gate E; imports v3 and v2
+          ```
+
+          All three pin:
+
+          ```text
+          Lean:    leanprover/lean4:v4.31.0
+          mathlib: fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+          ```
+
+          The frozen formal source commit used by Runtime v2 remains
+          `012de4a55f326107f53f0e215c8aec62859d0bbf`. The historical v1 project remains under
+          `lean/rcp_rclm_can_lean4/`; the later cores import rather than overwrite their predecessors.
+          """,
+              ),
+              (
+                  """lean/
+            rcp_rclm_formal_core_v2/       active pinned Formal Core v2
+            rcp_rclm_can_lean4/            historical v1 certificate
+
+          docs/formal_core_v2/             theorem, gate, audit, and reproduction records
+          docs/executable_core_v2/         Phase 0–8 and PyTorch-pilot architecture/validation
+          """,
+                  """lean/
+            rcp_rclm_formal_core_v4/       Gate E Formal Core v4
+            rcp_rclm_formal_core_v3/       Gate D Formal Core v3
+            rcp_rclm_formal_core_v2/       Gates A–C Formal Core v2
+            rcp_rclm_can_lean4/            historical v1 certificate
+
+          docs/formal_core_v2/             Gates A–C theorem/audit records
+          docs/executable_core_v2/         Phase 0–8 and PyTorch-pilot records
+          docs/formal_core_v3/             Gate D theorem/audit records
+          docs/executable_core_v3/         Phase 9–13 architecture/validation
+          docs/formal_core_v4/             Gate E theorem/audit records
+          docs/executable_core_v4/         Gate E and Phase 14 architecture/validation
+          """,
+              ),
+              (
+                  """  tools/                          conformance and artifact runners
+
+          scripts/
+          """,
+                  """  tools/                          conformance and artifact runners
+
+          python/rcp_rclm_executable_core_v3/  Gate D and Phase 9–13 schemas
+          python/rcp_rclm_runtime_v3/          learned trajectory and independent replay
+          python/rcp_rclm_executable_core_v4/  Gate E and Phase 14 schemas
+          python/rcp_rclm_runtime_v4/          bounded search and schedule-free closure
+
+          scripts/
+          """,
+              ),
+              (
+                  """Gate B instantiates the theorem with exact finite classical objects. Gate C instantiates
+          the selected two-level commuting/diagonal quantum reference. The latter does not imply a
+          general noncommuting theorem.
+          """,
+                  """Gate B instantiates the theorem with exact finite classical objects. Gate C instantiates
+          the selected two-level commuting/diagonal quantum reference. Gate D adds learned package,
+          update, certificate, capability-frontier, and accepted-step objects, with infinite growth still
+          conditional on successor availability. Gate E adds bounded endogenous search, certified
+          exhaustion, and recursive-productivity retention; it does not prove generic candidate existence
+          or a general noncommuting theorem.
+          """,
+              ),
+              (
+                  """Phase 8  replay retained transitions without invoking the original generator
+          """,
+                  """Phase 8  replay retained transitions without invoking the original generator
+          Phase 9  freeze the Gate D learned-state/update/certificate contract
+          Phase 10 instantiate the compact learned substrate and lifecycle
+          Phase 11 install package-bound self-hosted generator/planner authority
+          Phase 12 construct the certified M0 → M4 multi-component successor trajectory
+          Phase 13 independently replay and adversarially close M0 → M4 without learned workers
+          Phase 14 discover and replay the schedule-free M4 → M8 trajectory with rejection recovery
+          """,
+              ),
+              (
+                  """Principal repository-root entry points include:
+          """,
+                  """Formal Core v3/v4 and Runtime v3/v4 are additionally pinned and exercised by
+          `.github/workflows/formal-core-v3-gate-d.yml`,
+          `.github/workflows/formal-core-v4-gate-e.yml`, the `runtime-v3-*` workflows, and
+          `.github/workflows/runtime-v4-phase-14.yml`; permanent Phase 14 closure evidence is retained
+          under `artifacts/releases/v4-phase14-closure/`.
+
+          Principal repository-root entry points include:
+          """,
+              ),
+              (
+                  """Later optional work may introduce learned experiment selection, proposal ranking, planners,
+          adapters/LoRA, optimizer-policy changes, or architecture changes. Every such component
+          must remain inside the successor package hash boundary and outside checker authority.
+          Large external benchmarks should follow—not precede—the corresponding deterministic
+          containment, rollback, promotion, and replay evidence.
+          """,
+                  """Phase 15 is next: dynamic hidden challenges and a materially more capable RCLM substrate,
+          while the root verifier, post-freeze evaluation boundary, package hashes, rollback, and promotion
+          authority remain external and fail-closed. Gate E remains open until later open-horizon trajectory
+          and independent adversarial closure work; general noncommuting semantics remain a subsequent
+          mathematical extension rather than a Phase 15 claim.
+          """,
+              ),
+              (
+                  """exact full Paper I or Paper II semantic equivalence
+          arbitrary learned-system entry or learned proposal authority
+          arbitrary or unbounded generator/proof-search completeness
+          strict useful improvement at every recursive step
+          general noncommuting QRE or arbitrary CPTP data processing
+          Petz or approximate recovery
+          general Python-to-Lean refinement beyond the declared packets
+          independent replay beyond the declared finite reference and tiny-model pilot scopes
+          GPU reproducibility or LLM-scale learned refinement
+          external benchmark performance
+          autonomous or unbounded RSI
+          """,
+                  """exact full Paper I or Paper II semantic equivalence
+          arbitrary learned-system entry or general learned proposal authority beyond the declared packages
+          generic accepted-candidate existence or generic successor availability
+          arbitrary or unbounded generator/proof-search completeness
+          strict useful improvement at every recursive step
+          full Gate E closure or arbitrary-domain/open-horizon/asynchronous RSI
+          general noncommuting QRE, arbitrary CPTP data processing, or Petz recovery
+          general Python-to-Lean refinement beyond the declared packets
+          independent replay beyond the declared Phase 8, Phase 13, and Phase 14 scopes
+          GPU reproducibility, LLM-scale learned refinement, or external benchmark performance
+          empirically unbounded RSI
+          """,
+              ),
+              (
+                  """Use `CITATION.cff` for the package citation and cite the companion manuscripts for
+          paper-level claims. Papers and documentation are intended for CC BY 4.0; Lean code and
+          software utilities are intended for MIT. See `LICENSE` and `LICENSES/`.
+          """,
+                  """Use `CITATION.cff` for the package citation and cite the companion manuscripts for
+          paper-level claims. Papers and documentation are licensed under CC BY 4.0; Lean code and
+          software utilities are licensed under MIT. See `LICENSE`, `LICENSES/`, and
+          `RELEASE_NOTES.md`. Zenodo DOI identifiers will be added only after the corresponding records
+          are published; no placeholder DOI is asserted here.
+          """,
+              ),
+          ]
+
+          for old, new in replacements:
+              if text.count(old) != 1:
+                  raise SystemExit(f"README replacement anchor mismatch: {old[:80]!r}")
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding="utf-8", newline="\n")
+
+      - name: Remove temporary workflow and regenerate complete checksums
+        shell: python
+        run: |
+          import hashlib
+          import subprocess
+          from pathlib import Path
+
+          temporary = Path(".github/workflows/v4-minimal-readme-alignment.yml")
+          temporary.unlink()
+
+          raw = subprocess.check_output(
+              ["git", "ls-files", "-co", "--exclude-standard", "-z"]
+          )
+          paths = [value.decode("utf-8") for value in raw.split(b"\0") if value]
+          retained = sorted(
+              (
+                  path
+                  for path in paths
+                  if path not in {"SHA256SUMS.txt", str(temporary)}
+              ),
+              key=lambda path: path.encode("utf-8"),
+          )
+          lines = [
+              f"{hashlib.sha256(Path(path).read_bytes()).hexdigest()}  {path}"
+              for path in retained
+          ]
+          Path("SHA256SUMS.txt").write_text(
+              "\n".join(lines) + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
+
+      - name: Validate exact retained surface and push
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git diff --cached --check
+          mapfile -t changed < <(git diff --name-only origin/main -- | sort)
+          expected=(README.md SHA256SUMS.txt)
+          if [ "${changed[*]}" != "${expected[*]}" ]; then
+            printf 'unexpected retained paths:\n%s\n' "${changed[*]}" >&2
+            exit 1
+          fi
+          grep -Fq 'v3: Gate D + Phases 9–13; v4: Gate E + Phase 14' README.md
+          grep -Fq 'Phase 15 is next' README.md
+          grep -Fq 'lean/rcp_rclm_formal_core_v4/' README.md
+          grep -Fq 'Phase 14 discover and replay the schedule-free M4 → M8 trajectory' README.md
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'Align minimal README with v3 and v4 boundaries [skip ci]'
+          git push origin HEAD:agent/v4-phase14-minimal-readme-finalization
