@@ -1,4 +1,4 @@
-name: Temporary v4 Phase 14 Zenodo DOI synchronization
+name: Temporary v4 Phase 14 Zenodo DOI probe
 
 on:
   push:
@@ -10,127 +10,76 @@ on:
 permissions:
   contents: write
 
-env:
-  TARGET_BRANCH: agent/v4-phase14-zenodo-doi-synchronization
-  SOFTWARE_RECORD_ID: "21710858"
-  PAPER_I_RECORD_ID: "21710273"
-  PAPER_II_RECORD_ID: "21710376"
-
 jobs:
-  synchronize:
+  probe:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
-      - name: Check out exact synchronization branch
+      - name: Check out probe branch
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
         with:
-          ref: ${{ env.TARGET_BRANCH }}
+          ref: agent/v4-phase14-zenodo-doi-synchronization
           fetch-depth: 0
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: "3.11"
-
-      - name: Query Zenodo and materialize repository DOI metadata
+      - name: Query exact public Zenodo records
         shell: python
         run: |
           from __future__ import annotations
 
-          import hashlib
           import json
-          import os
-          import subprocess
           import urllib.request
           from pathlib import Path
 
-          software_id = os.environ["SOFTWARE_RECORD_ID"]
-          paper_i_id = os.environ["PAPER_I_RECORD_ID"]
-          paper_ii_id = os.environ["PAPER_II_RECORD_ID"]
-
-          def fetch_record(record_id: str) -> dict[str, object]:
+          def fetch(record_id: str) -> dict[str, object]:
               request = urllib.request.Request(
                   f"https://zenodo.org/api/records/{record_id}",
                   headers={
                       "Accept": "application/json",
-                      "User-Agent": "rcp-rclm-zenodo-sync/1.0 (https://github.com/n9269017/rcp-rclm)",
+                      "User-Agent": "rcp-rclm-zenodo-probe/1.0 (https://github.com/n9269017/rcp-rclm)",
                   },
               )
               with urllib.request.urlopen(request, timeout=60) as response:
-                  if response.status != 200:
-                      raise SystemExit(
-                          f"Zenodo record {record_id} returned HTTP {response.status}"
-                      )
                   return json.loads(response.read().decode("utf-8"))
 
-          def nested(mapping: object, *keys: str) -> object | None:
-              current = mapping
+          def nested(value: object, *keys: str) -> object | None:
+              current = value
               for key in keys:
                   if not isinstance(current, dict):
                       return None
                   current = current.get(key)
               return current
 
-          def doi_of(record: dict[str, object]) -> str:
-              candidates = (
+          def version_doi(record: dict[str, object]) -> str:
+              for value in (
                   record.get("doi"),
                   nested(record, "pids", "doi", "identifier"),
                   nested(record, "metadata", "doi"),
-              )
-              for candidate in candidates:
-                  if isinstance(candidate, str) and candidate:
-                      return candidate
-              raise SystemExit("Zenodo version DOI was not present in the API response")
+              ):
+                  if isinstance(value, str) and value:
+                      return value
+              raise SystemExit("version DOI missing")
 
-          def concept_doi_of(record: dict[str, object]) -> str:
-              candidates = (
+          def concept_doi(record: dict[str, object]) -> str:
+              for value in (
                   record.get("conceptdoi"),
                   nested(record, "parent", "pids", "doi", "identifier"),
                   nested(record, "metadata", "conceptdoi"),
-              )
-              for candidate in candidates:
-                  if isinstance(candidate, str) and candidate:
-                      return candidate
-              raise SystemExit("Zenodo concept DOI was not present in the API response")
+              ):
+                  if isinstance(value, str) and value:
+                      return value
+              raise SystemExit("concept DOI missing")
 
-          software = fetch_record(software_id)
-          paper_i = fetch_record(paper_i_id)
-          paper_ii = fetch_record(paper_ii_id)
-
-          software_doi = doi_of(software)
-          software_concept_doi = concept_doi_of(software)
-          paper_i_doi = doi_of(paper_i)
-          paper_ii_doi = doi_of(paper_ii)
-
-          expected = {
-              "software": "10.5281/zenodo.21710858",
-              "paper_i": "10.5281/zenodo.21710273",
-              "paper_ii": "10.5281/zenodo.21710376",
-          }
-          observed = {
-              "software": software_doi,
-              "paper_i": paper_i_doi,
-              "paper_ii": paper_ii_doi,
-          }
-          if observed != expected:
-              raise SystemExit(
-                  "Zenodo DOI mismatch: "
-                  + json.dumps({"expected": expected, "observed": observed}, sort_keys=True)
-              )
-
+          software = fetch("21710858")
+          paper_i = fetch("21710273")
+          paper_ii = fetch("21710376")
           metadata = software.get("metadata")
           if not isinstance(metadata, dict):
               metadata = {}
 
-          audit = {
-              "schema_id": "rcp-rclm.zenodo_metadata_audit.v1",
-              "software_record_id": software_id,
-              "software_version_doi": software_doi,
-              "software_concept_doi": software_concept_doi,
-              "paper_i_record_id": paper_i_id,
-              "paper_i_doi": paper_i_doi,
-              "paper_ii_record_id": paper_ii_id,
-              "paper_ii_doi": paper_ii_doi,
+          output = {
+              "software_record_id": "21710858",
+              "software_version_doi": version_doi(software),
+              "software_concept_doi": concept_doi(software),
               "software_title": metadata.get("title"),
               "software_version": metadata.get("version"),
               "software_publication_date": metadata.get("publication_date"),
@@ -139,176 +88,22 @@ jobs:
               "software_license": metadata.get("license") or metadata.get("rights"),
               "software_related_identifiers": metadata.get("related_identifiers"),
               "software_access_right": metadata.get("access_right"),
+              "paper_i_doi": version_doi(paper_i),
+              "paper_ii_doi": version_doi(paper_ii),
           }
-          Path("/tmp/zenodo_metadata_audit.json").write_text(
-              json.dumps(audit, indent=2, sort_keys=True) + "\n",
+          Path("zenodo_metadata_probe.json").write_text(
+              json.dumps(output, indent=2, sort_keys=True) + "\n",
               encoding="utf-8",
               newline="\n",
           )
-          print(json.dumps(audit, indent=2, sort_keys=True))
+          print(json.dumps(output, indent=2, sort_keys=True))
 
-          readme_path = Path("README.md")
-          readme = readme_path.read_text(encoding="utf-8")
-          badge = (
-              f"[![Software DOI](https://zenodo.org/badge/DOI/{software_concept_doi}.svg)]"
-              f"(https://doi.org/{software_concept_doi})"
-          )
-          if badge not in readme:
-              heading = "# RCP/RCLM — Reflective Successor Verification\n"
-              if readme.count(heading) != 1:
-                  raise SystemExit("README title anchor mismatch")
-              readme = readme.replace(heading, heading + "\n" + badge + "\n", 1)
-          readme_path.write_text(readme, encoding="utf-8", newline="\n")
-
-          citation_path = Path("CITATION.cff")
-          citation = citation_path.read_text(encoding="utf-8")
-          version_anchor = 'version: "v4-phase14-closure"\n'
-          if citation.count(version_anchor) != 1:
-              raise SystemExit("CITATION.cff version anchor mismatch")
-          if "date-released:" not in citation:
-              identifiers = f'''date-released: "2026-07-30"
-          identifiers:
-            - description: "Concept DOI for all archived versions of the RCP/RCLM software package."
-              type: doi
-              value: "{software_concept_doi}"
-            - description: "Version DOI for the v4-phase14-closure software release."
-              type: doi
-              value: "{software_doi}"
-          license: "MIT"
-          '''.replace("          ", "")
-              citation = citation.replace(version_anchor, version_anchor + identifiers, 1)
-          else:
-              raise SystemExit("CITATION.cff unexpectedly already contains date-released")
-          citation_path.write_text(citation, encoding="utf-8", newline="\n")
-
-          zenodo = {
-              "creators": [{"name": "Nicolas Calder"}],
-              "title": "RCP/RCLM Reflective Successor Verification: Papers, Lean Proofs, and Controlled Executable Artifacts",
-              "description": (
-                  "Formal and executable RCP/RCLM instantiation package through Formal Core v4 Gate E and "
-                  "Executable Core v4 Phase 14, including the companion papers, Lean projects, Python runtimes, "
-                  "PowerShell and shell tooling, schemas, workflows, controlled artifacts, and retained cross-platform "
-                  "replay evidence. Phase 14 closes a finite, domain-relative, package-bound schedule-free M4-to-M8 "
-                  "trajectory; it does not establish generic successor availability, full Gate E closure, open-horizon "
-                  "or asynchronous RSI, general noncommuting semantics, or empirically unbounded RSI."
-              ),
-              "version": "v4-phase14-closure",
-              "access_right": "open",
-              "related_identifiers": [
-                  {
-                      "identifier": f"https://doi.org/{paper_i_doi}",
-                      "relation": "isDocumentedBy",
-                      "resource_type": "publication-preprint",
-                  },
-                  {
-                      "identifier": f"https://doi.org/{paper_ii_doi}",
-                      "relation": "isDocumentedBy",
-                      "resource_type": "publication-preprint",
-                  },
-              ],
-              "keywords": [
-                  "recursive self-improvement",
-                  "recursive coherence preservation",
-                  "recursive coherence language model",
-                  "robust reflective successor theorem",
-                  "formal verification",
-                  "Lean 4",
-                  "proof-carrying successors",
-                  "schedule-free successor search",
-                  "independent replay",
-              ],
-              "license": "mit",
-              "upload_type": "software",
-              "language": "eng",
-          }
-          Path(".zenodo.json").write_text(
-              json.dumps(zenodo, indent=2, ensure_ascii=False) + "\n",
-              encoding="utf-8",
-              newline="\n",
-          )
-
-          release_path = Path("RELEASE_NOTES.md")
-          release_notes = release_path.read_text(encoding="utf-8")
-          marker = "### Published DOI records\n"
-          if marker not in release_notes:
-              anchor = "## v4-phase14-closure - 2026-07-29\n"
-              if release_notes.count(anchor) != 1:
-                  raise SystemExit("Release-notes v4 anchor mismatch")
-              doi_section = f'''\n### Published DOI records
-
-- Software concept DOI (all versions): `{software_concept_doi}`
-- Software version DOI (`v4-phase14-closure`): `{software_doi}`
-- Paper I DOI: `{paper_i_doi}`
-- Paper II DOI: `{paper_ii_doi}`
-'''
-              release_notes = release_notes.replace(anchor, anchor + doi_section, 1)
-          release_path.write_text(release_notes, encoding="utf-8", newline="\n")
-
-          temporary = Path(".github/workflows/v4-phase14-zenodo-doi-synchronization.yml")
-          if not temporary.is_file():
-              raise SystemExit("Temporary synchronization workflow is missing")
-          temporary.unlink()
-
-          raw = subprocess.check_output(
-              ["git", "ls-files", "-co", "--exclude-standard", "-z"]
-          )
-          paths = [value.decode("utf-8") for value in raw.split(b"\0") if value]
-          excluded = {
-              "SHA256SUMS.txt",
-              ".github/workflows/v4-phase14-zenodo-doi-synchronization.yml",
-          }
-          retained = sorted(
-              (path for path in paths if path not in excluded),
-              key=lambda path: path.encode("utf-8"),
-          )
-          checksum_lines = [
-              f"{hashlib.sha256(Path(path).read_bytes()).hexdigest()}  {path}"
-              for path in retained
-          ]
-          Path("SHA256SUMS.txt").write_text(
-              "\n".join(checksum_lines) + "\n",
-              encoding="utf-8",
-              newline="\n",
-          )
-
-          subprocess.run(["git", "add", "-A"], check=True)
-          subprocess.run(["git", "diff", "--cached", "--check"], check=True)
-          changed = set(
-              subprocess.check_output(
-                  ["git", "diff", "--cached", "--name-only"], text=True
-              ).splitlines()
-          )
-          allowed = {
-              ".github/workflows/v4-phase14-zenodo-doi-synchronization.yml",
-              ".zenodo.json",
-              "CITATION.cff",
-              "README.md",
-              "RELEASE_NOTES.md",
-              "SHA256SUMS.txt",
-          }
-          if changed != allowed:
-              raise SystemExit(
-                  "Unexpected synchronization surface: "
-                  + json.dumps(
-                      {"expected": sorted(allowed), "observed": sorted(changed)},
-                      sort_keys=True,
-                  )
-              )
-          print(f"root checksum entries: {len(retained)}")
-
-      - name: Upload public Zenodo metadata audit
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: v4-phase14-zenodo-metadata-audit-${{ github.run_id }}
-          path: /tmp/zenodo_metadata_audit.json
-          if-no-files-found: error
-          retention-days: 30
-
-      - name: Commit final DOI synchronization surface
+      - name: Commit probe result
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Synchronize Zenodo DOI metadata [skip ci]"
-          git push origin "HEAD:${TARGET_BRANCH}"
+          git add zenodo_metadata_probe.json
+          git commit -m "Record public Zenodo DOI probe [skip ci]"
+          git push origin HEAD:agent/v4-phase14-zenodo-doi-synchronization
