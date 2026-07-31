@@ -1,0 +1,42 @@
+name: Temporary Phase 15 source export
+
+on:
+  push:
+    branches:
+      - agent/rcp-rclm-v4-phase-15-dynamic-hidden-challenges
+    paths:
+      - .github/workflows/phase15-source-export.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact branch
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: agent/rcp-rclm-v4-phase-15-dynamic-hidden-challenges
+          fetch-depth: 0
+
+      - name: Create source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=tar.gz --prefix=rcp-rclm-phase15/ HEAD > phase15-source.tar.gz
+          sha256sum phase15-source.tar.gz > phase15-source.tar.gz.sha256
+          git rev-parse HEAD > phase15-source-head.txt
+
+      - name: Upload source archive
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase15-source-${{ github.run_id }}
+          path: |
+            phase15-source.tar.gz
+            phase15-source.tar.gz.sha256
+            phase15-source-head.txt
+          if-no-files-found: error
+          retention-days: 2
