@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   export:
@@ -40,3 +40,16 @@ jobs:
             phase15-source-head.txt
           if-no-files-found: error
           retention-days: 2
+
+      - name: Record export identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > .phase15_source_export_run.json <<EOF
+          {"run_id":${GITHUB_RUN_ID},"artifact_name":"phase15-source-${GITHUB_RUN_ID}","source_head":"$(cat phase15-source-head.txt)"}
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .phase15_source_export_run.json
+          git commit -m "Record Phase 15 source export identity [skip ci]"
+          git push origin "HEAD:agent/rcp-rclm-v4-phase-15-dynamic-hidden-challenges"
