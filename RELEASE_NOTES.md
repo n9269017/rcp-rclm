@@ -1,5 +1,42 @@
 # Release Notes
 
+## v4.5-phase15-phase16-results - 2026-08-07
+
+### Results-only publication boundary
+
+This release publishes the exact safe result records, authority identities, timestamps, report hashes, and byte-identical safe GitHub Actions artifacts for private Executable Core v4 Phases 15 and 16. It does not publish their Lean/Python implementation, workflows, tests, model weights, candidate packages, private hidden challenges, answer stores, mutation programs, or private runtime payloads. The public implementation remains through Formal Core v4 Gate E and Executable Core v4 Phase 14.
+
+### Phase 15
+
+```text
+accepted             = true
+phase15_exit_closed  = true
+gate_e_closed        = false
+next_phase           = 16
+```
+
+Source head `ba9163c4ab4e3dbc7496cacb004af7f7fe4289da`; source tree `6c709a75c0c575aae44a8b9551b7dd48a408d4ec`; workflow `30969783629`; closure `3c4d0b90143fddd5bcb1f8d9af266cda7b330dbec774fbe7d43708476fe99e49`.
+
+### Phase 16
+
+```text
+accepted                    = true
+phase16_foundation_closed   = true
+phase16_exit_closed         = true
+gate_e_closed               = false
+next_phase                  = 17
+```
+
+Source head `b870b3cff8ae5c7fe5e26c2308279bea357bc99c`; source tree `4cba347fc51480e67402ba176643c2e985f45bd0`; workflow `31153935872`; closure `f5c4943647c3a54ab4e1686a45c64926844fb97a99f7eafe054679a34ba896ee`. Phase 16 records 16 campaigns, 580 accepted promotions, 3,752 retained rejected attempts, closed `8/16/32/64` rungs, an accepted 100-promotion stretch campaign, eight update families, zero manual repair, no host-authored successful schedule, `12/12` attacks rejected, and Ubuntu/Windows/macOS worker-free replay.
+
+### DOI boundary
+
+The software concept DOI remains `10.5281/zenodo.21710857`. The exact v4.5 version DOI must be added only after Zenodo ingests the published GitHub release and mints it. The prior DOI `10.5281/zenodo.21710858` remains the exact `v4-phase14-closure` record.
+
+### Claim boundary
+
+This release does not establish Gate E closure, Phase 17 open-horizon autonomy, Phase 18 independent Gate E closure, asynchronous RSI, general noncommuting semantics, universal successor availability, or empirically infinite execution.
+
 ## v4-phase14-closure - 2026-07-31
 
 ### Published DOI records

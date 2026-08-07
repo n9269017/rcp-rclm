@@ -1,0 +1,374 @@
+{
+  "phase15": {
+    "accepted": true,
+    "accepted_promotions": 1,
+    "attack_report_hash": "ba5e9dd2aee13341937fda36377f0141624cd3ef256eef13cd3cd847eb263498",
+    "authoritative_workflow_run_id": 30969783629,
+    "bundle_manifest_hash": "2426a8f5d4c4f0d327d55970b43441c274ca9b672a4280914a37a55b2ee31661",
+    "closure_report_hash": "3c4d0b90143fddd5bcb1f8d9af266cda7b330dbec774fbe7d43708476fe99e49",
+    "final_capability_frontier_cardinality": 13,
+    "final_m9_semantic_package_hash": "a20e01b73f6b6ab069ce93bcbb43d5b745d3210268a4f958be5e744057e53dc6",
+    "final_recursive_productivity_frontier_cardinality": 11,
+    "final_store_package_hash": "2fd9aad1e508dae645e20b2545e274c1034fde109b6c2f4d5659eb17497bf472",
+    "gate_e_closed": false,
+    "initial_capability_frontier_cardinality": 11,
+    "initial_recursive_productivity_frontier_cardinality": 8,
+    "manual_repairs": 0,
+    "next_phase": 16,
+    "phase15_exit_closed": true,
+    "platforms": [
+      "macos",
+      "ubuntu",
+      "windows"
+    ],
+    "private_merge_commit": "f6155bb0a6136eb33be40b851fd642905502cfdf",
+    "private_merge_timestamp_utc": "2026-08-07T02:19:00Z",
+    "rejected_attempts": 1,
+    "source_commit_timestamp_utc": "2026-08-05T02:33:52Z",
+    "source_head": "ba9163c4ab4e3dbc7496cacb004af7f7fe4289da",
+    "source_tree": "6c709a75c0c575aae44a8b9551b7dd48a408d4ec",
+    "trajectory_report_hash": "0ed512aee0a7b75a8e533e189a2dec9840995ba9d583de175981dc931adc5b94"
+  },
+  "phase15_implementation_published": false,
+  "phase16": {
+    "accepted": true,
+    "attack_report_hash": "23ba7a0bebcf80b9d7c153b4d592bbfc1b808ec91ce4e39eaa72c566ff9a22d8",
+    "authoritative_workflow_run_id": 31153935872,
+    "bootstrap_report_hash": "f052e6055dcd2fe6fc34907a2684dd3cbac7e94d32bad18a4d9ed921da7c0513",
+    "campaign_count": 16,
+    "capture_report_hash": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+    "closure_report_hash": "f5c4943647c3a54ab4e1686a45c64926844fb97a99f7eafe054679a34ba896ee",
+    "foundation_report_hash": "e0e1e5e1b691b23cc6c3fe88d17caaef83416cecf0ab914850794dcdb987210a",
+    "gate_e_closed": false,
+    "manual_repairs": 0,
+    "next_phase": 17,
+    "phase16_exit_closed": true,
+    "phase16_foundation_closed": true,
+    "platforms": [
+      "macos",
+      "ubuntu",
+      "windows"
+    ],
+    "private_merge_commit": "589657f9bf72c3e123723273cf2b6a7cb5cd48e2",
+    "private_merge_timestamp_utc": "2026-08-07T07:18:36Z",
+    "rung_status": {
+      "16": true,
+      "32": true,
+      "64": true,
+      "8": true
+    },
+    "source_commit_timestamp_utc": "2026-08-07T06:22:53Z",
+    "source_head": "b870b3cff8ae5c7fe5e26c2308279bea357bc99c",
+    "source_tree": "4cba347fc51480e67402ba176643c2e985f45bd0",
+    "stretch_target_accepted": true,
+    "stretch_target_executed": true,
+    "total_accepted_promotions": 580,
+    "total_rejected_attempts": 3752,
+    "update_families_demonstrated": [
+      "adapter_policy",
+      "architecture_policy",
+      "memory_policy",
+      "optimizer_policy",
+      "planner_policy",
+      "retrieval_policy",
+      "tool_policy",
+      "verification_automation_policy"
+    ]
+  },
+  "phase16_implementation_published": false,
+  "public_implementation_through": "Formal Core v4 Gate E and Executable Core v4 Phase 14",
+  "publication_kind": "results-and-authority-evidence-only",
+  "published_extracted_reports": [
+    {
+      "path": "phase15/phase15_attacks.json",
+      "sha256": "366d309008c73766a4292a7bc38332be94a8c4c2f473a408f316cf886bb5067c",
+      "source_archive": "runtime-v4-phase15-capture-30969783629-1.zip",
+      "source_member": "phase15_attacks.json"
+    },
+    {
+      "path": "phase15/phase15_capture_replay.json",
+      "sha256": "2b9a818f76598823e8f970884587ea13400164584b3aa61b5e4a53af015e2c57",
+      "source_archive": "runtime-v4-phase15-capture-30969783629-1.zip",
+      "source_member": "phase15_capture_replay.json"
+    },
+    {
+      "path": "phase15/phase15_exit.json",
+      "sha256": "265097638c81f6cd4e641474b9353b9a600e4c3889b16fd84a37b37f61f5f33a",
+      "source_archive": "phase15-final-closure.zip",
+      "source_member": "phase15_exit.json"
+    },
+    {
+      "path": "phase15/phase15_replay_macos.json",
+      "sha256": "dba3d9c6cfbcedda70b9f532fbba1ba0ebfa63d8f5136465953661c36314646e",
+      "source_archive": "runtime-v4-phase15-replay-macos-30969783629-1.zip",
+      "source_member": "phase15_replay.json"
+    },
+    {
+      "path": "phase15/phase15_replay_ubuntu.json",
+      "sha256": "2b9a818f76598823e8f970884587ea13400164584b3aa61b5e4a53af015e2c57",
+      "source_archive": "runtime-v4-phase15-replay-ubuntu-30969783629-1.zip",
+      "source_member": "phase15_replay.json"
+    },
+    {
+      "path": "phase15/phase15_replay_windows.json",
+      "sha256": "140e775e4719df35de4998f88b166a375f01f861fb18b04a6608e0c0cddf3170",
+      "source_archive": "runtime-v4-phase15-replay-windows-30969783629-1.zip",
+      "source_member": "phase15_replay.json"
+    },
+    {
+      "path": "phase15/phase15_trajectory.json",
+      "sha256": "8c8714ceee5efe6d23a87bb88984c955cf35008a2340e5e5d50e9237ea9df499",
+      "source_archive": "runtime-v4-phase15-capture-30969783629-1.zip",
+      "source_member": "phase15_trajectory.json"
+    },
+    {
+      "path": "phase16/bootstrap_schema_validation.json",
+      "sha256": "2f78dc23ad58bc9516e42c037d41ec91ff386adbdd4e881037338bd3f4311ed2",
+      "source_archive": "runtime-v4-phase16-capture-31153935872-1.zip",
+      "source_member": "bootstrap_schema_validation.json"
+    },
+    {
+      "path": "phase16/campaign_schema_validation.json",
+      "sha256": "c5fca9c33f624dca9299934e70da60e2bd8a7e7a8b8fb61b55d3a3a2f4030d65",
+      "source_archive": "runtime-v4-phase16-capture-31153935872-1.zip",
+      "source_member": "campaign_schema_validation.json"
+    },
+    {
+      "path": "phase16/capture_schema_validation.json",
+      "sha256": "0306821495fe23d664139169b1f62701113b4cddead5b7b64c0c6c35d76b20f4",
+      "source_archive": "runtime-v4-phase16-capture-31153935872-1.zip",
+      "source_member": "capture_schema_validation.json"
+    },
+    {
+      "path": "phase16/final_evidence_manifest.json",
+      "sha256": "5df5b5caed42760ffe5516510b4eef857453b90246bd616aa25391009ffb21e5",
+      "source_archive": "runtime-v4-phase16-final-closure-31153935872-1.zip",
+      "source_member": "manifest.json"
+    },
+    {
+      "path": "phase16/foundation_schema_validation.json",
+      "sha256": "822fb542758d30595a1d194c152d720e6f50cecbadc1610828d66478b3117a47",
+      "source_archive": "runtime-v4-phase16-capture-31153935872-1.zip",
+      "source_member": "foundation_schema_validation.json"
+    },
+    {
+      "path": "phase16/phase16_attacks.json",
+      "sha256": "2b8b822156e3e704c889b6e379d026164dee2b31f300f42d1542b342cb4eec29",
+      "source_archive": "runtime-v4-phase16-attacks-31153935872-1.zip",
+      "source_member": "phase16_attacks.json"
+    },
+    {
+      "path": "phase16/phase16_bootstrap.json",
+      "sha256": "9b3245b73b25c4c95ffcef3f4f237b2dad4bbf671efb8dc0fd038eee86df3de4",
+      "source_archive": "runtime-v4-phase16-capture-31153935872-1.zip",
+      "source_member": "phase16_bootstrap.json"
+    },
+    {
+      "path": "phase16/phase16_closure.json",
+      "sha256": "ad27cdba93d3dd93e3092b2b3aa2e019b0dce9c759731103579d8c211b9c1e5a",
+      "source_archive": "runtime-v4-phase16-final-closure-31153935872-1.zip",
+      "source_member": "phase16_closure.json"
+    },
+    {
+      "path": "phase16/phase16_exit.json",
+      "sha256": "ad27cdba93d3dd93e3092b2b3aa2e019b0dce9c759731103579d8c211b9c1e5a",
+      "source_archive": "runtime-v4-phase16-final-closure-31153935872-1.zip",
+      "source_member": "phase16_exit.json"
+    },
+    {
+      "path": "phase16/phase16_foundation.json",
+      "sha256": "8c778c5d4b02c7d3dc6202bc6b0ebd6d3d5ec376ef60cc6274737368ec032ce7",
+      "source_archive": "runtime-v4-phase16-capture-31153935872-1.zip",
+      "source_member": "phase16_foundation.json"
+    },
+    {
+      "path": "phase16/phase16_replay_macos.json",
+      "sha256": "21d16b4accec93c87811dafb77e076228df8d63cc0dfb57b71d471472283df14",
+      "source_archive": "runtime-v4-phase16-replay-macos-31153935872-1.zip",
+      "source_member": "phase16_replay.json"
+    },
+    {
+      "path": "phase16/phase16_replay_ubuntu.json",
+      "sha256": "e6a616670199989b6214c43b4d78cdcf315601d44d5e1d908d705626753d5216",
+      "source_archive": "runtime-v4-phase16-replay-ubuntu-31153935872-1.zip",
+      "source_member": "phase16_replay.json"
+    },
+    {
+      "path": "phase16/phase16_replay_windows.json",
+      "sha256": "bdec57ae9e548522ec8faf23cb8cb12ecf7a902c21d8ea6783dc6b889b0890c6",
+      "source_archive": "runtime-v4-phase16-replay-windows-31153935872-1.zip",
+      "source_member": "phase16_replay.json"
+    },
+    {
+      "path": "phase16/schema_validation.json",
+      "sha256": "7cfaf97aed31466da3dd1732c8e876ad8e01a68bd86b3f4714c3d40181d4e69d",
+      "source_archive": "runtime-v4-phase16-final-closure-31153935872-1.zip",
+      "source_member": "schema_validation.json"
+    }
+  ],
+  "published_original_artifacts": [
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase15-contract-macos-30969783629-1.zip",
+      "archive_sha256": "1dd356cafda6bf7d2287b5d49e71b60ed9e917a84ce5ead0405079ba2e0c78c5",
+      "archive_size_bytes": 1149,
+      "artifact_id": 8916070081,
+      "artifact_name": "runtime-v4-phase15-contract-macos-30969783629-1",
+      "created_at_utc": "2026-08-05T02:35:28Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase15-contract-ubuntu-30969783629-1.zip",
+      "archive_sha256": "d4b93a612e20b5dacfa4e15b1fcf6a1902188cb8775ac2b86c2214b0dfc78baa",
+      "archive_size_bytes": 1149,
+      "artifact_id": 8916071270,
+      "artifact_name": "runtime-v4-phase15-contract-ubuntu-30969783629-1",
+      "created_at_utc": "2026-08-05T02:35:33Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase15-contract-windows-30969783629-1.zip",
+      "archive_sha256": "530ac4e9e49cad91534ce0c29e9db4c89c9c309ff98e056f68b0eae49aa37925",
+      "archive_size_bytes": 1149,
+      "artifact_id": 8916078060,
+      "artifact_name": "runtime-v4-phase15-contract-windows-30969783629-1",
+      "created_at_utc": "2026-08-05T02:35:58Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase15-final-30969783629-1.zip",
+      "archive_sha256": "197465275e7716a7a51eb4ffdc255696bd92129cdf0910e9712b7ca22028053e",
+      "archive_size_bytes": 1198,
+      "artifact_id": 8917973439,
+      "artifact_name": "runtime-v4-phase15-final-30969783629-1",
+      "created_at_utc": "2026-08-05T04:27:09Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase15-replay-macos-30969783629-1.zip",
+      "archive_sha256": "c455e8475ff012b1fad540e85b00a62211926df90a8f98826263ccba36c15121",
+      "archive_size_bytes": 899,
+      "artifact_id": 8917966558,
+      "artifact_name": "runtime-v4-phase15-replay-macos-30969783629-1",
+      "created_at_utc": "2026-08-05T04:26:44Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase15-replay-ubuntu-30969783629-1.zip",
+      "archive_sha256": "8cad9c795b9883ba8dbe412a40e328d52ef32b4702481d276fd5fc8e5ef5058d",
+      "archive_size_bytes": 900,
+      "artifact_id": 8916512196,
+      "artifact_name": "runtime-v4-phase15-replay-ubuntu-30969783629-1",
+      "created_at_utc": "2026-08-05T03:02:55Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase15-replay-windows-30969783629-1.zip",
+      "archive_sha256": "912dd797a20035e2cdb45553b8b9e1a598e169307cfa7028ad6d7e1142f71232",
+      "archive_size_bytes": 900,
+      "artifact_id": 8917085240,
+      "artifact_name": "runtime-v4-phase15-replay-windows-30969783629-1",
+      "created_at_utc": "2026-08-05T03:34:38Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase16-attacks-31153935872-1.zip",
+      "archive_sha256": "f9efe80e1c8336df913fdb5388684f8be6997bae31a507dd3a0b38444c100ab1",
+      "archive_size_bytes": 1449,
+      "artifact_id": 8984439868,
+      "artifact_name": "runtime-v4-phase16-attacks-31153935872-1",
+      "created_at_utc": "2026-08-07T06:29:26Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase16-contract-macos-31153935872-1.zip",
+      "archive_sha256": "22d326bff176ed58047e405455c25678542a7e7e2dde8d92e88e082736534f25",
+      "archive_size_bytes": 2586,
+      "artifact_id": 8984402546,
+      "artifact_name": "runtime-v4-phase16-contract-macos-31153935872-1",
+      "created_at_utc": "2026-08-07T06:27:48Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase16-contract-ubuntu-31153935872-1.zip",
+      "archive_sha256": "de68349445031eb153892760e59e5799c80353a53d446742cfe9fd64359103f2",
+      "archive_size_bytes": 2588,
+      "artifact_id": 8984401886,
+      "artifact_name": "runtime-v4-phase16-contract-ubuntu-31153935872-1",
+      "created_at_utc": "2026-08-07T06:27:47Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase16-contract-windows-31153935872-1.zip",
+      "archive_sha256": "e3bb776829f5fb98ec06e682950646fb031e5017cc40a449694c0ccd69533378",
+      "archive_size_bytes": 2588,
+      "artifact_id": 8984411161,
+      "artifact_name": "runtime-v4-phase16-contract-windows-31153935872-1",
+      "created_at_utc": "2026-08-07T06:28:11Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase16-final-closure-31153935872-1.zip",
+      "archive_sha256": "ce7f1de4654306d5280970dfc92453a8743cf1e02fe98963f1e940c0077582f9",
+      "archive_size_bytes": 3767,
+      "artifact_id": 8984481241,
+      "artifact_name": "runtime-v4-phase16-final-closure-31153935872-1",
+      "created_at_utc": "2026-08-07T06:31:10Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase16-replay-macos-31153935872-1.zip",
+      "archive_sha256": "ec03d53a7e161c3d7815aab0ffb63af00b21b2478027e46a9031b337036459db",
+      "archive_size_bytes": 996,
+      "artifact_id": 8984446330,
+      "artifact_name": "runtime-v4-phase16-replay-macos-31153935872-1",
+      "created_at_utc": "2026-08-07T06:29:44Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase16-replay-ubuntu-31153935872-1.zip",
+      "archive_sha256": "e7e1271cac897955537179db8a887559151886a1b89a1cf49758931ae8406817",
+      "archive_size_bytes": 996,
+      "artifact_id": 8984445356,
+      "artifact_name": "runtime-v4-phase16-replay-ubuntu-31153935872-1",
+      "created_at_utc": "2026-08-07T06:29:41Z",
+      "published_byte_identically": true
+    },
+    {
+      "archive_file": "original-artifacts/runtime-v4-phase16-replay-windows-31153935872-1.zip",
+      "archive_sha256": "64eefdd5c6c6cda271b2cc935d95ad838dd610cedb580067e3c368d52ba70866",
+      "archive_size_bytes": 999,
+      "artifact_id": 8984453664,
+      "artifact_name": "runtime-v4-phase16-replay-windows-31153935872-1",
+      "created_at_utc": "2026-08-07T06:30:03Z",
+      "published_byte_identically": true
+    }
+  ],
+  "release_version": "v4.5-phase15-phase16-results",
+  "schema_id": "rcp_rclm.v4_5.phase15_phase16_results_release.v1",
+  "withheld_private_artifacts": [
+    {
+      "archive_sha256": "fb0d12fdfcb0b815d6b76d5b312a29f21d6caf5e71b45356c77135a13330d294",
+      "archive_size_bytes": 97686,
+      "artifact_id": 8916349242,
+      "artifact_name": "runtime-v4-phase15-capture-30969783629-1",
+      "created_at_utc": "2026-08-05T02:53:07Z",
+      "reason": "Contains the aggregate capture and a full bundle manifest whose private member inventory crosses the results-only publication boundary. Safe constituent reports are published separately."
+    },
+    {
+      "archive_sha256": "56003f95ded054be21dd3f743c2145fdf6e92543af28bb350f64ec8f4fee00b5",
+      "archive_size_bytes": 5310668,
+      "artifact_id": 8916353526,
+      "artifact_name": "runtime-v4-phase15-bundle-30969783629-1",
+      "created_at_utc": "2026-08-05T02:53:23Z",
+      "reason": "Contains model weights, candidate packages, private challenge/answer material, and runtime implementation evidence."
+    },
+    {
+      "archive_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+      "archive_size_bytes": 6524813,
+      "artifact_id": 8984430600,
+      "artifact_name": "runtime-v4-phase16-capture-31153935872-1",
+      "created_at_utc": "2026-08-07T06:29:01Z",
+      "reason": "Contains the complete 50.9 MB capture and reference campaign; safe bootstrap/foundation reports and final closure identities are published separately."
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "accepted": true,
+  "attack_count": 12,
+  "cases": [
+    {
+      "attack_id": "host_authored_success_schedule",
+      "case_hash": "9c8969e4b424856c0b5be4f25823f7ce067e95c3e2d914ae00c7ba2e6efc3989",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "fair_order_substitution",
+      "case_hash": "21f434a23741fc482b41fa813c08024f227e9750974e6e8a6606a2ff143a4e75",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "archive_poisoning",
+      "case_hash": "c3f212c2f54ce9f6fd97e47c30a1f8551506f8e8c41df6c5b15f393cf30642f9",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "candidate_self_reported_success",
+      "case_hash": "8ccd2a9dbea3649bf6d44d9500fcf058d2da1bf1086ddf25aefdd5eda8987d9e",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "verifier_substitution",
+      "case_hash": "3349bbbf27f3f6e3cc0b49788ac4673d9de65d5fb3816d1027ca12b77c497a64",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "semantic_regime_substitution",
+      "case_hash": "d568b1297aaf03598886628be0ee3f15e8e569575c265f0102b6373bc46a8e65",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "capability_frontier_regression",
+      "case_hash": "7811de4c5589fb7c02e2b84f0e507344e7ad7cfc640c4b3d8f7a903c1e47125e",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "recursive_productivity_forgery",
+      "case_hash": "055efbb2d897622b747fe5cf960f2d747fa0afd405a60771c8b7f6fa8140c1fd",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "resource_laundering",
+      "case_hash": "525a277cb8073558cec0400df46729f4798db0e91171db4b8f5b1eb41b6989e2",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "manual_repair_concealment",
+      "case_hash": "1826de1b8cb8292dcc40ebfec1e478f0c588f90e0180d82aa4e0485c015d61ba",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "lineage_substitution",
+      "case_hash": "67be52ca2e93be6801aed4e68c03ef4081cfb1b8132e200bef47b7b6f42e2780",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    },
+    {
+      "attack_id": "search_exhaustion_forgery",
+      "case_hash": "fc0f1719ba5f7b560d59ce1370b02e8f658606a8cbf12e79fefc85c95b93a674",
+      "reason_class": "SchemaValidationError",
+      "rejected": true,
+      "schema_id": "runtime.v4.phase16.attack_case.v1"
+    }
+  ],
+  "gate_e_closed": false,
+  "next_phase": 16,
+  "phase16_exit_closed": false,
+  "reference_campaign_hash": "e4e68386d2896d843bd741c0de93897ceeda7eecef503ec4a396b6d235dcb170",
+  "rejected_count": 12,
+  "report_hash": "23ba7a0bebcf80b9d7c153b4d592bbfc1b808ec91ce4e39eaa72c566ff9a22d8",
+  "schema_id": "runtime.v4.phase16.attack_suite.v1",
+  "source_head": "b870b3cff8ae5c7fe5e26c2308279bea357bc99c"
+}

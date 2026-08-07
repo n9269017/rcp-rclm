@@ -1,0 +1,325 @@
+name: Audit v4.5 Phase 15-16 results-only archive
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/v45-results-only-audit.yml"
+      - ".zenodo.json"
+      - "CITATION.cff"
+      - "README.md"
+      - "RELEASE_NOTES.md"
+      - "SHA256SUMS.txt"
+      - "artifacts/README.md"
+      - "artifacts/releases/v4.5-phase15-phase16-results/**"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/v45-results-only-audit.yml"
+      - ".zenodo.json"
+      - "CITATION.cff"
+      - "README.md"
+      - "RELEASE_NOTES.md"
+      - "SHA256SUMS.txt"
+      - "artifacts/README.md"
+      - "artifacts/releases/v4.5-phase15-phase16-results/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: v45-results-only-audit-${{ github.event_name }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  V45_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+
+jobs:
+  archive-audit:
+    name: Results-only archive audit (${{ matrix.label }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            label: ubuntu
+          - os: windows-2025
+            label: windows
+          - os: macos-15
+            label: macos
+    steps:
+      - name: Check out exact publication head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.V45_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Verify exact checkout
+        shell: python
+        run: |
+          import os
+          import subprocess
+          expected = os.environ["V45_SOURCE_HEAD"]
+          observed = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          if observed != expected:
+              raise SystemExit(f"exact-head mismatch: expected={expected} observed={observed}")
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Audit release payload and repository checksum surface
+        shell: python
+        run: |
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import subprocess
+          import zipfile
+          from pathlib import Path, PurePosixPath
+
+          ROOT = Path("artifacts/releases/v4.5-phase15-phase16-results")
+          SOURCE_SUFFIXES = {
+              ".py", ".lean", ".yml", ".yaml", ".sh", ".ps1", ".bat",
+              ".c", ".h", ".cpp", ".rs", ".go", ".java", ".js", ".ts",
+          }
+          FORBIDDEN_TOKENS = (
+              "answer_store",
+              "reference_runtime",
+              "candidate_package",
+              "mutation_program",
+              "private_challenge",
+              "model_weights",
+          )
+
+          def sha256(path: Path) -> str:
+              return hashlib.sha256(path.read_bytes()).hexdigest()
+
+          def git_blob_sha256(relative: str) -> str:
+              payload = subprocess.check_output(
+                  ["git", "cat-file", "blob", f"HEAD:{relative}"]
+              )
+              return hashlib.sha256(payload).hexdigest()
+
+          files = sorted(path for path in ROOT.rglob("*") if path.is_file())
+          if len(files) != 45:
+              raise SystemExit(f"expected 45 release files, observed {len(files)}")
+
+          nested = ROOT / "SHA256SUMS.txt"
+          listed = {}
+          for line in nested.read_text(encoding="utf-8").splitlines():
+              digest, relative = line.split("  ", 1)
+              listed[relative] = digest
+          actual = {
+              path.relative_to(ROOT).as_posix(): sha256(path)
+              for path in files
+              if path != nested
+          }
+          if listed != actual or len(actual) != 44:
+              missing = sorted(set(actual) - set(listed))
+              extra = sorted(set(listed) - set(actual))
+              mismatch = sorted(
+                  name for name in set(actual) & set(listed)
+                  if actual[name] != listed[name]
+              )
+              raise SystemExit(
+                  f"nested checksum mismatch: missing={missing} extra={extra} mismatch={mismatch}"
+              )
+
+          for path in ROOT.rglob("*.json"):
+              json.loads(path.read_text(encoding="utf-8"))
+
+          for path in sorted((ROOT / "original-artifacts").glob("*.zip")):
+              with zipfile.ZipFile(path) as archive:
+                  for name in archive.namelist():
+                      pure = PurePosixPath(name)
+                      lower = name.lower()
+                      if (
+                          pure.is_absolute()
+                          or ".." in pure.parts
+                          or pure.suffix.lower() in SOURCE_SUFFIXES
+                          or any(token in lower for token in FORBIDDEN_TOKENS)
+                      ):
+                          raise SystemExit(
+                              f"forbidden public archive member: {path.name}:{name}"
+                          )
+
+          release = json.loads((ROOT / "release_manifest.json").read_text(encoding="utf-8"))
+          expected_phase15 = {
+              "accepted": True,
+              "phase15_exit_closed": True,
+              "gate_e_closed": False,
+              "next_phase": 16,
+              "source_head": "ba9163c4ab4e3dbc7496cacb004af7f7fe4289da",
+              "source_tree": "6c709a75c0c575aae44a8b9551b7dd48a408d4ec",
+              "authoritative_workflow_run_id": 30969783629,
+              "closure_report_hash": "3c4d0b90143fddd5bcb1f8d9af266cda7b330dbec774fbe7d43708476fe99e49",
+              "manual_repairs": 0,
+          }
+          expected_phase16 = {
+              "accepted": True,
+              "phase16_foundation_closed": True,
+              "phase16_exit_closed": True,
+              "gate_e_closed": False,
+              "next_phase": 17,
+              "source_head": "b870b3cff8ae5c7fe5e26c2308279bea357bc99c",
+              "source_tree": "4cba347fc51480e67402ba176643c2e985f45bd0",
+              "authoritative_workflow_run_id": 31153935872,
+              "closure_report_hash": "f5c4943647c3a54ab4e1686a45c64926844fb97a99f7eafe054679a34ba896ee",
+              "campaign_count": 16,
+              "total_accepted_promotions": 580,
+              "total_rejected_attempts": 3752,
+              "manual_repairs": 0,
+              "stretch_target_executed": True,
+              "stretch_target_accepted": True,
+          }
+          for key, value in expected_phase15.items():
+              if release["phase15"].get(key) != value:
+                  raise SystemExit(f"Phase 15 manifest mismatch: {key}")
+          for key, value in expected_phase16.items():
+              if release["phase16"].get(key) != value:
+                  raise SystemExit(f"Phase 16 manifest mismatch: {key}")
+          if release.get("phase15_implementation_published") is not False:
+              raise SystemExit("Phase 15 source-withholding flag mismatch")
+          if release.get("phase16_implementation_published") is not False:
+              raise SystemExit("Phase 16 source-withholding flag mismatch")
+          if len(release.get("published_original_artifacts", [])) != 15:
+              raise SystemExit("published original-artifact count mismatch")
+          if len(release.get("published_extracted_reports", [])) != 21:
+              raise SystemExit("published extracted-report count mismatch")
+          if len(release.get("withheld_private_artifacts", [])) != 3:
+              raise SystemExit("withheld private-artifact count mismatch")
+
+          audit = json.loads((ROOT / "PUBLICATION_AUDIT.json").read_text(encoding="utf-8"))
+          if audit.get("results_only") is not True:
+              raise SystemExit("publication audit is not results-only")
+          if audit.get("phase15_or_phase16_implementation_source_included") is not False:
+              raise SystemExit("implementation-source audit mismatch")
+          if audit.get("private_hidden_material_included") is not False:
+              raise SystemExit("private-hidden-material audit mismatch")
+
+          raw = subprocess.check_output(["git", "ls-files", "-z"])
+          tracked = sorted(
+              item.decode("utf-8")
+              for item in raw.split(b"\0")
+              if item and item != b"SHA256SUMS.txt"
+          )
+          root_listed = {}
+          for line in Path("SHA256SUMS.txt").read_text(encoding="utf-8").splitlines():
+              digest, relative = line.split("  ", 1)
+              root_listed[relative] = digest
+          root_actual = {
+              relative: git_blob_sha256(relative)
+              for relative in tracked
+          }
+          if root_listed != root_actual:
+              missing = sorted(set(root_actual) - set(root_listed))
+              extra = sorted(set(root_listed) - set(root_actual))
+              mismatch = sorted(
+                  name for name in set(root_actual) & set(root_listed)
+                  if root_actual[name] != root_listed[name]
+              )
+              raise SystemExit(
+                  f"root checksum mismatch: missing={missing} extra={extra} mismatch={mismatch}"
+              )
+
+          readme = Path("README.md").read_text(encoding="utf-8")
+          marker = "| Executable Core v4 — Phase 15–16 published results (implementation withheld) |"
+          if readme.count(marker) != 1:
+              raise SystemExit("README Phase 15–16 status row is missing or duplicated")
+
+          print(json.dumps({
+              "accepted": True,
+              "platform": "${{ matrix.label }}",
+              "release_files": len(files),
+              "nested_checksum_entries": len(actual),
+              "root_checksum_entries": len(root_actual),
+              "published_original_artifacts": 15,
+              "published_extracted_reports": 21,
+              "withheld_private_artifacts": 3,
+              "phase15_implementation_published": False,
+              "phase16_implementation_published": False,
+          }, sort_keys=True))
+
+  publication-surface:
+    name: Exact public results-only diff
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact publication head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.V45_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Verify exact 52-path publication boundary
+        shell: python
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          import os
+          import subprocess
+          from pathlib import Path
+
+          event = os.environ["EVENT_NAME"]
+          if event == "pull_request":
+              base = os.environ["PR_BASE_SHA"]
+          elif event == "push" and os.environ.get("PUSH_BEFORE_SHA") not in {None, "", "0" * 40}:
+              base = os.environ["PUSH_BEFORE_SHA"]
+          else:
+              base = subprocess.check_output(
+                  ["git", "merge-base", "origin/main", "HEAD"], text=True
+              ).strip()
+
+          changed = sorted(
+              subprocess.check_output(
+                  ["git", "diff", "--name-only", base, "HEAD"], text=True
+              ).splitlines()
+          )
+          release_root = Path("artifacts/releases/v4.5-phase15-phase16-results")
+          release_paths = sorted(
+              path.as_posix()
+              for path in release_root.rglob("*")
+              if path.is_file()
+          )
+          expected = sorted([
+              ".github/workflows/v45-results-only-audit.yml",
+              ".zenodo.json",
+              "CITATION.cff",
+              "README.md",
+              "RELEASE_NOTES.md",
+              "SHA256SUMS.txt",
+              "artifacts/README.md",
+              *release_paths,
+          ])
+          if changed != expected or len(changed) != 52:
+              raise SystemExit(
+                  f"publication path mismatch: count={len(changed)} "
+                  f"missing={sorted(set(expected)-set(changed))} "
+                  f"extra={sorted(set(changed)-set(expected))}"
+              )
+          if any(path.startswith(".release-v45/") for path in changed):
+              raise SystemExit("temporary transport path survived")
+          if ".github/workflows/v45-results-materialize.yml" in changed:
+              raise SystemExit("temporary materializer survived")
+          source_suffixes = {
+              ".py", ".lean", ".yml", ".yaml", ".sh", ".ps1", ".bat",
+              ".c", ".h", ".cpp", ".rs", ".go", ".java", ".js", ".ts",
+          }
+          leaked = [
+              path for path in release_paths
+              if Path(path).suffix.lower() in source_suffixes
+          ]
+          if leaked:
+              raise SystemExit(f"implementation-source extension in release: {leaked}")
+          print(f"PASS: exact {len(changed)}-path results-only publication boundary")
