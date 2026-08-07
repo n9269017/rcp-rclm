@@ -1,0 +1,111 @@
+{
+  "archive_scans": [
+    {
+      "file": "original-artifacts/runtime-v4-phase15-contract-macos-30969783629-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase15-contract-ubuntu-30969783629-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase15-contract-windows-30969783629-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase15-final-30969783629-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase15-replay-macos-30969783629-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase15-replay-ubuntu-30969783629-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase15-replay-windows-30969783629-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase16-attacks-31153935872-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase16-contract-macos-31153935872-1.zip",
+      "forbidden_findings": [],
+      "member_count": 4
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase16-contract-ubuntu-31153935872-1.zip",
+      "forbidden_findings": [],
+      "member_count": 4
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase16-contract-windows-31153935872-1.zip",
+      "forbidden_findings": [],
+      "member_count": 4
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase16-final-closure-31153935872-1.zip",
+      "forbidden_findings": [],
+      "member_count": 4
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase16-replay-macos-31153935872-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase16-replay-ubuntu-31153935872-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    },
+    {
+      "file": "original-artifacts/runtime-v4-phase16-replay-windows-31153935872-1.zip",
+      "forbidden_findings": [],
+      "member_count": 2
+    }
+  ],
+  "forbidden_private_member_tokens": [
+    "answer_store",
+    "reference_runtime",
+    "candidate_package",
+    "mutation_program",
+    "private_challenge",
+    "model_weights"
+  ],
+  "forbidden_source_suffixes": [
+    ".bat",
+    ".c",
+    ".cpp",
+    ".go",
+    ".h",
+    ".java",
+    ".js",
+    ".lean",
+    ".ps1",
+    ".py",
+    ".rs",
+    ".sh",
+    ".ts",
+    ".yaml",
+    ".yml"
+  ],
+  "phase15_or_phase16_implementation_source_included": false,
+  "private_hidden_material_included": false,
+  "published_extracted_report_count": 21,
+  "published_original_artifact_count": 15,
+  "results_only": true,
+  "schema_id": "rcp_rclm.v4_5.results_publication_audit.v1",
+  "withheld_private_artifact_count": 3
+}

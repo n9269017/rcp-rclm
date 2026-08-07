@@ -1,0 +1,9 @@
+{
+  "content_hash_valid": true,
+  "errors": [],
+  "instance": "phase16_capture.json",
+  "ok": true,
+  "schema": "phase_16_capture.schema.json",
+  "schema_id": "runtime.v4.phase16.schema_validation.v1",
+  "schema_valid": true
+}

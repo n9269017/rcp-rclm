@@ -1,0 +1,16 @@
+{
+  "closure_report_hash": "f5c4943647c3a54ab4e1686a45c64926844fb97a99f7eafe054679a34ba896ee",
+  "files": {
+    "artifacts/runtime_v4_phase16/attacks/phase16_attacks.json": "2b8b822156e3e704c889b6e379d026164dee2b31f300f42d1542b342cb4eec29",
+    "artifacts/runtime_v4_phase16/capture/phase16_capture.json": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+    "artifacts/runtime_v4_phase16/final/phase16_closure.json": "ad27cdba93d3dd93e3092b2b3aa2e019b0dce9c759731103579d8c211b9c1e5a",
+    "artifacts/runtime_v4_phase16/final/phase16_exit.json": "ad27cdba93d3dd93e3092b2b3aa2e019b0dce9c759731103579d8c211b9c1e5a",
+    "artifacts/runtime_v4_phase16/final/schema_validation.json": "7cfaf97aed31466da3dd1732c8e876ad8e01a68bd86b3f4714c3d40181d4e69d",
+    "artifacts/runtime_v4_phase16/replay/macos/phase16_replay.json": "21d16b4accec93c87811dafb77e076228df8d63cc0dfb57b71d471472283df14",
+    "artifacts/runtime_v4_phase16/replay/ubuntu/phase16_replay.json": "e6a616670199989b6214c43b4d78cdcf315601d44d5e1d908d705626753d5216",
+    "artifacts/runtime_v4_phase16/replay/windows/phase16_replay.json": "bdec57ae9e548522ec8faf23cb8cb12ecf7a902c21d8ea6783dc6b889b0890c6"
+  },
+  "schema_id": "runtime.v4.phase16.final_evidence_manifest.v1",
+  "source_head": "b870b3cff8ae5c7fe5e26c2308279bea357bc99c",
+  "source_tree": "4cba347fc51480e67402ba176643c2e985f45bd0"
+}

@@ -1,0 +1,29 @@
+{
+  "accepted": true,
+  "accepted_promotions_per_campaign": 8,
+  "campaign_count": 4,
+  "campaign_hashes": [
+    "20b1ed589f2dcc1f085fd0aaa11859a1e9bdf0a43eb9063497574983747a1e3d",
+    "a4d8d0b5be7f798d2b31d9f0301a4f3a92f065bf8a9c16ed30144c607fdaea1e",
+    "e4e68386d2896d843bd741c0de93897ceeda7eecef503ec4a396b6d235dcb170",
+    "e979bb0fe58b7c36921a90f4fe51fdbbeb05a732ebf0ebf856681f9706c0de19"
+  ],
+  "challenge_streams": [
+    "dynamic-stream-a",
+    "dynamic-stream-b"
+  ],
+  "eight_update_families_demonstrated": true,
+  "gate_e_closed": false,
+  "multi_challenge_stream": true,
+  "multi_seed": true,
+  "next_phase": 16,
+  "phase16_exit_closed": false,
+  "phase16_foundation_closed": true,
+  "report_hash": "e0e1e5e1b691b23cc6c3fe88d17caaef83416cecf0ab914850794dcdb987210a",
+  "schema_id": "runtime.v4.phase16.foundation.v1",
+  "seeds": [
+    "phase16-seed-alpha",
+    "phase16-seed-beta"
+  ],
+  "zero_manual_repair": true
+}

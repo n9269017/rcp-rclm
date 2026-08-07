@@ -2,15 +2,12 @@ cff-version: 1.2.0
 type: software
 message: "If you use this work, please cite the repository release and the companion RCP/RCLM papers."
 title: "RCP/RCLM Reflective Successor Verification: Papers, Lean Proofs, and Controlled Executable Artifacts"
-version: "v4-phase14-closure"
-date-released: "2026-07-31"
+version: "v4.5-phase15-phase16-results"
+date-released: "2026-08-07"
 identifiers:
   - description: "Concept DOI for all archived versions of the RCP/RCLM software package."
     type: doi
     value: "10.5281/zenodo.21710857"
-  - description: "Version DOI for the v4-phase14-closure software release."
-    type: doi
-    value: "10.5281/zenodo.21710858"
 license: "MIT"
 authors:
   - given-names: "Nicolas Calder"

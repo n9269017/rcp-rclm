@@ -4,9 +4,9 @@
       "name": "Nicolas Calder"
     }
   ],
-  "title": "RCP/RCLM Reflective Successor Verification: Papers, Lean Proofs, and Controlled Executable Artifacts",
-  "description": "Formal and executable RCP/RCLM instantiation package through Formal Core v4 Gate E and Executable Core v4 Phase 14, including the companion papers, Lean projects, Python runtimes, PowerShell and shell tooling, schemas, workflows, controlled artifacts, and retained cross-platform replay evidence. Phase 14 closes a finite, domain-relative, package-bound schedule-free M4-to-M8 trajectory; it does not establish generic successor availability, full Gate E closure, open-horizon or asynchronous RSI, general noncommuting semantics, or empirically unbounded RSI.",
-  "version": "v4-phase14-closure",
+  "title": "RCP/RCLM v4.5: Phase 15–16 Results-Only Archive",
+  "description": "Results-and-authority-evidence-only publication for private Executable Core v4 Phases 15 and 16. It preserves exact safe result records, source/workflow/artifact identities, timestamps, report hashes, byte-identical safe authority archives, cross-platform worker-free replay evidence, adversarial rejection evidence, and the Phase 16 long-trajectory scaling conclusions. The Phase 15/16 Lean and Python implementation, tests, workflows, model weights, candidate packages, hidden tasks, answer stores, mutation programs, and private runtime payloads remain private. Gate E remains open; the next executable phase is Phase 17.",
+  "version": "v4.5-phase15-phase16-results",
   "access_right": "open",
   "related_identifiers": [
     {
@@ -29,7 +29,12 @@
     "Lean 4",
     "proof-carrying successors",
     "schedule-free successor search",
-    "independent replay"
+    "independent replay",
+    "dynamic hidden challenges",
+    "fair search",
+    "recursive productivity",
+    "long-trajectory scaling",
+    "results-only release"
   ],
   "license": "mit",
   "upload_type": "software",
