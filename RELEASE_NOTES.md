@@ -1,5 +1,31 @@
 # Release Notes
 
+## v5-trajectory - 2026-08-11
+
+### Roadmap-only publication boundary
+
+`RCP/RCLM v5 Trajectory` publishes the public-safe dependency architecture for Phase 17 → 18 → X → Y → Ω → Z and the parallel EGC-0 → EGC-6 empirical general-capability track.
+
+It contains no Phase 17+ Lean or Python implementation, runtime workflow, model weights, candidate package, hidden task corpus, exact attack payload, evaluator implementation, resource schedule, or future-phase validation result.
+
+### Planned dependency order
+
+- Phase 17 — horizon-independent, externally turn-based autonomous RSI.
+- Phase 18 — independent replay and adversarial Gate E closure.
+- Phase X — selected general noncommuting quantum-coherence semantics.
+- Phase Y — root-checked proof production and verifier-policy succession.
+- Phase Ω — root-certified recursive improvement-space expansion.
+- Phase Z — thermodynamically resource-bounded asynchronous operation.
+- EGC-0 through EGC-6 — separate empirical capability measurement track.
+
+### Release and DOI boundary
+
+The GitHub object is intended as the `v5-trajectory` prerelease. The roadmap is intended for a separate manual Zenodo technical-note record titled `RCP/RCLM v5 Trajectory`; it must not replace the current completed v4.5 software/results version in the software DOI series.
+
+### Current claim boundary
+
+Phase 16 remains the latest completed core phase. `gate_e_closed=false`; no Phase 17+, Phase Ω, Phase Z, or EGC result is claimed.
+
 ## v4.5-phase15-phase16-results - 2026-08-07
 
 ### Results-only publication boundary
