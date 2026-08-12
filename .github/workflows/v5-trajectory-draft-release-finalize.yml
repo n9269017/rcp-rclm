@@ -12,10 +12,11 @@ permissions:
   contents: write
 
 env:
-  # Dry-run against the exact math-rendering correction head. After PR #59
-  # merges, this helper is updated to the merge commit and APPLY is set true.
-  TARGET_COMMIT: d2dcad2eec801dcd4688dd9807a5eff69cf98d81
-  APPLY: "false"
+  # Apply only to the exact PR #59 merge commit. The workflow preserves the
+  # release as an unpublished prerelease draft and replaces only its notes,
+  # target, roadmap ZIP, and checksum asset.
+  TARGET_COMMIT: ca79ae182a4f32fa67d265b6d2d2b737ff10557d
+  APPLY: "true"
   TAG: v5-trajectory
   TITLE: RCP/RCLM v5 Trajectory
   ASSET: rcp-rclm-v5-trajectory-roadmap.zip
