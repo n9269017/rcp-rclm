@@ -1,0 +1,44 @@
+name: Retarget RCP/RCLM v5 trajectory draft release
+
+on:
+  push:
+    branches:
+      - agent/v5-trajectory-release-draft-helper
+    paths:
+      - ".github/workflows/v5-trajectory-draft-release-retarget.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  TARGET_COMMIT: 1d261ebe2821fc372f9836dc76cb189b3e0b1077
+  TAG: v5-trajectory
+
+jobs:
+  retarget:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Update draft release target
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release edit "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$TARGET_COMMIT" \
+            --draft \
+            --prerelease \
+            --title "RCP/RCLM v5 Trajectory"
+
+      - name: Verify target and draft boundary
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release view "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --json tagName,name,isDraft,isPrerelease,targetCommitish,assets,url
