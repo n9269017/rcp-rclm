@@ -12,10 +12,10 @@ permissions:
   contents: write
 
 env:
-  # This remains false until the repository owner confirms that the Zenodo
-  # GitHub integration is disabled for n9269017/rcp-rclm. That prevents this
-  # roadmap from entering the existing software DOI version chain.
-  APPLY: "false"
+  # The repository owner confirmed that the Zenodo GitHub integration is
+  # disabled for n9269017/rcp-rclm. Publish this object only as a GitHub
+  # prerelease; its DOI will be created separately as a manual technical note.
+  APPLY: "true"
   RELEASE_ID: "368949134"
   TAG: v5-trajectory
   TARGET_COMMIT: ca79ae182a4f32fa67d265b6d2d2b737ff10557d
