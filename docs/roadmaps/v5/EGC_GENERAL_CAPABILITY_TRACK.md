@@ -46,19 +46,19 @@ Exact task corpora, hidden prompts and answers, benchmark subsets, seeds, scorin
 
 ## Measurement principles
 
-For domain \(d\), let:
+For domain $d$, let:
 
-\[
+$$
 C_d(M)
-\]
+$$
 
-be the independently measured capability score of package \(M\).
+be the independently measured capability score of package $M$.
 
 For a successor comparison:
 
-\[
+$$
 \Delta_d=C_d(M_{t+1})-C_d(M_t).
-\]
+$$
 
 A retained domain should satisfy a predeclared non-regression criterion, and a strictly improved domain should satisfy a predeclared positive lower-confidence criterion. Exact thresholds remain frozen private protocol material until evaluation closure.
 

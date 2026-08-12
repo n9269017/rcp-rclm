@@ -25,19 +25,19 @@ The EGC track measures broad empirical capability, retention, transfer, robustne
 
 ## Central targets
 
-\[
+$$
 \mathcal L_t\subsetneq\mathcal L_{t+1},
 \qquad
 \mathcal R_t\subsetneq\mathcal R_{t+1},
 \qquad
 \mathcal U_t^B\subsetneq\mathcal U_{t+1}^B,
-\]
+$$
 
 with a three-generation causal target:
 
-\[
+$$
 \mathcal U_0^B\subsetneq\mathcal U_1^B\subsetneq\mathcal U_2^B.
-\]
+$$
 
 The complete public-safe roadmap and claim boundary are under `docs/roadmaps/v5/`.
 

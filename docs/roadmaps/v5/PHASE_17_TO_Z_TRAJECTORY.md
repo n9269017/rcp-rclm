@@ -14,9 +14,9 @@ next_phase          = 17
 
 The remaining sequence is:
 
-\[
+$$
 17 \longrightarrow 18 \longrightarrow X \longrightarrow Y \longrightarrow \Omega \longrightarrow Z.
-\]
+$$
 
 The strongest scientific organization is to remove one previously fixed boundary at each stage.
 
@@ -55,9 +55,9 @@ freeze
 
 ### Horizon noninterference
 
-For histories that are identical through turn \(t\), with the same visible current resource state, future horizon information must not alter the present controller decision:
+For histories that are identical through turn $t$, with the same visible current resource state, future horizon information must not alter the present controller decision:
 
-\[
+$$
 H_{\le t}^{(1)}=H_{\le t}^{(2)}
 \land
 B_t^{(1)}=B_t^{(2)}
@@ -65,7 +65,7 @@ B_t^{(1)}=B_t^{(2)}
 \pi(H_{\le t}^{(1)},B_t^{(1)})
 =
 \pi(H_{\le t}^{(2)},B_t^{(2)}).
-\]
+$$
 
 A future target length, terminal hash, route table, future challenge sequence, or resource envelope may not covertly encode a successful schedule.
 
@@ -113,22 +113,22 @@ The formal program targets selected finite-dimensional:
 - certified numerical spectral bounds;
 - RCLM-update-to-channel refinement.
 
-A selected update \(u_t\) induces a certified channel:
+A selected update $u_t$ induces a certified channel:
 
-\[
+$$
 \rho_{t+1}=\Phi_{u_t}(\rho_t),
 \qquad
 \Phi_{u_t}\ \text{CPTP},
-\]
+$$
 
 with a declared non-loss/recovery relation such as:
 
-\[
+$$
 D(\rho_t\Vert\sigma_t)
 -
 D(\Phi_{u_t}(\rho_t)\Vert\Phi_{u_t}(\sigma_t))
 \le \varepsilon_t,
-\]
+$$
 
 together with a certified recovery channel.
 
@@ -138,11 +138,11 @@ CPTP validity constrains the semantic transformation; it does not itself choose 
 
 To prepare for later representation-space expansion, Phase X also targets selected certified embeddings:
 
-\[
+$$
 \iota_t:\mathcal H_t\hookrightarrow\mathcal H_{t+1},
 \qquad
 \iota_t^\dagger\iota_t=I.
-\]
+$$
 
 These embeddings permit conservative lifting of predecessor states into selected enlarged informational spaces.
 
@@ -152,23 +152,23 @@ Phase Y distinguishes untrusted proof production from actual verifier-policy suc
 
 An active proof-producing verification layer may return:
 
-\[
+$$
 V_t(x)=(\mathrm{accept},\pi_x),
-\]
+$$
 
 but an immutable root must independently check:
 
-\[
+$$
 V_\star(\pi_x,x)=\mathrm{accept}.
-\]
+$$
 
 For conservative verifier succession, require:
 
-\[
+$$
 \operatorname{Accept}(V_{t+1})
 \subseteq
 \operatorname{Accept}(V_\star),
-\]
+$$
 
 or an explicitly proved equivalence on a declared domain.
 
@@ -187,39 +187,39 @@ Phase Ω removes the fixed admissible improvement-language and representation-cl
 
 Let:
 
-\[
+$$
 M_t\in\mathcal R_t
-\]
+$$
 
 denote the active package and its admissible representation class;
 
-\[
+$$
 \mathcal L_t
-\]
+$$
 
 the active typed improvement language; and
 
-\[
+$$
 \mathcal U_t^B
-\]
+$$
 
-the independently certifiable transformations executable within the same normalized resource class \(B\).
+the independently certifiable transformations executable within the same normalized resource class $B$.
 
 The public headline targets are:
 
-\[
+$$
 \mathcal L_t\subsetneq\mathcal L_{t+1},
-\]
+$$
 
-\[
+$$
 \mathcal R_t\subsetneq\mathcal R_{t+1},
-\]
+$$
 
 and, most importantly,
 
-\[
+$$
 \mathcal U_t^B\subsetneq\mathcal U_{t+1}^B.
-\]
+$$
 
 The comparison is resource-normalized: expansion cannot be claimed merely by granting the successor a larger budget.
 
@@ -227,7 +227,7 @@ The comparison is resource-normalized: expansion cannot be claimed merely by gra
 
 A successor-generated extension packet publicly consists only of the following abstract categories:
 
-\[
+$$
 \Xi_t=
 (
 \text{syntax and types},
@@ -238,7 +238,7 @@ A successor-generated extension packet publicly consists only of the following a
 \text{migration},
 \text{certificate}
 ).
-\]
+$$
 
 The exact schema, byte encoding, compiler ABI, proof-object representation, migration algorithm, activation transaction, and private verifier dispatch remain outside this public roadmap.
 
@@ -252,13 +252,13 @@ Suitable proof forms may include finite normal-form enumeration, decidable type 
 
 The decisive target is:
 
-\[
+$$
 \mathcal U_0^B
 \subsetneq
 \mathcal U_1^B
 \subsetneq
 \mathcal U_2^B.
-\]
+$$
 
 The first acquired extension must causally help generate the second. A future closure therefore requires an ablation demonstrating that the first successor can produce the second extension with the acquired extension active, but cannot do so when that acquired extension is removed, and that the original predecessor cannot do so.
 
@@ -288,17 +288,17 @@ The runtime controls objective selection, search launches, candidate budgets, ar
 
 ### Resource-normalized growth
 
-Let \(T_B(t)\) denote cumulative declared resource cost. Because frontier cardinality is step-valued, the correct finite-event target is:
+Let $T_B(t)$ denote cumulative declared resource cost. Because frontier cardinality is step-valued, the correct finite-event target is:
 
-\[
+$$
 |F_{\tau_{k+1}}|>|F_{\tau_k}|,
-\]
+$$
 
 with:
 
-\[
+$$
 T_B(\tau_{k+1})-T_B(\tau_k)<\infty.
-\]
+$$
 
 A finite experiment cannot establish an actual infinite-time limit. It may demonstrate positive resource-normalized growth over a declared run, no frontier regression, bounded inter-promotion resource costs, and a conditional theorem for indefinite continuation.
 
