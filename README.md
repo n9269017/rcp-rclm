@@ -55,6 +55,8 @@ EGC-0   → EGC-1   → EGC-2   → EGC-3   → EGC-4   → EGC-5 → EGC-6
 
 This is a roadmap and technical note only. It publishes no Phase 17+ implementation or validation result, does not close Gate E, and does not report an EGC baseline result.
 
+The separately archived technical note is [10.5281/zenodo.21898263](https://doi.org/10.5281/zenodo.21898263); its all-versions concept DOI is [10.5281/zenodo.21898262](https://doi.org/10.5281/zenodo.21898262). The corresponding GitHub object is the [`v5-trajectory` prerelease](https://github.com/n9269017/rcp-rclm/releases/tag/v5-trajectory).
+
 Formal and executable v2 documentation is indexed at
 [`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md) and
 [`docs/executable_core_v2/README.md`](docs/executable_core_v2/README.md). The later
@@ -346,4 +348,4 @@ software utilities are licensed under MIT. See `LICENSE`, `LICENSES/`, and
 `RELEASE_NOTES.md`. Published records: [Paper I](https://doi.org/10.5281/zenodo.21710273),
 [Paper II](https://doi.org/10.5281/zenodo.21710376), and the
 [software series](https://doi.org/10.5281/zenodo.21710857); the exact Phase 14 software snapshot is
-[version DOI 10.5281/zenodo.21710858](https://doi.org/10.5281/zenodo.21710858). The exact Phase 15–16 results-only release is [10.5281/zenodo.21843289](https://doi.org/10.5281/zenodo.21843289). The public [`RCP/RCLM v5 Trajectory`](docs/roadmaps/v5/README.md) is a separate roadmap object; its technical-note DOI will be recorded after minting.
+[version DOI 10.5281/zenodo.21710858](https://doi.org/10.5281/zenodo.21710858). The exact Phase 15–16 results-only release is [10.5281/zenodo.21843289](https://doi.org/10.5281/zenodo.21843289). The public [`RCP/RCLM v5 Trajectory`](docs/roadmaps/v5/README.md) is a separate roadmap object with exact technical-note DOI [10.5281/zenodo.21898263](https://doi.org/10.5281/zenodo.21898263) and all-versions concept DOI [10.5281/zenodo.21898262](https://doi.org/10.5281/zenodo.21898262).

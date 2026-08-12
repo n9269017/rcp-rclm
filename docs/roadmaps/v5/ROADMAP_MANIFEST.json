@@ -19,12 +19,20 @@
   "publication_type": "roadmap_and_technical_note",
   "release": {
     "github_prerelease": true,
+    "github_release_published": true,
     "github_release_title": "RCP/RCLM v5 Trajectory",
+    "github_release_url": "https://github.com/n9269017/rcp-rclm/releases/tag/v5-trajectory",
+    "github_roadmap_zip_sha256": "e52938a228a0c202141430ffb6eec9c8ee274ef8287d0403eb948b2e4d410bd6",
     "github_tag": "v5-trajectory",
+    "github_target_commit": "ca79ae182a4f32fa67d265b6d2d2b737ff10557d",
+    "zenodo_concept_doi": "10.5281/zenodo.21898262",
     "zenodo_license": "CC-BY-4.0",
+    "zenodo_published": true,
+    "zenodo_record_id": 21898263,
     "zenodo_resource_type": "publication-technical-note",
     "zenodo_strategy": "separate_manual_technical_note",
-    "zenodo_title": "RCP/RCLM v5 Trajectory"
+    "zenodo_title": "RCP/RCLM v5 Trajectory",
+    "zenodo_version_doi": "10.5281/zenodo.21898263"
   },
   "schema_id": "rcp.rclm.v5.trajectory.manifest.v1",
   "status": {

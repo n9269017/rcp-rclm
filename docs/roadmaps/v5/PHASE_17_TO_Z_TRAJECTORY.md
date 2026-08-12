@@ -59,12 +59,10 @@ For histories that are identical through turn $t$, with the same visible current
 
 $$
 H_{\le t}^{(1)}=H_{\le t}^{(2)}
-\land
-B_t^{(1)}=B_t^{(2)}
+\land B_t^{(1)}=B_t^{(2)}
 \Longrightarrow
 \pi(H_{\le t}^{(1)},B_t^{(1)})
-=
-\pi(H_{\le t}^{(2)},B_t^{(2)}).
+=\pi(H_{\le t}^{(2)},B_t^{(2)}).
 $$
 
 A future target length, terminal hash, route table, future challenge sequence, or resource envelope may not covertly encode a successful schedule.
@@ -124,9 +122,7 @@ $$
 with a declared non-loss/recovery relation such as:
 
 $$
-D(\rho_t\Vert\sigma_t)
--
-D(\Phi_{u_t}(\rho_t)\Vert\Phi_{u_t}(\sigma_t))
+D(\rho_t\Vert\sigma_t)-D(\Phi_{u_t}(\rho_t)\Vert\Phi_{u_t}(\sigma_t))
 \le \varepsilon_t,
 $$
 
@@ -165,9 +161,9 @@ $$
 For conservative verifier succession, require:
 
 $$
-\operatorname{Accept}(V_{t+1})
+\mathrm{Accept}(V_{t+1})
 \subseteq
-\operatorname{Accept}(V_\star),
+\mathrm{Accept}(V_\star),
 $$
 
 or an explicitly proved equivalence on a declared domain.

@@ -29,6 +29,10 @@
 ```text
 publication_type                         = roadmap_and_technical_note
 roadmap_version                          = v5-trajectory
+github_prerelease_published              = true
+zenodo_technical_note_published          = true
+zenodo_version_doi                       = 10.5281/zenodo.21898263
+zenodo_concept_doi                       = 10.5281/zenodo.21898262
 phase17_plus_implementation_published    = false
 phase17_result_claimed                   = false
 phase18_result_claimed                   = false
