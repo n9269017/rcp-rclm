@@ -1,0 +1,221 @@
+name: Prepare v5 trajectory math-rendering correction
+
+on:
+  push:
+    branches:
+      - agent/v5-trajectory-math-rendering-helper
+    paths:
+      - ".github/workflows/v5-trajectory-math-rendering-helper.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v5-trajectory-math-rendering-helper
+  cancel-in-progress: false
+
+env:
+  BASE_COMMIT: 1d261ebe2821fc372f9836dc76cb189b3e0b1077
+  TARGET_BRANCH: agent/v5-trajectory-math-rendering
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact public main boundary
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.BASE_COMMIT }}
+          fetch-depth: 0
+
+      - name: Convert GitHub math delimiters and regenerate canonical manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import os
+          import subprocess
+          from pathlib import Path
+
+          BASE = os.environ["BASE_COMMIT"]
+          TARGETS = (
+              "docs/roadmaps/v5/PHASE_17_TO_Z_TRAJECTORY.md",
+              "docs/roadmaps/v5/EGC_GENERAL_CAPABILITY_TRACK.md",
+              "docs/roadmaps/v5/GITHUB_RELEASE_NOTES.md",
+          )
+          NESTED = "docs/roadmaps/v5/SHA256SUMS.txt"
+          ROOT = "SHA256SUMS.txt"
+
+          def output(*args: str, text: bool = True):
+              return subprocess.check_output(args, text=text).strip()
+
+          def blob_bytes(index_path: str) -> bytes:
+              oid = output("git", "rev-parse", f":{index_path}")
+              return subprocess.check_output(["git", "cat-file", "blob", oid])
+
+          def transform(text: str) -> tuple[str, int]:
+              lines = text.splitlines(keepends=True)
+              in_fence = False
+              changed = 0
+              rendered: list[str] = []
+              for line in lines:
+                  stripped = line.lstrip()
+                  if stripped.startswith("```"):
+                      rendered.append(line)
+                      in_fence = not in_fence
+                      continue
+                  if not in_fence:
+                      replacement = (
+                          line.replace(r"\[", "$$")
+                              .replace(r"\]", "$$")
+                              .replace(r"\(", "$")
+                              .replace(r"\)", "$")
+                      )
+                      if replacement != line:
+                          changed += 1
+                      line = replacement
+                  rendered.append(line)
+              return "".join(rendered), changed
+
+          if output("git", "rev-parse", "HEAD") != BASE:
+              raise SystemExit("exact-base checkout mismatch")
+
+          for relative in TARGETS:
+              base_bytes = subprocess.check_output(
+                  ["git", "show", f"{BASE}:{relative}"]
+              )
+              base_text = base_bytes.decode("utf-8")
+              updated, changed_lines = transform(base_text)
+              if changed_lines == 0:
+                  raise SystemExit(f"no math delimiters changed in {relative}")
+              Path(relative).write_text(
+                  updated,
+                  encoding="utf-8",
+                  newline="\n",
+              )
+
+              # Prove that the file differs from the base only by the declared
+              # delimiter conversion and that no unsupported delimiters remain
+              # outside fenced code blocks.
+              observed = Path(relative).read_text(encoding="utf-8")
+              expected, _ = transform(base_text)
+              if observed != expected:
+                  raise SystemExit(f"unexpected wording/content change in {relative}")
+              second_pass, second_changes = transform(observed)
+              if second_changes != 0 or second_pass != observed:
+                  raise SystemExit(f"unsupported math delimiter remains in {relative}")
+
+          subprocess.check_call(["git", "add", *TARGETS])
+
+          roadmap_paths = sorted(
+              item.decode("utf-8")
+              for item in subprocess.check_output(
+                  ["git", "ls-files", "-z", "docs/roadmaps/v5"]
+              ).split(b"\0")
+              if item and item.decode("utf-8") != NESTED
+          )
+          nested_lines = [
+              f"{hashlib.sha256(blob_bytes(path)).hexdigest()}  "
+              f"{Path(path).relative_to('docs/roadmaps/v5').as_posix()}"
+              for path in roadmap_paths
+          ]
+          Path(NESTED).write_text(
+              "\n".join(nested_lines) + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
+          subprocess.check_call(["git", "add", NESTED])
+
+          tracked = sorted(
+              (
+                  item.decode("utf-8")
+                  for item in subprocess.check_output(
+                      ["git", "ls-files", "-z"]
+                  ).split(b"\0")
+                  if item and item.decode("utf-8") != ROOT
+              ),
+              key=lambda value: value.encode("utf-8"),
+          )
+          root_lines = [
+              f"{hashlib.sha256(blob_bytes(path)).hexdigest()}  {path}"
+              for path in tracked
+          ]
+          Path(ROOT).write_text(
+              "\n".join(root_lines) + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
+          subprocess.check_call(["git", "add", ROOT])
+
+          expected_changed = sorted((*TARGETS, NESTED, ROOT))
+          observed_changed = sorted(
+              output("git", "diff", "--cached", "--name-only", BASE).splitlines()
+          )
+          if observed_changed != expected_changed:
+              raise SystemExit(
+                  f"unexpected changed surface: expected={expected_changed} "
+                  f"observed={observed_changed}"
+              )
+
+          def parse_manifest(path: str) -> dict[str, str]:
+              result: dict[str, str] = {}
+              for line in Path(path).read_text(encoding="utf-8").splitlines():
+                  digest, relative = line.split("  ", 1)
+                  result[relative] = digest
+              return result
+
+          nested_expected = {
+              Path(path).relative_to("docs/roadmaps/v5").as_posix():
+                  hashlib.sha256(blob_bytes(path)).hexdigest()
+              for path in roadmap_paths
+          }
+          if parse_manifest(NESTED) != nested_expected:
+              raise SystemExit("nested roadmap checksum mismatch")
+
+          root_expected = {
+              path: hashlib.sha256(blob_bytes(path)).hexdigest()
+              for path in tracked
+          }
+          if parse_manifest(ROOT) != root_expected:
+              raise SystemExit("root repository checksum mismatch")
+
+          print(
+              {
+                  "accepted": True,
+                  "base": BASE,
+                  "changed_paths": len(observed_changed),
+                  "roadmap_checksum_entries": len(nested_expected),
+                  "root_checksum_entries": len(root_expected),
+                  "wording_changed": False,
+                  "implementation_published": False,
+              }
+          )
+          PY
+
+          remote_main="$(git ls-remote origin refs/heads/main | awk '{print $1}')"
+          if [[ "$remote_main" != "$BASE_COMMIT" ]]; then
+            echo "Public main moved: expected $BASE_COMMIT observed $remote_main" >&2
+            exit 1
+          fi
+
+          if git ls-remote --exit-code --heads origin "refs/heads/$TARGET_BRANCH" >/dev/null 2>&1; then
+            echo "Target branch already exists; refusing overwrite: $TARGET_BRANCH" >&2
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Render v5 trajectory mathematics on GitHub"
+
+          test "$(git rev-list --count "$BASE_COMMIT..HEAD")" = "1"
+          test "$(git diff --name-only "$BASE_COMMIT...HEAD" | wc -l | tr -d ' ')" = "5"
+
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+
+          echo "Prepared $TARGET_BRANCH at $(git rev-parse HEAD)"
