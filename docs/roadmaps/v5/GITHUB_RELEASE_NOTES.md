@@ -2,6 +2,12 @@
 
 **Status:** roadmap and technical note only. No Phase 17+ implementation, validation result, Gate E closure, or EGC result is included or claimed.
 
+## DOI
+
+- Exact technical-note DOI: **[10.5281/zenodo.21898263](https://doi.org/10.5281/zenodo.21898263)**
+- Technical-note concept DOI: **[10.5281/zenodo.21898262](https://doi.org/10.5281/zenodo.21898262)**
+- RCP/RCLM software series DOI: **[10.5281/zenodo.21710857](https://doi.org/10.5281/zenodo.21710857)**
+
 ## Dependency order
 
 ```text
@@ -45,6 +51,6 @@ The complete public-safe roadmap and claim boundary are under `docs/roadmaps/v5/
 
 The release excludes Phase 17+ source, exact private schemas and encodings, executable verifier/controller loops, hidden evaluation corpora, exact attack payloads, resource schedules, model weights, candidate packages, and private evaluator internals.
 
-## DOI strategy
+## DOI boundary
 
-Publish this GitHub object as the `v5-trajectory` prerelease and archive it separately on Zenodo as the technical note **RCP/RCLM v5 Trajectory**. It must not replace the latest completed v4.5 software/results release in the existing software DOI series.
+This GitHub object is published as the `v5-trajectory` prerelease and archived separately on Zenodo as technical-note DOI `10.5281/zenodo.21898263`. It does not replace the latest completed v4.5 software/results release in the existing software DOI series.

@@ -20,7 +20,7 @@ It contains no Phase 17+ Lean or Python implementation, runtime workflow, model 
 
 ### Release and DOI boundary
 
-The GitHub object is intended as the `v5-trajectory` prerelease. The roadmap is intended for a separate manual Zenodo technical-note record titled `RCP/RCLM v5 Trajectory`; it must not replace the current completed v4.5 software/results version in the software DOI series.
+The `v5-trajectory` GitHub prerelease is published at `ca79ae182a4f32fa67d265b6d2d2b737ff10557d` with roadmap ZIP SHA-256 `e52938a228a0c202141430ffb6eec9c8ee274ef8287d0403eb948b2e4d410bd6`. The separate Zenodo technical note has exact DOI `10.5281/zenodo.21898263` and concept DOI `10.5281/zenodo.21898262`. It does not replace the current completed v4.5 software/results version in the software DOI series.
 
 ### Current claim boundary
 
@@ -57,7 +57,7 @@ Source head `b870b3cff8ae5c7fe5e26c2308279bea357bc99c`; source tree `4cba347fc51
 
 ### DOI boundary
 
-The software concept DOI remains `10.5281/zenodo.21710857`. The exact v4.5 version DOI must be added only after Zenodo ingests the published GitHub release and mints it. The prior DOI `10.5281/zenodo.21710858` remains the exact `v4-phase14-closure` record.
+The software concept DOI remains `10.5281/zenodo.21710857`. The exact v4.5 Phase 15–16 results-only version DOI is `10.5281/zenodo.21843289`. The prior DOI `10.5281/zenodo.21710858` remains the exact `v4-phase14-closure` record.
 
 ### Claim boundary
 

@@ -7,9 +7,11 @@ on:
     paths:
       - ".github/workflows/v5-trajectory-audit.yml"
       - ".github/workflows/v45-results-only-audit.yml"
+      - "CITATION.cff"
       - "README.md"
       - "RELEASE_NOTES.md"
       - "SHA256SUMS.txt"
+      - "docs/README.md"
       - "docs/roadmaps/**"
   push:
     branches:
@@ -17,9 +19,11 @@ on:
     paths:
       - ".github/workflows/v5-trajectory-audit.yml"
       - ".github/workflows/v45-results-only-audit.yml"
+      - "CITATION.cff"
       - "README.md"
       - "RELEASE_NOTES.md"
       - "SHA256SUMS.txt"
+      - "docs/README.md"
       - "docs/roadmaps/**"
   workflow_dispatch:
 
@@ -279,9 +283,11 @@ jobs:
           exact_root = {
               ".github/workflows/v45-results-only-audit.yml",
               ".github/workflows/v5-trajectory-audit.yml",
+              "CITATION.cff",
               "README.md",
               "RELEASE_NOTES.md",
               "SHA256SUMS.txt",
+              "docs/README.md",
               "docs/roadmaps/README.md",
           }
           allowed = [
