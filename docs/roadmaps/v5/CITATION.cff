@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this roadmap, cite the RCP/RCLM v5 Trajectory technical note."
+type: report
+title: "RCP/RCLM v5 Trajectory"
+version: "v5-trajectory"
+date-released: "2026-08-11"
+authors:
+  - given-names: "Nicolas"
+    family-names: "Calder"
+    alias: "n9269017"
+license: "CC-BY-4.0"
+repository-code: "https://github.com/n9269017/rcp-rclm"
+url: "https://github.com/n9269017/rcp-rclm/tree/main/docs/roadmaps/v5"
+abstract: >-
+  Public, claim-bounded trajectory for RCP/RCLM Phase 17 through Phase Z,
+  including Phase Omega root-certified recursive improvement-space expansion
+  and the parallel EGC-0 through EGC-6 empirical general-capability track.
+keywords:
+  - recursive self-improvement
+  - reflective successor verification
+  - proof-carrying successors
+  - horizon-independent autonomy
+  - verifier succession
+  - noncommuting quantum semantics
+  - recursive improvement-space expansion
+  - empirical general capability
+references:
+  - type: software
+    title: "RCP/RCLM software series"
+    doi: "10.5281/zenodo.21710857"
+  - type: software
+    title: "RCP/RCLM v4.5 Phase 15–16 Results-Only Archive"
+    doi: "10.5281/zenodo.21843289"
+  - type: article
+    title: "Recursive Coherence Preservation / RCP-II"
+    doi: "10.5281/zenodo.21710273"
+  - type: article
+    title: "RCLM architecture companion paper"
+    doi: "10.5281/zenodo.21710376"

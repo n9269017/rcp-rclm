@@ -6,7 +6,7 @@ This repository contains the two companion RCP/RCLM manuscripts, the historical 
 certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
 Phases 0–8**, the first bounded **PyTorch learned-successor pilot**, and the later
 **Formal/Executable Core v3** work through Gate D and Phases 9–13 plus
-**Formal/Executable Core v4** through the Gate E foundation and Phase 14.
+**Formal/Executable Core v4** through the Gate E foundation and Phase 14, the public Phase 15–16 results-only archive, and the citable v5 trajectory roadmap.
 
 The project proves and executes a conditional successor-verification architecture. The
 formal layer supplies the theorem kernel and the selected finite classical/diagonal
@@ -42,6 +42,18 @@ unbounded RSI, or general noncommuting quantum semantics.
 | First PyTorch learned-successor pilot | Complete at the declared tiny CPU-only scope | Two deterministic proposal runs, one genuine SGD update, canonical int64 weight package, exact framework-independent evaluation, protected-metric non-regression, fail-closed admission, atomic promotion/rejection, rollback, and zero-training replay |
 | Formal/Executable Cores v3–v4 — v3: Gate D + Phases 9–13; v4: Gate E + Phase 14 | Phase 14 complete at the declared selected scope; Gate E remains partially open; Phase 15 is next | v3 consists of Gate D and Phases 9–13, culminating in independent replay of the certified `M0 → M4` learned-successor trajectory. v4 consists of Gate E and Phase 14; Gate E adds constructive bounded search, exhaustion, and recursive-productivity objects. Phase 14 closes a schedule-free `M4 → M8` trajectory with four accepted promotions, two retained fail-closed rejections, four substantive update families, zero manual repairs, and pinned worker-free replay on Ubuntu, Windows, and macOS. The result remains finite, domain-relative, and package-bound; generic successor availability, full Gate E closure, open-horizon/asynchronous RSI, general noncommuting semantics, and empirically unbounded RSI remain open. |
 | Executable Core v4 — Phase 15–16 published results (implementation withheld) | **Phases 15 and 16 complete; v4.5 results-only archive** | The [v4.5 results archive](artifacts/releases/v4.5-phase15-phase16-results/README.md) records Phase 15’s selected dynamic-hidden `M8 → M9` transition with one retained rejection, capability frontier `11 → 13`, recursive-productivity frontier `8 → 11`, zero manual repair, `12/12` selected attacks rejected, and worker-free replay on Ubuntu, Windows, and macOS. It also records Phase 16’s 16 campaigns, 580 accepted promotions, 3,752 retained rejected attempts, closed `8/16/32/64` validation ladder, accepted 100-promotion stretch campaign, eight substantive update families, bounded exhaustion evidence, zero manual repair, no host-authored successful schedule, `12/12` selected attacks rejected, and three-platform worker-free replay. The public implementation remains through Phase 14; Phase 15–16 implementation remains private; `gate_e_closed=false`; next phase: 17. |
+| Formal/Executable Core v5 — Phase 17 → 18 → X → Y → Ω → Z trajectory and EGC-0 → EGC-6 track |  | **Roadmap only; no Phase 17+ implementation or result is claimed.** Phase 17 targets horizon-independent turn-based autonomy; Phase 18 independent Gate E closure; X selected noncommuting semantics; Y root-checked proof and verifier succession; Ω root-certified strict expansion of typed representation and resource-bounded improvement spaces; and Z asynchronous, thermodynamically resource-bounded operation with serialized atomic promotion. EGC-0 through EGC-6 forms a separate empirical capability track beginning from the frozen Phase 16 boundary. |
+
+## Planned v5 trajectory
+
+The citable public roadmap is [`RCP/RCLM v5 Trajectory`](docs/roadmaps/v5/README.md):
+
+```text
+Phase 17 → Phase 18 → Phase X → Phase Y → Phase Ω → Phase Z
+EGC-0   → EGC-1   → EGC-2   → EGC-3   → EGC-4   → EGC-5 → EGC-6
+```
+
+This is a roadmap and technical note only. It publishes no Phase 17+ implementation or validation result, does not close Gate E, and does not report an EGC baseline result.
 
 Formal and executable v2 documentation is indexed at
 [`docs/formal_core_v2/README.md`](docs/formal_core_v2/README.md) and
@@ -89,6 +101,7 @@ docs/formal_core_v3/             Gate D theorem/audit records
 docs/executable_core_v3/         Phase 9–13 architecture/validation
 docs/formal_core_v4/             Gate E theorem/audit records
 docs/executable_core_v4/         Gate E and Phase 14 architecture/validation
+docs/roadmaps/v5/               Public v5 trajectory and EGC roadmap
 
 python/rcp_rclm_executable_core_v2/
   contract/                       strict executable schemas
@@ -303,11 +316,9 @@ python scripts/replay_pytorch_pilot.py --repo-root . --store-root artifacts/pyto
 
 ## Next research boundary
 
-Phase 15 is next: dynamic hidden challenges and a materially more capable RCLM substrate,
-while the root verifier, post-freeze evaluation boundary, package hashes, rollback, and promotion
-authority remain external and fail-closed. Gate E remains open until later open-horizon trajectory
-and independent adversarial closure work; general noncommuting semantics remain a subsequent
-mathematical extension rather than a Phase 15 claim.
+**Immediate planned boundary: freeze EGC-0 and specify Phase 17; no Phase 17+ result is presently claimed.**
+
+Phase 17 targets horizon-independent turn-based autonomy under the fixed Phase 16 improvement language, verifier, diagonal semantics, and atomic external transaction harness. EGC-0 separately measures the frozen Phase 15/16 substrate across broad post-freeze capability domains. Gate E remains open until Phase 18 independently reconstructs and adversarially closes the Phase 17 process.
 
 ## Claim boundary
 
@@ -322,7 +333,7 @@ strict useful improvement at every recursive step
 full Gate E closure or arbitrary-domain/open-horizon/asynchronous RSI
 general noncommuting QRE, arbitrary CPTP data processing, or Petz recovery
 general Python-to-Lean refinement beyond the declared packets
-independent replay beyond the declared Phase 8, Phase 13, and Phase 14 scopes
+independent replay beyond the declared Phase 8, Phase 13, Phase 14, Phase 15, and Phase 16 scopes
 GPU reproducibility, LLM-scale learned refinement, or external benchmark performance
 empirically unbounded RSI
 ```
@@ -335,4 +346,4 @@ software utilities are licensed under MIT. See `LICENSE`, `LICENSES/`, and
 `RELEASE_NOTES.md`. Published records: [Paper I](https://doi.org/10.5281/zenodo.21710273),
 [Paper II](https://doi.org/10.5281/zenodo.21710376), and the
 [software series](https://doi.org/10.5281/zenodo.21710857); the exact Phase 14 software snapshot is
-[version DOI 10.5281/zenodo.21710858](https://doi.org/10.5281/zenodo.21710858).
+[version DOI 10.5281/zenodo.21710858](https://doi.org/10.5281/zenodo.21710858). The exact Phase 15–16 results-only release is [10.5281/zenodo.21843289](https://doi.org/10.5281/zenodo.21843289). The public [`RCP/RCLM v5 Trajectory`](docs/roadmaps/v5/README.md) is a separate roadmap object; its technical-note DOI will be recorded after minting.

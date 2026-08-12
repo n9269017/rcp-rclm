@@ -1,0 +1,62 @@
+{
+  "empirical_track": [
+    "EGC-0",
+    "EGC-1",
+    "EGC-2",
+    "EGC-3",
+    "EGC-4",
+    "EGC-5",
+    "EGC-6"
+  ],
+  "predecessor_boundary": {
+    "completed_core_phase": 16,
+    "gate_e_closed": false,
+    "next_phase": 17,
+    "phase16_exit_closed": true,
+    "public_results_doi": "10.5281/zenodo.21843289"
+  },
+  "publication_date": "2026-08-11",
+  "publication_type": "roadmap_and_technical_note",
+  "release": {
+    "github_prerelease": true,
+    "github_release_title": "RCP/RCLM v5 Trajectory",
+    "github_tag": "v5-trajectory",
+    "zenodo_license": "CC-BY-4.0",
+    "zenodo_resource_type": "publication-technical-note",
+    "zenodo_strategy": "separate_manual_technical_note",
+    "zenodo_title": "RCP/RCLM v5 Trajectory"
+  },
+  "schema_id": "rcp.rclm.v5.trajectory.manifest.v1",
+  "status": {
+    "egc0_baseline_completed": false,
+    "general_intelligence_claimed": false,
+    "phase17_plus_implementation_published": false,
+    "phase17_result_claimed": false,
+    "phase18_result_claimed": false,
+    "phase_omega_result_claimed": false,
+    "phase_x_result_claimed": false,
+    "phase_y_result_claimed": false,
+    "phase_z_result_claimed": false,
+    "roadmap_only": true
+  },
+  "title": "RCP/RCLM v5 Trajectory",
+  "trajectory": [
+    "17",
+    "18",
+    "X",
+    "Y",
+    "Omega",
+    "Z"
+  ],
+  "version": "v5-trajectory",
+  "withheld": [
+    "phase17_plus_source",
+    "private_runtime_schemas",
+    "proof_and_verifier_implementation",
+    "exact_attack_payloads",
+    "hidden_evaluation_material",
+    "resource_and_scheduler_constants",
+    "model_and_candidate_packages",
+    "private_evaluator_internals"
+  ]
+}
