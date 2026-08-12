@@ -1,0 +1,167 @@
+name: Publish RCP/RCLM v5 trajectory prerelease
+
+on:
+  push:
+    branches:
+      - agent/v5-trajectory-release-draft-helper
+    paths:
+      - ".github/workflows/v5-trajectory-prerelease-publish.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  # This remains false until the repository owner confirms that the Zenodo
+  # GitHub integration is disabled for n9269017/rcp-rclm. That prevents this
+  # roadmap from entering the existing software DOI version chain.
+  APPLY: "false"
+  RELEASE_ID: "368949134"
+  TAG: v5-trajectory
+  TARGET_COMMIT: ca79ae182a4f32fa67d265b6d2d2b737ff10557d
+  EXPECTED_ASSET_SHA256: e52938a228a0c202141430ffb6eec9c8ee274ef8287d0403eb948b2e4d410bd6
+  ASSET: rcp-rclm-v5-trajectory-roadmap.zip
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Verify exact unpublished prerelease draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          from __future__ import annotations
+
+          import json
+          import os
+          import subprocess
+
+          record = json.loads(
+              subprocess.check_output(
+                  [
+                      "gh", "api",
+                      f"/repos/{os.environ['GITHUB_REPOSITORY']}/releases/{os.environ['RELEASE_ID']}",
+                  ],
+                  text=True,
+              )
+          )
+          if record.get("tag_name") != os.environ["TAG"]:
+              raise SystemExit("draft tag mismatch")
+          if record.get("target_commitish") != os.environ["TARGET_COMMIT"]:
+              raise SystemExit("draft target mismatch")
+          if record.get("draft") is not True:
+              raise SystemExit("release is not an unpublished draft")
+          if record.get("prerelease") is not True:
+              raise SystemExit("draft is not marked prerelease")
+          if record.get("published_at") is not None:
+              raise SystemExit("draft was already published")
+
+          assets = {asset["name"]: asset for asset in record.get("assets", [])}
+          expected_names = {
+              os.environ["ASSET"],
+              f"{os.environ['ASSET']}.sha256",
+          }
+          if set(assets) != expected_names:
+              raise SystemExit(f"asset set mismatch: {sorted(assets)}")
+          observed_digest = assets[os.environ["ASSET"]].get("digest")
+          expected_digest = f"sha256:{os.environ['EXPECTED_ASSET_SHA256']}"
+          if observed_digest != expected_digest:
+              raise SystemExit(
+                  f"asset digest mismatch: expected={expected_digest} observed={observed_digest}"
+              )
+
+          body = record.get("body") or ""
+          if "\\[" in body or "\\]" in body or "\\(" in body or "\\)" in body:
+              raise SystemExit("unsupported raw math delimiters remain in release notes")
+          if "$$" not in body:
+              raise SystemExit("renderable display-math delimiter absent from release notes")
+          required = (
+              "No Phase 17+ implementation",
+              "Phase Ω",
+              "EGC-0",
+              "separately on Zenodo",
+          )
+          for phrase in required:
+              if phrase not in body:
+                  raise SystemExit(f"required release-note phrase missing: {phrase}")
+
+          print(
+              json.dumps(
+                  {
+                      "release_id": record["id"],
+                      "tag": record["tag_name"],
+                      "target": record["target_commitish"],
+                      "draft": record["draft"],
+                      "prerelease": record["prerelease"],
+                      "published_at": record["published_at"],
+                      "asset_sha256": os.environ["EXPECTED_ASSET_SHA256"],
+                      "apply": os.environ["APPLY"] == "true",
+                  },
+                  sort_keys=True,
+                  indent=2,
+              )
+          )
+
+      - name: Publish as prerelease without making it latest
+        if: ${{ env.APPLY == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method PATCH \
+            -H 'Accept: application/vnd.github+json' \
+            "/repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID" \
+            -F draft=false \
+            -F prerelease=true \
+            -f make_latest=false \
+            >/dev/null
+
+      - name: Verify published prerelease boundary
+        if: ${{ env.APPLY == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          from __future__ import annotations
+
+          import json
+          import os
+          import subprocess
+
+          record = json.loads(
+              subprocess.check_output(
+                  [
+                      "gh", "api",
+                      f"/repos/{os.environ['GITHUB_REPOSITORY']}/releases/{os.environ['RELEASE_ID']}",
+                  ],
+                  text=True,
+              )
+          )
+          if record.get("draft") is not False:
+              raise SystemExit("release remained a draft")
+          if record.get("prerelease") is not True:
+              raise SystemExit("published release lost prerelease status")
+          if not record.get("published_at"):
+              raise SystemExit("published timestamp is absent")
+          if record.get("tag_name") != os.environ["TAG"]:
+              raise SystemExit("published tag mismatch")
+          if record.get("target_commitish") != os.environ["TARGET_COMMIT"]:
+              raise SystemExit("published target mismatch")
+          print(
+              json.dumps(
+                  {
+                      "release_id": record["id"],
+                      "html_url": record["html_url"],
+                      "tag": record["tag_name"],
+                      "target": record["target_commitish"],
+                      "draft": record["draft"],
+                      "prerelease": record["prerelease"],
+                      "published_at": record["published_at"],
+                  },
+                  sort_keys=True,
+                  indent=2,
+              )
+          )
