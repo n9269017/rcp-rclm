@@ -72,6 +72,7 @@ jobs:
               (root / "ROADMAP_MANIFEST.json").read_text(encoding="utf-8")
           )
           status = manifest.get("status", {})
+          predecessor = manifest.get("predecessor_boundary", {})
           if manifest.get("title") != "RCP/RCLM v5 Trajectory":
               raise SystemExit("roadmap title mismatch")
           if manifest.get("version") != "v5-trajectory":
@@ -87,12 +88,17 @@ jobs:
               "phase_omega_result_claimed",
               "phase_z_result_claimed",
               "egc0_baseline_completed",
-              "gate_e_closed",
               "general_intelligence_claimed",
           )
           for field in forbidden_true:
               if status.get(field) is not False:
                   raise SystemExit(f"future-result boundary mismatch: {field}")
+          if predecessor.get("phase16_exit_closed") is not True:
+              raise SystemExit("Phase 16 predecessor boundary mismatch")
+          if predecessor.get("gate_e_closed") is not False:
+              raise SystemExit("Gate E predecessor boundary mismatch")
+          if predecessor.get("next_phase") != 17:
+              raise SystemExit("next-phase predecessor boundary mismatch")
 
           for name in (
               "PHASE_17_TO_Z_TRAJECTORY.md",
