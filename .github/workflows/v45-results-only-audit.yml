@@ -257,12 +257,14 @@ jobs:
               )
 
           readme = Path("README.md").read_text(encoding="utf-8")
-          marker = (
-              "| Executable Core v4 — Phase 15–16 published results "
-              "(implementation withheld) |"
-          )
-          if readme.count(marker) != 1:
-              raise SystemExit("README v4.5 result row is missing or duplicated")
+          current_marker = "| Executable Core v4 — Phase 15–16 full source |"
+          if readme.count(current_marker) != 1:
+              raise SystemExit("README current Phase 15–16 full-source row is missing or duplicated")
+
+          historical_readme = (ROOT / "README.md").read_text(encoding="utf-8")
+          historical_marker = "# RCP/RCLM v4.5 — Phase 15–16 Results-Only Archive"
+          if historical_marker not in historical_readme:
+              raise SystemExit("frozen v4.5 historical publication marker is missing")
 
           print(
               json.dumps(
