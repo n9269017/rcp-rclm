@@ -1,0 +1,409 @@
+{
+  "$defs": {
+    "attempt": {
+      "additionalProperties": false,
+      "properties": {
+        "active_store_package_hash_after": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "active_store_package_hash_before": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "attempt_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "candidate_dynamic_report_hashes": {
+          "items": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "candidate_freeze_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "candidate_phase6_tree_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "candidate_semantic_package_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "decoder_manifest_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "gate_d_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "gate_e_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "gate_e_validation_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "heldout_material_visible_before_freeze": {
+          "const": false
+        },
+        "host_provided_successful_route": {
+          "const": false
+        },
+        "information_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "manual_repairs": {
+          "const": 0
+        },
+        "outer_verification_hash": {
+          "oneOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "phase7_ledger_entry_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "predecessor_dynamic_report_hashes": {
+          "items": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "protected_report_hashes": {
+          "items": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "minItems": 11,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "reason_codes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "recursive_productivity_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "rejection_evidence_hash": {
+          "oneOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_id": {
+          "const": "runtime.v4.phase15.attempt_summary.v1"
+        },
+        "training_result_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "variant": {
+          "enum": [
+            "lean_only",
+            "multidomain"
+          ]
+        },
+        "verdict": {
+          "enum": [
+            "accept",
+            "reject"
+          ]
+        }
+      },
+      "required": [
+        "schema_id",
+        "attempt_index",
+        "variant",
+        "candidate_semantic_package_hash",
+        "candidate_freeze_hash",
+        "decoder_manifest_hash",
+        "training_result_hash",
+        "candidate_phase6_tree_hash",
+        "verdict",
+        "reason_codes",
+        "protected_report_hashes",
+        "predecessor_dynamic_report_hashes",
+        "candidate_dynamic_report_hashes",
+        "information_report_hash",
+        "recursive_productivity_report_hash",
+        "gate_d_report_hash",
+        "gate_e_report_hash",
+        "gate_e_validation_hash",
+        "outer_verification_hash",
+        "active_store_package_hash_before",
+        "active_store_package_hash_after",
+        "phase7_ledger_entry_hash",
+        "rejection_evidence_hash",
+        "manual_repairs",
+        "heldout_material_visible_before_freeze",
+        "host_provided_successful_route"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/n9269017/rcp-rclm/blob/main/python/rcp_rclm_executable_core_v4/contract/phase_15_trajectory.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "accepted_promotions": {
+      "const": 1
+    },
+    "answer_store_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "attempts": {
+      "items": {
+        "$ref": "#/$defs/attempt"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    },
+    "bounded_autoregressive_execution": {
+      "const": true
+    },
+    "candidate_freeze_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "candidate_passed_all_dynamic_tasks": {
+      "const": true
+    },
+    "canonical_quantized_model_package": {
+      "const": true
+    },
+    "challenge_manifest_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "dynamic_challenges_generated_after_candidate_freeze": {
+      "const": true
+    },
+    "dynamic_domains": {
+      "const": [
+        "integer_program",
+        "lean_multistep"
+      ]
+    },
+    "dynamic_task_ids": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "final_capability_frontier": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 13,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "final_m9_semantic_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "final_recursive_productivity_frontier": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 11,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "final_store_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "gate_e_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "gate_e_validation_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "heldout_material_visible_before_freeze": {
+      "const": false
+    },
+    "host_provided_successful_route": {
+      "const": false
+    },
+    "independent_cross_domain_evaluation": {
+      "const": true
+    },
+    "initial_capability_frontier": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 11,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "initial_m8_semantic_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "initial_recursive_productivity_frontier": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 8,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "initial_store_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "multi_token_reasoning": {
+      "const": true
+    },
+    "next_phase": {
+      "const": 15
+    },
+    "phase14_bundle_manifest_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase14_trajectory_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase15_campaign_closed": {
+      "const": true
+    },
+    "phase15_exit_closed": {
+      "const": false
+    },
+    "predecessor_failed_all_dynamic_tasks": {
+      "const": true
+    },
+    "rejected_attempts": {
+      "const": 1
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase15.trajectory_report.v1"
+    },
+    "source_head": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "source_tree": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "trajectory_id": {
+      "const": "phase15-dynamic-hidden-m8-m9-v1"
+    },
+    "untrusted_training_with_deterministic_export": {
+      "const": true
+    }
+  },
+  "required": [
+    "schema_id",
+    "trajectory_id",
+    "source_head",
+    "source_tree",
+    "phase14_bundle_manifest_hash",
+    "phase14_trajectory_report_hash",
+    "initial_store_package_hash",
+    "initial_m8_semantic_package_hash",
+    "final_store_package_hash",
+    "final_m9_semantic_package_hash",
+    "initial_capability_frontier",
+    "final_capability_frontier",
+    "initial_recursive_productivity_frontier",
+    "final_recursive_productivity_frontier",
+    "candidate_freeze_hashes",
+    "challenge_manifest_hash",
+    "answer_store_hash",
+    "dynamic_task_ids",
+    "attempts",
+    "gate_e_report_hash",
+    "gate_e_validation_hash",
+    "accepted_promotions",
+    "rejected_attempts",
+    "dynamic_domains",
+    "bounded_autoregressive_execution",
+    "multi_token_reasoning",
+    "canonical_quantized_model_package",
+    "untrusted_training_with_deterministic_export",
+    "independent_cross_domain_evaluation",
+    "dynamic_challenges_generated_after_candidate_freeze",
+    "predecessor_failed_all_dynamic_tasks",
+    "candidate_passed_all_dynamic_tasks",
+    "manual_repairs",
+    "heldout_material_visible_before_freeze",
+    "host_provided_successful_route",
+    "phase15_campaign_closed",
+    "phase15_exit_closed",
+    "gate_e_closed",
+    "accepted",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "RCP/RCLM Phase 15 dynamic-hidden trajectory report",
+  "type": "object"
+}

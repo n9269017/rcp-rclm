@@ -1,0 +1,210 @@
+{
+  "$id": "https://rcp-rclm.invalid/contracts/phase_16_capture.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "bootstrap": {
+      "required": [
+        "schema_id",
+        "accepted",
+        "report_hash"
+      ],
+      "type": "object"
+    },
+    "bootstrap_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "campaign_count": {
+      "const": 16
+    },
+    "campaign_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 16,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "campaigns": {
+      "items": {
+        "required": [
+          "schema_id",
+          "target_promotions",
+          "accepted",
+          "report_hash"
+        ],
+        "type": "object"
+      },
+      "maxItems": 16,
+      "minItems": 16,
+      "type": "array"
+    },
+    "challenge_streams": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "fixed_verifier_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "foundation": {
+      "required": [
+        "schema_id",
+        "accepted",
+        "phase16_foundation_closed",
+        "report_hash"
+      ],
+      "type": "object"
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "host_authored_success_schedule_present": {
+      "const": false
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "multi_challenge_stream_reproduction": {
+      "const": true
+    },
+    "multi_seed_reproduction": {
+      "const": true
+    },
+    "next_phase": {
+      "const": 16
+    },
+    "phase16_exit_closed": {
+      "const": false
+    },
+    "phase16_foundation_closed": {
+      "const": true
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "rung_status": {
+      "additionalProperties": false,
+      "properties": {
+        "16": {
+          "const": true
+        },
+        "32": {
+          "const": true
+        },
+        "64": {
+          "const": true
+        },
+        "8": {
+          "const": true
+        }
+      },
+      "required": [
+        "8",
+        "16",
+        "32",
+        "64"
+      ],
+      "type": "object"
+    },
+    "scaling_ladder": {
+      "const": [
+        8,
+        16,
+        32,
+        64
+      ]
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase16.capture.v1"
+    },
+    "seeds": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "semantics_id": {
+      "const": "gate-c-diagonal-qre-kl-fixed-semantics-v1"
+    },
+    "source_head": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "source_tree": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "total_accepted_promotions": {
+      "minimum": 480,
+      "type": "integer"
+    },
+    "total_rejected_attempts": {
+      "minimum": 480,
+      "type": "integer"
+    },
+    "update_families_demonstrated": {
+      "items": {
+        "enum": [
+          "adapter_policy",
+          "architecture_policy",
+          "memory_policy",
+          "optimizer_policy",
+          "planner_policy",
+          "retrieval_policy",
+          "tool_policy",
+          "verification_automation_policy"
+        ]
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_id",
+    "source_head",
+    "source_tree",
+    "bootstrap",
+    "bootstrap_report_hash",
+    "seeds",
+    "challenge_streams",
+    "scaling_ladder",
+    "campaigns",
+    "campaign_hashes",
+    "campaign_count",
+    "foundation",
+    "rung_status",
+    "total_accepted_promotions",
+    "total_rejected_attempts",
+    "update_families_demonstrated",
+    "multi_seed_reproduction",
+    "multi_challenge_stream_reproduction",
+    "fixed_verifier_hash",
+    "semantics_id",
+    "host_authored_success_schedule_present",
+    "manual_repairs",
+    "accepted",
+    "phase16_foundation_closed",
+    "phase16_exit_closed",
+    "gate_e_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "Phase 16 authoritative multi-seed scaling capture",
+  "type": "object"
+}

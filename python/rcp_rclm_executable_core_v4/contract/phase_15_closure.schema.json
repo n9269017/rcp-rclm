@@ -1,0 +1,247 @@
+{
+  "$defs": {
+    "replay": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted": {
+          "const": true
+        },
+        "accepted_promotions": {
+          "const": 1
+        },
+        "bundle_manifest_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "candidate_builder_invocations": {
+          "const": 0
+        },
+        "dynamic_task_replays": {
+          "const": 4
+        },
+        "final_m9_semantic_package_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "final_store_package_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "forbidden_worker_modules": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "gate_d_replays": {
+          "const": 1
+        },
+        "gate_e_closed": {
+          "const": false
+        },
+        "gate_e_replays": {
+          "const": 1
+        },
+        "generator_invocations": {
+          "const": 0
+        },
+        "immutable_packages_verified": {
+          "minimum": 10,
+          "type": "integer"
+        },
+        "manual_repairs": {
+          "const": 0
+        },
+        "outer_replays": {
+          "const": 1
+        },
+        "phase15_exit_closed": {
+          "const": false
+        },
+        "pinned_lean": {
+          "const": true
+        },
+        "planner_invocations": {
+          "const": 0
+        },
+        "platform_id": {
+          "enum": [
+            "ubuntu",
+            "windows",
+            "macos"
+          ]
+        },
+        "proposal_worker_invocations": {
+          "const": 0
+        },
+        "protected_task_replays": {
+          "const": 22
+        },
+        "rejected_attempts": {
+          "const": 1
+        },
+        "report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "schema_id": {
+          "const": "runtime.v4.phase15.replay_report.v1"
+        },
+        "semantic_replay_accepted": {
+          "const": true
+        },
+        "source_head": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "source_tree": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "training_invocations": {
+          "const": 0
+        },
+        "trajectory_report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_id",
+        "source_head",
+        "source_tree",
+        "platform_id",
+        "bundle_manifest_hash",
+        "trajectory_report_hash",
+        "final_store_package_hash",
+        "final_m9_semantic_package_hash",
+        "immutable_packages_verified",
+        "protected_task_replays",
+        "dynamic_task_replays",
+        "gate_d_replays",
+        "gate_e_replays",
+        "outer_replays",
+        "accepted_promotions",
+        "rejected_attempts",
+        "pinned_lean",
+        "training_invocations",
+        "candidate_builder_invocations",
+        "proposal_worker_invocations",
+        "generator_invocations",
+        "planner_invocations",
+        "manual_repairs",
+        "forbidden_worker_modules",
+        "semantic_replay_accepted",
+        "accepted",
+        "phase15_exit_closed",
+        "gate_e_closed",
+        "report_hash"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/n9269017/rcp-rclm/blob/main/python/rcp_rclm_executable_core_v4/contract/phase_15_closure.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "all_replays_pinned": {
+      "const": true
+    },
+    "attack_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "bundle_manifest_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "candidate_builder_invocations_during_replay": {
+      "const": 0
+    },
+    "final_m9_semantic_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "final_store_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "next_phase": {
+      "const": 16
+    },
+    "phase15_exit_closed": {
+      "const": true
+    },
+    "platforms": {
+      "const": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ]
+    },
+    "proposal_worker_invocations_during_replay": {
+      "const": 0
+    },
+    "replay_reports": {
+      "items": {
+        "$ref": "#/$defs/replay"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase15.closure_report.v1"
+    },
+    "source_head": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "source_tree": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "training_invocations_during_replay": {
+      "const": 0
+    },
+    "trajectory_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_id",
+    "source_head",
+    "source_tree",
+    "trajectory_report_hash",
+    "bundle_manifest_hash",
+    "attack_report_hash",
+    "final_store_package_hash",
+    "final_m9_semantic_package_hash",
+    "replay_reports",
+    "platforms",
+    "all_replays_pinned",
+    "training_invocations_during_replay",
+    "candidate_builder_invocations_during_replay",
+    "proposal_worker_invocations_during_replay",
+    "manual_repairs",
+    "accepted",
+    "phase15_exit_closed",
+    "gate_e_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "RCP/RCLM Phase 15 final closure report",
+  "type": "object"
+}
