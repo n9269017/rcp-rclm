@@ -2,6 +2,8 @@
 
 [![Software DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21710857.svg)](https://doi.org/10.5281/zenodo.21710857)
 
+Latest completed software version: [v4.6 Phase 15–16 full-source publication](https://doi.org/10.5281/zenodo.22905508) — exact DOI `10.5281/zenodo.22905508`.
+
 This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1
 certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
 Phases 0–8**, the first bounded **PyTorch learned-successor pilot**, and the later
@@ -350,4 +352,4 @@ software utilities are licensed under MIT. See `LICENSE`, `LICENSES/`, and
 `RELEASE_NOTES.md`. Published records: [Paper I](https://doi.org/10.5281/zenodo.21710273),
 [Paper II](https://doi.org/10.5281/zenodo.21710376), and the
 [software series](https://doi.org/10.5281/zenodo.21710857); the exact Phase 14 software snapshot is
-[version DOI 10.5281/zenodo.21710858](https://doi.org/10.5281/zenodo.21710858). The exact Phase 15–16 results-only release is [10.5281/zenodo.21843289](https://doi.org/10.5281/zenodo.21843289). The public [`RCP/RCLM v5 Trajectory`](docs/roadmaps/v5/README.md) is a separate roadmap object with exact technical-note DOI [10.5281/zenodo.21898263](https://doi.org/10.5281/zenodo.21898263) and all-versions concept DOI [10.5281/zenodo.21898262](https://doi.org/10.5281/zenodo.21898262).
+[version DOI 10.5281/zenodo.21710858](https://doi.org/10.5281/zenodo.21710858). The exact Phase 15–16 results-only release is [10.5281/zenodo.21843289](https://doi.org/10.5281/zenodo.21843289), and the exact Phase 15–16 full-source release is [10.5281/zenodo.22905508](https://doi.org/10.5281/zenodo.22905508). The public [`RCP/RCLM v5 Trajectory`](docs/roadmaps/v5/README.md) is a separate roadmap object with exact technical-note DOI [10.5281/zenodo.21898263](https://doi.org/10.5281/zenodo.21898263) and all-versions concept DOI [10.5281/zenodo.21898262](https://doi.org/10.5281/zenodo.21898262).

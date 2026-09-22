@@ -8,6 +8,9 @@ identifiers:
   - description: "Concept DOI for all archived versions of the RCP/RCLM software package."
     type: doi
     value: "10.5281/zenodo.21710857"
+  - description: "Exact DOI for the v4.6 Phase 15–16 full-source software version."
+    type: doi
+    value: "10.5281/zenodo.22905508"
 license: "MIT"
 authors:
   - given-names: "Nicolas"
