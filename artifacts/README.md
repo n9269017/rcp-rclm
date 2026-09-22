@@ -57,6 +57,12 @@ Each run includes:
 
 This is a finite closed-loop certified RSI reference instance under declared conditions. It is not a claim of full autonomous RSI, broad learned-agent entry, or empirical deployment validation.
 
+## v4.6 Phase 15–16 full-source publication
+
+The complete Phase 15 and Phase 16 implementation is now public in the normal Runtime v4 and Executable Core v4 source trees, together with the transferred workflows, tests, tools, documentation, and retained bootstrap artifacts. The historical v4.5 directory below remains frozen as the earlier results-only publication and is not rewritten by the v4.6 source release.
+
+The v4.6 publication records that a fresh public GitHub-hosted CI replay is pending because the account's Actions budget was exhausted and no payment method was available to authorize additional billable usage. The blocked attempts ran zero workflow steps; they are non-executions rather than Phase 15/16 test failures.
+
 ## v4.5 Phase 15–16 results-only archive
 
 Exact safe Phase 15 and Phase 16 result records, byte-identical safe authority archives, provenance identities, timestamps, hashes, source-withholding audit, and claim boundaries are retained under [`releases/v4.5-phase15-phase16-results/`](releases/v4.5-phase15-phase16-results/README.md).
