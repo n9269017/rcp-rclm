@@ -59,6 +59,8 @@ This is a finite closed-loop certified RSI reference instance under declared con
 
 ## v4.6 Phase 15–16 full-source publication
 
+Exact version DOI: `10.5281/zenodo.22905508`
+
 The complete Phase 15 and Phase 16 implementation is now public in the normal Runtime v4 and Executable Core v4 source trees, together with the transferred workflows, tests, tools, documentation, and retained bootstrap artifacts. The historical v4.5 directory below remains frozen as the earlier results-only publication and is not rewritten by the v4.6 source release.
 
 The v4.6 publication records that a fresh public GitHub-hosted CI replay is pending because the account's Actions budget was exhausted and no payment method was available to authorize additional billable usage. The blocked attempts ran zero workflow steps; they are non-executions rather than Phase 15/16 test failures.
