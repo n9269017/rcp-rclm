@@ -1,5 +1,25 @@
 # Release Notes
 
+## v4.6-phase15-phase16-full-source - 2026-09-22
+
+### Full-source publication boundary
+
+This release publishes the Phase 15 and Phase 16 implementation that was previously withheld from the v4.5 results-only release. The public source now includes the Phase 15/16 Runtime v4 modules, executable-core contract schemas, workflows, tests, tools, documentation, retained bootstrap archives, and the required Phase 14 `outer.py` dependency update.
+
+The private-to-public transfer was verified byte-for-byte before commit and was merged into public `main` through PR #63. The merge commit is `ef694f9a0c70e2eb0d3a05c9e8fa4de00b554f23`.
+
+The historical `v4.5-phase15-phase16-results` release and exact DOI `10.5281/zenodo.21843289` remain unchanged as the immutable results-only publication that preceded this source release. The software-series concept DOI remains `10.5281/zenodo.21710857`. The exact v4.6 version DOI will be recorded after Zenodo ingests the GitHub release.
+
+### GitHub Actions replay status
+
+A fresh GitHub-hosted Actions replay of the transferred public source remains pending for account-budget reasons. At publication preparation time, the account's available GitHub Actions budget had been exhausted and no payment method was available to authorize additional billable Actions usage. Increasing the configured budget did not enable execution without an available payment method.
+
+The affected Ubuntu, Windows, and macOS validation jobs terminated before runner execution, executed zero workflow steps, and produced no test logs. Dependent campaign, replay, and closure jobs were therefore skipped. Those red workflow statuses are infrastructure non-executions and do **not** constitute Phase 15 or Phase 16 test failures. The source-transfer verification, merged source contents, and previously retained Phase 15/16 validation evidence are unaffected. A fresh public CI replay remains a deferred reproducibility check to be performed when GitHub Actions execution becomes available.
+
+### v5 trajectory separation
+
+The existing `v5-trajectory` GitHub prerelease and Zenodo technical-note DOI `10.5281/zenodo.21898263` remain roadmap-only. They do not represent a Phase 17+ implementation or result and are not replaced by this v4.6 software release.
+
 ## v5-trajectory - 2026-08-11
 
 ### Roadmap-only publication boundary

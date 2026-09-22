@@ -177,16 +177,13 @@ jobs:
               raise SystemExit("future implementation/result flag is not false")
 
           readme = Path("README.md").read_text(encoding="utf-8")
-          old_row = (
-              "| Executable Core v4 — Phase 15–16 published results "
-              "(implementation withheld) |"
-          )
+          phase16_row = "| Executable Core v4 — Phase 15–16 full source |"
           new_row = (
               "| Formal/Executable Core v5 — Phase 17 → 18 → X → Y → Ω → Z "
               "trajectory and EGC-0 → EGC-6 track |  |"
           )
-          if readme.count(old_row) != 1:
-              raise SystemExit("existing Phase 15–16 row changed or duplicated")
+          if readme.count(phase16_row) != 1:
+              raise SystemExit("current Phase 15–16 full-source row missing or duplicated")
           if readme.count(new_row) != 1:
               raise SystemExit("blank-status v5 roadmap row missing or duplicated")
           if "Phase 15 is next:" in readme:
@@ -283,10 +280,12 @@ jobs:
           exact_root = {
               ".github/workflows/v45-results-only-audit.yml",
               ".github/workflows/v5-trajectory-audit.yml",
+              ".zenodo.json",
               "CITATION.cff",
               "README.md",
               "RELEASE_NOTES.md",
               "SHA256SUMS.txt",
+              "artifacts/README.md",
               "docs/README.md",
               "docs/roadmaps/README.md",
           }

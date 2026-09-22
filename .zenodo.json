@@ -4,9 +4,9 @@
       "name": "Nicolas Calder"
     }
   ],
-  "title": "RCP/RCLM v4.5: Phase 15–16 Results-Only Archive",
-  "description": "Results-and-authority-evidence-only publication for private Executable Core v4 Phases 15 and 16. It preserves exact safe result records, source/workflow/artifact identities, timestamps, report hashes, byte-identical safe authority archives, cross-platform worker-free replay evidence, adversarial rejection evidence, and the Phase 16 long-trajectory scaling conclusions. The Phase 15/16 Lean and Python implementation, tests, workflows, model weights, candidate packages, hidden tasks, answer stores, mutation programs, and private runtime payloads remain private. Gate E remains open; the next executable phase is Phase 17.",
-  "version": "v4.5-phase15-phase16-results",
+  "title": "RCP/RCLM v4.6: Phase 15–16 Full-Source Publication",
+  "description": "Full-source publication for Executable Core v4 Phases 15 and 16, following the earlier v4.5 results-only archive. This version publishes the Phase 15/16 Python runtime source, executable-core schemas, workflows, tests, tools, documentation, retained bootstrap archives, and the required Phase 14 dependency update now integrated into public main. The transfer was verified byte-for-byte against the private development source before merge. A fresh GitHub-hosted CI replay of the transferred public source remains pending because the account's GitHub Actions budget was exhausted and no payment method was available to authorize additional billable Actions usage. The affected attempts terminated before runner execution with zero workflow steps and no test logs, so those statuses are infrastructure non-executions rather than Phase 15/16 test failures. Previously retained Phase 15/16 validation evidence is unaffected. Gate E remains open; the next executable phase is Phase 17. The separate v5-trajectory publication remains roadmap-only and contains no Phase 17+ implementation or result.",
+  "version": "v4.6-phase15-phase16-full-source",
   "access_right": "open",
   "related_identifiers": [
     {
@@ -18,6 +18,11 @@
       "identifier": "https://doi.org/10.5281/zenodo.21710376",
       "relation": "isDocumentedBy",
       "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "https://doi.org/10.5281/zenodo.21843289",
+      "relation": "isNewVersionOf",
+      "resource_type": "software"
     }
   ],
   "keywords": [
@@ -34,7 +39,9 @@
     "fair search",
     "recursive productivity",
     "long-trajectory scaling",
-    "results-only release"
+    "full-source publication",
+    "public source release",
+    "reproducible research"
   ],
   "license": "mit",
   "upload_type": "software",
