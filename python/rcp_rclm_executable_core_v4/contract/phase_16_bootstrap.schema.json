@@ -1,0 +1,114 @@
+{
+  "$id": "https://rcp-rclm.invalid/contracts/phase_16_bootstrap.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "fixed_verifier_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "inherited_planner_manifest_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "inherited_planner_nonzero_count": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "inherited_planner_projection_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "inherited_planner_weights_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "next_phase": {
+      "const": 16
+    },
+    "phase15_bundle_archive_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase15_bundle_manifest_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase15_closure_archive_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase15_closure_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase15_final_store_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase15_m9_semantic_package_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase15_source_head": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "phase15_source_tree": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "phase15_trajectory_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "phase16_exit_closed": {
+      "const": false
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase16.bootstrap.v1"
+    },
+    "semantics_id": {
+      "const": "gate-c-diagonal-qre-kl-fixed-semantics-v1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "phase15_closure_archive_sha256",
+    "phase15_bundle_archive_sha256",
+    "phase15_closure_report_hash",
+    "phase15_bundle_manifest_hash",
+    "phase15_trajectory_report_hash",
+    "phase15_source_head",
+    "phase15_source_tree",
+    "phase15_final_store_hash",
+    "phase15_m9_semantic_package_hash",
+    "inherited_planner_manifest_hash",
+    "inherited_planner_weights_sha256",
+    "inherited_planner_projection_hash",
+    "inherited_planner_nonzero_count",
+    "fixed_verifier_hash",
+    "semantics_id",
+    "manual_repairs",
+    "accepted",
+    "phase16_exit_closed",
+    "gate_e_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "Phase 16 exact Phase 15 bootstrap report",
+  "type": "object"
+}

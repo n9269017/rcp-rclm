@@ -1,0 +1,96 @@
+{
+  "$id": "https://rcp-rclm.invalid/contracts/phase_16_archive.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bootstrap_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "kinds_present": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "records": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "kind": {
+            "enum": [
+              "candidate_program",
+              "counterexample",
+              "failed_proof_attempt",
+              "proposal_hypothesis",
+              "recursive_productivity_probe",
+              "rejection_reason",
+              "resource_use",
+              "successful_mutation_motif",
+              "transfer_evaluation"
+            ]
+          },
+          "parent_record_hash": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "payload": {
+            "type": "object"
+          },
+          "payload_hash": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "record_hash": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "schema_id": {
+            "const": "runtime.v4.phase16.archive_record.v1"
+          },
+          "sequence_number": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "schema_id",
+          "sequence_number",
+          "kind",
+          "parent_record_hash",
+          "payload_hash",
+          "payload",
+          "record_hash"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "root_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase16.experiment_archive.v1"
+    },
+    "untrusted_for_acceptance": {
+      "const": true
+    }
+  },
+  "required": [
+    "schema_id",
+    "bootstrap_hash",
+    "record_count",
+    "records",
+    "root_hash",
+    "kinds_present",
+    "untrusted_for_acceptance"
+  ],
+  "title": "Phase 16 content-addressed experiment archive",
+  "type": "object"
+}

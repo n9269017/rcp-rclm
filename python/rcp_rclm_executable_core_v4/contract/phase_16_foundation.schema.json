@@ -1,0 +1,77 @@
+{
+  "$id": "https://rcp-rclm.invalid/contracts/phase_16_foundation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "accepted_promotions_per_campaign": {
+      "const": 8
+    },
+    "campaign_count": {
+      "const": 4
+    },
+    "campaign_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "eight_update_families_demonstrated": {
+      "const": true
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "multi_challenge_stream": {
+      "const": true
+    },
+    "multi_seed": {
+      "const": true
+    },
+    "next_phase": {
+      "const": 16
+    },
+    "phase16_exit_closed": {
+      "const": false
+    },
+    "phase16_foundation_closed": {
+      "const": true
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase16.foundation.v1"
+    },
+    "zero_manual_repair": {
+      "const": true
+    }
+  },
+  "required": [
+    "schema_id",
+    "campaign_hashes",
+    "campaign_count",
+    "seeds",
+    "challenge_streams",
+    "accepted_promotions_per_campaign",
+    "multi_seed",
+    "multi_challenge_stream",
+    "eight_update_families_demonstrated",
+    "zero_manual_repair",
+    "accepted",
+    "phase16_foundation_closed",
+    "phase16_exit_closed",
+    "gate_e_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "Phase 16 eight-promotion foundation closure",
+  "type": "object"
+}

@@ -1,0 +1,102 @@
+{
+  "$id": "https://rcp-rclm.invalid/contracts/phase_16_fairness.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted_considered_index": {
+      "oneOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "accepted_program_hash": {
+      "oneOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "considered_program_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "enumerator_id": {
+      "const": "phase16-fair-bounded-enumerator-v1"
+    },
+    "exhausted": {
+      "type": "boolean"
+    },
+    "fair_order_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "learned_prefix_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "legal_program_hashes": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "promotion_index": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "rejection_conditioned_steps": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "resource_envelope_limits": {
+      "items": {
+        "minimum": 1,
+        "type": "integer"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase16.fair_search_certificate.v1"
+    }
+  },
+  "required": [
+    "schema_id",
+    "promotion_index",
+    "enumerator_id",
+    "legal_program_hashes",
+    "fair_order_hashes",
+    "considered_program_hashes",
+    "accepted_program_hash",
+    "accepted_considered_index",
+    "exhausted",
+    "resource_envelope_limits",
+    "learned_prefix_count",
+    "rejection_conditioned_steps"
+  ],
+  "title": "Phase 16 fair-search certificate",
+  "type": "object"
+}

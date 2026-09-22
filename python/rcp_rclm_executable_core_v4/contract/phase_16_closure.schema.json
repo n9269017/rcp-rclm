@@ -1,0 +1,195 @@
+{
+  "$id": "https://rcp-rclm.invalid/contracts/phase_16_closure.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "attack_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "bootstrap_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "bounded_search_exhaustion_supported": {
+      "const": true
+    },
+    "campaign_count": {
+      "const": 16
+    },
+    "capture_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "fair_search_certificate_present": {
+      "const": true
+    },
+    "fixed_verifier_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "foundation_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "host_authored_success_schedule_present": {
+      "const": false
+    },
+    "long_chain_frontier_retention": {
+      "const": true
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "multi_seed_reproduction": {
+      "const": true
+    },
+    "multiple_rejection_recovery_cycles": {
+      "const": true
+    },
+    "next_phase": {
+      "const": 17
+    },
+    "phase16_exit_closed": {
+      "const": true
+    },
+    "phase16_foundation_closed": {
+      "const": true
+    },
+    "platforms": {
+      "const": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ]
+    },
+    "recursive_productivity_frontier_retained": {
+      "const": true
+    },
+    "replay_reports": {
+      "items": {
+        "required": [
+          "schema_id",
+          "platform_id",
+          "accepted",
+          "report_hash"
+        ],
+        "type": "object"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "rung_status": {
+      "properties": {
+        "16": {
+          "const": true
+        },
+        "32": {
+          "const": true
+        },
+        "64": {
+          "const": true
+        },
+        "8": {
+          "const": true
+        }
+      },
+      "required": [
+        "8",
+        "16",
+        "32",
+        "64"
+      ],
+      "type": "object"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase16.closure_report.v1"
+    },
+    "semantics_id": {
+      "const": "gate-c-diagonal-qre-kl-fixed-semantics-v1"
+    },
+    "source_head": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "source_tree": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "strict_recursive_productivity_expansion": {
+      "const": true
+    },
+    "total_accepted_promotions": {
+      "minimum": 480,
+      "type": "integer"
+    },
+    "total_rejected_attempts": {
+      "minimum": 480,
+      "type": "integer"
+    },
+    "update_families_demonstrated": {
+      "items": {
+        "enum": [
+          "adapter_policy",
+          "architecture_policy",
+          "memory_policy",
+          "optimizer_policy",
+          "planner_policy",
+          "retrieval_policy",
+          "tool_policy",
+          "verification_automation_policy"
+        ]
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_id",
+    "source_head",
+    "source_tree",
+    "bootstrap_report_hash",
+    "capture_report_hash",
+    "foundation_report_hash",
+    "attack_report_hash",
+    "replay_reports",
+    "platforms",
+    "campaign_count",
+    "total_accepted_promotions",
+    "total_rejected_attempts",
+    "rung_status",
+    "update_families_demonstrated",
+    "fair_search_certificate_present",
+    "bounded_search_exhaustion_supported",
+    "recursive_productivity_frontier_retained",
+    "strict_recursive_productivity_expansion",
+    "long_chain_frontier_retention",
+    "multi_seed_reproduction",
+    "multiple_rejection_recovery_cycles",
+    "host_authored_success_schedule_present",
+    "fixed_verifier_hash",
+    "semantics_id",
+    "manual_repairs",
+    "accepted",
+    "phase16_foundation_closed",
+    "phase16_exit_closed",
+    "gate_e_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "Phase 16 authoritative closure",
+  "type": "object"
+}

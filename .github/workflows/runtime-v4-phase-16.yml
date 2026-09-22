@@ -1,0 +1,706 @@
+name: Runtime v4 Phase 16 fair search and long-trajectory scaling
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/runtime-v4-phase-16.yml"
+      - "artifacts/private_phase16/bootstrap/**"
+      - "docs/executable_core_v4/PHASE_16*.md"
+      - "python/rcp_rclm_executable_core_v4/contract/phase_16*.schema.json"
+      - "python/rcp_rclm_executable_core_v4/contract/README.md"
+      - "python/rcp_rclm_runtime_v4/README.md"
+      - "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/**"
+      - "python/rcp_rclm_runtime_v4/tests_phase16/**"
+      - "python/rcp_rclm_runtime_v4/tools/*phase16*"
+      - "python/rcp_rclm_runtime_v4/tools/validate_source_quality.py"
+      - "scripts/*phase16*"
+      - "SHA256SUMS.txt"
+  push:
+    branches:
+      - agent/rcp-rclm-v4-phase-16-fair-search-long-trajectory
+    paths:
+      - ".github/workflows/runtime-v4-phase-16.yml"
+      - "artifacts/private_phase16/bootstrap/**"
+      - "docs/executable_core_v4/PHASE_16*.md"
+      - "python/rcp_rclm_executable_core_v4/contract/phase_16*.schema.json"
+      - "python/rcp_rclm_executable_core_v4/contract/README.md"
+      - "python/rcp_rclm_runtime_v4/README.md"
+      - "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/**"
+      - "python/rcp_rclm_runtime_v4/tests_phase16/**"
+      - "python/rcp_rclm_runtime_v4/tools/*phase16*"
+      - "python/rcp_rclm_runtime_v4/tools/validate_source_quality.py"
+      - "scripts/*phase16*"
+      - "SHA256SUMS.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PHASE16_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+  PHASE15_CLOSURE_ZIP: artifacts/private_phase16/bootstrap/phase15-final-closure-30969783629-1.zip
+  PHASE15_CLOSURE_SHA256: "197465275e7716a7a51eb4ffdc255696bd92129cdf0910e9712b7ca22028053e"
+  PHASE15_BUNDLE_ZIP: artifacts/private_phase16/bootstrap/runtime-v4-phase15-bundle-30969783629-1.zip
+  PHASE15_BUNDLE_SHA256: "56003f95ded054be21dd3f743c2145fdf6e92543af28bb350f64ec8f4fee00b5"
+
+concurrency:
+  group: phase16-complete-${{ github.event_name }}-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    name: Validate Phase 16 source contract (${{ matrix.label }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            label: ubuntu
+          - os: windows-2025
+            label: windows
+          - os: macos-15
+            label: macos
+    steps:
+      - name: Check out exact Phase 16 source head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.PHASE16_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Verify exact checkout and record source identity
+        shell: python
+        run: |
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          expected = os.environ["PHASE16_SOURCE_HEAD"]
+          observed = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"], text=True
+          ).strip()
+          if observed != expected:
+              raise SystemExit(
+                  f"exact-head checkout mismatch: expected={expected} observed={observed}"
+              )
+          tree = subprocess.check_output(
+              ["git", "rev-parse", "HEAD^{tree}"], text=True
+          ).strip()
+          out = Path("artifacts/runtime_v4_phase16/contract/${{ matrix.label }}")
+          out.mkdir(parents=True, exist_ok=True)
+          (out / "source_identity.json").write_text(
+              json.dumps(
+                  {
+                      "schema_id": "runtime.v4.phase16.source_identity.v1",
+                      "source_head": observed,
+                      "source_tree": tree,
+                      "platform_id": "${{ matrix.label }}",
+                  },
+                  sort_keys=True,
+                  indent=2,
+              )
+              + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic Runtime v2-v4 stack
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+      - name: Verify exact retained Phase 15 bootstrap
+        shell: bash
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/verify_phase16_bootstrap.py
+          --phase15-closure-archive "$PHASE15_CLOSURE_ZIP"
+          --phase15-bundle-archive "$PHASE15_BUNDLE_ZIP"
+          --out artifacts/runtime_v4_phase16/contract/${{ matrix.label }}/phase16_bootstrap.json
+
+      - name: Compile Phase 16 source and entry points
+        shell: bash
+        run: >-
+          python -m compileall -q
+          python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16
+          python/rcp_rclm_runtime_v4/tests_phase16
+          python/rcp_rclm_runtime_v4/tools
+          scripts
+
+      - name: Validate deterministic source quality
+        shell: bash
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/validate_source_quality.py
+          --package-root python/rcp_rclm_runtime_v4
+          --out artifacts/runtime_v4_phase16/contract/${{ matrix.label }}/source_quality.json
+
+      - name: Run focused Phase 16 contract suite
+        shell: bash
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/run_phase16_tests.py
+          --package-root python/rcp_rclm_runtime_v4
+          --out artifacts/runtime_v4_phase16/contract/${{ matrix.label }}/phase16_tests.log
+
+      - name: Validate all Draft 2020-12 Phase 16 schemas
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+
+          root = Path("python/rcp_rclm_executable_core_v4/contract")
+          paths = sorted(root.glob("phase_16*.schema.json"))
+          expected = {
+              "phase_16_archive.schema.json",
+              "phase_16_attack_suite.schema.json",
+              "phase_16_bootstrap.schema.json",
+              "phase_16_campaign.schema.json",
+              "phase_16_capture.schema.json",
+              "phase_16_closure.schema.json",
+              "phase_16_fairness.schema.json",
+              "phase_16_foundation.schema.json",
+              "phase_16_replay.schema.json",
+          }
+          observed = {path.name for path in paths}
+          if observed != expected:
+              raise SystemExit(
+                  f"Phase 16 schema set mismatch: expected={sorted(expected)} "
+                  f"observed={sorted(observed)}"
+              )
+          for path in paths:
+              Draft202012Validator.check_schema(
+                  json.loads(path.read_text(encoding="utf-8"))
+              )
+
+      - name: Enforce proposer/search hidden-material boundary
+        shell: python
+        run: |
+          import ast
+          from pathlib import Path
+
+          root = Path(
+              "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16"
+          )
+          proposer_files = (
+              root / "grammar.py",
+              root / "ranking.py",
+              root / "scheduler.py",
+          )
+          forbidden = {
+              "accepted_program_hash",
+              "expected_candidate_hash",
+              "expected_successor_hash",
+              "host_selected_objective",
+              "next_successful_transition_index",
+              "required_successful_family",
+              "retained_private_challenge",
+              "successful_transition_schedule",
+              "target_family",
+              "target_output_hash",
+              "target_program_hash",
+          }
+          findings = []
+          for path in proposer_files:
+              source = path.read_text(encoding="utf-8")
+              tree = ast.parse(source, filename=str(path))
+              for node in ast.walk(tree):
+                  value = None
+                  if isinstance(node, ast.Name):
+                      value = node.id
+                  elif isinstance(node, ast.Attribute):
+                      value = node.attr
+                  elif isinstance(node, ast.Constant) and isinstance(node.value, str):
+                      value = node.value
+                  if value in forbidden:
+                      findings.append(
+                          f"{path}:{getattr(node, 'lineno', 1)}:{value}"
+                      )
+          if findings:
+              raise SystemExit(
+                  "Phase 16 proposer/search boundary findings: "
+                  + ", ".join(findings)
+              )
+
+      - name: Upload source-contract evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase16-contract-${{ matrix.label }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/contract/${{ matrix.label }}/
+          if-no-files-found: warn
+          retention-days: 400
+
+  capture:
+    name: Run authoritative Phase 16 scaling capture
+    needs: contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Check out exact Phase 16 source head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.PHASE16_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Verify exact checkout and record source tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          observed="$(git rev-parse HEAD)"
+          if [ "$observed" != "$PHASE16_SOURCE_HEAD" ]; then
+            echo "exact-head checkout mismatch: expected=$PHASE16_SOURCE_HEAD observed=$observed" >&2
+            exit 1
+          fi
+          echo "PHASE16_SOURCE_TREE=$(git rev-parse 'HEAD^{tree}')" >> "$GITHUB_ENV"
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic Runtime v2-v4 stack
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+      - name: Verify exact retained Phase 15 bootstrap
+        shell: bash
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/verify_phase16_bootstrap.py
+          --phase15-closure-archive "$PHASE15_CLOSURE_ZIP"
+          --phase15-bundle-archive "$PHASE15_BUNDLE_ZIP"
+          --out artifacts/runtime_v4_phase16/capture/phase16_bootstrap.json
+
+      - name: Run 8-16-32-64 ladder and 100-promotion stretch campaign
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/runtime_v4_phase16/capture
+          python python/rcp_rclm_runtime_v4/tools/run_phase16_capture.py \
+            --phase15-closure-archive "$PHASE15_CLOSURE_ZIP" \
+            --phase15-bundle-archive "$PHASE15_BUNDLE_ZIP" \
+            --source-head "$PHASE16_SOURCE_HEAD" \
+            --source-tree "$PHASE16_SOURCE_TREE" \
+            --include-stretch \
+            --out artifacts/runtime_v4_phase16/capture/phase16_capture.json \
+            2>&1 | tee artifacts/runtime_v4_phase16/capture/phase16_capture.log
+
+      - name: Extract retained reference campaign and foundation
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          root = Path("artifacts/runtime_v4_phase16/capture")
+          capture = json.loads(
+              (root / "phase16_capture.json").read_text(encoding="utf-8")
+          )
+          campaign = capture["campaigns"][0]
+          foundation = capture["foundation"]
+          for name, value in (
+              ("reference_campaign.json", campaign),
+              ("phase16_foundation.json", foundation),
+          ):
+              (root / name).write_text(
+                  json.dumps(value, sort_keys=True, indent=2) + "\n",
+                  encoding="utf-8",
+                  newline="\n",
+              )
+
+      - name: Validate retained capture instances
+        run: |
+          python python/rcp_rclm_runtime_v4/tools/validate_phase16_schema.py --schema python/rcp_rclm_executable_core_v4/contract/phase_16_bootstrap.schema.json --instance artifacts/runtime_v4_phase16/capture/phase16_bootstrap.json --out artifacts/runtime_v4_phase16/capture/bootstrap_schema_validation.json
+          python python/rcp_rclm_runtime_v4/tools/validate_phase16_schema.py --schema python/rcp_rclm_executable_core_v4/contract/phase_16_campaign.schema.json --instance artifacts/runtime_v4_phase16/capture/reference_campaign.json --out artifacts/runtime_v4_phase16/capture/campaign_schema_validation.json
+          python python/rcp_rclm_runtime_v4/tools/validate_phase16_schema.py --schema python/rcp_rclm_executable_core_v4/contract/phase_16_foundation.schema.json --instance artifacts/runtime_v4_phase16/capture/phase16_foundation.json --out artifacts/runtime_v4_phase16/capture/foundation_schema_validation.json
+          python python/rcp_rclm_runtime_v4/tools/validate_phase16_schema.py --schema python/rcp_rclm_executable_core_v4/contract/phase_16_capture.schema.json --instance artifacts/runtime_v4_phase16/capture/phase16_capture.json --out artifacts/runtime_v4_phase16/capture/capture_schema_validation.json
+
+      - name: Assert authoritative capture boundary
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          value = json.loads(
+              Path("artifacts/runtime_v4_phase16/capture/phase16_capture.json")
+              .read_text(encoding="utf-8")
+          )
+          expected = {
+              "accepted": True,
+              "phase16_foundation_closed": True,
+              "phase16_exit_closed": False,
+              "gate_e_closed": False,
+              "next_phase": 16,
+              "campaign_count": 16,
+              "total_accepted_promotions": 580,
+              "stretch_target_executed": True,
+              "stretch_target_accepted": True,
+              "host_authored_success_schedule_present": False,
+              "manual_repairs": 0,
+          }
+          for field, expected_value in expected.items():
+              if value.get(field) != expected_value:
+                  raise SystemExit(
+                      f"capture boundary mismatch for {field}: "
+                      f"expected={expected_value!r} observed={value.get(field)!r}"
+                  )
+          if value.get("rung_status") != {
+              "8": True,
+              "16": True,
+              "32": True,
+              "64": True,
+          }:
+              raise SystemExit("capture scaling ladder did not close")
+          if len(value.get("update_families_demonstrated", [])) != 8:
+              raise SystemExit("capture did not demonstrate all eight update families")
+
+      - name: Upload authoritative capture evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase16-capture-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/capture/
+          if-no-files-found: error
+          retention-days: 400
+
+  attacks:
+    name: Reject selected Phase 16 adversarial cases
+    needs: capture
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out exact Phase 16 source head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.PHASE16_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic Runtime v2-v4 stack
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+      - name: Download authoritative capture evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase16-capture-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/capture
+
+      - name: Run selected Phase 16 adversarial suite
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/run_phase16_attacks.py
+          --phase15-closure-archive "$PHASE15_CLOSURE_ZIP"
+          --phase15-bundle-archive "$PHASE15_BUNDLE_ZIP"
+          --campaign artifacts/runtime_v4_phase16/capture/reference_campaign.json
+          --source-head "$PHASE16_SOURCE_HEAD"
+          --out artifacts/runtime_v4_phase16/attacks/phase16_attacks.json
+
+      - name: Validate attack-suite instance
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/validate_phase16_schema.py
+          --schema python/rcp_rclm_executable_core_v4/contract/phase_16_attack_suite.schema.json
+          --instance artifacts/runtime_v4_phase16/attacks/phase16_attacks.json
+          --out artifacts/runtime_v4_phase16/attacks/schema_validation.json
+
+      - name: Assert all selected attacks were rejected
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          value = json.loads(
+              Path("artifacts/runtime_v4_phase16/attacks/phase16_attacks.json")
+              .read_text(encoding="utf-8")
+          )
+          if value.get("attack_count") != 12:
+              raise SystemExit("unexpected Phase 16 attack count")
+          if value.get("rejected_count") != 12 or value.get("accepted") is not True:
+              raise SystemExit("not all selected Phase 16 attacks were rejected")
+
+      - name: Upload adversarial evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase16-attacks-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/attacks/
+          if-no-files-found: error
+          retention-days: 400
+
+  replay:
+    name: Worker-free Phase 16 replay (${{ matrix.label }})
+    needs: capture
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            label: ubuntu
+          - os: windows-2025
+            label: windows
+          - os: macos-15
+            label: macos
+    steps:
+      - name: Check out exact Phase 16 source head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.PHASE16_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Verify exact checkout
+        shell: python
+        run: |
+          import os
+          import subprocess
+
+          expected = os.environ["PHASE16_SOURCE_HEAD"]
+          observed = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"], text=True
+          ).strip()
+          if observed != expected:
+              raise SystemExit(
+                  f"exact-head checkout mismatch: expected={expected} observed={observed}"
+              )
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic Runtime v2-v4 stack
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+      - name: Download authoritative capture evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase16-capture-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/capture
+
+      - name: Replay complete Phase 16 capture without workers
+        shell: bash
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/replay_phase16_capture.py
+          --phase15-closure-archive "$PHASE15_CLOSURE_ZIP"
+          --phase15-bundle-archive "$PHASE15_BUNDLE_ZIP"
+          --capture artifacts/runtime_v4_phase16/capture/phase16_capture.json
+          --platform-id ${{ matrix.label }}
+          --out artifacts/runtime_v4_phase16/replay/${{ matrix.label }}/phase16_replay.json
+
+      - name: Validate replay instance
+        shell: bash
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/validate_phase16_schema.py
+          --schema python/rcp_rclm_executable_core_v4/contract/phase_16_replay.schema.json
+          --instance artifacts/runtime_v4_phase16/replay/${{ matrix.label }}/phase16_replay.json
+          --out artifacts/runtime_v4_phase16/replay/${{ matrix.label }}/schema_validation.json
+
+      - name: Assert replay is worker-free and byte-identical at report boundary
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          value = json.loads(
+              Path(
+                  "artifacts/runtime_v4_phase16/replay/${{ matrix.label }}/phase16_replay.json"
+              ).read_text(encoding="utf-8")
+          )
+          for field in (
+              "proposal_worker_invocations",
+              "generator_worker_invocations",
+              "training_worker_invocations",
+              "planner_worker_invocations",
+              "model_serving_invocations",
+              "manual_repairs",
+          ):
+              if value.get(field) != 0:
+                  raise SystemExit(f"nonzero replay worker field: {field}")
+          if value.get("worker_free_replay") is not True:
+              raise SystemExit("replay was not worker-free")
+          if value.get("capture_report_hash") != value.get(
+              "reconstructed_capture_hash"
+          ):
+              raise SystemExit("reconstructed capture hash mismatch")
+          if value.get("accepted") is not True:
+              raise SystemExit("Phase 16 replay was not accepted")
+
+      - name: Upload worker-free replay evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase16-replay-${{ matrix.label }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/replay/${{ matrix.label }}/
+          if-no-files-found: error
+          retention-days: 400
+
+  close:
+    name: Aggregate authoritative Phase 16 closure
+    needs:
+      - contract
+      - capture
+      - attacks
+      - replay
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Check out exact Phase 16 source head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ env.PHASE16_SOURCE_HEAD }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install deterministic Runtime v2-v4 stack
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+          python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+      - name: Download authoritative capture evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase16-capture-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/capture
+
+      - name: Download adversarial evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase16-attacks-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/attacks
+
+      - name: Download Ubuntu replay evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase16-replay-ubuntu-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/replay/ubuntu
+
+      - name: Download Windows replay evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase16-replay-windows-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/replay/windows
+
+      - name: Download macOS replay evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: runtime-v4-phase16-replay-macos-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/replay/macos
+
+      - name: Aggregate final Phase 16 closure
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/close_phase16.py
+          --phase15-closure-archive "$PHASE15_CLOSURE_ZIP"
+          --phase15-bundle-archive "$PHASE15_BUNDLE_ZIP"
+          --capture artifacts/runtime_v4_phase16/capture/phase16_capture.json
+          --attacks artifacts/runtime_v4_phase16/attacks/phase16_attacks.json
+          --replay artifacts/runtime_v4_phase16/replay/ubuntu/phase16_replay.json
+          --replay artifacts/runtime_v4_phase16/replay/windows/phase16_replay.json
+          --replay artifacts/runtime_v4_phase16/replay/macos/phase16_replay.json
+          --out artifacts/runtime_v4_phase16/final/phase16_closure.json
+
+      - name: Validate final closure instance
+        run: >-
+          python python/rcp_rclm_runtime_v4/tools/validate_phase16_schema.py
+          --schema python/rcp_rclm_executable_core_v4/contract/phase_16_closure.schema.json
+          --instance artifacts/runtime_v4_phase16/final/phase16_closure.json
+          --out artifacts/runtime_v4_phase16/final/schema_validation.json
+
+      - name: Assert Phase 16 exit and preserve Gate E boundary
+        shell: python
+        run: |
+          import hashlib
+          import json
+          import shutil
+          from pathlib import Path
+
+          root = Path("artifacts/runtime_v4_phase16/final")
+          closure_path = root / "phase16_closure.json"
+          value = json.loads(closure_path.read_text(encoding="utf-8"))
+          expected = {
+              "accepted": True,
+              "phase16_foundation_closed": True,
+              "phase16_exit_closed": True,
+              "gate_e_closed": False,
+              "next_phase": 17,
+              "campaign_count": 16,
+              "total_accepted_promotions": 580,
+              "stretch_target_executed": True,
+              "stretch_target_accepted": True,
+              "host_authored_success_schedule_present": False,
+              "manual_repairs": 0,
+          }
+          for field, expected_value in expected.items():
+              if value.get(field) != expected_value:
+                  raise SystemExit(
+                      f"closure boundary mismatch for {field}: "
+                      f"expected={expected_value!r} observed={value.get(field)!r}"
+                  )
+          if value.get("platforms") != ["macos", "ubuntu", "windows"]:
+              raise SystemExit("three-platform replay set is incomplete")
+          if value.get("rung_status") != {
+              "8": True,
+              "16": True,
+              "32": True,
+              "64": True,
+          }:
+              raise SystemExit("Phase 16 scaling ladder did not close")
+          shutil.copyfile(closure_path, root / "phase16_exit.json")
+          evidence = [
+              closure_path,
+              root / "phase16_exit.json",
+              root / "schema_validation.json",
+              Path("artifacts/runtime_v4_phase16/capture/phase16_capture.json"),
+              Path("artifacts/runtime_v4_phase16/attacks/phase16_attacks.json"),
+              Path("artifacts/runtime_v4_phase16/replay/ubuntu/phase16_replay.json"),
+              Path("artifacts/runtime_v4_phase16/replay/windows/phase16_replay.json"),
+              Path("artifacts/runtime_v4_phase16/replay/macos/phase16_replay.json"),
+          ]
+          manifest = {
+              "schema_id": "runtime.v4.phase16.final_evidence_manifest.v1",
+              "source_head": value["source_head"],
+              "source_tree": value["source_tree"],
+              "closure_report_hash": value["report_hash"],
+              "files": {
+                  str(path): hashlib.sha256(path.read_bytes()).hexdigest()
+                  for path in evidence
+              },
+          }
+          (root / "manifest.json").write_text(
+              json.dumps(manifest, sort_keys=True, indent=2) + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
+
+      - name: Upload final Phase 16 closure
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runtime-v4-phase16-final-closure-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/runtime_v4_phase16/final/
+          if-no-files-found: error
+          retention-days: 400

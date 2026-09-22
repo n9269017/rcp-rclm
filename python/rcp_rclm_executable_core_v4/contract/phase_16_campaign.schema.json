@@ -1,0 +1,233 @@
+{
+  "$id": "https://rcp-rclm.invalid/contracts/phase_16_campaign.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "accepted_promotions": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "archive": {
+      "required": [
+        "schema_id",
+        "bootstrap_hash",
+        "record_count",
+        "records",
+        "root_hash",
+        "untrusted_for_acceptance"
+      ],
+      "type": "object"
+    },
+    "bootstrap_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "challenge_stream": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "exhaustion_probe": {
+      "properties": {
+        "accepted": {
+          "const": true
+        },
+        "bounded_search_exhausted": {
+          "const": true
+        },
+        "every_legal_program_considered": {
+          "const": true
+        },
+        "report_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bounded_search_exhausted",
+        "every_legal_program_considered",
+        "accepted",
+        "report_hash"
+      ],
+      "type": "object"
+    },
+    "fixed_verifier_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "frontier_retained": {
+      "const": true
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "host_authored_success_schedule_present": {
+      "const": false
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "next_phase": {
+      "const": 16
+    },
+    "phase16_exit_closed": {
+      "const": false
+    },
+    "recursive_productivity_frontier_retained": {
+      "const": true
+    },
+    "rejected_attempts": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "rejection_recovery_cycles": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "resource_envelope_expansions": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase16.campaign.v1"
+    },
+    "seed": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "semantics_id": {
+      "const": "gate-c-diagonal-qre-kl-fixed-semantics-v1"
+    },
+    "source_head": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "source_tree": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "strict_recursive_productivity_expansions": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "substantive_update_family_count": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "target_promotions": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "transitions": {
+      "items": {
+        "properties": {
+          "accepted": {
+            "const": true
+          },
+          "accepted_family": {
+            "enum": [
+              "adapter_policy",
+              "architecture_policy",
+              "memory_policy",
+              "optimizer_policy",
+              "planner_policy",
+              "retrieval_policy",
+              "tool_policy",
+              "verification_automation_policy"
+            ]
+          },
+          "fair_search_certificate": {
+            "required": [
+              "schema_id",
+              "legal_program_hashes",
+              "fair_order_hashes",
+              "considered_program_hashes",
+              "exhausted"
+            ],
+            "type": "object"
+          },
+          "promotion_index": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "successor_state_hash": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "transition_hash": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "promotion_index",
+          "fair_search_certificate",
+          "accepted_family",
+          "successor_state_hash",
+          "accepted",
+          "transition_hash"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "update_families_used": {
+      "items": {
+        "enum": [
+          "adapter_policy",
+          "architecture_policy",
+          "memory_policy",
+          "optimizer_policy",
+          "planner_policy",
+          "retrieval_policy",
+          "tool_policy",
+          "verification_automation_policy"
+        ]
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_id",
+    "source_head",
+    "source_tree",
+    "bootstrap_report_hash",
+    "seed",
+    "challenge_stream",
+    "target_promotions",
+    "initial_state",
+    "transitions",
+    "accepted_promotions",
+    "rejected_attempts",
+    "rejection_recovery_cycles",
+    "resource_envelope_expansions",
+    "update_families_used",
+    "substantive_update_family_count",
+    "strict_recursive_productivity_expansions",
+    "final_state",
+    "frontier_retained",
+    "recursive_productivity_frontier_retained",
+    "archive",
+    "exhaustion_probe",
+    "fixed_verifier_hash",
+    "semantics_id",
+    "host_authored_success_schedule_present",
+    "manual_repairs",
+    "accepted",
+    "phase16_exit_closed",
+    "gate_e_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "Phase 16 fair-search long-trajectory campaign",
+  "type": "object"
+}

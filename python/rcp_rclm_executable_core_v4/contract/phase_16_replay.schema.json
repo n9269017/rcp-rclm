@@ -1,0 +1,111 @@
+{
+  "$id": "https://rcp-rclm.invalid/contracts/phase_16_replay.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "accepted_promotions": {
+      "minimum": 480,
+      "type": "integer"
+    },
+    "bootstrap_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "campaign_count": {
+      "const": 16
+    },
+    "capture_report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "generator_worker_invocations": {
+      "const": 0
+    },
+    "manual_repairs": {
+      "const": 0
+    },
+    "model_serving_invocations": {
+      "const": 0
+    },
+    "next_phase": {
+      "const": 16
+    },
+    "phase16_exit_closed": {
+      "const": false
+    },
+    "planner_worker_invocations": {
+      "const": 0
+    },
+    "platform_id": {
+      "enum": [
+        "macos",
+        "ubuntu",
+        "windows"
+      ]
+    },
+    "proposal_worker_invocations": {
+      "const": 0
+    },
+    "reconstructed_capture_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "rejected_attempts": {
+      "minimum": 480,
+      "type": "integer"
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase16.replay_report.v1"
+    },
+    "source_head": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "source_tree": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    },
+    "training_worker_invocations": {
+      "const": 0
+    },
+    "worker_free_replay": {
+      "const": true
+    }
+  },
+  "required": [
+    "schema_id",
+    "platform_id",
+    "source_head",
+    "source_tree",
+    "bootstrap_report_hash",
+    "capture_report_hash",
+    "reconstructed_capture_hash",
+    "campaign_count",
+    "accepted_promotions",
+    "rejected_attempts",
+    "proposal_worker_invocations",
+    "generator_worker_invocations",
+    "training_worker_invocations",
+    "planner_worker_invocations",
+    "model_serving_invocations",
+    "manual_repairs",
+    "worker_free_replay",
+    "accepted",
+    "phase16_exit_closed",
+    "gate_e_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "Phase 16 worker-free replay report",
+  "type": "object"
+}

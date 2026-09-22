@@ -1,0 +1,91 @@
+{
+  "$id": "https://rcp-rclm.invalid/contracts/phase_16_attack_suite.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accepted": {
+      "const": true
+    },
+    "attack_count": {
+      "const": 12
+    },
+    "cases": {
+      "items": {
+        "properties": {
+          "attack_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "case_hash": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "reason_class": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rejected": {
+            "const": true
+          },
+          "schema_id": {
+            "const": "runtime.v4.phase16.attack_case.v1"
+          }
+        },
+        "required": [
+          "schema_id",
+          "attack_id",
+          "rejected",
+          "reason_class",
+          "case_hash"
+        ],
+        "type": "object"
+      },
+      "maxItems": 12,
+      "minItems": 12,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "gate_e_closed": {
+      "const": false
+    },
+    "next_phase": {
+      "const": 16
+    },
+    "phase16_exit_closed": {
+      "const": false
+    },
+    "reference_campaign_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "rejected_count": {
+      "const": 12
+    },
+    "report_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_id": {
+      "const": "runtime.v4.phase16.attack_suite.v1"
+    },
+    "source_head": {
+      "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_id",
+    "source_head",
+    "reference_campaign_hash",
+    "cases",
+    "attack_count",
+    "rejected_count",
+    "accepted",
+    "phase16_exit_closed",
+    "gate_e_closed",
+    "next_phase",
+    "report_hash"
+  ],
+  "title": "Phase 16 selected adversarial rejection suite",
+  "type": "object"
+}

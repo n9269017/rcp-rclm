@@ -28,8 +28,8 @@ from rcp_rclm_runtime.lean_bridge.verifier import LeanReferenceVerifier
 from rcp_rclm_runtime.promotion.certificate import Phase7CertificateEvidence
 from rcp_rclm_runtime.promotion.evaluator import evaluate_realized_candidate
 
-from rcp_rclm_runtime_v4.phase14.constants import PHASE14_TRAJECTORY_ID
-from rcp_rclm_runtime_v4.phase14.realization import Phase14RealizedCandidate
+from rcp_rclm_runtime_v4.phase15.constants import PHASE15_TRAJECTORY_ID
+from rcp_rclm_runtime_v4.phase15.realization import Phase15RealizedCandidate
 
 
 def directory_tree_hash(root: Path) -> str:
@@ -85,7 +85,7 @@ def _pinned_gate_b_compiler(
 
 
 @dataclass(frozen=True, slots=True)
-class Phase14OuterVerification:
+class Phase15OuterVerification:
     accepted: bool
     logical_evaluation_hash: str
     gate_b_certificate_hash: str
@@ -96,7 +96,7 @@ class Phase14OuterVerification:
     lean_invoked: bool
     checker_invoked: bool
 
-    schema_id: ClassVar[str] = "runtime.v4.phase14.outer_verification.v1"
+    schema_id: ClassVar[str] = "runtime.v4.phase15.outer_verification.v1"
 
     @property
     def candidate_unchanged(self) -> bool:
@@ -123,11 +123,11 @@ class Phase14OuterVerification:
 
 
 def verify_outer_envelope(
-    realized: Phase14RealizedCandidate,
+    realized: Phase15RealizedCandidate,
     *,
     repo_root: Path,
     lean_project_root: Path | None,
-) -> Phase14OuterVerification:
+) -> Phase15OuterVerification:
     candidate_root = realized.candidate_root
     before = directory_tree_hash(candidate_root)
     logical = evaluate_realized_candidate(
@@ -143,7 +143,7 @@ def verify_outer_envelope(
     if lean_project_root is None:
         lean_hash = canonical_json_hash(
             {
-                "schema_id": "runtime.v4.phase14.simulated_gate_b_lean.v1",
+                "schema_id": "runtime.v4.phase15.simulated_gate_b_lean.v1",
                 "packet": build_lean_reference_packet(
                     logical.predecessor.state,
                     logical.candidate,
@@ -155,7 +155,7 @@ def verify_outer_envelope(
         )
         checker_hash = canonical_json_hash(
             {
-                "schema_id": "runtime.v4.phase14.simulated_hardened_checker.v1",
+                "schema_id": "runtime.v4.phase15.simulated_hardened_checker.v1",
                 "logical_evaluation_hash": logical_hash,
                 "accepted": True,
                 "simulation_only": True,
@@ -190,8 +190,8 @@ def verify_outer_envelope(
                 consumed_units=1,
                 environment_hash=canonical_json_hash(
                     {
-                        "schema_id": "runtime.v4.phase14.controller_environment.v1",
-                        "trajectory_id": PHASE14_TRAJECTORY_ID,
+                        "schema_id": "runtime.v4.phase15.controller_environment.v1",
+                        "trajectory_id": PHASE15_TRAJECTORY_ID,
                         "network": "disabled",
                         "manual_repair": "forbidden",
                         "candidate_mutation": "forbidden",
@@ -226,7 +226,7 @@ def verify_outer_envelope(
         lean_invoked = True
         checker_invoked = True
     after = directory_tree_hash(candidate_root)
-    result = Phase14OuterVerification(
+    result = Phase15OuterVerification(
         accepted=accepted and before == after,
         logical_evaluation_hash=logical_hash,
         gate_b_certificate_hash=gate_b_certificate.certificate_hash,
@@ -238,12 +238,12 @@ def verify_outer_envelope(
         checker_invoked=checker_invoked,
     )
     if not result.accepted:
-        raise ValueError("Phase 14 outer verification did not accept")
+        raise ValueError("Phase 15 outer verification did not accept")
     return result
 
 
 __all__ = [
-    "Phase14OuterVerification",
+    "Phase15OuterVerification",
     "directory_tree_hash",
     "verify_outer_envelope",
 ]
