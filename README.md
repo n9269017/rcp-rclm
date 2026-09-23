@@ -4,6 +4,39 @@
 
 Latest completed software version: [v4.6 Phase 15–16 full-source publication](https://doi.org/10.5281/zenodo.22905508) — exact DOI `10.5281/zenodo.22905508`.
 
+## Quickstart — verify the v4.6 Phase 15–16 full source
+
+The exact v4.6 release publishes the complete Phase 15 and Phase 16 source. For a fast local verification, clone the repository, check out the exact release tag, install the deterministic Runtime v2→v4 stack, and run the focused Phase 15/16 contract suites:
+
+```bash
+git clone https://github.com/n9269017/rcp-rclm.git
+cd rcp-rclm
+git checkout v4.6-phase15-phase16-full-source
+
+python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+
+python python/rcp_rclm_runtime_v4/tools/validate_source_quality.py --package-root python/rcp_rclm_runtime_v4 --out source_quality.json
+python python/rcp_rclm_runtime_v4/tools/run_phase15_tests.py --package-root python/rcp_rclm_runtime_v4 --out phase15_tests.log
+python python/rcp_rclm_runtime_v4/tools/run_phase16_tests.py --package-root python/rcp_rclm_runtime_v4 --out phase16_tests.log
+```
+
+Successful completion verifies the deterministic Runtime v4 source-quality gate and the focused Phase 15 and Phase 16 contract suites used by the corresponding repository workflows.
+
+To build the pinned Gate E formal foundation used by Runtime v4:
+
+```bash
+cd lean/rcp_rclm_formal_core_v4
+lake update
+lake exe cache get
+lake build
+```
+
+The Lean build verifies Formal Core v4 / Gate E. The focused Python commands above verify the public Phase 15/16 executable source at its local contract-test boundary. The full authoritative Phase 15/16 closure campaigns additionally include retained bootstrap verification, adversarial suites, worker-free replay, and cross-platform aggregation; see [`docs/executable_core_v4/PHASE_15_VALIDATION.md`](docs/executable_core_v4/PHASE_15_VALIDATION.md) and [`docs/executable_core_v4/PHASE_16_VALIDATION.md`](docs/executable_core_v4/PHASE_16_VALIDATION.md).
+
+Exact v4.6 release DOI: [`10.5281/zenodo.22905508`](https://doi.org/10.5281/zenodo.22905508).
+
 This repository contains the two companion RCP/RCLM manuscripts, the historical Lean v1
 certificate, the pinned **RCP/RCLM Formal Core v2** Lean 4 project, **Executable Core v2
 Phases 0–8**, the first bounded **PyTorch learned-successor pilot**, and the later
@@ -261,6 +294,44 @@ training invocations and no loaded training-backend module.
 
 ## Build and validate
 
+### Current v4.6 — Phase 15/16 focused verification
+
+Install the deterministic Runtime v2→v4 dependency stack from the repository root:
+
+```bash
+python -m pip install --disable-pip-version-check --no-deps -e python/rcp_rclm_runtime_v2
+python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v3[test]"
+python -m pip install --disable-pip-version-check -e "python/rcp_rclm_runtime_v4[test]"
+```
+
+Run deterministic Runtime v4 source-quality validation and the focused Phase 15/16 suites:
+
+```bash
+python python/rcp_rclm_runtime_v4/tools/validate_source_quality.py --package-root python/rcp_rclm_runtime_v4 --out source_quality.json
+python python/rcp_rclm_runtime_v4/tools/run_phase15_tests.py --package-root python/rcp_rclm_runtime_v4 --out phase15_tests.log
+python python/rcp_rclm_runtime_v4/tools/run_phase16_tests.py --package-root python/rcp_rclm_runtime_v4 --out phase16_tests.log
+```
+
+Build Formal Core v4 / Gate E:
+
+```bash
+cd lean/rcp_rclm_formal_core_v4
+lake update
+lake exe cache get
+lake build
+```
+
+Formal Core v4 imports the earlier formal layers; the executable Phase 15/16 implementation lives under `python/rcp_rclm_runtime_v4/`.
+
+The full Phase 15 and Phase 16 validation protocols additionally cover retained bootstrap verification, schema validation, authoritative campaigns, selected adversarial rejection, worker-free replay, and final closure aggregation. See:
+
+- [`docs/executable_core_v4/PHASE_15_VALIDATION.md`](docs/executable_core_v4/PHASE_15_VALIDATION.md)
+- [`docs/executable_core_v4/PHASE_16_VALIDATION.md`](docs/executable_core_v4/PHASE_16_VALIDATION.md)
+- [`.github/workflows/runtime-v4-phase-15.yml`](.github/workflows/runtime-v4-phase-15.yml)
+- [`.github/workflows/runtime-v4-phase-16.yml`](.github/workflows/runtime-v4-phase-16.yml)
+
+### Formal Core v2 — Gates A–C
+
 Build Formal Core v2:
 
 ```bash
@@ -305,9 +376,10 @@ python -m unittest discover -s tests_pytorch_pilot -v
 
 Formal Core v3/v4 and Runtime v3/v4 are additionally pinned and exercised by
 `.github/workflows/formal-core-v3-gate-d.yml`,
-`.github/workflows/formal-core-v4-gate-e.yml`, the `runtime-v3-*` workflows, and
-`.github/workflows/runtime-v4-phase-14.yml`; permanent Phase 14 closure evidence is retained
-under `artifacts/releases/v4-phase14-closure/`.
+`.github/workflows/formal-core-v4-gate-e.yml`, the `runtime-v3-*` workflows, and the
+Runtime v4 Phase 14–16 workflows. Permanent Phase 14 closure evidence is retained under
+`artifacts/releases/v4-phase14-closure/`; Phase 15/16 validation and replay boundaries are
+documented under `docs/executable_core_v4/`.
 
 Principal repository-root entry points include:
 
