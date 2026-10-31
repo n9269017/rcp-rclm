@@ -8,7 +8,8 @@
     "phase17b_assistant_validation": "artifacts/development/phase17b/assistant-validation.json",
     "phase17b_historical_handoff": "artifacts/development/phase17b/bootstrap_receipt.json",
     "phase17b_operator_capture": "artifacts/development/phase17b/operator-52c3b8f33293/operator-validation.json",
-    "phase17b_prior_windows_failure": "artifacts/development/phase17b/operator-52c3b8f33293/prior-failed-run/foundation/evidence.json"
+    "phase17b_prior_windows_failure": "artifacts/development/phase17b/operator-52c3b8f33293/prior-failed-run/foundation/evidence.json",
+    "phase17c_assistant_validation": "artifacts/development/phase17c/assistant-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -27,33 +28,40 @@
   "implementation_commit": "e7a87487329aa38884a3798a339b7fb50c01bcb2",
   "implemented_scope": {
     "all_17_terminal_identities_inventoried": true,
+    "bounded_dsl_candidate_realization": true,
+    "bounded_dsl_reference_evaluation": true,
     "evolving_cross_turn_objective_policy": false,
     "fresh_lean_recertification": false,
     "historical_hash_anchored_bootstrap": true,
+    "hostile_same_user_security_sandbox": false,
     "initial_package_conditioned_objective": true,
     "objective_freeze_record": true,
-    "post_freeze_challenge_service": false,
-    "selected_eight_transition_lineage_reconstructed": true
+    "post_freeze_challenge_service": true,
+    "process_and_protocol_separation": true,
+    "sealed_transcript_recomputation": true,
+    "selected_eight_transition_lineage_reconstructed": true,
+    "single_turn_controller_evaluator_integration": true
   },
   "main_merge_authorized": false,
   "operator_manifest_commit": "197f4bc022a68123c20cfd5f146149249663f1db",
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17b_historical_bootstrap_and_initial_objective",
+  "stage": "phase17c_bounded_post_freeze_evaluation",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
     "cross_turn_objective_integration",
-    "post_freeze_challenge_isolation",
-    "independent_candidate_evaluation",
     "full_frontier_recertification",
     "pinned_root_lean_bridge",
     "atomic_promotion_and_rollback",
     "durable_cross_turn_ledger",
     "complete_resource_accounting",
     "horizon_independent_multi_turn_campaigns",
-    "phase17_closure_campaigns"
+    "phase17_closure_campaigns",
+    "hostile_executable_evaluator_sandbox",
+    "full_model_realization_and_independent_evaluation",
+    "durable_cross_session_challenge_consumption"
   ],
   "validation": {
     "bootstrap_real_archive_linux": "passed_10_tests",
@@ -64,21 +72,23 @@
     "current_manifest": "check_with_scripts/phase17_refresh_checksums.py; historical count is not the current count",
     "end_to_end_phase17": "not_implemented",
     "full_updated_checkout_suite": "operator_local_passed_70",
+    "historical_assistant_phase17b_checkout_scope": "reconstructed_historical_dependencies_with_current_phase17_overlay; not_full_current_checkout",
     "historical_manifest": "operator_verified_1907_entries_at_197f4bc_then_1916_at_0c72b005",
     "independent_worker_free_replay": "not_implemented",
     "local_evidence_tool_linux": "passed_22_unit_tests",
     "local_evidence_tool_macos": "not_run",
-    "local_evidence_tool_windows": "not_run",
+    "local_evidence_tool_windows": "capture_and_verify_passed_at_52c3b8f33293; separate_unit_suite_not_run",
     "new_bootstrap_macos": "not_run",
-    "new_bootstrap_windows": "not_run",
+    "new_bootstrap_windows": "operator_passed_10_archive_tests_and_constructor_at_52c3b8f33293",
     "normal_phase16_constructor_round_trip": "operator_local_passed",
     "operator_historical_archive_tests": "passed_10",
     "operator_phase17b_platform": "Windows",
     "operator_windows_foundation": "reported_passed_33_of_33",
     "phase17b_tested_code_commit": "52c3b8f33293fc1a52a88c7ae73cc81d35e149c7",
     "phase17b_zip_name_regression": "raw_header_and_windows_normalization_tests_passed",
+    "phase17c_assistant_validation": "see source-hashed assistant report; not full current checkout",
+    "phase17c_operator_validation": "pending",
     "pinned_lean": "not_performed",
-    "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled",
-    "source_checkout_scope": "reconstructed_historical_dependencies_with_current_phase17_overlay; not_full_current_checkout"
+    "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
 }

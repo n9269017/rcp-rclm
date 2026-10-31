@@ -146,3 +146,7 @@ not implemented by this initial slice.
 The failed Windows/Python 3.13.3 run at `89b8296c4973f7fa425518e4d407356766f7b6c9` remains retained as a failed run. ZIP fixture construction normalized a backslash before ingestion; the loader also used the normalized name. The correction preserves literal fixture header names and rejects invalid original names before normalization. No assertion is removed or skipped.
 
 At `52c3b8f33293fc1a52a88c7ae73cc81d35e149c7`, the operator ran 70 foundation tests and 10 archive integration tests with zero failures/skips, plus the normal Phase 16 constructor check. Evidence: `artifacts/development/phase17b/operator-52c3b8f33293`. This is local Windows evidence, not hosted CI, fresh Lean verification, or phase closure.
+
+## Phase 17C — bounded post-freeze evaluation
+
+See [PHASE_17_CHALLENGE_TRANSACTION.md](PHASE_17_CHALLENGE_TRANSACTION.md). This adds one evaluator-separated bounded DSL turn, not full-model evaluation, a hostile-code sandbox, promotion, or phase closure. The Phase 17B Windows capture and bootstrap passed at `52c3b8f33293`; older `not_run` summary labels have been reconciled without changing historical evidence.

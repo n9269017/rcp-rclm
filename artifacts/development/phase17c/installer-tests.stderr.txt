@@ -1,0 +1,22 @@
+test_crlf_evidence_bytes_preserved (__main__.InstallerTests.test_crlf_evidence_bytes_preserved) ... ok
+test_dirty_checkout_rejected (__main__.InstallerTests.test_dirty_checkout_rejected) ... ok
+test_existing_ignored_target_not_overwritten (__main__.InstallerTests.test_existing_ignored_target_not_overwritten) ... ok
+test_extra_payload_rejected (__main__.InstallerTests.test_extra_payload_rejected) ... ok
+test_failure_preserves_original_checkout (__main__.InstallerTests.test_failure_preserves_original_checkout) ... ok
+test_nonportable_paths_rejected (__main__.InstallerTests.test_nonportable_paths_rejected) ... ok
+test_normal_push_after_success (__main__.InstallerTests.test_normal_push_after_success) ... To /tmp/tmphygbixz0/remote.git
+   ddb0a88..4cefd11  HEAD -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_pass_log_requires_count_and_no_skips (__main__.InstallerTests.test_pass_log_requires_count_and_no_skips) ... ok
+test_payload_hash_mismatch (__main__.InstallerTests.test_payload_hash_mismatch) ... ok
+test_remote_movement_stops_before_checkout_update (__main__.InstallerTests.test_remote_movement_stops_before_checkout_update) ... ok
+test_staged_bytes_checked (__main__.InstallerTests.test_staged_bytes_checked) ... ok
+test_status_reconciles_without_false_closure (__main__.InstallerTests.test_status_reconciles_without_false_closure) ... ok
+test_success_fast_forwards_only_after_validation (__main__.InstallerTests.test_success_fast_forwards_only_after_validation) ... ok
+test_unexpected_origin_rejected (__main__.InstallerTests.test_unexpected_origin_rejected) ... ok
+test_wrong_branch_rejected (__main__.InstallerTests.test_wrong_branch_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 28.484s
+
+OK

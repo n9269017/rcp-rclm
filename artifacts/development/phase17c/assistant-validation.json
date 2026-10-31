@@ -1,0 +1,111 @@
+{
+  "assistant_test_execution_note": "The 12 process tests were completed in two batches of six because combined tool invocations reached the execution time limit; this is not a skipped test or a reported passing combined invocation.",
+  "base_commit": "bb1f8669311c099938cc299c2b4fd9f5f77be9e3",
+  "differential_and_transaction_tests": {
+    "candidate_output_comparisons": 128,
+    "failed": 0,
+    "grammar_comparisons": 8,
+    "historical_program_output_comparisons": 8,
+    "passed": 6,
+    "skipped": 0
+  },
+  "egc0_started": false,
+  "environment": {
+    "os": "Linux",
+    "python_version": "3.13.5",
+    "release": "6.18.57"
+  },
+  "evaluator_worker_tests_use_real_processes_and_normal_v2_v5_imports": true,
+  "foundation_tests": {
+    "failed": 0,
+    "includes_new_protocol_tests": 40,
+    "normal_full_checkout_claimed": false,
+    "passed": 110,
+    "skipped": 0
+  },
+  "gate_e_closed": false,
+  "github_hosted_ci_passed": false,
+  "historical_archive_tests": {
+    "failed": 0,
+    "passed": 10,
+    "skipped": 0
+  },
+  "installer_safety_tests": {
+    "application_helper_sha256": "d75c77726a1b8ff8e6b8bbfe073666de230284bdd8894d3f5322aa2af03aa7c9",
+    "failed": 0,
+    "passed": 15,
+    "scope": "temporary synthetic Git repositories; validation subprocess outcomes stubbed; not runtime campaign evidence",
+    "skipped": 0,
+    "test_file_sha256": "bd4c981a317028237114b142466f71b955cef581bc3b4cd1cd3ff082b6a9c1e0"
+  },
+  "limitations": [
+    "No native Windows or macOS execution of Phase17C here.",
+    "No fresh Lean verification, full-model evaluation, full-frontier recertification or promotion.",
+    "Process/protocol separation does not establish a hostile same-user OS sandbox.",
+    "Transcript recomputation is not Phase18 closure or proof of honest randomness.",
+    "Fresh single trial was retained without rerunning for a winner.",
+    "The application helper must perform normal complete-checkout validation on the owner machine."
+  ],
+  "live_trial": {
+    "candidate_credits": 32,
+    "candidate_evaluations": 32,
+    "claims": {
+      "egc0_started": false,
+      "fresh_lean_verification": false,
+      "full_frontier_recertified": false,
+      "gate_e_closed": false,
+      "os_security_sandbox": false,
+      "phase17_exit_closed": false,
+      "phase18_independent_replay": false,
+      "promotion_authorized": false
+    },
+    "complete_resource_accounting": false,
+    "controller_pid": 1647,
+    "elapsed_ns": 3558878347,
+    "evaluator_pid": 1657,
+    "local_transaction_verified": true,
+    "prefix_hash": "9128d805e93c18dab5886e80dbb1894817587b1a71fe94844738a6794c0f9f90",
+    "schema_id": "runtime.v5.phase17.bounded_transaction.v1",
+    "scope": "single_historical_predecessor_bounded_dsl_turn",
+    "separate_process": true,
+    "terminal_action": "search_exhausted",
+    "transcript_sha256": "870d7308f5e4c2636a02e04d93aab2c263b79658c841d1a65898177961b06a59",
+    "worker_exited_cleanly": true
+  },
+  "live_trial_capture_note": "Captured before the final boolean/integer canonical-value hardening; the unchanged sealed trial was recomputed successfully using the final verifier. No fresh trial was repeated to obtain a winner.",
+  "live_trial_final_verifier_recomputed": true,
+  "phase16_eager_package_export_initializer_bypassed_in_assistant_in_process_tests": true,
+  "phase16_selected_module_git_blob_ids": {
+    "codec.py": "f6c011174dd76fddba5d2f4257a985795e82a706",
+    "constants.py": "6ec1117cb715b060ad46b4f56dd6bd727423c949",
+    "grammar.py": "bcc24b9797d7adf2bab501893c939b2d0270d3a1",
+    "ranking.py": "192ff699763e854a7290a8c4b153d4cc34379889",
+    "records.py": "4fabef0768090d96e0b8157ee7ba1d1ff2b85d1b"
+  },
+  "phase17_exit_closed": false,
+  "process_boundary_tests": {
+    "batches": [
+      6,
+      6
+    ],
+    "failed": 0,
+    "passed": 12,
+    "skipped": 0
+  },
+  "recorded_at_utc": "2026-10-31T08:53:14.754580+00:00",
+  "remote_repository_modified": false,
+  "schema": "rcp-rclm.phase17c.assistant-validation.v1",
+  "source_scope": "reconstructed_historical_dependency_checkout_with_current_v5_overlay; not_full_current_repository",
+  "source_sha256": {
+    "docs/executable_core_v5/PHASE_17_CHALLENGE_TRANSACTION.md": "18f69177d3c4135082e90f1e584e58b61ab2cc2606d53de4dcb1ebc09ca030e7",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_client.py": "aec1d7ff74dec85987b1fbfeb195f3c807078e9742a3a70ec74c31a3377ac560",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_protocol.py": "fd45a59eafacc8528ce3865dc8601b017b340e3dd59047701b8fe77204bdecfb",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_transaction.py": "39de2c46849c7a2605522c0c88d25a83820d178252d23a2454e33e84efb12f04",
+    "python/rcp_rclm_runtime_v5/tests_phase17/test_challenge_protocol.py": "8be76022b70d5b478fed0bfaf3bc218106b13fbc0ead9f403bd8cac76f2a085f",
+    "python/rcp_rclm_runtime_v5/tests_phase17c/test_process_boundary.py": "019340d682c1798d672c4a94117441aedf0894d6e2f9b4016f38dbd588e6bfd6",
+    "python/rcp_rclm_runtime_v5/tests_phase17c/test_reference_differential.py": "f0a3a55bad84811ed33592b135fcd9516a92397594549d8da3b65dba3000de33",
+    "scripts/phase17_evaluator_worker.py": "3ffaeec19aea71a1187b2f4d6bb7fc90e835355f8e79b3007954687c56de02ac",
+    "scripts/run_phase17_challenge_tests.py": "539812be1c4851576354f718782b32b4bffbdc7fe0cf2aa5134c78ab220c0ceb",
+    "scripts/run_phase17_challenge_transaction.py": "c35b67eff9d34a5b253bdb9dd0fde1969f1217321ca6270df2a3b8db103dc0a4"
+  }
+}
