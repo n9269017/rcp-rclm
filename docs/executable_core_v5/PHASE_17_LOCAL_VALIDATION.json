@@ -10,7 +10,8 @@
     "phase17b_operator_capture": "artifacts/development/phase17b/operator-52c3b8f33293/operator-validation.json",
     "phase17b_prior_windows_failure": "artifacts/development/phase17b/operator-52c3b8f33293/prior-failed-run/foundation/evidence.json",
     "phase17c_assistant_validation": "artifacts/development/phase17c/assistant-validation.json",
-    "phase17c_operator_capture": "artifacts/development/phase17c/operator-2d2695674a41-post-xmp/operator-validation.json"
+    "phase17c_operator_capture": "artifacts/development/phase17c/operator-2d2695674a41-post-xmp/operator-validation.json",
+    "phase17d_operator_capture": "artifacts/development/phase17d/operator-a8adc0df3c84/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -103,8 +104,11 @@
     "phase17c_process_differential": "18 passed uninstrumented after XMP Auto; zero skips; zero automatic retries",
     "phase17c_single_turn": "search_exhausted",
     "phase17c_tested_code_commit": "2d2695674a417cea04947400fa617ac6b34b9d5b",
-    "phase17d_lean": "not_run",
-    "phase17d_local": "pending",
+    "phase17d_capability_python_tasks": 21,
+    "phase17d_lean": "not_requested",
+    "phase17d_lean_obligations": 13,
+    "phase17d_local": "passed_development_checks",
+    "phase17d_tested_code_commit": "a8adc0df3c841559633965be0c402188c65ef5e2",
     "pinned_lean": "not_performed",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
