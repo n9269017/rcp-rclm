@@ -1,0 +1,89 @@
+{
+  "actual_materialization": {
+    "base_bytes": 27434256,
+    "base_files": 164,
+    "declared_base_model_parameters": 13625920,
+    "lean_sources_prepared": 13,
+    "materialized_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+    "physical_capability_tasks_evaluated": 21
+  },
+  "actual_preparation_source_commit_in_reconstructed_checkout": "9ca64f7fba1b1ad3edcc935d2af4bed8c4b1efb4",
+  "actual_required_lean_attempt": {
+    "exit": 2,
+    "failure": {
+      "reason": "pinned dependency not installed: mathlib",
+      "type": "ControlError"
+    },
+    "lean_processes_executed": 0,
+    "status": "blocked"
+  },
+  "baseline_tar_sha256": "efe4191ee7ee37dfa907f6bc5b2c4f0919ae6879943a95ef791c1b60573cf568",
+  "claims": {
+    "complete_current_checkout_run": false,
+    "egc0_started": false,
+    "fresh_lean_proofs_checked": false,
+    "full_frontier_recertified": false,
+    "full_transformer_inference": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "macos_run": false,
+    "native_windows_run": false,
+    "phase17_exit_closed": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "environment": {
+    "os": "Linux",
+    "python": "3.13.5"
+  },
+  "formal_root_source_trees_verified_against_live_repository": {
+    "v2": "1c5a32b4a5c7a2d78ba820e535eac3e69a2a85b8",
+    "v3": "e7be21343acfb94277f9120e638c70593315fddd",
+    "v4": "ab26a6518e042db89b59f671252b49adb5057fc0"
+  },
+  "gate_control_tests": "Subprocess success/version/failure/axiom cases use mocks; they are not Lean proofs",
+  "installer_sha256": "cf0a116a87ee32f8f57d5e2d5e924fb7a4b1f05da6a653628daea28e9ef51e76",
+  "installer_tests": "Temporary synthetic Git repositories and controlled validation-command outputs; genuine local Git fast-forward/push to temporary bare remotes",
+  "interrupted_test_attempt": "An aggregate shell call hit its 45-second outer tool limit during selected-regression tests. Incomplete logs are preserved; selected tests were then run alone to completion. No source test assertion failed in that interrupted prefix.",
+  "matrix_reference_comparisons": 128,
+  "measured_tests": {
+    "historical_archive_integration": {
+      "failures": 0,
+      "run": 10,
+      "skipped": 0
+    },
+    "installer_safety": {
+      "failures": 0,
+      "run": 19,
+      "skipped": 0
+    },
+    "materialized_package_and_lean_gate_control": {
+      "failures": 0,
+      "run": 35,
+      "skipped": 0
+    },
+    "prior_controller_bootstrap_protocol_selected": {
+      "failures": 0,
+      "run": 103,
+      "skipped": 0
+    }
+  },
+  "new_source_sha256": {
+    "docs/executable_core_v5/PHASE_17_MATERIALIZED_FRONTIER.md": "6d936764d7a75ffaf4d03382cd6181ccf7b41cfc8654a7a7bc9950c9e40832e2",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/frontier_recertification.py": "46ec2b1f477c6f2fcb17fd7f8ac2211e86dadb4ddce4042dea137980e74b4bdc",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/lean_frontier_gate.py": "110328be8177e844c4e7cd34b0f66223563810d2fe603dd3c2f4f1350592ec57",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/lean_root_pins.json": "ec2226ce520783d965a8e8370dcccce550751e90935fb79ba76ebc137bfc658f",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/materialized.py": "215c9673c609164d5538507c7e3a883f4b7298a3c70d79776aff0ccb92981b97",
+    "python/rcp_rclm_runtime_v5/tests_phase17d/fixtures/README.md": "d62b789e6c4b4166344c8b016d09896af33f294b2cdc50e226c8addab76ace88",
+    "python/rcp_rclm_runtime_v5/tests_phase17d/fixtures/known_candidate_pass.json": "369c30c469090fa357633aca596cb0c7ad3de31f2ecf16ca78e7699e79c79e6e",
+    "python/rcp_rclm_runtime_v5/tests_phase17d/test_materialized_gate.py": "5767db147c274873090b87108f31be86d8899ce57e6489debce668d46caaa24a",
+    "scripts/run_phase17_package_gate.py": "7bb1a770cb9f77d90b74693b05c08d07ee205f800fbd562bd668a0094c65d878",
+    "scripts/run_phase17_package_tests.py": "1c1ff0fed60bd36276619380e9515ed48635388873e9e6b1d1d0bb825fc69f14"
+  },
+  "positive_candidate_fixture": "Offline deliberately selected known-answer unit fixture, not a fresh hidden campaign or capability-improvement result",
+  "recorded_at_utc": "2026-10-31T23:45:18.623534+00:00",
+  "remote_base_expected": "37fdb818a8e4435e6078b7c5956c0c2d27caa136",
+  "schema": "rcp-rclm.phase17d.assistant-validation.v1",
+  "source_scope": "reconstructed historical Phase15 baseline + exact prior Phase17 kits and Windows ZIP-name correction; NOT complete current public checkout"
+}

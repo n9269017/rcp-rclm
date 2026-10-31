@@ -154,3 +154,7 @@ See [PHASE_17_CHALLENGE_TRANSACTION.md](PHASE_17_CHALLENGE_TRANSACTION.md). This
 ## Phase 17C local validation after memory-profile change
 
 Tested implementation: `2d2695674a417cea04947400fa617ac6b34b9d5b`. Evidence: `artifacts/development/phase17c/operator-2d2695674a41-post-xmp/operator-validation.json`. This is a multi-run Windows record: the earlier 110 foundation and 10 archive passes are retained without relabeling them as post-change runs; the original failed process suite and intervening diagnostics remain preserved. After the operator changed XMP Profile 1 to Auto, firmware reported 4400 and the unchanged ordinary 18-test suite passed. One additional fresh bounded transaction was then executed and verified. No favorable terminal outcome was required, and no live challenge was retried. This supports a configuration contribution but does not prove a hardware root cause or permanent stability. No runtime source patch, full-frontier/Lean recertification, successor promotion, Phase 18 replay, phase closure, or EGC result is claimed.
+
+## Phase 17D materialized package/capability gate
+
+See PHASE_17_MATERIALIZED_FRONTIER.md. Physical model/registry construction, 21 capability outputs and 13 Lean obligations are distinct from recursive-frontier certification, root transition authorization, or promotion.
