@@ -4,7 +4,9 @@
   "evidence_records": {
     "historical_selected_module_tests": "artifacts/development/phase17/initial-selected-module-validation.json",
     "local_evidence_tool_unit_tests": "artifacts/development/phase17/local-evidence-tool-validation.json",
-    "operator_windows_full_checkout": "artifacts/development/phase17/operator-windows-197f4bc.json"
+    "operator_windows_full_checkout": "artifacts/development/phase17/operator-windows-197f4bc.json",
+    "phase17b_assistant_validation": "artifacts/development/phase17b/assistant-validation.json",
+    "phase17b_historical_handoff": "artifacts/development/phase17b/bootstrap_receipt.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -21,15 +23,26 @@
     "steps_executed": 0
   },
   "implementation_commit": "e7a87487329aa38884a3798a339b7fb50c01bcb2",
+  "implemented_scope": {
+    "all_17_terminal_identities_inventoried": true,
+    "evolving_cross_turn_objective_policy": false,
+    "fresh_lean_recertification": false,
+    "historical_hash_anchored_bootstrap": true,
+    "initial_package_conditioned_objective": true,
+    "objective_freeze_record": true,
+    "post_freeze_challenge_service": false,
+    "selected_eight_transition_lineage_reconstructed": true
+  },
   "main_merge_authorized": false,
   "operator_manifest_commit": "197f4bc022a68123c20cfd5f146149249663f1db",
   "phase17_exit_closed": false,
+  "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17a_controller_and_local_evidence",
+  "stage": "phase17b_historical_bootstrap_and_initial_objective",
   "status": "development_only",
   "unimplemented": [
-    "authenticated_phase16_terminal_bootstrap",
-    "package_bound_objective_selection",
+    "fresh_bootstrap_root_recertification",
+    "cross_turn_objective_integration",
     "post_freeze_challenge_isolation",
     "independent_candidate_evaluation",
     "full_frontier_recertification",
@@ -41,16 +54,24 @@
     "phase17_closure_campaigns"
   ],
   "validation": {
+    "bootstrap_real_archive_linux": "passed_10_tests",
+    "bootstrap_unit_linux": "passed_34_tests",
     "clean_environment_replay": "not_established",
+    "controller_regression_linux": "passed_26_tests",
     "cross_platform_foundation": "not_established",
     "current_manifest": "check_with_scripts/phase17_refresh_checksums.py; historical count is not the current count",
     "end_to_end_phase17": "not_implemented",
-    "historical_manifest": "operator_verified_1907_entries_at_197f4bc",
+    "full_updated_checkout_suite": "not_run_by_assistant",
+    "historical_manifest": "operator_verified_1907_entries_at_197f4bc_then_1916_at_0c72b005",
     "independent_worker_free_replay": "not_implemented",
     "local_evidence_tool_linux": "passed_22_unit_tests",
     "local_evidence_tool_macos": "not_run",
     "local_evidence_tool_windows": "not_run",
+    "new_bootstrap_macos": "not_run",
+    "new_bootstrap_windows": "not_run",
+    "normal_phase16_constructor_round_trip": "not_run_by_assistant",
     "operator_windows_foundation": "reported_passed_33_of_33",
-    "pinned_lean": "not_performed"
+    "pinned_lean": "not_performed",
+    "source_checkout_scope": "reconstructed_historical_dependencies_with_current_phase17_overlay; not_full_current_checkout"
   }
 }

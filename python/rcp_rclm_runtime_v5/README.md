@@ -1,4 +1,4 @@
-# Runtime v5 development — Phase 17A controller foundation
+# Runtime v5 development — Phase 17A/B foundation
 
 This is public implementation work, not the archived `v5-trajectory` roadmap
 release and not a completed Phase 17 result. The first slice implements a
@@ -48,8 +48,9 @@ with its own rewritten checkpoint is not an independent trust anchor.
 
 ## Remaining integration
 
-Authenticated Phase 16 terminal bootstrap; objective selection; post-freeze
-challenge-service isolation; actual independent evaluation and full-frontier
+The initial historical bootstrap and package-conditioned objective selector are
+now implemented (see below). Fresh root recertification, evolving cross-turn
+objectives, post-freeze challenge-service isolation, independent evaluation and full-frontier
 recertification; atomic promotion/rollback; durable cross-turn ledger;
 resource-accounted continuation; pinned Lean bridge; multi-seed reference
 campaigns; schema and adversarial closure remain outstanding.
@@ -76,3 +77,25 @@ and [`PHASE_17_LOCAL_VALIDATION.json`](../../docs/executable_core_v5/PHASE_17_LO
 or hosted Actions. The original Windows test does not need repetition merely
 to populate this record. Local evidence is not hosted CI, independent replay,
 Lean verification, a three-platform result, or phase-exit authorization.
+
+## Phase 17B bootstrap and first objective
+
+`rcp_rclm_runtime_v5.phase17.bootstrap.reopen_phase16` accepts only the exact
+historical capture/closure/M9 archives pinned in trusted source. It inventories
+17 terminal states, reconstructs the selected eight-transition lineage and
+loads the inherited planner bytes without extracting the large M9 bundle.
+This is authenticated historical identity/integrity relative to those pins,
+not a new proof or a candidate promotion certificate.
+
+`select_bootstrap_objective` uses a declared current-state heuristic with the
+inherited tensor values. `freeze_bootstrap_objective` recomputes and binds the
+decision before future challenge-service integration. It neither calls a task
+generator nor declares a candidate successful. The initial policy is not yet
+an evolving policy for newly promoted states.
+
+Run the archive checks with `scripts/run_phase17_bootstrap_tests.py`; run the
+normal-checkout entry point with `scripts/run_phase17_bootstrap.py`. Both accept an optional
+`--capture-archive` override; the latter requires a new `--output` directory
+outside the checkout. All three default inputs are retained in the repository;
+the original Phase 16 capture is included with this increment. See `docs/executable_core_v5/PHASE_17_BOOTSTRAP.md` for the precise
+validation limits. No EGC baseline is chosen or executed by this component.

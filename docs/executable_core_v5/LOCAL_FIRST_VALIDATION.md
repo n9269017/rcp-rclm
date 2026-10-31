@@ -93,3 +93,21 @@ repeated zero-step Actions attempts. Skipped checks are not passes and may
 remain pending; no required-check policy is bypassed. Hosted workflows remain
 available for future execution. Do not change billing settings or retry jobs
 as a side effect of evidence collection.
+
+## Phase 17B extension
+
+The inherited Phase 17A capture profile discovers the current foundation suite;
+with the Phase 17B bootstrap/objective unit tests installed, it should run 67
+checks (26 controller, seven Phase 16 adapter, 34 new bootstrap/objective tests).
+The profile's historical minimum of 33 is not proof that new tests ran. The
+Phase 17B application kit separately requires the exact 67-test count and then
+runs the ten real-archive tests and `run_phase17_bootstrap.py`.
+
+The latter reopens the pinned capture, closure, and Phase 15 M9 bundle, exercises
+the normal Phase 16 `ModelState` constructor, selects the initial objective, and
+writes a non-authorizing freeze receipt. Its output is outside the source tree.
+All commands are fail-closed and no completed historical release is modified.
+Evidence may be retained in a separate commit bound to the tested code commit;
+this does not imply a rerun on the later evidence-only commit. Logs and public
+OS/Python/package-version metadata are not private environment variables or
+credentials, but should still be inspected before publication.

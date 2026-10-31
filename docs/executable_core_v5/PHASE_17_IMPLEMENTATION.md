@@ -1,4 +1,4 @@
-# Phase 17 implementation — initial control-plane slice
+# Phase 17 implementation — controller, historical bootstrap, and initial objective
 
 ## Resumption basis
 
@@ -80,13 +80,51 @@ current index; `--write` refreshes only the manifest. Keep PR #68 in draft until
 its explicit review and validation obligations are met. The retained eight-
 promotion Phase 16 terminal state is still only a serialization fixture.
 
+## Phase 17B historical bootstrap and initial objective
+
+The owner completed the next evidence-manifest refresh at
+`0c72b00560f4164a3b044302b9b93f7d08ac170f`: five retained records checked,
+1,916 canonical root entries verified, and a manifest-only update pushed.
+No foundation tests were rerun by that bookkeeping step.
+
+`phase17/bootstrap.py` now reopens three exact historical archives, binds the
+accepted Phase 16 closure to its capture, inventories all 17 terminal states
+(16 ladder campaigns plus the separate stretch campaign), reconstructs the
+selected eight-transition state/package/frontier lineage, and reopens the
+inherited M9 planner tensor. The selected state is fixed by the documented
+minimum-rung/UTF-8-seed/stream rule, never by an EGC score. This is historical
+hash-anchored evidence ingestion, not fresh Lean or full-tensor verification.
+The old Phase 16 serialization fixture is not an archive-ingestion substitute.
+
+`phase17/objectives.py` implements a declared, deterministic, package-conditioned
+initial objective heuristic using the 84 actual nonzero inherited tensor values.
+It selects among the eight existing families without supplying a winner program
+or altering the mutation grammar. It exposes no future horizon, target promotion
+count, future task, evaluator seed, or EGC-score argument. An independently
+recomputed objective freeze binds this decision to the predecessor and current
+nonce. No hidden challenge has yet been generated or bound by this module.
+
+This is NOT evidence that the objective policy learned to improve, that the
+whole controller is horizon independent, or that a hostile host cannot influence
+nonce selection. Cross-turn policy evolution and evaluator process isolation
+remain open. `challenge_bound=false` and `promotion_authorized=false` are explicit.
+
+Measured assistant results: 34 new unit tests, 26 controller regressions, and
+10 real-archive integration tests passed on Linux/Python 3.13.5. The seven existing
+Phase 16 adapter tests and the complete 67-test checkout suite were not rerun in
+this reconstructed local workspace. The normal Phase 16 constructor round-trip
+is exercised by the complete-checkout bootstrap entry point, not claimed by the
+selected-module results. See `PHASE_17_BOOTSTRAP.md` and the phase17b evidence.
+
 ## Next implementation obligations
 
-1. Pin and independently reopen a declared Phase 16 terminal package, including
-   its full predecessor and certified frontier evidence. Preserve all Phase 16
-   terminal identities for subsequent EGC-0; do not choose by EGC scores.
-2. Connect package-bound objective selection and fresh post-freeze commitments
-   with evaluator seeds and answer material excluded from proposer state.
+1. Integrate the reopened historical predecessor with the actual realization and
+   pinned-root verification service. Historical hash/lineage validation does not
+   replace fresh certificate checking or re-evaluation of the protected frontier.
+2. Connect the initial objective freeze to a separate post-freeze challenge
+   service. Keep evaluator secrets/answers out of proposer state and implement
+   evolving, parent-bound cross-turn objectives rather than reusing the initial
+   predecessor policy as if it already supported promoted successors.
 3. Connect the single-candidate controller to actual realization, independent
    evaluation, full-frontier recertification, root checking, and atomic
    promotion/rollback. A generator must never approve its own output.
