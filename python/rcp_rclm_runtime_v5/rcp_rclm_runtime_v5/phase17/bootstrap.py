@@ -85,17 +85,26 @@ def _read_pinned_archive(path: Path, digest: str, *, max_bytes: int = 16 * 1024 
     _require(hashlib.sha256(data).hexdigest() == digest, "historical archive digest mismatch")
     try:
         archive = zipfile.ZipFile(io.BytesIO(data))
-        names: set[str] = set()
-        for info in archive.infolist():
-            p = PurePosixPath(info.filename)
-            _require(info.filename not in names, "duplicate archive member")
-            names.add(info.filename)
-            _require(not p.is_absolute() and ".." not in p.parts and "\\" not in info.filename
-                     and ":" not in info.filename and "\x00" not in info.filename,
-                     "nonportable archive member")
-            mode = (info.external_attr >> 16) & 0xFFFF
-            _require(not stat.S_ISLNK(mode) and not info.flag_bits & 1,
-                     "symlink or encrypted archive member")
+        try:
+            names: set[str] = set()
+            for info in archive.infolist():
+                # ZipInfo.filename may normalize Windows separators or truncate
+                # a NUL. Validate the original decoded header name first; never
+                # let normalization silently admit a nonportable member.
+                name = info.orig_filename
+                p = PurePosixPath(name)
+                _require(bool(name) and name == info.filename and not p.is_absolute()
+                         and ".." not in p.parts and "\\" not in name
+                         and ":" not in name and "\x00" not in name,
+                         "nonportable archive member")
+                _require(name not in names, "duplicate archive member")
+                names.add(name)
+                mode = (info.external_attr >> 16) & 0xFFFF
+                _require(not stat.S_ISLNK(mode) and not info.flag_bits & 1,
+                         "symlink or encrypted archive member")
+        except Exception:
+            archive.close()
+            raise
         return archive
     except (zipfile.BadZipFile, OSError) as exc:
         raise ControlError("invalid historical archive") from exc

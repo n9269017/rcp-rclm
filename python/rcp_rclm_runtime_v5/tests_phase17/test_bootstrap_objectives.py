@@ -49,6 +49,24 @@ def rebound(record: dict) -> bytes:
     return canonical_json_bytes(record)
 
 
+def raw_name_archive(name: str) -> bytes:
+    """Keep malformed local/central header names identical on every host.
+
+    writestr(name, ...) first constructs ZipInfo and may sanitize the name.
+    Replace a same-length ASCII placeholder *after* serialization instead.
+    Both names change; offsets, payload bytes and CRC remain valid.
+    """
+    raw_name = name.encode("ascii")
+    placeholder = b"Q" * len(raw_name)
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_STORED) as archive:
+        archive.writestr(zipfile.ZipInfo(placeholder.decode("ascii")), b"payload")
+    data = buffer.getvalue()
+    if not raw_name or data.count(placeholder) != 2:
+        raise AssertionError("fixture must contain exactly two placeholder header names")
+    return data.replace(placeholder, raw_name)
+
+
 class HistoricalBootstrapTests(unittest.TestCase):
     def setUp(self):
         self.parent = fixture()
@@ -165,13 +183,61 @@ class HistoricalBootstrapTests(unittest.TestCase):
                 b._read_pinned_archive(path, hashlib.sha256(b"abc").hexdigest(), max_bytes=2)
 
     def test_archive_path_traversal_rejected(self):
-        for name in ("../escape", "/absolute", "C:/drive", "back\\slash"):
+        for name in ("../escape", "/absolute", "C:/drive", "back\\slash", "nul\x00name"):
             with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
                 path = Path(directory) / "bad.zip"
-                with zipfile.ZipFile(path, "w") as z:
-                    z.writestr(name, b"payload")
+                data = raw_name_archive(name)
+                path.write_bytes(data)
                 with self.assertRaisesRegex(ControlError, "nonportable"):
-                    b._read_pinned_archive(path, hashlib.sha256(path.read_bytes()).hexdigest())
+                    b._read_pinned_archive(path, hashlib.sha256(data).hexdigest())
+
+    def test_archive_fixture_retains_original_header_name(self):
+        for name in ("../escape", "/absolute", "C:/drive", "back\\slash", "nul\x00name"):
+            with self.subTest(name=name):
+                data = raw_name_archive(name)
+                self.assertEqual(data.count(name.encode("ascii")), 2)
+                with zipfile.ZipFile(io.BytesIO(data)) as archive:
+                    self.assertEqual(archive.infolist()[0].orig_filename, name)
+
+    def test_archive_windows_normalization_cannot_hide_bad_name(self):
+        from unittest.mock import patch
+        original_init = zipfile.ZipInfo.__init__
+
+        def windows_init(info, filename="NoName", date_time=(1980, 1, 1, 0, 0, 0)):
+            original_init(info, filename, date_time)
+            # Model only ZipInfo's Windows normalization, not the whole OS.
+            info.filename = filename.split("\x00", 1)[0].replace("\\", "/")
+
+        for name in ("back\\slash", "nul\x00name"):
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
+                data = raw_name_archive(name)
+                path = Path(directory) / "bad.zip"
+                path.write_bytes(data)
+                with patch.object(zipfile.ZipInfo, "__init__", windows_init):
+                    with zipfile.ZipFile(io.BytesIO(data)) as archive:
+                        info = archive.infolist()[0]
+                        self.assertEqual(info.orig_filename, name)
+                        self.assertNotEqual(info.filename, info.orig_filename)
+                    with self.assertRaisesRegex(ControlError, "nonportable"):
+                        b._read_pinned_archive(path, hashlib.sha256(data).hexdigest())
+
+    def test_archive_valid_nested_member_accepted(self):
+        from unittest.mock import patch
+        original_init = zipfile.ZipInfo.__init__
+
+        def windows_init(info, filename="NoName", date_time=(1980, 1, 1, 0, 0, 0)):
+            original_init(info, filename, date_time)
+            info.filename = filename.split("\x00", 1)[0].replace("\\", "/")
+
+        for windows_model in (False, True):
+            with self.subTest(windows_model=windows_model), tempfile.TemporaryDirectory() as directory:
+                data = raw_name_archive("safe/nested")
+                path = Path(directory) / "good.zip"
+                path.write_bytes(data)
+                initializer = windows_init if windows_model else original_init
+                with patch.object(zipfile.ZipInfo, "__init__", initializer):
+                    with b._read_pinned_archive(path, hashlib.sha256(data).hexdigest()) as archive:
+                        self.assertEqual(b._member(archive, "safe/nested", 32), b"payload")
 
     def test_archive_duplicate_member_rejected(self):
         import warnings
