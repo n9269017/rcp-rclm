@@ -1,0 +1,35 @@
+name: Export pinned public Phase 17 development baseline
+on:
+  push:
+    branches: [agent/phase17-source-bootstrap]
+    paths: [.github/workflows/phase17-source-export.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: 358ff0efdc6bba6bdd1c8c30dc12c3695e3cf53f
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Export public Git history without credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "358ff0efdc6bba6bdd1c8c30dc12c3695e3cf53f"
+          mkdir -p "$RUNNER_TEMP/phase17-baseline"
+          git branch phase17-pinned-baseline HEAD
+          git bundle create "$RUNNER_TEMP/phase17-baseline/public-baseline.bundle" phase17-pinned-baseline --tags
+          git bundle verify "$RUNNER_TEMP/phase17-baseline/public-baseline.bundle"
+          cd "$RUNNER_TEMP/phase17-baseline"
+          sha256sum public-baseline.bundle > SHA256SUMS.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase17-public-baseline-358ff0e
+          path: ${{ runner.temp }}/phase17-baseline/
+          retention-days: 7
+          if-no-files-found: error
