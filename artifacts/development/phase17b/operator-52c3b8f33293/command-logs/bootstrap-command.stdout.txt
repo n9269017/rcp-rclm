@@ -1,0 +1,1 @@
+{"accepted_for_historical_handoff": true, "egc0_started": false, "gate_e_closed": false, "manifest_sha256": "702579ef2e7e6cd1a0f7d1cf2163eb9eb7e099d806740e5b2d7cf7f751636794", "objective_family": "retrieval_policy", "phase17_exit_closed": false, "source_commit": "52c3b8f33293fc1a52a88c7ae73cc81d35e149c7"}

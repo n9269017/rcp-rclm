@@ -140,3 +140,9 @@ selected-module results. See `PHASE_17_BOOTSTRAP.md` and the phase17b evidence.
 Phase 18 independent worker-free closure, noncommuting Phase X, verifier
 succession Y, improvement-space expansion Omega, asynchronous Z, and EGC-0 are
 not implemented by this initial slice.
+
+## ZIP-name portability repair and retained local validation
+
+The failed Windows/Python 3.13.3 run at `89b8296c4973f7fa425518e4d407356766f7b6c9` remains retained as a failed run. ZIP fixture construction normalized a backslash before ingestion; the loader also used the normalized name. The correction preserves literal fixture header names and rejects invalid original names before normalization. No assertion is removed or skipped.
+
+At `52c3b8f33293fc1a52a88c7ae73cc81d35e149c7`, the operator ran 70 foundation tests and 10 archive integration tests with zero failures/skips, plus the normal Phase 16 constructor check. Evidence: `artifacts/development/phase17b/operator-52c3b8f33293`. This is local Windows evidence, not hosted CI, fresh Lean verification, or phase closure.

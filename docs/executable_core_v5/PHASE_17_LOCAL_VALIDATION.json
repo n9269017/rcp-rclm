@@ -6,7 +6,9 @@
     "local_evidence_tool_unit_tests": "artifacts/development/phase17/local-evidence-tool-validation.json",
     "operator_windows_full_checkout": "artifacts/development/phase17/operator-windows-197f4bc.json",
     "phase17b_assistant_validation": "artifacts/development/phase17b/assistant-validation.json",
-    "phase17b_historical_handoff": "artifacts/development/phase17b/bootstrap_receipt.json"
+    "phase17b_historical_handoff": "artifacts/development/phase17b/bootstrap_receipt.json",
+    "phase17b_operator_capture": "artifacts/development/phase17b/operator-52c3b8f33293/operator-validation.json",
+    "phase17b_prior_windows_failure": "artifacts/development/phase17b/operator-52c3b8f33293/prior-failed-run/foundation/evidence.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -61,7 +63,7 @@
     "cross_platform_foundation": "not_established",
     "current_manifest": "check_with_scripts/phase17_refresh_checksums.py; historical count is not the current count",
     "end_to_end_phase17": "not_implemented",
-    "full_updated_checkout_suite": "not_run_by_assistant",
+    "full_updated_checkout_suite": "operator_local_passed_70",
     "historical_manifest": "operator_verified_1907_entries_at_197f4bc_then_1916_at_0c72b005",
     "independent_worker_free_replay": "not_implemented",
     "local_evidence_tool_linux": "passed_22_unit_tests",
@@ -69,9 +71,14 @@
     "local_evidence_tool_windows": "not_run",
     "new_bootstrap_macos": "not_run",
     "new_bootstrap_windows": "not_run",
-    "normal_phase16_constructor_round_trip": "not_run_by_assistant",
+    "normal_phase16_constructor_round_trip": "operator_local_passed",
+    "operator_historical_archive_tests": "passed_10",
+    "operator_phase17b_platform": "Windows",
     "operator_windows_foundation": "reported_passed_33_of_33",
+    "phase17b_tested_code_commit": "52c3b8f33293fc1a52a88c7ae73cc81d35e149c7",
+    "phase17b_zip_name_regression": "raw_header_and_windows_normalization_tests_passed",
     "pinned_lean": "not_performed",
+    "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled",
     "source_checkout_scope": "reconstructed_historical_dependencies_with_current_phase17_overlay; not_full_current_checkout"
   }
 }
