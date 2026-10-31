@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "python",
+    "scripts/run_phase17_challenge_tests.py"
+  ],
+  "duration_ms": 33342,
+  "finished_at_utc": "2026-10-31T09:16:10.924649+00:00",
+  "name": "process-and-differential",
+  "returncode": 1,
+  "started_at_utc": "2026-10-31T09:15:37.581701+00:00",
+  "stderr_sha256": "e252a2bff5e7b918aa64b59e7cd4170da88221458f66ee53b379959ace57f873",
+  "stdout_sha256": "6d2b4dfb4f7f562f1a9dbfaacda19661973f7f878b2c68fc478eec1aac4e2bc7"
+}

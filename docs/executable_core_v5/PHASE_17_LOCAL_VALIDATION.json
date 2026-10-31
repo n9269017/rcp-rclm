@@ -9,7 +9,8 @@
     "phase17b_historical_handoff": "artifacts/development/phase17b/bootstrap_receipt.json",
     "phase17b_operator_capture": "artifacts/development/phase17b/operator-52c3b8f33293/operator-validation.json",
     "phase17b_prior_windows_failure": "artifacts/development/phase17b/operator-52c3b8f33293/prior-failed-run/foundation/evidence.json",
-    "phase17c_assistant_validation": "artifacts/development/phase17c/assistant-validation.json"
+    "phase17c_assistant_validation": "artifacts/development/phase17c/assistant-validation.json",
+    "phase17c_operator_capture": "artifacts/development/phase17c/operator-2d2695674a41-post-xmp/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -87,7 +88,15 @@
     "phase17b_tested_code_commit": "52c3b8f33293fc1a52a88c7ae73cc81d35e149c7",
     "phase17b_zip_name_regression": "raw_header_and_windows_normalization_tests_passed",
     "phase17c_assistant_validation": "see source-hashed assistant report; not full current checkout",
-    "phase17c_operator_validation": "pending",
+    "phase17c_configuration_comparison": "XMP Profile 1/6000 before; operator Auto/firmware 4400 after; contributing factor supported, not proven",
+    "phase17c_foundation_and_archives": "reused_pre_configuration_change_passes; 110 and 10; not rerun",
+    "phase17c_hardware_root_cause_proven": false,
+    "phase17c_operator_platform": "Windows 11 / CPython 3.13.3",
+    "phase17c_operator_validation": "passed_local_multirun_evidence_not_phase_closure",
+    "phase17c_prior_failures_preserved": true,
+    "phase17c_process_differential": "18 passed uninstrumented after XMP Auto; zero skips; zero automatic retries",
+    "phase17c_single_turn": "search_exhausted",
+    "phase17c_tested_code_commit": "2d2695674a417cea04947400fa617ac6b34b9d5b",
     "pinned_lean": "not_performed",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }

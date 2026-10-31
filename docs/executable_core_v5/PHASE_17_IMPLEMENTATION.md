@@ -150,3 +150,7 @@ At `52c3b8f33293fc1a52a88c7ae73cc81d35e149c7`, the operator ran 70 foundation te
 ## Phase 17C — bounded post-freeze evaluation
 
 See [PHASE_17_CHALLENGE_TRANSACTION.md](PHASE_17_CHALLENGE_TRANSACTION.md). This adds one evaluator-separated bounded DSL turn, not full-model evaluation, a hostile-code sandbox, promotion, or phase closure. The Phase 17B Windows capture and bootstrap passed at `52c3b8f33293`; older `not_run` summary labels have been reconciled without changing historical evidence.
+
+## Phase 17C local validation after memory-profile change
+
+Tested implementation: `2d2695674a417cea04947400fa617ac6b34b9d5b`. Evidence: `artifacts/development/phase17c/operator-2d2695674a41-post-xmp/operator-validation.json`. This is a multi-run Windows record: the earlier 110 foundation and 10 archive passes are retained without relabeling them as post-change runs; the original failed process suite and intervening diagnostics remain preserved. After the operator changed XMP Profile 1 to Auto, firmware reported 4400 and the unchanged ordinary 18-test suite passed. One additional fresh bounded transaction was then executed and verified. No favorable terminal outcome was required, and no live challenge was retried. This supports a configuration contribution but does not prove a hardware root cause or permanent stability. No runtime source patch, full-frontier/Lean recertification, successor promotion, Phase 18 replay, phase closure, or EGC result is claimed.

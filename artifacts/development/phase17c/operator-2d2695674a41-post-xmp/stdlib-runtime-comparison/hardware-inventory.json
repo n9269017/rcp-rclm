@@ -1,0 +1,41 @@
+{
+  "data": {
+    "bios": [
+      {
+        "Manufacturer": "American Megatrends International, LLC.",
+        "ReleaseDate": "/Date(1668729600000)/",
+        "SMBIOSBIOSVersion": "8.02"
+      }
+    ],
+    "board": [
+      {
+        "Manufacturer": "ASRock",
+        "Product": "Z690M PG Riptide/D5"
+      }
+    ],
+    "cpu": [
+      {
+        "Manufacturer": "GenuineIntel",
+        "Name": "12th Gen Intel(R) Core(TM) i7-12700K",
+        "NumberOfCores": 12,
+        "NumberOfLogicalProcessors": 20
+      }
+    ],
+    "memory": [
+      {
+        "Capacity": 34359738368,
+        "ConfiguredClockSpeed": 6000,
+        "Speed": 4800
+      },
+      {
+        "Capacity": 34359738368,
+        "ConfiguredClockSpeed": 6000,
+        "Speed": 4800
+      }
+    ]
+  },
+  "firmware_or_settings_changed": false,
+  "overclock_state_inferred": false,
+  "serial_numbers_requested": false,
+  "status": "read_only_inventory"
+}
