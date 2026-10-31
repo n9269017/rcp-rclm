@@ -64,3 +64,15 @@ egc0_baseline_completed = false
 The existing v4.6 code and historical v4.5/v5 releases are not rewritten by this
 slice. EGC-0 follows Phase 17 development as requested, but must evaluate the
 frozen Phase 16 lineage rather than select a better Phase 17 package afterward.
+
+## Local-first evidence while hosted Actions is blocked
+
+The owner-reported full-checkout Windows result (33 passing tests) and its
+manifest-only commit are retained separately from the earlier selected-module
+Linux result. See [`LOCAL_FIRST_VALIDATION.md`](../../docs/executable_core_v5/LOCAL_FIRST_VALIDATION.md)
+and [`PHASE_17_LOCAL_VALIDATION.json`](../../docs/executable_core_v5/PHASE_17_LOCAL_VALIDATION.json).
+
+`scripts/phase17_local_evidence.py` records future local validation without `gh`
+or hosted Actions. The original Windows test does not need repetition merely
+to populate this record. Local evidence is not hosted CI, independent replay,
+Lean verification, a three-platform result, or phase-exit authorization.

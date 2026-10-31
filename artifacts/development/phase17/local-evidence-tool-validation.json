@@ -1,0 +1,34 @@
+{
+  "batches": [
+    8,
+    8,
+    6
+  ],
+  "complete_public_checkout_tested": false,
+  "egc0_started": false,
+  "errors": 0,
+  "evidence_kind": "assistant_executed_unit_tests",
+  "failures": 0,
+  "gate_e_closed": false,
+  "github_ci_executed": false,
+  "limitations": [
+    "Two earlier whole-suite attempts exceeded the execution time limit; the retained complete result consists of three successful batches.",
+    "Fixture repositories run synthetic tests to test capture behavior; these are not additional RCP/RCLM results."
+  ],
+  "log": "local-evidence-tool-tests.log",
+  "log_sha256": "621360ba9a7f12221db22ba795b9be29e0131c9b65d762bc7f638e60904a4679",
+  "machine": "x86_64",
+  "macos_tool_validation": false,
+  "os_family": "Linux",
+  "phase17_exit_closed": false,
+  "phase17_foundation_tests_rerun": false,
+  "pinned_lean_executed": false,
+  "python_version": "3.13.5",
+  "schema": "rcp-rclm.local-tool-unit-validation.v1",
+  "scope": "Local evidence collector/validator unit tests against temporary fixture repositories; package enumeration mocked in tests.",
+  "skipped": 0,
+  "tests_git_blob": "331be2eaeae54563030df9ac43952696978cb96b",
+  "tests_run": 22,
+  "tool_git_blob": "396d1c8bae04ee076e8761abcadd096bc764acb1",
+  "windows_tool_validation": false
+}
