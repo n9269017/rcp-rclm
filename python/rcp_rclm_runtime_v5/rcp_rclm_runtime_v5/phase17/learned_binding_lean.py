@@ -11,7 +11,7 @@ from .materialized import require, sha
 from .learned_state_binding import PreparedLearnedBinding, check_packet, FIELDS, CLAIMS
 
 BRIDGE_PATH = 'lean/phase17_bridge/LearnedStateBinding.lean'
-BRIDGE_SHA256 = '077f8d66d7185b6395bf403e7be6b4da4aee26de50cd59ddfb3acbd9cf911b47'
+BRIDGE_SHA256 = '2184da4d22db9d9d55f5978968f7ba4e4d769b07d22f86a81cef678cb730f8ab'
 NAMES = tuple('Phase17LearnedBinding.'+n for n in (
     'frozen_view_preserved','fixed_interpretation_retained','information_value_retained',
     'root_information_bound','frontier_retained','frontier_grows',

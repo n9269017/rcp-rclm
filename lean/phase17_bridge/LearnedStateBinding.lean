@@ -1,5 +1,6 @@
 import RcpRclmFormalCoreV4
 import Mathlib.Tactic
+import Mathlib.Data.Finset.Card
 
 /- A typed projection of measured package components. FileRef digests are not
    a proof of physical-byte equality: the external verifier compares those bytes.
@@ -82,7 +83,7 @@ theorem frontier_grows (s : BoundState) (key task packageHash : String)
     (fresh : task ∉ s.package.capabilityFrontier) :
     s.package.capabilityFrontier.card < (extend s key task packageHash).package.capabilityFrontier.card := by
   change s.package.capabilityFrontier.card < (insert task s.package.capabilityFrontier).card
-  rw [Finset.card_insert_of_not_mem fresh]
+  rw [Finset.card_insert_of_notMem fresh]
   exact Nat.lt_succ_self _
 
 end Phase17LearnedBinding
