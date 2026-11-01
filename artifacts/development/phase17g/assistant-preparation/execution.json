@@ -1,0 +1,47 @@
+{
+  "automatic_retries": 0,
+  "base_obligation_count": 11,
+  "candidate_execution_checks": 8,
+  "candidate_package_hash": "67a97c6d16b6097fd8f1c5e09a941d5b813dfd403e98a508491645d6aea18b65",
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "finished_at_utc": "2026-11-01T04:22:51.278139+00:00",
+  "inherited_execution_checks": 48,
+  "local_increment_checks_passed": true,
+  "named_audits": [
+    "Phase17Registry.base_step_sound",
+    "Phase17Registry.dispatch_retained",
+    "Phase17Registry.solved_task_retained",
+    "Phase17Registry.exact_recovery",
+    "Phase17Registry.selected_base_step",
+    "Phase17Registry.selected_registry_mapping"
+  ],
+  "operational_recursive_tasks_recertified": [],
+  "os": "Linux",
+  "packet_sha256": "57e61a3f656684621e3d70c680d53b92e7d4cfa0fb41162a2e89c52c0ef90c99",
+  "physical_inverse_exact": true,
+  "proof_mode": "preparation_only",
+  "protected_file_count": 173,
+  "python_version": "3.13.5",
+  "resource_scope": "candidate evaluation credits only",
+  "schema": "rcp-rclm.phase17g.conservative-run.v1",
+  "semantic_gate": {
+    "scoped_base_obligations_checked": false,
+    "status": "not_requested"
+  },
+  "source_commit": "a0b46088a22ab5cf1250362408056fc33ac84fb2",
+  "source_tree": "141687e43f8f06008b3b1e578eb39979175d5d3e",
+  "source_unchanged": true,
+  "started_at_utc": "2026-11-01T04:22:42.956012+00:00",
+  "synthetic_fixture": true
+}
