@@ -130,6 +130,48 @@ class MeaningTests(unittest.TestCase):
     def test_repeated_render_deterministic(self):
         self.assertEqual(l.render_meanings(self.prepared,source_root=ROOT),l.render_meanings(self.prepared,source_root=ROOT))
 
+    # Renderer regressions: test emitted layout and unchanged certificate content.
+    # These are not a substitute for compiling the real Lean certificates.
+    def test_before_observation_fields_share_one_line(self):
+        for negative in (None, 'target', 'observation'):
+            with self.subTest(negative=negative):
+                lines=l.render_meanings(self.prepared,source_root=ROOT,negative=negative).decode('utf-8').splitlines()
+                rows=[s for s in lines if s.startswith('def before : ObservationState := ')]
+                self.assertEqual(len(rows),1)
+                self.assertIn('], programs := [',rows[0]);self.assertTrue(rows[0].endswith('] }'))
+    def test_after_observation_fields_share_one_line(self):
+        for negative in (None, 'target', 'observation'):
+            with self.subTest(negative=negative):
+                lines=l.render_meanings(self.prepared,source_root=ROOT,negative=negative).decode('utf-8').splitlines()
+                rows=[s for s in lines if s.startswith('def after : ObservationState := ')]
+                self.assertEqual(len(rows),1)
+                self.assertIn('], programs := [',rows[0]);self.assertTrue(rows[0].endswith('] }'))
+    def test_positive_certificate_only_repairs_record_whitespace(self):
+        old=(ROOT/'artifacts/development/phase17j/TaskMeaning.lean').read_bytes()
+        self.assertEqual(old.count(b'],\n programs := ['),2)
+        self.assertEqual(l.render_meanings(self.prepared,source_root=ROOT),old.replace(b'],\n programs := [',b'], programs := ['))
+    def test_wrong_target_certificate_only_repairs_record_whitespace(self):
+        old=(ROOT/'artifacts/development/phase17j/WrongTarget.lean').read_bytes()
+        self.assertEqual(old.count(b'],\n programs := ['),2)
+        self.assertEqual(l.render_meanings(self.prepared,source_root=ROOT,negative='target'),old.replace(b'],\n programs := [',b'], programs := ['))
+    def test_missing_observation_certificate_only_repairs_record_whitespace(self):
+        old=(ROOT/'artifacts/development/phase17j/MissingProofObservation.lean').read_bytes()
+        self.assertEqual(old.count(b'],\n programs := ['),2)
+        self.assertEqual(l.render_meanings(self.prepared,source_root=ROOT,negative='observation'),old.replace(b'],\n programs := [',b'], programs := ['))
+    def test_record_layout_fix_preserves_task_packet(self):
+        raw=self.prepared.packet_bytes
+        for negative in (None,'target','observation'):l.render_meanings(self.prepared,source_root=ROOT,negative=negative)
+        self.assertEqual(self.prepared.packet_bytes,raw)
+        self.assertEqual(sha(raw),'0e31d56ea5c44be47e5ad3b3319efdc0e82e5eccf58fe56f98995ca5a1bcaa89')
+    def test_record_layout_fix_preserves_all_theorem_text(self):
+        old=(ROOT/'artifacts/development/phase17j/TaskMeaning.lean').read_bytes()
+        new=l.render_meanings(self.prepared,source_root=ROOT)
+        marker=b'\ndef beforeDeclared : Finset Nat'
+        self.assertEqual(new.split(marker,1)[1],old.split(marker,1)[1])
+        self.assertEqual(new.split(b'def before : ObservationState',1)[0],old.split(b'def before : ObservationState',1)[0])
+    def test_record_layout_fix_does_not_modify_template(self):
+        self.assertEqual(sha(l.template(ROOT)),'fcc5cdfcbc87f3a0d5aeed901e685ecb5191aee293afc23f22d054291a99c114')
+
 class FormalControlTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

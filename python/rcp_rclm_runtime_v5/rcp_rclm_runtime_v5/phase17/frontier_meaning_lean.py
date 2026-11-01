@@ -58,7 +58,7 @@ def render_meanings(prepared:PreparedMeanings, *, source_root:Path, negative:str
         if negative=='observation' and label=='after':obs[0]['source_sha256']='0'*64
         proof_rows=['('+string(r['task_id'])+', '+string(r['source_sha256'])+', '+string(r['decode_hash'])+')' for r in obs]
         entries=['('+string(digest(q))+', '+program(q)+')' for q in s['programs']]
-        text+='def '+label+' : ObservationState := { proofs := ['+', '.join(proof_rows)+'],\n programs := ['+', '.join(entries)+'] }\n'
+        text+='def '+label+' : ObservationState := { proofs := ['+', '.join(proof_rows)+'], programs := ['+', '.join(entries)+'] }\n'
     text+='''
 def beforeDeclared : Finset Nat := Finset.range 21
 def afterDeclared : Finset Nat := Finset.range 22
