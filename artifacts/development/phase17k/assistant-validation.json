@@ -1,0 +1,117 @@
+{
+  "actual_physical_preparation": {
+    "candidate_identity_changed_from_prior_fixture": true,
+    "candidate_package": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+    "fair_fallback": 5,
+    "grammar_size": 32,
+    "old_evaluator_valid_fixture_rejected_for_order": true,
+    "packet_sha256": "6668900a9ec4dadb06e51489ea7a3751b801cab7ff9657a80bb44d74337cf2f6",
+    "passed": true,
+    "physical_nonzero_planner_weights": 84,
+    "predecessor_package": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+    "prior_proof_reports_reassigned_to_new_candidate": false,
+    "proposal_count": 9,
+    "ranked_prefix": 4,
+    "rejection_count": 8,
+    "selected_program": "a4f37fb8f2f7d3a90829340f2f02b2f19dbc5dfa5caf7a7633e9092837265c0e",
+    "synthetic_fixed_known_entropy": true,
+    "terminal": "await_root_verification",
+    "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+  },
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_learned_semantic_refinement": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "neural_decoder_formally_verified": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "complete_learned_kernel_constructed": false,
+  "development_failures_preserved": [
+    "Initial physical-binding path lookup missed base/ prefix; corrected before final physical preparation and tests.",
+    "Initial regression harness lacked PYTHONPATH for the unchanged child-process test: one error; new harness fixed; original tests unchanged; final 33 passed.",
+    "Aggregate installer flow command hit the outer execution limit after eight completed successes; final remote-movement case completed separately."
+  ],
+  "documentation_only_existing_edit": "Phase17J reproduction count 62 ->70; no old evidence rewritten",
+  "environment": {
+    "native_windows": false,
+    "normal_individual_production_algorithms_used": true,
+    "os": "Linux",
+    "phase16_eager_export_initializer_exercised": false,
+    "python": "3.13.5",
+    "source_scope": "reconstructed retained Phase15 baseline plus A-J payloads/fixes and five exact live Phase16 producer modules; not full current public checkout"
+  },
+  "expected_base": "dac5bc9c6ab41e8a18a58b45cc6c8bb3f047288a",
+  "formal": {
+    "control_test_compiler_outputs_mocked": true,
+    "negative_controls": [
+      "SkippedPrefix",
+      "WrongParent",
+      "WrongProgram"
+    ],
+    "new_lean_sources_authored_not_compiler_validated": true,
+    "new_named_audits": 8,
+    "real_compiler_processes": 0,
+    "reason": "pinned dependency not installed: mathlib",
+    "source_sha256": {
+      "Provenance": "4f57e1508ac1e2bc00076c485ca02fc298359a4a6b2821b1c7e0437fe75f36e1",
+      "SkippedPrefix": "b8cc93f657dfba71d4b1270ca2dd69cc5ea286bbf5e5e260a9bf0c3d0f9a164c",
+      "WrongParent": "9f84a82f8327f4612a4adf552a9d81baa90d19de0a5bea6928100dd40723de5a",
+      "WrongProgram": "110283e434ccc09a75420b54291e32f1e6fef02129e993b6806977ef3d873238"
+    },
+    "status": "blocked"
+  },
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "historical_execution_attested": false,
+  "integrity": {
+    "immutable_root_source_pins_verified": 72,
+    "ordered_fixture_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f",
+    "reviewed_producer_module_pins_verified": 8,
+    "source_identity_report": "source-identities.json"
+  },
+  "recorded_at_utc": "2026-11-01T21:44:58.714480+00:00",
+  "remote_changes_performed": false,
+  "schema": "rcp-rclm.phase17k.assistant-validation.v1",
+  "self_hosted_neural_generator": false,
+  "tests": {
+    "application_complete_flows": {
+      "controlled_formal_command_results_not_proofs": true,
+      "distinct_passed": 9,
+      "eight_cases_completed_before_timeout": true,
+      "grouped_run_outer_timeout": true,
+      "last_case_completed_separately": true,
+      "logs": [
+        "installer-flow.err.txt",
+        "installer-flow-final.err.txt"
+      ],
+      "native_windows": false
+    },
+    "application_units": {
+      "log": "installer-unit.err.txt",
+      "passed": 40,
+      "skipped": 0
+    },
+    "controller_and_adapter_regression": {
+      "log": "regressions-final.err.txt",
+      "passed": 33,
+      "skipped": 0
+    },
+    "provenance_runtime_and_control": {
+      "log": "tests-final.err.txt",
+      "passed": 63,
+      "skipped": 0
+    }
+  },
+  "trust_boundary": [
+    "physical bytes, canonical hash/provenance mapping and Python selection semantics remain externally checked",
+    "Lean supplied-table trace proof and root-field adapter require the prepared real compiler",
+    "remaining kernel and physical observation functions are parameters",
+    "producer is the fixed external controller, not package-executed neural code synthesis"
+  ]
+}

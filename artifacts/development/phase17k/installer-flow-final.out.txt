@@ -1,0 +1,7 @@
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 28 entries; not committed
+PASS: 28 canonical index checksum entries

@@ -116,7 +116,7 @@ egc0_started = false
 
 ## Reproduction and evidence
 
-Run `scripts/run_phase17_frontier_meaning_tests.py` for the 62 new tests.
+Run `scripts/run_phase17_frontier_meaning_tests.py` for the 70 tests (62 original plus eight renderer regressions).
 The application kit also requires the unchanged 36-test Phase17F suite.
 `run_phase17_frontier_meaning_gate.py --test-fixture --require-lean
 --lean-workspace <prepared formal-root> --output <new external directory>`
