@@ -16,7 +16,8 @@
     "phase17f_operator_capture": "artifacts/development/phase17f/op-84a6e45ed4d7-utf8/operator-validation.json",
     "phase17g_operator_capture": "artifacts/development/phase17g/op-165856541b2a-proof/operator-validation.json",
     "phase17h_operator_capture": "artifacts/development/phase17h/op-eb78c099106d/operator-validation.json",
-    "phase17i_operator_capture": "artifacts/development/phase17i/op-1614cfc939ba-lemma/operator-validation.json"
+    "phase17i_operator_capture": "artifacts/development/phase17i/op-1614cfc939ba-lemma/operator-validation.json",
+    "phase17j_operator_capture": "artifacts/development/phase17j/op-11ce508bb7ac-layout/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -47,12 +48,14 @@
     "constructive_inactive_package_retraction": true,
     "evolving_cross_turn_objective_policy": false,
     "exhaustive_public_planner_contract": true,
+    "explicit_frontier_task_meanings": true,
     "fresh_lean_recertification": true,
     "full_transformer_inference": false,
     "historical_hash_anchored_bootstrap": true,
     "hostile_same_user_security_sandbox": false,
     "independent_sparse_planner_reference": true,
     "initial_package_conditioned_objective": true,
+    "learned_root_frontier_field_adapter": true,
     "objective_freeze_record": true,
     "package_bound_affine_tool_contract": true,
     "physical_m9_and_phase16_registry_materialization": true,
@@ -68,6 +71,7 @@
     "sealed_transcript_recomputation": true,
     "selected_21_capability_reexecution": true,
     "selected_eight_transition_lineage_reconstructed": true,
+    "selected_proof_backed_frontier_filter": true,
     "single_turn_controller_evaluator_integration": true,
     "strict_opt_in_lean_capability_gate": true,
     "typed_learned_package_state_projection": true,
@@ -78,7 +82,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17i_typed_learned_binding",
+  "stage": "phase17j_explicit_frontier_meanings",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -188,6 +192,23 @@
     "phase17i_root_admission": "blocked_missing_semantic_witnesses",
     "phase17i_synthetic_fixture": true,
     "phase17i_tested_code_commit": "1614cfc939ba65ef2146cf66ae13114c30d29077",
+    "phase17j_full_root_evaluated": false,
+    "phase17j_inherited_propositions_rechecked": 13,
+    "phase17j_layout_correction": "same-line record fields; unchanged values, theorem statements and acceptance policy",
+    "phase17j_local": "selected task meanings and root frontier field adapter checked; trusted observation mapping; no full root acceptance",
+    "phase17j_new_formal_audits": 8,
+    "phase17j_new_recursive_tasks_closed": [],
+    "phase17j_new_renderer_regressions": 8,
+    "phase17j_new_tests": 70,
+    "phase17j_preserved_failed_source": "baea8cc670328a4a6d8e45d7fc41c65246ce701d",
+    "phase17j_selected_task_coverage": [
+      21,
+      22
+    ],
+    "phase17j_successor_regression_source": "baea8cc670328a4a6d8e45d7fc41c65246ce701d",
+    "phase17j_successor_regressions_retained_not_rerun": 36,
+    "phase17j_synthetic_fixture": true,
+    "phase17j_tested_code_commit": "11ce508bb7acb3c1f91fc9777345e4ab63eee13e",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
