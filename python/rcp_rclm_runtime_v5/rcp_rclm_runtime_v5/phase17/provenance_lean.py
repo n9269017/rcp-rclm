@@ -53,10 +53,14 @@ def render_provenance(prepared:PreparedProvenance,*,source_root:Path,negative:st
     text+=('def selectedCandidate : CandidateView := { parentPackage := '+string(b['physical_package_hash'])+
         ', contextHash := '+string(context_hash)+', program := '+string(c['program_hash'])+', package := '+string(c['physical_package_hash'])+' }\n')
     text+='''
-theorem selected_provenance : Produced selectedContext selectedProposal := by decide
+theorem selected_provenance : Produced selectedContext selectedProposal := by
+  unfold Produced ContextValid
+  decide
 
 theorem selected_candidate_binding :
-    CandidateMatches selectedContext selectedProposal selectedCandidate := by decide
+    CandidateMatches selectedContext selectedProposal selectedCandidate := by
+  unfold CandidateMatches
+  refine ⟨selected_provenance, ?_, ?_, ?_, ?_⟩ <;> decide
 
 theorem selected_rejection_prefix :
     selectedProposal.verdicts = List.replicate (selectedProposal.choices.length - 1) false ++ [true] := by decide

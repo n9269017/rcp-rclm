@@ -174,6 +174,38 @@ class ProvenanceTests(unittest.TestCase):
         with self.assertRaises(ValueError):l.render_provenance(p,source_root=ROOT)
 
 
+    # Check the emitted proof bodies and exact scope; real Lean is a separate gate.
+    def test_produced_decision_unfolds_named_predicates(self):
+        raw=l.render_provenance(self.prepared,source_root=ROOT).decode('utf-8')
+        self.assertIn('Produced selectedContext selectedProposal := by\n  unfold Produced ContextValid\n  decide',raw)
+    def test_candidate_proof_reuses_produced_result(self):
+        raw=l.render_provenance(self.prepared,source_root=ROOT).decode('utf-8')
+        self.assertIn('unfold CandidateMatches\n  refine ⟨selected_provenance, ?_, ?_, ?_, ?_⟩ <;> decide',raw)
+    def test_all_certificates_only_change_two_proof_bodies(self):
+        old="theorem selected_provenance : Produced selectedContext selectedProposal := by decide\n\ntheorem selected_candidate_binding :\n    CandidateMatches selectedContext selectedProposal selectedCandidate := by decide"
+        new="theorem selected_provenance : Produced selectedContext selectedProposal := by\n  unfold Produced ContextValid\n  decide\n\ntheorem selected_candidate_binding :\n    CandidateMatches selectedContext selectedProposal selectedCandidate := by\n  unfold CandidateMatches\n  refine ⟨selected_provenance, ?_, ?_, ?_, ?_⟩ <;> decide"
+        for label,negative in zip(l.LABELS,(None,'prefix','parent','program'),strict=True):
+            with self.subTest(label=label):
+                prior=(ROOT/'artifacts/development/phase17k'/(label+'.lean')).read_bytes()
+                self.assertEqual(prior.count(old.encode('utf-8')),1)
+                self.assertEqual(l.render_provenance(self.prepared,source_root=ROOT,negative=negative),prior.replace(old.encode('utf-8'),new.encode('utf-8'),1))
+    def test_proof_repair_preserves_predicate_definitions(self):
+        template=l.template(ROOT)
+        self.assertEqual(sha(template),'3cae873ff4dba673c926ac4ecf214d349c2ec6a635bf0ead44547bebc76056a4')
+        for negative in (None,'prefix','parent','program'):
+            self.assertTrue(l.render_provenance(self.prepared,source_root=ROOT,negative=negative).startswith(template))
+    def test_proof_repair_does_not_mutate_packet(self):
+        before=self.prepared.packet_bytes
+        for negative in (None,'prefix','parent','program'):l.render_provenance(self.prepared,source_root=ROOT,negative=negative)
+        self.assertEqual(before,self.prepared.packet_bytes)
+        self.assertEqual(sha(before),'6668900a9ec4dadb06e51489ea7a3751b801cab7ff9657a80bb44d74337cf2f6')
+    def test_proof_repair_has_no_classical_decision_escape(self):
+        for negative in (None,'prefix','parent','program'):
+            source=l.render_provenance(self.prepared,source_root=ROOT,negative=negative).decode('utf-8')
+            selected=source.split('theorem selected_provenance',1)[1].split('theorem selected_rejection_prefix',1)[0]
+            self.assertNotRegex(selected,r'\b(classical|native_decide|sorry|admit|axiom)\b')
+            self.assertEqual(selected.count('decide'),2)
+
 class GateTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
