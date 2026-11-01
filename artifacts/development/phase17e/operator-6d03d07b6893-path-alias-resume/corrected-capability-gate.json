@@ -1,0 +1,18 @@
+{
+  "command": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_package_gate.py",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\path-alias-resume-20261101T015717Z-fc687018\\evidence\\formal\\package-run",
+    "--require-lean",
+    "--toolchain-root",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root"
+  ],
+  "finished_at_utc": "2026-11-01T02:02:51.886666+00:00",
+  "returncode": 0,
+  "started_at_utc": "2026-11-01T01:59:25.470846+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2834b8f146a1dee23031f48003f83d52d8748ec5d88cc76693884edafc7a2589"
+}

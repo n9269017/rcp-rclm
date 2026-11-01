@@ -11,7 +11,8 @@
     "phase17b_prior_windows_failure": "artifacts/development/phase17b/operator-52c3b8f33293/prior-failed-run/foundation/evidence.json",
     "phase17c_assistant_validation": "artifacts/development/phase17c/assistant-validation.json",
     "phase17c_operator_capture": "artifacts/development/phase17c/operator-2d2695674a41-post-xmp/operator-validation.json",
-    "phase17d_operator_capture": "artifacts/development/phase17d/operator-a8adc0df3c84/operator-validation.json"
+    "phase17d_operator_capture": "artifacts/development/phase17d/operator-a8adc0df3c84/operator-validation.json",
+    "phase17e_operator_capture": "artifacts/development/phase17e/operator-6d03d07b6893-path-alias-resume/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -34,7 +35,7 @@
     "bounded_dsl_reference_evaluation": true,
     "conditional_root_build_audit": true,
     "evolving_cross_turn_objective_policy": false,
-    "fresh_lean_recertification": false,
+    "fresh_lean_recertification": true,
     "full_transformer_inference": false,
     "historical_hash_anchored_bootstrap": true,
     "hostile_same_user_security_sandbox": false,
@@ -112,8 +113,16 @@
     "phase17d_lean_obligations": 13,
     "phase17d_local": "passed_development_checks",
     "phase17d_tested_code_commit": "a8adc0df3c841559633965be0c402188c65ef5e2",
-    "phase17e_local": "pending",
-    "pinned_lean": "not_performed",
+    "phase17e_conditional_root_theorems": "prior build and audit reused after source/dependency/tool/artifact revalidation",
+    "phase17e_git_environment_regressions": 24,
+    "phase17e_local": "actual_selected_capability_lean_passed",
+    "phase17e_original_failure": "preserved_missing_git_in_restricted_capability_environment",
+    "phase17e_path_alias_failure": "preserved_22_passes_2_fixture_failures; fixture_canonicalized_without_runtime_change",
+    "phase17e_prior_controls_retained": 51,
+    "phase17e_prior_root_build_source": "40c243efb3c6f7ab33e310cc7fb6d0d60ff5feac",
+    "phase17e_real_lean_obligations": 13,
+    "phase17e_tested_code_commit": "6d03d07b6893ab1ff1c92a1714a9c6f25ca9d093",
+    "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
 }

@@ -1,0 +1,232 @@
+{
+  "actual_lean_capability_verification": true,
+  "actual_lean_obligations_checked": 13,
+  "all_prior_test_methods_and_assertions_preserved": true,
+  "automatic_retries": 0,
+  "both_previous_failures_preserved": true,
+  "capability_frontier_recertified": true,
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_lean_environment_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T01:59:19.255102+00:00",
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T01:59:18.665652+00:00",
+      "stderr_sha256": "020e66d7f52e6ca8b323d02b9da327a6020cbc59b579d16bb433476f566183a8",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_package_gate.py",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\path-alias-resume-20261101T015717Z-fc687018\\evidence\\formal\\package-run",
+        "--require-lean",
+        "--toolchain-root",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root"
+      ],
+      "finished_at_utc": "2026-11-01T02:02:51.886666+00:00",
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T01:59:25.470846+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "2834b8f146a1dee23031f48003f83d52d8748ec5d88cc76693884edafc7a2589"
+    }
+  ],
+  "conditional_root_theorems_rebuilt_in_this_repair": false,
+  "continuation_script_sha256": "7d78840b6c706c0c6ca12c5354c95d3b952f9c17e66e85b6590a135975182bcb",
+  "cross_platform_validation": false,
+  "egc0_started": false,
+  "fresh_live_challenge_requested": false,
+  "full_frontier_recertified": false,
+  "gate_e_closed": false,
+  "github_hosted_ci_passed": false,
+  "hardware_settings_changed": false,
+  "network_setup_requested": false,
+  "new_environment_control_tests": 24,
+  "new_execution_report_sha256": "6367ab8348d2ffa387de47376dea6a8f8481e8e9f418fdaa4d88eaacedf1de58",
+  "phase17_exit_closed": false,
+  "previous_git_path_runtime_fix_retained": true,
+  "previous_recovery_script_sha256": "76f6887a7da6c02bcac6f75debcc0c8d90fb2bdd462e01868562fc54c22f99e6",
+  "prior_conditional_root_build_reused": true,
+  "prior_execution_control_tests_retained_not_rerun": 51,
+  "prior_failed_source_commit": "40c243efb3c6f7ab33e310cc7fb6d0d60ff5feac",
+  "prior_failed_source_tree": "f28a7c5bdc7ad6c9b1fe8b7e6deb14d1408e3cdd",
+  "prior_formal_report_sha256": "1e44339f39d8118964da88ce13862b52fa7d1ce8d0e1bcc4d31658c15335fec2",
+  "prior_path_alias_failed_source": {
+    "log_summary": {
+      "errors": 0,
+      "failures": [
+        "test_git_directory_retained",
+        "test_toolchain_is_first"
+      ],
+      "passed": 22,
+      "reported_success": false,
+      "skipped": 0,
+      "tests_run": 24
+    },
+    "progress_sha256": "a1e69d4ed40cd17df66e77a0033226b0df385a484f8b3e595011ede2f8fca126",
+    "source_commit": "2ee7cce08b088f62d54e50159bee7e39dbe55e31",
+    "source_tree": "9c3551cee6bf98dd9783465683ca7cb38e898736",
+    "stderr_sha256": "b9d1b7d6569ed97206a860c932c295c1940f94ee610da4d1772b5b9903b7db2a",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prior_root_build_source_commit": "40c243efb3c6f7ab33e310cc7fb6d0d60ff5feac",
+  "promotion_authorized": false,
+  "promotion_performed": false,
+  "proof_sources_unchanged": true,
+  "recursive_productivity_recertified": false,
+  "reused_cache": {
+    "dependencies": {
+      "Cli": {
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli",
+        "revision": "92564e5770e4d09f2d86dfbf8ada1e9c715b384c",
+        "tree": "6a5b2d2f0d92bddcd096c36be79a2eb1a83bc2fe",
+        "url": "https://github.com/leanprover/lean4-cli"
+      },
+      "LeanSearchClient": {
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient",
+        "revision": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+        "tree": "d0224b6df6c90cc0b4ed2db6218037d31bfd6f52",
+        "url": "https://github.com/leanprover-community/LeanSearchClient"
+      },
+      "Qq": {
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq",
+        "revision": "f46324995fca5f0483b742e4eb4daec7f4ee50d2",
+        "tree": "47d0a089e7bd378581b0f978e7cabdfb3e0345d0",
+        "url": "https://github.com/leanprover-community/quote4"
+      },
+      "aesop": {
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop",
+        "revision": "e3cb2f741431ce31bf73549fb52316a57368b06f",
+        "tree": "366e5c46b71252ebe7be10ed65fe4e7b5e837aff",
+        "url": "https://github.com/leanprover-community/aesop"
+      },
+      "batteries": {
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries",
+        "revision": "fa08db58b30eb033edcdab331bba000827f9f785",
+        "tree": "01494ad63f97095e17e2c512e02e98dd6ee62777",
+        "url": "https://github.com/leanprover-community/batteries"
+      },
+      "importGraph": {
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph",
+        "revision": "5c7542ed018c78194f1e2b903eaf6a792b74c03d",
+        "tree": "fd246b0ab3af2e9f66b71b041438d3b5afc6b0e3",
+        "url": "https://github.com/leanprover-community/import-graph"
+      },
+      "mathlib": {
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib",
+        "revision": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+        "tree": "1b8fcc589cb2eeb1258449f844eed7924edc9a04",
+        "url": "https://github.com/leanprover-community/mathlib4.git"
+      },
+      "plausible": {
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible",
+        "revision": "63045536fe95024e6c18fc7b48e03f506701c5bc",
+        "tree": "19a07a6a4ce1eaa48c5ff480bf8c040829e52657",
+        "url": "https://github.com/leanprover-community/plausible"
+      },
+      "proofwidgets": {
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets",
+        "revision": "24b0d9dc081c5423f8eec7e866c441e5184f29d9",
+        "tree": "041e31bf91e3dd5032921f618de8acffe333b783",
+        "url": "https://github.com/leanprover-community/ProofWidgets4"
+      }
+    },
+    "executables": {
+      "lake": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+      "lean": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+    },
+    "mathlib_root_olean_sha256": "45522115b8ff55410b8bcf3f48c8872302eacce07dec01c09ffe2c6f64062807",
+    "root_modules": {
+      "lean/rcp_rclm_formal_core_v4/.lake/build/lib/lean/RcpRclmFormalCoreV4.olean": "06a9aa57a55b491c6cc5999f419171e211794a9785e19584a69eaeba442fbb48"
+    },
+    "root_sources": {
+      "lean/rcp_rclm_formal_core_v2/README.md": "c21d6ee0d6be3e8d8bbb1071a60a42f7689b4fced9285416c8f4ecce77adaea0",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2.lean": "80057ec023de5035a3345a6986de34c49e28cf8cc429dcbb7e476170367010bf",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/MainTheorem.lean": "1394a98cd130236821a29c96b5d5a132276334e1a4e9f2ecb0418c413db2a4f0",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM.lean": "d700ca34b54640ae5a61db35700c550e2b428d41c3471f8405ee4b05e760506f",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ArchitectureEngine.lean": "511c9afff2780f81c7fc55e0ac369f598e88fda5c158ea7fd82ac2f2714b8573",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ArchitectureTheorem.lean": "69ccadf1c1bfca2cc58bbce4c6c69ce8f2ada6ffce8941db8c65085188cf9595",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/CertificatePacket.lean": "b2b6da2c7dfd4561d9c4f42681b8cf0cd1e429007b57a9e1cb0f6847ebe68c16",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinary.lean": "0e8ac0f7cb6c34b89930feaf0f40e3c8987a57f481537f0ffa7d4b3d4b6451e9",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinaryEngine.lean": "a097ec11748e10d3677bc57ad17df2d2547aa9a51cce9147dd6978c8bb45bea4",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinaryPaperII.lean": "ea80f17fe62e223a1196bbbbc003710de9d422cfab2cc01149a4496becd457b8",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinarySeedLibrary.lean": "8a7b930597dddb53b0e137499dea5fd26aa7325250a87f4f1eecdaea5f3fb55b",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinarySeedTrajectory.lean": "0ce18f39b7a0b65f835efa6bd8ef13a0a0b72bf59e79c97e1adb29054abcba86",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIAlignmentPremises.lean": "089e6c4945510ac541cc5dc2d2b515cbbfdb118448732d8c3f9775cabd36e736",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIBoundedSeedLibrary.lean": "aca46b263072bf56adc3341f0f53a362c02f195956bac6e836b723e197948067",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIBoundedSeedTrajectory.lean": "9bff5cd9a97dd9e90195e6511a2c78551d7dfcc53d6e221e6ce3a441cd460792",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIDirectEngine.lean": "e019915f81f84e94a4a1a854b1ff6e11f29b11e6c7513f9f6a12bc12439faa5b",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIRobustReflective.lean": "d87ba52518da35cac4f0938f0b36cd633a04552a5477132b744feccf026336a1",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/QuantumBinary.lean": "7fa37f59cc4fb5c54dfa42195f60c3fddca6c3660bb59922962e69477dfea5b6",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/Refinement.lean": "dd4290729a98e966d6fed6526105fe04813b74b8123cdb30e5934e8b684a7a26",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/State.lean": "1f39b734872586f5a3ccb7a264ea008b7a636e36e1b5f484eb789b5c9eae432f",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/Update.lean": "66412e61e24732c96aea18c55c4b0e3b7dad16fa9a59e73ff86b3f87cc2e2152",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP.lean": "e00f437ee1f5c8bb175d8661f85f4bc7b8d8b1e500a9b58036813cacdad03cfa",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Certificates.lean": "4d2d155a1ebd6f40e1d5fcff145b4a09e1d495518dd81b41b4b3f4f0108886c3",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Checker.lean": "1c793e357ac2006cc4411953352f32b07f5d373631432b47b45661afadef5a4d",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalBinary.lean": "de97da8bc8e039818c78278eea4d1cff0413beae8f147f200f57545d11659b19",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalFinite.lean": "51c017602bf443b29deb9840a97f8cae57bd96d3c85d59975ef0e6a9bfbeaf55",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/InfiniteHorizon.lean": "d082b045baeaccc79e6de747932b166a8e0d4cf1fc249393a2ead765b8bf2edf",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean": "166f09eb5f96bbab3609af3d3c50dbb549bebae70974863a512b0d78ce3d8733",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean": "b6bf8bc6cc8967bc48b2346341846a3382200d383b44e2e3e7f81a446b236626",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Progress.lean": "1e681992dcfea6ecc58d89be9a7c3ec69f734e084a4627f96a2ec9233266a8e0",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ProtectedDistinctions.lean": "4a372c07591b1a2b13d7e746763b3db125bb9c7c3e4881a5d5e7723515c09dd0",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumChannels.lean": "ab24db2686b2f1b67ade3a740eb02b775fe6dd385dd2bcdaeb156a38cf2f1308",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumDensity.lean": "176ac1125d9983e9b3dd521c6ca0b8875de8e5be5e5c839d3b0b99fef150df07",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumFinite.lean": "c7c43fe7de43be2d2d64cd8361bac092af357be36fd2c8562e5643cf5c01c87d",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumKernel.lean": "da1ad9a322aa4052949cfde72267a03cf2d698704b38c6bc784c867ba3bf3f7c",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Recovery.lean": "f727cabfda798407712cdda9c1afe68d8c83ee5320f438f8e78b84dadd94fc04",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/RelativeEntropy.lean": "42ff6b75ae6e821008df037d7ac7b9a3adb95e32b774d6fee56d63353ace8b74",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Summability.lean": "1785521b1d4cd0f70a767ab94d6cf5ef83b8a75edb0d3f5f72948011b6bab191",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean": "949b7336ac3f5db765053ed588551de8a713c7da80d7a29ae9cea1c99f3f9327",
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Types.lean": "ab3b7f8ca99156e887ae0cbe80ae5a20fd1f6ab6fa647d6c2db6ffb7a31ea063",
+      "lean/rcp_rclm_formal_core_v2/formalization_manifest.json": "c9815830ad5a25b050400b890ae3d65773a30388d7eff0766444f41c62dff5ee",
+      "lean/rcp_rclm_formal_core_v2/lake-manifest.json": "c17842b8da89c8c84beed4e8b33892616ef75c15475133a07aca97c16d853b0a",
+      "lean/rcp_rclm_formal_core_v2/lakefile.toml": "6a1fa80bc96176a8a2bbfcfa336c85b66296d674e99679dbaef50b5c0b60d167",
+      "lean/rcp_rclm_formal_core_v2/lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+      "lean/rcp_rclm_formal_core_v3/README.md": "f9b423182f50227ca50c77742aacd876f76a4a271971d0f8d544c93707864664",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3.lean": "e5c112a94ee62cc0109fe3ac31e80d2702bc07aff37c18b759f99e40a6c23d94",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned.lean": "f66acc6df136cabe1b7d197ce1326c3bbf34759d2453d2b6e7c11eb7c46af351",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/ExecutableContract.lean": "ef98e02f26e2977ed663a87ef99aa7decaf18351beb1772c656ca9fb5367e793",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Infinite.lean": "e52f3dea766363ad53f8b6520d489ae198b64bd68040e82113070a57b49390cd",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Kernel.lean": "e778e7b96f4aa38dddcb47658a6aa46fd987b12d42bc1d233314b29f679a7063",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Phase10Information.lean": "54e74fec11b73e92af5bd76cd1215358635995d63ead8e210d1ed15c369895b2",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Reference.lean": "f5e67104e0859ed88e3a025a8bb675439efaad817c5102f9e40f2d91e050d2a9",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Trajectory.lean": "7229b5e978dc3257d26572c0209220e09b980a3bbc54e86159c7b8ae979f0233",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/TransformerExtension.lean": "a57f5b81c2b90d3e2b49ed8da2c21e21b45b976b75ed6533951efcf1ce348dc5",
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Types.lean": "046320c88f0a04a88e47e2d397221ad08d499d2d9ceea972a3d924b7daf0e3ed",
+      "lean/rcp_rclm_formal_core_v3/formalization_manifest.json": "fe009a0d010970db54ba84b330bef038bc50e7c68114ae4a3406526529fcf3e2",
+      "lean/rcp_rclm_formal_core_v3/lake-manifest.json": "02921d2d60e7ef077c7fdb5fd184a7b4e9dc240d0f145cb1747ff9d99386151a",
+      "lean/rcp_rclm_formal_core_v3/lakefile.toml": "657d0ee12d5a896537f7858a59166baa175de0ebe313781507501791d4d57e8a",
+      "lean/rcp_rclm_formal_core_v3/lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+      "lean/rcp_rclm_formal_core_v4/README.md": "d0af4ad4b6568d930231d2ca1b488f48d4b100d7c642630fb21d53e25a46e4b3",
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4.lean": "79114481adc7822e51d55dbac70faf78b83d2c092e7e6495bfe08cb290172a03",
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous.lean": "c1839d26e891f4462149a8f1166d61b65d6e3322088b3d5b112c27be3c850387",
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/ExecutableContract.lean": "218222b1215c41d51acad3ae14f271da68a261dbd77b17b757faeab558a2f9fc",
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Infinite.lean": "f26d2592c90a993872536f28c4cb2d8f16071a06555e5a7b351f87f45f2a9681",
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Kernel.lean": "7d123b4aaee36d61a4cfd399169871fa42c7254094f7a3848e88fceca8261520",
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Search.lean": "9724069c24a75abca6ccd8fd8607a6f7e2bd3f3ca293940f8afcfc44b596d843",
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Trajectory.lean": "bcf3036190137d187bf0c0c114aacc47abd3e818bd82ac0110a24b9e6d7748da",
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Types.lean": "ddac45622f48b1112e1d1c90468a54b0d6d03888d20af92ced73dc0ecb275b98",
+      "lean/rcp_rclm_formal_core_v4/formalization_manifest.json": "171ffdb3880f74ca17a655884f2ad36ec934e6f971dafd9a9d19c3be1edea62d",
+      "lean/rcp_rclm_formal_core_v4/lake-manifest.json": "a1dfb266048c0bb6375f1f58edd284bc3242dc08091b28c2083333fce72792b4",
+      "lean/rcp_rclm_formal_core_v4/lakefile.toml": "13d6e662c3f6181eef4a3692e2c40c1c849e4a36e8224189153a61732f50f641",
+      "lean/rcp_rclm_formal_core_v4/lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee"
+    },
+    "toolchain_root": "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0",
+    "trusted_toolchain_and_import_cache_assumption": true,
+    "workspace": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root"
+  },
+  "root_transition_verified": false,
+  "runtime_source_changed_by_this_continuation": false,
+  "schema": "rcp-rclm.phase17e.path-alias-resume-validation.v1",
+  "selected_capability_tasks_reexecuted": 21,
+  "source_commit": "6d03d07b6893ab1ff1c92a1714a9c6f25ca9d093",
+  "source_tree": "829f7a6bd9be23d66ef7ee03a6a8934fba8fb280",
+  "test_fixture_normalized_with_strict_resolve": true
+}

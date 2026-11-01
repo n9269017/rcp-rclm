@@ -1,0 +1,21 @@
+{
+  "egc0_started": false,
+  "finalizer_sha256": "ae5231c86a99bbd2faf281ab44188eba3617919e4b8cb07d7286a9074e96b2ce",
+  "gate_e_closed": false,
+  "lean_reexecuted": false,
+  "long_path_support": "Git command-local; persistent only in new disposable clone",
+  "original_maximum_full_path_characters": 267,
+  "original_operator_report_sha256": "27bffce4ab116ff4a75bf801611daa03f5350e33d17362fda74cfbe35ac64493",
+  "original_partial_index_sha256": "de32b70878ca07333f7bd547b27243586ba678e12df1846b1196de62addd3719",
+  "pathspec_transport": "literal NUL-delimited stdin",
+  "phase17_exit_closed": false,
+  "promotion_authorized": false,
+  "recorded_at_utc": "2026-11-01T02:19:36.657023+00:00",
+  "runtime_source_changed": false,
+  "schema": "rcp-rclm.phase17e.evidence-staging-finalization.v1",
+  "source_commit": "6d03d07b6893ab1ff1c92a1714a9c6f25ca9d093",
+  "source_run": "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\path-alias-resume-20261101T015717Z-fc687018",
+  "source_tree": "829f7a6bd9be23d66ef7ee03a6a8934fba8fb280",
+  "staging_error_original_stderr_available": false,
+  "test_suites_rerun": false
+}

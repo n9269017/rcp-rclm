@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_lean_environment_tests.py"
+  ],
+  "finished_at_utc": "2026-11-01T01:09:13.250318+00:00",
+  "returncode": 1,
+  "started_at_utc": "2026-11-01T01:09:12.251720+00:00",
+  "stderr_sha256": "b9d1b7d6569ed97206a860c932c295c1940f94ee610da4d1772b5b9903b7db2a",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
