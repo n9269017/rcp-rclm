@@ -32,6 +32,7 @@
     "all_17_terminal_identities_inventoried": true,
     "bounded_dsl_candidate_realization": true,
     "bounded_dsl_reference_evaluation": true,
+    "conditional_root_build_audit": true,
     "evolving_cross_turn_objective_policy": false,
     "fresh_lean_recertification": false,
     "full_transformer_inference": false,
@@ -40,9 +41,11 @@
     "initial_package_conditioned_objective": true,
     "objective_freeze_record": true,
     "physical_m9_and_phase16_registry_materialization": true,
+    "pinned_lean_workspace_setup": true,
     "post_freeze_challenge_service": true,
     "process_and_protocol_separation": true,
     "prospective_candidate_package_from_anchored_transcript": true,
+    "real_lean_execution_driver": true,
     "root_transition_certificate_integration": false,
     "sealed_transcript_recomputation": true,
     "selected_21_capability_reexecution": true,
@@ -55,7 +58,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17d_materialized_package_and_capability_gate",
+  "stage": "phase17e_pinned_formal_execution",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -109,6 +112,7 @@
     "phase17d_lean_obligations": 13,
     "phase17d_local": "passed_development_checks",
     "phase17d_tested_code_commit": "a8adc0df3c841559633965be0c402188c65ef5e2",
+    "phase17e_local": "pending",
     "pinned_lean": "not_performed",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }

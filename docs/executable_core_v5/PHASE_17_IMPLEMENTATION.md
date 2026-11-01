@@ -158,3 +158,7 @@ Tested implementation: `2d2695674a417cea04947400fa617ac6b34b9d5b`. Evidence: `ar
 ## Phase 17D materialized package/capability gate
 
 See PHASE_17_MATERIALIZED_FRONTIER.md. Physical model/registry construction, 21 capability outputs and 13 Lean obligations are distinct from recursive-frontier certification, root transition authorization, or promotion.
+
+## Phase 17E pinned formal execution
+
+See PHASE_17_PINNED_LEAN_EXECUTION.md. Explicit pinned setup and actual kernel/capability checks are separate from recursive-productivity, concrete successor transition verification, or promotion.

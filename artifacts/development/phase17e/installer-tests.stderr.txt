@@ -1,0 +1,33 @@
+test_boolean_integer_success_not_accepted (__main__.InstallerTests.test_boolean_integer_success_not_accepted) ... ok
+test_corrupt_payload (__main__.InstallerTests.test_corrupt_payload) ... ok
+test_different_tested_tree_rejected (__main__.InstallerTests.test_different_tested_tree_rejected) ... ok
+test_duplicate_test_summary (__main__.InstallerTests.test_duplicate_test_summary) ... ok
+test_exact_test_summary (__main__.InstallerTests.test_exact_test_summary) ... ok
+test_extra_payload (__main__.InstallerTests.test_extra_payload) ... ok
+test_false_theorem_accepted_is_rejected (__main__.InstallerTests.test_false_theorem_accepted_is_rejected) ... ok
+test_formal_report_exact_success_control (__main__.InstallerTests.test_formal_report_exact_success_control) ... ok
+test_ignored_existing_payload_is_not_overwritten (__main__.InstallerTests.test_ignored_existing_payload_is_not_overwritten) ... ok
+test_missing_real_lean_pass_rejected (__main__.InstallerTests.test_missing_real_lean_pass_rejected) ... ok
+test_no_failed_suite (__main__.InstallerTests.test_no_failed_suite) ... ok
+test_no_skips (__main__.InstallerTests.test_no_skips) ... ok
+test_no_zero_tests (__main__.InstallerTests.test_no_zero_tests) ... ok
+test_omitted_root_build_rejected (__main__.InstallerTests.test_omitted_root_build_rejected) ... ok
+test_remote_head_ambiguous_rejects (__main__.InstallerTests.test_remote_head_ambiguous_rejects) ... ok
+test_retention_excludes_duplicated_model_only (__main__.InstallerTests.test_retention_excludes_duplicated_model_only) ... ok
+test_safe_relative (__main__.InstallerTests.test_safe_relative) ... ok
+test_status_cannot_close_phase (__main__.InstallerTests.test_status_cannot_close_phase) ... ok
+test_successful_two_commit_fast_forward_and_normal_push (__main__.InstallerTests.test_successful_two_commit_fast_forward_and_normal_push) ... To /tmp/tmppwzn1eed/remote.git
+   eece0ed..27c7a73  27c7a73669c649bae73d206b6b841dda81c6efd0 -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_symlink_rejected (__main__.InstallerTests.test_symlink_rejected) ... ok
+test_transition_claim_escalation_rejected (__main__.InstallerTests.test_transition_claim_escalation_rejected) ... ok
+test_unsafe_path (__main__.InstallerTests.test_unsafe_path) ... ok
+test_valid_payload (__main__.InstallerTests.test_valid_payload) ... ok
+test_validation_failure_never_advances_original (__main__.InstallerTests.test_validation_failure_never_advances_original) ... ok
+test_wrong_base (__main__.InstallerTests.test_wrong_base) ... ok
+test_wrong_branch (__main__.InstallerTests.test_wrong_branch) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.410s
+
+OK
