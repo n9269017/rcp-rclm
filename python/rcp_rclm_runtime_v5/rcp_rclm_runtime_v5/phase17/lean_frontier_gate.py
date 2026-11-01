@@ -13,6 +13,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import tempfile
 import time
@@ -95,6 +96,39 @@ def resolve_toolchain(root: Path | None = None) -> Path:
     return root
 
 
+def _lean_environment(tool: Path) -> tuple[dict, Path]:
+    """Keep the tool PATH narrow, but make ordinary Git visible to Lake.
+
+    Resolve Git before discarding the caller's PATH. Neither the full caller
+    environment nor Git/Lean search-path overrides are forwarded. This is
+    environment hygiene, not an operating-system or network sandbox.
+    """
+    found = shutil.which('git')
+    require(found is not None and Path(found).is_absolute(),
+            'ordinary Git is required by the pinned Lake capability gate')
+    git = Path(found).resolve(strict=True)
+    require(git.is_file() and not git.is_symlink(), 'Git executable is not a regular file')
+    allowed = {'SYSTEMROOT','WINDIR','SYSTEMDRIVE','TEMP','TMP','HOME','USERPROFILE',
+               'LANG','LC_ALL'}
+    env = {k.upper():v for k,v in os.environ.items() if k.upper() in allowed}
+    paths = [str(tool.resolve()/'bin'), str(git.parent)]
+    if env.get('SYSTEMROOT'):
+        system = Path(env['SYSTEMROOT'])
+        require(system.is_absolute(), 'SystemRoot must be absolute')
+        paths.extend((str(system/'System32'), str(system)))
+    # In particular, do not carry Windows os.defpath's current-directory entry.
+    paths.extend(p for p in os.defpath.split(os.pathsep) if p and Path(p).is_absolute())
+    paths = list(dict.fromkeys(paths))
+    env.update(PATH=os.pathsep.join(paths), ELAN_TOOLCHAIN=TOOLCHAIN,
+               GIT_TERMINAL_PROMPT='0', GIT_CONFIG_NOSYSTEM='1',
+               GIT_CONFIG_GLOBAL=os.devnull, LAKE_NO_CACHE='true',
+               LAKE_ARTIFACT_CACHE='false', NoDefaultCurrentDirectoryInExePath='1')
+    resolved = shutil.which(git.name, path=env['PATH'])
+    require(resolved is not None and Path(resolved).resolve() == git,
+            'restricted PATH does not resolve to the selected Git executable')
+    return env, git
+
+
 def _process(argv: list[str], cwd: Path, env: dict, *, timeout: int = 600) -> dict:
     start = datetime.now(timezone.utc).isoformat(); clock = time.monotonic_ns()
     try:
@@ -151,9 +185,9 @@ def _check_prepared_frontier(prepared: PreparedFrontier, repository: Path, *,
         suffix = '.exe' if os.name == 'nt' else ''
         lean, lake = tool/'bin'/('lean'+suffix), tool/'bin'/('lake'+suffix)
         binary_hashes = {p.name:sha(_read_regular(p)) for p in (lean,lake)}
-        allowed={'SYSTEMROOT','WINDIR','SYSTEMDRIVE','TEMP','TMP','HOME','USERPROFILE','LANG','LC_ALL'}
-        env={k:v for k,v in os.environ.items() if k.upper() in allowed}
-        env.update({'PATH':str(tool/'bin')+os.pathsep+os.defpath,'ELAN_TOOLCHAIN':TOOLCHAIN})
+        env, git = _lean_environment(tool)
+        git_identity = {'path':str(git), 'sha256':sha(_read_regular(git))}
+        result['git_executable'] = git_identity
         version = _process([str(lean),'--version'],repository/ROOT_PROJECT,env,timeout=30)
         result['commands'].append(version)
         require(version['returncode'] == 0 and not version['stderr'] and
@@ -165,7 +199,7 @@ def _check_prepared_frontier(prepared: PreparedFrontier, repository: Path, *,
             for name,raw in prepared.sources:
                 require(re.fullmatch('phase17_[0-9a-f]{24}',name) is not None,'unsafe proof filename')
                 path=directory/(name+'.lean');path.write_bytes(raw)
-                record=_process([str(lake),'env',str(lean),str(path)],repository/ROOT_PROJECT,env)
+                record=_process([str(lake),'--keep-toolchain','--no-cache','env',str(lean),str(path)],repository/ROOT_PROJECT,env)
                 result['commands'].append(record)
                 require(record['returncode']==0 and not record['stderr'], 'pinned Lean task rejected')
                 used=_axioms(record['stdout'],name)
@@ -175,6 +209,7 @@ def _check_prepared_frontier(prepared: PreparedFrontier, repository: Path, *,
                 'root or dependencies changed during verification')
         require({p.name:sha(_read_regular(p)) for p in (lean,lake)}==binary_hashes,
                 'toolchain executable changed')
+        require(sha(_read_regular(git)) == git_identity['sha256'], 'Git executable changed')
         result.update(status='passed',fresh_lean_verified=True,capability_frontier_recertified=True,
                       root_source_fingerprint=before,dependencies=deps_before,executable_sha256=binary_hashes,
                       trusted_import_cache_assumption=True)

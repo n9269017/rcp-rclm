@@ -105,3 +105,14 @@ Use `--toolchain-root` to select an existing pinned portable toolchain; on non-W
 platforms, an existing toolchain must be supplied or found under Elan. The first
 new operator execution remains required: assistant control-test results and a
 blocked no-tool attempt are not a real 13-obligation validation.
+
+## Restricted-PATH correction
+
+The first operator Phase17E run rebuilt and audited the conditional formal core,
+but its capability gate removed ordinary Git from Lake's child PATH. No capability
+proof was checked in that attempt. The corrected gate resolves Git before
+filtering the environment, adds only its directory, records its executable hash,
+and keeps all existing proof and axiom checks. Prior compiler/root-build evidence
+may be reused only with unchanged pinned sources, dependency identities, tools,
+and recorded build artifacts. A real new capability-gate run remains mandatory.
+This correction does not certify a concrete successor transition or promotion.
