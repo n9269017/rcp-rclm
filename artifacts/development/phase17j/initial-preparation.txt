@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/mnt/data/phase17j-work/prepare_j.py", line 14, in <module>
+    prep=prepare_meanings(old,new,p,bundle=b,capture=c,transcript=raw,expected_transcript_hash=h)
+  File "/mnt/data/phase17j-work/repo/python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/frontier_meanings.py", line 187, in prepare_meanings
+    meaning=proof_meaning(row['proof_name'],sources[row['proof_name']])
+  File "/mnt/data/phase17j-work/repo/python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/frontier_meanings.py", line 56, in proof_meaning
+    require(not binders or binders.startswith('('), 'unsupported binder syntax')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/phase17j-work/repo/python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/materialized.py", line 37, in require
+    raise ControlError(message)
+rcp_rclm_runtime_v5.phase17.controller.ControlError: unsupported binder syntax
