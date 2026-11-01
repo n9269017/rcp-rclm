@@ -217,4 +217,80 @@ class LearnedBindingTests(unittest.TestCase):
     def test_compiler_accepting_changed_component_cannot_pass(self):self.assertEqual(self.gate('negative-success')[0]['status'],'rejected')
     def test_negative_timeout_is_not_rejection(self):self.assertEqual(self.gate('timeout')[0]['status'],'rejected')
 
+    # Retained execution reports are pretty JSON, not canonical wire packets.
+    # The digest authenticates the exact retained bytes before strict parsing.
+    def retained_actual_bytes(self):
+        path=ROOT/'artifacts/development/phase17h/op-eb78c099106d/gate/execution.json'
+        raw=path.read_bytes()
+        self.assertEqual(sha(raw),'6cfacc08015a8e2ace156c3ddb3de68e380c9e840d2e19f83b01fffd2981fdac')
+        return raw
+
+    def test_actual_pretty_retained_report_verified_without_rewrite(self):
+        raw=self.retained_actual_bytes()
+        result=w.verify_retained_operational(self.operational,raw,expected_sha256=sha(raw),
+            expected_source='eb78c099106d1d9e5b6523646a5139a0c5c8dff5')
+        self.assertEqual(result['proofs_retained_not_rerun'],172)
+        self.assertFalse(result['original_execution_authenticated_by_this_check'])
+        self.assertEqual(self.retained_actual_bytes(),raw)
+
+    def test_actual_retained_report_reproduces_old_canonical_error(self):
+        with self.assertRaisesRegex(ValueError,'not canonical RCPRCLM-CJSON-V2'):
+            w.load_json_strict(self.retained_actual_bytes())
+
+    def test_retained_digest_checked_before_parser(self):
+        with patch.object(w,'load_json_strict') as parse:
+            with self.assertRaisesRegex(ValueError,'identity mismatch'):
+                w.verify_retained_operational(self.operational,self.retained_actual_bytes(),
+                    expected_sha256='0'*64,expected_source='a'*40)
+            parse.assert_not_called()
+
+    def test_formatted_control_report_accepted(self):
+        raw=(json.dumps(proof_fixture(self.operational),sort_keys=True,indent=2)+'\n').encode('utf-8')
+        result=w.verify_retained_operational(self.operational,raw,expected_sha256=sha(raw),expected_source='a'*40)
+        self.assertEqual(result['proofs_retained_not_rerun'],172)
+
+    def test_reformatted_history_rejected_by_original_byte_anchor(self):
+        raw=self.retained_actual_bytes()
+        for altered in (raw+b' ',raw.replace(b'\n',b'\r\n'),canonical(json.loads(raw))):
+            with self.subTest(size=len(altered)),self.assertRaisesRegex(ValueError,'identity mismatch'):
+                w.verify_retained_operational(self.operational,altered,expected_sha256=sha(raw),
+                    expected_source='eb78c099106d1d9e5b6523646a5139a0c5c8dff5')
+
+    def malformed_report_rejected(self,raw,pattern):
+        with self.assertRaisesRegex(ValueError,pattern):
+            w.verify_retained_operational(self.operational,raw,expected_sha256=sha(raw),expected_source='a'*40)
+
+    def test_noncanonical_report_duplicate_keys_still_rejected(self):
+        self.malformed_report_rejected(b'{\n "source_commit":"a", "source_commit":"b"\n}', 'duplicate object key')
+
+    def test_noncanonical_report_float_still_rejected(self):
+        self.malformed_report_rejected(b'{ "value": 1.5 }', 'floating-point')
+
+    def test_noncanonical_report_nonfinite_still_rejected(self):
+        for value in (b'NaN',b'Infinity',b'-Infinity'):
+            with self.subTest(value=value):self.malformed_report_rejected(b'{ "value": '+value+b' }','nonfinite')
+
+    def test_noncanonical_report_bom_still_rejected(self):
+        self.malformed_report_rejected(b'\xef\xbb\xbf{}','BOM')
+
+    def test_noncanonical_report_invalid_utf8_still_rejected(self):
+        self.malformed_report_rejected(b'{ "value": "\xff" }','invalid UTF-8')
+
+    def test_noncanonical_report_trailing_document_still_rejected(self):
+        self.malformed_report_rejected(b'{} {}','invalid JSON')
+
+    def test_noncanonical_report_normalized_key_collision_rejected(self):
+        self.malformed_report_rejected('{"é":1,"e\\u0301":2}'.encode('utf-8'),'keys collide')
+
+    def test_formatted_binding_packet_is_still_rejected(self):
+        raw=(json.dumps(self.p,sort_keys=True,indent=2)+'\n').encode('utf-8')
+        with self.assertRaisesRegex(ValueError,'not canonical'):
+            w.PreparedLearnedBinding(raw)
+
+    def test_retained_report_mutable_buffer_still_rejected(self):
+        raw=bytearray(self.retained_actual_bytes())
+        with self.assertRaisesRegex(ValueError,'identity mismatch'):
+            w.verify_retained_operational(self.operational,raw,expected_sha256=sha(raw),
+                expected_source='eb78c099106d1d9e5b6523646a5139a0c5c8dff5')
+
 if __name__=='__main__':unittest.main(verbosity=2)

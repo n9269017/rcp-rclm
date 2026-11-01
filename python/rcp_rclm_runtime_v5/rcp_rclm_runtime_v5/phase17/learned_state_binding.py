@@ -238,7 +238,10 @@ def verify_retained_operational(prepared: PreparedOperational, raw_report: bytes
     hash_value(expected_sha256,'external formal-report anchor')
     require(type(raw_report) is bytes and 0 < len(raw_report) < 4*1024*1024 and
             sha(raw_report)==expected_sha256, 'retained formal evidence identity mismatch')
-    r=load_json_strict(raw_report)
+    # Historical execution reports are formatted JSON. Their original byte
+    # digest is checked above; do not rewrite them or relax canonical packets.
+    # Duplicate keys, invalid UTF-8/BOM, floats and nonfinite values still reject.
+    r=load_json_strict(raw_report, require_canonical=False)
     require(type(expected_source) is str and re.fullmatch('[0-9a-f]{40}',expected_source) and
             r.get('source_commit')==expected_source and r.get('source_unchanged') is True and
             r.get('proof_mode')=='real_pinned_lean' and r.get('local_increment_checks_passed') is True,
