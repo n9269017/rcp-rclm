@@ -1,0 +1,49 @@
+test_dirty_original_stops_before_execution (__main__.InstallerFlow.test_dirty_original_stops_before_execution) ... ok
+test_full_flow_normal_push_and_evidence_only_commit (__main__.InstallerFlow.test_full_flow_normal_push_and_evidence_only_commit) ... To /tmp/tmp643dgt34/remote.git
+   4593369..34a312c  34a312cde9e3cf0dda5dd7e64bfcbe9fe0d28c70 -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_moved_remote_prevents_advancement (__main__.InstallerFlow.test_moved_remote_prevents_advancement) ... Stopped; workspace and logs retained: /tmp/tmpva30gaar/work/f-63430218
+Original checkout advanced: False
+ok
+test_no_push_mode_keeps_remote_at_base (__main__.InstallerFlow.test_no_push_mode_keeps_remote_at_base) ... ok
+test_rejected_push_keeps_validated_local_commit (__main__.InstallerFlow.test_rejected_push_keeps_validated_local_commit) ... To /tmp/tmp59d79xb5/remote.git
+ ! [remote rejected] 1ce34372b3cbf800bc5d3de341598c28467bd198 -> agent/rcp-rclm-v5-phase-17-controller (pre-receive hook declined)
+error: failed to push some refs to '/tmp/tmp59d79xb5/remote.git'
+Stopped; workspace and logs retained: /tmp/tmp59d79xb5/work/f-c048ae54
+Original checkout advanced: True
+ok
+test_validation_failure_leaves_original_unchanged (__main__.InstallerFlow.test_validation_failure_leaves_original_unchanged) ... Stopped; workspace and logs retained: /tmp/tmplhb99a8z/work/f-8b9712da
+Original checkout advanced: False
+ok
+test_all_thirteen_proofs_checked (__main__.InstallerUnits.test_all_thirteen_proofs_checked) ... ok
+test_axiom_rejection (__main__.InstallerUnits.test_axiom_rejection) ... ok
+test_command_failure_keeps_logs (__main__.InstallerUnits.test_command_failure_keeps_logs) ... ok
+test_command_timeout_keeps_failure (__main__.InstallerUnits.test_command_timeout_keeps_failure) ... ok
+test_compiler_failure_cannot_pass (__main__.InstallerUnits.test_compiler_failure_cannot_pass) ... ok
+test_exact_named_audits_not_count_only (__main__.InstallerUnits.test_exact_named_audits_not_count_only) ... ok
+test_exact_test_count_and_no_skips (__main__.InstallerUnits.test_exact_test_count_and_no_skips) ... ok
+test_git_error_retains_stderr (__main__.InstallerUnits.test_git_error_retains_stderr) ... ok
+test_ignored_file_not_forced (__main__.InstallerUnits.test_ignored_file_not_forced) ... ok
+test_links_are_rejected (__main__.InstallerUnits.test_links_are_rejected) ... ok
+test_manifest_hash_and_duplicate_checked (__main__.InstallerUnits.test_manifest_hash_and_duplicate_checked) ... ok
+test_model_bytes_excluded_evidence_retained (__main__.InstallerUnits.test_model_bytes_excluded_evidence_retained) ... ok
+test_negative_compiler_success_rejected (__main__.InstallerUnits.test_negative_compiler_success_rejected) ... ok
+test_no_claim_escalation (__main__.InstallerUnits.test_no_claim_escalation) ... ok
+test_no_false_integer_claim (__main__.InstallerUnits.test_no_false_integer_claim) ... ok
+test_no_preparation_mode_pass (__main__.InstallerUnits.test_no_preparation_mode_pass) ... ok
+test_nul_staging_literal_long_list (__main__.InstallerUnits.test_nul_staging_literal_long_list) ... ok
+test_paths_require_canonical_relative_form (__main__.InstallerUnits.test_paths_require_canonical_relative_form) ... ok
+test_retained_symlink_rejected (__main__.InstallerUnits.test_retained_symlink_rejected) ... ok
+test_runtime_claim_stays_false (__main__.InstallerUnits.test_runtime_claim_stays_false) ... ok
+test_source_binding (__main__.InstallerUnits.test_source_binding) ... ok
+test_staging_preserves_crlf_evidence (__main__.InstallerUnits.test_staging_preserves_crlf_evidence) ... ok
+test_success_requires_synthetic_fixture_label (__main__.InstallerUnits.test_success_requires_synthetic_fixture_label) ... ok
+test_timeout_not_negative_proof (__main__.InstallerUnits.test_timeout_not_negative_proof) ... ok
+test_unexpected_payload_rejected (__main__.InstallerUnits.test_unexpected_payload_rejected) ... ok
+test_unrelated_staged_file_is_visible (__main__.InstallerUnits.test_unrelated_staged_file_is_visible) ... ok
+test_valid_scoped_report (__main__.InstallerUnits.test_valid_scoped_report) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 25.849s
+
+OK
