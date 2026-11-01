@@ -93,7 +93,7 @@ class SuccessorEvidenceTests(unittest.TestCase):
             ('lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Kernel.lean', 'SpecificObligations', s.AUTONOMOUS_FIELDS),
         ]
         for rel, structure, expected in entries:
-            text = (ROOT/rel).read_text().split('structure '+structure, 1)[1].split('where', 1)[1].split('/--', 1)[0]
+            text = (ROOT/rel).read_text(encoding='utf-8').split('structure '+structure, 1)[1].split('where', 1)[1].split('/--', 1)[0]
             observed = re.findall(r'^  (\w+)\s*:', text, flags=re.M)
             self.assertEqual(tuple(observed), expected)
 
