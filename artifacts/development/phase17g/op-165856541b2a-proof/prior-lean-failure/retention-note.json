@@ -1,0 +1,54 @@
+{
+  "compiler_stdout_sha256": "da6b3f6d09dcf9724218b9bfa5d0339b60acfb563eb6ffe725bbaa68a43fc091",
+  "failed_execution_sha256": "4ed8fb6d6ebd6bac7b9fe467b2c8919d629b6958908f040046410757cd7c82e4",
+  "failed_source_preserved_as_ancestor": true,
+  "failure_category": "three_lean_proof_elaboration_errors_and_unused_instance_warnings",
+  "original_bytes_preserved": true,
+  "prior_gate_command": {
+    "argv": [
+      "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "scripts/run_phase17_conservative_gate.py",
+      "--test-fixture",
+      "--require-lean",
+      "--lean-workspace",
+      "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "--output",
+      "C:\\Users\\Nicolas.n926\\.r17\\g-b1a0983c\\e\\gate"
+    ],
+    "finished_at_utc": "2026-11-01T04:50:28.409900+00:00",
+    "problem": null,
+    "returncode": 2,
+    "started_at_utc": "2026-11-01T04:43:58.931664+00:00",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "8721bf86e3bdf01dadff5eca0a9ca0fbf89d8824a8638d193ffbffd7b8f04a47"
+  },
+  "prior_new_tests_command": {
+    "argv": [
+      "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "scripts/run_phase17_conservative_tests.py"
+    ],
+    "finished_at_utc": "2026-11-01T04:43:49.757754+00:00",
+    "problem": null,
+    "returncode": 0,
+    "started_at_utc": "2026-11-01T04:43:37.339485+00:00",
+    "stderr_sha256": "24ad2434741f492a679d61dfaf495a2f8e46adf592ab86f21b8cb4ef68f390c7",
+    "stdout_sha256": "0bdfbbb24ab2a34dea3f4466fa0a7a0672d2bfec8512be3a11308ed276739c99"
+  },
+  "prior_new_tests_passed": 47,
+  "prior_regression_tests_passed": 36,
+  "prior_successful_tests_relabelled": false,
+  "retained_regression_command": {
+    "argv": [
+      "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "scripts/run_phase17_successor_tests.py"
+    ],
+    "finished_at_utc": "2026-11-01T04:43:58.930970+00:00",
+    "problem": null,
+    "returncode": 0,
+    "started_at_utc": "2026-11-01T04:43:49.758539+00:00",
+    "stderr_sha256": "0c7d9c24daa31698fdca65c0d8cc257358e0a2e1fbe7600d458fb96bcef45a5e",
+    "stdout_sha256": "91f4a67e4ad55c06123e4ce67adfe956fcdd0f5b79fc977424ea3a19321886cc"
+  },
+  "source_commit": "3d62b64679151dc6c0eda036214d97cee6c1b1d8",
+  "source_tree": "fcd7210639767b62df16ad76c495e4284cac509a"
+}

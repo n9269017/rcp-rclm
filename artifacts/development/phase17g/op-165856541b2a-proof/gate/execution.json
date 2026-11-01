@@ -1,0 +1,152 @@
+{
+  "automatic_retries": 0,
+  "base_obligation_count": 11,
+  "candidate_execution_checks": 8,
+  "candidate_package_hash": "67a97c6d16b6097fd8f1c5e09a941d5b813dfd403e98a508491645d6aea18b65",
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "finished_at_utc": "2026-11-01T05:22:49.854462+00:00",
+  "inherited_execution_checks": 48,
+  "local_increment_checks_passed": true,
+  "named_audits": [
+    "Phase17Registry.base_step_sound",
+    "Phase17Registry.dispatch_retained",
+    "Phase17Registry.solved_task_retained",
+    "Phase17Registry.exact_recovery",
+    "Phase17Registry.selected_base_step",
+    "Phase17Registry.selected_registry_mapping"
+  ],
+  "operational_recursive_tasks_recertified": [],
+  "os": "Windows",
+  "packet_sha256": "57e61a3f656684621e3d70c680d53b92e7d4cfa0fb41162a2e89c52c0ef90c99",
+  "physical_inverse_exact": true,
+  "proof_mode": "real_pinned_lean",
+  "protected_file_count": 173,
+  "python_version": "3.13.3",
+  "resource_scope": "candidate evaluation credits only",
+  "reused_phase17f": {
+    "candidate_package_hash": "67a97c6d16b6097fd8f1c5e09a941d5b813dfd403e98a508491645d6aea18b65",
+    "freshly_recomputed_packet_matches": true,
+    "inherited_obligations_retained_not_rerun": 13,
+    "prior_four_finite_audits_retained_not_rerun": 4,
+    "retained_execution_sha256": "eeafc1a64b173578860c0ac1cb144973e67b9cf3a48e112df331626665a1d1bc",
+    "source_commit": "84a6e45ed4d737fd1af4cac7996cc67cb8047064"
+  },
+  "schema": "rcp-rclm.phase17g.conservative-run.v1",
+  "semantic_gate": {
+    "base_obligation_count": 11,
+    "claims": {
+      "complete_resource_accounting": false,
+      "egc0_started": false,
+      "full_frontier_recertified": false,
+      "gate_e_closed": false,
+      "live_capability_gain_demonstrated": false,
+      "phase17_exit_closed": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "recursive_productivity_recertified": false,
+      "root_transition_verified": false
+    },
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "elapsed_ns": 47343800,
+        "returncode": 0,
+        "started_at_utc": "2026-11-01T05:21:47.819362+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-gocrtfs8\\Conservative.lean"
+        ],
+        "elapsed_ns": 34510371800,
+        "returncode": 0,
+        "started_at_utc": "2026-11-01T05:21:47.873026+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "'Phase17Registry.base_step_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Registry.dispatch_retained' depends on axioms: [propext]\n'Phase17Registry.solved_task_retained' depends on axioms: [propext]\n'Phase17Registry.exact_recovery' depends on axioms: [propext]\n'Phase17Registry.selected_base_step' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Registry.selected_registry_mapping' does not depend on any axioms\n",
+        "stdout_sha256": "5e791497f1627d21adb3d5ffcdc6ff5298705275a123088939423551e4a1a6ce"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-gocrtfs8\\Shadowed.lean"
+        ],
+        "elapsed_ns": 21821648300,
+        "returncode": 1,
+        "started_at_utc": "2026-11-01T05:22:22.384531+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-gocrtfs8\\Shadowed.lean:238:4: error: Tactic `decide` proved that the proposition\n  lookup selectedUpdate.key (selectedBefore []).entries = none\nis false\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-gocrtfs8\\Shadowed.lean:246:104: error: Tactic `decide` proved that the proposition\n  selectedAfter = (selectedBefore []).entries ++ [(selectedUpdate.key, selectedUpdate.program)]\nis false\n'Phase17Registry.base_step_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Registry.dispatch_retained' depends on axioms: [propext]\n'Phase17Registry.solved_task_retained' depends on axioms: [propext]\n'Phase17Registry.exact_recovery' depends on axioms: [propext]\n'Phase17Registry.selected_base_step' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17Registry.selected_registry_mapping' depends on axioms: [sorryAx]\n",
+        "stdout_sha256": "958c0a375a7b084a217d5f961339c4ea2381adf7fd2e2c886efc424a5e9548a3"
+      }
+    ],
+    "executable_sha256": {
+      "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+    },
+    "negative_shadowing_rejected": true,
+    "negative_source_sha256": "953b5425f5404c7dc45821d3d3660d64f51914927edd06198676a8a06655e972",
+    "packet_sha256": "57e61a3f656684621e3d70c680d53b92e7d4cfa0fb41162a2e89c52c0ef90c99",
+    "physical_byte_and_literal_binding_remains_trusted": true,
+    "positive_source_sha256": "b6e02246a6e3372042ea05d6a7b0a9f2cd9f12fda47b5f692a1ebf64dbdcf49e",
+    "schema_id": "runtime.v5.phase17.conservative-kernel-check.v1",
+    "scoped_base_obligations_checked": true,
+    "status": "passed",
+    "theorem_axioms": {
+      "Phase17Registry.base_step_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Registry.dispatch_retained": [
+        "propext"
+      ],
+      "Phase17Registry.exact_recovery": [
+        "propext"
+      ],
+      "Phase17Registry.selected_base_step": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Registry.selected_registry_mapping": [],
+      "Phase17Registry.solved_task_retained": [
+        "propext"
+      ]
+    },
+    "trusted_import_cache_assumption": true,
+    "universal_registry_preservation_checked": true
+  },
+  "source_commit": "165856541b2a73bc0b39391af9895636f4db7e4d",
+  "source_tree": "9c7dd6c07e28dddaf385224b08679f4b2479eb93",
+  "source_unchanged": true,
+  "started_at_utc": "2026-11-01T05:21:30.924992+00:00",
+  "synthetic_fixture": true
+}

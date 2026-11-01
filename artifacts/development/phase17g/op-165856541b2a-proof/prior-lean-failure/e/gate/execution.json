@@ -1,0 +1,111 @@
+{
+  "automatic_retries": 0,
+  "base_obligation_count": 11,
+  "candidate_execution_checks": 8,
+  "candidate_package_hash": "67a97c6d16b6097fd8f1c5e09a941d5b813dfd403e98a508491645d6aea18b65",
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "failure": {
+    "reason": "new scoped semantic gate failed",
+    "type": "ControlError"
+  },
+  "finished_at_utc": "2026-11-01T04:50:28.335735+00:00",
+  "inherited_execution_checks": 48,
+  "local_increment_checks_passed": false,
+  "named_audits": [
+    "Phase17Registry.base_step_sound",
+    "Phase17Registry.dispatch_retained",
+    "Phase17Registry.solved_task_retained",
+    "Phase17Registry.exact_recovery",
+    "Phase17Registry.selected_base_step",
+    "Phase17Registry.selected_registry_mapping"
+  ],
+  "operational_recursive_tasks_recertified": [],
+  "os": "Windows",
+  "packet_sha256": "57e61a3f656684621e3d70c680d53b92e7d4cfa0fb41162a2e89c52c0ef90c99",
+  "physical_inverse_exact": true,
+  "protected_file_count": 173,
+  "python_version": "3.13.3",
+  "resource_scope": "candidate evaluation credits only",
+  "reused_phase17f": {
+    "candidate_package_hash": "67a97c6d16b6097fd8f1c5e09a941d5b813dfd403e98a508491645d6aea18b65",
+    "freshly_recomputed_packet_matches": true,
+    "inherited_obligations_retained_not_rerun": 13,
+    "prior_four_finite_audits_retained_not_rerun": 4,
+    "retained_execution_sha256": "eeafc1a64b173578860c0ac1cb144973e67b9cf3a48e112df331626665a1d1bc",
+    "source_commit": "84a6e45ed4d737fd1af4cac7996cc67cb8047064"
+  },
+  "schema": "rcp-rclm.phase17g.conservative-run.v1",
+  "semantic_gate": {
+    "base_obligation_count": 11,
+    "claims": {
+      "complete_resource_accounting": false,
+      "egc0_started": false,
+      "full_frontier_recertified": false,
+      "gate_e_closed": false,
+      "live_capability_gain_demonstrated": false,
+      "phase17_exit_closed": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "recursive_productivity_recertified": false,
+      "root_transition_verified": false
+    },
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "elapsed_ns": 1662303600,
+        "returncode": 0,
+        "started_at_utc": "2026-11-01T04:44:19.265561+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-8ij43s2w\\Conservative.lean"
+        ],
+        "elapsed_ns": 367395533000,
+        "returncode": 1,
+        "started_at_utc": "2026-11-01T04:44:20.931101+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-8ij43s2w\\Conservative.lean:50:0: warning: automatically included section variable(s) unused in theorem `Phase17Registry.lookup_retained`:\n  [DecidableEq Program]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq Program] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-8ij43s2w\\Conservative.lean:62:0: warning: automatically included section variable(s) unused in theorem `Phase17Registry.lookup_added`:\n  [DecidableEq Program]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq Program] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-8ij43s2w\\Conservative.lean:73:0: warning: automatically included section variable(s) unused in theorem `Phase17Registry.erase_extension`:\n  [DecidableEq Program]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq Program] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-8ij43s2w\\Conservative.lean:199:2: error: unsolved goals\ncase protectedNonLoss\nProgram : Type\ninst\u271d\u00b9 : DecidableEq Program\ninst\u271d : Inhabited Program\ns : State Program\nu : Update Program\ne : Evidence Program\nvalid : admissible s\nfresh : lookup u.key s.entries = none\nkeyValid : u.key \u2260 \"\"\nrootBound : e.root = s.root\nparentBound : e.parentEntries = s.entries\ncredits : e.used \u2264 e.budget\nceiling : e.budget \u2264 32\nimage : List \u2115\n\u22a2 (if s.protectedImage = image then 1 else 0) \u2264 if s.protectedImage = image then 1 else 0\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-8ij43s2w\\Conservative.lean:231:14: error: Expected type must not contain free variables\n  (selectedBefore image).root \u2260 \"\"\n\nHint: Use the `+revert` option to automatically clean up and revert free variables\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17g-8ij43s2w\\Conservative.lean:232:4: error: Expected type must not contain free variables\n  lookup selectedUpdate.key (selectedBefore image).entries = none\n\nHint: Use the `+revert` option to automatically clean up and revert free variables\n'Phase17Registry.base_step_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17Registry.dispatch_retained' depends on axioms: [propext]\n'Phase17Registry.solved_task_retained' depends on axioms: [propext]\n'Phase17Registry.exact_recovery' depends on axioms: [propext]\n'Phase17Registry.selected_base_step' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17Registry.selected_registry_mapping' does not depend on any axioms\n",
+        "stdout_sha256": "da6b3f6d09dcf9724218b9bfa5d0339b60acfb563eb6ffe725bbaa68a43fc091"
+      }
+    ],
+    "failure": {
+      "reason": "conservative certificate did not pass",
+      "type": "ControlError"
+    },
+    "negative_shadowing_rejected": false,
+    "packet_sha256": "57e61a3f656684621e3d70c680d53b92e7d4cfa0fb41162a2e89c52c0ef90c99",
+    "schema_id": "runtime.v5.phase17.conservative-kernel-check.v1",
+    "scoped_base_obligations_checked": false,
+    "status": "rejected",
+    "theorem_axioms": {},
+    "universal_registry_preservation_checked": false
+  },
+  "source_commit": "3d62b64679151dc6c0eda036214d97cee6c1b1d8",
+  "source_tree": "fcd7210639767b62df16ad76c495e4284cac509a",
+  "started_at_utc": "2026-11-01T04:43:59.564063+00:00",
+  "synthetic_fixture": true
+}

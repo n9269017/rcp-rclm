@@ -13,7 +13,8 @@
     "phase17c_operator_capture": "artifacts/development/phase17c/operator-2d2695674a41-post-xmp/operator-validation.json",
     "phase17d_operator_capture": "artifacts/development/phase17d/operator-a8adc0df3c84/operator-validation.json",
     "phase17e_operator_capture": "artifacts/development/phase17e/operator-6d03d07b6893-path-alias-resume/operator-validation.json",
-    "phase17f_operator_capture": "artifacts/development/phase17f/op-84a6e45ed4d7-utf8/operator-validation.json"
+    "phase17f_operator_capture": "artifacts/development/phase17f/op-84a6e45ed4d7-utf8/operator-validation.json",
+    "phase17g_operator_capture": "artifacts/development/phase17g/op-165856541b2a-proof/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -37,6 +38,8 @@
     "complete_recursive_productivity_recertification": false,
     "conditional_root_build_audit": true,
     "conditional_root_frontier_binding": true,
+    "conservative_registry_dispatch": true,
+    "constructive_inactive_package_retraction": true,
     "evolving_cross_turn_objective_policy": false,
     "fresh_lean_recertification": true,
     "full_transformer_inference": false,
@@ -53,18 +56,20 @@
     "real_lean_execution_driver": true,
     "recursive_obligation_inventory": true,
     "root_transition_certificate_integration": false,
+    "scoped_registry_base_kernel": true,
     "sealed_transcript_recomputation": true,
     "selected_21_capability_reexecution": true,
     "selected_eight_transition_lineage_reconstructed": true,
     "single_turn_controller_evaluator_integration": true,
-    "strict_opt_in_lean_capability_gate": true
+    "strict_opt_in_lean_capability_gate": true,
+    "universal_fixed_interpreter_retention": true
   },
   "main_merge_authorized": false,
   "operator_manifest_commit": "197f4bc022a68123c20cfd5f146149249663f1db",
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17f_prospective_successor_premises",
+  "stage": "phase17g_conservative_registry_semantics",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -134,6 +139,15 @@
     "phase17f_prior_encoding_error": "preserved_35_passes_1_cp1252_error; explicit_utf8_test_read",
     "phase17f_synthetic_fixture": true,
     "phase17f_tested_code_commit": "84a6e45ed4d737fd1af4cac7996cc67cb8047064",
+    "phase17g_inherited_proofs_reused": 13,
+    "phase17g_local": "scoped registry kernel and universal dispatch checked; not full RCLM root acceptance",
+    "phase17g_new_formal_audits": 6,
+    "phase17g_new_tests": 47,
+    "phase17g_prior_lean_failure": "preserved_three_proof_errors_and_unused_instance_warnings",
+    "phase17g_scoped_base_obligations": 11,
+    "phase17g_successor_regressions": "36 retained at 3d62b64679151dc6c0eda036214d97cee6c1b1d8; unchanged inputs; not rerun",
+    "phase17g_synthetic_fixture": true,
+    "phase17g_tested_code_commit": "165856541b2a73bc0b39391af9895636f4db7e4d",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
