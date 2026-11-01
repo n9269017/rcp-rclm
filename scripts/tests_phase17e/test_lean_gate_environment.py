@@ -42,7 +42,9 @@ def load_gate():
 
 class EnvironmentTests(unittest.TestCase):
     def setUp(self):
-        self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name);self.g=load_gate()
+        self.temp=tempfile.TemporaryDirectory()
+        # Windows TEMP may use an 8.3 alias; compare canonical fixture paths.
+        self.root=Path(self.temp.name).resolve(strict=True);self.g=load_gate()
         self.tool=self.root/'lean directory';(self.tool/'bin').mkdir(parents=True)
         self.git=self.root/'Git with spaces'/'cmd'/('git.exe' if os.name=='nt' else 'git')
         self.git.parent.mkdir(parents=True);self.git.write_bytes(b'fixture, not executed')
