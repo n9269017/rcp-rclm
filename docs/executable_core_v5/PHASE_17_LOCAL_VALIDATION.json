@@ -14,7 +14,8 @@
     "phase17d_operator_capture": "artifacts/development/phase17d/operator-a8adc0df3c84/operator-validation.json",
     "phase17e_operator_capture": "artifacts/development/phase17e/operator-6d03d07b6893-path-alias-resume/operator-validation.json",
     "phase17f_operator_capture": "artifacts/development/phase17f/op-84a6e45ed4d7-utf8/operator-validation.json",
-    "phase17g_operator_capture": "artifacts/development/phase17g/op-165856541b2a-proof/operator-validation.json"
+    "phase17g_operator_capture": "artifacts/development/phase17g/op-165856541b2a-proof/operator-validation.json",
+    "phase17h_operator_capture": "artifacts/development/phase17h/op-eb78c099106d/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -35,18 +36,22 @@
     "all_17_terminal_identities_inventoried": true,
     "bounded_dsl_candidate_realization": true,
     "bounded_dsl_reference_evaluation": true,
+    "complete_inherited_component_mapping": true,
     "complete_recursive_productivity_recertification": false,
     "conditional_root_build_audit": true,
     "conditional_root_frontier_binding": true,
     "conservative_registry_dispatch": true,
     "constructive_inactive_package_retraction": true,
     "evolving_cross_turn_objective_policy": false,
+    "exhaustive_public_planner_contract": true,
     "fresh_lean_recertification": true,
     "full_transformer_inference": false,
     "historical_hash_anchored_bootstrap": true,
     "hostile_same_user_security_sandbox": false,
+    "independent_sparse_planner_reference": true,
     "initial_package_conditioned_objective": true,
     "objective_freeze_record": true,
+    "package_bound_affine_tool_contract": true,
     "physical_m9_and_phase16_registry_materialization": true,
     "pinned_lean_workspace_setup": true,
     "post_freeze_challenge_service": true,
@@ -69,7 +74,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17g_conservative_registry_semantics",
+  "stage": "phase17h_operational_planner_witnesses",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -148,6 +153,20 @@
     "phase17g_successor_regressions": "36 retained at 3d62b64679151dc6c0eda036214d97cee6c1b1d8; unchanged inputs; not rerun",
     "phase17g_synthetic_fixture": true,
     "phase17g_tested_code_commit": "165856541b2a73bc0b39391af9895636f4db7e4d",
+    "phase17h_bounded_contracts": [
+      "phase17.recursive.multi-token-plan.exhaustive-v1",
+      "phase17.recursive.affine-tool.exhaustive-v1"
+    ],
+    "phase17h_integer_tool_executions_per_package": 4488,
+    "phase17h_legacy_full_tasks_recertified": [],
+    "phase17h_local": "two explicit bounded operational contracts; not full learned/root or nineteen-task acceptance",
+    "phase17h_neural_decoder_formally_verified": false,
+    "phase17h_new_formal_audits": 172,
+    "phase17h_new_tests": 57,
+    "phase17h_public_queries_per_package": 172,
+    "phase17h_registry_regressions": 47,
+    "phase17h_synthetic_fixture": true,
+    "phase17h_tested_code_commit": "eb78c099106d1d9e5b6523646a5139a0c5c8dff5",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
