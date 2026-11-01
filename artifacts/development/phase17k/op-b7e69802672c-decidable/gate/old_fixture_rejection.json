@@ -1,0 +1,7 @@
+{
+  "historical_evidence_modified": false,
+  "old_evaluator_fixture_valid": true,
+  "old_transcript_sha256": "369c30c469090fa357633aca596cb0c7ad3de31f2ecf16ca78e7699e79c79e6e",
+  "producer_conformance": false,
+  "reason": "proposal is not the current controller choice"
+}

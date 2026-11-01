@@ -1,0 +1,137 @@
+{
+  "acceptance_functions_changed": false,
+  "automatic_retries": 0,
+  "candidate_facts_changed": false,
+  "candidate_package_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_provenance_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T22:30:42.447124+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T22:30:25.554726+00:00",
+      "stderr_sha256": "014e3a4e26aa800f89274269825ffffec3000125415e19cf958fd95379650741",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_provenance_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\kd-92b04752\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T22:32:02.367355+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T22:30:42.448953+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "35b25a6d1f108f994110868c4a9ca11da91af0b26d8c85d5a5caad9b62d4516e"
+    }
+  ],
+  "complete_learned_kernel_constructed": false,
+  "complete_resource_accounting": false,
+  "continuation_sha256": "613fcf68c481a026e2c43d204b140aba9aea0e515b133cf47b2ba1561252aa1a",
+  "controller_regression_source": "2741e10cabd809a182bc5332e98261fb0bbe5507",
+  "controller_regressions_retained_not_rerun": 33,
+  "cross_platform_validation": false,
+  "egc0_started": false,
+  "full_frontier_recertified": false,
+  "full_learned_semantic_refinement": false,
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "gate_e_closed": false,
+  "gate_execution_sha256": "b1683f35145610c2450ae62ae105dc5a4697c41fb4602b1bf9d4c16c1531cc6b",
+  "github_hosted_ci_passed": false,
+  "historical_execution_attested": false,
+  "immutable_root_changed": false,
+  "live_capability_gain_demonstrated": false,
+  "network_setup_requested": false,
+  "neural_decoder_formally_verified": false,
+  "new_named_audits": 8,
+  "new_proofs_kernel_executed": true,
+  "new_renderer_regressions": 6,
+  "new_tests": 69,
+  "old_proofs_rerun": false,
+  "old_shortcut_rejected": true,
+  "ordered_transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f",
+  "phase17_exit_closed": false,
+  "predicate_definitions_changed": false,
+  "previous_failed_source_preserved": "2741e10cabd809a182bc5332e98261fb0bbe5507",
+  "prior_capability_proofs_reused_for_new_transcript": false,
+  "prior_failure": {
+    "compiler_stdout_sha256": "74a63cb314f92d4ab9c0d2923436c5a28c29d7ae9ae50606f564397314e45285",
+    "controller_regressions_retained_not_rerun": 33,
+    "failed_gate_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_provenance_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\k-778726d7\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T22:05:36.770578+00:00",
+      "problem": null,
+      "returncode": 2,
+      "started_at_utc": "2026-11-01T22:05:08.285525+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "ed8efa4475ec1997e47ce5087d1dae950e352226f77606c4d5ecc12e4f63f22f"
+    },
+    "failure": {
+      "reason": "producer certificate rejected",
+      "type": "ControlError"
+    },
+    "new_tests_previously_passed": 63,
+    "old_failure_relabelled_as_success": false,
+    "prior_execution_sha256": "a1680864f29d03500a1b005f8aea68607f6573bf8722087feb8d616da7333773",
+    "prior_test_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_provenance_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T22:05:02.178729+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T22:04:44.792496+00:00",
+      "stderr_sha256": "1de5266d943568fbbbe9ec28c02ab8b9db2ad3ea098b801701420dd5bac0ee1b",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "regression_source": "2741e10cabd809a182bc5332e98261fb0bbe5507",
+    "retained_regression_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_provenance_regressions.py"
+      ],
+      "finished_at_utc": "2026-11-01T22:05:08.284749+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T22:05:02.179899+00:00",
+      "stderr_sha256": "e54a49de990726ef44b40b0ae76fb3b4ed7b7c1a198323b4d5daf8827c8660ed",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source_commit": "2741e10cabd809a182bc5332e98261fb0bbe5507",
+    "source_tree": "2dcea1413df98d954306a738df66d0dacb88b508"
+  },
+  "prior_history_bytes_rewritten": false,
+  "promotion_authorized": false,
+  "promotion_performed": false,
+  "proof_body_only_production_correction": true,
+  "proposal_count": 9,
+  "recursive_productivity_recertified": false,
+  "rejection_count": 8,
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17k.decidable-recovery.v1",
+  "self_hosted_neural_generator": false,
+  "source_commit": "b7e69802672cca6ae2f5a636270fca0dd62e68da",
+  "source_tree": "4f47defac7a33d76dcf247b6725a7ca62255b234",
+  "synthetic_fixture": true,
+  "theorem_statements_changed": false
+}

@@ -1,0 +1,232 @@
+{
+  "automatic_retries": 0,
+  "candidate_package_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_learned_semantic_refinement": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "neural_decoder_formally_verified": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "complete_learned_kernel_constructed": false,
+  "declared_generator_source_files": 8,
+  "fair_fallback_proposals": 5,
+  "finished_at_utc": "2026-11-01T22:32:02.336377+00:00",
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "generator_id": "9cd3e747c0e1a93a02ac5bff1d3a07fa7706172ae4a75a0a373629260a675dc5",
+  "grammar_size": 32,
+  "historical_execution_attested": false,
+  "live_challenge_generated": false,
+  "local_increment_checks_passed": true,
+  "new_named_audits": [
+    "Phase17Provenance.trace_no_repeat",
+    "Phase17Provenance.attached_generator_bound",
+    "Phase17Provenance.attached_package_bound",
+    "Phase17Provenance.attached_proposal_produced",
+    "Phase17Provenance.attached_candidate_bound",
+    "Phase17Provenance.selected_provenance",
+    "Phase17Provenance.selected_candidate_binding",
+    "Phase17Provenance.selected_rejection_prefix"
+  ],
+  "old_proofs_rerun": false,
+  "old_shortcut": {
+    "historical_evidence_modified": false,
+    "old_evaluator_fixture_valid": true,
+    "old_transcript_sha256": "369c30c469090fa357633aca596cb0c7ad3de31f2ecf16ca78e7699e79c79e6e",
+    "producer_conformance": false,
+    "reason": "proposal is not the current controller choice"
+  },
+  "os": "Windows",
+  "packet_sha256": "6668900a9ec4dadb06e51489ea7a3751b801cab7ff9657a80bb44d74337cf2f6",
+  "physical_planner_nonzero_parameters": 84,
+  "predecessor_package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "prior_capability_proofs_reused_for_new_transcript": false,
+  "producer_kind": "fixed_external_controller_with_package_bound_rank_projection",
+  "proof_mode": "real_pinned_lean",
+  "proposal_count": 9,
+  "provenance_gate": {
+    "claims": {
+      "complete_resource_accounting": false,
+      "egc0_started": false,
+      "full_frontier_recertified": false,
+      "full_learned_semantic_refinement": false,
+      "gate_e_closed": false,
+      "live_capability_gain_demonstrated": false,
+      "neural_decoder_formally_verified": false,
+      "phase17_exit_closed": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "recursive_productivity_recertified": false,
+      "root_transition_verified": false
+    },
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "elapsed_ns": 59768100,
+        "returncode": 0,
+        "started_at_utc": "2026-11-01T22:30:54.304477+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-432z1730\\Provenance.lean"
+        ],
+        "elapsed_ns": 16561986200,
+        "returncode": 0,
+        "started_at_utc": "2026-11-01T22:30:54.366896+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n",
+        "stdout_sha256": "c34503d0a52a09cc10b73acc3d0679e3b05aaf88fdde41b4687af116ab0e4d45"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-432z1730\\SkippedPrefix.lean"
+        ],
+        "elapsed_ns": 15251783100,
+        "returncode": 1,
+        "started_at_utc": "2026-11-01T22:31:10.931059+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-432z1730\\SkippedPrefix.lean:175:2: error: Tactic `decide` proved that the proposition\n  selectedProposal.generator = selectedContext.generator \u2227\n    selectedProposal.parentPackage = selectedContext.parentPackage \u2227\n      selectedProposal.contextHash = selectedContext.contextHash \u2227\n        selectedProposal.transcriptHash = selectedContext.transcriptHash \u2227\n          (selectedContext.rows.length = 32 \u2227\n              selectedContext.credits \u2264 32 \u2227\n                selectedContext.offset < 32 \u2227\n                  (List.map (fun r => r.key) selectedContext.rows).Nodup \u2227\n                    \u2200 r \u2208 selectedContext.rows, r.family < 8 \u2227 r.ties.length = 5) \u2227\n            follows selectedContext [] selectedProposal.choices = true \u2227\n              selectedProposal.choices.Nodup \u2227\n                selectedProposal.choices.length \u2264 selectedContext.credits \u2227\n                  selectedProposal.choices \u2260 [] \u2227\n                    selectedProposal.verdicts = List.replicate (selectedProposal.choices.length - 1) false ++ [true] \u2227\n                      selectedProposal.program =\n                          (rowAt selectedContext\n                              (selectedProposal.choices.getD (selectedProposal.choices.length - 1) 32)).key \u2227\n                        selectedProposal.candidatePackage \u2260 selectedProposal.parentPackage\nis false\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n",
+        "stdout_sha256": "62534851749a5b33e6957fff9d683a000fe1d48edcbadeff5d732427a8bf4e1d"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-432z1730\\WrongParent.lean"
+        ],
+        "elapsed_ns": 14784658700,
+        "returncode": 1,
+        "started_at_utc": "2026-11-01T22:31:26.185209+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-432z1730\\WrongParent.lean:175:2: error: Tactic `decide` proved that the proposition\n  selectedProposal.generator = selectedContext.generator \u2227\n    selectedProposal.parentPackage = selectedContext.parentPackage \u2227\n      selectedProposal.contextHash = selectedContext.contextHash \u2227\n        selectedProposal.transcriptHash = selectedContext.transcriptHash \u2227\n          (selectedContext.rows.length = 32 \u2227\n              selectedContext.credits \u2264 32 \u2227\n                selectedContext.offset < 32 \u2227\n                  (List.map (fun r => r.key) selectedContext.rows).Nodup \u2227\n                    \u2200 r \u2208 selectedContext.rows, r.family < 8 \u2227 r.ties.length = 5) \u2227\n            follows selectedContext [] selectedProposal.choices = true \u2227\n              selectedProposal.choices.Nodup \u2227\n                selectedProposal.choices.length \u2264 selectedContext.credits \u2227\n                  selectedProposal.choices \u2260 [] \u2227\n                    selectedProposal.verdicts = List.replicate (selectedProposal.choices.length - 1) false ++ [true] \u2227\n                      selectedProposal.program =\n                          (rowAt selectedContext\n                              (selectedProposal.choices.getD (selectedProposal.choices.length - 1) 32)).key \u2227\n                        selectedProposal.candidatePackage \u2260 selectedProposal.parentPackage\nis false\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n",
+        "stdout_sha256": "94b622ba7867b31897bab2e3d94c49e82ebcc765ab90f6da2fe2c9adf1b28bcf"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-432z1730\\WrongProgram.lean"
+        ],
+        "elapsed_ns": 15494467400,
+        "returncode": 1,
+        "started_at_utc": "2026-11-01T22:31:40.970431+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-432z1730\\WrongProgram.lean:175:2: error: Tactic `decide` proved that the proposition\n  selectedProposal.generator = selectedContext.generator \u2227\n    selectedProposal.parentPackage = selectedContext.parentPackage \u2227\n      selectedProposal.contextHash = selectedContext.contextHash \u2227\n        selectedProposal.transcriptHash = selectedContext.transcriptHash \u2227\n          (selectedContext.rows.length = 32 \u2227\n              selectedContext.credits \u2264 32 \u2227\n                selectedContext.offset < 32 \u2227\n                  (List.map (fun r => r.key) selectedContext.rows).Nodup \u2227\n                    \u2200 r \u2208 selectedContext.rows, r.family < 8 \u2227 r.ties.length = 5) \u2227\n            follows selectedContext [] selectedProposal.choices = true \u2227\n              selectedProposal.choices.Nodup \u2227\n                selectedProposal.choices.length \u2264 selectedContext.credits \u2227\n                  selectedProposal.choices \u2260 [] \u2227\n                    selectedProposal.verdicts = List.replicate (selectedProposal.choices.length - 1) false ++ [true] \u2227\n                      selectedProposal.program =\n                          (rowAt selectedContext\n                              (selectedProposal.choices.getD (selectedProposal.choices.length - 1) 32)).key \u2227\n                        selectedProposal.candidatePackage \u2260 selectedProposal.parentPackage\nis false\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-432z1730\\WrongProgram.lean:180:51: error: Tactic `decide` proved that the proposition\n  selectedCandidate.program = selectedProposal.program\nis false\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n",
+        "stdout_sha256": "c23cce21748d78447e3b2a161203d2ead0035abe4c95fe0d8c54c6c762548529"
+      }
+    ],
+    "complete_learned_kernel_constructed": false,
+    "executable_sha256": {
+      "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+    },
+    "finite_producer_replay_checked": true,
+    "historical_execution_attested": false,
+    "negative_controls_rejected": [
+      "SkippedPrefix",
+      "WrongParent",
+      "WrongProgram"
+    ],
+    "new_named_audits": 8,
+    "packet_sha256": "6668900a9ec4dadb06e51489ea7a3751b801cab7ff9657a80bb44d74337cf2f6",
+    "python_selection_hash_and_physical_binding_remains_trusted": true,
+    "root_provenance_fields_checked": true,
+    "schema_id": "runtime.v5.phase17.proposal-provenance-lean.v1",
+    "self_hosted_neural_generator": false,
+    "source_sha256": {
+      "Provenance": "c53f08927b3b7cd6d547d1f85cfce7d928215fc9b91926b5c8247ca94cdb31f0",
+      "SkippedPrefix": "680c507dde578d66d89b06d09454cb837ec45e1b9665b0de021947908ba7ef6b",
+      "WrongParent": "e8077de419883fc42846ffc3adcd402258f7bd603ce0d983be0719ac6b2444c9",
+      "WrongProgram": "eda15037ccb4c97b41d6b872844309ef105938de5b748f3d9a7d7f3b96cb5f1b"
+    },
+    "status": "passed",
+    "theorem_axioms": {
+      "Phase17Provenance.attached_candidate_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Provenance.attached_generator_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Provenance.attached_package_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Provenance.attached_proposal_produced": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Provenance.selected_candidate_binding": [
+        "propext"
+      ],
+      "Phase17Provenance.selected_provenance": [
+        "propext"
+      ],
+      "Phase17Provenance.selected_rejection_prefix": [],
+      "Phase17Provenance.trace_no_repeat": [
+        "propext"
+      ]
+    },
+    "trusted_import_cache_assumption": true
+  },
+  "python_version": "3.13.3",
+  "ranked_prefix_proposals": 4,
+  "rejection_count": 8,
+  "schema": "rcp-rclm.phase17k.provenance-run.v1",
+  "selection_input_policy": "current_public_view_and_verified_prior_rejections_only",
+  "self_hosted_neural_generator": false,
+  "source_commit": "b7e69802672cca6ae2f5a636270fca0dd62e68da",
+  "source_sha256": {
+    "Provenance": "c53f08927b3b7cd6d547d1f85cfce7d928215fc9b91926b5c8247ca94cdb31f0",
+    "SkippedPrefix": "680c507dde578d66d89b06d09454cb837ec45e1b9665b0de021947908ba7ef6b",
+    "WrongParent": "e8077de419883fc42846ffc3adcd402258f7bd603ce0d983be0719ac6b2444c9",
+    "WrongProgram": "eda15037ccb4c97b41d6b872844309ef105938de5b748f3d9a7d7f3b96cb5f1b"
+  },
+  "source_tree": "4f47defac7a33d76dcf247b6725a7ca62255b234",
+  "source_unchanged": true,
+  "started_at_utc": "2026-11-01T22:30:43.093813+00:00",
+  "synthetic_fixture": true,
+  "terminal_action": "await_root_verification",
+  "training_performed": false,
+  "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+}
