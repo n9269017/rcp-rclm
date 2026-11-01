@@ -1,0 +1,416 @@
+{
+  "acceptance_functions_changed": false,
+  "automatic_retries": 0,
+  "both_failures_preserved": true,
+  "candidate_facts_changed": false,
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_learned_binding_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T18:52:53.195170+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T18:52:31.814134+00:00",
+      "stderr_sha256": "b0657d6d6406354d5ad9c3694607e77ad7ce99e3bade5aad4cd1ab24cbf7db2c",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_learned_binding_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\il-a7d3f514\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T18:54:03.461278+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T18:52:53.196842+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b387be26907ed7ec6fb36999fb3fa79791b090041177c6ba6aa9c39a63c13400"
+    }
+  ],
+  "complete_resource_accounting": false,
+  "continuation_sha256": "92aa1f0283eb9d3ed9ce3bfab452f4c13b84f6775397da4629c7dd39bc594202",
+  "cross_platform_validation": false,
+  "egc0_started": false,
+  "full_frontier_recertified": false,
+  "full_learned_semantic_refinement": false,
+  "gate_e_closed": false,
+  "gate_execution_sha256": "cdc88da1f55eeb0f1045626560965914b43e19d1477c99844f614efe8cb887bb",
+  "github_hosted_ci_passed": false,
+  "immutable_root_changed": false,
+  "live_capability_gain_demonstrated": false,
+  "network_setup_requested": false,
+  "neural_decoder_formally_verified": false,
+  "new_named_audits": 8,
+  "new_proofs_kernel_executed": true,
+  "new_template_sha256": "2184da4d22db9d9d55f5978968f7ba4e4d769b07d22f86a81cef678cb730f8ab",
+  "new_tests": 68,
+  "old_template_sha256": "077f8d66d7185b6395bf403e7be6b4da4aee26de50cd59ddfb3acbd9cf911b47",
+  "operational_regression_source": "b5f9f7af8fcbb827f6cacf5abbb0a27be619cebc",
+  "operational_regressions_retained_not_rerun": 57,
+  "phase17_exit_closed": false,
+  "pinned_lemma_source_check": {
+    "compiler_execution": false,
+    "git_blob": "2fd5eac026ce27031edf88a4afb654db9716aea7",
+    "mathlib_revision": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+    "source_only_check": true,
+    "source_path": "Mathlib/Data/Finset/Card.lean",
+    "source_sha256": "6b5da1ef432c571961ab00619b3b6182462715ed16df3e738fc9cbf66b0e8ea1",
+    "theorem": "Finset.card_insert_of_notMem"
+  },
+  "prior_format_failure": {
+    "failed_execution_sha256": "3566aae72bbd331c2f47c36bdabb0a5c5ad2195a770ddd47e16e1f05760f0618",
+    "failed_source": "b5f9f7af8fcbb827f6cacf5abbb0a27be619cebc",
+    "failed_tree": "eb5171c5551259f3ca8eeb8f134582f8eb61c5ce",
+    "failure": {
+      "reason": "CANONICALIZATION_FAILED at json: input bytes are not canonical RCPRCLM-CJSON-V2",
+      "type": "CanonicalizationError"
+    },
+    "old_failure_relabelled_as_success": false,
+    "operational_regressions_retained_not_rerun": 57,
+    "prior_gate_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_learned_binding_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\i-6c05b8ef\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T17:53:03.923121+00:00",
+      "problem": null,
+      "returncode": 2,
+      "started_at_utc": "2026-11-01T17:52:51.005021+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "c21a5dbd45a400fa30fd21788c31eeea1f3f1b02adb0da1ec3223be2297b93d2"
+    },
+    "prior_new_tests_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_learned_binding_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T17:52:28.973062+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T17:52:09.862807+00:00",
+      "stderr_sha256": "377def30423b8f834ee3fb803f8e1b69ac8a9138a7e1d66b55808680700b92ca",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "prior_new_tests_passed": 54,
+    "retained_regression_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_operational_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T17:52:51.003184+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T17:52:28.973805+00:00",
+      "stderr_sha256": "da94d8cffb9debf35df19b6cd0114a0ac3645fef1666d724f2c804ca8e1bc089",
+      "stdout_sha256": "5036111643273e9331fcf3faaf098410e14665d4c4d14d13e7cea5e6b9b8565d"
+    }
+  },
+  "prior_history_bytes_rewritten": false,
+  "prior_lemma_failure": {
+    "compiler_stdout_sha256": "0321675a2e9bd6aa6cd955ecc5273d5411a4fb2768e261c00a29aca69ed3c89c",
+    "execution_sha256": "72c20dc9b13cc9ba60dc873b53e334f32d25f816c8b5aed0da7bad51c58a54b4",
+    "failed_gate_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_learned_binding_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\ij-224f839e\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T18:28:16.026306+00:00",
+      "problem": null,
+      "returncode": 2,
+      "started_at_utc": "2026-11-01T18:15:53.789194+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "36a8b15cf5fc6285cf937e2d5dedff17f1f050eb11ffa130af4952e95a6dee6a"
+    },
+    "failure": {
+      "reason": "typed learned binding rejected",
+      "type": "ControlError"
+    },
+    "original_failure_relabelled_as_success": false,
+    "retained_new_tests": 68,
+    "retained_tests_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_learned_binding_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T18:15:53.787563+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T18:15:36.027080+00:00",
+      "stderr_sha256": "45e7718f76394198b67eb5fefe405dd8a8ebebecd2457e765b476366c6259548",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source_commit": "f61af85eafb46592e6dc49c10d724f3796e2d90b",
+    "source_tree": "edca6a8b7c83667db4ec5a585a451b2009c7e159"
+  },
+  "prior_successful_68_tests_source": "f61af85eafb46592e6dc49c10d724f3796e2d90b",
+  "promotion_authorized": false,
+  "promotion_performed": false,
+  "recursive_productivity_recertified": false,
+  "retained_phase17h": {
+    "bounded_contracts": [
+      "phase17.recursive.multi-token-plan.exhaustive-v1",
+      "phase17.recursive.affine-tool.exhaustive-v1"
+    ],
+    "original_execution_authenticated_by_this_check": false,
+    "original_source_commit": "eb78c099106d1d9e5b6523646a5139a0c5c8dff5",
+    "packet_sha256": "0fa20dcff8b51b3a2ca45e8993d023db3eec7a8567fd3ac337d21a7597a8ee14",
+    "proofs_retained_not_rerun": 172,
+    "retained_report_sha256": "6cfacc08015a8e2ace156c3ddb3de68e380c9e840d2e19f83b01fffd2981fdac"
+  },
+  "root_admission": {
+    "authorization_issued": false,
+    "missing_witness_classes": [
+      "full_base_kernel_semantic_refinement",
+      "kernel_frontier_soundness_and_task_meaning_binding",
+      "generator_production_and_package_provenance_refinement",
+      "full_goal_and_information_semantic_binding",
+      "complete_resource_measurement_and_enforcement",
+      "complete_operational_recursive_frontier_and_root_binding",
+      "durable_fresh_challenge_and_history_consumption",
+      "active_atomic_promotion_and_rollback"
+    ],
+    "obligations": [
+      {
+        "complete_root_premise_discharged": false,
+        "field": "typedSuccessor",
+        "layer": "base",
+        "support": "exact_prospective_package_delta_only; no active typed successor"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "residualsNonpositive",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedNonLoss",
+        "layer": "base",
+        "support": "exact retained file bytes; no complete information-semantics refinement"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "constructiveRecovery",
+        "layer": "base",
+        "support": "exact physical predecessor projection; no active-store rollback"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "invariantPreserved",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "progressNondecreasing",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "strictProgressWhenWitness",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "trustValid",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "resourceValid",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "realityContained",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "successorAdmissible",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedFrontierCertified",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedFrontierRetained",
+        "layer": "learned",
+        "support": "fresh 21-task Python candidate checks; Lean gate separate"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "strictFrontierExpansion",
+        "layer": "learned",
+        "support": "one new finite-probe capability in a PROSPECTIVE frontier"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "generatorIsActive",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "generatorBound",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "proposalProduced",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "proposalBindsCandidate",
+        "layer": "learned",
+        "support": "anchored transcript and independently reconstructed physical program"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "packageHashIsActive",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "packageHashBound",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "goalDriftWithinBudget",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "resourceWithinBudget",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "informationNonRegression",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "objectiveSelectedEndogenously",
+        "layer": "autonomous",
+        "support": "current package-conditioned objective recomputed"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "programProducedEndogenously",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "hiddenChallengeFresh",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "historyIsBound",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "routeHintsAbsent",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "programCandidateBinding",
+        "layer": "autonomous",
+        "support": "frozen descriptor matched to physical installed bytes"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "programCertificateBinding",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedRecursiveFrontierCertified",
+        "layer": "autonomous",
+        "support": "historical labels bound; operational semantics pending"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedRecursiveFrontierRetained",
+        "layer": "autonomous",
+        "support": "finite label inclusion; operational semantics pending"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "recursiveFrontierRetained",
+        "layer": "autonomous",
+        "support": "finite label inclusion plus three scoped probes; not all 19 abilities"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "recursiveWitnessValid",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "searchWithinBudget",
+        "layer": "autonomous",
+        "support": "candidate credits only; not complete runtime resource accounting"
+      }
+    ],
+    "reason": "typed preservation and bounded operational proofs are not a complete root accepted-step proof",
+    "root_acceptance_evaluated": false,
+    "root_obligation_count": 35,
+    "status": "blocked_missing_semantic_witnesses"
+  },
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17i.pinned-lemma-recovery.v1",
+  "source_commit": "1614cfc939ba65ef2146cf66ae13114c30d29077",
+  "source_tree": "c1ecfefa4a3034e820fea1c7a4dfe65c5215e95e",
+  "synthetic_fixture": true,
+  "template_correction": "explicit pinned cardinality import and card_insert_of_notMem reference",
+  "theorem_statements_changed": false
+}

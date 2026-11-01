@@ -15,7 +15,8 @@
     "phase17e_operator_capture": "artifacts/development/phase17e/operator-6d03d07b6893-path-alias-resume/operator-validation.json",
     "phase17f_operator_capture": "artifacts/development/phase17f/op-84a6e45ed4d7-utf8/operator-validation.json",
     "phase17g_operator_capture": "artifacts/development/phase17g/op-165856541b2a-proof/operator-validation.json",
-    "phase17h_operator_capture": "artifacts/development/phase17h/op-eb78c099106d/operator-validation.json"
+    "phase17h_operator_capture": "artifacts/development/phase17h/op-eb78c099106d/operator-validation.json",
+    "phase17i_operator_capture": "artifacts/development/phase17i/op-1614cfc939ba-lemma/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -34,12 +35,14 @@
   "implementation_commit": "e7a87487329aa38884a3798a339b7fb50c01bcb2",
   "implemented_scope": {
     "all_17_terminal_identities_inventoried": true,
+    "anchored_operational_evidence_composition": true,
     "bounded_dsl_candidate_realization": true,
     "bounded_dsl_reference_evaluation": true,
     "complete_inherited_component_mapping": true,
     "complete_recursive_productivity_recertification": false,
     "conditional_root_build_audit": true,
     "conditional_root_frontier_binding": true,
+    "conditional_root_information_binding": true,
     "conservative_registry_dispatch": true,
     "constructive_inactive_package_retraction": true,
     "evolving_cross_turn_objective_policy": false,
@@ -67,6 +70,7 @@
     "selected_eight_transition_lineage_reconstructed": true,
     "single_turn_controller_evaluator_integration": true,
     "strict_opt_in_lean_capability_gate": true,
+    "typed_learned_package_state_projection": true,
     "universal_fixed_interpreter_retention": true
   },
   "main_merge_authorized": false,
@@ -74,7 +78,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17h_operational_planner_witnesses",
+  "stage": "phase17i_typed_learned_binding",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -167,6 +171,23 @@
     "phase17h_registry_regressions": 47,
     "phase17h_synthetic_fixture": true,
     "phase17h_tested_code_commit": "eb78c099106d1d9e5b6523646a5139a0c5c8dff5",
+    "phase17i_full_root_evaluated": false,
+    "phase17i_lemma_correction": "pinned Mathlib card_insert_of_notMem; unchanged theorem statement",
+    "phase17i_local": "typed binding gate passed; not complete learned/root acceptance",
+    "phase17i_new_formal_audits": 8,
+    "phase17i_new_recursive_tasks_closed": [],
+    "phase17i_new_tests": 68,
+    "phase17i_operational_regression_source": "b5f9f7af8fcbb827f6cacf5abbb0a27be619cebc",
+    "phase17i_operational_regressions_retained_not_rerun": 57,
+    "phase17i_phase17h_proofs_retained": 172,
+    "phase17i_preserved_failed_sources": [
+      "b5f9f7af8fcbb827f6cacf5abbb0a27be619cebc",
+      "f61af85eafb46592e6dc49c10d724f3796e2d90b"
+    ],
+    "phase17i_report_format_correction": "strict formatted report after exact raw-byte digest; canonical packets unchanged",
+    "phase17i_root_admission": "blocked_missing_semantic_witnesses",
+    "phase17i_synthetic_fixture": true,
+    "phase17i_tested_code_commit": "1614cfc939ba65ef2146cf66ae13114c30d29077",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
