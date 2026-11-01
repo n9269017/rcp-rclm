@@ -17,7 +17,7 @@ from .conservative_extension import PreparedConservative, SCHEMA, RegistryImage
 from . import lean_frontier_gate as gate
 
 BRIDGE_PATH='lean/phase17_bridge/ConservativeRegistry.lean'
-BRIDGE_SHA256='9875e7b6f2484d4573fe73cd536744cce398c7cf4bae1cab53d087da457ec3c8'
+BRIDGE_SHA256='a6b4b24d6f5b783ec12617608098bd6aafa2ae99262b87a2044626b5e4801098'
 NAMES=('Phase17Registry.base_step_sound','Phase17Registry.dispatch_retained',
        'Phase17Registry.solved_task_retained','Phase17Registry.exact_recovery',
        'Phase17Registry.selected_base_step','Phase17Registry.selected_registry_mapping')
@@ -61,7 +61,7 @@ def render(prepared: PreparedConservative, template: bytes, *, negative=False) -
     tail+='def selectedEvidence : Evidence String := { root := '+literal(p['fixed_verifier_hash'])+', parentEntries := (selectedBefore []).entries, used := '+str(used)+', budget := '+str(budget)+' }\n'
     tail+='theorem selected_base_step (image : List Nat) (validBytes : ∀ n ∈ image, n < 256) :\n'
     tail+='    RcpRclmFormalCoreV2.RCP.StepObligations kernel (selectedBefore image)\n      ⟨selectedUpdate, apply (selectedBefore image) selectedUpdate⟩ selectedEvidence := by\n'
-    tail+='  apply base_step_sound\n  · exact ⟨by decide, validBytes⟩\n  · decide\n  · decide\n  · rfl\n  · rfl\n  · decide\n  · decide\n'
+    tail+='  apply base_step_sound\n  · constructor\n    · change (selectedBefore []).root ≠ ""\n      decide\n    · exact validBytes\n  · change lookup selectedUpdate.key (selectedBefore []).entries = none\n    decide\n  · decide\n  · rfl\n  · rfl\n  · decide\n  · decide\n'
     # Exact list equality binds the executable manifest order to Lean.
     tail+='def selectedAfter : List (Entry String) := '+_entries(p['registry_after'])+'\n'
     tail+='theorem selected_registry_mapping :\n  selectedAfter = ((selectedBefore []).entries ++ [(selectedUpdate.key, selectedUpdate.program)]) := by decide\n'

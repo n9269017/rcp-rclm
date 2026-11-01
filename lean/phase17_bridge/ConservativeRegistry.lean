@@ -10,7 +10,7 @@ the only resource modeled here. This is NOT the complete RCLM/Gate E kernel.
 -/
 namespace Phase17Registry
 
-variable {Program : Type} [DecidableEq Program]
+variable {Program : Type}
 
 abbrev Entry (Program : Type) := String × Program
 
@@ -124,6 +124,8 @@ theorem solved_task_retained {Input Output : Type}
 
 open RcpRclmFormalCoreV2
 
+variable [DecidableEq Program]
+
 /-- The concrete observation is equality of the entire protected image. -/
 noncomputable def protectedValue (s : State Program) (image : List Nat) : ℝ :=
   if s.protectedImage = image then 1 else 0
@@ -197,8 +199,8 @@ theorem base_step_sound [Inhabited Program]
     change (e.used : ℝ) - (e.budget : ℝ) ≤ 0
     exact sub_nonpos.mpr (by exact_mod_cast credits)
   · intro image
-    change protectedValue s image ≤ protectedValue (apply s u) image + 0
-    simp [protectedValue, apply]
+    change protectedValue s image ≤ protectedValue s image + 0
+    simpa only [add_zero] using (le_refl (protectedValue s image))
   · change distance (recover u (apply s u)) s ≤ 0
     rw [exact_recovery s u fresh]
     simp [distance]
