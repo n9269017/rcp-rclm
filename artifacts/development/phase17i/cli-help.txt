@@ -1,0 +1,18 @@
+usage: run_phase17_learned_binding_gate.py [-h] --output OUTPUT --test-fixture
+                                           [--require-lean]
+                                           [--lean-workspace LEAN_WORKSPACE]
+                                           [--toolchain-root TOOLCHAIN_ROOT]
+
+Typed learned-state/evidence integration; no root acceptance or active
+promotion. The selected Phase17H proof report is reused only for its exact
+checked package, operational packet, contract, and generated sources. Eight
+NEW Lean audits must run in formal mode. No old proof, live search, or tool
+setup is repeated.
+
+options:
+  -h, --help            show this help message and exit
+  --output OUTPUT
+  --test-fixture
+  --require-lean
+  --lean-workspace LEAN_WORKSPACE
+  --toolchain-root TOOLCHAIN_ROOT
