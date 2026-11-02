@@ -99,7 +99,7 @@ phase17_exit_closed, gate_e_closed, egc0_started.
 
 ## Reproduction
 
-`scripts/run_phase17_provenance_tests.py` requires 63 tests.
+`scripts/run_phase17_provenance_tests.py` requires 69 tests (63 original plus six renderer regressions).
 `scripts/run_phase17_provenance_regressions.py` runs the unchanged 33 controller
 and Phase16-adapter tests. This is not a rerun of historical proof campaigns.
 
