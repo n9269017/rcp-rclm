@@ -18,7 +18,8 @@
     "phase17h_operator_capture": "artifacts/development/phase17h/op-eb78c099106d/operator-validation.json",
     "phase17i_operator_capture": "artifacts/development/phase17i/op-1614cfc939ba-lemma/operator-validation.json",
     "phase17j_operator_capture": "artifacts/development/phase17j/op-11ce508bb7ac-layout/operator-validation.json",
-    "phase17k_operator_capture": "artifacts/development/phase17k/op-b7e69802672c-decidable/operator-validation.json"
+    "phase17k_operator_capture": "artifacts/development/phase17k/op-b7e69802672c-decidable/operator-validation.json",
+    "phase17l_operator_capture": "artifacts/development/phase17l/op-d948be5f8cef/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -42,6 +43,7 @@
     "bounded_dsl_reference_evaluation": true,
     "complete_inherited_component_mapping": true,
     "complete_recursive_productivity_recertification": false,
+    "conditional_learned_step_assembler": true,
     "conditional_root_build_audit": true,
     "conditional_root_frontier_binding": true,
     "conditional_root_information_binding": true,
@@ -70,6 +72,7 @@
     "recursive_obligation_inventory": true,
     "root_provenance_field_adapter": true,
     "root_transition_certificate_integration": false,
+    "same_candidate_typed_task_provenance_composition": true,
     "scoped_registry_base_kernel": true,
     "sealed_transcript_recomputation": true,
     "selected_21_capability_reexecution": true,
@@ -86,7 +89,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17k_producer_provenance",
+  "stage": "phase17l_same_candidate_composition",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -229,6 +232,23 @@
     "phase17k_proposals": 9,
     "phase17k_synthetic_fixture": true,
     "phase17k_tested_code_commit": "b7e69802672cca6ae2f5a636270fca0dd62e68da",
+    "phase17l_adapter_regressions": 139,
+    "phase17l_candidate_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+    "phase17l_full_learned_step_instantiated": false,
+    "phase17l_full_root_evaluated": false,
+    "phase17l_historical_reports_reassigned": false,
+    "phase17l_local": "same candidate typed/task/provenance composition checked; remaining semantic premises explicit",
+    "phase17l_new_formal_audits": 6,
+    "phase17l_new_tests": 66,
+    "phase17l_prior_rejections": 8,
+    "phase17l_proposals": 9,
+    "phase17l_rechecked_formal_audits": 37,
+    "phase17l_selected_task_coverage": [
+      21,
+      22
+    ],
+    "phase17l_synthetic_fixture": true,
+    "phase17l_tested_code_commit": "d948be5f8cefe2673f9a7475d58ebb1e9e589b76",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
