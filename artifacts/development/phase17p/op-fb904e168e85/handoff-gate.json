@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_handoff_gate.py",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\p-67f09dc7\\e\\gate",
+    "--packages",
+    "C:\\Users\\Nicolas.n926\\.r17\\p-67f09dc7\\packages"
+  ],
+  "finished_at_utc": "2026-11-07T21:32:47.485068+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-07T21:31:00.003647+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "cd9c22d9c65bece582fb522efd274167f4690ffb10eba75a0c45536dd1cf344d"
+}

@@ -22,7 +22,8 @@
     "phase17l_operator_capture": "artifacts/development/phase17l/op-d948be5f8cef/operator-validation.json",
     "phase17m_operator_capture": "artifacts/development/phase17m/op-f39cc8c31d52-proof/operator-validation.json",
     "phase17n_operator_capture": "artifacts/development/phase17n/op-2a7186e3590f/operator-validation.json",
-    "phase17o_operator_capture": "artifacts/development/phase17o/op-f96ec5214212/operator-validation.json"
+    "phase17o_operator_capture": "artifacts/development/phase17o/op-f96ec5214212/operator-validation.json",
+    "phase17p_operator_capture": "artifacts/development/phase17p/op-fb904e168e85/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -63,11 +64,13 @@
     "full_transformer_inference": false,
     "historical_hash_anchored_bootstrap": true,
     "hostile_same_user_security_sandbox": false,
+    "inactive_candidate_evidence_reconstruction": true,
     "independent_sparse_planner_reference": true,
     "initial_package_conditioned_objective": true,
     "learned_resource_field_adapter": true,
     "learned_root_frontier_field_adapter": true,
     "objective_freeze_record": true,
+    "online_session_inactive_package_handoff": true,
     "original_protected_target_binding": true,
     "package_bound_affine_tool_contract": true,
     "package_bound_producer_order_recomputation": true,
@@ -86,6 +89,7 @@
     "root_transition_certificate_integration": false,
     "same_candidate_typed_task_provenance_composition": true,
     "scoped_online_worker_budget_authority": true,
+    "scoped_parent_journal_challenge_consumption": true,
     "scoped_registry_base_kernel": true,
     "sealed_transcript_recomputation": true,
     "selected_21_capability_reexecution": true,
@@ -103,7 +107,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17o_scoped_online_campaign_budget",
+  "stage": "phase17p_parent_linked_inactive_handoff",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -318,6 +322,16 @@
       704,
       704
     ],
+    "phase17p_complete_root_acceptance": false,
+    "phase17p_fixture_candidate_staged": true,
+    "phase17p_fresh_challenges": 1,
+    "phase17p_local": "parent-linked inactive staging; complete root acceptance remains blocked",
+    "phase17p_new_lean_audits": 0,
+    "phase17p_new_tests": 70,
+    "phase17p_old_proofs_rerun": false,
+    "phase17p_online_candidate_staged": false,
+    "phase17p_online_terminal": "search_exhausted",
+    "phase17p_tested_code_commit": "fb904e168e8500fb680dbd60727d4a4ec3bc13af",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
