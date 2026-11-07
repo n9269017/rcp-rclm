@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_campaign_gate.py",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\o-8593879e\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-07T20:17:40.748289+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-07T20:17:30.893303+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "7be5d1ae8e8910d434a262467e06b32a3b8dced39b25d3583b1339651751c58d"
+}

@@ -21,7 +21,8 @@
     "phase17k_operator_capture": "artifacts/development/phase17k/op-b7e69802672c-decidable/operator-validation.json",
     "phase17l_operator_capture": "artifacts/development/phase17l/op-d948be5f8cef/operator-validation.json",
     "phase17m_operator_capture": "artifacts/development/phase17m/op-f39cc8c31d52-proof/operator-validation.json",
-    "phase17n_operator_capture": "artifacts/development/phase17n/op-2a7186e3590f/operator-validation.json"
+    "phase17n_operator_capture": "artifacts/development/phase17n/op-2a7186e3590f/operator-validation.json",
+    "phase17o_operator_capture": "artifacts/development/phase17o/op-f96ec5214212/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -40,10 +41,12 @@
   "implementation_commit": "e7a87487329aa38884a3798a339b7fb50c01bcb2",
   "implemented_scope": {
     "all_17_terminal_identities_inventoried": true,
+    "anchored_cross_session_reservations": true,
     "anchored_operational_evidence_composition": true,
     "anchored_resource_prefix_replay": true,
     "bounded_dsl_candidate_realization": true,
     "bounded_dsl_reference_evaluation": true,
+    "campaign_budget_authority_integrated": false,
     "complete_inherited_component_mapping": true,
     "complete_recursive_productivity_recertification": false,
     "complete_resource_accounting": false,
@@ -78,9 +81,11 @@
     "protected_sparse_probability_reconstruction": true,
     "real_lean_execution_driver": true,
     "recursive_obligation_inventory": true,
+    "retained_session_history_checked_before_launch": true,
     "root_provenance_field_adapter": true,
     "root_transition_certificate_integration": false,
     "same_candidate_typed_task_provenance_composition": true,
+    "scoped_online_worker_budget_authority": true,
     "scoped_registry_base_kernel": true,
     "sealed_transcript_recomputation": true,
     "selected_21_capability_reexecution": true,
@@ -98,7 +103,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17n_bounded_work_resources",
+  "stage": "phase17o_scoped_online_campaign_budget",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -290,6 +295,29 @@
     ],
     "phase17n_synthetic_fixture": true,
     "phase17n_tested_code_commit": "2a7186e3590fb7f77dc217f90587ec6511fb5d72",
+    "phase17o_complete_resource_accounting": false,
+    "phase17o_fresh_challenges": 2,
+    "phase17o_local": "fixed-parent bounded sessions with actual new workers; not evolving successor campaign",
+    "phase17o_new_lean_audits": 0,
+    "phase17o_new_tests": 70,
+    "phase17o_old_proofs_rerun": false,
+    "phase17o_reservations": [
+      4,
+      176,
+      704,
+      704
+    ],
+    "phase17o_terminals": [
+      "resource_exhausted",
+      "resource_exhausted"
+    ],
+    "phase17o_tested_code_commit": "f96ec5214212abc393eec46a161b1627f1dcccd7",
+    "phase17o_worker_spent": [
+      4,
+      176,
+      704,
+      704
+    ],
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
