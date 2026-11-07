@@ -13,7 +13,7 @@ from .materialized import require, sha
 from .successor_lean import string
 
 BRIDGE_PATH = 'lean/phase17_bridge/ProtectedSemantics.lean'
-BRIDGE_SHA256 = '5b8f5bbf3806bd32659b60ce29e28c0d6b994c28ad7de5cd38a6317bab872c4b'
+BRIDGE_SHA256 = '2e7a34d2a61e5772c4f738f125ec93738c7f5a2a87b6c1b4783a039a1ca5ae4a'
 NAMES = tuple('Phase17Protected.' + n for n in (
     'mass_distribution_normalized', 'diagonal_density_sound', 'diagonal_information_is_kl',
     'information_sum_nonnegative', 'goal_distance_self', 'unrelated_root_fields_unchanged',
@@ -64,7 +64,7 @@ def render_protected(prepared: PreparedProtectedSemantics, *, source_root: Path,
     # authenticated predecessor route, not the candidate's claimed targets.
     expected_goals = [[g['effective_marker'], *t['expected_tokens']]
                       for g,t in zip(p['before']['goals'],p['task_contract']['tasks'],strict=True)]
-    text = template(source_root).decode('utf-8') + '\nnamespace Phase17Protected\n'
+    text = template(source_root).decode('utf-8') + '\nnamespace Phase17Protected\nopen RcpRclmFormalCoreV2\n'
     text += 'set_option maxRecDepth 16384\nset_option maxHeartbeats 8000000\n'
     text += '-- Prepared semantic packet SHA256: ' + sha(prepared.packet_bytes) + '\n'
     text += _observation('observedBefore', before) + _observation('observedAfter', after)
@@ -93,8 +93,8 @@ theorem selected_goal_bound : goalDistance observedBefore.goals observedAfter.go
 
 theorem selected_information_bound : informationValue selectedContract observedAfter ≤
     informationValue selectedContract observedBefore + 0 := by
-  rw [selected_observation_retained, add_zero]
-  exact le_rfl
+  simpa only [selected_observation_retained, add_zero] using
+    (le_refl (informationValue selectedContract observedBefore))
 
 theorem selected_distribution_entropy_retention (current : Token) (target : List Nat) :
     (density (rowAt observedAfter current.val)).distribution =

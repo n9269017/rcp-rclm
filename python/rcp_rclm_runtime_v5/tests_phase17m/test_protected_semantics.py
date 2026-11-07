@@ -205,6 +205,58 @@ class RendererTests(unittest.TestCase):
         with self.assertRaises(ValueError):l.render_protected(DATA[-1],source_root=ROOT,negative='accept-anyway')
 
 
+REPAIR_CORRECTIONS = [('  | cons row rest ih => simp only [goalDistance, if_pos rfl, zero_add, ih]', '  | cons row rest ih => simp [goalDistance, ih]'), ('    (observe : State → Observation) (contract : Contract) :=\n  { other with', '    (observe : State → Observation) (contract : Contract) :\n    Learned.FrontierKernel (Task := Task) (Generator := Generator)\n      (Proposal := Proposal) (PackageHash := PackageHash) base :=\n  { other with'), ('  rw [selected_observation_retained, add_zero]\n  exact le_rfl', '  simpa only [selected_observation_retained, add_zero] using\n    (le_refl (informationValue selectedContract observedBefore))'), ('\nnamespace Phase17Protected\nset_option maxRecDepth', '\nnamespace Phase17Protected\nopen RcpRclmFormalCoreV2\nset_option maxRecDepth')]
+
+class LeanRepairRegressionTests(unittest.TestCase):
+    """Source/renderer regressions only: actual Lean checking is still required."""
+    def test_goal_self_proof_uses_complete_simplification(self):
+        text=l.template(ROOT).decode('utf-8')
+        self.assertIn('  | cons row rest ih => simp [goalDistance, ih]',text)
+        self.assertNotIn('simp only [goalDistance, if_pos rfl, zero_add, ih]',text)
+    def test_attach_has_explicit_existing_kernel_result_type(self):
+        text=l.template(ROOT).decode('utf-8')
+        self.assertIn('    (observe : State → Observation) (contract : Contract) :\n'
+                      '    Learned.FrontierKernel (Task := Task) (Generator := Generator)\n'
+                      '      (Proposal := Proposal) (PackageHash := PackageHash) base :=',text)
+    def test_root_namespace_reopened_for_selected_theorems(self):
+        for raw in RENDERED.values():
+            self.assertIn(b'\nnamespace Phase17Protected\nopen RcpRclmFormalCoreV2\nset_option maxRecDepth',raw)
+    def test_information_proof_is_a_single_finished_term(self):
+        for raw in RENDERED.values():
+            self.assertIn(b'  simpa only [selected_observation_retained, add_zero] using\n'
+                          b'    (le_refl (informationValue selectedContract observedBefore))',raw)
+            self.assertNotIn(b'  rw [selected_observation_retained, add_zero]\n  exact le_rfl',raw)
+    def test_all_five_certificates_only_have_declared_corrections(self):
+        corrections=REPAIR_CORRECTIONS
+        for label,raw in RENDERED.items():
+            with self.subTest(label=label):
+                old=(ROOT/'artifacts/development/phase17m'/(label+'.lean')).read_bytes()
+                for before,after in corrections:
+                    a,b=before.encode('utf-8'),after.encode('utf-8')
+                    self.assertEqual(old.count(a),1)
+                    old=old.replace(a,b,1)
+                self.assertEqual(raw,old)
+    def test_physical_literals_and_bindings_are_unchanged(self):
+        prefixes=(b'def observedBefore',b'def observedAfter',b'def selectedContract',
+                  b'def boundContract',b'def jointBinding',b'def semanticBinding')
+        for label,raw in RENDERED.items():
+            old=(ROOT/'artifacts/development/phase17m'/(label+'.lean')).read_bytes()
+            self.assertEqual([s for s in raw.splitlines() if s.startswith(prefixes)],
+                             [s for s in old.splitlines() if s.startswith(prefixes)])
+    def test_all_theorem_headers_are_unchanged(self):
+        for label,raw in RENDERED.items():
+            old=(ROOT/'artifacts/development/phase17m'/(label+'.lean')).read_bytes()
+            pattern=rb'(?:^|\n)theorem\s+.*?:='
+            self.assertEqual(re.findall(pattern,raw,re.S),re.findall(pattern,old,re.S))
+            self.assertGreaterEqual(len(re.findall(pattern,raw,re.S)),14)
+    def test_repair_rendering_does_not_change_semantic_packet(self):
+        prepared=DATA[-1];old=prepared.packet_bytes
+        for label in l.LABELS:
+            l.render_protected(prepared,source_root=ROOT,negative=None if label=='Protected' else label)
+        self.assertEqual(prepared.packet_bytes,old)
+        self.assertEqual(sha(old),'a720bdaeac1b316d6e50b9a640cddfad52baff44c09a44a4fdeda2b977e4da67')
+
+
 class GateControlTests(unittest.TestCase):
     def control(self,mode='ok'):
         with tempfile.TemporaryDirectory() as d:

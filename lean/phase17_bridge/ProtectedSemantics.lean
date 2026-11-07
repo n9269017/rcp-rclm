@@ -98,7 +98,7 @@ def goalDistance : List (List Nat) → List (List Nat) → Nat
 theorem goal_distance_self (goals : List (List Nat)) : goalDistance goals goals = 0 := by
   induction goals with
   | nil => rfl
-  | cons row rest ih => simp only [goalDistance, if_pos rfl, zero_add, ih]
+  | cons row rest ih => simp [goalDistance, ih]
 
 /- These are explicit protected-profile fields with a zero-regression policy.
    Resource fields and all capability/provenance fields are left unchanged. -/
@@ -108,7 +108,9 @@ noncomputable def attach
     {base : RCP.Kernel State Update BaseCertificate Protected ResidualIndex}
     (other : Learned.FrontierKernel (Task := Task) (Generator := Generator)
       (Proposal := Proposal) (PackageHash := PackageHash) base)
-    (observe : State → Observation) (contract : Contract) :=
+    (observe : State → Observation) (contract : Contract) :
+    Learned.FrontierKernel (Task := Task) (Generator := Generator)
+      (Proposal := Proposal) (PackageHash := PackageHash) base :=
   { other with
     goalDrift := fun s c => goalDistance (observe s).goals (observe c.next).goals
     goalDriftBudget := fun _ _ => 0
