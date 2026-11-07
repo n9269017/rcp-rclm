@@ -1,0 +1,389 @@
+{
+  "actual_new_lean_processes": 0,
+  "branch": "agent/rcp-rclm-v5-phase-17-controller",
+  "checkout_scope": "reconstructed_historical_dependencies_and_current_phase17_overlay_not_full_public_checkout",
+  "claims": {
+    "campaign_budget_authority_integrated": false,
+    "complete_learned_kernel_constructed": false,
+    "complete_resource_accounting": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "old_proofs_rerun": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "physical_execution_attested": false,
+    "physical_projection_formally_verified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false,
+    "training_performed": false
+  },
+  "current_branch_source_pushed": false,
+  "development_history": [
+    "Initial 56 tests passed; five history/tamper checks added, then 61 passed.",
+    "Nine evidence checks added. Three aggregate tool calls ended at the external execution limit; incomplete logs preserved; none claimed as passing.",
+    "The final 61-test runtime shard and three 3-test evidence shards each passed; together cover all 70 current methods exactly once.",
+    "First installer-flow invocation had eight fixture-setup errors because its checksum-script fixture was not copied. The fixture was restored from the original N kit, then all eight flows passed. Production helper was not weakened.",
+    "Initial and final preparation profiles are both retained. The final profile binds current source; neither filtered outcomes or selected a winning entropy."
+  ],
+  "helper_sha256": "d580b7870bfcf8fd1911097321719a4b97d3500626c3baf8d93b95fcc558d265",
+  "installer_flow_commands": "controlled outcomes; no online execution or Lean proof claim",
+  "installer_units_passed": 34,
+  "limitations": [
+    "Budget authority applies to repeated bounded sessions of a fixed historical predecessor, not a promoted lineage.",
+    "Whole reservations are not physical resource totals. Bootstrap, validation, overhead, IO and proofs are unmeasured.",
+    "Filesystem trust, a trusted coordinator and an independently retained non-rolled-back anchor remain assumptions.",
+    "Same-user hostile code can bypass the coordinator; this is not OS containment or authenticated execution.",
+    "No new proof establishes a universal refinement from the Python campaign state machine to Lean.",
+    "Full compatible base/learned/autonomous acceptance, promotion, broad capability and Phase17 closure remain open."
+  ],
+  "native_windows_validation": false,
+  "new_formal_audits": 0,
+  "operator_command_requires_nonpreparation_clean_source": true,
+  "os": "Linux",
+  "phase16_eager_package_initializer_exercised": false,
+  "preparation_gate_cli_executed": true,
+  "preparation_gate_passed": true,
+  "prior_lean_proofs_rerun": false,
+  "prior_project_suites_rerun": false,
+  "profile": {
+    "all_completed_sessions_recomputed": true,
+    "authority_reopened_between_sessions": true,
+    "automatic_retries": 0,
+    "campaign_head": "801d40a00f6d4c956a7e6cbdd28c5d4c70e4caa9a00ecedd6b2e6baa009dd83c",
+    "campaign_status": "resource_exhausted",
+    "candidate_credits_per_session": 2,
+    "claims": {
+      "campaign_budget_authority_integrated": false,
+      "complete_learned_kernel_constructed": false,
+      "complete_resource_accounting": false,
+      "cross_platform_validation": false,
+      "egc0_started": false,
+      "full_frontier_recertified": false,
+      "full_goal_interpretation_supplied": false,
+      "full_information_interpretation_supplied": false,
+      "full_learned_step_instantiated": false,
+      "gate_e_closed": false,
+      "github_hosted_ci_passed": false,
+      "historical_cost_recovered": false,
+      "live_capability_gain_demonstrated": false,
+      "old_proofs_rerun": false,
+      "os_resource_containment": false,
+      "phase17_exit_closed": false,
+      "phase18_independent_replay": false,
+      "physical_execution_attested": false,
+      "physical_projection_formally_verified": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "recursive_productivity_recertified": false,
+      "root_transition_verified": false,
+      "training_performed": false
+    },
+    "commitments": [
+      "3efb449452b0c627ed4ba94e39f47cfe405ad7e32de629c11cc527ff32c6e42d",
+      "e1fa1ff7dbece54f13bfa19d2eaa09c02c8de35eb5db172f3aab23914c5f6328"
+    ],
+    "completed_worker_cost": 4480,
+    "completed_worker_sessions": 2,
+    "completed_worker_spent": [
+      4,
+      176,
+      704,
+      704
+    ],
+    "controls": {
+      "abandoned-grant": {
+        "head": "7bd864a044f442b95aeed14248e1443efe05102e7ba37aa9afefeacfb5138ccf",
+        "policy": {
+          "cost_limit": 2240,
+          "dimensions": [
+            "candidate_attempts",
+            "vector_calls",
+            "input_values",
+            "output_values"
+          ],
+          "limits": [
+            2,
+            88,
+            352,
+            352
+          ],
+          "profile": "phase17n.bounded-vector-reference-work.v1",
+          "weights": [
+            64,
+            16,
+            1,
+            1
+          ]
+        },
+        "reserved": [
+          2,
+          88,
+          352,
+          352
+        ],
+        "reserved_cost": 2240,
+        "simulated_failure_or_abandonment": true,
+        "status": "safety_halt",
+        "worker_launched": false
+      },
+      "failed-grant": {
+        "head": "af94ebad3aee04c599a970eaef71c91b3bd74f0bfd4ef87a454d212d8ecb5e7d",
+        "policy": {
+          "cost_limit": 2240,
+          "dimensions": [
+            "candidate_attempts",
+            "vector_calls",
+            "input_values",
+            "output_values"
+          ],
+          "limits": [
+            2,
+            88,
+            352,
+            352
+          ],
+          "profile": "phase17n.bounded-vector-reference-work.v1",
+          "weights": [
+            64,
+            16,
+            1,
+            1
+          ]
+        },
+        "reserved": [
+          2,
+          88,
+          352,
+          352
+        ],
+        "reserved_cost": 2240,
+        "simulated_failure_or_abandonment": true,
+        "status": "safety_halt",
+        "worker_launched": false
+      },
+      "zero-budget": {
+        "head": "f73fe1a75e5cbdc0876979127c339e5ed760bbb1f73984be86d67ac26f2499f3",
+        "policy": {
+          "cost_limit": 0,
+          "dimensions": [
+            "candidate_attempts",
+            "vector_calls",
+            "input_values",
+            "output_values"
+          ],
+          "limits": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "profile": "phase17n.bounded-vector-reference-work.v1",
+          "weights": [
+            64,
+            16,
+            1,
+            1
+          ]
+        },
+        "reserved": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reserved_cost": 0,
+        "simulated_failure_or_abandonment": false,
+        "status": "resource_exhausted",
+        "worker_launched": false
+      }
+    },
+    "execution_metadata_is_attestation": false,
+    "fixed_parent": true,
+    "fresh_live_challenges": 2,
+    "full_envelope_reservations": [
+      4,
+      176,
+      704,
+      704
+    ],
+    "new_lean_audits": 0,
+    "old_proofs_rerun": false,
+    "profile": "phase17o.fixed-parent-two-session-development.v1",
+    "reserved_cost": 4480,
+    "schema": "rcp-rclm.phase17o.online-campaign-profile.v1",
+    "scoped_online_budget_authority_integrated": true,
+    "terminal_actions": [
+      "resource_exhausted",
+      "resource_exhausted"
+    ],
+    "third_worker_launch_denied": true,
+    "unmeasured": [
+      "cpu_time",
+      "accelerator_time",
+      "memory",
+      "storage",
+      "energy",
+      "bootstrap_and_validation",
+      "journal_io",
+      "python_runtime_overhead",
+      "formal_verification",
+      "ipc_and_process_startup",
+      "transcript_recomputation"
+    ],
+    "winner_filtering": false,
+    "worker_pids": [
+      4472,
+      4479
+    ],
+    "worker_spent_by_session": [
+      [
+        2,
+        88,
+        352,
+        352
+      ],
+      [
+        2,
+        88,
+        352,
+        352
+      ]
+    ]
+  },
+  "python": "3.13.5",
+  "recorded_at_utc": "2026-11-07T19:45:54.804086+00:00",
+  "referenced_runtime_source_sha256": {
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/codec.py": "5f766ac8e2b0af2318bcb2f1a1da508f793bffd81324e2a498bb7b19ce9cf6d1",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/constants.py": "410cd947b0c911bf19405387d5f032f209f78cc9fb879f118d1c8f3d37b97798",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/grammar.py": "c083af338d42e80da84e7585dfde8fce0f0d460702781d9f8993ea8f95a5dca7",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/ranking.py": "27638b8f3a6f24a1b4e2d8a24b01c6541a59974fbfd77805ec045a9fdb3009a8",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/records.py": "4ac34024d66f39b1150ab4e2279e3beb44b88ac44472839325901561d6754d13",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/bootstrap.py": "c95e37240101e94de540300f23a977d0492449e3890c2a5b928c142fd622389e",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_budget.py": "f9b58a8be32654173300ad4316c742e7f10e408ad7cb8aad97c018c00543e722",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_client.py": "df5443dfc0c6cf699d85187e96363da8149f11a461f6f7f8006fc63895c41837",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_transaction.py": "62a8130de8db0c30d7a9b4a60170fb374a06dc5f1560d3de28ba4b75871e8b7b",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_validation.py": "9f0645474d02e22bc400d50c38f805638f65639e07110122397882e48094b4da",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_client.py": "aec1d7ff74dec85987b1fbfeb195f3c807078e9742a3a70ec74c31a3377ac560",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_protocol.py": "fd45a59eafacc8528ce3865dc8601b017b340e3dd59047701b8fe77204bdecfb",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/controller.py": "a6d6dadf7fbe33a28017d4b6b2d690ea0ff8fd68133aa2423c5a8b7bf4b1ed0a",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/metered_worker.py": "3e1e745812fcf4736e8e1b4be5e695c479421fb0d101f0862e88006c26522c4d",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/objectives.py": "25d3f10b15c74da1a3b0f9a2f4716ddbbc59b008428a63a25b74b9f8edae3a2d",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/phase16_adapter.py": "df528e8d944b005ebaeaada3b38b95939463c82a839aaabe013bac90e4722069",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/resource_ledger.py": "4c7decc2b69dacad1a56a505529094cea5e7fcf2888cbfafa8e137333f882b0e",
+    "python/rcp_rclm_runtime_v5/tests_phase17o/test_campaign_budget.py": "9d9277504ff3b41ca456d73293b56e0c6c0c74a7ea7b2418913e3ab2515db66a",
+    "scripts/phase17_campaign_worker.py": "3b91024134bbe12fbc219b2b7a36448c44e8d47b81b066c115877cee34da17ad",
+    "scripts/run_phase17_campaign_gate.py": "28a671d943d6b6400069d8ca7d9c34b3cd8e8bf89b446a37ee936942bd344dcd",
+    "scripts/run_phase17_campaign_tests.py": "3427b3baa068aa4fa73e29862fcae11bd4f225ab3f64c1bcf47f2952547d3f6f"
+  },
+  "required_remote_base": "6e487bf8000747123942255a9f21216d4c4c3b93",
+  "retained_profile_recomputed_after_run": true,
+  "runtime_tests": {
+    "completed_shards": [
+      61,
+      3,
+      3,
+      3
+    ],
+    "failures_in_completed_shards": 0,
+    "passed_distinct": 70,
+    "single_combined_invocation_completed": false,
+    "skipped": 0,
+    "test_ids": [
+      "test_campaign_budget.AuthorityTests.test_boolean_credits_rejected_before_write",
+      "test_campaign_budget.AuthorityTests.test_cannot_reserve_pending",
+      "test_campaign_budget.AuthorityTests.test_cannot_stop_pending",
+      "test_campaign_budget.AuthorityTests.test_closed_handle_rejected",
+      "test_campaign_budget.AuthorityTests.test_competing_authority_blocked",
+      "test_campaign_budget.AuthorityTests.test_complete_has_no_refund",
+      "test_campaign_budget.AuthorityTests.test_complete_wrong_meter_rejected",
+      "test_campaign_budget.AuthorityTests.test_context_detached",
+      "test_campaign_budget.AuthorityTests.test_crlf_rejected",
+      "test_campaign_budget.AuthorityTests.test_duplicate_freeze_rejected",
+      "test_campaign_budget.AuthorityTests.test_existing_path_cannot_reset",
+      "test_campaign_budget.AuthorityTests.test_explicit_abandon_keeps_charge",
+      "test_campaign_budget.AuthorityTests.test_external_head_required_not_self_hash",
+      "test_campaign_budget.AuthorityTests.test_external_stop_terminal",
+      "test_campaign_budget.AuthorityTests.test_failure_keeps_full_not_actual_charge",
+      "test_campaign_budget.AuthorityTests.test_false_exhaustion_denial_rejected",
+      "test_campaign_budget.AuthorityTests.test_fsync_failure_prevents_authorization",
+      "test_campaign_budget.AuthorityTests.test_linked_campaign_path_rejected",
+      "test_campaign_budget.AuthorityTests.test_missing_prior_evidence_blocks_before_next_reservation",
+      "test_campaign_budget.AuthorityTests.test_mutated_file_prevents_reserve",
+      "test_campaign_budget.AuthorityTests.test_pending_grant_detached",
+      "test_campaign_budget.AuthorityTests.test_rehashed_boolean_aggregate_rejected",
+      "test_campaign_budget.AuthorityTests.test_rehashed_completion_cannot_claim_search_complete",
+      "test_campaign_budget.AuthorityTests.test_rehashed_completion_without_reservation",
+      "test_campaign_budget.AuthorityTests.test_rehashed_forged_aggregate_rejected",
+      "test_campaign_budget.AuthorityTests.test_rehashed_grant_context_substitution_rejected",
+      "test_campaign_budget.AuthorityTests.test_rehashed_wrong_completion_inventory",
+      "test_campaign_budget.AuthorityTests.test_reopen_completed_preserves_budget",
+      "test_campaign_budget.AuthorityTests.test_reopen_preserves_pending_no_auto_rerun",
+      "test_campaign_budget.AuthorityTests.test_reservation_is_durable_before_launch",
+      "test_campaign_budget.AuthorityTests.test_truncation_rejected",
+      "test_campaign_budget.AuthorityTests.test_unordered_but_evaluator_valid_trace_rejected",
+      "test_campaign_budget.AuthorityTests.test_whole_grant_cannot_be_refunded_by_completion",
+      "test_campaign_budget.AuthorityTests.test_wrong_context_rejected",
+      "test_campaign_budget.AuthorityTests.test_wrong_policy_rejected",
+      "test_campaign_budget.GrantAndWorkerTests.test_all_32_program_verdicts_match_unchanged_reference",
+      "test_campaign_budget.GrantAndWorkerTests.test_credit_substitution_before_entropy",
+      "test_campaign_budget.GrantAndWorkerTests.test_duplicate_meter_operation_rejected",
+      "test_campaign_budget.GrantAndWorkerTests.test_every_inherited_program_and_probe_charged",
+      "test_campaign_budget.GrantAndWorkerTests.test_extra_grant_fields_rejected",
+      "test_campaign_budget.GrantAndWorkerTests.test_failure_charge_kept_in_worker_meter",
+      "test_campaign_budget.GrantAndWorkerTests.test_freeze_rejected_before_entropy",
+      "test_campaign_budget.GrantAndWorkerTests.test_grant_tamper_rejected",
+      "test_campaign_budget.GrantAndWorkerTests.test_limits_are_exact_not_caller_selected",
+      "test_campaign_budget.GrantAndWorkerTests.test_live_wire_forbids_seed_override",
+      "test_campaign_budget.GrantAndWorkerTests.test_meter_denial_does_not_call",
+      "test_campaign_budget.GrantAndWorkerTests.test_no_horizon_or_success_count_argument",
+      "test_campaign_budget.GrantAndWorkerTests.test_original_transcript_semantics_unchanged",
+      "test_campaign_budget.GrantAndWorkerTests.test_summary_hidden_before_seal",
+      "test_campaign_budget.GrantAndWorkerTests.test_timeout_limits_strict",
+      "test_campaign_budget.GrantAndWorkerTests.test_worker_accounts_all_probes_no_shortcut",
+      "test_campaign_budget.GrantAndWorkerTests.test_wrong_grant_transcript_binding",
+      "test_campaign_budget.GrantAndWorkerTests.test_wrong_meter_head_rejected",
+      "test_campaign_budget.GrantAndWorkerTests.test_wrong_parent_rejected",
+      "test_campaign_budget.GrantAndWorkerTests.test_wrong_verifier_rejected",
+      "test_campaign_budget.GrantAndWorkerTests.test_zero_candidates_still_charge_setup",
+      "test_campaign_budget.ProcessAndIntegrationTests.test_actual_process_exit_retains_pending_reservation",
+      "test_campaign_budget.ProcessAndIntegrationTests.test_actual_worker_death_fails_closed",
+      "test_campaign_budget.ProcessAndIntegrationTests.test_admission_denial_never_launches_worker",
+      "test_campaign_budget.ProcessAndIntegrationTests.test_launch_failure_keeps_grant_and_halts",
+      "test_campaign_budget.ProcessAndIntegrationTests.test_two_real_workers_restart_and_exhaustion",
+      "test_campaign_budget.ValidationEvidenceTests.test_budget_reset_control_rejected",
+      "test_campaign_budget.ValidationEvidenceTests.test_changed_anchor_inventory_rejected",
+      "test_campaign_budget.ValidationEvidenceTests.test_claim_escalation_rejected",
+      "test_campaign_budget.ValidationEvidenceTests.test_extra_evidence_file_rejected",
+      "test_campaign_budget.ValidationEvidenceTests.test_no_claims_of_evolving_parent_or_full_proof",
+      "test_campaign_budget.ValidationEvidenceTests.test_removed_session_rejected",
+      "test_campaign_budget.ValidationEvidenceTests.test_unmeasured_resources_cannot_be_removed",
+      "test_campaign_budget.ValidationEvidenceTests.test_verify_launches_no_worker_or_entropy",
+      "test_campaign_budget.ValidationEvidenceTests.test_worker_boolean_pid_rejected"
+    ]
+  },
+  "schema": "rcp-rclm.phase17o.assistant-validation.v1",
+  "source_sha256": {
+    "docs/executable_core_v5/PHASE_17_ONLINE_BUDGET.md": "648c3df48a29e40b33e77ca2cdd9d81d9d74175dc8213b0e036aab8fb651ea64",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_budget.py": "f9b58a8be32654173300ad4316c742e7f10e408ad7cb8aad97c018c00543e722",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_client.py": "df5443dfc0c6cf699d85187e96363da8149f11a461f6f7f8006fc63895c41837",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_transaction.py": "62a8130de8db0c30d7a9b4a60170fb374a06dc5f1560d3de28ba4b75871e8b7b",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_validation.py": "9f0645474d02e22bc400d50c38f805638f65639e07110122397882e48094b4da",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/metered_worker.py": "3e1e745812fcf4736e8e1b4be5e695c479421fb0d101f0862e88006c26522c4d",
+    "python/rcp_rclm_runtime_v5/tests_phase17o/test_campaign_budget.py": "9d9277504ff3b41ca456d73293b56e0c6c0c74a7ea7b2418913e3ab2515db66a",
+    "scripts/phase17_campaign_worker.py": "3b91024134bbe12fbc219b2b7a36448c44e8d47b81b066c115877cee34da17ad",
+    "scripts/run_phase17_campaign_gate.py": "28a671d943d6b6400069d8ca7d9c34b3cd8e8bf89b446a37ee936942bd344dcd",
+    "scripts/run_phase17_campaign_tests.py": "3427b3baa068aa4fa73e29862fcae11bd4f225ab3f64c1bcf47f2952547d3f6f"
+  },
+  "temporary_git_flows_passed": 8
+}
