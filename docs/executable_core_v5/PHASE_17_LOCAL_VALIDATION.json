@@ -20,7 +20,8 @@
     "phase17j_operator_capture": "artifacts/development/phase17j/op-11ce508bb7ac-layout/operator-validation.json",
     "phase17k_operator_capture": "artifacts/development/phase17k/op-b7e69802672c-decidable/operator-validation.json",
     "phase17l_operator_capture": "artifacts/development/phase17l/op-d948be5f8cef/operator-validation.json",
-    "phase17m_operator_capture": "artifacts/development/phase17m/op-f39cc8c31d52-proof/operator-validation.json"
+    "phase17m_operator_capture": "artifacts/development/phase17m/op-f39cc8c31d52-proof/operator-validation.json",
+    "phase17n_operator_capture": "artifacts/development/phase17n/op-2a7186e3590f/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -40,10 +41,12 @@
   "implemented_scope": {
     "all_17_terminal_identities_inventoried": true,
     "anchored_operational_evidence_composition": true,
+    "anchored_resource_prefix_replay": true,
     "bounded_dsl_candidate_realization": true,
     "bounded_dsl_reference_evaluation": true,
     "complete_inherited_component_mapping": true,
     "complete_recursive_productivity_recertification": false,
+    "complete_resource_accounting": false,
     "conditional_learned_step_assembler": true,
     "conditional_root_build_audit": true,
     "conditional_root_frontier_binding": true,
@@ -59,6 +62,7 @@
     "hostile_same_user_security_sandbox": false,
     "independent_sparse_planner_reference": true,
     "initial_package_conditioned_objective": true,
+    "learned_resource_field_adapter": true,
     "learned_root_frontier_field_adapter": true,
     "objective_freeze_record": true,
     "original_protected_target_binding": true,
@@ -67,6 +71,7 @@
     "physical_m9_and_phase16_registry_materialization": true,
     "pinned_lean_workspace_setup": true,
     "post_freeze_challenge_service": true,
+    "precharged_bounded_work_ledger": true,
     "process_and_protocol_separation": true,
     "prospective_candidate_package_from_anchored_transcript": true,
     "prospective_successor_premise_packet": true,
@@ -93,7 +98,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17m_protected_sparse_semantics",
+  "stage": "phase17n_bounded_work_resources",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -270,6 +275,21 @@
     "phase17m_row_comparisons": 520,
     "phase17m_synthetic_fixture": true,
     "phase17m_tested_code_commit": "f39cc8c31d52030c3b07c28a024b38ab12090362",
+    "phase17n_charged_cost": 4032,
+    "phase17n_complete_resource_accounting": false,
+    "phase17n_local": "bounded-work reservations and tariff proofs; not complete physical resources/root acceptance",
+    "phase17n_new_formal_audits": 12,
+    "phase17n_new_tests": 79,
+    "phase17n_old_proofs_rerun": false,
+    "phase17n_policy_cost_limit": 9920,
+    "phase17n_spent": [
+      9,
+      144,
+      576,
+      576
+    ],
+    "phase17n_synthetic_fixture": true,
+    "phase17n_tested_code_commit": "2a7186e3590fb7f77dc217f90587ec6511fb5d72",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_resource_tests.py"
+  ],
+  "finished_at_utc": "2026-11-07T18:37:54.952130+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-07T18:37:40.852576+00:00",
+  "stderr_sha256": "a0d819de7e34784581fb9e7a978799405f728ac387f6dd86926e8743df9c9ea6",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
