@@ -1,0 +1,59 @@
+test_dirty_original_stops_before_execution (test_apply_phase17j.InstallerFlow.test_dirty_original_stops_before_execution) ... ok
+test_full_flow_normal_push_and_evidence_only_commit (test_apply_phase17j.InstallerFlow.test_full_flow_normal_push_and_evidence_only_commit) ... To /tmp/tmpt2ul7xff/remote.git
+   46e2c80..2317a7e  2317a7eac695c671cd47ddfe2806d4dcbf6b5c4c -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_moved_remote_prevents_advancement (test_apply_phase17j.InstallerFlow.test_moved_remote_prevents_advancement) ... Stopped; workspace and logs retained: /tmp/tmp9x3y8vcs/work/j-341292c1
+Original checkout advanced: False
+ok
+test_no_push_mode_keeps_remote_at_base (test_apply_phase17j.InstallerFlow.test_no_push_mode_keeps_remote_at_base) ... ok
+test_rejected_push_keeps_validated_local_commit (test_apply_phase17j.InstallerFlow.test_rejected_push_keeps_validated_local_commit) ... To /tmp/tmph8s_950k/remote.git
+ ! [remote rejected] 65bacddb1dc468c45e26d85327ab757ccdb89f14 -> agent/rcp-rclm-v5-phase-17-controller (pre-receive hook declined)
+error: failed to push some refs to '/tmp/tmph8s_950k/remote.git'
+Stopped; workspace and logs retained: /tmp/tmph8s_950k/work/j-af149e68
+Original checkout advanced: True
+ok
+test_validation_failure_leaves_original_unchanged (test_apply_phase17j.InstallerFlow.test_validation_failure_leaves_original_unchanged) ... Stopped; workspace and logs retained: /tmp/tmpim2kiwop/work/j-2ee1d6e2
+Original checkout advanced: False
+ok
+test_axiom_rejection (test_apply_phase17j.InstallerUnits.test_axiom_rejection) ... ok
+test_command_failure_keeps_logs (test_apply_phase17j.InstallerUnits.test_command_failure_keeps_logs) ... ok
+test_command_timeout_keeps_failure (test_apply_phase17j.InstallerUnits.test_command_timeout_keeps_failure) ... ok
+test_compiler_failure_cannot_pass (test_apply_phase17j.InstallerUnits.test_compiler_failure_cannot_pass) ... ok
+test_exact_test_count_and_no_skips (test_apply_phase17j.InstallerUnits.test_exact_test_count_and_no_skips) ... ok
+test_git_error_retains_stderr (test_apply_phase17j.InstallerUnits.test_git_error_retains_stderr) ... ok
+test_ignored_file_not_forced (test_apply_phase17j.InstallerUnits.test_ignored_file_not_forced) ... ok
+test_legacy_task_claim_rejects (test_apply_phase17j.InstallerUnits.test_legacy_task_claim_rejects) ... ok
+test_links_are_rejected (test_apply_phase17j.InstallerUnits.test_links_are_rejected) ... ok
+test_manifest_hash_and_duplicate_checked (test_apply_phase17j.InstallerUnits.test_manifest_hash_and_duplicate_checked) ... ok
+test_missing_second_negative (test_apply_phase17j.InstallerUnits.test_missing_second_negative) ... ok
+test_model_bytes_excluded_evidence_retained (test_apply_phase17j.InstallerUnits.test_model_bytes_excluded_evidence_retained) ... ok
+test_negative_compiler_success_rejected (test_apply_phase17j.InstallerUnits.test_negative_compiler_success_rejected) ... ok
+test_new_log_bytes_are_checked (test_apply_phase17j.InstallerUnits.test_new_log_bytes_are_checked) ... ok
+test_no_claim_escalation (test_apply_phase17j.InstallerUnits.test_no_claim_escalation) ... ok
+test_no_completed_kernel_or_observation_claim (test_apply_phase17j.InstallerUnits.test_no_completed_kernel_or_observation_claim) ... ok
+test_no_extra_positive_output (test_apply_phase17j.InstallerUnits.test_no_extra_positive_output) ... ok
+test_no_false_integer_claim (test_apply_phase17j.InstallerUnits.test_no_false_integer_claim) ... ok
+test_no_preparation_mode_pass (test_apply_phase17j.InstallerUnits.test_no_preparation_mode_pass) ... ok
+test_nul_staging_literal_long_list (test_apply_phase17j.InstallerUnits.test_nul_staging_literal_long_list) ... ok
+test_packaged_bytes_exact (test_apply_phase17j.InstallerUnits.test_packaged_bytes_exact) ... ok
+test_packaged_manifest_coverage (test_apply_phase17j.InstallerUnits.test_packaged_manifest_coverage) ... ok
+test_packaged_packet_tamper (test_apply_phase17j.InstallerUnits.test_packaged_packet_tamper) ... ok
+test_paths_require_canonical_relative_form (test_apply_phase17j.InstallerUnits.test_paths_require_canonical_relative_form) ... ok
+test_proof_bound_to_same_packet (test_apply_phase17j.InstallerUnits.test_proof_bound_to_same_packet) ... ok
+test_retained_symlink_rejected (test_apply_phase17j.InstallerUnits.test_retained_symlink_rejected) ... ok
+test_runtime_claim_stays_false (test_apply_phase17j.InstallerUnits.test_runtime_claim_stays_false) ... ok
+test_source_binding (test_apply_phase17j.InstallerUnits.test_source_binding) ... ok
+test_staging_preserves_crlf_evidence (test_apply_phase17j.InstallerUnits.test_staging_preserves_crlf_evidence) ... ok
+test_success_requires_synthetic_fixture_label (test_apply_phase17j.InstallerUnits.test_success_requires_synthetic_fixture_label) ... ok
+test_timeout_not_negative_proof (test_apply_phase17j.InstallerUnits.test_timeout_not_negative_proof) ... ok
+test_unexpected_payload_rejected (test_apply_phase17j.InstallerUnits.test_unexpected_payload_rejected) ... ok
+test_unrelated_staged_file_is_visible (test_apply_phase17j.InstallerUnits.test_unrelated_staged_file_is_visible) ... ok
+test_valid_scoped_report (test_apply_phase17j.InstallerUnits.test_valid_scoped_report) ... ok
+test_wrong_catalog_identity (test_apply_phase17j.InstallerUnits.test_wrong_catalog_identity) ... ok
+test_wrong_kernel_fields (test_apply_phase17j.InstallerUnits.test_wrong_kernel_fields) ... ok
+test_wrong_task_scope (test_apply_phase17j.InstallerUnits.test_wrong_task_scope) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 29.801s
+
+OK

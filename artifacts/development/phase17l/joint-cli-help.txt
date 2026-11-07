@@ -1,0 +1,19 @@
+usage: run_phase17_joint_gate.py [-h] --output OUTPUT --test-fixture
+                                 [--require-lean]
+                                 [--lean-workspace LEAN_WORKSPACE]
+                                 [--toolchain-root TOOLCHAIN_ROOT]
+
+One-candidate typed/task/producer composition, not a full transition. The
+explicitly synthetic ordered fixture is materialized once, and all three
+layers are rebuilt from it. No historical proof report is relabeled. Real mode
+rechecks 37 existing audits/propositions and six new composition audits in one
+certificate, plus five separate negative controls. Missing concrete base/goal/
+resource/information/autonomous witnesses never become a promotion decision.
+
+options:
+  -h, --help            show this help message and exit
+  --output OUTPUT
+  --test-fixture
+  --require-lean
+  --lean-workspace LEAN_WORKSPACE
+  --toolchain-root TOOLCHAIN_ROOT

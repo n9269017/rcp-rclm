@@ -1,0 +1,37 @@
+{
+  "all_passed": true,
+  "basis_commit": "358ff0efdc6bba6bdd1c8c30dc12c3695e3cf53f",
+  "complete_checkout_validation_pending": true,
+  "core_tests": 26,
+  "egc0_started": false,
+  "errors": 0,
+  "failures": 0,
+  "full_phase16_package_initializer_executed": false,
+  "gate_e_closed": false,
+  "github_ci_executed": false,
+  "implementation_blobs": {
+    "controller.py": "1d122fd51e39cb68d397c598bec6318469db3012",
+    "phase16_adapter.py": "fd2a824c61f3fc13a3ddfb0dd771873858ac252d",
+    "test_controller.py": "00287411d3737e2df4d67111fc00f26205137a69",
+    "test_phase16_adapter.py": "aecbed6099e08dda5ca92ece026a9284a6629073"
+  },
+  "main_merge_authorized_by_this_report": false,
+  "phase16_adapter_tests": 7,
+  "phase17_exit_closed": false,
+  "pinned_lean_executed": false,
+  "platform": "Linux",
+  "python_version": "3.13.5",
+  "root_manifest_refresh_pending": true,
+  "skipped": 0,
+  "stage": "phase17a_search_control_foundation",
+  "status": "development_only",
+  "tests_run": 33,
+  "validation_mode": "selected_live_modules_with_namespace_loader",
+  "verified_phase16_blobs": {
+    "codec.py": "f6c011174dd76fddba5d2f4257a985795e82a706",
+    "constants.py": "6ec1117cb715b060ad46b4f56dd6bd727423c949",
+    "grammar.py": "bcc24b9797d7adf2bab501893c939b2d0270d3a1",
+    "ranking.py": "192ff699763e854a7290a8c4b153d4cc34379889",
+    "records.py": "4fabef0768090d96e0b8157ee7ba1d1ff2b85d1b"
+  }
+}

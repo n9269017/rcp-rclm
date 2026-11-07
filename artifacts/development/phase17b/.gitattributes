@@ -1,0 +1,2 @@
+# Preserve byte-exact captured evidence across Windows/Linux checkouts.
+operator-*/** -text

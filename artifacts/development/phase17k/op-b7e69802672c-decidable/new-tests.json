@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_provenance_tests.py"
+  ],
+  "finished_at_utc": "2026-11-01T22:30:42.447124+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-01T22:30:25.554726+00:00",
+  "stderr_sha256": "014e3a4e26aa800f89274269825ffffec3000125415e19cf958fd95379650741",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

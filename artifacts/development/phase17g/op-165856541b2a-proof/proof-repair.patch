@@ -1,0 +1,51 @@
+--- a/lean/phase17_bridge/ConservativeRegistry.lean
++++ b/lean/phase17_bridge/ConservativeRegistry.lean
+@@ -10,7 +10,7 @@
+ -/
+ namespace Phase17Registry
+ 
+-variable {Program : Type} [DecidableEq Program]
++variable {Program : Type}
+ 
+ abbrev Entry (Program : Type) := String × Program
+ 
+@@ -123,6 +123,8 @@
+     exact solved
+ 
+ open RcpRclmFormalCoreV2
++
++variable [DecidableEq Program]
+ 
+ /-- The concrete observation is equality of the entire protected image. -/
+ noncomputable def protectedValue (s : State Program) (image : List Nat) : ℝ :=
+@@ -197,8 +199,8 @@
+     change (e.used : ℝ) - (e.budget : ℝ) ≤ 0
+     exact sub_nonpos.mpr (by exact_mod_cast credits)
+   · intro image
+-    change protectedValue s image ≤ protectedValue (apply s u) image + 0
+-    simp [protectedValue, apply]
++    change protectedValue s image ≤ protectedValue s image + 0
++    simpa only [add_zero] using (le_refl (protectedValue s image))
+   · change distance (recover u (apply s u)) s ≤ 0
+     rw [exact_recovery s u fresh]
+     simp [distance]
+--- a/python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/conservative_lean.py
++++ b/python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/conservative_lean.py
+@@ -17,7 +17,7 @@
+ from . import lean_frontier_gate as gate
+ 
+ BRIDGE_PATH='lean/phase17_bridge/ConservativeRegistry.lean'
+-BRIDGE_SHA256='9875e7b6f2484d4573fe73cd536744cce398c7cf4bae1cab53d087da457ec3c8'
++BRIDGE_SHA256='a6b4b24d6f5b783ec12617608098bd6aafa2ae99262b87a2044626b5e4801098'
+ NAMES=('Phase17Registry.base_step_sound','Phase17Registry.dispatch_retained',
+        'Phase17Registry.solved_task_retained','Phase17Registry.exact_recovery',
+        'Phase17Registry.selected_base_step','Phase17Registry.selected_registry_mapping')
+@@ -61,7 +61,7 @@
+     tail+='def selectedEvidence : Evidence String := { root := '+literal(p['fixed_verifier_hash'])+', parentEntries := (selectedBefore []).entries, used := '+str(used)+', budget := '+str(budget)+' }\n'
+     tail+='theorem selected_base_step (image : List Nat) (validBytes : ∀ n ∈ image, n < 256) :\n'
+     tail+='    RcpRclmFormalCoreV2.RCP.StepObligations kernel (selectedBefore image)\n      ⟨selectedUpdate, apply (selectedBefore image) selectedUpdate⟩ selectedEvidence := by\n'
+-    tail+='  apply base_step_sound\n  · exact ⟨by decide, validBytes⟩\n  · decide\n  · decide\n  · rfl\n  · rfl\n  · decide\n  · decide\n'
++    tail+='  apply base_step_sound\n  · constructor\n    · change (selectedBefore []).root ≠ ""\n      decide\n    · exact validBytes\n  · change lookup selectedUpdate.key (selectedBefore []).entries = none\n    decide\n  · decide\n  · rfl\n  · rfl\n  · decide\n  · decide\n'
+     # Exact list equality binds the executable manifest order to Lean.
+     tail+='def selectedAfter : List (Entry String) := '+_entries(p['registry_after'])+'\n'
+     tail+='theorem selected_registry_mapping :\n  selectedAfter = ((selectedBefore []).entries ++ [(selectedUpdate.key, selectedUpdate.program)]) := by decide\n'

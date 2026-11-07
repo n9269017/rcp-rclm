@@ -1,0 +1,475 @@
+{
+  "automatic_retries": 0,
+  "bindings": {
+    "candidate_physical_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+    "challenge_commitment_hash": "478d7884588779bca1483fb65d06d2a4b4d430960c47a6fdfd8036fb8a39c2ab",
+    "historical_state_hash": "7d2b823c05e4e4cef7566a89d3d440dba60a6417c6a3401f1248e59f89e91567",
+    "objective_hash": "e6a40e7a55002356e5a5c35262b35a7e98f54e9aa1153db60945215d56e941d3",
+    "predecessor_physical_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+    "program_hash": "a4f37fb8f2f7d3a90829340f2f02b2f19dbc5dfa5caf7a7633e9092837265c0e",
+    "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+  },
+  "candidate_package_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_learned_semantic_refinement": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "neural_decoder_formally_verified": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "complete_learned_kernel_constructed": false,
+  "component_groups": 12,
+  "component_sha256": {
+    "producer_provenance": "6668900a9ec4dadb06e51489ea7a3751b801cab7ff9657a80bb44d74337cf2f6",
+    "task_meanings": "30c9e00f93d23713ac658c004a8102e35a57c021bd6169da2cb1f877afa28670",
+    "typed_binding": "beea315339dddd2863ff3c47067be1be38a04b23f66faa1fd513f36e046e3008"
+  },
+  "conditional_learned_step_assembler": true,
+  "finished_at_utc": "2026-11-02T02:15:56.885918+00:00",
+  "full_learned_step_instantiated": false,
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "historical_capability_reports_reassigned": false,
+  "historical_execution_attested": false,
+  "inherited_component_files": 164,
+  "inherited_theorem_propositions_rechecked": 13,
+  "joint_gate": {
+    "claims": {
+      "complete_resource_accounting": false,
+      "egc0_started": false,
+      "full_frontier_recertified": false,
+      "full_learned_semantic_refinement": false,
+      "gate_e_closed": false,
+      "live_capability_gain_demonstrated": false,
+      "neural_decoder_formally_verified": false,
+      "phase17_exit_closed": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "recursive_productivity_recertified": false,
+      "root_transition_verified": false
+    },
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "elapsed_ns": 1973184700,
+        "returncode": 0,
+        "started_at_utc": "2026-11-02T01:59:52.948217+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\Joint.lean"
+        ],
+        "elapsed_ns": 755447960000,
+        "returncode": 0,
+        "started_at_utc": "2026-11-02T01:59:54.924245+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "'Phase17LearnedBinding.frozen_view_preserved' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.fixed_interpretation_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.information_value_retained' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.root_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.frontier_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.frontier_grows' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_typed_binding' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_interpretation_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.checked_frontier_sound' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.attached_root_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_before_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_after_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_predecessor_rejects_new' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.selected_catalog_bijection' does not depend on any axioms\n'Phase17TaskMeaning.inherited_0' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_1' does not depend on any axioms\n'Phase17TaskMeaning.inherited_2' depends on axioms: [propext]\n'Phase17TaskMeaning.inherited_3' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_4' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_5' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_6' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_7' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_8' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_9' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_10' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_11' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_12' does not depend on any axioms\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n'Phase17Joint.composed_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.composed_provenance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.remaining_semantics_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.assemble_learned_step' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_shared_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_joint_facts' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+        "stdout_sha256": "97d1fc58e4309a64fb4dae972836f805216b55281bb9ef229a5ab110c07501ff"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\MixedCandidate.lean"
+        ],
+        "elapsed_ns": 44622179300,
+        "returncode": 1,
+        "started_at_utc": "2026-11-02T02:12:30.380980+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\MixedCandidate.lean:782:2: error: Tactic `decide` proved that the proposition\n  typedBinding = taskBinding \u2227\n    taskBinding = producerBinding \u2227\n      typedBinding.predecessor = Phase17LearnedBinding.observedBefore.packageHash \u2227\n        typedBinding.candidate = Phase17LearnedBinding.observedAfter.packageHash \u2227\n          producerBinding.predecessor = Phase17Provenance.selectedContext.parentPackage \u2227\n            producerBinding.candidate = Phase17Provenance.selectedCandidate.package \u2227\n              producerBinding.transcript = Phase17Provenance.selectedContext.transcriptHash \u2227\n                producerBinding.program = Phase17Provenance.selectedProposal.program \u2227\n                  typedBinding.program = Phase17LearnedBinding.addedKey \u2227\n                    Phase17LearnedBinding.addedTask = Phase17TaskMeaning.taskIds.getD 21 \"\"\nis false\n'Phase17LearnedBinding.frozen_view_preserved' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.fixed_interpretation_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.information_value_retained' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.root_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.frontier_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.frontier_grows' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_typed_binding' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_interpretation_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.checked_frontier_sound' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.attached_root_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_before_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_after_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_predecessor_rejects_new' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.selected_catalog_bijection' does not depend on any axioms\n'Phase17TaskMeaning.inherited_0' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_1' does not depend on any axioms\n'Phase17TaskMeaning.inherited_2' depends on axioms: [propext]\n'Phase17TaskMeaning.inherited_3' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_4' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_5' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_6' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_7' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_8' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_9' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_10' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_11' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_12' does not depend on any axioms\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n'Phase17Joint.composed_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.composed_provenance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.remaining_semantics_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.assemble_learned_step' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_shared_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17Joint.selected_joint_facts' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+        "stdout_sha256": "7acc4ed072ebd70b895541d0743bb1ec0eb42dcaee7a601b2389f35a27fd79ab"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\MixedTranscript.lean"
+        ],
+        "elapsed_ns": 44271200000,
+        "returncode": 1,
+        "started_at_utc": "2026-11-02T02:13:15.007527+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\MixedTranscript.lean:782:2: error: Tactic `decide` proved that the proposition\n  typedBinding = taskBinding \u2227\n    taskBinding = producerBinding \u2227\n      typedBinding.predecessor = Phase17LearnedBinding.observedBefore.packageHash \u2227\n        typedBinding.candidate = Phase17LearnedBinding.observedAfter.packageHash \u2227\n          producerBinding.predecessor = Phase17Provenance.selectedContext.parentPackage \u2227\n            producerBinding.candidate = Phase17Provenance.selectedCandidate.package \u2227\n              producerBinding.transcript = Phase17Provenance.selectedContext.transcriptHash \u2227\n                producerBinding.program = Phase17Provenance.selectedProposal.program \u2227\n                  typedBinding.program = Phase17LearnedBinding.addedKey \u2227\n                    Phase17LearnedBinding.addedTask = Phase17TaskMeaning.taskIds.getD 21 \"\"\nis false\n'Phase17LearnedBinding.frozen_view_preserved' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.fixed_interpretation_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.information_value_retained' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.root_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.frontier_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.frontier_grows' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_typed_binding' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_interpretation_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.checked_frontier_sound' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.attached_root_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_before_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_after_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_predecessor_rejects_new' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.selected_catalog_bijection' does not depend on any axioms\n'Phase17TaskMeaning.inherited_0' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_1' does not depend on any axioms\n'Phase17TaskMeaning.inherited_2' depends on axioms: [propext]\n'Phase17TaskMeaning.inherited_3' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_4' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_5' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_6' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_7' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_8' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_9' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_10' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_11' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_12' does not depend on any axioms\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n'Phase17Joint.composed_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.composed_provenance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.remaining_semantics_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.assemble_learned_step' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_shared_identity' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17Joint.selected_joint_facts' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+        "stdout_sha256": "0dcb41fe64191eb34b8d909b9a3a1dbbb24beafc7ad998a9a9bd8db200a859a1"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\WrongComponent.lean"
+        ],
+        "elapsed_ns": 26053791200,
+        "returncode": 1,
+        "started_at_utc": "2026-11-02T02:13:59.279363+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\WrongComponent.lean:139:2: error: Tactic `decide` proved that the proposition\n  frozenView observedAfter = frozenView observedBefore \u2227\n    observedAfter.package.base = observedBefore.package.base ++ [addedKey] \u2227\n      observedAfter.package.capabilityFrontier = insert addedTask observedBefore.package.capabilityFrontier \u2227\n        addedTask \u2209 observedBefore.package.capabilityFrontier \u2227 observedAfter.packageHash \u2260 observedBefore.packageHash\nis false\n'Phase17LearnedBinding.frozen_view_preserved' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.fixed_interpretation_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.information_value_retained' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.root_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.frontier_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.frontier_grows' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_typed_binding' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_interpretation_retention' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.sound]\n'Phase17TaskMeaning.checked_frontier_sound' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.attached_root_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_before_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_after_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_predecessor_rejects_new' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.selected_catalog_bijection' does not depend on any axioms\n'Phase17TaskMeaning.inherited_0' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_1' does not depend on any axioms\n'Phase17TaskMeaning.inherited_2' depends on axioms: [propext]\n'Phase17TaskMeaning.inherited_3' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_4' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_5' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_6' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_7' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_8' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_9' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_10' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_11' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_12' does not depend on any axioms\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n'Phase17Joint.composed_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.composed_provenance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.remaining_semantics_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.assemble_learned_step' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_shared_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_joint_facts' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n",
+        "stdout_sha256": "818288d6a102c81749c98fb92b549d7da6a46ce38b2abad90fd89a898de05494"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\WrongTarget.lean"
+        ],
+        "elapsed_ns": 42229544800,
+        "returncode": 1,
+        "started_at_utc": "2026-11-02T02:14:25.333924+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\WrongTarget.lean:408:91: error: Tactic `decide` proved that the proposition\n  checkedFrontier afterDeclared catalog after = afterDeclared\nis false\n'Phase17LearnedBinding.frozen_view_preserved' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.fixed_interpretation_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.information_value_retained' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.root_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.frontier_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.frontier_grows' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_typed_binding' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_interpretation_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.checked_frontier_sound' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.attached_root_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_before_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_after_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_retention' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_expansion' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_predecessor_rejects_new' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.selected_catalog_bijection' does not depend on any axioms\n'Phase17TaskMeaning.inherited_0' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_1' does not depend on any axioms\n'Phase17TaskMeaning.inherited_2' depends on axioms: [propext]\n'Phase17TaskMeaning.inherited_3' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_4' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_5' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_6' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_7' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_8' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_9' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_10' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_11' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_12' does not depend on any axioms\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n'Phase17Joint.composed_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.composed_provenance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.remaining_semantics_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.assemble_learned_step' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_shared_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_joint_facts' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n",
+        "stdout_sha256": "acd94850614b3e042e16e94058c1fa80acfe02b3580174973f97a5a0ad704066"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\SkippedPrefix.lean"
+        ],
+        "elapsed_ns": 43433560200,
+        "returncode": 1,
+        "started_at_utc": "2026-11-02T02:15:07.564136+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17l-4lwu_jed\\SkippedPrefix.lean:611:2: error: Tactic `decide` proved that the proposition\n  selectedProposal.generator = selectedContext.generator \u2227\n    selectedProposal.parentPackage = selectedContext.parentPackage \u2227\n      selectedProposal.contextHash = selectedContext.contextHash \u2227\n        selectedProposal.transcriptHash = selectedContext.transcriptHash \u2227\n          (selectedContext.rows.length = 32 \u2227\n              selectedContext.credits \u2264 32 \u2227\n                selectedContext.offset < 32 \u2227\n                  (List.map (fun r => r.key) selectedContext.rows).Nodup \u2227\n                    \u2200 r \u2208 selectedContext.rows, r.family < 8 \u2227 r.ties.length = 5) \u2227\n            follows selectedContext [] selectedProposal.choices = true \u2227\n              selectedProposal.choices.Nodup \u2227\n                selectedProposal.choices.length \u2264 selectedContext.credits \u2227\n                  selectedProposal.choices \u2260 [] \u2227\n                    selectedProposal.verdicts = List.replicate (selectedProposal.choices.length - 1) false ++ [true] \u2227\n                      selectedProposal.program =\n                          (rowAt selectedContext\n                              (selectedProposal.choices.getD (selectedProposal.choices.length - 1) 32)).key \u2227\n                        selectedProposal.candidatePackage \u2260 selectedProposal.parentPackage\nis false\n'Phase17LearnedBinding.frozen_view_preserved' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.fixed_interpretation_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.information_value_retained' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.root_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.frontier_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.frontier_grows' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_typed_binding' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_interpretation_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.checked_frontier_sound' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.attached_root_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_before_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_after_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_predecessor_rejects_new' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.selected_catalog_bijection' does not depend on any axioms\n'Phase17TaskMeaning.inherited_0' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_1' does not depend on any axioms\n'Phase17TaskMeaning.inherited_2' depends on axioms: [propext]\n'Phase17TaskMeaning.inherited_3' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_4' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_5' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_6' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_7' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_8' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_9' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_10' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_11' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_12' does not depend on any axioms\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n'Phase17Joint.composed_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.composed_provenance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.remaining_semantics_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.assemble_learned_step' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_shared_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Joint.selected_joint_facts' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n",
+        "stdout_sha256": "1809fc136c78c123d16946e42a0f7632be21642812281deb6ea2b9a276d18291"
+      }
+    ],
+    "conditional_assembly_checked": true,
+    "executable_sha256": {
+      "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+    },
+    "full_learned_step_instantiated": false,
+    "historical_capability_reports_reassigned": false,
+    "negative_controls_rejected": [
+      "MixedCandidate",
+      "MixedTranscript",
+      "WrongComponent",
+      "WrongTarget",
+      "SkippedPrefix"
+    ],
+    "new_named_audits": 6,
+    "packet_sha256": "035c570a3e4b7f1ed2fd43085d9cd6357b2596a169eebcd621c0ff5d0fe274ac",
+    "physical_observation_refinement_proved": false,
+    "rechecked_named_audits": 37,
+    "remaining_semantics_preserved": true,
+    "same_candidate_composition_checked": true,
+    "schema_id": "runtime.v5.phase17.same-candidate-lean.v1",
+    "source_sha256": {
+      "Joint": "56d30d39a2f7bd4d381f3c44a993a00e189527ad25f7dd00f5a8b7773faedcfe",
+      "MixedCandidate": "5e63d5bef42cef457f917ad9e50766cc553edb56cfe4c010a56b2f232f73dd46",
+      "MixedTranscript": "89dca51e373b0f0a8460b29bc6da0f08ba9b7bf1ae65f27257519a9064837c5b",
+      "SkippedPrefix": "df9240433694dee44a33325f166bbc2ecfa90bcc16e9e5563c403fb10dc6f26a",
+      "WrongComponent": "05711094dd38cbc0f0d58197ad281b670d4ae6942b02e3c90c9297c68f940dee",
+      "WrongTarget": "8997f86d0b510cc542264d316a07ab9083a7891dc5a93abd61a97de69a2dc1a3"
+    },
+    "status": "passed",
+    "theorem_axioms": {
+      "Phase17Joint.assemble_learned_step": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Joint.composed_frontier_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Joint.composed_provenance_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Joint.remaining_semantics_unchanged": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Joint.selected_joint_facts": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Joint.selected_shared_identity": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17LearnedBinding.fixed_interpretation_retained": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17LearnedBinding.frontier_grows": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17LearnedBinding.frontier_retained": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17LearnedBinding.frozen_view_preserved": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17LearnedBinding.information_value_retained": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17LearnedBinding.root_information_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17LearnedBinding.selected_interpretation_retention": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17LearnedBinding.selected_typed_binding": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Provenance.attached_candidate_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Provenance.attached_generator_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Provenance.attached_package_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Provenance.attached_proposal_produced": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Provenance.selected_candidate_binding": [
+        "propext"
+      ],
+      "Phase17Provenance.selected_provenance": [
+        "propext"
+      ],
+      "Phase17Provenance.selected_rejection_prefix": [],
+      "Phase17Provenance.trace_no_repeat": [
+        "propext"
+      ],
+      "Phase17TaskMeaning.attached_root_frontier_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.checked_frontier_sound": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_0": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_1": [],
+      "Phase17TaskMeaning.inherited_10": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_11": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_12": [],
+      "Phase17TaskMeaning.inherited_2": [
+        "propext"
+      ],
+      "Phase17TaskMeaning.inherited_3": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_4": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_5": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_6": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_7": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_8": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_9": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_after_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_before_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_catalog_bijection": [],
+      "Phase17TaskMeaning.selected_frontier_expansion": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_frontier_retention": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_predecessor_rejects_new": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    "trusted_import_cache_assumption": true
+  },
+  "live_challenge_generated": false,
+  "local_increment_checks_passed": true,
+  "new_named_audits": [
+    "Phase17Joint.composed_frontier_sound",
+    "Phase17Joint.composed_provenance_bound",
+    "Phase17Joint.remaining_semantics_unchanged",
+    "Phase17Joint.assemble_learned_step",
+    "Phase17Joint.selected_shared_identity",
+    "Phase17Joint.selected_joint_facts"
+  ],
+  "new_recursive_tasks_closed": [],
+  "os": "Windows",
+  "packet_sha256": "035c570a3e4b7f1ed2fd43085d9cd6357b2596a169eebcd621c0ff5d0fe274ac",
+  "phase17h_plan_proofs_rerun": false,
+  "physical_observation_refinement_formally_verified": false,
+  "predecessor_package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "preparation_checks_passed": true,
+  "proof_mode": "real_pinned_lean",
+  "proposal_count": 9,
+  "python_version": "3.13.3",
+  "rechecked_named_audits": [
+    "Phase17LearnedBinding.frozen_view_preserved",
+    "Phase17LearnedBinding.fixed_interpretation_retained",
+    "Phase17LearnedBinding.information_value_retained",
+    "Phase17LearnedBinding.root_information_bound",
+    "Phase17LearnedBinding.frontier_retained",
+    "Phase17LearnedBinding.frontier_grows",
+    "Phase17LearnedBinding.selected_typed_binding",
+    "Phase17LearnedBinding.selected_interpretation_retention",
+    "Phase17TaskMeaning.checked_frontier_sound",
+    "Phase17TaskMeaning.attached_root_frontier_sound",
+    "Phase17TaskMeaning.selected_before_sound",
+    "Phase17TaskMeaning.selected_after_sound",
+    "Phase17TaskMeaning.selected_frontier_retention",
+    "Phase17TaskMeaning.selected_frontier_expansion",
+    "Phase17TaskMeaning.selected_predecessor_rejects_new",
+    "Phase17TaskMeaning.selected_catalog_bijection",
+    "Phase17TaskMeaning.inherited_0",
+    "Phase17TaskMeaning.inherited_1",
+    "Phase17TaskMeaning.inherited_2",
+    "Phase17TaskMeaning.inherited_3",
+    "Phase17TaskMeaning.inherited_4",
+    "Phase17TaskMeaning.inherited_5",
+    "Phase17TaskMeaning.inherited_6",
+    "Phase17TaskMeaning.inherited_7",
+    "Phase17TaskMeaning.inherited_8",
+    "Phase17TaskMeaning.inherited_9",
+    "Phase17TaskMeaning.inherited_10",
+    "Phase17TaskMeaning.inherited_11",
+    "Phase17TaskMeaning.inherited_12",
+    "Phase17Provenance.trace_no_repeat",
+    "Phase17Provenance.attached_generator_bound",
+    "Phase17Provenance.attached_package_bound",
+    "Phase17Provenance.attached_proposal_produced",
+    "Phase17Provenance.attached_candidate_bound",
+    "Phase17Provenance.selected_provenance",
+    "Phase17Provenance.selected_candidate_binding",
+    "Phase17Provenance.selected_rejection_prefix"
+  ],
+  "rechecked_subcertificate_audits": 24,
+  "rejection_count": 8,
+  "remaining_witness_classes": [
+    "concrete_compatible_base_RCP_RCLM_obligations",
+    "physical_observation_refinement_to_composed_kernel",
+    "concrete_goal_drift_and_budget",
+    "complete_resource_measurement_budget_and_enforcement",
+    "full_information_semantics_and_nonregression",
+    "autonomous_recursive_productivity_and_history_obligations",
+    "durable_fresh_challenge_consumption",
+    "active_atomic_promotion_and_rollback"
+  ],
+  "schema": "rcp-rclm.phase17l.joint-run.v1",
+  "selected_after_size": 22,
+  "selected_before_size": 21,
+  "self_hosted_neural_generator": false,
+  "source_commit": "d948be5f8cefe2673f9a7475d58ebb1e9e589b76",
+  "source_sha256": {
+    "Joint": "56d30d39a2f7bd4d381f3c44a993a00e189527ad25f7dd00f5a8b7773faedcfe",
+    "MixedCandidate": "5e63d5bef42cef457f917ad9e50766cc553edb56cfe4c010a56b2f232f73dd46",
+    "MixedTranscript": "89dca51e373b0f0a8460b29bc6da0f08ba9b7bf1ae65f27257519a9064837c5b",
+    "SkippedPrefix": "df9240433694dee44a33325f166bbc2ecfa90bcc16e9e5563c403fb10dc6f26a",
+    "WrongComponent": "05711094dd38cbc0f0d58197ad281b670d4ae6942b02e3c90c9297c68f940dee",
+    "WrongTarget": "8997f86d0b510cc542264d316a07ab9083a7891dc5a93abd61a97de69a2dc1a3"
+  },
+  "source_tree": "c664a5fb8b1a990b1e3b14604fc9edfb9ac2e2d2",
+  "source_unchanged": true,
+  "started_at_utc": "2026-11-02T01:59:20.978507+00:00",
+  "synthetic_fixture": true,
+  "training_performed": false,
+  "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+}

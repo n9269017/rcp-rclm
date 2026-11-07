@@ -1,0 +1,64 @@
+{
+  "claims": {
+    "egc0_started": false,
+    "fresh_lean_verification": false,
+    "full_current_checkout_validation": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "normal_phase16_constructor_round_trip": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "promotion_performed": false
+  },
+  "expected_public_branch_base": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
+  "implementation_sha256": {
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/bootstrap.py": "b2eee9fc68e621501338d0aca9c7f3361407317812ccd8046829d360c4f0e672",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/objectives.py": "25d3f10b15c74da1a3b0f9a2f4716ddbbc59b008428a63a25b74b9f8edae3a2d",
+    "python/rcp_rclm_runtime_v5/tests_phase17/fixtures/phase16_bootstrap_handoff.json": "c161d0dc6326b206a0400f490d34ca6331fedda9e17948ebba9870bfd298d475",
+    "python/rcp_rclm_runtime_v5/tests_phase17/test_bootstrap_objectives.py": "8741fb5f15e2c1fdf6a53ce52d114210a3366b5b164e30a1826045897850f236",
+    "scripts/run_phase17_bootstrap.py": "4a9191d671f2a2619038c531900b47d5087176e68630379922be2b9fe6cd3671",
+    "scripts/run_phase17_bootstrap_tests.py": "27b7bb41d579513a7cc4a08a55dba7444357d0f92c2ae52eb9052a2dbe5f39ef"
+  },
+  "input_archives": {
+    "runtime-v4-phase15-bundle-30969783629-1.zip": {
+      "bytes": 5310668,
+      "sha256": "56003f95ded054be21dd3f743c2145fdf6e92543af28bb350f64ec8f4fee00b5"
+    },
+    "runtime-v4-phase16-capture-31153935872-1.zip": {
+      "bytes": 6524813,
+      "sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde"
+    },
+    "runtime-v4-phase16-final-closure-31153935872-1.zip": {
+      "bytes": 3767,
+      "sha256": "ce7f1de4654306d5280970dfc92453a8743cf1e02fe98963f1e940c0077582f9"
+    }
+  },
+  "operator_previous_update": {
+    "canonical_entries": 1916,
+    "commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
+    "evidence_records_checked": 5,
+    "new_tests_run": false,
+    "source": "owner-provided terminal transcript; not independently rerun"
+  },
+  "os": "Linux",
+  "os_release": "6.18.57",
+  "python_version": "3.13.5",
+  "schema": "rcp-rclm.phase17b.assistant-validation.v1",
+  "status": "development_only",
+  "tests": {
+    "controller_regressions": 26,
+    "failures": 0,
+    "new_bootstrap_objective_unit": 34,
+    "real_archive_integration": 10,
+    "skipped": 0
+  },
+  "validation_scope": [
+    "Actual pinned capture, final closure, and M9 archive bytes reopened; no mock for archived inputs.",
+    "Selected eight-transition hash/state/frontier lineage reconstructed; historical evaluations are not fresh Lean proofs.",
+    "Ten archive checks include malformed/rehash mutation rejection, fixture equivalence and objective freeze.",
+    "No full current repository checkout; the seven existing Phase16 adapter tests were not rerun here.",
+    "No normal Phase16 package constructor execution here; operator bootstrap command will exercise it.",
+    "Cross-platform execution, OS isolation, fresh root proofs and phase closure remain outstanding."
+  ],
+  "workspace": "reconstructed historical f6155bb0 dependency checkout with current Phase17 overlays; not full current Git checkout"
+}

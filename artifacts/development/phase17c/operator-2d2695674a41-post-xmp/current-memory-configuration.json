@@ -1,0 +1,15 @@
+{
+  "basis": "Windows CIM firmware report, not a stability attestation",
+  "modules": [
+    {
+      "Capacity": 34359738368,
+      "ConfiguredClockSpeed": 4400
+    },
+    {
+      "Capacity": 34359738368,
+      "ConfiguredClockSpeed": 4400
+    }
+  ],
+  "recorded_at_utc": "2026-10-31T22:28:16.547637+00:00",
+  "settings_changed": false
+}

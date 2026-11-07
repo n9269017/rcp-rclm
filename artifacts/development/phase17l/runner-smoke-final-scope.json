@@ -1,0 +1,9 @@
+{
+  "schema": "assistant.phase17l.runner-smoke-scope.v1",
+  "reconstructed_checkout": true,
+  "not_current_full_checkout": true,
+  "runtime_base_override_for_smoke": "8f65664f9e4787cdf35b4185d53d0ce2fcf33439",
+  "original_expected_remote_base": "a87631af18f9b48d1040e6c2a01b511a7675022d",
+  "base_ancestry_guard_exercised_against_real_remote": false,
+  "lean_executed": false
+}

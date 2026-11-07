@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_learned_binding_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ij-224f839e\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-01T18:28:16.026306+00:00",
+  "problem": null,
+  "returncode": 2,
+  "started_at_utc": "2026-11-01T18:15:53.789194+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "36a8b15cf5fc6285cf937e2d5dedff17f1f050eb11ffa130af4952e95a6dee6a"
+}

@@ -1,0 +1,9 @@
+{
+  "duration_ms": 2301,
+  "finished_at_utc": "2026-10-31T08:04:04.802051+00:00",
+  "name": "historical-archive-tests",
+  "returncode": 0,
+  "started_at_utc": "2026-10-31T08:04:02.500646+00:00",
+  "stderr_sha256": "2fa5219a4dec0012ad1a45e16f17a6792ee45466a7e4eca547898047edfaa1b1",
+  "stdout_sha256": "64d758557c4d837168e39b35a8128a3342df6f2f701116b942ef38864d3ad5d3"
+}

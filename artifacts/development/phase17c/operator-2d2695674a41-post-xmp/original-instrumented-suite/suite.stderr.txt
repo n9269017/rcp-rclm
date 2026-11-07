@@ -1,0 +1,76 @@
+test_client_timeout_profile_validated (test_process_boundary.ProcessBoundaryTests.test_client_timeout_profile_validated) ... ok
+test_environment_does_not_forward_credentials_or_pythonpath (test_process_boundary.ProcessBoundaryTests.test_environment_does_not_forward_credentials_or_pythonpath) ... ok
+test_fresh_worker_commitments_differ (test_process_boundary.ProcessBoundaryTests.test_fresh_worker_commitments_differ) ... ok
+test_live_worker_bad_freeze_rejected (test_process_boundary.ProcessBoundaryTests.test_live_worker_bad_freeze_rejected) ... ok
+test_live_worker_no_caller_path_or_executable (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_caller_path_or_executable) ... ok
+test_live_worker_no_early_reveal (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_early_reveal) ... ERROR
+test_live_worker_no_seed_override (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_seed_override) ... ok
+test_real_worker_freeze_and_evaluate (test_process_boundary.ProcessBoundaryTests.test_real_worker_freeze_and_evaluate) ... ok
+test_real_worker_has_distinct_pid_and_sealed_recomputation (test_process_boundary.ProcessBoundaryTests.test_real_worker_has_distinct_pid_and_sealed_recomputation) ... ok
+test_seal_prevents_more_requests (test_process_boundary.ProcessBoundaryTests.test_seal_prevents_more_requests) ... ok
+test_timeout_kills_worker_without_success (test_process_boundary.ProcessBoundaryTests.test_timeout_kills_worker_without_success) ... ok
+test_worker_death_fails_closed (test_process_boundary.ProcessBoundaryTests.test_worker_death_fails_closed) ... ok
+test_complete_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_complete_controller_service_transaction) ... ok
+test_exact_grammar_for_eight_current_nonces (test_reference_differential.ReferenceDifferentialTests.test_exact_grammar_for_eight_current_nonces) ... ok
+test_partial_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_partial_controller_service_transaction) ... ERROR
+test_reference_matches_actual_executor_all_families_and_variants (test_reference_differential.ReferenceDifferentialTests.test_reference_matches_actual_executor_all_families_and_variants) ... ok
+test_reference_matches_installed_predecessor_programs (test_reference_differential.ReferenceDifferentialTests.test_reference_matches_installed_predecessor_programs) ... ok
+test_zero_credit_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_zero_credit_controller_service_transaction) ... ok
+
+======================================================================
+ERROR: test_live_worker_no_early_reveal (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_early_reveal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\rcp_rclm_runtime_v5\phase17\challenge_client.py", line 74, in request
+    _keys(response, {'protocol', 'sequence', 'request_hash', 'previous_response_hash',
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     'payload', 'response_hash'}, 'evaluator response')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\rcp_rclm_runtime_v5\phase17\controller.py", line 52, in _keys
+    raise ControlError(f"{name}: exact field set required")
+rcp_rclm_runtime_v5.phase17.controller.ControlError: evaluator response: exact field set required
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\tests_phase17c\test_process_boundary.py", line 73, in test_live_worker_no_early_reveal
+    self.opened(client)
+    ~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\tests_phase17c\test_process_boundary.py", line 38, in opened
+    return client.request('open',objective=self.objective.to_json(),freeze=self.freeze,candidate_credits=credits)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\rcp_rclm_runtime_v5\phase17\challenge_client.py", line 95, in request
+    raise ControlError('evaluator transport/protocol failed closed') from exc
+rcp_rclm_runtime_v5.phase17.controller.ControlError: evaluator transport/protocol failed closed
+
+======================================================================
+ERROR: test_partial_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_partial_controller_service_transaction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\rcp_rclm_runtime_v5\phase17\challenge_client.py", line 74, in request
+    _keys(response, {'protocol', 'sequence', 'request_hash', 'previous_response_hash',
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     'payload', 'response_hash'}, 'evaluator response')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\rcp_rclm_runtime_v5\phase17\controller.py", line 52, in _keys
+    raise ControlError(f"{name}: exact field set required")
+rcp_rclm_runtime_v5.phase17.controller.ControlError: evaluator response: exact field set required
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\tests_phase17c\test_reference_differential.py", line 44, in test_partial_controller_service_transaction
+    records=run_bounded_transaction(self.parent,candidate_credits=2,public_nonce_hash='2'*64)
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\rcp_rclm_runtime_v5\phase17\challenge_transaction.py", line 32, in run_bounded_transaction
+    public=evaluator.request('open',objective=decision.to_json(),freeze=freeze,
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              candidate_credits=candidate_credits)['public_challenge']
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nicolas.n926\Downloads\rcp-rclm-phase17c-kit\runs\20261031T091211Z-f7555bd2\checkout\python\rcp_rclm_runtime_v5\rcp_rclm_runtime_v5\phase17\challenge_client.py", line 95, in request
+    raise ControlError('evaluator transport/protocol failed closed') from exc
+rcp_rclm_runtime_v5.phase17.controller.ControlError: evaluator transport/protocol failed closed
+
+----------------------------------------------------------------------
+Ran 18 tests in 49.624s
+
+FAILED (errors=2)

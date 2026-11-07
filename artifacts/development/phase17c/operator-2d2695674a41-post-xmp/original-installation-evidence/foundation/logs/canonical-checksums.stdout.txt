@@ -1,0 +1,1 @@
+PASS: 2012 canonical index checksum entries

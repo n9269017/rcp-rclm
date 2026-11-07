@@ -1,0 +1,6 @@
+test_seal_prevents_more_requests (test_process_boundary.ProcessBoundaryTests.test_seal_prevents_more_requests) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.564s
+
+OK

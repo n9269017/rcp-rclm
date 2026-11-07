@@ -1,0 +1,9 @@
+{
+  "returncode": 0,
+  "elapsed_seconds": 47.10703158378601,
+  "argv": [
+    "/opt/pyvenv/bin/python",
+    "-B",
+    "scripts/run_phase17_joint_tests.py"
+  ]
+}
