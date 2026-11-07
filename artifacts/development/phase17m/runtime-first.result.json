@@ -1,0 +1,9 @@
+{
+  "returncode": 1,
+  "elapsed_seconds": 94.50448560714722,
+  "argv": [
+    "/opt/pyvenv/bin/python",
+    "-B",
+    "scripts/run_phase17_protected_semantics_tests.py"
+  ]
+}
