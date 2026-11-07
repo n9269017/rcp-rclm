@@ -1,0 +1,126 @@
+INSTALLER GUARDS: controlled execution records, NOT phase results
+test_active_store_not_written (test_apply_phase17p.InstallerGuards.test_active_store_not_written) ... ok
+test_bad_source_digest (test_apply_phase17p.InstallerGuards.test_bad_source_digest) ... ok
+test_boolean_cost (test_apply_phase17p.InstallerGuards.test_boolean_cost) ... ok
+test_boolean_worker_count (test_apply_phase17p.InstallerGuards.test_boolean_worker_count) ... ok
+test_budget_refund (test_apply_phase17p.InstallerGuards.test_budget_refund) ... ok
+test_changed_source_hashes (test_apply_phase17p.InstallerGuards.test_changed_source_hashes) ... ok
+test_claim_escalation (test_apply_phase17p.InstallerGuards.test_claim_escalation) ... ok
+test_claims_boolean_not_zero (test_apply_phase17p.InstallerGuards.test_claims_boolean_not_zero) ... ok
+test_control_valid (test_apply_phase17p.InstallerGuards.test_control_valid) ... ok
+test_duplicate_control_false (test_apply_phase17p.InstallerGuards.test_duplicate_control_false) ... ok
+test_duplicate_control_missing (test_apply_phase17p.InstallerGuards.test_duplicate_control_missing) ... ok
+test_duplicate_json (test_apply_phase17p.InstallerGuards.test_duplicate_json) ... ok
+test_failed_gate_rejected (test_apply_phase17p.InstallerGuards.test_failed_gate_rejected) ... ok
+test_failed_record_not_hidden (test_apply_phase17p.InstallerGuards.test_failed_record_not_hidden) ... ok
+test_fake_success_outcome (test_apply_phase17p.InstallerGuards.test_fake_success_outcome) ... ok
+test_fixture_campaign_invented (test_apply_phase17p.InstallerGuards.test_fixture_campaign_invented) ... ok
+test_fixture_not_live (test_apply_phase17p.InstallerGuards.test_fixture_not_live) ... ok
+test_fixture_worker_cost_invented (test_apply_phase17p.InstallerGuards.test_fixture_worker_cost_invented) ... ok
+test_float_json (test_apply_phase17p.InstallerGuards.test_float_json) ... ok
+test_log_inventory_no_skips (test_apply_phase17p.InstallerGuards.test_log_inventory_no_skips) ... ok
+test_logical_physical_conflation (test_apply_phase17p.InstallerGuards.test_logical_physical_conflation) ... ok
+test_missing_blockers_rejected (test_apply_phase17p.InstallerGuards.test_missing_blockers_rejected) ... ok
+test_missing_consumption_check (test_apply_phase17p.InstallerGuards.test_missing_consumption_check) ... ok
+test_missing_work (test_apply_phase17p.InstallerGuards.test_missing_work) ... ok
+test_new_lean_claim_rejected (test_apply_phase17p.InstallerGuards.test_new_lean_claim_rejected) ... ok
+test_no_old_campaign_command (test_apply_phase17p.InstallerGuards.test_no_old_campaign_command) ... ok
+test_old_proof_relabel_rejected (test_apply_phase17p.InstallerGuards.test_old_proof_relabel_rejected) ... ok
+test_online_grant_missing (test_apply_phase17p.InstallerGuards.test_online_grant_missing) ... ok
+test_preparation_rejected (test_apply_phase17p.InstallerGuards.test_preparation_rejected) ... ok
+test_prior_O_identity (test_apply_phase17p.InstallerGuards.test_prior_O_identity) ... ok
+test_prior_O_rerun (test_apply_phase17p.InstallerGuards.test_prior_O_rerun) ... ok
+test_profile_claim_escalation (test_apply_phase17p.InstallerGuards.test_profile_claim_escalation) ... ok
+test_retry_rejected (test_apply_phase17p.InstallerGuards.test_retry_rejected) ... ok
+test_root_not_claimed (test_apply_phase17p.InstallerGuards.test_root_not_claimed) ... ok
+test_source_change_rejected (test_apply_phase17p.InstallerGuards.test_source_change_rejected) ... ok
+test_unmeasured_not_removed (test_apply_phase17p.InstallerGuards.test_unmeasured_not_removed) ... ok
+test_unsafe_paths (test_apply_phase17p.InstallerGuards.test_unsafe_paths) ... ok
+test_winner_filtering_rejected (test_apply_phase17p.InstallerGuards.test_winner_filtering_rejected) ... ok
+test_wrong_fixture_candidate (test_apply_phase17p.InstallerGuards.test_wrong_fixture_candidate) ... ok
+test_wrong_online_summary (test_apply_phase17p.InstallerGuards.test_wrong_online_summary) ... ok
+test_wrong_parent_rejected (test_apply_phase17p.InstallerGuards.test_wrong_parent_rejected) ... ok
+test_wrong_source (test_apply_phase17p.InstallerGuards.test_wrong_source) ... ok
+test_wrong_tree (test_apply_phase17p.InstallerGuards.test_wrong_tree) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.010s
+
+OK
+
+TEMPORARY GIT FLOWS: controlled project commands
+test_dirty_original_refused (test_installer_flow.InstallerFlow.test_dirty_original_refused) ... ok
+test_evidence_mutation_no_advancement (test_installer_flow.InstallerFlow.test_evidence_mutation_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmp1y2yr2zp/work/p-3469ea34
+Original checkout advanced: False
+ok
+test_failed_gate_no_advancement (test_installer_flow.InstallerFlow.test_failed_gate_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmp_dfv2yca/work/p-7cbbd792
+Original checkout advanced: False
+ok
+test_failed_tests_no_advancement (test_installer_flow.InstallerFlow.test_failed_tests_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmprvrkc6ql/work/p-1e5ca7d8
+Original checkout advanced: False
+ok
+test_full_flow_normal_push (test_installer_flow.InstallerFlow.test_full_flow_normal_push) ... To /tmp/tmp_bl65cpu/remote.git
+   81240eb..528b358  528b358b74a76bdb19b8e5a5dc0868013fce111f -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_no_push_preserves_validated_local_commit (test_installer_flow.InstallerFlow.test_no_push_preserves_validated_local_commit) ... ok
+test_rejected_push_keeps_local_validated_commits (test_installer_flow.InstallerFlow.test_rejected_push_keeps_local_validated_commits) ... To /tmp/tmptaeitn32/remote.git
+ ! [remote rejected] f2a2df40b83e98da7f3c910be2b5df02915d2dad -> agent/rcp-rclm-v5-phase-17-controller (pre-receive hook declined)
+error: failed to push some refs to '/tmp/tmptaeitn32/remote.git'
+Stopped; workspace and logs retained: /tmp/tmptaeitn32/work/p-d978af03
+Original checkout advanced: True
+ok
+test_remote_movement_no_advancement (test_installer_flow.InstallerFlow.test_remote_movement_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmp09tbpbgv/work/p-12b21348
+Original checkout advanced: False
+ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 34.109s
+
+OK
+
+FLOW COMMAND OUTPUT
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 20 entries; not committed
+PASS: 20 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 20 entries; not committed
+PASS: 20 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 20 entries; not committed
+PASS: 20 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 20 entries; not committed
+PASS: 20 canonical index checksum entries

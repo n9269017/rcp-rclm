@@ -1,0 +1,6 @@
+{
+  "completed": false,
+  "not_a_phase_acceptance_result": true,
+  "outer_command_timeout_seconds": 20,
+  "source_commit_bound": false
+}
