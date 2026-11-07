@@ -1,0 +1,152 @@
+{
+  "actual_lean_commands_executed": 0,
+  "branch": "agent/rcp-rclm-v5-phase-17-controller",
+  "checkout_scope": "reconstructed_historical_dependencies_and_current_phase17_overlay_not_full_current_public_checkout",
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "physical_execution_attested": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "current_M_report_accepted_locally": false,
+  "current_branch_source_committed": false,
+  "development_history": [
+    "73 initial tests passed; then stricter type/path/elapsed and rehashed-mutation coverage added",
+    "78 tests passed; then reporting fields and one report-inventory regression added",
+    "final 79 tests passed; earlier logs retained and not counted as 230 unique tests"
+  ],
+  "formal_failure": {
+    "reason": "pinned dependency not installed: mathlib",
+    "type": "ControlError"
+  },
+  "formal_status": "blocked",
+  "fresh_metered_profile": {
+    "binding": {
+      "candidate_package_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+      "fixed_verifier_hash": "fc4cf15ec370547b14fc67ae360269cea71cbc10d773536d1a77891acbe3bf7e",
+      "predecessor_package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+      "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+    },
+    "charged_cost": 4032,
+    "event_count": 308,
+    "journal_sha256": "19ab0ee096db11997093b5e0df2586405a2d92786fca3604fc622fc5e094af19",
+    "old_transcript_unchanged": true,
+    "operation_count": 153,
+    "policy": {
+      "cost_limit": 9920,
+      "dimensions": [
+        "candidate_attempts",
+        "vector_calls",
+        "input_values",
+        "output_values"
+      ],
+      "limits": [
+        32,
+        328,
+        1312,
+        1312
+      ],
+      "profile": "phase17n.bounded-vector-reference-work.v1",
+      "weights": [
+        64,
+        16,
+        1,
+        1
+      ]
+    },
+    "real_historical_archives_opened": true,
+    "spent": [
+      9,
+      144,
+      576,
+      576
+    ],
+    "synthetic_fixture": true,
+    "verdicts": [
+      "reject",
+      "reject",
+      "reject",
+      "reject",
+      "reject",
+      "reject",
+      "reject",
+      "reject",
+      "candidate_passed"
+    ]
+  },
+  "full_native_windows_validation": false,
+  "gate_cli_main_executed_here": false,
+  "helper_sha256": "8a184a9b657a91120e5f0ea18e9bd1d676c455c7a6677012af8f30699e8d9423",
+  "historical_proofs_rerun": false,
+  "installer_temporary_git_flows": {
+    "git_operations": "real_temporary_local_and_bare_repositories",
+    "passed": 8,
+    "project_and_compiler_commands": "controlled_fixture_not_phase_results"
+  },
+  "installer_unit_tests": {
+    "compiler_outcomes": "controlled_fixture_not_actual_compilation",
+    "passed": 40
+  },
+  "limitations": [
+    "Declared work tariffs are not physical CPU/GPU/memory/energy totals.",
+    "Trusted wrappers and advisory locks do not sandbox hostile same-user code.",
+    "Local fsync and external-head assumptions are not power-loss or distributed consensus proofs.",
+    "The online worker, promotion authority and cross-session campaign budget are not yet integrated.",
+    "No complete compatible base kernel or learned/autonomous accepted successor is constructed."
+  ],
+  "new_lean_audits_accepted_here": 0,
+  "new_lean_audits_authored": 12,
+  "old_project_suites_rerun": false,
+  "operator_gate_required": "--test-fixture --require-lean with prepared pinned toolchain",
+  "os": "Linux",
+  "python": "3.13.5",
+  "recorded_at_utc": "2026-11-07T08:56:18.587431+00:00",
+  "required_negative_controls": [
+    "OverBudget",
+    "OmittedOperation",
+    "RefundedFailure",
+    "MixedCandidate"
+  ],
+  "required_remote_base": "a54e67b9b4b4f9f519b20f3999ce604b724ab401",
+  "runtime_tests": {
+    "errors": 0,
+    "failures": 0,
+    "passed": 79,
+    "real_cross_process_lock_control": true,
+    "real_subprocess_exit_control": true,
+    "skipped": 0
+  },
+  "schema": "rcp-rclm.phase17n.assistant-validation.v1",
+  "source_sha256": {
+    "docs/executable_core_v5/PHASE_17_PROTECTED_SEMANTICS.md": "dc5641c807bfa2bfe44d572d79848ab2adb987b4f21d74f88f3ef6fe4b527c06",
+    "docs/executable_core_v5/PHASE_17_RESOURCE_LEDGER.md": "5b50da89105499988b854a252d7c2cca8e88a3efa6672d4a6472bf049445bdf1",
+    "lean/phase17_bridge/ResourceAccounting.lean": "0dedb05591770f67e8ede705930d3c850edc0ff4ada0bb6768033def975b3ca5",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/metered_evaluation.py": "e9973fc598ac016dbef08f5fb8cc522d60db5b98a72f928d91ed74d0c725098c",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/resource_lean.py": "34c1174f079b0378df6fe88cf35af6167e0ab2f40beff1e18a94ec49de64169e",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/resource_ledger.py": "4c7decc2b69dacad1a56a505529094cea5e7fcf2888cbfafa8e137333f882b0e",
+    "python/rcp_rclm_runtime_v5/tests_phase17n/test_resource_ledger.py": "5d1c24e513035c560132f36211cd952850e69f44d3806838aac77673e67880dd",
+    "scripts/run_phase17_resource_gate.py": "f75547113a97e5fecbb6391e1413cbff1a71ba49e89d96e989a57ecdbfc92711",
+    "scripts/run_phase17_resource_tests.py": "63d32bf56d91b6af0c596a4c971976e0f920e6d04ebd91ec7256926d4210af44"
+  },
+  "unmeasured": [
+    "cpu_time",
+    "accelerator_time",
+    "memory",
+    "storage",
+    "energy",
+    "bootstrap_and_validation",
+    "journal_io",
+    "python_runtime_overhead",
+    "formal_verification"
+  ]
+}

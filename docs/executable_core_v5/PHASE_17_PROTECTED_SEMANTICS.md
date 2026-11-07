@@ -132,7 +132,9 @@ Retain false: `root_transition_verified`, `recursive_productivity_recertified`,
 
 ## Reproduction and installation
 
-`scripts/run_phase17_protected_semantics_tests.py` requires 83 tests.
+`scripts/run_phase17_protected_semantics_tests.py` requires 91 tests: 83 original
+checks plus eight renderer regressions. The successful proof-repair run retained
+the 66 joint regressions at their original tested source; it did not rerun them.
 `scripts/run_phase17_joint_tests.py` supplies the 66 unchanged joint regressions.
 The actual gate is:
 

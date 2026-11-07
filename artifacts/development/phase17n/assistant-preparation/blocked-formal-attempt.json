@@ -1,0 +1,29 @@
+{
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "physical_execution_attested": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "commands": [],
+  "failure": {
+    "reason": "pinned dependency not installed: mathlib",
+    "type": "ControlError"
+  },
+  "negative_controls_rejected": [],
+  "new_named_audits": 12,
+  "schema": "runtime.v5.phase17.resource-lean.v1",
+  "scoped_resource_fields_checked": false,
+  "status": "blocked",
+  "theorem_axioms": {}
+}
