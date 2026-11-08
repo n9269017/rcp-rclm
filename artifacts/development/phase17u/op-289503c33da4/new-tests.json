@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_planner_refinement_tests.py"
+  ],
+  "finished_at_utc": "2026-11-08T18:40:12.683266+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T18:38:56.863726+00:00",
+  "stderr_sha256": "fba87fbaf3bb44d797d4c674fe45011d2ddb8d74174dc00bcf2ced175de90c9e",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

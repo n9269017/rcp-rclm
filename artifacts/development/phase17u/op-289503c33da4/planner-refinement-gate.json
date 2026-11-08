@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_planner_refinement_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\u-ee56fe9d\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-08T19:02:07.048003+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T18:40:22.208780+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "85ccda6ecfd69bfaa05f2db9f44c160fbd140d49e5676f7a09dbcf9c606c0c0c"
+}
