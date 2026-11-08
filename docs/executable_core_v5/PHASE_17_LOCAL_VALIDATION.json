@@ -25,7 +25,8 @@
     "phase17o_operator_capture": "artifacts/development/phase17o/op-f96ec5214212/operator-validation.json",
     "phase17p_operator_capture": "artifacts/development/phase17p/op-fb904e168e85/operator-validation.json",
     "phase17q_operator_capture": "artifacts/development/phase17q/op-5d5d0e2fe033/operator-validation.json",
-    "phase17r_operator_capture": "artifacts/development/phase17r/op-0599da3eeb23/operator-validation.json"
+    "phase17r_operator_capture": "artifacts/development/phase17r/op-0599da3eeb23/operator-validation.json",
+    "phase17s_operator_capture": "artifacts/development/phase17s/op-34ab34deffc7/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -84,8 +85,10 @@
     "process_and_protocol_separation": true,
     "prospective_candidate_package_from_anchored_transcript": true,
     "prospective_successor_premise_packet": true,
+    "protected_prompt_routing_refinement": true,
     "protected_sparse_decoder_refinement": true,
     "protected_sparse_probability_reconstruction": true,
+    "protected_task_execution_binding": true,
     "real_lean_execution_driver": true,
     "recursive_obligation_inventory": true,
     "retained_session_history_checked_before_launch": true,
@@ -113,7 +116,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17r_exact_byte_sparse_refinement",
+  "stage": "phase17s_protected_prompt_routing",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -357,6 +360,17 @@
     "phase17r_same_run_dependency_compilations": 1,
     "phase17r_sparse_tensor_projection_checked": true,
     "phase17r_tested_code_commit": "0599da3eeb2361fe13769b9ffb24cc0561b806c9",
+    "phase17s_complete_root_acceptance": false,
+    "phase17s_fresh_challenges": 0,
+    "phase17s_fresh_worker_sessions": 0,
+    "phase17s_local": "protected prompt routing refinement checked with pinned Lean; full physical/root transition remains open",
+    "phase17s_named_theorem_audits": 15,
+    "phase17s_new_tests": 101,
+    "phase17s_old_proof_campaigns_rerun": false,
+    "phase17s_protected_prompt_routing_checked": true,
+    "phase17s_protected_task_execution_bound": true,
+    "phase17s_same_run_dependency_compilations": 2,
+    "phase17s_tested_code_commit": "34ab34deffc770c12d9cd8ff393fa391e2e7b1e2",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }

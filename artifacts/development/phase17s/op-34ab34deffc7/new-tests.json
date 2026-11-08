@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_prompt_routing_tests.py"
+  ],
+  "finished_at_utc": "2026-11-08T06:15:26.501915+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T06:14:26.655113+00:00",
+  "stderr_sha256": "567ebfd3d7cb04a50a4a2f5e986c31df13e39893744148c5e4df681368b52f1c",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
