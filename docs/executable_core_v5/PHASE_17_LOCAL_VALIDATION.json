@@ -28,7 +28,8 @@
     "phase17r_operator_capture": "artifacts/development/phase17r/op-0599da3eeb23/operator-validation.json",
     "phase17s_operator_capture": "artifacts/development/phase17s/op-34ab34deffc7/operator-validation.json",
     "phase17t_operator_capture": "artifacts/development/phase17t/op-78919ccb87a0/operator-validation.json",
-    "phase17u_operator_capture": "artifacts/development/phase17u/op-289503c33da4/operator-validation.json"
+    "phase17u_operator_capture": "artifacts/development/phase17u/op-289503c33da4/operator-validation.json",
+    "phase17v_operator_capture": "artifacts/development/phase17v/op-40e2a0fa5d4e/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -88,6 +89,8 @@
     "precharged_bounded_work_ledger": true,
     "process_and_protocol_separation": true,
     "producer_scores_from_bytes_binding": true,
+    "program_metadata_from_json_binding": true,
+    "program_registry_projection_refinement": true,
     "prospective_candidate_package_from_anchored_transcript": true,
     "prospective_successor_premise_packet": true,
     "protected_execution_from_json_binding": true,
@@ -122,7 +125,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17u_planner_byte_refinement",
+  "stage": "phase17v_program_metadata_projection",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -399,6 +402,17 @@
     "phase17u_producer_scores_from_bytes_checked": true,
     "phase17u_same_run_dependency_compilations": 4,
     "phase17u_tested_code_commit": "289503c33da45ef33ad134b68b7bdd20122d1720",
+    "phase17v_complete_root_acceptance": false,
+    "phase17v_fresh_challenges": 0,
+    "phase17v_fresh_worker_sessions": 0,
+    "phase17v_local": "installed registry and program metadata projection checked with pinned Lean; full physical/root transition remains open",
+    "phase17v_named_theorem_audits": 15,
+    "phase17v_new_tests": 123,
+    "phase17v_old_proof_campaigns_rerun": false,
+    "phase17v_program_metadata_from_json_checked": true,
+    "phase17v_program_registry_projection_checked": true,
+    "phase17v_same_run_dependency_compilations": 5,
+    "phase17v_tested_code_commit": "40e2a0fa5d4ece9c604d9e49f8cd3c534bd27714",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
