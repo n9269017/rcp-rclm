@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_objective_context_tests.py"
+  ],
+  "finished_at_utc": "2026-11-09T07:13:49.182218+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-09T07:12:03.531359+00:00",
+  "stderr_sha256": "639cb4edab7f2c5b4a227e38baa5112387792111b2ab566461103e39b6172b6c",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
