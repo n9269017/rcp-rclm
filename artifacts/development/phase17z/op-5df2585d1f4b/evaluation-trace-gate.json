@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_evaluation_trace_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\z-e2212123\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-10T06:29:06.496431+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-10T05:41:27.375268+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "c5f8304c04a346a5bcf9a94605ffc9012f3f2eed8e24473e70494b905c4324ed"
+}

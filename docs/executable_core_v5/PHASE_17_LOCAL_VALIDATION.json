@@ -32,7 +32,8 @@
     "phase17v_operator_capture": "artifacts/development/phase17v/op-40e2a0fa5d4e/operator-validation.json",
     "phase17w_operator_capture": "artifacts/development/phase17w/op-a6603870a4f3/operator-validation.json",
     "phase17x_operator_capture": "artifacts/development/phase17x/op-7a7b55bcd9a4/operator-validation.json",
-    "phase17y_operator_capture": "artifacts/development/phase17y/op-d3ff154c0d0d/operator-validation.json"
+    "phase17y_operator_capture": "artifacts/development/phase17y/op-d3ff154c0d0d/operator-validation.json",
+    "phase17z_operator_capture": "artifacts/development/phase17z/op-5df2585d1f4b/operator-validation.json"
   },
   "gate_e_closed": false,
   "github_actions": {
@@ -95,6 +96,7 @@
     "producer_digest_preimage_binding": true,
     "producer_hash_preimage_binding": true,
     "producer_scores_from_bytes_binding": true,
+    "producer_verdict_prefix": true,
     "program_metadata_from_json_binding": true,
     "program_registry_projection_refinement": true,
     "prospective_candidate_package_from_anchored_transcript": true,
@@ -117,6 +119,7 @@
     "seeded_grammar_parameter_refinement": true,
     "selected_21_capability_reexecution": true,
     "selected_eight_transition_lineage_reconstructed": true,
+    "selected_evaluator_outputs_from_opening": true,
     "selected_finite_kernel_certificate": true,
     "selected_objective_policy_from_context": true,
     "selected_producer_sha256_evaluation": true,
@@ -134,7 +137,7 @@
   "phase17_exit_closed": false,
   "previous_manifest_commit": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
   "schema": "rcp-rclm.phase17.validation-status.v2",
-  "stage": "phase17y_objective_context_refinement",
+  "stage": "phase17z_evaluation_trace_refinement",
   "status": "development_only",
   "unimplemented": [
     "fresh_bootstrap_root_recertification",
@@ -459,6 +462,19 @@
     "phase17y_same_run_dependency_compilations": 8,
     "phase17y_same_run_total_compilations": 10,
     "phase17y_tested_code_commit": "d3ff154c0d0d0084047295f65c0593406e937a86",
+    "phase17z_complete_root_acceptance": false,
+    "phase17z_evaluator_outputs_from_opening_checked": true,
+    "phase17z_fresh_challenges": 0,
+    "phase17z_fresh_worker_sessions": 0,
+    "phase17z_local": "selected evaluator outputs and producer verdict prefix checked with pinned Lean; full physical/root transition remains open",
+    "phase17z_named_theorem_audits": 19,
+    "phase17z_new_tests": 128,
+    "phase17z_old_proof_campaigns_rerun": false,
+    "phase17z_producer_verdict_prefix_checked": true,
+    "phase17z_same_run_auxiliary_compilations": 2,
+    "phase17z_same_run_dependency_compilations": 9,
+    "phase17z_same_run_total_compilations": 11,
+    "phase17z_tested_code_commit": "5df2585d1f4b79ea30acd23da62462650e7ff523",
     "pinned_lean": "actual_13_capability_obligations_passed; root_transition_not_verified",
     "prior_phase17b_windows_capture": "failed_1_of_67_preserved_not_relabelled"
   }
