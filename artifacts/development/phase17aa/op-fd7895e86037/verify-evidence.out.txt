@@ -1,0 +1,1 @@
+PASS: complete selected resource-journal replay, work bindings and retained Q/R/S/T/U/V/W/X/Y/Z/AA proof inputs reconstructed; no workers, challenges, or compiler runs
