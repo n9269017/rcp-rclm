@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_continuation_tests.py"
+  ],
+  "finished_at_utc": "2026-11-13T21:15:02.573953+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-13T21:13:31.433706+00:00",
+  "stderr_sha256": "8e51e014837bf173d2c53973e0994137ffd8895ed1a4cc396e617786c736480a",
+  "stdout_sha256": "5d99f9dc4fbeb5ccd3b7c8863046fe9e354e271c294ef5c440cf3566ca3d3bba"
+}

@@ -1,0 +1,1 @@
+PASS: AC controlled packet, generated proofs, compiled artifacts, exact stage lineage, named audits and nine intended rejections reconstructed; no compiler or worker runs
