@@ -1,0 +1,1 @@
+PASS: complete selected resource-event/work SHA-256 inputs and retained Q/R/S/T/U/V/W/X/Y/Z/AA/AB proof sources reconstructed; no workers, challenges, or compiler runs
