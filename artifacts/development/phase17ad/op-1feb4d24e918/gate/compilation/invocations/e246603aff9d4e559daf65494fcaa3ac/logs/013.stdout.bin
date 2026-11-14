@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ad-e0b7b79f\e\gate\compilation\invocations\3e11df2460a24812a228aa7d1bae59ff\workspace/StaleHistory.lean:40:2: error: Tactic `decide` proved that the proposition
+  False
+is false
