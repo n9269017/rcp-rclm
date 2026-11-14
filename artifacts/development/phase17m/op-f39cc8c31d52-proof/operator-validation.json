@@ -1,0 +1,162 @@
+{
+  "acceptance_functions_changed": false,
+  "automatic_retries": 0,
+  "candidate_facts_changed": false,
+  "candidate_package_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_protected_semantics_tests.py"
+      ],
+      "finished_at_utc": "2026-11-07T07:58:20.876690+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-07T07:57:17.727282+00:00",
+      "stderr_sha256": "8cac7f19e348084f608c890dc1609126cd5c8529c54a898176f310d5385fb802",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_protected_semantics_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\mp-f9a7d77d\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-07T08:01:35.409921+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-07T07:58:20.877532+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "41647364181b5fda887de6f7e28a1b9488488b7fd1eb7fdf0c70531206779ed1"
+    }
+  ],
+  "complete_learned_kernel_constructed": false,
+  "complete_resource_accounting": false,
+  "conditional_rows_per_package": 260,
+  "continuation_sha256": "2a5c1039b76242da3214627f4bb18c07f436b7a1070213b8398041486a90a9bf",
+  "correction_scope": [
+    "goal self proof",
+    "explicit existing attach result type",
+    "selected namespace scope",
+    "finished information-bound proof",
+    "template digest binding"
+  ],
+  "cross_platform_validation": false,
+  "egc0_started": false,
+  "full_frontier_recertified": false,
+  "full_goal_interpretation_supplied": false,
+  "full_information_interpretation_supplied": false,
+  "full_learned_semantic_refinement": false,
+  "full_learned_step_instantiated": false,
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "gate_e_closed": false,
+  "gate_execution_sha256": "58991d82335214500d9c8b2d721d90444b1b9812f90edbbffae7b6cea899a922",
+  "github_hosted_ci_passed": false,
+  "historical_success_reports_reassigned": false,
+  "immutable_root_changed": false,
+  "joint_packet_sha256": "035c570a3e4b7f1ed2fd43085d9cd6357b2596a169eebcd621c0ff5d0fe274ac",
+  "joint_regression_source": "f29b22e448f5ebf74304762e9fa385be657ff024",
+  "joint_regressions_retained_not_rerun": 66,
+  "live_capability_gain_demonstrated": false,
+  "live_challenge_generated": false,
+  "network_setup_requested": false,
+  "neural_decoder_formally_verified": false,
+  "new_named_audits": 14,
+  "new_proofs_kernel_executed": true,
+  "new_renderer_regressions": 8,
+  "new_tests": 91,
+  "ordered_transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f",
+  "packet_sha256": "a720bdaeac1b316d6e50b9a640cddfad52baff44c09a44a4fdeda2b977e4da67",
+  "phase17_exit_closed": false,
+  "physical_projection_formally_verified": false,
+  "previous_failed_source_preserved": "f29b22e448f5ebf74304762e9fa385be657ff024",
+  "prior_failure": {
+    "compiler_stdout_sha256": "a8ba937c08a1afbec86ea906fa4e824370418d3a83414fb090f415aec5ca5f4f",
+    "failed_gate_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_protected_semantics_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\m-f4a45a18\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-07T07:26:36.120507+00:00",
+      "problem": null,
+      "returncode": 2,
+      "started_at_utc": "2026-11-07T07:15:57.350189+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "41a749218de49b884a5fe62327b1571667c03d981bf14a706f9747696a6515bb"
+    },
+    "failure": {
+      "reason": "protected semantics certificate rejected",
+      "type": "ControlError"
+    },
+    "joint_regressions_retained_not_rerun": 66,
+    "new_tests_previously_passed": 83,
+    "old_failure_relabelled_as_success": false,
+    "prior_execution_sha256": "f5da30c85eb6de5defdc8f8e77915cb3a140d1f7e36171b647aa610269f924f9",
+    "prior_test_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_protected_semantics_tests.py"
+      ],
+      "finished_at_utc": "2026-11-07T07:15:31.305625+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-07T07:14:29.056556+00:00",
+      "stderr_sha256": "ee392331c567cd83e48473018a668211b42b0cf00040a71df536a6abe93d95f8",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "regression_source": "f29b22e448f5ebf74304762e9fa385be657ff024",
+    "retained_regression_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_joint_tests.py"
+      ],
+      "finished_at_utc": "2026-11-07T07:15:57.348670+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-07T07:15:31.306695+00:00",
+      "stderr_sha256": "19ec417c609becb74f887958f4513583ff5076db6879cd9483d4c8cb432d7a7b",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source_commit": "f29b22e448f5ebf74304762e9fa385be657ff024",
+    "source_tree": "fb0830d293603d07be695e0822148a3983b7b15c"
+  },
+  "prior_history_bytes_rewritten": false,
+  "prior_joint_proofs_rerun": false,
+  "production_row_comparisons": 520,
+  "promotion_authorized": false,
+  "promotion_performed": false,
+  "protected_task_count": 11,
+  "recursive_productivity_recertified": false,
+  "remaining_witness_classes": [
+    "concrete_compatible_base_RCP_RCLM_obligations",
+    "physical_observation_refinement_to_composed_kernel",
+    "goal_and_information_semantics_beyond_protected_sparse_profile",
+    "complete_resource_measurement_budget_and_enforcement",
+    "autonomous_recursive_productivity_and_history_obligations",
+    "durable_fresh_challenge_consumption",
+    "active_atomic_promotion_and_rollback"
+  ],
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17m.proof-recovery.v1",
+  "selected_goal_drift": 0,
+  "semantic_definitions_changed": false,
+  "source_commit": "f39cc8c31d52030c3b07c28a024b38ab12090362",
+  "source_tree": "019ea1b177ea365c2f8d18d2c9e15404b755e1ca",
+  "synthetic_fixture": true,
+  "task_contract_sha256": "af34fb682a920122318f001bf2b76e826244f38202d0377f99f65515e4a14e28",
+  "teacher_forced_position_count": 28,
+  "theorem_headers_changed": false,
+  "training_performed": false,
+  "unique_conditional_rows": 37
+}

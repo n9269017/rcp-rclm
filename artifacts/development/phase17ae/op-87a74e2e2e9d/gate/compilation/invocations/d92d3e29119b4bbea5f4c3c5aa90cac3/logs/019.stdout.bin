@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ae-0f75e579\e\gate\compilation\invocations\d92d3e29119b4bbea5f4c3c5aa90cac3\workspace/MissingRegistryWitness.lean:32:2: error: Tactic `decide` proved that the proposition
+  False
+is false

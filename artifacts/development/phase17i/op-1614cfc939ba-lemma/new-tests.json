@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_learned_binding_tests.py"
+  ],
+  "finished_at_utc": "2026-11-01T18:52:53.195170+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-01T18:52:31.814134+00:00",
+  "stderr_sha256": "b0657d6d6406354d5ad9c3694607e77ad7ce99e3bade5aad4cd1ab24cbf7db2c",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

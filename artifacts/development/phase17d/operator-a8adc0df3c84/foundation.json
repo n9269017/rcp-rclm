@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_tests.py"
+  ],
+  "finished_at_utc": "2026-10-31T23:52:20.644917+00:00",
+  "returncode": 0,
+  "started_at_utc": "2026-10-31T23:52:11.274076+00:00",
+  "stderr_sha256": "17f3f90007df8061b8f020b30bb004acef665b09c544a265eae64d40a7e7c287",
+  "stdout_sha256": "c50a39a89ec6d37eecc0d3312f13b0cc0533e96569061ffad37840d30446904e"
+}

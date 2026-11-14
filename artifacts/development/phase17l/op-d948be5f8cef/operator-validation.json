@@ -1,0 +1,116 @@
+{
+  "adapter_regressions": 139,
+  "automatic_retries": 0,
+  "candidate_package_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_joint_tests.py"
+      ],
+      "finished_at_utc": "2026-11-02T01:58:39.162092+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-02T01:58:06.586959+00:00",
+      "stderr_sha256": "f74410bb611ace49b1a070ab7993a9f9c7888330d432712d56ed017c8316e806",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_joint_regressions.py"
+      ],
+      "finished_at_utc": "2026-11-02T01:59:20.305535+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-02T01:58:39.162955+00:00",
+      "stderr_sha256": "2e6e504f2da340cbfb7be421c7a4d3ad7aa877857b09fa171b14c83eaf63a701",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_joint_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\l-167de16f\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-02T02:15:56.917722+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-02T01:59:20.306378+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "11a16f01a43fc1a9c76ba2bc5d1eb4fe32890211b0521b99ee5c6d19eb23c929"
+    }
+  ],
+  "complete_learned_kernel_constructed": false,
+  "complete_resource_accounting": false,
+  "conditional_learned_step_assembler": true,
+  "cross_platform_validation": false,
+  "egc0_started": false,
+  "full_frontier_recertified": false,
+  "full_learned_semantic_refinement": false,
+  "full_learned_step_instantiated": false,
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "gate_e_closed": false,
+  "gate_execution_sha256": "299e36d2a449a5b360aa8942c9936b89a7d5b327760903ad5d423f9b06903dc5",
+  "github_hosted_ci_passed": false,
+  "historical_capability_reports_reassigned": false,
+  "inherited_theorem_propositions_rechecked": 13,
+  "live_capability_gain_demonstrated": false,
+  "network_setup_requested": false,
+  "neural_decoder_formally_verified": false,
+  "new_named_audits": 6,
+  "new_proofs_kernel_executed": true,
+  "new_tests": 66,
+  "ordered_transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f",
+  "phase17_exit_closed": false,
+  "phase17h_plan_proofs_rerun": false,
+  "promotion_authorized": false,
+  "promotion_performed": false,
+  "proposal_count": 9,
+  "rechecked_named_audits": 37,
+  "rechecked_subcertificate_audits": 24,
+  "recursive_productivity_recertified": false,
+  "rejection_count": 8,
+  "remaining_witness_classes": [
+    "concrete_compatible_base_RCP_RCLM_obligations",
+    "physical_observation_refinement_to_composed_kernel",
+    "concrete_goal_drift_and_budget",
+    "complete_resource_measurement_budget_and_enforcement",
+    "full_information_semantics_and_nonregression",
+    "autonomous_recursive_productivity_and_history_obligations",
+    "durable_fresh_challenge_consumption",
+    "active_atomic_promotion_and_rollback"
+  ],
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17l.operator-validation.v1",
+  "selected_after_size": 22,
+  "selected_before_size": 21,
+  "source_commit": "d948be5f8cefe2673f9a7475d58ebb1e9e589b76",
+  "source_tree": "c664a5fb8b1a990b1e3b14604fc9edfb9ac2e2d2",
+  "staging_recovery": {
+    "force_add_events": [
+      {
+        "paths": [
+          "artifacts/development/phase17l/installer-final.out",
+          "artifacts/development/phase17l/joint-regressions-final.out",
+          "artifacts/development/phase17l/runtime-final.out"
+        ],
+        "sha256": {
+          "artifacts/development/phase17l/installer-final.out": "986d2ee02ee6ee2f5c1b1c0e3567ad8ae87733614a95961f03a4713e1d0817b7",
+          "artifacts/development/phase17l/joint-regressions-final.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "artifacts/development/phase17l/runtime-final.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "prior_staging_failed_before_tests": true,
+    "prior_workspace_preserved": true,
+    "retained_record": "prior-staging/recovery.json",
+    "runtime_and_proof_payload_unchanged": true
+  },
+  "synthetic_fixture": true
+}

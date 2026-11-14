@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_protected_semantics_tests.py"
+  ],
+  "finished_at_utc": "2026-11-07T07:58:20.876690+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-07T07:57:17.727282+00:00",
+  "stderr_sha256": "8cac7f19e348084f608c890dc1609126cd5c8529c54a898176f310d5385fb802",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,45 @@
+test_candidate_realization_detaches_input (test_challenge_protocol.ChallengeProtocolTests.test_candidate_realization_detaches_input) ... ok
+test_candidate_success_not_promotion (test_challenge_protocol.ChallengeProtocolTests.test_candidate_success_not_promotion) ... ok
+test_canonical_wire_rejects_duplicates_float_and_padding (test_challenge_protocol.ChallengeProtocolTests.test_canonical_wire_rejects_duplicates_float_and_padding) ... ok
+test_changed_candidate_after_freeze_rejects (test_challenge_protocol.ChallengeProtocolTests.test_changed_candidate_after_freeze_rejects) ... ok
+test_complete_enumeration_is_exactly_32 (test_challenge_protocol.ChallengeProtocolTests.test_complete_enumeration_is_exactly_32) ... ok
+test_evaluation_before_open_rejects (test_challenge_protocol.ChallengeProtocolTests.test_evaluation_before_open_rejects) ... ok
+test_evaluation_requires_candidate_freeze (test_challenge_protocol.ChallengeProtocolTests.test_evaluation_requires_candidate_freeze) ... ok
+test_exact_32_legal_candidates (test_challenge_protocol.ChallengeProtocolTests.test_exact_32_legal_candidates) ... ok
+test_external_stop_and_safety_are_distinct (test_challenge_protocol.ChallengeProtocolTests.test_external_stop_and_safety_are_distinct) ... ok
+test_forged_artifact_freeze_rejects (test_challenge_protocol.ChallengeProtocolTests.test_forged_artifact_freeze_rejects) ... ok
+test_forged_generation_rejects (test_challenge_protocol.ChallengeProtocolTests.test_forged_generation_rejects) ... ok
+test_freeze_boolean_integer_substitution_rejected (test_challenge_protocol.ChallengeProtocolTests.test_freeze_boolean_integer_substitution_rejected) ... ok
+test_freeze_validated_before_entropy (test_challenge_protocol.ChallengeProtocolTests.test_freeze_validated_before_entropy) ... ok
+test_invalid_budgets_rejected (test_challenge_protocol.ChallengeProtocolTests.test_invalid_budgets_rejected) ... ok
+test_live_entropy_is_not_caller_parameter (test_challenge_protocol.ChallengeProtocolTests.test_live_entropy_is_not_caller_parameter) ... ok
+test_no_authority_escalation (test_challenge_protocol.ChallengeProtocolTests.test_no_authority_escalation) ... ok
+test_no_successful_phase_terminal (test_challenge_protocol.ChallengeProtocolTests.test_no_successful_phase_terminal) ... ok
+test_omitted_or_reordered_events_rejected (test_challenge_protocol.ChallengeProtocolTests.test_omitted_or_reordered_events_rejected) ... ok
+test_open_once_and_entropy_once (test_challenge_protocol.ChallengeProtocolTests.test_open_once_and_entropy_once) ... ok
+test_partial_budget_not_complete_exhaustion (test_challenge_protocol.ChallengeProtocolTests.test_partial_budget_not_complete_exhaustion) ... ok
+test_pending_candidate_blocks_second_freeze_and_seal (test_challenge_protocol.ChallengeProtocolTests.test_pending_candidate_blocks_second_freeze_and_seal) ... ok
+test_predecessor_success_prevents_candidate_gain (test_challenge_protocol.ChallengeProtocolTests.test_predecessor_success_prevents_candidate_gain) ... ok
+test_public_messages_withhold_secret_until_seal (test_challenge_protocol.ChallengeProtocolTests.test_public_messages_withhold_secret_until_seal) ... ok
+test_public_response_mutation_does_not_mutate_session (test_challenge_protocol.ChallengeProtocolTests.test_public_response_mutation_does_not_mutate_session) ... ok
+test_rehashed_transcript_boolean_integer_substitution_rejected (test_challenge_protocol.ChallengeProtocolTests.test_rehashed_transcript_boolean_integer_substitution_rejected) ... ok
+test_rejection_feedback_does_not_name_target (test_challenge_protocol.ChallengeProtocolTests.test_rejection_feedback_does_not_name_target) ... ok
+test_repeat_candidate_rejects (test_challenge_protocol.ChallengeProtocolTests.test_repeat_candidate_rejects) ... ok
+test_same_freeze_new_entropy_changes_commitment (test_challenge_protocol.ChallengeProtocolTests.test_same_freeze_new_entropy_changes_commitment) ... ok
+test_sealed_session_cannot_continue (test_challenge_protocol.ChallengeProtocolTests.test_sealed_session_cannot_continue) ... ok
+test_secret_generation_does_not_take_candidate_set (test_challenge_protocol.ChallengeProtocolTests.test_secret_generation_does_not_take_candidate_set) ... ok
+test_semantics_match_explicit_examples (test_challenge_protocol.ChallengeProtocolTests.test_semantics_match_explicit_examples) ... ok
+test_stale_candidate_receipt_rejects (test_challenge_protocol.ChallengeProtocolTests.test_stale_candidate_receipt_rejects) ... ok
+test_terminal_cause_cannot_be_rewritten (test_challenge_protocol.ChallengeProtocolTests.test_terminal_cause_cannot_be_rewritten) ... ok
+test_transcript_recomputed_not_just_rehashed (test_challenge_protocol.ChallengeProtocolTests.test_transcript_recomputed_not_just_rehashed) ... ok
+test_transcript_requires_external_anchor (test_challenge_protocol.ChallengeProtocolTests.test_transcript_requires_external_anchor) ... ok
+test_unknown_operation_and_extra_fields_rejected (test_challenge_protocol.ChallengeProtocolTests.test_unknown_operation_and_extra_fields_rejected) ... ok
+test_unknown_program_rejects (test_challenge_protocol.ChallengeProtocolTests.test_unknown_program_rejects) ... ok
+test_unsealed_transcript_rejected (test_challenge_protocol.ChallengeProtocolTests.test_unsealed_transcript_rejected) ... ok
+test_wrong_parent_artifact_rejects (test_challenge_protocol.ChallengeProtocolTests.test_wrong_parent_artifact_rejects) ... ok
+test_zero_budget_is_resource_not_search_exhaustion (test_challenge_protocol.ChallengeProtocolTests.test_zero_budget_is_resource_not_search_exhaustion) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 3.108s
+
+OK

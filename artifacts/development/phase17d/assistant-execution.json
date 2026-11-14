@@ -1,0 +1,32 @@
+{
+  "base_parameter_count": 13625920,
+  "candidate_evaluation": null,
+  "capability_tasks_evaluated": 21,
+  "egc0_started": false,
+  "full_frontier_recertified": false,
+  "full_transformer_inference": false,
+  "gate_e_closed": false,
+  "lean_gate": {
+    "capability_frontier_recertified": false,
+    "fresh_lean_verified": false,
+    "gate_e_closed": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "root_transition_verified": false,
+    "status": "not_requested",
+    "toolchain": "leanprover/lean4:v4.31.0"
+  },
+  "lean_obligations_prepared": 13,
+  "os": "Linux",
+  "package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "phase17_exit_closed": false,
+  "promotion_performed": false,
+  "python_frontier_evaluation_passed": true,
+  "python_version": "3.13.5",
+  "recursive_productivity_recertified": false,
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17d.package-gate-run.v1",
+  "source_commit": "9ca64f7fba1b1ad3edcc935d2af4bed8c4b1efb4",
+  "source_tree": "dc250704b3e6171eec28466b96186e1812de2d49",
+  "source_unchanged": true
+}

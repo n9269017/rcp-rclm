@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_continuation_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ac-8c929440\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-13T21:44:22.629489+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-13T21:15:14.328911+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "c373e30c357647faa666726372dba634d6efb0d7f31558447e247e390cabae4a"
+}

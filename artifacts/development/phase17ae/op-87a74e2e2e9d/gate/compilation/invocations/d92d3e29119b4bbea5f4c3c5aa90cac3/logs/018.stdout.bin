@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ae-0f75e579\e\gate\compilation\invocations\afc0ad6c48974049aea70bfdaf1d3250\workspace/WrongFamily.lean:32:2: error: Tactic `decide` proved that the proposition
+  False
+is false

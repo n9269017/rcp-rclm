@@ -1,0 +1,36 @@
+{
+  "configuration_basis": "retained operator/firmware report; not a new firmware measurement",
+  "configuration_record_sha256": "e1ae780eea4b7c27a690862c192f67108405734e3fb99686a0790ada3aaf6426",
+  "expected_tests": 18,
+  "original_checkout_before": {
+    "branch": "agent/rcp-rclm-v5-phase-17-controller",
+    "head": "bb1f8669311c099938cc299c2b4fd9f5f77be9e3",
+    "root_manifest_sha256": "edb381e1e584b1079c7fbe3af0c2bbac681c6ce5511de5e9f0c073931c125c15",
+    "status": "",
+    "tree": "074b4ff7f3c0148e8f6c9e2c6ceced03394a61ff"
+  },
+  "os": "Windows",
+  "os_release": "11",
+  "post_change_bootstrap_report_sha256": "7197d203c8357a88d5b9da97110ae5e96d5e84f5c4cf8efd190edba41e6dfeae",
+  "preflight_helper_sha256": "d1df4669b198923e761956af12ff8e93dd92161c1a3ab08a7f66c52ce0295ae0",
+  "production_instrumentation": false,
+  "python_executable": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "python_version": "3.13.3",
+  "recorder_sha256": "bc2d33f64bbb0813868c3a9efb4fa5f06cd2083f09b056a9f82c3c07281dd8a5",
+  "retries": 0,
+  "source_commit": "2d2695674a417cea04947400fa617ac6b34b9d5b",
+  "source_tree": "c0524e7f591044e3fd7329172e907251ae29e940",
+  "suite_runs_planned": 1,
+  "test_checkout_before": {
+    "branch": "",
+    "head": "2d2695674a417cea04947400fa617ac6b34b9d5b",
+    "root_manifest_sha256": "09cd62ce06b3e173986ddae2b0ad8154c1f42af66fd61f06921b79dfe6207892",
+    "status": "",
+    "tree": "c0524e7f591044e3fd7329172e907251ae29e940"
+  },
+  "test_command": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_challenge_tests.py"
+  ],
+  "test_runner_sha256": "539812be1c4851576354f718782b32b4bffbdc7fe0cf2aa5134c78ab220c0ceb"
+}

@@ -1,0 +1,29 @@
+test_caller_path_not_forwarded_wholesale (test_lean_gate_environment.EnvironmentTests.test_caller_path_not_forwarded_wholesale) ... ok
+test_disappeared_git_is_error (test_lean_gate_environment.EnvironmentTests.test_disappeared_git_is_error) ... ok
+test_environment_is_not_mutated (test_lean_gate_environment.EnvironmentTests.test_environment_is_not_mutated) ... ok
+test_git_directory_retained (test_lean_gate_environment.EnvironmentTests.test_git_directory_retained) ... ok
+test_missing_child_git_reproduced_and_corrected (test_lean_gate_environment.EnvironmentTests.test_missing_child_git_reproduced_and_corrected) ... ok
+test_missing_git_is_error (test_lean_gate_environment.EnvironmentTests.test_missing_git_is_error) ... ok
+test_pinned_toolchain_and_noninteractive_git (test_lean_gate_environment.EnvironmentTests.test_pinned_toolchain_and_noninteractive_git) ... ok
+test_real_child_can_launch_git_with_restricted_environment (test_lean_gate_environment.EnvironmentTests.test_real_child_can_launch_git_with_restricted_environment) ... ok
+test_relative_default_path_entries_excluded (test_lean_gate_environment.EnvironmentTests.test_relative_default_path_entries_excluded) ... ok
+test_relative_git_is_error (test_lean_gate_environment.EnvironmentTests.test_relative_git_is_error) ... ok
+test_relative_systemroot_rejected (test_lean_gate_environment.EnvironmentTests.test_relative_systemroot_rejected) ... ok
+test_secrets_and_injection_settings_not_forwarded (test_lean_gate_environment.EnvironmentTests.test_secrets_and_injection_settings_not_forwarded) ... ok
+test_toolchain_is_first (test_lean_gate_environment.EnvironmentTests.test_toolchain_is_first) ... ok
+test_windows_systemroot_retained_without_full_path (test_lean_gate_environment.EnvironmentTests.test_windows_systemroot_retained_without_full_path) ... ok
+test_wrong_resolution_rejected (test_lean_gate_environment.EnvironmentTests.test_wrong_resolution_rejected) ... ok
+test_changed_tool_still_rejects (test_lean_gate_environment.GateControlTests.test_changed_tool_still_rejects) ... ok
+test_git_visible_in_all_tool_invocations (test_lean_gate_environment.GateControlTests.test_git_visible_in_all_tool_invocations) ... ok
+test_missing_git_never_reaches_proof_process (test_lean_gate_environment.GateControlTests.test_missing_git_never_reaches_proof_process) ... ok
+test_mock_success_all_13_no_promotion (test_lean_gate_environment.GateControlTests.test_mock_success_all_13_no_promotion) ... ok
+test_omitted_obligation_still_rejected (test_lean_gate_environment.GateControlTests.test_omitted_obligation_still_rejected) ... ok
+test_proof_rejection_still_rejects (test_lean_gate_environment.GateControlTests.test_proof_rejection_still_rejects) ... ok
+test_stderr_still_rejects (test_lean_gate_environment.GateControlTests.test_stderr_still_rejects) ... ok
+test_unapproved_axiom_still_rejects (test_lean_gate_environment.GateControlTests.test_unapproved_axiom_still_rejects) ... ok
+test_wrong_theorem_still_rejects (test_lean_gate_environment.GateControlTests.test_wrong_theorem_still_rejects) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.379s
+
+OK

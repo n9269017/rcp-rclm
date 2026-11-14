@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_task_interpretation_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ae-0f75e579\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-14T06:44:08.336832+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-14T05:52:55.240922+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "75611a9ec97ae528730ff71a5b78ee0f179d8033b7efa6d86c89637deedbe2f8"
+}

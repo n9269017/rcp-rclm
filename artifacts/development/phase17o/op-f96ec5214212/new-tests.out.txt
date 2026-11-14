@@ -1,0 +1,1 @@
+Phase17O scoped tests only. No promotion, full root acceptance, Phase17 closure or EGC-0.

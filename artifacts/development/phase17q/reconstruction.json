@@ -1,0 +1,41 @@
+{
+  "baseline_commit": "85ea17f46ff594b9a4a67ab51678b5656461f6b2",
+  "branch": "agent/rcp-rclm-v5-phase-17-controller",
+  "classification": "new reconstruction from exact completed P source/evidence; not original recovery",
+  "main_observed": "358ff0efdc6bba6bdd1c8c30dc12c3695e3cf53f",
+  "original_missing_files": [
+    "rcp-rclm-phase17q-retained-development-snapshot.zip",
+    "rcp-rclm-phase17q-retained-development-snapshot.zip.sha256",
+    "phase17q-resumption-inventory.json"
+  ],
+  "original_q_bytes_recovered": false,
+  "original_q_hashes_available": false,
+  "phase17p_gate_execution": {
+    "campaign_rerun": false,
+    "path": "artifacts/development/phase17p/op-fb904e168e85/gate/execution.json",
+    "sha256": "7230e2565d1380702e2573552224affa02d1396950fc631b86e32234872ec400"
+  },
+  "phase17p_original_kit": {
+    "bytes": 200847,
+    "filename": "rcp-rclm-phase17p-kit.zip",
+    "independent_saved_copies_agreed": true,
+    "kit_checksum_entries_verified": 55,
+    "nested_evidence_entries_verified": 39,
+    "payload_files_verified": 48,
+    "sha256": "dbf3ae5fe8bfafc05d064c06ccf3ffa8c1209a3d56dd04818826ee677ffbebf6"
+  },
+  "recovery_checks": {
+    "dropbox": "Q search empty; complete 31-entry delivery folder contained M/N/O/P artifacts only",
+    "github": "complete controller tree contained no Q path; no Q commit found; PR68 draft and unmerged",
+    "saved_files": "exact Q filenames and Q source-patch/content searches empty; complete 36-entry recent inventory contained P and current screenshots",
+    "workspace": "no prior Q source or archive found"
+  },
+  "required_claim_boundary": {
+    "phase17_exit_closed": false,
+    "physical_refinement_claimed": false,
+    "pr68_draft": true,
+    "promotion_authorized": false
+  },
+  "schema": "rcp-rclm.phase17q.reconstruction-provenance.v1",
+  "search_limit": "No recoverable copy in accessible sources; inaccessible earlier session storage is not ruled out."
+}

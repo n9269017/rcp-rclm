@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "git",
+    "-c",
+    "core.longpaths=true",
+    "clone",
+    "--no-hardlinks",
+    "--no-checkout",
+    "--local",
+    "C:\\Users\\Nicolas.n926\\.r17\\m-f4a45a18\\c",
+    "C:\\Users\\Nicolas.n926\\.r17\\mp-f9a7d77d\\c"
+  ],
+  "finished_at_utc": "2026-11-07T07:53:27.325751+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-07T07:53:26.129848+00:00",
+  "stderr_sha256": "ac4b398992f60e6f834fec6599403f4f6c05b1e3f041e20e2e388d08d7df0bac",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

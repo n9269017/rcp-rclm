@@ -1,0 +1,1458 @@
+{
+  "auxiliary_modules": {
+    "Phase17XSha256Blocks": {
+      "artifacts_sha256": {
+        "Phase17XSha256Blocks.olean": "abdbe390544af514349f5b0521855146322f7e210f89bc43da96ece0dc9d322f"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17XSha256Blocks",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XSha256Blocks.olean",
+      "source_sha256": "38887a604212c7c54adb762fd9bab8c4572f347277e34f6de59888fd11ad10af"
+    },
+    "Phase17YSha256Blocks": {
+      "artifacts_sha256": {
+        "Phase17YSha256Blocks.olean": "d16c95567110b1f0bd986a394e512813f69cba100b1f1f84597399f23d0ee90b"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17YSha256Blocks",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YSha256Blocks.olean",
+      "source_sha256": "1ae7a4a8f7005503f21a36e1bc7cc734e44167b57c8afee5024aa219446bdf3b"
+    }
+  },
+  "byte_capture_remains_external": true,
+  "challenge_freshness_remains_external": true,
+  "challenge_secrecy_remains_external": true,
+  "claims": {
+    "active_store_written": false,
+    "campaign_budget_authority_integrated": false,
+    "complete_learned_kernel_constructed": false,
+    "complete_resource_accounting": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "full_autonomous_step_instantiated": false,
+    "full_frontier_recertified": false,
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "physical_execution_attested": false,
+    "physical_projection_formally_verified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 1898479100,
+      "environment_sha256": "28d47cd0654fe08c4f6d9ac61c6bb5a045bb2c53e98f5dc0a52f07cd777e98f9",
+      "returncode": 0,
+      "started_at_utc": "2026-11-10T18:18:28.755580+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+      "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import json,os,sys\npayload={\"schema\":\"rcp-rclm.phase17aa.lake-child-environment.v1\",\"environment\":dict(os.environ),\"executable\":sys.executable,\"platform\":os.name,\"cwd\":os.getcwd()}\nsys.stdout.buffer.write((json.dumps(payload,ensure_ascii=True,sort_keys=True,separators=(\",\",\":\"))+\"\\n\").encode(\"ascii\"))\n"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 34986285100,
+      "environment_sha256": "28d47cd0654fe08c4f6d9ac61c6bb5a045bb2c53e98f5dc0a52f07cd777e98f9",
+      "label": "lake_environment",
+      "probe_executable_sha256": "d87063e5597f257004c731b66c59c56c91038861c6877b1a3dca6b8c4e919125",
+      "returncode": 0,
+      "source_sha256": "e43d3188b1e213fe1c19097583a65a857a8c387a2f13fa90c890bc7c395846f5",
+      "started_at_utc": "2026-11-10T18:18:30.654612+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"cwd\":\"C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\",\"environment\":{\"ELAN_TOOLCHAIN\":\"leanprover/lean4:v4.31.0\",\"GIT_CONFIG_GLOBAL\":\"nul\",\"GIT_CONFIG_NOSYSTEM\":\"1\",\"GIT_TERMINAL_PROMPT\":\"0\",\"LAKE\":\"c:\\\\Users\\\\Nicolas.n926\\\\.elan\\\\toolchains\\\\leanprover--lean4---v4.31.0\\\\bin\\\\lake.exe\",\"LAKE_ARTIFACT_CACHE\":\"false\",\"LAKE_CACHE_DIR\":\"C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\cache\",\"LAKE_CONFIG\":\"\",\"LAKE_HOME\":\"c:\\\\Users\\\\Nicolas.n926\\\\.elan\\\\toolchains\\\\leanprover--lean4---v4.31.0\",\"LAKE_NO_CACHE\":\"true\",\"LAKE_PKG_URL_MAP\":\"{}\",\"LAKE_RESTORE_ARTIFACTS\":\"\",\"LEAN\":\"c:\\\\Users\\\\Nicolas.n926\\\\.elan\\\\toolchains\\\\leanprover--lean4---v4.31.0\\\\bin\\\\lean.exe\",\"LEAN_AR\":\"c:\\\\Users\\\\Nicolas.n926\\\\.elan\\\\toolchains\\\\leanprover--lean4---v4.31.0\\\\bin\\\\llvm-ar.exe\",\"LEAN_GITHASH\":\"68218e876d2a38b1985b8590fff244a83c321783\",\"LEAN_PATH\":\"C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Cli\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\batteries\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Qq\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\aesop\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\proofwidgets\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\importGraph\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\LeanSearchClient\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\plausible\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\mathlib\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v2\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v3\\\\.lake\\\\build\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\build\\\\lib\\\\lean;c:\\\\Users\\\\Nicolas.n926\\\\.elan\\\\toolchains\\\\leanprover--lean4---v4.31.0\\\\lib\\\\lean;C:\\\\Users\\\\Nicolas.n926\\\\AppData\\\\Local\\\\Temp\\\\r17aa-nqyb25q_\",\"LEAN_SRC_PATH\":\"C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Cli;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Cli;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\batteries;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\batteries;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\batteries;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Qq;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Qq;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\aesop;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\aesop;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\proofwidgets;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\proofwidgets;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\proofwidgets;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\importGraph;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\importGraph;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\LeanSearchClient;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\LeanSearchClient;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\plausible;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\plausible;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\mathlib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\mathlib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\mathlib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\mathlib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\mathlib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\mathlib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v2;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v3;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4;c:\\\\Users\\\\Nicolas.n926\\\\.elan\\\\toolchains\\\\leanprover--lean4---v4.31.0\\\\src\\\\lean\\\\lake\",\"LEAN_SYSROOT\":\"c:\\\\Users\\\\Nicolas.n926\\\\.elan\\\\toolchains\\\\leanprover--lean4---v4.31.0\",\"NODEFAULTCURRENTDIRECTORYINEXEPATH\":\"1\",\"PATH\":\"C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Cli\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\batteries\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Qq\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\aesop\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\proofwidgets\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\importGraph\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\LeanSearchClient\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\plausible\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\mathlib\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v2\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v3\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\build\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v3\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v2\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\mathlib\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\plausible\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\LeanSearchClient\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\importGraph\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\proofwidgets\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\aesop\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Qq\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\batteries\\\\.lake\\\\build\\\\lib;C:\\\\Users\\\\Nicolas.n926\\\\.rcp-rclm-tools\\\\lean431\\\\formal-root\\\\lean\\\\rcp_rclm_formal_core_v4\\\\.lake\\\\packages\\\\Cli\\\\.lake\\\\build\\\\lib;c:\\\\Users\\\\Nicolas.n926\\\\.elan\\\\toolchains\\\\leanprover--lean4---v4.31.0\\\\bin;C:\\\\Users\\\\Nicolas.n926\\\\.elan\\\\toolchains\\\\leanprover--lean4---v4.31.0\\\\bin;C:\\\\Program Files\\\\Git\\\\cmd;C:\\\\WINDOWS\\\\System32;C:\\\\WINDOWS;C:\\\\bin\",\"SYSTEMDRIVE\":\"C:\",\"SYSTEMROOT\":\"C:\\\\WINDOWS\",\"TEMP\":\"C:\\\\Users\\\\NICOLA~1.N92\\\\AppData\\\\Local\\\\Temp\",\"TMP\":\"C:\\\\Users\\\\NICOLA~1.N92\\\\AppData\\\\Local\\\\Temp\",\"USERPROFILE\":\"C:\\\\Users\\\\Nicolas.n926\",\"WINDIR\":\"C:\\\\WINDOWS\"},\"executable\":\"C:\\\\Users\\\\Nicolas.n926\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe\",\"platform\":\"nt\",\"schema\":\"rcp-rclm.phase17aa.lake-child-environment.v1\"}\n",
+      "stdout_sha256": "48789d655338995e603e8a2064abbfd3f3be960e637f3bf246212730174336e7"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17QDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17QDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 405455912400,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17QDependency",
+      "output_artifacts_sha256": {
+        "Phase17QDependency.olean": "b999a43141f50b312943117e14ce852532238e3b567487403346e833e6978fff"
+      },
+      "returncode": 0,
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+      "started_at_utc": "2026-11-10T18:19:05.642380+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17RDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17RDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 123818189000,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17RDependency",
+      "output_artifacts_sha256": {
+        "Phase17RDependency.olean": "640f8c1b66693184b858de520ceb9af2cbc329a7190e430fe509f3a2e203335f"
+      },
+      "returncode": 0,
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+      "started_at_utc": "2026-11-10T18:25:51.758245+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17SDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17SDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 585162030700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17SDependency",
+      "output_artifacts_sha256": {
+        "Phase17SDependency.olean": "076ef38811d5487b6faf8558dd5e1488be5f86245780689ee6289ccf639fcba9"
+      },
+      "returncode": 0,
+      "source_sha256": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e",
+      "started_at_utc": "2026-11-10T18:27:56.783465+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17TDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17TDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 100331951700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17TDependency",
+      "output_artifacts_sha256": {
+        "Phase17TDependency.olean": "ac0fde14b5ba4e348f92ae620cd09fddbab04e4d33415d7e4f91fe893042bb4c"
+      },
+      "returncode": 0,
+      "source_sha256": "b6f64b0c9db47421756cf298163f7a849e214273b436c27d29bceffd470d911e",
+      "started_at_utc": "2026-11-10T18:37:41.981074+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17UDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17UDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 101754554700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17UDependency",
+      "output_artifacts_sha256": {
+        "Phase17UDependency.olean": "9e512e9919b2c58eb7a78f0fc0146bd848226eae88482cf31256ff19c507a7a7"
+      },
+      "returncode": 0,
+      "source_sha256": "b5c9945529e14c1e99ffd0a1b54390dbe2aedd8a8840bfc82ed2d912d8c9792a",
+      "started_at_utc": "2026-11-10T18:39:22.351832+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17VDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17VDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 164630873700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17VDependency",
+      "output_artifacts_sha256": {
+        "Phase17VDependency.olean": "087aa4dfa97757518396de45dbd096a4431e512217dccb5e169523006d4092a2"
+      },
+      "returncode": 0,
+      "source_sha256": "6aed183ca711a186616f7ccf01f1137a824baf3459ab5110c294298e9541025d",
+      "started_at_utc": "2026-11-10T18:41:04.142725+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17WDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17WDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 318682265500,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17WDependency",
+      "output_artifacts_sha256": {
+        "Phase17WDependency.olean": "0c9d88fa99b6c6b57af2d0acdd6567b1e3f63e60c6dbe413642011f0e486af60"
+      },
+      "returncode": 0,
+      "source_sha256": "06ab5724a526362062455404a3aad165bfa6eb9f5557c05f24b11d788c75b549",
+      "started_at_utc": "2026-11-10T18:43:48.813717+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XSha256Blocks.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XSha256Blocks.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 364060553100,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17XSha256Blocks",
+      "output_artifacts_sha256": {
+        "Phase17XSha256Blocks.olean": "abdbe390544af514349f5b0521855146322f7e210f89bc43da96ece0dc9d322f"
+      },
+      "returncode": 0,
+      "source_sha256": "38887a604212c7c54adb762fd9bab8c4572f347277e34f6de59888fd11ad10af",
+      "started_at_utc": "2026-11-10T18:49:07.544651+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 125071767600,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17XDependency",
+      "output_artifacts_sha256": {
+        "Phase17XDependency.olean": "efbafe18479582d9a73ef7b0f0f6072c52c9501ec926d298fdf127d011248e8c"
+      },
+      "returncode": 0,
+      "source_sha256": "f33734168aa6dfc7c441be363c7e5620be73d452e090268a05572ea0c84b7d51",
+      "started_at_utc": "2026-11-10T18:55:11.714881+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YSha256Blocks.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YSha256Blocks.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 154887533700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17YSha256Blocks",
+      "output_artifacts_sha256": {
+        "Phase17YSha256Blocks.olean": "d16c95567110b1f0bd986a394e512813f69cba100b1f1f84597399f23d0ee90b"
+      },
+      "returncode": 0,
+      "source_sha256": "1ae7a4a8f7005503f21a36e1bc7cc734e44167b57c8afee5024aa219446bdf3b",
+      "started_at_utc": "2026-11-10T18:57:16.866130+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 160842187600,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17YDependency",
+      "output_artifacts_sha256": {
+        "Phase17YDependency.olean": "b72364f9609f6367d36f2cc52c2f0e5b7dfe24c6aac46b684561a5508e1043ee"
+      },
+      "returncode": 0,
+      "source_sha256": "db6e8571e84cf6c85d3f5b93cc1bc18215c9476c57ba3da2a20c4e6c3ac6dadc",
+      "started_at_utc": "2026-11-10T18:59:51.862528+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17ZDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17ZDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 125352155100,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17ZDependency",
+      "output_artifacts_sha256": {
+        "Phase17ZDependency.olean": "ce30873c88db286778a2c8ed4d9b534e46647b1e534e923e882a9407f630d629"
+      },
+      "returncode": 0,
+      "source_sha256": "019ae5470de1422af1a5680d27d7d611f63218020514f10045b8585fe7502467",
+      "started_at_utc": "2026-11-10T19:02:32.794915+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17RDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 56334500,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17QDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+      "started_at_utc": "2026-11-10T19:04:38.245312+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17QDependency.olean\n",
+      "stdout_sha256": "55544a2103e326f20da06af64c5f2aef22c53a90441b2fd27aca5f2fe5949507"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17SDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 51177600,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17RDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e",
+      "started_at_utc": "2026-11-10T19:04:38.393668+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17RDependency.olean\n",
+      "stdout_sha256": "530da165ce1acfe5ef0151880e935fb83c6f3d5c3b2f3a7b03b05ccbadada59a"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17TDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 48997800,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17SDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "b6f64b0c9db47421756cf298163f7a849e214273b436c27d29bceffd470d911e",
+      "started_at_utc": "2026-11-10T19:04:38.536976+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17SDependency.olean\n",
+      "stdout_sha256": "5dc159fd417f5869cd97fef69417cec1634ff2296e23bc5c8aff22a8f6b1510d"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17UDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 50116700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17TDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "b5c9945529e14c1e99ffd0a1b54390dbe2aedd8a8840bfc82ed2d912d8c9792a",
+      "started_at_utc": "2026-11-10T19:04:38.678427+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17TDependency.olean\n",
+      "stdout_sha256": "e3758e5b774086db41692c9d12520602d600c03def4dc86930dbbaaf29b295c9"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17VDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 51568600,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17UDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "6aed183ca711a186616f7ccf01f1137a824baf3459ab5110c294298e9541025d",
+      "started_at_utc": "2026-11-10T19:04:38.823485+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17UDependency.olean\n",
+      "stdout_sha256": "eec02b6e9a75eff94085adebd761e067810569c59f4df08d0e9a52ba028249cb"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17WDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 63821300,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17VDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "06ab5724a526362062455404a3aad165bfa6eb9f5557c05f24b11d788c75b549",
+      "started_at_utc": "2026-11-10T19:04:38.967236+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17VDependency.olean\n",
+      "stdout_sha256": "b51123f6a0d2a09b9e5bc1feeb84586e181c4f782e022c59650202967a741675"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 52097500,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17WDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "f33734168aa6dfc7c441be363c7e5620be73d452e090268a05572ea0c84b7d51",
+      "started_at_utc": "2026-11-10T19:04:39.123566+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17WDependency.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XSha256Blocks.olean\n",
+      "stdout_sha256": "5791bd2a842709a45a32fc64359a4f57085070c272d319d4ff5beb8d606c71c2"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YSha256Blocks.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 66347700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17XSha256Blocks_resolution",
+      "returncode": 0,
+      "source_sha256": "1ae7a4a8f7005503f21a36e1bc7cc734e44167b57c8afee5024aa219446bdf3b",
+      "started_at_utc": "2026-11-10T19:04:39.267923+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XSha256Blocks.olean\n",
+      "stdout_sha256": "85ec3730903d52d42b078c88e6744c3648e72aea37f346fa4a0c5b9fde98fcc1"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 48811100,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17XDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "db6e8571e84cf6c85d3f5b93cc1bc18215c9476c57ba3da2a20c4e6c3ac6dadc",
+      "started_at_utc": "2026-11-10T19:04:39.427008+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XDependency.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YSha256Blocks.olean\n",
+      "stdout_sha256": "47ef31387692c1898f89cdde0f06a7ef2e1829b95de062ffb83a004c28619f40"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 51341000,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17YSha256Blocks_resolution",
+      "returncode": 0,
+      "source_sha256": "db6e8571e84cf6c85d3f5b93cc1bc18215c9476c57ba3da2a20c4e6c3ac6dadc",
+      "started_at_utc": "2026-11-10T19:04:39.567757+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XDependency.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YSha256Blocks.olean\n",
+      "stdout_sha256": "47ef31387692c1898f89cdde0f06a7ef2e1829b95de062ffb83a004c28619f40"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17ZDependency.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 52941800,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17YDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "019ae5470de1422af1a5680d27d7d611f63218020514f10045b8585fe7502467",
+      "started_at_utc": "2026-11-10T19:04:39.712941+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YDependency.olean\n",
+      "stdout_sha256": "1e28bc48ee70c976dc8e310a7ecaabaa75502bbb59b5a2bb135c1458d3145277"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\ResourceProtocol.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 61511400,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "Phase17ZDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "7db8a00c44524830760dc2197d6e30b725abafa055620de3a4217fa646f4c862",
+      "started_at_utc": "2026-11-10T19:04:39.856952+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17ZDependency.olean\n",
+      "stdout_sha256": "bb471dfb5666ff13b40c9046eff097aeaa443f421040d5cdec62477337f97906"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\ResourceProtocol.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 652478189000,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "ResourceProtocol",
+      "returncode": 0,
+      "source_sha256": "7db8a00c44524830760dc2197d6e30b725abafa055620de3a4217fa646f4c862",
+      "started_at_utc": "2026-11-10T19:04:40.010884+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "'Phase17ResourceProtocol.reserve_charges_before_result' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.result_never_refunds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.result_requires_pending' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.terminal_state_rejects_events' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.step_counters_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.replay_counters_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.replay_spending_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.replay_within_policy' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.sealed_has_no_pending' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_event_decodings' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_success_replay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_failed_replay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_exhausted_replay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_interrupted_replay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_header_and_scope_binding' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_work_schedule_binding' does not depend on any axioms\n'Phase17ResourceProtocol.selected_result_binding' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_counters_and_budget' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_failure_no_refund' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17ResourceProtocol.selected_learned_acceptance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stdout_sha256": "fd6e6297622f7a53da1cb5e187d7484eb55153ecafa6ce6395f49905982dc168"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongHeaderBinding.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 29194499200,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongHeaderBinding",
+      "returncode": 1,
+      "source_sha256": "9ae42cc188b3825a536c0805dd4c8e72a561144eb16c2d54ebc03f26056b6232",
+      "started_at_utc": "2026-11-10T19:15:32.589806+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongHeaderBinding.lean:1212:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "e9cd3144545f240009efbe60efdbb410a48f1c5d8f854ba11729b8dd4d6908f1"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongPolicyWeights.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 30672517200,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongPolicyWeights",
+      "returncode": 1,
+      "source_sha256": "a5581b393f7537218afcc88d7474aee440986496f2ad3d99ca11080223434356",
+      "started_at_utc": "2026-11-10T19:16:01.889669+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongPolicyWeights.lean:1214:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "91a23433d7e3f8c8eaba923888d137c0962fb2005aaace8d84f86ec641daa5a5"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongEventIndex.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 27907419900,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongEventIndex",
+      "returncode": 1,
+      "source_sha256": "392abef7d726844856ce0fc81e66b5228bb4ec968769a839cf647f8c7e9ef885",
+      "started_at_utc": "2026-11-10T19:16:32.669014+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongEventIndex.lean:1211:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "9f6e9992621c05a3aef49520b6cbf21d68dcc05a994a04220946844c3ef7e259"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongPreviousHash.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28348909300,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongPreviousHash",
+      "returncode": 1,
+      "source_sha256": "0a3a4a9b710ee77fbd74e49187274b94abd8d385d173426999b0ef032889e0f5",
+      "started_at_utc": "2026-11-10T19:17:00.680221+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongPreviousHash.lean:1213:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "8e35d98ba0c89ec29b7d016bdd7a193994b124325cec80b9ab17b5cdccdc0806"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\DuplicateOperation.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 29062725600,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "DuplicateOperation",
+      "returncode": 1,
+      "source_sha256": "cc1da9d94154b1f18c8aa3b4f2d6ee850306232ddcb046cc352bf7dd4d1fed80",
+      "started_at_utc": "2026-11-10T19:17:29.136674+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\DuplicateOperation.lean:1214:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "0ec391b974ba19bcd70a994b916584f0e7ea8cbf850219ad37870c5bd425a3ae"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongTariff.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28707565200,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongTariff",
+      "returncode": 1,
+      "source_sha256": "2f0b597bd1597b512e67ded5e97160b1038da9f7214ce26d7f42809952145b63",
+      "started_at_utc": "2026-11-10T19:17:58.303973+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongTariff.lean:1214:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "f51d78ded346bc22f3ba52b31daec1347728f32479921291dd5b2c258c8cbba1"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongSpentAfter.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28478719000,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongSpentAfter",
+      "returncode": 1,
+      "source_sha256": "6ad9c1d47757cb5ad03737784e3a359ef7242f5690f3221fa7381068898df1f8",
+      "started_at_utc": "2026-11-10T19:18:27.118530+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongSpentAfter.lean:1212:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "b2945984c0736e8dc6f79bab6af569f7b66cd9fd012318f116cde065df7e380b"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\OverBudgetReservation.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28943860600,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "OverBudgetReservation",
+      "returncode": 1,
+      "source_sha256": "4155fae8944b7fe52126287c340e8f957d17fd6d95adc5e5749cd75e00413ce3",
+      "started_at_utc": "2026-11-10T19:18:55.704045+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\OverBudgetReservation.lean:1213:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "ce736ea01548d51d86bfc8c5a79e871e98e42ca0a0c0b17a1ed843b8039eb549"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\DimensionOverrun.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 29312281100,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "DimensionOverrun",
+      "returncode": 1,
+      "source_sha256": "82483c73abe53bf5a54323e3fb11c0dc2b93c49fc1e94746cbb9cfd042e39ea8",
+      "started_at_utc": "2026-11-10T19:19:24.754259+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\DimensionOverrun.lean:1213:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "59f4faa174fbe82b97efb08dfbfd24b2db550ff1156f2e4b2f11862c2f9acfa5"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\ResultWithoutReservation.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 29521203700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "ResultWithoutReservation",
+      "returncode": 1,
+      "source_sha256": "20381c72f08f6581954dbd8ff4be1f83c2abdd264e7bd5fdae820879ad40a66b",
+      "started_at_utc": "2026-11-10T19:19:54.172997+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\ResultWithoutReservation.lean:1212:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "b62479f40f9f3413742dd0d18de5a90ceb5b1243c66143fc5e7befb8e248ef21"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongReservationHash.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28991052600,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongReservationHash",
+      "returncode": 1,
+      "source_sha256": "fc954c96a84c04570933306e56d063da52dc3efb079023ff3dc74055ae3c9853",
+      "started_at_utc": "2026-11-10T19:20:23.800420+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongReservationHash.lean:1212:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "13114bb8a81d18046f7ff7e90a9ac43c79f09d064ced49e6848d3c363ff6d12d"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongResultShape.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28739454700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongResultShape",
+      "returncode": 1,
+      "source_sha256": "cafa4f37a611a86fc71d84f372be9162b75088d1f50aef03c37225e6dbd3fff0",
+      "started_at_utc": "2026-11-10T19:20:52.899585+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongResultShape.lean:1212:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "8a875ef10526feb307bd0e4b86e298fda10b4691531d8cbcfafe9855b099b12b"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\ResumeAfterFailure.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28223718300,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "ResumeAfterFailure",
+      "returncode": 1,
+      "source_sha256": "28638dc376fe026c57864aa49a6e1e90bd754ce6fb3632bdbddbc989e3650dc8",
+      "started_at_utc": "2026-11-10T19:21:21.748523+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\ResumeAfterFailure.lean:1212:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "741f51ded564e07adfc9f3745a3ce838b7cf86f49ea2bfed05e2f9ab50cd3798"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\SealPending.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28773151200,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "SealPending",
+      "returncode": 1,
+      "source_sha256": "bf7b93a8408e1ab07c7890a376e7a3e4aa12fe94d98afddef9eeac9fc0d122cd",
+      "started_at_utc": "2026-11-10T19:21:50.075532+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\SealPending.lean:1212:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "6fc8a0648e0aa0d489bbb2e9a2fe3d66ff6ba71af6c2990efc446a09542ae63a"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongWorkOrder.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28431518000,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongWorkOrder",
+      "returncode": 1,
+      "source_sha256": "dc91a6f17f86a2383afdd9414a6960caaa7cd4122f26072aaec1d7023c879a90",
+      "started_at_utc": "2026-11-10T19:22:18.956145+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongWorkOrder.lean:1213:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "bf658cd2d3e4bc3973a07954559b2d74dfa4608a80e5ed2259b93886c1199fc8"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\MissingWork.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 108017696600,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "MissingWork",
+      "returncode": 1,
+      "source_sha256": "fc1af651276fe2bd80a3a1a5feb28896142a332b6cc6f1e4a4546c1efc984bad",
+      "started_at_utc": "2026-11-10T19:22:47.490356+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\MissingWork.lean:1369:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "7eca5acd25135d312b1f9c1b91010160817aab75092f0b1ff08789929b4fffdd"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongInputDigest.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28449650600,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongInputDigest",
+      "returncode": 1,
+      "source_sha256": "306a6fa94ebdcf49305d3ea44c0d368a6db6b8fb4fab47e43dd20932da9c1a4b",
+      "started_at_utc": "2026-11-10T19:24:35.613848+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongInputDigest.lean:1213:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "6e24e01e55fddf9da009809f13bf5ef486c0e2688a0c8310c52ab6571c4957ac"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongOutputDigest.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 28342670300,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongOutputDigest",
+      "returncode": 1,
+      "source_sha256": "e6866705dcee5afd5a5df7bf233306a1bf4847351e91b63ab32ccfa63a5bac8f",
+      "started_at_utc": "2026-11-10T19:25:04.169177+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongOutputDigest.lean:1213:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "320c4b27807d528442665b0ea113352bd3698295efda9cc79d7b1ea597b0b97f"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\RefundFailedResult.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 29093287500,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "RefundFailedResult",
+      "returncode": 1,
+      "source_sha256": "899a8a304c5b8302d9b40c9d6eab77477f4d4308d23178c2d9ea4cc28ce55d88",
+      "started_at_utc": "2026-11-10T19:25:32.627511+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\RefundFailedResult.lean:1213:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "94fb67a1500f8cc4c56824a447286408fcae358ddb75ed7ca2dd9f75acbc3a1b"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\FalseExhaustion.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 29340703700,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "FalseExhaustion",
+      "returncode": 1,
+      "source_sha256": "d392a04635f62a0ee81b09d96bc7c545e5961fe14628656ca79cd77f3fbf299b",
+      "started_at_utc": "2026-11-10T19:26:01.830050+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\FalseExhaustion.lean:1211:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "c77d00bc4936e8284c7883ed9a511cf8c30b1b19041aed27feee0d5e6859b1ac"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\ArithmeticOverflow.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 29200420300,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "ArithmeticOverflow",
+      "returncode": 1,
+      "source_sha256": "df3c79eabc4543cde8e3715b6288bbde1352fd1f63fad60b1672006761f8fdc8",
+      "started_at_utc": "2026-11-10T19:26:31.275308+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\ArithmeticOverflow.lean:1218:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "cfbf61d035e9cbd1a736ceef77b018473d4f8cbca337b5237397d98719a9f485"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "-j1",
+        "-DElab.async=false",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongFinalHead.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "elapsed_ns": 27867713500,
+      "environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+      "label": "WrongFinalHead",
+      "returncode": 1,
+      "source_sha256": "ac6b948fe807c3afa9cc7a8e6b4e06493fdbadef1b262f75dc7478996f663388",
+      "started_at_utc": "2026-11-10T19:27:00.580407+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\WrongFinalHead.lean:1211:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "50e3e8c6c5182ec167021b73ef0e5f9c9c543a59c3724e872456720ced81c64d"
+    }
+  ],
+  "compiler_environment": {
+    "base_environment": {
+      "ELAN_TOOLCHAIN": "leanprover/lean4:v4.31.0",
+      "GIT_CONFIG_GLOBAL": "nul",
+      "GIT_CONFIG_NOSYSTEM": "1",
+      "GIT_TERMINAL_PROMPT": "0",
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "true",
+      "LEAN_PATH": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+      "NoDefaultCurrentDirectoryInExePath": "1",
+      "PATH": "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin;C:\\Program Files\\Git\\cmd;C:\\WINDOWS\\System32;C:\\WINDOWS;C:\\bin",
+      "SYSTEMDRIVE": "C:",
+      "SYSTEMROOT": "C:\\WINDOWS",
+      "TEMP": "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp",
+      "TMP": "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp",
+      "USERPROFILE": "C:\\Users\\Nicolas.n926",
+      "WINDIR": "C:\\WINDOWS"
+    },
+    "base_environment_sha256": "28d47cd0654fe08c4f6d9ac61c6bb5a045bb2c53e98f5dc0a52f07cd777e98f9",
+    "capture_semantics": "Effective environment observed by an isolated Python child of pinned Lake; reused unchanged for direct pinned Lean. This is not physical attestation.",
+    "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+    "effective_environment": {
+      "ELAN_TOOLCHAIN": "leanprover/lean4:v4.31.0",
+      "GIT_CONFIG_GLOBAL": "nul",
+      "GIT_CONFIG_NOSYSTEM": "1",
+      "GIT_TERMINAL_PROMPT": "0",
+      "LAKE": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_CACHE_DIR": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\cache",
+      "LAKE_CONFIG": "",
+      "LAKE_HOME": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0",
+      "LAKE_NO_CACHE": "true",
+      "LAKE_PKG_URL_MAP": "{}",
+      "LAKE_RESTORE_ARTIFACTS": "",
+      "LEAN": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+      "LEAN_AR": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\llvm-ar.exe",
+      "LEAN_GITHASH": "68218e876d2a38b1985b8590fff244a83c321783",
+      "LEAN_PATH": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v2\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v3\\.lake\\build\\lib\\lean;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\build\\lib\\lean;c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean;C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+      "LEAN_SRC_PATH": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v2;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v3;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4;c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\src\\lean\\lake",
+      "LEAN_SYSROOT": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0",
+      "NODEFAULTCURRENTDIRECTORYINEXEPATH": "1",
+      "PATH": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v2\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v3\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\build\\bin;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v3\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v2\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries\\.lake\\build\\lib;C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli\\.lake\\build\\lib;c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin;C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin;C:\\Program Files\\Git\\cmd;C:\\WINDOWS\\System32;C:\\WINDOWS;C:\\bin",
+      "SYSTEMDRIVE": "C:",
+      "SYSTEMROOT": "C:\\WINDOWS",
+      "TEMP": "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp",
+      "TMP": "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp",
+      "USERPROFILE": "C:\\Users\\Nicolas.n926",
+      "WINDIR": "C:\\WINDOWS"
+    },
+    "effective_environment_sha256": "d625410c55969499aa63e66666862391446a926d2c0b183b7a697c9729303e0f",
+    "fresh_module_directory": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_",
+    "platform": "nt",
+    "probe_executable": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "probe_executable_sha256": "d87063e5597f257004c731b66c59c56c91038861c6877b1a3dca6b8c4e919125",
+    "probe_source_sha256": "e43d3188b1e213fe1c19097583a65a857a8c387a2f13fa90c890bc7c395846f5",
+    "schema": "rcp-rclm.phase17aa.lean-environment.v1"
+  },
+  "dependency_modules": {
+    "Phase17QDependency": {
+      "artifacts_sha256": {
+        "Phase17QDependency.olean": "b999a43141f50b312943117e14ce852532238e3b567487403346e833e6978fff"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17QDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17QDependency.olean",
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682"
+    },
+    "Phase17RDependency": {
+      "artifacts_sha256": {
+        "Phase17RDependency.olean": "640f8c1b66693184b858de520ceb9af2cbc329a7190e430fe509f3a2e203335f"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17RDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17RDependency.olean",
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104"
+    },
+    "Phase17SDependency": {
+      "artifacts_sha256": {
+        "Phase17SDependency.olean": "076ef38811d5487b6faf8558dd5e1488be5f86245780689ee6289ccf639fcba9"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17SDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17SDependency.olean",
+      "source_sha256": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e"
+    },
+    "Phase17TDependency": {
+      "artifacts_sha256": {
+        "Phase17TDependency.olean": "ac0fde14b5ba4e348f92ae620cd09fddbab04e4d33415d7e4f91fe893042bb4c"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17TDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17TDependency.olean",
+      "source_sha256": "b6f64b0c9db47421756cf298163f7a849e214273b436c27d29bceffd470d911e"
+    },
+    "Phase17UDependency": {
+      "artifacts_sha256": {
+        "Phase17UDependency.olean": "9e512e9919b2c58eb7a78f0fc0146bd848226eae88482cf31256ff19c507a7a7"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17UDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17UDependency.olean",
+      "source_sha256": "b5c9945529e14c1e99ffd0a1b54390dbe2aedd8a8840bfc82ed2d912d8c9792a"
+    },
+    "Phase17VDependency": {
+      "artifacts_sha256": {
+        "Phase17VDependency.olean": "087aa4dfa97757518396de45dbd096a4431e512217dccb5e169523006d4092a2"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17VDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17VDependency.olean",
+      "source_sha256": "6aed183ca711a186616f7ccf01f1137a824baf3459ab5110c294298e9541025d"
+    },
+    "Phase17WDependency": {
+      "artifacts_sha256": {
+        "Phase17WDependency.olean": "0c9d88fa99b6c6b57af2d0acdd6567b1e3f63e60c6dbe413642011f0e486af60"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17WDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17WDependency.olean",
+      "source_sha256": "06ab5724a526362062455404a3aad165bfa6eb9f5557c05f24b11d788c75b549"
+    },
+    "Phase17XDependency": {
+      "artifacts_sha256": {
+        "Phase17XDependency.olean": "efbafe18479582d9a73ef7b0f0f6072c52c9501ec926d298fdf127d011248e8c"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17XDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17XDependency.olean",
+      "source_sha256": "f33734168aa6dfc7c441be363c7e5620be73d452e090268a05572ea0c84b7d51"
+    },
+    "Phase17YDependency": {
+      "artifacts_sha256": {
+        "Phase17YDependency.olean": "b72364f9609f6367d36f2cc52c2f0e5b7dfe24c6aac46b684561a5508e1043ee"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17YDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17YDependency.olean",
+      "source_sha256": "db6e8571e84cf6c85d3f5b93cc1bc18215c9476c57ba3da2a20c4e6c3ac6dadc"
+    },
+    "Phase17ZDependency": {
+      "artifacts_sha256": {
+        "Phase17ZDependency.olean": "ce30873c88db286778a2c8ed4d9b534e46647b1e534e923e882a9407f630d629"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17ZDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17aa-nqyb25q_\\Phase17ZDependency.olean",
+      "source_sha256": "019ae5470de1422af1a5680d27d7d611f63218020514f10045b8585fe7502467"
+    }
+  },
+  "digest_authenticity_remains_external": true,
+  "evaluator_independence_remains_external": true,
+  "executable_sha256": {
+    "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+  },
+  "external_head_authenticity_remains_external": true,
+  "full_transformer_equivalence": false,
+  "general_evaluator_equivalence": false,
+  "general_grammar_parameter_derivation_remains_external": true,
+  "general_json_parser_equivalence": false,
+  "general_planner_equivalence": false,
+  "general_resource_ledger_equivalence": false,
+  "general_sha256_equivalence": false,
+  "negative_controls_rejected": [
+    "WrongHeaderBinding",
+    "WrongPolicyWeights",
+    "WrongEventIndex",
+    "WrongPreviousHash",
+    "DuplicateOperation",
+    "WrongTariff",
+    "WrongSpentAfter",
+    "OverBudgetReservation",
+    "DimensionOverrun",
+    "ResultWithoutReservation",
+    "WrongReservationHash",
+    "WrongResultShape",
+    "ResumeAfterFailure",
+    "SealPending",
+    "WrongWorkOrder",
+    "MissingWork",
+    "WrongInputDigest",
+    "WrongOutputDigest",
+    "RefundFailedResult",
+    "FalseExhaustion",
+    "ArithmeticOverflow",
+    "WrongFinalHead"
+  ],
+  "new_named_audits": 20,
+  "objective_policy_succession_remains_external": true,
+  "old_proof_campaigns_rerun": false,
+  "packet_sha256": "cb46c31c5a2e7a1714f6aee0cf57751de1cf56c514bd4b4fbb36a0a6d8bd3ec5",
+  "physical_journal_persistence_remains_external": true,
+  "python_execution_remains_external": true,
+  "resource_journal_protocol_checked": true,
+  "resource_journal_work_binding_checked": true,
+  "response_and_resource_journal_hash_computation_remains_external": true,
+  "schema": "rcp-rclm.phase17aa.resource-protocol-lean.v1",
+  "selected_objective_challenge_binding_checked": true,
+  "selected_objective_policy_checked": true,
+  "selected_resource_kind_schedule_checked": true,
+  "selected_sha256_computation_checked": true,
+  "sha256_collision_resistance_remains_external": true,
+  "source_sha256": {
+    "ArithmeticOverflow": "df3c79eabc4543cde8e3715b6288bbde1352fd1f63fad60b1672006761f8fdc8",
+    "DimensionOverrun": "82483c73abe53bf5a54323e3fb11c0dc2b93c49fc1e94746cbb9cfd042e39ea8",
+    "DuplicateOperation": "cc1da9d94154b1f18c8aa3b4f2d6ee850306232ddcb046cc352bf7dd4d1fed80",
+    "FalseExhaustion": "d392a04635f62a0ee81b09d96bc7c545e5961fe14628656ca79cd77f3fbf299b",
+    "MissingWork": "fc1af651276fe2bd80a3a1a5feb28896142a332b6cc6f1e4a4546c1efc984bad",
+    "OverBudgetReservation": "4155fae8944b7fe52126287c340e8f957d17fd6d95adc5e5749cd75e00413ce3",
+    "Phase17QDependency": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+    "Phase17RDependency": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+    "Phase17SDependency": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e",
+    "Phase17TDependency": "b6f64b0c9db47421756cf298163f7a849e214273b436c27d29bceffd470d911e",
+    "Phase17UDependency": "b5c9945529e14c1e99ffd0a1b54390dbe2aedd8a8840bfc82ed2d912d8c9792a",
+    "Phase17VDependency": "6aed183ca711a186616f7ccf01f1137a824baf3459ab5110c294298e9541025d",
+    "Phase17WDependency": "06ab5724a526362062455404a3aad165bfa6eb9f5557c05f24b11d788c75b549",
+    "Phase17XDependency": "f33734168aa6dfc7c441be363c7e5620be73d452e090268a05572ea0c84b7d51",
+    "Phase17XSha256Blocks": "38887a604212c7c54adb762fd9bab8c4572f347277e34f6de59888fd11ad10af",
+    "Phase17YDependency": "db6e8571e84cf6c85d3f5b93cc1bc18215c9476c57ba3da2a20c4e6c3ac6dadc",
+    "Phase17YSha256Blocks": "1ae7a4a8f7005503f21a36e1bc7cc734e44167b57c8afee5024aa219446bdf3b",
+    "Phase17ZDependency": "019ae5470de1422af1a5680d27d7d611f63218020514f10045b8585fe7502467",
+    "RefundFailedResult": "899a8a304c5b8302d9b40c9d6eab77477f4d4308d23178c2d9ea4cc28ce55d88",
+    "ResourceProtocol": "7db8a00c44524830760dc2197d6e30b725abafa055620de3a4217fa646f4c862",
+    "ResultWithoutReservation": "20381c72f08f6581954dbd8ff4be1f83c2abdd264e7bd5fdae820879ad40a66b",
+    "ResumeAfterFailure": "28638dc376fe026c57864aa49a6e1e90bd754ce6fb3632bdbddbc989e3650dc8",
+    "SealPending": "bf7b93a8408e1ab07c7890a376e7a3e4aa12fe94d98afddef9eeac9fc0d122cd",
+    "WrongEventIndex": "392abef7d726844856ce0fc81e66b5228bb4ec968769a839cf647f8c7e9ef885",
+    "WrongFinalHead": "ac6b948fe807c3afa9cc7a8e6b4e06493fdbadef1b262f75dc7478996f663388",
+    "WrongHeaderBinding": "9ae42cc188b3825a536c0805dd4c8e72a561144eb16c2d54ebc03f26056b6232",
+    "WrongInputDigest": "306a6fa94ebdcf49305d3ea44c0d368a6db6b8fb4fab47e43dd20932da9c1a4b",
+    "WrongOutputDigest": "e6866705dcee5afd5a5df7bf233306a1bf4847351e91b63ab32ccfa63a5bac8f",
+    "WrongPolicyWeights": "a5581b393f7537218afcc88d7474aee440986496f2ad3d99ca11080223434356",
+    "WrongPreviousHash": "0a3a4a9b710ee77fbd74e49187274b94abd8d385d173426999b0ef032889e0f5",
+    "WrongReservationHash": "fc954c96a84c04570933306e56d063da52dc3efb079023ff3dc74055ae3c9853",
+    "WrongResultShape": "cafa4f37a611a86fc71d84f372be9162b75088d1f50aef03c37225e6dbd3fff0",
+    "WrongSpentAfter": "6ad9c1d47757cb5ad03737784e3a359ef7242f5690f3221fa7381068898df1f8",
+    "WrongTariff": "2f0b597bd1597b512e67ded5e97160b1038da9f7214ce26d7f42809952145b63",
+    "WrongWorkOrder": "dc91a6f17f86a2383afdd9414a6960caaa7cd4122f26072aaec1d7023c879a90"
+  },
+  "status": "passed",
+  "theorem_axioms": {
+    "Phase17ResourceProtocol.replay_counters_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.replay_spending_monotone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.replay_within_policy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.reserve_charges_before_result": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.result_never_refunds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.result_requires_pending": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.sealed_has_no_pending": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_counters_and_budget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_event_decodings": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_exhausted_replay": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_failed_replay": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_failure_no_refund": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_header_and_scope_binding": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_interrupted_replay": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_learned_acceptance_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_result_binding": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_success_replay": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.selected_work_schedule_binding": [],
+    "Phase17ResourceProtocol.step_counters_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17ResourceProtocol.terminal_state_rejects_events": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "trusted_import_cache_assumption": true
+}

@@ -1,0 +1,481 @@
+{
+  "byte_capture_and_json_parsing_remain_external": true,
+  "claims": {
+    "active_store_written": false,
+    "campaign_budget_authority_integrated": false,
+    "complete_learned_kernel_constructed": false,
+    "complete_resource_accounting": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "full_autonomous_step_instantiated": false,
+    "full_frontier_recertified": false,
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "physical_execution_attested": false,
+    "physical_projection_formally_verified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--version"
+      ],
+      "elapsed_ns": 53405800,
+      "returncode": 0,
+      "started_at_utc": "2026-11-08T06:16:46.121248+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+      "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\Phase17QDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\Phase17QDependency.lean"
+      ],
+      "elapsed_ns": 92212342400,
+      "label": "Phase17QDependency",
+      "output_artifacts_sha256": {
+        "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+      },
+      "returncode": 0,
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+      "started_at_utc": "2026-11-08T06:16:46.184264+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\Phase17RDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\Phase17RDependency.lean"
+      ],
+      "elapsed_ns": 120108164700,
+      "label": "Phase17RDependency",
+      "output_artifacts_sha256": {
+        "Phase17RDependency.olean": "640f8c1b66693184b858de520ceb9af2cbc329a7190e430fe509f3a2e203335f"
+      },
+      "returncode": 0,
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+      "started_at_utc": "2026-11-08T06:18:19.292729+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\Phase17RDependency.lean"
+      ],
+      "elapsed_ns": 1372431100,
+      "label": "Phase17QDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+      "started_at_utc": "2026-11-08T06:20:19.420974+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\Phase17QDependency.olean\n",
+      "stdout_sha256": "8d2e850cc6489aa1d23ba2e4612967815b905502f73a23ae670bd66e0b6b72ba"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\PromptRouting.lean"
+      ],
+      "elapsed_ns": 1388248400,
+      "label": "Phase17RDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "98d8862773919f435d2cbc1d4a1dee3fd416f76ef46a7deabfbd1e485a4ef455",
+      "started_at_utc": "2026-11-08T06:20:20.807591+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\Phase17RDependency.olean\n",
+      "stdout_sha256": "c3d27fca1c21a597dd57213c1d66985eb45e0f6b5a8789919937fe974000d8b4"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\PromptRouting.lean"
+      ],
+      "elapsed_ns": 25562448500,
+      "label": "PromptRouting",
+      "returncode": 0,
+      "source_sha256": "98d8862773919f435d2cbc1d4a1dee3fd416f76ef46a7deabfbd1e485a4ef455",
+      "started_at_utc": "2026-11-08T06:20:22.210004+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "'Phase17Routing.unique_route_sound' depends on axioms: [propext]\n'Phase17Routing.duplicate_route_rejected' depends on axioms: [propext]\n'Phase17Routing.legacy_failure_restores_start' depends on axioms: [propext]\n'Phase17Routing.unique_family_sound' depends on axioms: [propext]\n'Phase17Routing.routed_goal_binding_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Routing.selected_adapter_images' does not depend on any axioms\n'Phase17Routing.selected_manifest_selection' depends on axioms: [propext]\n'Phase17Routing.selected_original_prompts' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Routing.selected_hidden_families' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Routing.selected_legacy_chain' depends on axioms: [propext]\n'Phase17Routing.selected_routing' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Routing.selected_routed_goals' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Routing.selected_information_contexts' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Routing.selected_learned_acceptance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Routing.selected_edge_controls' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stdout_sha256": "5646dc03ad8c75d011106f3f1ab9e867d105262b0d46e89743c366396bb6eaef"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\MissingRoute.lean"
+      ],
+      "elapsed_ns": 17852657500,
+      "label": "MissingRoute",
+      "returncode": 1,
+      "source_sha256": "2e0c074c67376b716b6839dd723f036500c84e07ce4e1199dd50528217ecca5b",
+      "started_at_utc": "2026-11-08T06:20:47.789557+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\MissingRoute.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "698ca97558ddd7ac99dcc396d06b28ad10ba5010389c16a92907d04fcfcad035"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\MalformedRoute.lean"
+      ],
+      "elapsed_ns": 17815478000,
+      "label": "MalformedRoute",
+      "returncode": 1,
+      "source_sha256": "72bb35a8fd4312ca65b625b1c4df13e5eaee2a413f16aecf218114763dd11755",
+      "started_at_utc": "2026-11-08T06:21:05.657387+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\MalformedRoute.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "83e5732e3477b2a786c2541e81010f01badf60da6f96b3d716144ce515fd371e"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\DuplicateCommitment.lean"
+      ],
+      "elapsed_ns": 18943776100,
+      "label": "DuplicateCommitment",
+      "returncode": 1,
+      "source_sha256": "9433f9f0147f4bc2007b2b739d205a84fa2bc27a92d8bae82d0e38cd32d59b94",
+      "started_at_utc": "2026-11-08T06:21:23.487443+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\DuplicateCommitment.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "881acbd64fddda3cd42c810b8f378608ab030a05234b62a5fef9a0d1ec6cfa3c"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\AmbiguousFamily.lean"
+      ],
+      "elapsed_ns": 18785895600,
+      "label": "AmbiguousFamily",
+      "returncode": 1,
+      "source_sha256": "74d235ac11d699f0b635528d97dfda2cd66b7c4e42702f749481808ce3aff7bd",
+      "started_at_utc": "2026-11-08T06:21:42.446161+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\AmbiguousFamily.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "c1ee8b7514cea1f17417cb795f4a3c350c545acb9bd3ba30840c1150a4767cb2"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\ChangedAdapterByte.lean"
+      ],
+      "elapsed_ns": 18111939400,
+      "label": "ChangedAdapterByte",
+      "returncode": 1,
+      "source_sha256": "a9d3adf6633bdae4fd2f78b0191e1be1fd3958c62da67287db8bfdb2e33de05d",
+      "started_at_utc": "2026-11-08T06:22:01.247247+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\ChangedAdapterByte.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "5cf1ff57e90d012d4ef923ea5f71163bbc08df23f2dcb188160753f6ff35d4e4"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\AdapterOutOfBounds.lean"
+      ],
+      "elapsed_ns": 21321194500,
+      "label": "AdapterOutOfBounds",
+      "returncode": 1,
+      "source_sha256": "a82b363f83fe90f7fc59ae0f4bacb04bc186ea8b4f81e6ea18c162e9c2e1f18a",
+      "started_at_utc": "2026-11-08T06:22:19.374045+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\AdapterOutOfBounds.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "7b989cf190456fe8c1f03d3a2169682958dc6efe3ce9705fb3e66101bf30643e"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\WrongPromptTerminal.lean"
+      ],
+      "elapsed_ns": 21815850400,
+      "label": "WrongPromptTerminal",
+      "returncode": 1,
+      "source_sha256": "e01d006d3a8b7d45a0df59369ad56f31b3bc9ce5472bf85faeff3b192a85ea2c",
+      "started_at_utc": "2026-11-08T06:22:40.710396+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\WrongPromptTerminal.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "c44eb9380877bede9324185c149b9deee76124833bb1448228aabedd424b0e16"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\WrongTaskBinding.lean"
+      ],
+      "elapsed_ns": 18218608900,
+      "label": "WrongTaskBinding",
+      "returncode": 1,
+      "source_sha256": "ebf8c1e82250405f38b764a4bafd8ad1b2783b16e16e3aa6af7f2abd72aac6e9",
+      "started_at_utc": "2026-11-08T06:23:02.541500+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\WrongTaskBinding.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "1e099807bcd6cc648350b6952fd864175b57cd601c87a04cc0ff95394530bd90"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\WrongTensorManifest.lean"
+      ],
+      "elapsed_ns": 19722861100,
+      "label": "WrongTensorManifest",
+      "returncode": 1,
+      "source_sha256": "679485c684155da94dc308605d57eb82c8f4b6201d6d549af1adb55f4ebd1ad3",
+      "started_at_utc": "2026-11-08T06:23:20.775037+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\WrongTensorManifest.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "88012badd2fcbbec830c05964226266feadadb54dfb8ef891eb234491d910cd7"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\WrongLegacyRoute.lean"
+      ],
+      "elapsed_ns": 22752392200,
+      "label": "WrongLegacyRoute",
+      "returncode": 1,
+      "source_sha256": "7ce7911542915c13b3916cbe8ff628ad9e793010fdfd0808886943bbd35a381f",
+      "started_at_utc": "2026-11-08T06:23:40.512731+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\WrongLegacyRoute.lean:348:2: error: Tactic `decide` proved that the proposition\n  originalTasks.length = 11 \u2227\n    (originalTasks.all fun task => (route afterPackage Phase17Sparse.afterImage task).hit) = true \u2227\n      effectiveMarkers afterPackage Phase17Sparse.afterImage originalTasks = Phase17Sparse.selectedMarkers\nis false\n",
+      "stdout_sha256": "8900642e29e0131893681c47044d1454835dee544c6f5adee94c5f7051fe3d50"
+    }
+  ],
+  "dependency_modules": {
+    "Phase17QDependency": {
+      "artifacts_sha256": {
+        "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17QDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\Phase17QDependency.olean",
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682"
+    },
+    "Phase17RDependency": {
+      "artifacts_sha256": {
+        "Phase17RDependency.olean": "640f8c1b66693184b858de520ceb9af2cbc329a7190e430fe509f3a2e203335f"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17RDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17s-a4xzjhje\\Phase17RDependency.olean",
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104"
+    }
+  },
+  "executable_sha256": {
+    "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+  },
+  "full_transformer_equivalence": false,
+  "negative_controls_rejected": [
+    "MissingRoute",
+    "MalformedRoute",
+    "DuplicateCommitment",
+    "AmbiguousFamily",
+    "ChangedAdapterByte",
+    "AdapterOutOfBounds",
+    "WrongPromptTerminal",
+    "WrongTaskBinding",
+    "WrongTensorManifest",
+    "WrongLegacyRoute"
+  ],
+  "new_named_audits": 15,
+  "old_proof_campaigns_rerun": false,
+  "packet_sha256": "52bf7cfbfc6aae0582f7bba35c281f01394c358a16f228c55a22dd044c2d8fda",
+  "protected_prompt_routing_checked": true,
+  "protected_task_execution_bound": true,
+  "python_execution_remains_external": true,
+  "schema": "rcp-rclm.phase17s.prompt-routing-lean.v1",
+  "source_sha256": {
+    "AdapterOutOfBounds": "a82b363f83fe90f7fc59ae0f4bacb04bc186ea8b4f81e6ea18c162e9c2e1f18a",
+    "AmbiguousFamily": "74d235ac11d699f0b635528d97dfda2cd66b7c4e42702f749481808ce3aff7bd",
+    "ChangedAdapterByte": "a9d3adf6633bdae4fd2f78b0191e1be1fd3958c62da67287db8bfdb2e33de05d",
+    "DuplicateCommitment": "9433f9f0147f4bc2007b2b739d205a84fa2bc27a92d8bae82d0e38cd32d59b94",
+    "MalformedRoute": "72bb35a8fd4312ca65b625b1c4df13e5eaee2a413f16aecf218114763dd11755",
+    "MissingRoute": "2e0c074c67376b716b6839dd723f036500c84e07ce4e1199dd50528217ecca5b",
+    "Phase17QDependency": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+    "Phase17RDependency": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+    "PromptRouting": "98d8862773919f435d2cbc1d4a1dee3fd416f76ef46a7deabfbd1e485a4ef455",
+    "WrongLegacyRoute": "7ce7911542915c13b3916cbe8ff628ad9e793010fdfd0808886943bbd35a381f",
+    "WrongPromptTerminal": "e01d006d3a8b7d45a0df59369ad56f31b3bc9ce5472bf85faeff3b192a85ea2c",
+    "WrongTaskBinding": "ebf8c1e82250405f38b764a4bafd8ad1b2783b16e16e3aa6af7f2abd72aac6e9",
+    "WrongTensorManifest": "679485c684155da94dc308605d57eb82c8f4b6201d6d549af1adb55f4ebd1ad3"
+  },
+  "status": "passed",
+  "theorem_axioms": {
+    "Phase17Routing.duplicate_route_rejected": [
+      "propext"
+    ],
+    "Phase17Routing.legacy_failure_restores_start": [
+      "propext"
+    ],
+    "Phase17Routing.routed_goal_binding_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Routing.selected_adapter_images": [],
+    "Phase17Routing.selected_edge_controls": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Routing.selected_hidden_families": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Routing.selected_information_contexts": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Routing.selected_learned_acceptance_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Routing.selected_legacy_chain": [
+      "propext"
+    ],
+    "Phase17Routing.selected_manifest_selection": [
+      "propext"
+    ],
+    "Phase17Routing.selected_original_prompts": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Routing.selected_routed_goals": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Routing.selected_routing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Routing.unique_family_sound": [
+      "propext"
+    ],
+    "Phase17Routing.unique_route_sound": [
+      "propext"
+    ]
+  },
+  "trusted_import_cache_assumption": true
+}

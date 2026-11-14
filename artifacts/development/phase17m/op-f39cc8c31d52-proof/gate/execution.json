@@ -1,0 +1,338 @@
+{
+  "after_information": {
+    "diagonal_kl_sum_interval": {
+      "lower": {
+        "denominator": "2381428046925836904221196261642053010318020557040600252009725435724213555666526778098391080500125989583074636579496076854506542554296588845456848791058835002266414683368756635346724819754328494900513745127108505516374760801396047412814553569195666545923846621925390731358408306653725201399809656476712991397654124800309452733777929869279205314988958396880486663810766525689292666201491181081345213104385278334318945616162806512049190415023128128713359580596428039551166626323997478435341807475269187438085414267472835781453911384954568389177318691579816123498627251549087233527204583504275736772476495083079024777664681637260014387085397663807094048132534094787346011560843207470661040344416806250263321493158035473970688000",
+        "numerator": "-346631000075866695727391649028082659088106028537846883717457409681900888668624324829494644616437208866606350417777233923108445901295668385086172808764869858104168346887711764192844489087392629095342341968430498118917436243454480929607622375992467383871466915377955064620287237731923320414549774817374967816107703923860553115884676811554043970008832440749833947171736698206741048122804941013894104342546120575211815681473297724411679741387558350834649119229807803855437188035241674000738819721938908736827868199244723197993250291162214474707571657151660756431105109007907936549110249629304978766490130154240705121105435869660373035155197750667583"
+      },
+      "precision_bits": 256,
+      "upper": {
+        "denominator": "2381428046925836904221196261642053010318020557040600252009725435724213555666526778098391080500125989583074636579496076854506542554296588845456848791058835002266414683368756635346724819754328494900513745127108505516374760801396047412814553569195666545923846621925390731358408306653725201399809656476712991397654124800309452733777929869279205314988958396880486663810766525689292666201491181081345213104385278334318945616162806512049190415023128128713359580596428039551166626323997478435341807475269187438085414267472835781453911384954568389177318691579816123498627251549087233527204583504275736772476495083079024777664681637260014387085397663807094048132534094787346011560843207470661040344416806250263321493158035473970688000",
+        "numerator": "346631000075866695727391649028082659088106028537846883717457409681900888668624324829494644616437208866606350417777233923108445901295668385086172808764869858104168346887711764192844489087392629095342341968430498118917436243454480929607622375992467383871466915377955064620287237731923320414549774817374967816107703923860553115884676811554043970008832440749833947171736698206741048122804941013894104342546120575211815681473297724411679741387558350834649119229807803855437188035241674000738819721938908736827868199244723197993250291162214474707571657151660756431105109007907936549110249629304978766490130154240705121105435869660373035155197750667583"
+      }
+    },
+    "numeric_intervals_are_not_new_lean_proofs": true,
+    "position_count": 28,
+    "qre_equals_kl_by_diagonal_construction": true,
+    "shannon_sum_interval": {
+      "lower": {
+        "denominator": "345818773478719344698798888290910786681869797838056992450537835436581353207040760794991608308810478384113441064970360033220351043482379147184808112610670853629000292759400213892352506550730595615945659508650481169337679651647309444187479178960102391501062798189101459268761249910824261631054260706490897260592200121828839816731853738394276662504283378787912249478593703915405809621364360497493338359139912959149298616461316966139513983466727121770974399303314433458045817347626528364407707979987131563106097824356851444052116758683610206082264829039734489573261849850091118637845602433558843103815362900432667066811733212836266151624422691623000952633585755646341853767164058872026453741779488920749655342014259141506165082195434281273657181205264492726267489287861203248640000",
+        "numerator": "5383579262140493292410297234946088666115861533282671407840653716373341557771824200443119942293780639973505728874633444765034418171219940302620283570810459042661307962982839031521391805302912022604212749449585680534589442275859724715759043727358645621803989386119028105119052354388787473251910729942873477933468865444225561553129439019854321777535422388846297161183001280191923646158033154402607002427954825954721691713703727579611510453465445735439477218163761303979113172252624276786766471052923907121812408084478565564544828249014005637996106015140662326255722933839727030147661600188968509242719730052947674736978621568508795917079265129728497091079801423845308817027447333484292742556327150960900933268204138110193433441368016911495148733303050512730960958222997967731529769"
+      },
+      "precision_bits": 256,
+      "upper": {
+        "denominator": "829384983498192362199842232660014093748165444608161732238623312814641055629248148161241937436399211427891553565171905525445177853020986293368895835334071009823688087241783026769629891342658683764115997500353721784228407942111395294969396583271155494322689098368278143639176366255567148615378870892462945808233246500824567000721214015278093443218855185224915924616916770362373193456569511188553933622133005861930331872544806028051741085118098422216117944101182077026276015295462290855584892472682832189779387877234521357374533241902615240345505320106210646810873289938034478580540780193076843955899092434114421532593627161989551460840972390582507454759432749209258524516262606727200393136448395131048834474327626330301148447935396440899309933095116760760665652445324289730625",
+        "numerator": "12911559868702067725076396459041774001053378849641057633119674440405963352307770132699178283849362500941871026223415863010080506738629654395651181775588363227061028720896669202621509412567498066406813578025540004889066001872024136552254624930215796146970825781224261493885587471173941092571812779207240285092801549319241253769947560372463370067489793093632055747565141943711608722263264324724922950957341435026269994977064278497085955653435664878819434852257703045475906152195433375127655636302157922565306655126155699789723652738816219832654061215565738621579622747684170203245758564543156694831214530562750732583311826328559839434660404588566207877737670622583481872527887445752936784983471004790446821937011924177828293637831512608501501559700595390788634036593678470035679"
+      }
+    },
+    "unique_row_target_queries": 11,
+    "von_neumann_equals_shannon_by_diagonal_construction": true
+  },
+  "automatic_retries": 0,
+  "before_information": {
+    "diagonal_kl_sum_interval": {
+      "lower": {
+        "denominator": "2381428046925836904221196261642053010318020557040600252009725435724213555666526778098391080500125989583074636579496076854506542554296588845456848791058835002266414683368756635346724819754328494900513745127108505516374760801396047412814553569195666545923846621925390731358408306653725201399809656476712991397654124800309452733777929869279205314988958396880486663810766525689292666201491181081345213104385278334318945616162806512049190415023128128713359580596428039551166626323997478435341807475269187438085414267472835781453911384954568389177318691579816123498627251549087233527204583504275736772476495083079024777664681637260014387085397663807094048132534094787346011560843207470661040344416806250263321493158035473970688000",
+        "numerator": "-346631000075866695727391649028082659088106028537846883717457409681900888668624324829494644616437208866606350417777233923108445901295668385086172808764869858104168346887711764192844489087392629095342341968430498118917436243454480929607622375992467383871466915377955064620287237731923320414549774817374967816107703923860553115884676811554043970008832440749833947171736698206741048122804941013894104342546120575211815681473297724411679741387558350834649119229807803855437188035241674000738819721938908736827868199244723197993250291162214474707571657151660756431105109007907936549110249629304978766490130154240705121105435869660373035155197750667583"
+      },
+      "precision_bits": 256,
+      "upper": {
+        "denominator": "2381428046925836904221196261642053010318020557040600252009725435724213555666526778098391080500125989583074636579496076854506542554296588845456848791058835002266414683368756635346724819754328494900513745127108505516374760801396047412814553569195666545923846621925390731358408306653725201399809656476712991397654124800309452733777929869279205314988958396880486663810766525689292666201491181081345213104385278334318945616162806512049190415023128128713359580596428039551166626323997478435341807475269187438085414267472835781453911384954568389177318691579816123498627251549087233527204583504275736772476495083079024777664681637260014387085397663807094048132534094787346011560843207470661040344416806250263321493158035473970688000",
+        "numerator": "346631000075866695727391649028082659088106028537846883717457409681900888668624324829494644616437208866606350417777233923108445901295668385086172808764869858104168346887711764192844489087392629095342341968430498118917436243454480929607622375992467383871466915377955064620287237731923320414549774817374967816107703923860553115884676811554043970008832440749833947171736698206741048122804941013894104342546120575211815681473297724411679741387558350834649119229807803855437188035241674000738819721938908736827868199244723197993250291162214474707571657151660756431105109007907936549110249629304978766490130154240705121105435869660373035155197750667583"
+      }
+    },
+    "numeric_intervals_are_not_new_lean_proofs": true,
+    "position_count": 28,
+    "qre_equals_kl_by_diagonal_construction": true,
+    "shannon_sum_interval": {
+      "lower": {
+        "denominator": "345818773478719344698798888290910786681869797838056992450537835436581353207040760794991608308810478384113441064970360033220351043482379147184808112610670853629000292759400213892352506550730595615945659508650481169337679651647309444187479178960102391501062798189101459268761249910824261631054260706490897260592200121828839816731853738394276662504283378787912249478593703915405809621364360497493338359139912959149298616461316966139513983466727121770974399303314433458045817347626528364407707979987131563106097824356851444052116758683610206082264829039734489573261849850091118637845602433558843103815362900432667066811733212836266151624422691623000952633585755646341853767164058872026453741779488920749655342014259141506165082195434281273657181205264492726267489287861203248640000",
+        "numerator": "5383579262140493292410297234946088666115861533282671407840653716373341557771824200443119942293780639973505728874633444765034418171219940302620283570810459042661307962982839031521391805302912022604212749449585680534589442275859724715759043727358645621803989386119028105119052354388787473251910729942873477933468865444225561553129439019854321777535422388846297161183001280191923646158033154402607002427954825954721691713703727579611510453465445735439477218163761303979113172252624276786766471052923907121812408084478565564544828249014005637996106015140662326255722933839727030147661600188968509242719730052947674736978621568508795917079265129728497091079801423845308817027447333484292742556327150960900933268204138110193433441368016911495148733303050512730960958222997967731529769"
+      },
+      "precision_bits": 256,
+      "upper": {
+        "denominator": "829384983498192362199842232660014093748165444608161732238623312814641055629248148161241937436399211427891553565171905525445177853020986293368895835334071009823688087241783026769629891342658683764115997500353721784228407942111395294969396583271155494322689098368278143639176366255567148615378870892462945808233246500824567000721214015278093443218855185224915924616916770362373193456569511188553933622133005861930331872544806028051741085118098422216117944101182077026276015295462290855584892472682832189779387877234521357374533241902615240345505320106210646810873289938034478580540780193076843955899092434114421532593627161989551460840972390582507454759432749209258524516262606727200393136448395131048834474327626330301148447935396440899309933095116760760665652445324289730625",
+        "numerator": "12911559868702067725076396459041774001053378849641057633119674440405963352307770132699178283849362500941871026223415863010080506738629654395651181775588363227061028720896669202621509412567498066406813578025540004889066001872024136552254624930215796146970825781224261493885587471173941092571812779207240285092801549319241253769947560372463370067489793093632055747565141943711608722263264324724922950957341435026269994977064278497085955653435664878819434852257703045475906152195433375127655636302157922565306655126155699789723652738816219832654061215565738621579622747684170203245758564543156694831214530562750732583311826328559839434660404588566207877737670622583481872527887445752936784983471004790446821937011924177828293637831512608501501559700595390788634036593678470035679"
+      }
+    },
+    "unique_row_target_queries": 11,
+    "von_neumann_equals_shannon_by_diagonal_construction": true
+  },
+  "bindings": {
+    "candidate_physical_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+    "challenge_commitment_hash": "478d7884588779bca1483fb65d06d2a4b4d430960c47a6fdfd8036fb8a39c2ab",
+    "historical_state_hash": "7d2b823c05e4e4cef7566a89d3d440dba60a6417c6a3401f1248e59f89e91567",
+    "objective_hash": "e6a40e7a55002356e5a5c35262b35a7e98f54e9aa1153db60945215d56e941d3",
+    "predecessor_physical_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+    "program_hash": "a4f37fb8f2f7d3a90829340f2f02b2f19dbc5dfa5caf7a7633e9092837265c0e",
+    "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+  },
+  "candidate_package_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_learned_semantic_refinement": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "neural_decoder_formally_verified": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "complete_learned_kernel_constructed": false,
+  "conditional_rows_per_package": 260,
+  "finished_at_utc": "2026-11-07T08:01:35.376482+00:00",
+  "full_goal_interpretation_supplied": false,
+  "full_information_interpretation_supplied": false,
+  "full_learned_step_instantiated": false,
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "historical_success_reports_reassigned": false,
+  "joint_packet_sha256": "035c570a3e4b7f1ed2fd43085d9cd6357b2596a169eebcd621c0ff5d0fe274ac",
+  "live_challenge_generated": false,
+  "local_increment_checks_passed": true,
+  "new_named_audits": [
+    "Phase17Protected.mass_distribution_normalized",
+    "Phase17Protected.diagonal_density_sound",
+    "Phase17Protected.diagonal_information_is_kl",
+    "Phase17Protected.information_sum_nonnegative",
+    "Phase17Protected.goal_distance_self",
+    "Phase17Protected.unrelated_root_fields_unchanged",
+    "Phase17Protected.attached_protected_bounds",
+    "Phase17Protected.selected_wellformed",
+    "Phase17Protected.selected_targets_bound",
+    "Phase17Protected.selected_observation_retained",
+    "Phase17Protected.selected_goal_bound",
+    "Phase17Protected.selected_information_bound",
+    "Phase17Protected.selected_distribution_entropy_retention",
+    "Phase17Protected.selected_transaction_binding"
+  ],
+  "new_recursive_tasks_closed": [],
+  "os": "Windows",
+  "packet_sha256": "a720bdaeac1b316d6e50b9a640cddfad52baff44c09a44a4fdeda2b977e4da67",
+  "physical_projection_formally_verified": false,
+  "predecessor_package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "preparation_checks_passed": true,
+  "prior_joint_proofs_rerun": false,
+  "production_row_comparisons": 520,
+  "proof_mode": "real_pinned_lean",
+  "protected_semantics_gate": {
+    "claims": {
+      "complete_resource_accounting": false,
+      "egc0_started": false,
+      "full_frontier_recertified": false,
+      "full_learned_semantic_refinement": false,
+      "gate_e_closed": false,
+      "live_capability_gain_demonstrated": false,
+      "neural_decoder_formally_verified": false,
+      "phase17_exit_closed": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "recursive_productivity_recertified": false,
+      "root_transition_verified": false
+    },
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "elapsed_ns": 64002100,
+        "returncode": 0,
+        "started_at_utc": "2026-11-07T07:59:03.456351+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\Protected.lean"
+        ],
+        "elapsed_ns": 27504165500,
+        "returncode": 0,
+        "started_at_utc": "2026-11-07T07:59:03.523079+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "'Phase17Protected.mass_distribution_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_density_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_information_is_kl' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.information_sum_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.goal_distance_self' depends on axioms: [propext]\n'Phase17Protected.unrelated_root_fields_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.attached_protected_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_wellformed' does not depend on any axioms\n'Phase17Protected.selected_targets_bound' does not depend on any axioms\n'Phase17Protected.selected_observation_retained' does not depend on any axioms\n'Phase17Protected.selected_goal_bound' does not depend on any axioms\n'Phase17Protected.selected_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_distribution_entropy_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_transaction_binding' does not depend on any axioms\n",
+        "stdout_sha256": "d53eff733c0425c0be955318079be1e6bf190b53f10d66bd115bc0cc34ebeef1"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\ChangedProbability.lean"
+        ],
+        "elapsed_ns": 27647262800,
+        "returncode": 1,
+        "started_at_utc": "2026-11-07T07:59:31.030246+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\ChangedProbability.lean:181:77: error: Tactic `decide` proved that the proposition\n  observedAfter = observedBefore\nis false\n'Phase17Protected.mass_distribution_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_density_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_information_is_kl' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.information_sum_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.goal_distance_self' depends on axioms: [propext]\n'Phase17Protected.unrelated_root_fields_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.attached_protected_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_wellformed' does not depend on any axioms\n'Phase17Protected.selected_targets_bound' does not depend on any axioms\n'Phase17Protected.selected_observation_retained' depends on axioms: [sorryAx]\n'Phase17Protected.selected_goal_bound' does not depend on any axioms\n'Phase17Protected.selected_information_bound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17Protected.selected_distribution_entropy_retention' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.sound]\n'Phase17Protected.selected_transaction_binding' does not depend on any axioms\n",
+        "stdout_sha256": "c29840c78ff6ab97f71c2efca9fc2c4607b230c8021b710d3e5de63d55820563"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\ChangedGoal.lean"
+        ],
+        "elapsed_ns": 27612298400,
+        "returncode": 1,
+        "started_at_utc": "2026-11-07T07:59:58.678296+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\ChangedGoal.lean:181:77: error: Tactic `decide` proved that the proposition\n  observedAfter = observedBefore\nis false\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\ChangedGoal.lean:183:94: error: Tactic `decide` proved that the proposition\n  goalDistance observedBefore.goals observedAfter.goals \u2264 0\nis false\n'Phase17Protected.mass_distribution_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_density_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_information_is_kl' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.information_sum_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.goal_distance_self' depends on axioms: [propext]\n'Phase17Protected.unrelated_root_fields_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.attached_protected_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_wellformed' does not depend on any axioms\n'Phase17Protected.selected_targets_bound' does not depend on any axioms\n'Phase17Protected.selected_observation_retained' depends on axioms: [sorryAx]\n'Phase17Protected.selected_goal_bound' depends on axioms: [sorryAx]\n'Phase17Protected.selected_information_bound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17Protected.selected_distribution_entropy_retention' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.sound]\n'Phase17Protected.selected_transaction_binding' does not depend on any axioms\n",
+        "stdout_sha256": "20f2be2694c511d5b15fed26f8185c487100a7f8be977be28d688fbe3ba1e176"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\ChangedTarget.lean"
+        ],
+        "elapsed_ns": 28879418500,
+        "returncode": 1,
+        "started_at_utc": "2026-11-07T08:00:26.291250+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\ChangedTarget.lean:179:74: error: Tactic `decide` proved that the proposition\n  selectedContract = boundContract \u2227\n    observedBefore.goals = boundContract.expectedGoals \u2227\n      boundContract.positions.length = 28 \u2227 \u2200 pair \u2208 boundContract.positions, pair.1 < 260 \u2227 pair.2 < 260\nis false\n'Phase17Protected.mass_distribution_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_density_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_information_is_kl' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.information_sum_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.goal_distance_self' depends on axioms: [propext]\n'Phase17Protected.unrelated_root_fields_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.attached_protected_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_wellformed' does not depend on any axioms\n'Phase17Protected.selected_targets_bound' depends on axioms: [sorryAx]\n'Phase17Protected.selected_observation_retained' does not depend on any axioms\n'Phase17Protected.selected_goal_bound' does not depend on any axioms\n'Phase17Protected.selected_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_distribution_entropy_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_transaction_binding' does not depend on any axioms\n",
+        "stdout_sha256": "1766b1ea8ff5717ac447b888a69eb2ce25fb1308e06bec182b5064a7dcd1d5d8"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\MixedCandidate.lean"
+        ],
+        "elapsed_ns": 28369954100,
+        "returncode": 1,
+        "started_at_utc": "2026-11-07T08:00:55.171280+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17m-5x9w8c5y\\MixedCandidate.lean:200:76: error: Tactic `decide` proved that the proposition\n  semanticBinding = jointBinding\nis false\n'Phase17Protected.mass_distribution_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_density_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.diagonal_information_is_kl' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.information_sum_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.goal_distance_self' depends on axioms: [propext]\n'Phase17Protected.unrelated_root_fields_unchanged' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.attached_protected_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_wellformed' does not depend on any axioms\n'Phase17Protected.selected_targets_bound' does not depend on any axioms\n'Phase17Protected.selected_observation_retained' does not depend on any axioms\n'Phase17Protected.selected_goal_bound' does not depend on any axioms\n'Phase17Protected.selected_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_distribution_entropy_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Protected.selected_transaction_binding' depends on axioms: [sorryAx]\n",
+        "stdout_sha256": "3f4b53c4a28900f0aff2fe828ce3b003a652eaf099fe3fa5ee7aac6835f8f4fe"
+      }
+    ],
+    "executable_sha256": {
+      "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+    },
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "negative_controls_rejected": [
+      "ChangedProbability",
+      "ChangedGoal",
+      "ChangedTarget",
+      "MixedCandidate"
+    ],
+    "new_named_audits": 14,
+    "packet_sha256": "a720bdaeac1b316d6e50b9a640cddfad52baff44c09a44a4fdeda2b977e4da67",
+    "physical_projection_formally_verified": false,
+    "prior_joint_proofs_rerun": false,
+    "protected_sparse_goal_information_checked": true,
+    "schema_id": "runtime.v5.phase17.protected-semantics-lean.v1",
+    "source_sha256": {
+      "ChangedGoal": "0de866d217d6eacd3d8144013c1f0ffc24aebab4fae3faaae95b5c68fb09b886",
+      "ChangedProbability": "edfa27e0b28d84563cb5b3bc70fa627e1542646666fae41c54beb2a957abbe67",
+      "ChangedTarget": "7d4ef6805aac2c1c520b5cd164f9fd7e91f30c62a1fd4df9246666e5238cde03",
+      "MixedCandidate": "b5bad6c9d5a62e5f0a58af85d9fbdc7f35be905582deb200faedc2e3d3091705",
+      "Protected": "d1738ad23c971dc1d47da5b8e80e388456955394df1d0e8462d2d2894be590e8"
+    },
+    "status": "passed",
+    "theorem_axioms": {
+      "Phase17Protected.attached_protected_bounds": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Protected.diagonal_density_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Protected.diagonal_information_is_kl": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Protected.goal_distance_self": [
+        "propext"
+      ],
+      "Phase17Protected.information_sum_nonnegative": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Protected.mass_distribution_normalized": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Protected.selected_distribution_entropy_retention": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Protected.selected_goal_bound": [],
+      "Phase17Protected.selected_information_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Protected.selected_observation_retained": [],
+      "Phase17Protected.selected_targets_bound": [],
+      "Phase17Protected.selected_transaction_binding": [],
+      "Phase17Protected.selected_wellformed": [],
+      "Phase17Protected.unrelated_root_fields_unchanged": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "trusted_import_cache_assumption": true
+  },
+  "protected_task_count": 11,
+  "python_version": "3.13.3",
+  "resource_fields_unchanged": true,
+  "schema": "rcp-rclm.phase17m.protected-semantics-run.v1",
+  "selected_goal_drift": 0,
+  "source_commit": "f39cc8c31d52030c3b07c28a024b38ab12090362",
+  "source_sha256": {
+    "ChangedGoal": "0de866d217d6eacd3d8144013c1f0ffc24aebab4fae3faaae95b5c68fb09b886",
+    "ChangedProbability": "edfa27e0b28d84563cb5b3bc70fa627e1542646666fae41c54beb2a957abbe67",
+    "ChangedTarget": "7d4ef6805aac2c1c520b5cd164f9fd7e91f30c62a1fd4df9246666e5238cde03",
+    "MixedCandidate": "b5bad6c9d5a62e5f0a58af85d9fbdc7f35be905582deb200faedc2e3d3091705",
+    "Protected": "d1738ad23c971dc1d47da5b8e80e388456955394df1d0e8462d2d2894be590e8"
+  },
+  "source_tree": "019ea1b177ea365c2f8d18d2c9e15404b755e1ca",
+  "source_unchanged": true,
+  "started_at_utc": "2026-11-07T07:58:21.600336+00:00",
+  "synthetic_fixture": true,
+  "task_contract_sha256": "af34fb682a920122318f001bf2b76e826244f38202d0377f99f65515e4a14e28",
+  "teacher_forced_position_count": 28,
+  "training_performed": false,
+  "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f",
+  "unique_conditional_rows": 37
+}

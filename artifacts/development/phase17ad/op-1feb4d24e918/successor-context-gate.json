@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_successor_context_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ad-e0b7b79f\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-14T00:00:53.701247+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-13T23:30:35.732364+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "938a5afc2e377b539397711f216f355722dbe906b45e037ee4e5f57d2e3898a8"
+}

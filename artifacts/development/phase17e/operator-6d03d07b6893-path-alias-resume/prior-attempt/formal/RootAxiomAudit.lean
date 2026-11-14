@@ -1,0 +1,5 @@
+import RcpRclmFormalCoreV4
+
+#print axioms RcpRclmFormalCoreV4.Autonomous.autonomous_accepted_step_sound
+#print axioms RcpRclmFormalCoreV4.Autonomous.recursive_productivity_retained
+#print axioms RcpRclmFormalCoreV4.Autonomous.recursive_productivity_strictly_expands_when_witnessed

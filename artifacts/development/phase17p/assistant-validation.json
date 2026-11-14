@@ -1,0 +1,130 @@
+{
+  "actual_lean_commands_executed": 0,
+  "branch": "agent/rcp-rclm-v5-phase-17-controller",
+  "checkout_scope": "reconstructed_historical_dependencies_and_current_phase17_overlay_not_full_current_public_checkout",
+  "claims": {
+    "campaign_budget_authority_integrated": false,
+    "complete_learned_kernel_constructed": false,
+    "complete_resource_accounting": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "old_proofs_rerun": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "physical_execution_attested": false,
+    "physical_projection_formally_verified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false,
+    "training_performed": false
+  },
+  "current_O_report_accepted_locally": false,
+  "current_branch_source_committed": false,
+  "development_history": [
+    "An initial bounded physical smoke invocation was interrupted by the outer tool timeout; no completed result claimed.",
+    "A subsequent physical staging and reconstruction smoke completed; it is development evidence, not the final gate.",
+    "Initial 68-test suite passed. Source-before-materialization retention and two further boundary tests were added.",
+    "Final 70 tests passed in one invocation; 68 and 70 are successive suite versions, not 138 distinct tests."
+  ],
+  "full_native_windows_validation": false,
+  "helper_sha256": "f70ae0603253d5f61b5084f6b20f43605fda411d967c81104e5ad50a25e17d47",
+  "historical_proofs_rerun": false,
+  "inherited_source_checks": {
+    "additional_live_blob_comparisons": 9,
+    "immutable_root_files_changed": 0,
+    "producer_git_blob_pins_passed": 8
+  },
+  "installer_temporary_git_flows": {
+    "git_operations": "real_temporary_local_and_bare_repositories",
+    "passed": 8,
+    "project_commands": "controlled_fixture_not_phase_results"
+  },
+  "installer_unit_tests": {
+    "passed": 43,
+    "project_outcomes": "controlled_records_not_project_execution"
+  },
+  "limitations": [
+    "No complete root predicate is evaluated; missing concrete witnesses are reported and staging remains inactive.",
+    "The journal scopes consumption to one externally anchored fixed-parent authority, not global antirollback or promoted-lineage authority.",
+    "Hash chains, metadata, advisory locks and fsync requests are not independent execution attestation, an OS sandbox, or cross-file power-loss atomicity.",
+    "The positive historical fixture is distinct from the fresh worker outcome; no live win is manufactured.",
+    "Physical materialization and evidence recomputation costs are unmeasured, not zero.",
+    "Prior reports and proofs remain source-bound and are not reassigned or rerun."
+  ],
+  "new_lean_audits": 0,
+  "old_project_suites_rerun": false,
+  "os": "Linux",
+  "phase16_eager_initializer_exercised": false,
+  "preparation_gate": {
+    "automatic_retries": 0,
+    "execution_sha256": "b59a0cf2d09bec36a57eeaf8a9c4847cbafa49a26ae297f18ec6912fe931961f",
+    "fixture_candidate_staged": true,
+    "fixture_is_live_result": false,
+    "fresh_live_challenges": 1,
+    "fresh_worker_sessions": 1,
+    "gate_cli_main_executed_here": true,
+    "online_candidate_staged": false,
+    "online_terminal": "search_exhausted",
+    "preparation_only": true,
+    "source_commit": null,
+    "source_tree": null,
+    "source_unchanged": true,
+    "status": "passed",
+    "winner_filtering": false
+  },
+  "python": "3.13.5",
+  "recorded_at_utc": "2026-11-07T21:15:05.154323+00:00",
+  "required_remote_base": "11e866f7a843bccb95f4a8e3f86a10aa594ff677",
+  "runtime_tests": {
+    "errors": 0,
+    "failures": 0,
+    "one_completed_invocation": true,
+    "passed": 70,
+    "physical_positive_fixture": true,
+    "real_online_zero_credit_source": true,
+    "real_process_exit_control": true,
+    "skipped": 0
+  },
+  "schema": "rcp-rclm.phase17p.assistant-validation.v1",
+  "separate_verify_only": {
+    "new_challenge_entropy": 0,
+    "new_proofs": 0,
+    "new_workers": 0,
+    "passed": true
+  },
+  "source_sha256": {
+    "docs/executable_core_v5/PHASE_17_SUCCESSOR_HANDOFF.md": "c2229598088359485194a63074950da609499ca98731164ca491160cb34e9b70",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/handoff_source.py": "e1ebf688efa9541182f60852b9befc4e66b137ff92c7a16210a27d4323f6b0e4",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/handoff_validation.py": "3156a0c853d226fb47864fd85b95a1aa7d1483e8e7065d147c466cdd72064cb9",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/successor_staging.py": "6b50d052df6faad3214980f484204478414282e33c154bba2069904a8b883a47",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/transition_journal.py": "80ef1ce4d1469baefd97e10445e391f99e6c5d5ac0ff112bfe576981f29e241d",
+    "python/rcp_rclm_runtime_v5/tests_phase17p/test_handoff.py": "63cd1108eb55adf699a92efadc23d090f74c9abc3c08f072561308824b968730",
+    "scripts/run_phase17_handoff_gate.py": "55da3bb85c35cb44d7ff897e3dbb5d12e5bc3110e068c2cbb811369831044335",
+    "scripts/run_phase17_handoff_tests.py": "8129827b8376d5409a5357db36a9b6b6801c03501934326d5582349f8f2473c9"
+  },
+  "unmeasured": [
+    "cpu_time",
+    "accelerator_time",
+    "memory",
+    "storage",
+    "energy",
+    "bootstrap_and_validation",
+    "journal_io",
+    "python_runtime_overhead",
+    "formal_verification",
+    "ipc_and_process_startup",
+    "transcript_recomputation",
+    "candidate_materialization",
+    "joint_evidence_recomputation"
+  ]
+}

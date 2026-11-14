@@ -1,0 +1,5 @@
+test_audit_omission (test_joint_evidence.GateControlTests.test_audit_omission) ... ok
+test_audit_order (test_joint_evidence.GateControlTests.test_audit_order) ... ok
+test_control_success_not_complete_transition (test_joint_evidence.GateControlTests.test_control_success_not_complete_transition) ... ok
+test_extra_output (test_joint_evidence.GateControlTests.test_extra_output) ... ok
+test_missing_dependency_before_compiler (test_joint_evidence.GateControlTests.test_missing_dependency_before_compiler) ... 

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_sparse_refinement_tests.py"
+  ],
+  "finished_at_utc": "2026-11-08T04:37:29.512147+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T04:36:31.559950+00:00",
+  "stderr_sha256": "25d87a189221c691f3daadaa59d26fd1ecee52680315b4043ee27d9720b30235",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

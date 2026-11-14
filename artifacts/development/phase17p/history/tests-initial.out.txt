@@ -1,0 +1,1 @@
+Phase17P inactive handoff tests only. Root acceptance, promotion, Phase17 and EGC-0 remain false.

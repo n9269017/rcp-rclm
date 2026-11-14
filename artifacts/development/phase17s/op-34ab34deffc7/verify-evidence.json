@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_prompt_routing_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\s-c20c73ad\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-08T06:25:15.196299+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T06:24:17.183709+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2393f7d7e39b48377f25ebda24e94fe4cb92f1e0adff629d5cc8e94c323d89e4"
+}

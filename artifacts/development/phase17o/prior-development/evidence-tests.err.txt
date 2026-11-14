@@ -1,0 +1,8 @@
+test_budget_reset_control_rejected (test_campaign_budget.ValidationEvidenceTests.test_budget_reset_control_rejected) ... ok
+test_changed_anchor_inventory_rejected (test_campaign_budget.ValidationEvidenceTests.test_changed_anchor_inventory_rejected) ... ok
+test_claim_escalation_rejected (test_campaign_budget.ValidationEvidenceTests.test_claim_escalation_rejected) ... ok
+test_extra_evidence_file_rejected (test_campaign_budget.ValidationEvidenceTests.test_extra_evidence_file_rejected) ... ok
+test_no_claims_of_evolving_parent_or_full_proof (test_campaign_budget.ValidationEvidenceTests.test_no_claims_of_evolving_parent_or_full_proof) ... ok
+test_removed_session_rejected (test_campaign_budget.ValidationEvidenceTests.test_removed_session_rejected) ... ok
+test_unmeasured_resources_cannot_be_removed (test_campaign_budget.ValidationEvidenceTests.test_unmeasured_resources_cannot_be_removed) ... ok
+test_verify_launches_no_worker_or_entropy (test_campaign_budget.ValidationEvidenceTests.test_verify_launches_no_worker_or_entropy) ... 

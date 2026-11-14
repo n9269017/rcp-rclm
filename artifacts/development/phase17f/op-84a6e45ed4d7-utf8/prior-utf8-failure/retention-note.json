@@ -1,0 +1,16 @@
+{
+  "command_record_sha256": "920fba1ff286bbe51a681222cbaaa27bf0640f2228014cdf7f656632cd9cf299",
+  "failed_source_preserved_as_ancestor": true,
+  "failing_test": "test_catalog_matches_actual_immutable_root_structures",
+  "failure_category": "implicit_cp1252_decoding_of_utf8_lean_source",
+  "original_failure_relabelled": false,
+  "original_records_byte_identical": true,
+  "prior_errors": 1,
+  "prior_passes": 35,
+  "prior_tests_run": 36,
+  "progress_sha256": "ceb2a39aa94516ec4590cafae838fde081f97a7e6390b614867c262d00342439",
+  "source_commit": "3e0c394c154f75c1cbe03e2a3b7793395e9d2221",
+  "source_tree": "11f7f3bac049de7e24ca1681909f7f26e3c92218",
+  "stderr_sha256": "63740c265947cf23577c88f4a1dd43a2a9e9a498588f7b9eac590164f4ab8979",
+  "stdout_sha256": "91f4a67e4ad55c06123e4ce67adfe956fcdd0f5b79fc977424ea3a19321886cc"
+}

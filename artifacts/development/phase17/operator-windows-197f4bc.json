@@ -1,0 +1,53 @@
+{
+  "claims": {
+    "clean_environment_replay_passed": false,
+    "cross_platform_validation_passed": false,
+    "egc0_started": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "independent_worker_free_replay_passed": false,
+    "main_merge_authorized": false,
+    "phase17_exit_closed": false,
+    "pinned_lean_verification_passed": false
+  },
+  "environment": {
+    "exact_run_timestamp_utc": null,
+    "os_build": null,
+    "os_family": "Windows",
+    "python_version": null,
+    "shell": "Windows PowerShell"
+  },
+  "evidence_kind": "operator_supplied_transcript",
+  "observations": {
+    "canonical_index_checksum_verification": "passed",
+    "checksum_entries": 1907,
+    "controller_tests": 26,
+    "errors": 0,
+    "failures": 0,
+    "final_working_tree": "clean",
+    "manifest_commit_pushed": true,
+    "normal_package_imports": true,
+    "phase16_adapter_tests": 7,
+    "reported_duration_seconds": "5.720",
+    "skipped": 0,
+    "tests_run": 33
+  },
+  "post_manifest_change_scope": [
+    "SHA256SUMS.txt"
+  ],
+  "post_manifest_commit": "197f4bc022a68123c20cfd5f146149249663f1db",
+  "provenance_limits": [
+    "Results supplied by the operator; not independently re-executed by the assistant on Windows.",
+    "Environment/version/timestamp values not present in the transcript are left null.",
+    "Tests ran at e7a8748; the subsequent 197f4bc commit changed only the checksum manifest.",
+    "This evidence is not a fresh Phase 16 replay, Lean verification, CI result, platform matrix, or phase closure."
+  ],
+  "schema": "rcp-rclm.operator-reported-validation.v1",
+  "test_source_commit": "e7a87487329aa38884a3798a339b7fb50c01bcb2",
+  "transcript": {
+    "original_terminal_bytes_retained": false,
+    "path": "operator-windows-197f4bc.txt",
+    "representation": "annotated transcription; prompt paths and chat escaping removed",
+    "sha256": "4b8734e0cfcf4bc5a272561673836e4003a0024d8b61b252d1e80d8a1eb298c9"
+  }
+}

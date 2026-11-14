@@ -1,0 +1,48 @@
+{
+  "automatic_retries": 0,
+  "claims": {
+    "egc0_started": false,
+    "full_installation_validation_passed": false,
+    "gate_e_closed": false,
+    "hardware_root_cause_proven": false,
+    "installation_authorized": false,
+    "original_failure_explained_conclusively": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "push_authorized": false,
+    "source_patch_applied": false
+  },
+  "command": {
+    "argv": [
+      "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "scripts/run_phase17_challenge_tests.py"
+    ],
+    "automatic_retries": 0,
+    "cwd": "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17c-kit\\runs\\20261031T091211Z-f7555bd2\\checkout",
+    "exact_passing_summary": true,
+    "expected_tests": 18,
+    "finished_at_utc": "2026-10-31T22:10:33.797747+00:00",
+    "launch_error": null,
+    "observed_test_counts": [
+      18
+    ],
+    "outer_timeout_seconds": 900,
+    "runner_exit": 0,
+    "started_at_utc": "2026-10-31T22:09:59.160077+00:00",
+    "suite_passed": true,
+    "worker_timeout_changed": false
+  },
+  "configuration_record_sha256": "e1ae780eea4b7c27a690862c192f67108405734e3fb99686a0790ada3aaf6426",
+  "interpretation": "One source-bound, uninstrumented test run after an operator-reported configuration change. It does not erase prior failures, certify permanent stability, run the outstanding fresh transaction, or authorize advancing or pushing the development branch.",
+  "original_checkout_unchanged": true,
+  "original_failed_run_overwritten": false,
+  "post_change_bootstrap_report_sha256": "7197d203c8357a88d5b9da97110ae5e96d5e84f5c4cf8efd190edba41e6dfeae",
+  "postcheck_errors": [],
+  "production_code_instrumented": false,
+  "retained_inputs_unchanged": true,
+  "schema": "rcp-rclm.phase17c.post-xmp-uninstrumented-suite.v1",
+  "source_commit": "2d2695674a417cea04947400fa617ac6b34b9d5b",
+  "source_tree": "c0524e7f591044e3fd7329172e907251ae29e940",
+  "test_checkout_unchanged": true,
+  "this_uninstrumented_suite_passed": true
+}

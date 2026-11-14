@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ad-e0b7b79f\e\gate\compilation\invocations\272df45f60f64afa9e4f135995bd724d\workspace/StaleParent.lean:40:2: error: Tactic `decide` proved that the proposition
+  False
+is false

@@ -1,0 +1,206 @@
+{
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_learned_semantic_refinement": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "neural_decoder_formally_verified": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "command_results": [
+    {
+      "argv": [
+        "python",
+        "/mnt/data/phase17l_work/checkout/scripts/run_phase17_joint_tests.py"
+      ],
+      "finished_at_utc": "2026-11-02T00:34:00.456533+00:00",
+      "name": "runtime-final",
+      "returncode": 0,
+      "started_at_utc": "2026-11-02T00:33:26.367908+00:00"
+    },
+    {
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "-v",
+        "test_apply_phase17l"
+      ],
+      "finished_at_utc": "2026-11-02T00:34:38.108725+00:00",
+      "name": "installer-final",
+      "returncode": 0,
+      "started_at_utc": "2026-11-02T00:34:00.456943+00:00"
+    }
+  ],
+  "created_at_utc": "2026-11-02T00:36:31.245837+00:00",
+  "environment": {
+    "checkout_scope": "reconstructed historical dependency checkout plus retained current Phase17 sources; not complete current public checkout",
+    "immutable_root_pin_count": 72,
+    "native_windows_tested_here": false,
+    "os": "Linux",
+    "phase16_scope": "five byte-identical production modules loaded as namespace; eager package-export initializer not exercised",
+    "producer_source_pin_count": 8,
+    "python_version": "3.13.5"
+  },
+  "expected_remote_base": "a87631af18f9b48d1040e6c2a01b511a7675022d",
+  "formal_inventory": {
+    "conditional_assembly_not_concrete_transition": true,
+    "negative_controls": [
+      "MixedCandidate",
+      "MixedTranscript",
+      "WrongComponent",
+      "WrongTarget",
+      "SkippedPrefix"
+    ],
+    "new_audits": [
+      "Phase17Joint.composed_frontier_sound",
+      "Phase17Joint.composed_provenance_bound",
+      "Phase17Joint.remaining_semantics_unchanged",
+      "Phase17Joint.assemble_learned_step",
+      "Phase17Joint.selected_shared_identity",
+      "Phase17Joint.selected_joint_facts"
+    ],
+    "rechecked_audits": [
+      "Phase17LearnedBinding.frozen_view_preserved",
+      "Phase17LearnedBinding.fixed_interpretation_retained",
+      "Phase17LearnedBinding.information_value_retained",
+      "Phase17LearnedBinding.root_information_bound",
+      "Phase17LearnedBinding.frontier_retained",
+      "Phase17LearnedBinding.frontier_grows",
+      "Phase17LearnedBinding.selected_typed_binding",
+      "Phase17LearnedBinding.selected_interpretation_retention",
+      "Phase17TaskMeaning.checked_frontier_sound",
+      "Phase17TaskMeaning.attached_root_frontier_sound",
+      "Phase17TaskMeaning.selected_before_sound",
+      "Phase17TaskMeaning.selected_after_sound",
+      "Phase17TaskMeaning.selected_frontier_retention",
+      "Phase17TaskMeaning.selected_frontier_expansion",
+      "Phase17TaskMeaning.selected_predecessor_rejects_new",
+      "Phase17TaskMeaning.selected_catalog_bijection",
+      "Phase17TaskMeaning.inherited_0",
+      "Phase17TaskMeaning.inherited_1",
+      "Phase17TaskMeaning.inherited_2",
+      "Phase17TaskMeaning.inherited_3",
+      "Phase17TaskMeaning.inherited_4",
+      "Phase17TaskMeaning.inherited_5",
+      "Phase17TaskMeaning.inherited_6",
+      "Phase17TaskMeaning.inherited_7",
+      "Phase17TaskMeaning.inherited_8",
+      "Phase17TaskMeaning.inherited_9",
+      "Phase17TaskMeaning.inherited_10",
+      "Phase17TaskMeaning.inherited_11",
+      "Phase17TaskMeaning.inherited_12",
+      "Phase17Provenance.trace_no_repeat",
+      "Phase17Provenance.attached_generator_bound",
+      "Phase17Provenance.attached_package_bound",
+      "Phase17Provenance.attached_proposal_produced",
+      "Phase17Provenance.attached_candidate_bound",
+      "Phase17Provenance.selected_provenance",
+      "Phase17Provenance.selected_candidate_binding",
+      "Phase17Provenance.selected_rejection_prefix"
+    ],
+    "source_hashes": {
+      "Joint": "56d30d39a2f7bd4d381f3c44a993a00e189527ad25f7dd00f5a8b7773faedcfe",
+      "MixedCandidate": "5e63d5bef42cef457f917ad9e50766cc553edb56cfe4c010a56b2f232f73dd46",
+      "MixedTranscript": "89dca51e373b0f0a8460b29bc6da0f08ba9b7bf1ae65f27257519a9064837c5b",
+      "SkippedPrefix": "df9240433694dee44a33325f166bbc2ecfa90bcc16e9e5563c403fb10dc6f26a",
+      "WrongComponent": "05711094dd38cbc0f0d58197ad281b670d4ae6942b02e3c90c9297c68f940dee",
+      "WrongTarget": "8997f86d0b510cc542264d316a07ab9083a7891dc5a93abd61a97de69a2dc1a3"
+    },
+    "template_sha256": "fb2c7b1dc21a73ae6bcf1b2d554236d2f0569dc84568618b645a6f32cb61428d",
+    "total": 43
+  },
+  "limitations": [
+    "Compiler-control and installer-flow results use controlled fixtures; they are not Lean proofs.",
+    "New Lean source is authored but has not been compiler-validated here.",
+    "Reconstructed runner smoke overrides BASE at runtime to a real local reconstruction commit; it does not test ancestry against the authoritative remote base.",
+    "Python hashing, observation/refinement and literal binding plus toolchain/import-cache trust remain explicit.",
+    "Conditional LearnedAcceptedStep assembler requires concrete compatible base, goal, resource and information witnesses; none is manufactured.",
+    "No historical recursive task, live capability gain, promotion, Phase17/GateE closure, EGC-0, hosted CI, independent replay or cross-platform result is claimed."
+  ],
+  "remaining_witness_classes": [
+    "concrete_compatible_base_RCP_RCLM_obligations",
+    "physical_observation_refinement_to_composed_kernel",
+    "concrete_goal_drift_and_budget",
+    "complete_resource_measurement_budget_and_enforcement",
+    "full_information_semantics_and_nonregression",
+    "autonomous_recursive_productivity_and_history_obligations",
+    "durable_fresh_challenge_consumption",
+    "active_atomic_promotion_and_rollback"
+  ],
+  "remote_source_changed": false,
+  "results": {
+    "actual_physical_joint_preparation": true,
+    "cli_help": true,
+    "installer_temporary_git_flows": 8,
+    "installer_total_tests": 45,
+    "installer_unit_tests": 37,
+    "new_python_compilation": true,
+    "new_runtime_failures": 0,
+    "new_runtime_skips": 0,
+    "new_runtime_tests": 66,
+    "real_lean_missing_dependency": "mathlib",
+    "real_lean_processes": 0,
+    "real_lean_status": "blocked",
+    "runner_preparation_smoke": true,
+    "unchanged_J_K_regressions": 139
+  },
+  "retained_development_failures": [
+    "One new tamper test initially addressed outputs instead of the existing targets field; corrected test now exercises real semantic tampering.",
+    "Two initial new-suite commands and an initial regression command hit outer execution limits; partial logs retained, not counted as passing runs.",
+    "A later outer command ended after an OK suite without a captured process exit; superseded by supervised final runtime/installer commands with recorded exit zero.",
+    "Reconstruction initially lacked the five Phase16 modules and required archive placement; no substitute implementations were accepted."
+  ],
+  "runner_scope": {
+    "base_ancestry_guard_exercised_against_real_remote": false,
+    "lean_executed": false,
+    "not_current_full_checkout": true,
+    "original_expected_remote_base": "a87631af18f9b48d1040e6c2a01b511a7675022d",
+    "reconstructed_checkout": true,
+    "runtime_base_override_for_smoke": "8f65664f9e4787cdf35b4185d53d0ce2fcf33439",
+    "schema": "assistant.phase17l.runner-smoke-scope.v1"
+  },
+  "schema": "assistant.phase17l.validation.v1",
+  "selected_transaction": {
+    "bindings": {
+      "candidate_physical_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+      "challenge_commitment_hash": "478d7884588779bca1483fb65d06d2a4b4d430960c47a6fdfd8036fb8a39c2ab",
+      "historical_state_hash": "7d2b823c05e4e4cef7566a89d3d440dba60a6417c6a3401f1248e59f89e91567",
+      "objective_hash": "e6a40e7a55002356e5a5c35262b35a7e98f54e9aa1153db60945215d56e941d3",
+      "predecessor_physical_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+      "program_hash": "a4f37fb8f2f7d3a90829340f2f02b2f19dbc5dfa5caf7a7633e9092837265c0e",
+      "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+    },
+    "component_sha256": {
+      "producer_provenance": "6668900a9ec4dadb06e51489ea7a3751b801cab7ff9657a80bb44d74337cf2f6",
+      "task_meanings": "30c9e00f93d23713ac658c004a8102e35a57c021bd6169da2cb1f877afa28670",
+      "typed_binding": "beea315339dddd2863ff3c47067be1be38a04b23f66faa1fd513f36e046e3008"
+    },
+    "historical_reports_reassigned": false,
+    "packet_sha256": "035c570a3e4b7f1ed2fd43085d9cd6357b2596a169eebcd621c0ff5d0fe274ac",
+    "proposals": 9,
+    "rejections": 8,
+    "synthetic_fixture": true,
+    "task_frontier_sizes": [
+      21,
+      22
+    ]
+  },
+  "source_hashes": {
+    "docs/executable_core_v5/PHASE_17_JOINT_EVIDENCE.md": "9bde316cc6e1c9abee5f3f0569cfa071be8315134eab9ca84a13e6b004080504",
+    "docs/executable_core_v5/PHASE_17_PROPOSAL_PROVENANCE.md": "670834b83b2a857edef384ed046f1164503d6166c63684c33b40245765995374",
+    "lean/phase17_bridge/JointEvidence.lean": "fb2c7b1dc21a73ae6bcf1b2d554236d2f0569dc84568618b645a6f32cb61428d",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/joint_evidence.py": "066c34f4a131ad77ef8b76cdf1af27c77ed79d56124dfcaa2074cba8d6304928",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/joint_lean.py": "68f46698ddbd022b99b9d417dc4f6ca9d9e05ca6073ee6508bac63982bcdb4ea",
+    "python/rcp_rclm_runtime_v5/tests_phase17l/test_joint_evidence.py": "8ad019308f98d7fe2e50ccb6548fc4a57a6c6e9937e4c5622eabcf70300627e3",
+    "scripts/run_phase17_joint_gate.py": "8c1d597acc21d29ae0ad3cc37c840f695f482907f559afea67a1d49fd5d301c8",
+    "scripts/run_phase17_joint_regressions.py": "c98c856d9f7ae307441d77a948d4b22f141990f6c219e751fe00b90690e9e14f",
+    "scripts/run_phase17_joint_tests.py": "9c12edd1be285722db3f78560d54b876031570f36e278ab98fa13ed6e3862683"
+  }
+}

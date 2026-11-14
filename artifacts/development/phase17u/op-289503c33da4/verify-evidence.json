@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_planner_refinement_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\u-ee56fe9d\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-08T19:03:13.927152+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T19:02:07.615373+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "c1896e2943557e594659f56f825a1de6ef1207818c3d7c7e6a6dd0c2b4194b27"
+}

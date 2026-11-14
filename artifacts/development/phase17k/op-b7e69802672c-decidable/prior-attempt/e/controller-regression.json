@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_provenance_regressions.py"
+  ],
+  "finished_at_utc": "2026-11-01T22:05:08.284749+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-01T22:05:02.179899+00:00",
+  "stderr_sha256": "e54a49de990726ef44b40b0ae76fb3b4ed7b7c1a198323b4d5daf8827c8660ed",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "rcp-rclm.phase17i.typed-learned-binding-run.v1",
+  "source_commit": "b5f9f7af8fcbb827f6cacf5abbb0a27be619cebc",
+  "source_tree": "eb5171c5551259f3ca8eeb8f134582f8eb61c5ce",
+  "started_at_utc": "2026-11-01T17:52:51.834755+00:00",
+  "os": "Windows",
+  "python_version": "3.13.3",
+  "synthetic_fixture": true,
+  "automatic_retries": 0,
+  "local_increment_checks_passed": false,
+  "claims": {
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "live_capability_gain_demonstrated": false,
+    "complete_resource_accounting": false,
+    "full_learned_semantic_refinement": false,
+    "neural_decoder_formally_verified": false
+  },
+  "failure": {
+    "type": "CanonicalizationError",
+    "reason": "CANONICALIZATION_FAILED at json: input bytes are not canonical RCPRCLM-CJSON-V2"
+  },
+  "finished_at_utc": "2026-11-01T17:53:03.877504+00:00"
+}

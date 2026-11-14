@@ -1,0 +1,8 @@
+{
+  "egc0_started": false,
+  "fresh_clean_checkout_only": false,
+  "gate_e_closed": false,
+  "phase17_exit_closed": false,
+  "python_version": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
+  "source_commit": "2d2695674a417cea04947400fa617ac6b34b9d5b"
+}

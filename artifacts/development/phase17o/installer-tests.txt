@@ -1,0 +1,70 @@
+INSTALLER UNITS: controlled execution records, not new online or Lean results.
+test_boolean_integer (test_apply_phase17o.InstallerGuards.test_boolean_integer) ... ok
+test_boolean_pid (test_apply_phase17o.InstallerGuards.test_boolean_pid) ... ok
+test_changed_source_hashes (test_apply_phase17o.InstallerGuards.test_changed_source_hashes) ... ok
+test_claim_escalation (test_apply_phase17o.InstallerGuards.test_claim_escalation) ... ok
+test_control_claimed_worker (test_apply_phase17o.InstallerGuards.test_control_claimed_worker) ... ok
+test_duplicate_challenge (test_apply_phase17o.InstallerGuards.test_duplicate_challenge) ... ok
+test_duplicate_json_rejected (test_apply_phase17o.InstallerGuards.test_duplicate_json_rejected) ... ok
+test_failed_gate_rejected (test_apply_phase17o.InstallerGuards.test_failed_gate_rejected) ... ok
+test_failed_grant_refund (test_apply_phase17o.InstallerGuards.test_failed_grant_refund) ... ok
+test_failed_record_cannot_hide (test_apply_phase17o.InstallerGuards.test_failed_record_cannot_hide) ... ok
+test_float_json_rejected (test_apply_phase17o.InstallerGuards.test_float_json_rejected) ... ok
+test_forged_totals (test_apply_phase17o.InstallerGuards.test_forged_totals) ... ok
+test_hidden_retry (test_apply_phase17o.InstallerGuards.test_hidden_retry) ... ok
+test_invalid_terminal (test_apply_phase17o.InstallerGuards.test_invalid_terminal) ... ok
+test_missing_restart_check (test_apply_phase17o.InstallerGuards.test_missing_restart_check) ... ok
+test_missing_third_denial (test_apply_phase17o.InstallerGuards.test_missing_third_denial) ... ok
+test_no_old_lean_or_test_command_in_main (test_apply_phase17o.InstallerGuards.test_no_old_lean_or_test_command_in_main) ... ok
+test_old_proof_relabel (test_apply_phase17o.InstallerGuards.test_old_proof_relabel) ... ok
+test_omitted_work (test_apply_phase17o.InstallerGuards.test_omitted_work) ... ok
+test_physical_zeroing_rejected (test_apply_phase17o.InstallerGuards.test_physical_zeroing_rejected) ... ok
+test_preparation_rejected (test_apply_phase17o.InstallerGuards.test_preparation_rejected) ... ok
+test_prior_N_identity (test_apply_phase17o.InstallerGuards.test_prior_N_identity) ... ok
+test_profile_claim_escalation (test_apply_phase17o.InstallerGuards.test_profile_claim_escalation) ... ok
+test_reserved_cost_changed (test_apply_phase17o.InstallerGuards.test_reserved_cost_changed) ... ok
+test_simulation_not_crash (test_apply_phase17o.InstallerGuards.test_simulation_not_crash) ... ok
+test_source_change_rejected (test_apply_phase17o.InstallerGuards.test_source_change_rejected) ... ok
+test_test_count_skips_and_failure (test_apply_phase17o.InstallerGuards.test_test_count_skips_and_failure) ... ok
+test_unsafe_paths (test_apply_phase17o.InstallerGuards.test_unsafe_paths) ... ok
+test_unsupported_lean_claim (test_apply_phase17o.InstallerGuards.test_unsupported_lean_claim) ... ok
+test_valid_control (test_apply_phase17o.InstallerGuards.test_valid_control) ... ok
+test_winner_filtering (test_apply_phase17o.InstallerGuards.test_winner_filtering) ... ok
+test_worker_budget_refund (test_apply_phase17o.InstallerGuards.test_worker_budget_refund) ... ok
+test_wrong_source (test_apply_phase17o.InstallerGuards.test_wrong_source) ... ok
+test_wrong_tree (test_apply_phase17o.InstallerGuards.test_wrong_tree) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.006s
+
+OK
+
+TEMPORARY GIT FLOWS: real Git, controlled project command outcomes.
+test_dirty_original_refused (test_installer_flow.InstallerFlow.test_dirty_original_refused) ... ok
+test_evidence_mutation_no_advancement (test_installer_flow.InstallerFlow.test_evidence_mutation_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpqaqil_c2/work/o-c5a72b63
+Original checkout advanced: False
+ok
+test_failed_gate_no_advancement (test_installer_flow.InstallerFlow.test_failed_gate_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpq3t9eeul/work/o-70b7e2ee
+Original checkout advanced: False
+ok
+test_failed_tests_no_advancement (test_installer_flow.InstallerFlow.test_failed_tests_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmp7cxmkcno/work/o-c8e5b66e
+Original checkout advanced: False
+ok
+test_full_flow_normal_push (test_installer_flow.InstallerFlow.test_full_flow_normal_push) ... To /tmp/tmpcc_9zrg4/remote.git
+   f8500e6..02b9177  02b91771e9078b4d5ae04d15bc9fa16e28c45934 -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_no_push_preserves_validated_local_commit (test_installer_flow.InstallerFlow.test_no_push_preserves_validated_local_commit) ... ok
+test_rejected_push_keeps_local_validated_commits (test_installer_flow.InstallerFlow.test_rejected_push_keeps_local_validated_commits) ... To /tmp/tmp3_oth5lf/remote.git
+ ! [remote rejected] f053525fb3d32b159a31eba59d9b55b8108fabe6 -> agent/rcp-rclm-v5-phase-17-controller (pre-receive hook declined)
+error: failed to push some refs to '/tmp/tmp3_oth5lf/remote.git'
+Stopped; workspace and logs retained: /tmp/tmp3_oth5lf/work/o-689965ee
+Original checkout advanced: True
+ok
+test_remote_movement_no_advancement (test_installer_flow.InstallerFlow.test_remote_movement_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpkf9fbuei/work/o-e7b5e85a
+Original checkout advanced: False
+ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 30.102s
+
+OK

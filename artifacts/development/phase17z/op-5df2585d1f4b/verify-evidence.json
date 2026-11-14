@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_evaluation_trace_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\z-e2212123\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-10T06:31:07.248749+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-10T06:29:07.179458+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "089479166fc3f2d607bb21af9ebf50358fcc3bfb51e3a1b918dc568fd4d642b5"
+}

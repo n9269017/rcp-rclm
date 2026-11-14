@@ -1,0 +1,1 @@
+PASS: captured route files, original prompts and retained Q/R/S proof inputs reconstructed; no workers, challenges, or compiler runs

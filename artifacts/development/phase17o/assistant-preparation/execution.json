@@ -1,0 +1,270 @@
+{
+  "automatic_retries": 0,
+  "claims": {
+    "campaign_budget_authority_integrated": false,
+    "complete_learned_kernel_constructed": false,
+    "complete_resource_accounting": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "old_proofs_rerun": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "physical_execution_attested": false,
+    "physical_projection_formally_verified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false,
+    "training_performed": false
+  },
+  "finished_at_utc": "2026-11-07T19:42:36.451090+00:00",
+  "local_increment_checks_passed": true,
+  "new_lean_audits": 0,
+  "old_proofs_rerun": false,
+  "os": "Linux",
+  "preparation_only": true,
+  "profile": {
+    "all_completed_sessions_recomputed": true,
+    "authority_reopened_between_sessions": true,
+    "automatic_retries": 0,
+    "campaign_head": "801d40a00f6d4c956a7e6cbdd28c5d4c70e4caa9a00ecedd6b2e6baa009dd83c",
+    "campaign_status": "resource_exhausted",
+    "candidate_credits_per_session": 2,
+    "claims": {
+      "campaign_budget_authority_integrated": false,
+      "complete_learned_kernel_constructed": false,
+      "complete_resource_accounting": false,
+      "cross_platform_validation": false,
+      "egc0_started": false,
+      "full_frontier_recertified": false,
+      "full_goal_interpretation_supplied": false,
+      "full_information_interpretation_supplied": false,
+      "full_learned_step_instantiated": false,
+      "gate_e_closed": false,
+      "github_hosted_ci_passed": false,
+      "historical_cost_recovered": false,
+      "live_capability_gain_demonstrated": false,
+      "old_proofs_rerun": false,
+      "os_resource_containment": false,
+      "phase17_exit_closed": false,
+      "phase18_independent_replay": false,
+      "physical_execution_attested": false,
+      "physical_projection_formally_verified": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "recursive_productivity_recertified": false,
+      "root_transition_verified": false,
+      "training_performed": false
+    },
+    "commitments": [
+      "3efb449452b0c627ed4ba94e39f47cfe405ad7e32de629c11cc527ff32c6e42d",
+      "e1fa1ff7dbece54f13bfa19d2eaa09c02c8de35eb5db172f3aab23914c5f6328"
+    ],
+    "completed_worker_cost": 4480,
+    "completed_worker_sessions": 2,
+    "completed_worker_spent": [
+      4,
+      176,
+      704,
+      704
+    ],
+    "controls": {
+      "abandoned-grant": {
+        "head": "7bd864a044f442b95aeed14248e1443efe05102e7ba37aa9afefeacfb5138ccf",
+        "policy": {
+          "cost_limit": 2240,
+          "dimensions": [
+            "candidate_attempts",
+            "vector_calls",
+            "input_values",
+            "output_values"
+          ],
+          "limits": [
+            2,
+            88,
+            352,
+            352
+          ],
+          "profile": "phase17n.bounded-vector-reference-work.v1",
+          "weights": [
+            64,
+            16,
+            1,
+            1
+          ]
+        },
+        "reserved": [
+          2,
+          88,
+          352,
+          352
+        ],
+        "reserved_cost": 2240,
+        "simulated_failure_or_abandonment": true,
+        "status": "safety_halt",
+        "worker_launched": false
+      },
+      "failed-grant": {
+        "head": "af94ebad3aee04c599a970eaef71c91b3bd74f0bfd4ef87a454d212d8ecb5e7d",
+        "policy": {
+          "cost_limit": 2240,
+          "dimensions": [
+            "candidate_attempts",
+            "vector_calls",
+            "input_values",
+            "output_values"
+          ],
+          "limits": [
+            2,
+            88,
+            352,
+            352
+          ],
+          "profile": "phase17n.bounded-vector-reference-work.v1",
+          "weights": [
+            64,
+            16,
+            1,
+            1
+          ]
+        },
+        "reserved": [
+          2,
+          88,
+          352,
+          352
+        ],
+        "reserved_cost": 2240,
+        "simulated_failure_or_abandonment": true,
+        "status": "safety_halt",
+        "worker_launched": false
+      },
+      "zero-budget": {
+        "head": "f73fe1a75e5cbdc0876979127c339e5ed760bbb1f73984be86d67ac26f2499f3",
+        "policy": {
+          "cost_limit": 0,
+          "dimensions": [
+            "candidate_attempts",
+            "vector_calls",
+            "input_values",
+            "output_values"
+          ],
+          "limits": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "profile": "phase17n.bounded-vector-reference-work.v1",
+          "weights": [
+            64,
+            16,
+            1,
+            1
+          ]
+        },
+        "reserved": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reserved_cost": 0,
+        "simulated_failure_or_abandonment": false,
+        "status": "resource_exhausted",
+        "worker_launched": false
+      }
+    },
+    "execution_metadata_is_attestation": false,
+    "fixed_parent": true,
+    "fresh_live_challenges": 2,
+    "full_envelope_reservations": [
+      4,
+      176,
+      704,
+      704
+    ],
+    "new_lean_audits": 0,
+    "old_proofs_rerun": false,
+    "profile": "phase17o.fixed-parent-two-session-development.v1",
+    "reserved_cost": 4480,
+    "schema": "rcp-rclm.phase17o.online-campaign-profile.v1",
+    "scoped_online_budget_authority_integrated": true,
+    "terminal_actions": [
+      "resource_exhausted",
+      "resource_exhausted"
+    ],
+    "third_worker_launch_denied": true,
+    "unmeasured": [
+      "cpu_time",
+      "accelerator_time",
+      "memory",
+      "storage",
+      "energy",
+      "bootstrap_and_validation",
+      "journal_io",
+      "python_runtime_overhead",
+      "formal_verification",
+      "ipc_and_process_startup",
+      "transcript_recomputation"
+    ],
+    "winner_filtering": false,
+    "worker_pids": [
+      4472,
+      4479
+    ],
+    "worker_spent_by_session": [
+      [
+        2,
+        88,
+        352,
+        352
+      ],
+      [
+        2,
+        88,
+        352,
+        352
+      ]
+    ]
+  },
+  "python_version": "3.13.5",
+  "retained_phase17n": null,
+  "schema": "rcp-rclm.phase17o.campaign-run.v1",
+  "source_commit": null,
+  "source_sha256": {
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/codec.py": "5f766ac8e2b0af2318bcb2f1a1da508f793bffd81324e2a498bb7b19ce9cf6d1",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/constants.py": "410cd947b0c911bf19405387d5f032f209f78cc9fb879f118d1c8f3d37b97798",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/grammar.py": "c083af338d42e80da84e7585dfde8fce0f0d460702781d9f8993ea8f95a5dca7",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/ranking.py": "27638b8f3a6f24a1b4e2d8a24b01c6541a59974fbfd77805ec045a9fdb3009a8",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/records.py": "4ac34024d66f39b1150ab4e2279e3beb44b88ac44472839325901561d6754d13",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/bootstrap.py": "c95e37240101e94de540300f23a977d0492449e3890c2a5b928c142fd622389e",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_budget.py": "f9b58a8be32654173300ad4316c742e7f10e408ad7cb8aad97c018c00543e722",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_client.py": "df5443dfc0c6cf699d85187e96363da8149f11a461f6f7f8006fc63895c41837",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_transaction.py": "62a8130de8db0c30d7a9b4a60170fb374a06dc5f1560d3de28ba4b75871e8b7b",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_validation.py": "9f0645474d02e22bc400d50c38f805638f65639e07110122397882e48094b4da",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_client.py": "aec1d7ff74dec85987b1fbfeb195f3c807078e9742a3a70ec74c31a3377ac560",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_protocol.py": "fd45a59eafacc8528ce3865dc8601b017b340e3dd59047701b8fe77204bdecfb",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/controller.py": "a6d6dadf7fbe33a28017d4b6b2d690ea0ff8fd68133aa2423c5a8b7bf4b1ed0a",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/metered_worker.py": "3e1e745812fcf4736e8e1b4be5e695c479421fb0d101f0862e88006c26522c4d",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/objectives.py": "25d3f10b15c74da1a3b0f9a2f4716ddbbc59b008428a63a25b74b9f8edae3a2d",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/phase16_adapter.py": "df528e8d944b005ebaeaada3b38b95939463c82a839aaabe013bac90e4722069",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/resource_ledger.py": "4c7decc2b69dacad1a56a505529094cea5e7fcf2888cbfafa8e137333f882b0e",
+    "python/rcp_rclm_runtime_v5/tests_phase17o/test_campaign_budget.py": "9d9277504ff3b41ca456d73293b56e0c6c0c74a7ea7b2418913e3ab2515db66a",
+    "scripts/phase17_campaign_worker.py": "3b91024134bbe12fbc219b2b7a36448c44e8d47b81b066c115877cee34da17ad",
+    "scripts/run_phase17_campaign_gate.py": "28a671d943d6b6400069d8ca7d9c34b3cd8e8bf89b446a37ee936942bd344dcd",
+    "scripts/run_phase17_campaign_tests.py": "3427b3baa068aa4fa73e29862fcae11bd4f225ab3f64c1bcf47f2952547d3f6f"
+  },
+  "source_tree": null,
+  "source_unchanged": true,
+  "started_at_utc": "2026-11-07T19:42:24.637377+00:00"
+}

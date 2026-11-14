@@ -1,0 +1,726 @@
+{
+  "source_commit": "6d03d07b6893ab1ff1c92a1714a9c6f25ca9d093",
+  "package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "capability_tasks_evaluated": 21,
+  "lean_obligations_prepared": 13,
+  "lean_gate": {
+    "schema_id": "runtime.v5.phase17.lean-capability-check.v1",
+    "status": "passed",
+    "toolchain": "leanprover/lean4:v4.31.0",
+    "capability_frontier_report_hash": "b337a26ff91da168c426df29cb935854646912f5b5cf750a2d4464ab8f45ef80",
+    "obligation_count": 13,
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stderr": "",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T01:59:41.559580+00:00",
+        "elapsed_ns": 55539100
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_40d58c7bcb7e075de355931f.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_40d58c7bcb7e075de355931f' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "dc16d96ec824efeee73be72e8119821dd160655c284cb7570c66916ab21861e2",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T01:59:41.621323+00:00",
+        "elapsed_ns": 14699976900
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_4b6c1b29c9bb833d61e2f656.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_4b6c1b29c9bb833d61e2f656' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "956701d8e0638c82eac57e59a4713787fd3af175eeb0464f80f4ad5cbdb59200",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T01:59:56.323883+00:00",
+        "elapsed_ns": 14155803100
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_8b38bcb47eda0b70b2b7db53.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_8b38bcb47eda0b70b2b7db53' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "bafbd21134190814e112f31728bbbbdb69207f15fa4f3df3a3deedb3a01d9f37",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:00:10.480472+00:00",
+        "elapsed_ns": 14133571900
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_90f3310a3ade240161a9ccfe.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_90f3310a3ade240161a9ccfe' does not depend on any axioms\n",
+        "stderr": "",
+        "stdout_sha256": "ae45ace1d2ae1a6433f5f7d2e69ee5254dfc281b472a54158fb73f096e78db0b",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:00:24.614809+00:00",
+        "elapsed_ns": 14100944500
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_95bcb898619e04c7c7a8dc7c.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_95bcb898619e04c7c7a8dc7c' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "68db22f304aa0d92fa05f64c072804d02ce5dbcc844f79df342bfdc0cd305635",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:00:38.716733+00:00",
+        "elapsed_ns": 14165175600
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_a6f303464a35370717f5b43b.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_a6f303464a35370717f5b43b' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "d8a253637963dcaa232b0c68cfa22a94f1b0b2dcb4c9fcfb07dd3a4779272f1b",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:00:52.882648+00:00",
+        "elapsed_ns": 14149464900
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_aa812b822aba1af8a0a8ee21.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_aa812b822aba1af8a0a8ee21' depends on axioms: [propext]\n",
+        "stderr": "",
+        "stdout_sha256": "23dd61c682e2a266ad57b480096dab97ebada2fd1ed8f0a45069f3d299feb058",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:01:07.032875+00:00",
+        "elapsed_ns": 14182162000
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_ab4b84ad0b06a5f8bb5b3feb.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_ab4b84ad0b06a5f8bb5b3feb' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "3bea6477f76d7bd1a0fb594099f582409d4dd61bca6ca78460988df389a733d6",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:01:21.215762+00:00",
+        "elapsed_ns": 14195751000
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_c4df74a5676f3be58d91172a.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_c4df74a5676f3be58d91172a' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "69daecc6dd1c7b5ad0ea82a20d9f4d5432f171d84221ef49ecf5c24d0a6fa3b0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:01:35.412303+00:00",
+        "elapsed_ns": 14114804100
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_d69e7a698f7d392c9d7249ed.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_d69e7a698f7d392c9d7249ed' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "7c99e98e871165ba133871c364531381c7230b30b4cf699ef6f71acba291b28a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:01:49.527877+00:00",
+        "elapsed_ns": 14133093500
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_ea08af8580910d01fc67b2a9.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_ea08af8580910d01fc67b2a9' does not depend on any axioms\n",
+        "stderr": "",
+        "stdout_sha256": "2ddb2430ba2cbfe27f379936113c590abbe8c9d1ef6f75efa12fbb3104033ffc",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:02:03.661673+00:00",
+        "elapsed_ns": 14121016600
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_eedfa6455d98671e410ad7f1.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_eedfa6455d98671e410ad7f1' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "5e159575d6ff28c94e7b3ba6da8f9e0e1e0be6c2a9bc9402b5cc8f31fed96ba7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:02:17.783331+00:00",
+        "elapsed_ns": 14173199500
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-g03y81tq\\phase17_ef6490ca1028e2f8266b9016.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'phase17_ef6490ca1028e2f8266b9016' depends on axioms: [propext, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "f9b99be275b93aa92cfcf62b9379f4484c9a4af3c5c2da0bfb2873a8f5c25739",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T02:02:31.957392+00:00",
+        "elapsed_ns": 14367260200
+      }
+    ],
+    "proofs": [
+      {
+        "name": "phase17_40d58c7bcb7e075de355931f",
+        "source_sha256": "a269501136730bdcde4b1ab63efdb521ebb95bf9007b4dce32025cd893b3f830",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_4b6c1b29c9bb833d61e2f656",
+        "source_sha256": "60e6bbca487b6807d97338b84253481f2884d25644d8f9274b716799a504d269",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_8b38bcb47eda0b70b2b7db53",
+        "source_sha256": "5f3d24df1725dd940f10edd1a1fc857d3e0a0a74aee4af2970c17e87e88e1387",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_90f3310a3ade240161a9ccfe",
+        "source_sha256": "2923a5127ebb2dce77b93f25bfacd4ff8d23778e9c045de8ddabed164da927fb",
+        "axioms": [],
+        "checked": true
+      },
+      {
+        "name": "phase17_95bcb898619e04c7c7a8dc7c",
+        "source_sha256": "ef24333062d901e017672cd228a08665df7fe26cd039bd30af051edfe0bf1f15",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_a6f303464a35370717f5b43b",
+        "source_sha256": "29a44f8162d395296df0b6a3695ef84d4c53754badd4fc40ac572339afe81343",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_aa812b822aba1af8a0a8ee21",
+        "source_sha256": "f17a5ce95e825ce7b1f160ea01b9af617754a0599dc79e598631d760d2737662",
+        "axioms": [
+          "propext"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_ab4b84ad0b06a5f8bb5b3feb",
+        "source_sha256": "2ccfa1a6941344d7717e88514799bc03b443551733ef5f6611568e3b709d11ad",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_c4df74a5676f3be58d91172a",
+        "source_sha256": "8410efe3df3b56346023950e05536e31d3ed1436ba189e5d081eca7ecae3c2a3",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_d69e7a698f7d392c9d7249ed",
+        "source_sha256": "e674398024eb21a38ba89194a88e47bdb9e76adc711744020733036883991f1e",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_ea08af8580910d01fc67b2a9",
+        "source_sha256": "74b00915a34bd9b2abc617337883e545052e5193f01de883549f4b61c1e9bb9e",
+        "axioms": [],
+        "checked": true
+      },
+      {
+        "name": "phase17_eedfa6455d98671e410ad7f1",
+        "source_sha256": "00a2b7cac3e41ec4f7f10326f38e7876550a166956b3133ab43b60a71d167d77",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      },
+      {
+        "name": "phase17_ef6490ca1028e2f8266b9016",
+        "source_sha256": "e213d8c64ed0c514b3be2f8e1dabde63c3b432d738e0a603140a3c948ba6ddfa",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "checked": true
+      }
+    ],
+    "fresh_lean_verified": true,
+    "capability_frontier_recertified": true,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false,
+    "promotion_authorized": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "git_executable": {
+      "path": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "sha256": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc"
+    },
+    "root_source_fingerprint": {
+      "lean/rcp_rclm_formal_core_v2/README.md": {
+        "canonical_sha256": "c21d6ee0d6be3e8d8bbb1071a60a42f7689b4fced9285416c8f4ecce77adaea0",
+        "checkout_sha256": "c21d6ee0d6be3e8d8bbb1071a60a42f7689b4fced9285416c8f4ecce77adaea0"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2.lean": {
+        "canonical_sha256": "80057ec023de5035a3345a6986de34c49e28cf8cc429dcbb7e476170367010bf",
+        "checkout_sha256": "80057ec023de5035a3345a6986de34c49e28cf8cc429dcbb7e476170367010bf"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/MainTheorem.lean": {
+        "canonical_sha256": "1394a98cd130236821a29c96b5d5a132276334e1a4e9f2ecb0418c413db2a4f0",
+        "checkout_sha256": "1394a98cd130236821a29c96b5d5a132276334e1a4e9f2ecb0418c413db2a4f0"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM.lean": {
+        "canonical_sha256": "d700ca34b54640ae5a61db35700c550e2b428d41c3471f8405ee4b05e760506f",
+        "checkout_sha256": "d700ca34b54640ae5a61db35700c550e2b428d41c3471f8405ee4b05e760506f"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ArchitectureEngine.lean": {
+        "canonical_sha256": "511c9afff2780f81c7fc55e0ac369f598e88fda5c158ea7fd82ac2f2714b8573",
+        "checkout_sha256": "511c9afff2780f81c7fc55e0ac369f598e88fda5c158ea7fd82ac2f2714b8573"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ArchitectureTheorem.lean": {
+        "canonical_sha256": "69ccadf1c1bfca2cc58bbce4c6c69ce8f2ada6ffce8941db8c65085188cf9595",
+        "checkout_sha256": "69ccadf1c1bfca2cc58bbce4c6c69ce8f2ada6ffce8941db8c65085188cf9595"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/CertificatePacket.lean": {
+        "canonical_sha256": "b2b6da2c7dfd4561d9c4f42681b8cf0cd1e429007b57a9e1cb0f6847ebe68c16",
+        "checkout_sha256": "b2b6da2c7dfd4561d9c4f42681b8cf0cd1e429007b57a9e1cb0f6847ebe68c16"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinary.lean": {
+        "canonical_sha256": "0e8ac0f7cb6c34b89930feaf0f40e3c8987a57f481537f0ffa7d4b3d4b6451e9",
+        "checkout_sha256": "0e8ac0f7cb6c34b89930feaf0f40e3c8987a57f481537f0ffa7d4b3d4b6451e9"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinaryEngine.lean": {
+        "canonical_sha256": "a097ec11748e10d3677bc57ad17df2d2547aa9a51cce9147dd6978c8bb45bea4",
+        "checkout_sha256": "a097ec11748e10d3677bc57ad17df2d2547aa9a51cce9147dd6978c8bb45bea4"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinaryPaperII.lean": {
+        "canonical_sha256": "ea80f17fe62e223a1196bbbbc003710de9d422cfab2cc01149a4496becd457b8",
+        "checkout_sha256": "ea80f17fe62e223a1196bbbbc003710de9d422cfab2cc01149a4496becd457b8"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinarySeedLibrary.lean": {
+        "canonical_sha256": "8a7b930597dddb53b0e137499dea5fd26aa7325250a87f4f1eecdaea5f3fb55b",
+        "checkout_sha256": "8a7b930597dddb53b0e137499dea5fd26aa7325250a87f4f1eecdaea5f3fb55b"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/ClassicalBinarySeedTrajectory.lean": {
+        "canonical_sha256": "0ce18f39b7a0b65f835efa6bd8ef13a0a0b72bf59e79c97e1adb29054abcba86",
+        "checkout_sha256": "0ce18f39b7a0b65f835efa6bd8ef13a0a0b72bf59e79c97e1adb29054abcba86"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIAlignmentPremises.lean": {
+        "canonical_sha256": "089e6c4945510ac541cc5dc2d2b515cbbfdb118448732d8c3f9775cabd36e736",
+        "checkout_sha256": "089e6c4945510ac541cc5dc2d2b515cbbfdb118448732d8c3f9775cabd36e736"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIBoundedSeedLibrary.lean": {
+        "canonical_sha256": "aca46b263072bf56adc3341f0f53a362c02f195956bac6e836b723e197948067",
+        "checkout_sha256": "aca46b263072bf56adc3341f0f53a362c02f195956bac6e836b723e197948067"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIBoundedSeedTrajectory.lean": {
+        "canonical_sha256": "9bff5cd9a97dd9e90195e6511a2c78551d7dfcc53d6e221e6ce3a441cd460792",
+        "checkout_sha256": "9bff5cd9a97dd9e90195e6511a2c78551d7dfcc53d6e221e6ce3a441cd460792"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIDirectEngine.lean": {
+        "canonical_sha256": "e019915f81f84e94a4a1a854b1ff6e11f29b11e6c7513f9f6a12bc12439faa5b",
+        "checkout_sha256": "e019915f81f84e94a4a1a854b1ff6e11f29b11e6c7513f9f6a12bc12439faa5b"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/PaperIIRobustReflective.lean": {
+        "canonical_sha256": "d87ba52518da35cac4f0938f0b36cd633a04552a5477132b744feccf026336a1",
+        "checkout_sha256": "d87ba52518da35cac4f0938f0b36cd633a04552a5477132b744feccf026336a1"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/QuantumBinary.lean": {
+        "canonical_sha256": "7fa37f59cc4fb5c54dfa42195f60c3fddca6c3660bb59922962e69477dfea5b6",
+        "checkout_sha256": "7fa37f59cc4fb5c54dfa42195f60c3fddca6c3660bb59922962e69477dfea5b6"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/Refinement.lean": {
+        "canonical_sha256": "dd4290729a98e966d6fed6526105fe04813b74b8123cdb30e5934e8b684a7a26",
+        "checkout_sha256": "dd4290729a98e966d6fed6526105fe04813b74b8123cdb30e5934e8b684a7a26"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/State.lean": {
+        "canonical_sha256": "1f39b734872586f5a3ccb7a264ea008b7a636e36e1b5f484eb789b5c9eae432f",
+        "checkout_sha256": "1f39b734872586f5a3ccb7a264ea008b7a636e36e1b5f484eb789b5c9eae432f"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCLM/Update.lean": {
+        "canonical_sha256": "66412e61e24732c96aea18c55c4b0e3b7dad16fa9a59e73ff86b3f87cc2e2152",
+        "checkout_sha256": "66412e61e24732c96aea18c55c4b0e3b7dad16fa9a59e73ff86b3f87cc2e2152"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP.lean": {
+        "canonical_sha256": "e00f437ee1f5c8bb175d8661f85f4bc7b8d8b1e500a9b58036813cacdad03cfa",
+        "checkout_sha256": "e00f437ee1f5c8bb175d8661f85f4bc7b8d8b1e500a9b58036813cacdad03cfa"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Certificates.lean": {
+        "canonical_sha256": "4d2d155a1ebd6f40e1d5fcff145b4a09e1d495518dd81b41b4b3f4f0108886c3",
+        "checkout_sha256": "4d2d155a1ebd6f40e1d5fcff145b4a09e1d495518dd81b41b4b3f4f0108886c3"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Checker.lean": {
+        "canonical_sha256": "1c793e357ac2006cc4411953352f32b07f5d373631432b47b45661afadef5a4d",
+        "checkout_sha256": "1c793e357ac2006cc4411953352f32b07f5d373631432b47b45661afadef5a4d"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalBinary.lean": {
+        "canonical_sha256": "de97da8bc8e039818c78278eea4d1cff0413beae8f147f200f57545d11659b19",
+        "checkout_sha256": "de97da8bc8e039818c78278eea4d1cff0413beae8f147f200f57545d11659b19"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ClassicalFinite.lean": {
+        "canonical_sha256": "51c017602bf443b29deb9840a97f8cae57bd96d3c85d59975ef0e6a9bfbeaf55",
+        "checkout_sha256": "51c017602bf443b29deb9840a97f8cae57bd96d3c85d59975ef0e6a9bfbeaf55"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/InfiniteHorizon.lean": {
+        "canonical_sha256": "d082b045baeaccc79e6de747932b166a8e0d4cf1fc249393a2ead765b8bf2edf",
+        "checkout_sha256": "d082b045baeaccc79e6de747932b166a8e0d4cf1fc249393a2ead765b8bf2edf"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Monitors.lean": {
+        "canonical_sha256": "166f09eb5f96bbab3609af3d3c50dbb549bebae70974863a512b0d78ce3d8733",
+        "checkout_sha256": "166f09eb5f96bbab3609af3d3c50dbb549bebae70974863a512b0d78ce3d8733"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/PaperContract.lean": {
+        "canonical_sha256": "b6bf8bc6cc8967bc48b2346341846a3382200d383b44e2e3e7f81a446b236626",
+        "checkout_sha256": "b6bf8bc6cc8967bc48b2346341846a3382200d383b44e2e3e7f81a446b236626"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Progress.lean": {
+        "canonical_sha256": "1e681992dcfea6ecc58d89be9a7c3ec69f734e084a4627f96a2ec9233266a8e0",
+        "checkout_sha256": "1e681992dcfea6ecc58d89be9a7c3ec69f734e084a4627f96a2ec9233266a8e0"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/ProtectedDistinctions.lean": {
+        "canonical_sha256": "4a372c07591b1a2b13d7e746763b3db125bb9c7c3e4881a5d5e7723515c09dd0",
+        "checkout_sha256": "4a372c07591b1a2b13d7e746763b3db125bb9c7c3e4881a5d5e7723515c09dd0"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumChannels.lean": {
+        "canonical_sha256": "ab24db2686b2f1b67ade3a740eb02b775fe6dd385dd2bcdaeb156a38cf2f1308",
+        "checkout_sha256": "ab24db2686b2f1b67ade3a740eb02b775fe6dd385dd2bcdaeb156a38cf2f1308"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumDensity.lean": {
+        "canonical_sha256": "176ac1125d9983e9b3dd521c6ca0b8875de8e5be5e5c839d3b0b99fef150df07",
+        "checkout_sha256": "176ac1125d9983e9b3dd521c6ca0b8875de8e5be5e5c839d3b0b99fef150df07"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumFinite.lean": {
+        "canonical_sha256": "c7c43fe7de43be2d2d64cd8361bac092af357be36fd2c8562e5643cf5c01c87d",
+        "checkout_sha256": "c7c43fe7de43be2d2d64cd8361bac092af357be36fd2c8562e5643cf5c01c87d"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/QuantumKernel.lean": {
+        "canonical_sha256": "da1ad9a322aa4052949cfde72267a03cf2d698704b38c6bc784c867ba3bf3f7c",
+        "checkout_sha256": "da1ad9a322aa4052949cfde72267a03cf2d698704b38c6bc784c867ba3bf3f7c"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Recovery.lean": {
+        "canonical_sha256": "f727cabfda798407712cdda9c1afe68d8c83ee5320f438f8e78b84dadd94fc04",
+        "checkout_sha256": "f727cabfda798407712cdda9c1afe68d8c83ee5320f438f8e78b84dadd94fc04"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/RelativeEntropy.lean": {
+        "canonical_sha256": "42ff6b75ae6e821008df037d7ac7b9a3adb95e32b774d6fee56d63353ace8b74",
+        "checkout_sha256": "42ff6b75ae6e821008df037d7ac7b9a3adb95e32b774d6fee56d63353ace8b74"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Summability.lean": {
+        "canonical_sha256": "1785521b1d4cd0f70a767ab94d6cf5ef83b8a75edb0d3f5f72948011b6bab191",
+        "checkout_sha256": "1785521b1d4cd0f70a767ab94d6cf5ef83b8a75edb0d3f5f72948011b6bab191"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Trajectory.lean": {
+        "canonical_sha256": "949b7336ac3f5db765053ed588551de8a713c7da80d7a29ae9cea1c99f3f9327",
+        "checkout_sha256": "949b7336ac3f5db765053ed588551de8a713c7da80d7a29ae9cea1c99f3f9327"
+      },
+      "lean/rcp_rclm_formal_core_v2/RcpRclmFormalCoreV2/RCP/Types.lean": {
+        "canonical_sha256": "ab3b7f8ca99156e887ae0cbe80ae5a20fd1f6ab6fa647d6c2db6ffb7a31ea063",
+        "checkout_sha256": "ab3b7f8ca99156e887ae0cbe80ae5a20fd1f6ab6fa647d6c2db6ffb7a31ea063"
+      },
+      "lean/rcp_rclm_formal_core_v2/formalization_manifest.json": {
+        "canonical_sha256": "c9815830ad5a25b050400b890ae3d65773a30388d7eff0766444f41c62dff5ee",
+        "checkout_sha256": "c9815830ad5a25b050400b890ae3d65773a30388d7eff0766444f41c62dff5ee"
+      },
+      "lean/rcp_rclm_formal_core_v2/lake-manifest.json": {
+        "canonical_sha256": "c17842b8da89c8c84beed4e8b33892616ef75c15475133a07aca97c16d853b0a",
+        "checkout_sha256": "c17842b8da89c8c84beed4e8b33892616ef75c15475133a07aca97c16d853b0a"
+      },
+      "lean/rcp_rclm_formal_core_v2/lakefile.toml": {
+        "canonical_sha256": "6a1fa80bc96176a8a2bbfcfa336c85b66296d674e99679dbaef50b5c0b60d167",
+        "checkout_sha256": "6a1fa80bc96176a8a2bbfcfa336c85b66296d674e99679dbaef50b5c0b60d167"
+      },
+      "lean/rcp_rclm_formal_core_v2/lean-toolchain": {
+        "canonical_sha256": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+        "checkout_sha256": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee"
+      },
+      "lean/rcp_rclm_formal_core_v3/README.md": {
+        "canonical_sha256": "f9b423182f50227ca50c77742aacd876f76a4a271971d0f8d544c93707864664",
+        "checkout_sha256": "f9b423182f50227ca50c77742aacd876f76a4a271971d0f8d544c93707864664"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3.lean": {
+        "canonical_sha256": "e5c112a94ee62cc0109fe3ac31e80d2702bc07aff37c18b759f99e40a6c23d94",
+        "checkout_sha256": "e5c112a94ee62cc0109fe3ac31e80d2702bc07aff37c18b759f99e40a6c23d94"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned.lean": {
+        "canonical_sha256": "f66acc6df136cabe1b7d197ce1326c3bbf34759d2453d2b6e7c11eb7c46af351",
+        "checkout_sha256": "f66acc6df136cabe1b7d197ce1326c3bbf34759d2453d2b6e7c11eb7c46af351"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/ExecutableContract.lean": {
+        "canonical_sha256": "ef98e02f26e2977ed663a87ef99aa7decaf18351beb1772c656ca9fb5367e793",
+        "checkout_sha256": "ef98e02f26e2977ed663a87ef99aa7decaf18351beb1772c656ca9fb5367e793"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Infinite.lean": {
+        "canonical_sha256": "e52f3dea766363ad53f8b6520d489ae198b64bd68040e82113070a57b49390cd",
+        "checkout_sha256": "e52f3dea766363ad53f8b6520d489ae198b64bd68040e82113070a57b49390cd"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Kernel.lean": {
+        "canonical_sha256": "e778e7b96f4aa38dddcb47658a6aa46fd987b12d42bc1d233314b29f679a7063",
+        "checkout_sha256": "e778e7b96f4aa38dddcb47658a6aa46fd987b12d42bc1d233314b29f679a7063"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Phase10Information.lean": {
+        "canonical_sha256": "54e74fec11b73e92af5bd76cd1215358635995d63ead8e210d1ed15c369895b2",
+        "checkout_sha256": "54e74fec11b73e92af5bd76cd1215358635995d63ead8e210d1ed15c369895b2"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Reference.lean": {
+        "canonical_sha256": "f5e67104e0859ed88e3a025a8bb675439efaad817c5102f9e40f2d91e050d2a9",
+        "checkout_sha256": "f5e67104e0859ed88e3a025a8bb675439efaad817c5102f9e40f2d91e050d2a9"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Trajectory.lean": {
+        "canonical_sha256": "7229b5e978dc3257d26572c0209220e09b980a3bbc54e86159c7b8ae979f0233",
+        "checkout_sha256": "7229b5e978dc3257d26572c0209220e09b980a3bbc54e86159c7b8ae979f0233"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/TransformerExtension.lean": {
+        "canonical_sha256": "a57f5b81c2b90d3e2b49ed8da2c21e21b45b976b75ed6533951efcf1ce348dc5",
+        "checkout_sha256": "a57f5b81c2b90d3e2b49ed8da2c21e21b45b976b75ed6533951efcf1ce348dc5"
+      },
+      "lean/rcp_rclm_formal_core_v3/RcpRclmFormalCoreV3/Learned/Types.lean": {
+        "canonical_sha256": "046320c88f0a04a88e47e2d397221ad08d499d2d9ceea972a3d924b7daf0e3ed",
+        "checkout_sha256": "046320c88f0a04a88e47e2d397221ad08d499d2d9ceea972a3d924b7daf0e3ed"
+      },
+      "lean/rcp_rclm_formal_core_v3/formalization_manifest.json": {
+        "canonical_sha256": "fe009a0d010970db54ba84b330bef038bc50e7c68114ae4a3406526529fcf3e2",
+        "checkout_sha256": "fe009a0d010970db54ba84b330bef038bc50e7c68114ae4a3406526529fcf3e2"
+      },
+      "lean/rcp_rclm_formal_core_v3/lake-manifest.json": {
+        "canonical_sha256": "02921d2d60e7ef077c7fdb5fd184a7b4e9dc240d0f145cb1747ff9d99386151a",
+        "checkout_sha256": "02921d2d60e7ef077c7fdb5fd184a7b4e9dc240d0f145cb1747ff9d99386151a"
+      },
+      "lean/rcp_rclm_formal_core_v3/lakefile.toml": {
+        "canonical_sha256": "657d0ee12d5a896537f7858a59166baa175de0ebe313781507501791d4d57e8a",
+        "checkout_sha256": "657d0ee12d5a896537f7858a59166baa175de0ebe313781507501791d4d57e8a"
+      },
+      "lean/rcp_rclm_formal_core_v3/lean-toolchain": {
+        "canonical_sha256": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+        "checkout_sha256": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee"
+      },
+      "lean/rcp_rclm_formal_core_v4/README.md": {
+        "canonical_sha256": "d0af4ad4b6568d930231d2ca1b488f48d4b100d7c642630fb21d53e25a46e4b3",
+        "checkout_sha256": "d0af4ad4b6568d930231d2ca1b488f48d4b100d7c642630fb21d53e25a46e4b3"
+      },
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4.lean": {
+        "canonical_sha256": "79114481adc7822e51d55dbac70faf78b83d2c092e7e6495bfe08cb290172a03",
+        "checkout_sha256": "79114481adc7822e51d55dbac70faf78b83d2c092e7e6495bfe08cb290172a03"
+      },
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous.lean": {
+        "canonical_sha256": "c1839d26e891f4462149a8f1166d61b65d6e3322088b3d5b112c27be3c850387",
+        "checkout_sha256": "c1839d26e891f4462149a8f1166d61b65d6e3322088b3d5b112c27be3c850387"
+      },
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/ExecutableContract.lean": {
+        "canonical_sha256": "218222b1215c41d51acad3ae14f271da68a261dbd77b17b757faeab558a2f9fc",
+        "checkout_sha256": "218222b1215c41d51acad3ae14f271da68a261dbd77b17b757faeab558a2f9fc"
+      },
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Infinite.lean": {
+        "canonical_sha256": "f26d2592c90a993872536f28c4cb2d8f16071a06555e5a7b351f87f45f2a9681",
+        "checkout_sha256": "f26d2592c90a993872536f28c4cb2d8f16071a06555e5a7b351f87f45f2a9681"
+      },
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Kernel.lean": {
+        "canonical_sha256": "7d123b4aaee36d61a4cfd399169871fa42c7254094f7a3848e88fceca8261520",
+        "checkout_sha256": "7d123b4aaee36d61a4cfd399169871fa42c7254094f7a3848e88fceca8261520"
+      },
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Search.lean": {
+        "canonical_sha256": "9724069c24a75abca6ccd8fd8607a6f7e2bd3f3ca293940f8afcfc44b596d843",
+        "checkout_sha256": "9724069c24a75abca6ccd8fd8607a6f7e2bd3f3ca293940f8afcfc44b596d843"
+      },
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Trajectory.lean": {
+        "canonical_sha256": "bcf3036190137d187bf0c0c114aacc47abd3e818bd82ac0110a24b9e6d7748da",
+        "checkout_sha256": "bcf3036190137d187bf0c0c114aacc47abd3e818bd82ac0110a24b9e6d7748da"
+      },
+      "lean/rcp_rclm_formal_core_v4/RcpRclmFormalCoreV4/Autonomous/Types.lean": {
+        "canonical_sha256": "ddac45622f48b1112e1d1c90468a54b0d6d03888d20af92ced73dc0ecb275b98",
+        "checkout_sha256": "ddac45622f48b1112e1d1c90468a54b0d6d03888d20af92ced73dc0ecb275b98"
+      },
+      "lean/rcp_rclm_formal_core_v4/formalization_manifest.json": {
+        "canonical_sha256": "171ffdb3880f74ca17a655884f2ad36ec934e6f971dafd9a9d19c3be1edea62d",
+        "checkout_sha256": "171ffdb3880f74ca17a655884f2ad36ec934e6f971dafd9a9d19c3be1edea62d"
+      },
+      "lean/rcp_rclm_formal_core_v4/lake-manifest.json": {
+        "canonical_sha256": "a1dfb266048c0bb6375f1f58edd284bc3242dc08091b28c2083333fce72792b4",
+        "checkout_sha256": "a1dfb266048c0bb6375f1f58edd284bc3242dc08091b28c2083333fce72792b4"
+      },
+      "lean/rcp_rclm_formal_core_v4/lakefile.toml": {
+        "canonical_sha256": "13d6e662c3f6181eef4a3692e2c40c1c849e4a36e8224189153a61732f50f641",
+        "checkout_sha256": "13d6e662c3f6181eef4a3692e2c40c1c849e4a36e8224189153a61732f50f641"
+      },
+      "lean/rcp_rclm_formal_core_v4/lean-toolchain": {
+        "canonical_sha256": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
+        "checkout_sha256": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee"
+      }
+    },
+    "dependencies": {
+      "mathlib": [
+        {
+          "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib",
+          "head": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+        }
+      ],
+      "plausible": [
+        {
+          "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible",
+          "head": "63045536fe95024e6c18fc7b48e03f506701c5bc"
+        }
+      ],
+      "LeanSearchClient": [
+        {
+          "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient",
+          "head": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843"
+        }
+      ],
+      "importGraph": [
+        {
+          "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph",
+          "head": "5c7542ed018c78194f1e2b903eaf6a792b74c03d"
+        }
+      ],
+      "proofwidgets": [
+        {
+          "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets",
+          "head": "24b0d9dc081c5423f8eec7e866c441e5184f29d9"
+        }
+      ],
+      "aesop": [
+        {
+          "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop",
+          "head": "e3cb2f741431ce31bf73549fb52316a57368b06f"
+        }
+      ],
+      "Qq": [
+        {
+          "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq",
+          "head": "f46324995fca5f0483b742e4eb4daec7f4ee50d2"
+        }
+      ],
+      "batteries": [
+        {
+          "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries",
+          "head": "fa08db58b30eb033edcdab331bba000827f9f785"
+        }
+      ],
+      "Cli": [
+        {
+          "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli",
+          "head": "92564e5770e4d09f2d86dfbf8ada1e9c715b384c"
+        }
+      ]
+    },
+    "executable_sha256": {
+      "lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f",
+      "lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1"
+    },
+    "trusted_import_cache_assumption": true
+  },
+  "promotion_performed": false,
+  "phase17_exit_closed": false,
+  "gate_e_closed": false
+}

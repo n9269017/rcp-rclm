@@ -1,0 +1,7 @@
+{
+  "authoritative_remote_base": "a60eee75b3c4b9797fe362ffed7773d2eb6bdc85",
+  "local_reconstruction_base": "c90d0956e164639130e97ee492d2cc62452295b4",
+  "base_overridden_for_reconstructed_smoke": true,
+  "new_lean_execution": false,
+  "full_current_checkout": false
+}
