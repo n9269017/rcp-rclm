@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ag-cd36f36f\e\gate\compilation\invocations\eef763a926db4e9899b5cfdd1544c4c7\workspace/SkippedFirstPassingOffer.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_successor_interface_tests.py"
+  ],
+  "finished_at_utc": "2026-11-15T01:13:12.122713+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-15T01:11:52.657317+00:00",
+  "stderr_sha256": "3b55f05508459aad18ca1b81c70533e1c68b2263e7012366a25da780bd88eee6",
+  "stdout_sha256": "a1489bfbc4dfe3df42423a3f331f5aa53882aeb583251c764de682a2dbf03509"
+}
