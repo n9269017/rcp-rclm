@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_producer_domain_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ah-e96bb6aa\\e\\gate",
+    "--expected-execution-sha256",
+    "78338a9b6744ecd1ef7ec84abfe82f55b0335360c3ea1d2708160c368f481fa6"
+  ],
+  "finished_at_utc": "2026-11-15T06:05:46.278870+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-15T06:01:57.497939+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "69f339b91afcef922a3ae89de0e7f7375bb93cf620e05a8858e65fe3528614fd"
+}

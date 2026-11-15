@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_producer_domain_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ah-e96bb6aa\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-15T06:01:54.818266+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-15T04:53:39.419745+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "b0871c7f202054604c846460da61164d061084e6d0b96939e23b8aa9608963aa"
+}

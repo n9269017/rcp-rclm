@@ -1,0 +1,79 @@
+'Phase17ProducerDomain.domain_parent' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.domain_shape' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.stale_domain_rejected' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.row_descriptor_bound' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.row_key_bound' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.grammar_slot_covered' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.producer_order_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.producer_order_mem_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.ordered_grammar_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.canonical_task_sound' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.canonical_none_iff' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.canonical_task_first' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.canonical_exists_iff' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.canonical_semantic_gain' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.no_task_no_semantic_gain' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.offer_descriptor_cannot_substitute' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.offer_task_cannot_substitute' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.constructed_offer_bound' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.no_contract_refused' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.evaluation_of_checked' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.evaluation_acceptance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.truthful_replay_projects' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.truthful_head' depends on axioms: [propext]
+'Phase17ProducerDomain.forged_verdict_refused' depends on axioms: [propext]
+'Phase17ProducerDomain.truthful_replay_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.truthful_exhaustion_covers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.truthful_terminal_cannot_continue' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.truthful_exhaustion_rejections' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.grant_cannot_self_authorize' does not depend on any axioms
+'Phase17ProducerDomain.stale_grant_refused' does not depend on any axioms
+'Phase17ProducerDomain.reservation_appends_exact_charge' depends on axioms: [propext]
+'Phase17ProducerDomain.refused_reservation_no_charge' depends on axioms: [propext]
+'Phase17ProducerDomain.granted_prefix_within_policy' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.reserved_cost_not_refunded' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.unauthorized_step_refused' depends on axioms: [propext]
+'Phase17ProducerDomain.retargeted_context_no_receipt' depends on axioms: [propext]
+'Phase17ProducerDomain.insufficient_allowance_no_receipt' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.authorized_step_spec' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.authorized_step_construct' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.authorized_replay_projects' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.authorized_replay_within_policy' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.authorized_replay_exact_charges' depends on axioms: [propext, Quot.sound]
+'Phase17ProducerDomain.authorized_evaluated_acceptance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomain.authorized_accepted_exact_charges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.retained_source_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.first_domain_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.second_domain_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.first_domain_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.second_domain_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.first_source_reference_accepted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ProducerDomainExamples.second_source_reference_accepted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ProducerDomainExamples.first_accepted_charges_reserved' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ProducerDomainExamples.second_accepted_charges_reserved' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ProducerDomainExamples.second_source_seven_refusals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.case_first_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.case_second_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.case_second_source_credit_stop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ProducerDomainExamples.case_second_source_zero_credit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ProducerDomainExamples.case_second_source_resource_stop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ProducerDomainExamples.source_contexts_differ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.first_reference_cost' depends on axioms: [propext]
+'Phase17ProducerDomainExamples.second_reference_cost' depends on axioms: [propext]
+'Phase17ProducerDomainExamples.resource_denial_no_receipt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ProducerDomainExamples.credit_stop_is_not_grammar_exhaustion' depends on axioms: [propext]
+'Phase17ProducerDomainExamples.reference_stop_is_not_grammar_exhaustion' depends on axioms: [propext]

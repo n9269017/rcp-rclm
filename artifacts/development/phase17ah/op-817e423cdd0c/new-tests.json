@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_producer_domain_tests.py"
+  ],
+  "finished_at_utc": "2026-11-15T04:53:24.895284+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-15T04:50:21.542234+00:00",
+  "stderr_sha256": "425b76421c5c58e508ccc0d0ba24e324699add4020160bd6b8cd6595874793ad",
+  "stdout_sha256": "d87f6495be3f8aeeb98353419060dafb480ec3215e8b6e5b4a3cae7e53104d56"
+}
