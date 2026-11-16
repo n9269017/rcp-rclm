@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_authority_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ai-6096a1c2\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-16T22:26:48.685239+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-16T21:01:16.292434+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "68962c36873c24d36737e5a87382e92ee08012ec19f052584c5b597df664f51e"
+}
