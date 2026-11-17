@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\aj-2d879ce8\e\gate\compilation\invocations\d38d468cf01c449f91118cc56d2f7cbc\workspace/WrongObjectivePolicy.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false
