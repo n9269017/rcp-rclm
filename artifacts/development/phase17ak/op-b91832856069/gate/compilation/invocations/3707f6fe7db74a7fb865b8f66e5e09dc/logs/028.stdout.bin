@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ak-090ce48a\e\gate\compilation\invocations\7acf844fb91146989ffe4cb613154da5\workspace/StaleDurableSerial.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

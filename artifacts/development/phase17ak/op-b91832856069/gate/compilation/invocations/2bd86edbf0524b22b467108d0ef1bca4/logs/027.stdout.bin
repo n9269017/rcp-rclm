@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ak-090ce48a\e\gate\compilation\invocations\e7e36c136266431a9b8424ad9ccd6335\workspace/StaleDurableEpoch.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false
