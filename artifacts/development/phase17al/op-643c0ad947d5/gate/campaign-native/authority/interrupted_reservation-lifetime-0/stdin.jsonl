@@ -1,0 +1,3 @@
+{"op":"read","protocol":"phase17al.reference-authority-stdio.v1"}
+{"credits":2,"expected_cursor":{"epoch":1,"journal_sha256":"32e571c5575fb6f113952b4e4b554f79e368bc32429fce2b89c9c25dd44e5e59","root_head":"174788340abc6abc025a3dd902e9041b5b3f7ca207a94d294f23dc74801b83c8","root_provision_sha256":"f39c7ceb05563717215f4611d40d527db4ae929a6ce3f473a9f092606faeee26","serial":1,"snapshot_sha256":"716ea0a6f02eb461e9268ce203b166744240393d8bbac4ce774cba2135f3d46d"},"op":"reserve_reference_test","protocol":"phase17al.reference-authority-stdio.v1","request_nonce":"2797a491af4bed95f15b87b8629cb91603a038b4d531c01d8f3a42900bc48a5e"}
+{"op":"finish","protocol":"phase17al.reference-authority-stdio.v1"}

@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "C:\\Users\\Nicolas.n926\\.r17\\alk-4704cc3990614cb19e07b5d7f47c4cd3\\kit\\apply_phase17al.py",
+    "--canonical-manifest",
+    "--repo",
+    "C:\\Users\\Nicolas.n926\\.r17\\al-65c5862d\\c"
+  ],
+  "finished_at_utc": "2026-11-18T18:32:03.228953+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-18T18:32:01.247954+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "3f6e94e5fe17f43bd31766a4640831442609e9520ee0ab3d549f1b6b0f67edec"
+}

@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_durable_campaign_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\al-65c5862d\\e\\gate",
+    "--expected-execution-sha256",
+    "e603c11f33bf9a8bbc4ac5fc979ca6881930612278333af360a3de7854e288b7"
+  ],
+  "finished_at_utc": "2026-11-18T19:08:54.208274+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-18T19:07:07.626648+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "468fbbe98df1cf5bc063309e87b902d4e1aaeeb9a4b300872ab4f38307f867f3"
+}

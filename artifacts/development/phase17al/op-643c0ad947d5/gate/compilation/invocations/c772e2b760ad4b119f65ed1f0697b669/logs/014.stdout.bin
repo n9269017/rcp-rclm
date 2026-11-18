@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\al-65c5862d\e\gate\compilation\invocations\c772e2b760ad4b119f65ed1f0697b669\workspace/StaleCampaignSnapshot.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

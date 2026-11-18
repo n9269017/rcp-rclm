@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\al-65c5862d\e\gate\compilation\invocations\74ea9413f5554972981524cc5dcafe84\workspace/StaleCampaignHead.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\al-65c5862d\e\gate\compilation\invocations\f71c03aadf2740928defd56661bade04\workspace/ClonedCampaignRootImpossible.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

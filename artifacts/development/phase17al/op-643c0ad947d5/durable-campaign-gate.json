@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_durable_campaign_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\al-65c5862d\\e\\gate",
+    "--toolchain-root",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0"
+  ],
+  "finished_at_utc": "2026-11-18T19:07:05.097459+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-18T18:33:35.735365+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "1ad7d72314733208d4ac1b3b6d091c1058986b332cce842c951c3d7deefd2e1d"
+}
