@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ao-86ffc3b7\e\gate\compilation\invocations\e582ba029b134418898051167a462016\workspace/WrongLifecycleOwner.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

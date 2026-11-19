@@ -1,0 +1,10 @@
+{
+{"commission_sha256":"f3487dda2de4ce11a5a82806098edebe2d116a3e70ef438e983c20fe0b99c8a7","nonce":"46a5ed34c70a343b2ce5cc1223c77c123c78a110c5317e62daadf197d211a161","operation":"read","schema":"phase17an.frontend-intent.v1"}
+{"commission_sha256":"f3487dda2de4ce11a5a82806098edebe2d116a3e70ef438e983c20fe0b99c8a7","credits":2,"nonce":"2d5ecd087c4d86aee33eda324d3ee1b2c60babe1afed8684577b318e013c95bc","operation":"run","schema":"phase17an.frontend-intent.v1"}
+{"commission_sha256":"f3487dda2de4ce11a5a82806098edebe2d116a3e70ef438e983c20fe0b99c8a7","credits":2,"nonce":"2d5ecd087c4d86aee33eda324d3ee1b2c60babe1afed8684577b318e013c95bc","operation":"run","schema":"phase17an.frontend-intent.v1"}
+{"commission_sha256":"f3487dda2de4ce11a5a82806098edebe2d116a3e70ef438e983c20fe0b99c8a7","credits":2,"nonce":"ddc632af23e422d4597366af4efddf1960b757eac3907c636ef98658b12f4ca3","operation":"administrative_export","schema":"phase17an.frontend-intent.v1"}
+{"anchor_path":"/controller/chosen/anchor","commission_sha256":"f3487dda2de4ce11a5a82806098edebe2d116a3e70ef438e983c20fe0b99c8a7","credits":2,"nonce":"a9ef26dea1bf5705d8e2f4b03f3664a392f74d5f07ff1f961610e13cdb64c90a","operation":"run","schema":"phase17an.frontend-intent.v1"}
+{"commission_sha256":"0000000000000000000000000000000000000000000000000000000000000000","credits":2,"nonce":"347ff6c9ec4350030a4cf09cdb236a9fa3020ed17134b7f6e28a3e5c9356b53e","operation":"run","schema":"phase17an.frontend-intent.v1"}
+{"commission_sha256":"f3487dda2de4ce11a5a82806098edebe2d116a3e70ef438e983c20fe0b99c8a7","credits":2,"nonce":"eb1bd77097a613fcdb0fcb886d3e4c6b1083632f75c1603fb5c9188eb3f97a50","operation":"run","schema":"phase17an.frontend-intent.v1"}
+{"commission_sha256":"f3487dda2de4ce11a5a82806098edebe2d116a3e70ef438e983c20fe0b99c8a7","credits":2,"nonce":"03393201ceab40cd36c4fabce19c0e95fc1c455e803a7bfb7d9e895f918714dc","operation":"run","schema":"phase17an.frontend-intent.v1"}
+{"commission_sha256":"f3487dda2de4ce11a5a82806098edebe2d116a3e70ef438e983c20fe0b99c8a7","credits":2,"nonce":"6f2b928d70466acd270b8900d1568d435dd56955b427d581abb9c8fc7a61b30a","operation":"run","schema":"phase17an.frontend-intent.v1"}

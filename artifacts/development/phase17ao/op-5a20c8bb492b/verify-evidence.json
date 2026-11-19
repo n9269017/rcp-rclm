@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_service_lifecycle_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ao-86ffc3b7\\e\\gate",
+    "--expected-execution-sha256",
+    "e55d77b0ae8717f6d169da3c0a27244791c9b43ee632c942e39892b78f0d91d5"
+  ],
+  "finished_at_utc": "2026-11-19T19:35:33.624984+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-19T19:33:32.916603+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "b4d40db4539fa963c406ca88e1d0886ab413554e3aee860fc24126c990f8b419"
+}

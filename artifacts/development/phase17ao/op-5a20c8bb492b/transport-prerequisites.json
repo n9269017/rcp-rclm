@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:\\Program Files\\Git\\usr\\bin\\openssl.exe",
+    "version"
+  ],
+  "downloads_or_installations_performed": false,
+  "native_wait_completed": true,
+  "openssl_path": "C:\\Program Files\\Git\\usr\\bin\\openssl.exe",
+  "openssl_sha256": "c7015b090693d1cc4ea297301d176290005de2fe8710bdf3d82b0582d6b88f15",
+  "openssl_version": "OpenSSL 3.2.1 30 Jan 2024 (Library: OpenSSL 3.2.1 30 Jan 2024)",
+  "python": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "python_sha256": "d87063e5597f257004c731b66c59c56c91038861c6877b1a3dca6b8c4e919125",
+  "python_ssl": "OpenSSL 3.0.16 11 Feb 2025",
+  "python_tls13_supported": true,
+  "returncode": 0,
+  "schema": "phase17ao.transport-prerequisites.v1",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "340fd137bc86191ee3d420a62a87503332056c8512cd87cf78bca4b3b86e172b"
+}

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_service_lifecycle_tests.py"
+  ],
+  "finished_at_utc": "2026-11-19T18:50:02.908613+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-19T18:49:30.909810+00:00",
+  "stderr_sha256": "c2f841371fc29020d53f5f6f3b26c2d26d5d7c4e7f24f4274f847ab567feae3d",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ao-86ffc3b7\e\gate\compilation\invocations\4bfb2fa6d13545c494e31b1479ec1840\workspace/EarlyLifetimeClose.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

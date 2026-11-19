@@ -1,0 +1,2 @@
+{"anchor_path":"/controller/chosen/anchor","commission_sha256":"f3487dda2de4ce11a5a82806098edebe2d116a3e70ef438e983c20fe0b99c8a7","credits":2,"nonce":"a9ef26dea1bf5705d8e2f4b03f3664a392f74d5f07ff1f961610e13cdb64c90a","operation":"run","schema":"phase17an.frontend-intent.v1"}
+{"intent_sha256":"845f4e051e860d8327c1a2a1224f05867240b62a3766a334daa2266f82958f17","reason":"broker_refused","refused":true,"schema":"phase17an.frontend-refusal.v1"}
