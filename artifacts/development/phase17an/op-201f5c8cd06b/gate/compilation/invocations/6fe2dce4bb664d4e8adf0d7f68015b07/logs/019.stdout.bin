@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\an-7f271da5\e\gate\compilation\invocations\6fe2dce4bb664d4e8adf0d7f68015b07\workspace/ZeroBrokerCredits.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

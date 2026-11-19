@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_protected_authority_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\an-7f271da5\\e\\gate",
+    "--expected-execution-sha256",
+    "a792df0219fd53e7e33ef4147560e11d6b8566748a7bcb6ded55a75355e19d67"
+  ],
+  "finished_at_utc": "2026-11-19T04:10:36.146250+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-19T04:08:40.205017+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2a3bfb8187420c3465091a4269312da6fd8233861cc5df13f517c318072f0923"
+}
