@@ -1,0 +1,28 @@
+{
+  "schema_id": "runtime.v5.phase17.protected-semantics-lean.v1",
+  "status": "blocked",
+  "packet_sha256": "a720bdaeac1b316d6e50b9a640cddfad52baff44c09a44a4fdeda2b977e4da67",
+  "commands": [],
+  "theorem_axioms": {},
+  "new_named_audits": 14,
+  "negative_controls_rejected": [],
+  "protected_sparse_goal_information_checked": false,
+  "claims": {
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "live_capability_gain_demonstrated": false,
+    "complete_resource_accounting": false,
+    "full_learned_semantic_refinement": false,
+    "neural_decoder_formally_verified": false
+  },
+  "failure": {
+    "type": "ControlError",
+    "reason": "pinned dependency not installed: mathlib"
+  }
+}

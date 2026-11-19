@@ -1,0 +1,30 @@
+{
+  "automatic_retries": 0,
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_learned_semantic_refinement": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "neural_decoder_formally_verified": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "failure": {
+    "reason": "CANONICALIZATION_FAILED at json: input bytes are not canonical RCPRCLM-CJSON-V2",
+    "type": "CanonicalizationError"
+  },
+  "finished_at_utc": "2026-11-01T17:53:03.877504+00:00",
+  "local_increment_checks_passed": false,
+  "os": "Windows",
+  "python_version": "3.13.3",
+  "schema": "rcp-rclm.phase17i.typed-learned-binding-run.v1",
+  "source_commit": "b5f9f7af8fcbb827f6cacf5abbb0a27be619cebc",
+  "source_tree": "eb5171c5551259f3ca8eeb8f134582f8eb61c5ce",
+  "started_at_utc": "2026-11-01T17:52:51.834755+00:00",
+  "synthetic_fixture": true
+}

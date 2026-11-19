@@ -1,0 +1,83 @@
+{
+  "automatic_retries": 0,
+  "base_files_mapped": 164,
+  "bounded_contracts_certified": [
+    "phase17.recursive.multi-token-plan.exhaustive-v1",
+    "phase17.recursive.affine-tool.exhaustive-v1"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_operational_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T06:18:06.468775+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T06:17:45.417800+00:00",
+      "stderr_sha256": "bf5542a5f924bf7a3e89153450a013bc3338acdfaddc3ed1438a875eaf3cd060",
+      "stdout_sha256": "5036111643273e9331fcf3faaf098410e14665d4c4d14d13e7cea5e6b9b8565d"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_conservative_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T06:18:14.840638+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T06:18:06.469714+00:00",
+      "stderr_sha256": "75e866bec0ef5ef95648a7c602fcde3c285b9590ad7ccbc393641660c1b513bd",
+      "stdout_sha256": "0bdfbbb24ab2a34dea3f4466fa0a7a0672d2bfec8512be3a11308ed276739c99"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_operational_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\h-400f4f56\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T06:19:05.500163+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T06:18:14.842618+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "31f953c8264e155064197238952d1ce719d2876e369fc64ddce19a08a0565460"
+    }
+  ],
+  "complete_resource_accounting": false,
+  "cross_platform_validation": false,
+  "earlier_proofs_rerun": false,
+  "egc0_started": false,
+  "full_frontier_recertified": false,
+  "full_learned_semantic_refinement": false,
+  "gate_e_closed": false,
+  "gate_execution_sha256": "6cfacc08015a8e2ace156c3ddb3de68e380c9e840d2e19f83b01fffd2981fdac",
+  "github_hosted_ci_passed": false,
+  "integer_tool_executions_per_package": 4488,
+  "learned_component_groups": 12,
+  "legacy_full_recursive_tasks_recertified": [],
+  "legacy_recursive_labels": 19,
+  "live_capability_gain_demonstrated": false,
+  "network_setup_requested": false,
+  "neural_decoder_formally_verified": false,
+  "new_plan_semantics_audits": 172,
+  "new_proofs_kernel_executed": true,
+  "new_tests": 57,
+  "phase17_exit_closed": false,
+  "plan_queries_per_package": 172,
+  "promotion_authorized": false,
+  "promotion_performed": false,
+  "public_recertification_not_hidden_evaluation": true,
+  "recursive_productivity_recertified": false,
+  "registry_regression_tests": 47,
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17h.operator-validation.v1",
+  "source_commit": "eb78c099106d1d9e5b6523646a5139a0c5c8dff5",
+  "source_tree": "21ef84846b7ae1b8850d17dc1c0636ac1f5c290f",
+  "synthetic_fixture": true
+}

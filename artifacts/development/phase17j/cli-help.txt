@@ -1,0 +1,19 @@
+usage: run_phase17_frontier_meaning_gate.py [-h] --output OUTPUT
+                                            --test-fixture [--require-lean]
+                                            [--lean-workspace LEAN_WORKSPACE]
+                                            [--toolchain-root TOOLCHAIN_ROOT]
+
+Check selected task meanings and the actual learned-root frontier field
+adapter. The positive candidate is the explicit historical synthetic fixture,
+not a live improvement. This runner recomputes both packages and rechecks 13
+inherited proof propositions as proof arguments in the NEW combined
+certificate. It does not rerun the 172 Phase17H proofs, authorize promotion,
+or complete root acceptance.
+
+options:
+  -h, --help            show this help message and exit
+  --output OUTPUT
+  --test-fixture
+  --require-lean
+  --lean-workspace LEAN_WORKSPACE
+  --toolchain-root TOOLCHAIN_ROOT

@@ -1,0 +1,1 @@
+Measured assistant development evidence. This reconstructed Linux checkout is not the full current public checkout. Gate control mocks are not Lean proof checks. Missing pinned dependencies caused the real --require-lean call to fail closed. Candidate-pass fixture is deliberately synthetic, not a live improvement. See assistant-validation.json.

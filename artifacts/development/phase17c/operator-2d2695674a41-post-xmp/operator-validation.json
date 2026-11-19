@@ -1,0 +1,121 @@
+{
+  "all_history_reclassified_as_success": false,
+  "automatic_retries": 0,
+  "claims": {
+    "all_tests_executed_after_xmp_change": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "fresh_lean_verification": false,
+    "full_frontier_recertified": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "hardware_root_cause_proven": false,
+    "isolated_python_environment": false,
+    "main_merge_authorized": false,
+    "os_security_sandbox": false,
+    "permanent_machine_stability_certified": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "promotion_performed": false,
+    "source_patch_applied": false
+  },
+  "configuration_record_sha256": "e1ae780eea4b7c27a690862c192f67108405734e3fb99686a0790ada3aaf6426",
+  "environment": {
+    "machine": "AMD64",
+    "os": "Windows",
+    "os_release": "11",
+    "python_version": "3.13.3"
+  },
+  "foundation_and_archives_configuration": "before operator memory-profile change; historical successful results",
+  "foundation_and_archives_reexecuted": false,
+  "foundation_manifest_sha256": "242be273be85f9077f47c79b0bd56b73a5c6b6383243b612a83c65d9d5a14d55",
+  "foundation_tests": 110,
+  "fresh_transactions_executed_by_finalizer": 1,
+  "historical_archive_tests": 10,
+  "increment_local_validation_complete": true,
+  "new_commands": [
+    {
+      "argv": [
+        "python",
+        "scripts/phase17_local_evidence.py",
+        "verify",
+        "--bundle",
+        "foundation",
+        "--expected-head",
+        "2d2695674a417cea04947400fa617ac6b34b9d5b",
+        "--expected-manifest-sha256",
+        "242be273be85f9077f47c79b0bd56b73a5c6b6383243b612a83c65d9d5a14d55"
+      ],
+      "duration_ms": 120,
+      "finished_at_utc": "2026-10-31T22:28:20.326577+00:00",
+      "name": "verify-retained-foundation",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T22:28:20.205682+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "1fa6e3418f20cc7e39c5f46f6a930b097923f290917837f8ce800cd3e206aac4"
+    },
+    {
+      "argv": [
+        "python",
+        "scripts/run_phase17_challenge_transaction.py",
+        "--output",
+        "transaction",
+        "--candidate-credits",
+        "32"
+      ],
+      "duration_ms": 53268,
+      "finished_at_utc": "2026-10-31T22:29:13.597723+00:00",
+      "name": "single-fresh-transaction",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T22:28:20.328971+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "d50ced8dd4841e83237fdc2a4eef7ef825e7106862f4229c33a56934b7a2e10e"
+    }
+  ],
+  "original_failed_runs_preserved": true,
+  "post_change_bootstrap_report_sha256": "7197d203c8357a88d5b9da97110ae5e96d5e84f5c4cf8efd190edba41e6dfeae",
+  "post_xmp_suite_reexecuted": false,
+  "post_xmp_suite_report_sha256": "60f79b6ce2c5f368189d7c0319e75b78ebf23f15f30675b5ae70552759d56585",
+  "previous_base": "bb1f8669311c099938cc299c2b4fd9f5f77be9e3",
+  "prior_diagnostic_anchors": [
+    {
+      "externally_pinned_report": false,
+      "label": "isolated-worker-diagnostic",
+      "manifest_sha256": "c7f704d0f1b91ae1cfc99fc761e7cce95fa234cb2d141a8259791526bfa6a40f",
+      "report_sha256": "c18f1377b3fa5799bdf4888e156519e3fb531c3ff82e54df1aede0829cb8dc24"
+    },
+    {
+      "externally_pinned_report": true,
+      "label": "original-instrumented-suite",
+      "manifest_sha256": "ce39195902fd4f739074f0a4cb61a0523d5b2b68db523798c66fdf3491749d81",
+      "report_sha256": "93b0554fd3169870d3c21ff3e3ca9ea4b7be7a257964154ef86b5bb8449f8760"
+    },
+    {
+      "externally_pinned_report": true,
+      "label": "pre-change-bootstrap",
+      "manifest_sha256": "47f2fe9c1c030ec98587430363ff62c1047d7924a960cd20b8ccab35589e37ad",
+      "report_sha256": "175feaf096b766770e468f3345e3d821ba5169489e133d6e400a97d8b78588e4"
+    },
+    {
+      "externally_pinned_report": true,
+      "label": "stdlib-runtime-comparison",
+      "manifest_sha256": "3557b4324088784641662f468ae674c07623acb37065a9998b3240e2978904d5",
+      "report_sha256": "a657c1586c7c36342e6f8b38d8ccc3288fdd5cb5813662bd321e54b6a962e218"
+    },
+    {
+      "externally_pinned_report": true,
+      "label": "post-change-bootstrap",
+      "manifest_sha256": "f18cba4b8e1d05beaa0946941f46f4f48038e679f10f7804e69376f97135b36a",
+      "report_sha256": "7197d203c8357a88d5b9da97110ae5e96d5e84f5c4cf8efd190edba41e6dfeae"
+    }
+  ],
+  "process_and_differential_tests": 18,
+  "recorded_at_utc": "2026-10-31T22:29:14.124190+00:00",
+  "schema": "rcp-rclm.phase17c.operator-multirun-validation.v1",
+  "single_transaction_evaluations": 32,
+  "single_transaction_terminal": "search_exhausted",
+  "tested_code_commit": "2d2695674a417cea04947400fa617ac6b34b9d5b",
+  "tested_code_tree": "c0524e7f591044e3fd7329172e907251ae29e940",
+  "transaction_manifest_sha256": "0b49dd8f05973d1ecfa09767bea7a13020a05445fdd1db0a630daa33c9bea327",
+  "validation_basis": "retained source-identical passes across two memory configurations plus one new transaction"
+}

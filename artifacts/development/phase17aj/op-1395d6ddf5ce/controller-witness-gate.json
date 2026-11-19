@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_witness_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\aj-2d879ce8\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-17T07:44:17.175761+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-17T06:25:55.617803+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "777175bc63fec94d01e911d7d783d727554193d7518c00368e69172c10f5b4e6"
+}

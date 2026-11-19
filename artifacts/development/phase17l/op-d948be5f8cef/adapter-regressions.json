@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_joint_regressions.py"
+  ],
+  "finished_at_utc": "2026-11-02T01:59:20.305535+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-02T01:58:39.162955+00:00",
+  "stderr_sha256": "2e6e504f2da340cbfb7be421c7a4d3ad7aa877857b09fa171b14c83eaf63a701",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

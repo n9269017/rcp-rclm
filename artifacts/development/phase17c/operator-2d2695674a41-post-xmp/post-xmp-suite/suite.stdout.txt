@@ -1,0 +1,1 @@
+Process/protocol separation only; OS sandbox: false; Phase17 exit: false; Gate E: false

@@ -1,0 +1,12 @@
+{
+  "returncode": 2,
+  "source_scope": "reconstructed checkout; local synthetic Git history; not current full repository",
+  "base_ref_rebound_for_source_guard": "2342ad5ae3774056c2556e62cd60182b40f340a2",
+  "real_physical_pipeline_executed": true,
+  "compiler_processes_executed": 0,
+  "new_lean_check_passed": false,
+  "failure": {
+    "reason": "pinned dependency not installed: mathlib",
+    "type": "ControlError"
+  }
+}

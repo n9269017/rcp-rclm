@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_objective_context_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\y-faa621c8\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-09T08:03:18.858153+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-09T08:01:23.442081+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "a85751294c190eaba705198b8489e5d0c87a5072478deea119f9899e38567dce"
+}

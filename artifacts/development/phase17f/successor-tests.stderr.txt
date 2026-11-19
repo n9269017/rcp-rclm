@@ -1,0 +1,41 @@
+test_173_protected_files_measured (test_successor_evidence.SuccessorEvidenceTests.test_173_protected_files_measured) ... ok
+test_all_root_premises_accounted (test_successor_evidence.SuccessorEvidenceTests.test_all_root_premises_accounted) ... ok
+test_altered_tensor_rejected (test_successor_evidence.SuccessorEvidenceTests.test_altered_tensor_rejected) ... ok
+test_anchor_tamper_rejected (test_successor_evidence.SuccessorEvidenceTests.test_anchor_tamper_rejected) ... ok
+test_catalog_matches_actual_immutable_root_structures (test_successor_evidence.SuccessorEvidenceTests.test_catalog_matches_actual_immutable_root_structures) ... ok
+test_changed_registry_rejected (test_successor_evidence.SuccessorEvidenceTests.test_changed_registry_rejected) ... ok
+test_compiler_accepting_false_cannot_pass (test_successor_evidence.SuccessorEvidenceTests.test_compiler_accepting_false_cannot_pass) ... ok
+test_crlf_template_is_portable (test_successor_evidence.SuccessorEvidenceTests.test_crlf_template_is_portable) ... ok
+test_different_named_theorem_rejected (test_successor_evidence.SuccessorEvidenceTests.test_different_named_theorem_rejected) ... ok
+test_exact_projection_not_active_rollback (test_successor_evidence.SuccessorEvidenceTests.test_exact_projection_not_active_rollback) ... ok
+test_exhaustion_never_authorizes_candidate_packet (test_successor_evidence.SuccessorEvidenceTests.test_exhaustion_never_authorizes_candidate_packet) ... ok
+test_extra_audit_output_rejected (test_successor_evidence.SuccessorEvidenceTests.test_extra_audit_output_rejected) ... ok
+test_extra_physical_file_rejected (test_successor_evidence.SuccessorEvidenceTests.test_extra_physical_file_rejected) ... ok
+test_false_integer_claim_rejected (test_successor_evidence.SuccessorEvidenceTests.test_false_integer_claim_rejected) ... ok
+test_integer_boolean_rejected (test_successor_evidence.SuccessorEvidenceTests.test_integer_boolean_rejected) ... ok
+test_lean_gate_mock_checks_negative_before_positive (test_successor_evidence.SuccessorEvidenceTests.test_lean_gate_mock_checks_negative_before_positive) ... ok
+test_missing_dependencies_never_pass (test_successor_evidence.SuccessorEvidenceTests.test_missing_dependencies_never_pass) ... ok
+test_negative_control_does_not_mutate_packet (test_successor_evidence.SuccessorEvidenceTests.test_negative_control_does_not_mutate_packet) ... ok
+test_negative_timeout_is_not_rejection_proof (test_successor_evidence.SuccessorEvidenceTests.test_negative_timeout_is_not_rejection_proof) ... ok
+test_no_automatic_recursive_label_addition (test_successor_evidence.SuccessorEvidenceTests.test_no_automatic_recursive_label_addition) ... ok
+test_packet_access_detached (test_successor_evidence.SuccessorEvidenceTests.test_packet_access_detached) ... ok
+test_packet_has_no_authorization (test_successor_evidence.SuccessorEvidenceTests.test_packet_has_no_authorization) ... ok
+test_packet_rehash_cannot_replace_recomputation (test_successor_evidence.SuccessorEvidenceTests.test_packet_rehash_cannot_replace_recomputation) ... ok
+test_packet_whitespace_rejected (test_successor_evidence.SuccessorEvidenceTests.test_packet_whitespace_rejected) ... ok
+test_positive_failure_not_hidden (test_successor_evidence.SuccessorEvidenceTests.test_positive_failure_not_hidden) ... ok
+test_real_archive_candidate_is_checked (test_successor_evidence.SuccessorEvidenceTests.test_real_archive_candidate_is_checked) ... ok
+test_receipt_substitution_rejected (test_successor_evidence.SuccessorEvidenceTests.test_receipt_substitution_rejected) ... ok
+test_registry_is_exactly_eight_to_nine (test_successor_evidence.SuccessorEvidenceTests.test_registry_is_exactly_eight_to_nine) ... ok
+test_render_contains_128_full_grammar_cases (test_successor_evidence.SuccessorEvidenceTests.test_render_contains_128_full_grammar_cases) ... ok
+test_render_has_no_placeholder_or_native_proof (test_successor_evidence.SuccessorEvidenceTests.test_render_has_no_placeholder_or_native_proof) ... ok
+test_resource_stop_never_authorizes_candidate_packet (test_successor_evidence.SuccessorEvidenceTests.test_resource_stop_never_authorizes_candidate_packet) ... ok
+test_root_template_pin_cannot_be_substituted (test_successor_evidence.SuccessorEvidenceTests.test_root_template_pin_cannot_be_substituted) ... ok
+test_string_code_injection_escaped (test_successor_evidence.SuccessorEvidenceTests.test_string_code_injection_escaped) ... ok
+test_three_scoped_probes_not_nineteen_certified_abilities (test_successor_evidence.SuccessorEvidenceTests.test_three_scoped_probes_not_nineteen_certified_abilities) ... ok
+test_unapproved_axioms_rejected (test_successor_evidence.SuccessorEvidenceTests.test_unapproved_axioms_rejected) ... ok
+test_valid_packet_hash_and_bytes (test_successor_evidence.SuccessorEvidenceTests.test_valid_packet_hash_and_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 9.747s
+
+OK

@@ -1,0 +1,270 @@
+{
+  "schema": "rcp-rclm.phase17j.task-meaning-run.v1",
+  "source_commit": "11ce508bb7acb3c1f91fc9777345e4ab63eee13e",
+  "source_tree": "040a0645013bf4809fe1e77847823437bb5be8f3",
+  "started_at_utc": "2026-11-01T20:23:26.075423+00:00",
+  "os": "Windows",
+  "python_version": "3.13.3",
+  "synthetic_fixture": true,
+  "automatic_retries": 0,
+  "local_increment_checks_passed": true,
+  "claims": {
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "live_capability_gain_demonstrated": false,
+    "complete_resource_accounting": false,
+    "full_learned_semantic_refinement": false,
+    "neural_decoder_formally_verified": false
+  },
+  "packet_sha256": "0e31d56ea5c44be47e5ad3b3319efdc0e82e5eccf58fe56f98995ca5a1bcaa89",
+  "historical_catalog_sha256": "3c3a412d4cc1c6eb9a0882ecaa94aa0519b5f2e8007f56d9501c434e03cf41c0",
+  "predecessor_package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "candidate_package_hash": "67a97c6d16b6097fd8f1c5e09a941d5b813dfd403e98a508491645d6aea18b65",
+  "historical_proof_tasks": 13,
+  "historical_single_input_vector_tasks": 8,
+  "new_eight_probe_tasks": 1,
+  "selected_catalog_size": 22,
+  "selected_before_size": 21,
+  "selected_after_size": 22,
+  "predecessor_new_task_passed": false,
+  "candidate_new_task_passed": true,
+  "new_named_audits": [
+    "Phase17TaskMeaning.checked_frontier_sound",
+    "Phase17TaskMeaning.attached_root_frontier_sound",
+    "Phase17TaskMeaning.selected_before_sound",
+    "Phase17TaskMeaning.selected_after_sound",
+    "Phase17TaskMeaning.selected_frontier_retention",
+    "Phase17TaskMeaning.selected_frontier_expansion",
+    "Phase17TaskMeaning.selected_predecessor_rejects_new",
+    "Phase17TaskMeaning.selected_catalog_bijection"
+  ],
+  "inherited_theorem_audits": [
+    "Phase17TaskMeaning.inherited_0",
+    "Phase17TaskMeaning.inherited_1",
+    "Phase17TaskMeaning.inherited_2",
+    "Phase17TaskMeaning.inherited_3",
+    "Phase17TaskMeaning.inherited_4",
+    "Phase17TaskMeaning.inherited_5",
+    "Phase17TaskMeaning.inherited_6",
+    "Phase17TaskMeaning.inherited_7",
+    "Phase17TaskMeaning.inherited_8",
+    "Phase17TaskMeaning.inherited_9",
+    "Phase17TaskMeaning.inherited_10",
+    "Phase17TaskMeaning.inherited_11",
+    "Phase17TaskMeaning.inherited_12"
+  ],
+  "legacy_full_recursive_tasks_recertified": [],
+  "new_operational_contracts_certified": [],
+  "phase17h_proofs_rerun": false,
+  "training_performed": false,
+  "root_fields": [
+    "frontier",
+    "solves",
+    "frontierSound"
+  ],
+  "complete_learned_kernel_constructed": false,
+  "root_observation_projection_formally_verified": false,
+  "universal_vector_semantics_claimed": false,
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "source_sha256": {
+    "TaskMeaning": "782d42abce27ce49a4ff9a52d514da7057722938d5b5b051813dad19c1e33793",
+    "WrongTarget": "0738dfd95e3590e1fb60093e7bc19e7b17b84c536ef757a72e6a26ddc8bcace8",
+    "MissingProofObservation": "0c132927ef4cfd8376f9ebefaec87b42f075d183274ea3f40ec120cad3453868"
+  },
+  "task_meaning_gate": {
+    "schema_id": "runtime.v5.phase17.task-meaning-lean.v1",
+    "status": "passed",
+    "packet_sha256": "0e31d56ea5c44be47e5ad3b3319efdc0e82e5eccf58fe56f98995ca5a1bcaa89",
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stderr": "",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T20:23:43.416258+00:00",
+        "elapsed_ns": 55342200
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17j-v7o0xkxg\\TaskMeaning.lean"
+        ],
+        "returncode": 0,
+        "stdout": "'Phase17TaskMeaning.checked_frontier_sound' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.attached_root_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_before_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_after_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_predecessor_rejects_new' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.selected_catalog_bijection' does not depend on any axioms\n'Phase17TaskMeaning.inherited_0' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_1' does not depend on any axioms\n'Phase17TaskMeaning.inherited_2' depends on axioms: [propext]\n'Phase17TaskMeaning.inherited_3' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_4' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_5' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_6' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_7' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_8' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_9' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_10' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_11' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_12' does not depend on any axioms\n",
+        "stderr": "",
+        "stdout_sha256": "21e1dfd91fa408685482ee2a09086e2bbc1784ed94de3dd46cc022ad5a641e1c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T20:23:43.474916+00:00",
+        "elapsed_ns": 22333624500
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17j-v7o0xkxg\\WrongTarget.lean"
+        ],
+        "returncode": 1,
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17j-v7o0xkxg\\WrongTarget.lean:264:91: error: Tactic `decide` proved that the proposition\n  checkedFrontier afterDeclared catalog after = afterDeclared\nis false\n'Phase17TaskMeaning.checked_frontier_sound' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.attached_root_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_before_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_after_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_retention' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_expansion' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_predecessor_rejects_new' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.selected_catalog_bijection' does not depend on any axioms\n'Phase17TaskMeaning.inherited_0' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_1' does not depend on any axioms\n'Phase17TaskMeaning.inherited_2' depends on axioms: [propext]\n'Phase17TaskMeaning.inherited_3' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_4' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_5' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_6' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_7' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_8' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_9' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_10' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_11' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_12' does not depend on any axioms\n",
+        "stderr": "",
+        "stdout_sha256": "80bbb40abe1c70ae65c09612f17d8089edbc619fca8925524230b8bdeaeda882",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T20:24:05.812615+00:00",
+        "elapsed_ns": 19710512900
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17j-v7o0xkxg\\MissingProofObservation.lean"
+        ],
+        "returncode": 1,
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17j-v7o0xkxg\\MissingProofObservation.lean:264:91: error: Tactic `decide` proved that the proposition\n  checkedFrontier afterDeclared catalog after = afterDeclared\nis false\n'Phase17TaskMeaning.checked_frontier_sound' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.attached_root_frontier_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_before_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_after_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_retention' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_frontier_expansion' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'Phase17TaskMeaning.selected_predecessor_rejects_new' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.selected_catalog_bijection' does not depend on any axioms\n'Phase17TaskMeaning.inherited_0' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_1' does not depend on any axioms\n'Phase17TaskMeaning.inherited_2' depends on axioms: [propext]\n'Phase17TaskMeaning.inherited_3' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_4' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_5' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_6' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_7' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_8' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_9' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_10' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_11' depends on axioms: [propext, Quot.sound]\n'Phase17TaskMeaning.inherited_12' does not depend on any axioms\n",
+        "stderr": "",
+        "stdout_sha256": "95f85c4532c9e1f9c70ddc456f890d92f6f81281b5beb46e5bd3c2819c70b207",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T20:24:25.525410+00:00",
+        "elapsed_ns": 19777641600
+      }
+    ],
+    "theorem_axioms": {
+      "Phase17TaskMeaning.checked_frontier_sound": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.attached_root_frontier_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_before_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_after_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_frontier_retention": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_frontier_expansion": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_predecessor_rejects_new": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.selected_catalog_bijection": [],
+      "Phase17TaskMeaning.inherited_0": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_1": [],
+      "Phase17TaskMeaning.inherited_2": [
+        "propext"
+      ],
+      "Phase17TaskMeaning.inherited_3": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_4": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_5": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_6": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_7": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_8": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_9": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_10": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_11": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17TaskMeaning.inherited_12": []
+    },
+    "selected_task_meanings_checked": true,
+    "root_frontier_field_connection_checked": true,
+    "negative_controls_rejected": [
+      "WrongTarget",
+      "MissingProofObservation"
+    ],
+    "new_named_audits": 8,
+    "inherited_theorem_propositions_rechecked": 13,
+    "claims": {
+      "root_transition_verified": false,
+      "recursive_productivity_recertified": false,
+      "full_frontier_recertified": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "phase17_exit_closed": false,
+      "gate_e_closed": false,
+      "egc0_started": false,
+      "live_capability_gain_demonstrated": false,
+      "complete_resource_accounting": false,
+      "full_learned_semantic_refinement": false,
+      "neural_decoder_formally_verified": false
+    },
+    "source_sha256": {
+      "TaskMeaning": "782d42abce27ce49a4ff9a52d514da7057722938d5b5b051813dad19c1e33793",
+      "WrongTarget": "0738dfd95e3590e1fb60093e7bc19e7b17b84c536ef757a72e6a26ddc8bcace8",
+      "MissingProofObservation": "0c132927ef4cfd8376f9ebefaec87b42f075d183274ea3f40ec120cad3453868"
+    },
+    "executable_sha256": {
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+      "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc"
+    },
+    "python_observation_projection_remains_trusted": true,
+    "trusted_import_cache_assumption": true,
+    "complete_learned_kernel_constructed": false
+  },
+  "source_unchanged": true,
+  "proof_mode": "real_pinned_lean",
+  "finished_at_utc": "2026-11-01T20:24:51.010585+00:00"
+}

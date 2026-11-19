@@ -1,0 +1,44 @@
+name: Phase 17 control-plane development tests
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "python/rcp_rclm_runtime_v5/**"
+      - "scripts/run_phase17_tests.py"
+      - "scripts/phase17_refresh_checksums.py"
+      - "docs/executable_core_v5/**"
+      - ".github/workflows/runtime-v5-phase-17.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phase17-foundation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  controller-tests:
+    name: Phase 17 foundation (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025, macos-15]
+    steps:
+      - name: Check out exact development head
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+      - name: Compile new source
+        run: python -m compileall -q python/rcp_rclm_runtime_v5 scripts/run_phase17_tests.py scripts/phase17_refresh_checksums.py
+      - name: Run core and real Phase 16 adapter tests
+        run: python scripts/run_phase17_tests.py
+      - name: Require complete canonical root manifest
+        run: python scripts/phase17_refresh_checksums.py

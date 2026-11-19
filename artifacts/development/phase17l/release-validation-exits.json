@@ -1,0 +1,25 @@
+[
+  {
+    "name": "runtime-final",
+    "argv": [
+      "python",
+      "/mnt/data/phase17l_work/checkout/scripts/run_phase17_joint_tests.py"
+    ],
+    "returncode": 0,
+    "started_at_utc": "2026-11-02T00:33:26.367908+00:00",
+    "finished_at_utc": "2026-11-02T00:34:00.456533+00:00"
+  },
+  {
+    "name": "installer-final",
+    "argv": [
+      "python",
+      "-m",
+      "unittest",
+      "-v",
+      "test_apply_phase17l"
+    ],
+    "returncode": 0,
+    "started_at_utc": "2026-11-02T00:34:00.456943+00:00",
+    "finished_at_utc": "2026-11-02T00:34:38.108725+00:00"
+  }
+]

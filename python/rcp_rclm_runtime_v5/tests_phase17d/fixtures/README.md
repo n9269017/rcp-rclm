@@ -1,0 +1,1 @@
+This is a deterministic synthetic unit-test fixture with a deliberately chosen known passing candidate. It was constructed offline for coverage, not emitted by a fresh live search. It is NOT a Phase17 improvement result, hidden benchmark, or promotion certificate. Do not use it as a runtime campaign result.

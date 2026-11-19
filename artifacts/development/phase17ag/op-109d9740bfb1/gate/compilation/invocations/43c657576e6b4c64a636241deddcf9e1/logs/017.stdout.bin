@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ag-cd36f36f\e\gate\compilation\invocations\0f6e4485c4a54b2ab05bbfb5b1ace3d8\workspace/FalseRootAcceptance.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

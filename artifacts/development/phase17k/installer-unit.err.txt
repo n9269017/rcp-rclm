@@ -1,0 +1,45 @@
+test_claims (test_apply_phase17k.InstallerUnits.test_claims) ... ok
+test_command_substitution (test_apply_phase17k.InstallerUnits.test_command_substitution) ... ok
+test_compiler_failure (test_apply_phase17k.InstallerUnits.test_compiler_failure) ... ok
+test_exact_counts_zero_skips (test_apply_phase17k.InstallerUnits.test_exact_counts_zero_skips) ... ok
+test_exact_crlf (test_apply_phase17k.InstallerUnits.test_exact_crlf) ... ok
+test_fixture_label (test_apply_phase17k.InstallerUnits.test_fixture_label) ... ok
+test_gate_files (test_apply_phase17k.InstallerUnits.test_gate_files) ... ok
+test_gate_packet_binding (test_apply_phase17k.InstallerUnits.test_gate_packet_binding) ... ok
+test_ignored_file_not_forced (test_apply_phase17k.InstallerUnits.test_ignored_file_not_forced) ... ok
+test_link_rejection (test_apply_phase17k.InstallerUnits.test_link_rejection) ... ok
+test_literal_many_long_paths (test_apply_phase17k.InstallerUnits.test_literal_many_long_paths) ... ok
+test_log_tamper (test_apply_phase17k.InstallerUnits.test_log_tamper) ... ok
+test_manifest_coverage (test_apply_phase17k.InstallerUnits.test_manifest_coverage) ... ok
+test_manifest_existing_code_edit_forbidden (test_apply_phase17k.InstallerUnits.test_manifest_existing_code_edit_forbidden) ... ok
+test_manifest_extra_file (test_apply_phase17k.InstallerUnits.test_manifest_extra_file) ... ok
+test_manifest_tamper_and_duplicate (test_apply_phase17k.InstallerUnits.test_manifest_tamper_and_duplicate) ... ok
+test_missing_negative (test_apply_phase17k.InstallerUnits.test_missing_negative) ... ok
+test_negative_success (test_apply_phase17k.InstallerUnits.test_negative_success) ... ok
+test_negative_timeout (test_apply_phase17k.InstallerUnits.test_negative_timeout) ... ok
+test_old_shortcut_cannot_pass (test_apply_phase17k.InstallerUnits.test_old_shortcut_cannot_pass) ... ok
+test_omitted_audit (test_apply_phase17k.InstallerUnits.test_omitted_audit) ... ok
+test_package_identity (test_apply_phase17k.InstallerUnits.test_package_identity) ... ok
+test_packet_bytes (test_apply_phase17k.InstallerUnits.test_packet_bytes) ... ok
+test_paths (test_apply_phase17k.InstallerUnits.test_paths) ... ok
+test_positive_stderr (test_apply_phase17k.InstallerUnits.test_positive_stderr) ... ok
+test_prep_is_not_success (test_apply_phase17k.InstallerUnits.test_prep_is_not_success) ... ok
+test_producer_identity (test_apply_phase17k.InstallerUnits.test_producer_identity) ... ok
+test_proposal_count (test_apply_phase17k.InstallerUnits.test_proposal_count) ... ok
+test_retained_files_exclude_models (test_apply_phase17k.InstallerUnits.test_retained_files_exclude_models) ... ok
+test_scope (test_apply_phase17k.InstallerUnits.test_scope) ... ok
+test_source_identity (test_apply_phase17k.InstallerUnits.test_source_identity) ... ok
+test_stderr_retained (test_apply_phase17k.InstallerUnits.test_stderr_retained) ... ok
+test_transcript_bytes (test_apply_phase17k.InstallerUnits.test_transcript_bytes) ... ok
+test_transcript_identity (test_apply_phase17k.InstallerUnits.test_transcript_identity) ... ok
+test_unapproved_axiom (test_apply_phase17k.InstallerUnits.test_unapproved_axiom) ... ok
+test_unexpected_audit_output (test_apply_phase17k.InstallerUnits.test_unexpected_audit_output) ... ok
+test_valid_execution (test_apply_phase17k.InstallerUnits.test_valid_execution) ... ok
+test_wrong_negative_reason (test_apply_phase17k.InstallerUnits.test_wrong_negative_reason) ... ok
+test_wrong_old_rejection (test_apply_phase17k.InstallerUnits.test_wrong_old_rejection) ... ok
+test_zero_is_not_false (test_apply_phase17k.InstallerUnits.test_zero_is_not_false) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 0.121s
+
+OK

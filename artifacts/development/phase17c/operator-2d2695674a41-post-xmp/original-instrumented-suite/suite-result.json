@@ -1,0 +1,266 @@
+{
+  "automatic_retries": 0,
+  "diagnostic_instrumentation": true,
+  "errors": 2,
+  "failures": 0,
+  "original_test_order_preserved": true,
+  "production_source_modified": false,
+  "skipped": 0,
+  "suite_attempts": 1,
+  "suite_passed": false,
+  "test_order": [
+    "test_process_boundary.ProcessBoundaryTests.test_client_timeout_profile_validated",
+    "test_process_boundary.ProcessBoundaryTests.test_environment_does_not_forward_credentials_or_pythonpath",
+    "test_process_boundary.ProcessBoundaryTests.test_fresh_worker_commitments_differ",
+    "test_process_boundary.ProcessBoundaryTests.test_live_worker_bad_freeze_rejected",
+    "test_process_boundary.ProcessBoundaryTests.test_live_worker_no_caller_path_or_executable",
+    "test_process_boundary.ProcessBoundaryTests.test_live_worker_no_early_reveal",
+    "test_process_boundary.ProcessBoundaryTests.test_live_worker_no_seed_override",
+    "test_process_boundary.ProcessBoundaryTests.test_real_worker_freeze_and_evaluate",
+    "test_process_boundary.ProcessBoundaryTests.test_real_worker_has_distinct_pid_and_sealed_recomputation",
+    "test_process_boundary.ProcessBoundaryTests.test_seal_prevents_more_requests",
+    "test_process_boundary.ProcessBoundaryTests.test_timeout_kills_worker_without_success",
+    "test_process_boundary.ProcessBoundaryTests.test_worker_death_fails_closed",
+    "test_reference_differential.ReferenceDifferentialTests.test_complete_controller_service_transaction",
+    "test_reference_differential.ReferenceDifferentialTests.test_exact_grammar_for_eight_current_nonces",
+    "test_reference_differential.ReferenceDifferentialTests.test_partial_controller_service_transaction",
+    "test_reference_differential.ReferenceDifferentialTests.test_reference_matches_actual_executor_all_families_and_variants",
+    "test_reference_differential.ReferenceDifferentialTests.test_reference_matches_installed_predecessor_programs",
+    "test_reference_differential.ReferenceDifferentialTests.test_zero_credit_controller_service_transaction"
+  ],
+  "test_outcomes": [
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_client_timeout_profile_validated"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_environment_does_not_forward_credentials_or_pythonpath"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_fresh_worker_commitments_differ"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_live_worker_bad_freeze_rejected"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_live_worker_no_caller_path_or_executable"
+    },
+    {
+      "exception_type": "ControlError",
+      "status": "error",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_live_worker_no_early_reveal"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_live_worker_no_seed_override"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_real_worker_freeze_and_evaluate"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_real_worker_has_distinct_pid_and_sealed_recomputation"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_seal_prevents_more_requests"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_timeout_kills_worker_without_success"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_worker_death_fails_closed"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_reference_differential.ReferenceDifferentialTests.test_complete_controller_service_transaction"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_reference_differential.ReferenceDifferentialTests.test_exact_grammar_for_eight_current_nonces"
+    },
+    {
+      "exception_type": "ControlError",
+      "status": "error",
+      "test_id": "test_reference_differential.ReferenceDifferentialTests.test_partial_controller_service_transaction"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_reference_differential.ReferenceDifferentialTests.test_reference_matches_actual_executor_all_families_and_variants"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_reference_differential.ReferenceDifferentialTests.test_reference_matches_installed_predecessor_programs"
+    },
+    {
+      "status": "passed",
+      "test_id": "test_reference_differential.ReferenceDifferentialTests.test_zero_credit_controller_service_transaction"
+    }
+  ],
+  "tests_run": 18,
+  "worker_launches": 14,
+  "worker_response_timeout_seconds": 30,
+  "workers": [
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634882+00:00",
+      "index": 1,
+      "pid": 13120,
+      "returncode": 0,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:55:39.017900+00:00",
+      "stderr_file": "worker-01.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_fresh_worker_commitments_differ"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634891+00:00",
+      "index": 2,
+      "pid": 8464,
+      "returncode": 0,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:55:42.538317+00:00",
+      "stderr_file": "worker-02.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_fresh_worker_commitments_differ"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634893+00:00",
+      "index": 3,
+      "pid": 15296,
+      "returncode": 1,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:55:46.169833+00:00",
+      "stderr_file": "worker-03.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_live_worker_bad_freeze_rejected"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634895+00:00",
+      "index": 4,
+      "pid": 14608,
+      "returncode": 1,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:55:49.658744+00:00",
+      "stderr_file": "worker-04.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_live_worker_no_caller_path_or_executable"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634896+00:00",
+      "index": 5,
+      "pid": 1828,
+      "returncode": 1,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:55:53.160107+00:00",
+      "stderr_file": "worker-05.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_live_worker_no_early_reveal"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634898+00:00",
+      "index": 6,
+      "pid": 17320,
+      "returncode": 1,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:55:55.872139+00:00",
+      "stderr_file": "worker-06.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_live_worker_no_seed_override"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634899+00:00",
+      "index": 7,
+      "pid": 5284,
+      "returncode": 0,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:55:59.454627+00:00",
+      "stderr_file": "worker-07.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_real_worker_freeze_and_evaluate"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634900+00:00",
+      "index": 8,
+      "pid": 6432,
+      "returncode": 0,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:56:02.994443+00:00",
+      "stderr_file": "worker-08.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_real_worker_has_distinct_pid_and_sealed_recomputation"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634901+00:00",
+      "index": 9,
+      "pid": 12508,
+      "returncode": 0,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:56:06.510613+00:00",
+      "stderr_file": "worker-09.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_seal_prevents_more_requests"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634903+00:00",
+      "index": 10,
+      "pid": 14132,
+      "returncode": 1,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:56:10.044039+00:00",
+      "stderr_file": "worker-10.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_timeout_kills_worker_without_success"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634904+00:00",
+      "index": 11,
+      "pid": 10552,
+      "returncode": 1,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:56:13.571664+00:00",
+      "stderr_file": "worker-11.stderr.jsonl",
+      "test_id": "test_process_boundary.ProcessBoundaryTests.test_worker_death_fails_closed"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634906+00:00",
+      "index": 12,
+      "pid": 16260,
+      "returncode": 0,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:56:19.049524+00:00",
+      "stderr_file": "worker-12.stderr.jsonl",
+      "test_id": "test_reference_differential.ReferenceDifferentialTests.test_complete_controller_service_transaction"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634907+00:00",
+      "index": 13,
+      "pid": 6816,
+      "returncode": 1,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:56:22.938644+00:00",
+      "stderr_file": "worker-13.stderr.jsonl",
+      "test_id": "test_reference_differential.ReferenceDifferentialTests.test_partial_controller_service_transaction"
+    },
+    {
+      "diagnostic_cleanup_required": false,
+      "finished_at_utc": "2026-10-31T09:56:26.634908+00:00",
+      "index": 14,
+      "pid": 13596,
+      "returncode": 0,
+      "source_modified": false,
+      "started_at_utc": "2026-10-31T09:56:23.142954+00:00",
+      "stderr_file": "worker-14.stderr.jsonl",
+      "test_id": "test_reference_differential.ReferenceDifferentialTests.test_zero_credit_controller_service_transaction"
+    }
+  ]
+}

@@ -1,0 +1,717 @@
+{
+  "byte_capture_remains_external": true,
+  "claims": {
+    "active_store_written": false,
+    "campaign_budget_authority_integrated": false,
+    "complete_learned_kernel_constructed": false,
+    "complete_resource_accounting": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "full_autonomous_step_instantiated": false,
+    "full_frontier_recertified": false,
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "physical_execution_attested": false,
+    "physical_projection_formally_verified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--version"
+      ],
+      "elapsed_ns": 1668529300,
+      "returncode": 0,
+      "started_at_utc": "2026-11-08T20:57:04.021419+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+      "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17QDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17QDependency.lean"
+      ],
+      "elapsed_ns": 707097729000,
+      "label": "Phase17QDependency",
+      "output_artifacts_sha256": {
+        "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+      },
+      "returncode": 0,
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+      "started_at_utc": "2026-11-08T20:57:05.697236+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17RDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17RDependency.lean"
+      ],
+      "elapsed_ns": 128556187400,
+      "label": "Phase17RDependency",
+      "output_artifacts_sha256": {
+        "Phase17RDependency.olean": "640f8c1b66693184b858de520ceb9af2cbc329a7190e430fe509f3a2e203335f"
+      },
+      "returncode": 0,
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+      "started_at_utc": "2026-11-08T21:08:53.339030+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17SDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17SDependency.lean"
+      ],
+      "elapsed_ns": 26280328500,
+      "label": "Phase17SDependency",
+      "output_artifacts_sha256": {
+        "Phase17SDependency.olean": "076ef38811d5487b6faf8558dd5e1488be5f86245780689ee6289ccf639fcba9"
+      },
+      "returncode": 0,
+      "source_sha256": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e",
+      "started_at_utc": "2026-11-08T21:11:01.916424+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17TDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17TDependency.lean"
+      ],
+      "elapsed_ns": 101568393400,
+      "label": "Phase17TDependency",
+      "output_artifacts_sha256": {
+        "Phase17TDependency.olean": "ac0fde14b5ba4e348f92ae620cd09fddbab04e4d33415d7e4f91fe893042bb4c"
+      },
+      "returncode": 0,
+      "source_sha256": "b6f64b0c9db47421756cf298163f7a849e214273b436c27d29bceffd470d911e",
+      "started_at_utc": "2026-11-08T21:11:28.220027+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17UDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17UDependency.lean"
+      ],
+      "elapsed_ns": 102843465600,
+      "label": "Phase17UDependency",
+      "output_artifacts_sha256": {
+        "Phase17UDependency.olean": "9e512e9919b2c58eb7a78f0fc0146bd848226eae88482cf31256ff19c507a7a7"
+      },
+      "returncode": 0,
+      "source_sha256": "b5c9945529e14c1e99ffd0a1b54390dbe2aedd8a8840bfc82ed2d912d8c9792a",
+      "started_at_utc": "2026-11-08T21:13:09.816274+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17RDependency.lean"
+      ],
+      "elapsed_ns": 1360260100,
+      "label": "Phase17QDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+      "started_at_utc": "2026-11-08T21:14:52.685212+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17QDependency.olean\n",
+      "stdout_sha256": "0af5447a433a245a16676cda20fe9353bff6a195bee3768ef9638ce401a9a2c5"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17SDependency.lean"
+      ],
+      "elapsed_ns": 1352460700,
+      "label": "Phase17RDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e",
+      "started_at_utc": "2026-11-08T21:14:54.069467+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17RDependency.olean\n",
+      "stdout_sha256": "ad7f5ed179858b74dd3e4f6b45d522dc0f00b7150ba6940bb6114abe7a0b88bb"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17TDependency.lean"
+      ],
+      "elapsed_ns": 1348799900,
+      "label": "Phase17SDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "b6f64b0c9db47421756cf298163f7a849e214273b436c27d29bceffd470d911e",
+      "started_at_utc": "2026-11-08T21:14:55.448295+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17SDependency.olean\n",
+      "stdout_sha256": "a1a1bff54109dd43f0f6ab5a5c87bbf6e51934f115a6e63c7b3e5b5a6b8c4e7c"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17UDependency.lean"
+      ],
+      "elapsed_ns": 1353593500,
+      "label": "Phase17TDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "b5c9945529e14c1e99ffd0a1b54390dbe2aedd8a8840bfc82ed2d912d8c9792a",
+      "started_at_utc": "2026-11-08T21:14:56.821100+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17TDependency.olean\n",
+      "stdout_sha256": "edbad0b4b37595fe842d4abf4558544373c3f55e0b1cd15b236ad447e419c431"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ProgramMetadata.lean"
+      ],
+      "elapsed_ns": 1383264000,
+      "label": "Phase17UDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "efb57b5c15137d0d255e2f66e9e6bb4d9bfa8289b11f23c6e9d6b320c8b87216",
+      "started_at_utc": "2026-11-08T21:14:58.201109+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17UDependency.olean\n",
+      "stdout_sha256": "82d984735b3d4e2ff0fd9ffce2420f4212dac1d5b35bf8c06406a9d69c9535f5"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ProgramMetadata.lean"
+      ],
+      "elapsed_ns": 153019634000,
+      "label": "ProgramMetadata",
+      "returncode": 0,
+      "source_sha256": "efb57b5c15137d0d255e2f66e9e6bb4d9bfa8289b11f23c6e9d6b320c8b87216",
+      "started_at_utc": "2026-11-08T21:14:59.610519+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "'Phase17Metadata.program_decode_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.registry_counts_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.registry_inventory_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.metadata_rows_compose' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.metadata_context_transport' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.selected_registry_images' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.selected_registry_inventory' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.selected_inherited_counts' depends on axioms: [propext, Quot.sound]\n'Phase17Metadata.selected_candidate_separation' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.selected_descriptor_decodes' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.selected_metadata_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.selected_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.selected_context_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.selected_learned_acceptance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Metadata.selected_decoder_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stdout_sha256": "7906c763433b5acd650fc6d0ca8b86c348010806860374811901734bc305937f"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongProgramFamily.lean"
+      ],
+      "elapsed_ns": 16270515000,
+      "label": "WrongProgramFamily",
+      "returncode": 1,
+      "source_sha256": "a48464c6d28395914183ab729a6b7034488419ddcffaec5f6c902f15df83d7cf",
+      "started_at_utc": "2026-11-08T21:17:32.657477+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongProgramFamily.lean:349:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "4772f5aeb77c219bc558363dfb13712908365cf61f792346edeb646e5955e5a4"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongOperationId.lean"
+      ],
+      "elapsed_ns": 16410160900,
+      "label": "WrongOperationId",
+      "returncode": 1,
+      "source_sha256": "18e4dbaf2b15b16f48f52eb04788427c531755ef7abdcb1bf03cafdb9343e225",
+      "started_at_utc": "2026-11-08T21:17:48.952558+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongOperationId.lean:349:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "454c6f31bf3cd657c4bef78168fda8cae68a5cabf8f92e01008b924db8bf6a2d"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\BooleanProgramGeneration.lean"
+      ],
+      "elapsed_ns": 16206867800,
+      "label": "BooleanProgramGeneration",
+      "returncode": 1,
+      "source_sha256": "a58eb94254bd9ffc8672c7fce440c8a3ff6cc40da89c5d2fcb799c0d6022da37",
+      "started_at_utc": "2026-11-08T21:18:05.387164+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\BooleanProgramGeneration.lean:349:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "94c5bda922ce4094193b1ade1994c341968708b3474a49cafcd4f8d1e6a35f8b"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ProgramVariantOutOfBounds.lean"
+      ],
+      "elapsed_ns": 16414331500,
+      "label": "ProgramVariantOutOfBounds",
+      "returncode": 1,
+      "source_sha256": "0b138e0c14721e3e32b91c19dae7f48e415ce145bb374782de970c0a23a81528",
+      "started_at_utc": "2026-11-08T21:18:21.618312+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ProgramVariantOutOfBounds.lean:349:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "84b9e5512f1c95e3dd68267e540f98a015fa06756a210231efeb0b2630b2e7ee"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ProgramParameterOutOfBounds.lean"
+      ],
+      "elapsed_ns": 16472911800,
+      "label": "ProgramParameterOutOfBounds",
+      "returncode": 1,
+      "source_sha256": "812660d77e646279a1072d1cff0b8870d71e7566a902b6651761eeb61101e660",
+      "started_at_utc": "2026-11-08T21:18:38.057544+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ProgramParameterOutOfBounds.lean:349:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "df5b0801d6dd47392da8b4ea66328dcf5ee56ea7685b7c415e365c1379042c77"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongProgramGeneration.lean"
+      ],
+      "elapsed_ns": 17012615300,
+      "label": "WrongProgramGeneration",
+      "returncode": 1,
+      "source_sha256": "20fa00e697ecb808f3f1ee5d070f5d36f255534a7d1cbb515eae4e3e6c02d102",
+      "started_at_utc": "2026-11-08T21:18:54.554324+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongProgramGeneration.lean:350:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "2771c12134e92f193f405e33289fab7d5dc85029a3826bb8290f1c8582c0b9c9"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongPublicNonce.lean"
+      ],
+      "elapsed_ns": 16763061800,
+      "label": "WrongPublicNonce",
+      "returncode": 1,
+      "source_sha256": "1e0112065786c595dc28609140fd0e7154c65e69738d605510d93007e4c65652",
+      "started_at_utc": "2026-11-08T21:19:11.594286+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongPublicNonce.lean:350:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "9218cfe1f1c12cb2eb3c12d9a1a36b4fca5f68c597b99088b5226707d940552e"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\MissingInheritedProgram.lean"
+      ],
+      "elapsed_ns": 47044856300,
+      "label": "MissingInheritedProgram",
+      "returncode": 1,
+      "source_sha256": "fcd5dac1588d9796b63acfcf9d3305423142e6ea7c82e3b216614326269c61ca",
+      "started_at_utc": "2026-11-08T21:19:28.382348+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\MissingInheritedProgram.lean:433:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "0ab9ee1f89ab056cd1964e4355dc9fb98c182c69a50266cd4130d11ecf5d0115"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\DuplicateRegistryProgram.lean"
+      ],
+      "elapsed_ns": 48176356600,
+      "label": "DuplicateRegistryProgram",
+      "returncode": 1,
+      "source_sha256": "fff38f3441b75f439dacb5b6dd80b7efe3b4e5aafbc496985a839feb7fe89e0e",
+      "started_at_utc": "2026-11-08T21:20:15.452287+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\DuplicateRegistryProgram.lean:443:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "7463fd3e004515d32b916116803c51ba3ad78b81aeeb3d9e66b7d6673a6f328a"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ActiveCandidate.lean"
+      ],
+      "elapsed_ns": 17690441900,
+      "label": "ActiveCandidate",
+      "returncode": 1,
+      "source_sha256": "adb48c63ebd8fd2065588a6e63e3705a4ec276e74a0252db796d524347ef84f1",
+      "started_at_utc": "2026-11-08T21:21:03.653563+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ActiveCandidate.lean:349:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "e569346477feff02f8988b231cfced9fc7d5158b944991543bc757513049880f"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongHistoricalGeneration.lean"
+      ],
+      "elapsed_ns": 43334993900,
+      "label": "WrongHistoricalGeneration",
+      "returncode": 1,
+      "source_sha256": "49c850a3456dba539eca252f2b1a107248f51da905ab79e18a852db11de53f88",
+      "started_at_utc": "2026-11-08T21:21:21.368447+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\WrongHistoricalGeneration.lean:372:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "7bce06e1f4d764b060c26f40f28a049f9dfdf1538093d3ab80c78f9f13105473"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ChangedMetadataKey.lean"
+      ],
+      "elapsed_ns": 20245593400,
+      "label": "ChangedMetadataKey",
+      "returncode": 1,
+      "source_sha256": "1f75c84bb00031b73a6d5264ac0dc747a18f628cca1f757baf71e5aacca2469a",
+      "started_at_utc": "2026-11-08T21:22:04.728069+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\ChangedMetadataKey.lean:350:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "7e72ee858235a2ef499c41ed2a7d707bbe04a3ecfa5e68881a6922aaa48ff83a"
+    }
+  ],
+  "dependency_modules": {
+    "Phase17QDependency": {
+      "artifacts_sha256": {
+        "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17QDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17QDependency.olean",
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682"
+    },
+    "Phase17RDependency": {
+      "artifacts_sha256": {
+        "Phase17RDependency.olean": "640f8c1b66693184b858de520ceb9af2cbc329a7190e430fe509f3a2e203335f"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17RDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17RDependency.olean",
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104"
+    },
+    "Phase17SDependency": {
+      "artifacts_sha256": {
+        "Phase17SDependency.olean": "076ef38811d5487b6faf8558dd5e1488be5f86245780689ee6289ccf639fcba9"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17SDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17SDependency.olean",
+      "source_sha256": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e"
+    },
+    "Phase17TDependency": {
+      "artifacts_sha256": {
+        "Phase17TDependency.olean": "ac0fde14b5ba4e348f92ae620cd09fddbab04e4d33415d7e4f91fe893042bb4c"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17TDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17TDependency.olean",
+      "source_sha256": "b6f64b0c9db47421756cf298163f7a849e214273b436c27d29bceffd470d911e"
+    },
+    "Phase17UDependency": {
+      "artifacts_sha256": {
+        "Phase17UDependency.olean": "9e512e9919b2c58eb7a78f0fc0146bd848226eae88482cf31256ff19c507a7a7"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17UDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17v-0fqt1v_i\\Phase17UDependency.olean",
+      "source_sha256": "b5c9945529e14c1e99ffd0a1b54390dbe2aedd8a8840bfc82ed2d912d8c9792a"
+    }
+  },
+  "digest_authenticity_remains_external": true,
+  "executable_sha256": {
+    "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+  },
+  "full_transformer_equivalence": false,
+  "general_planner_equivalence": false,
+  "general_program_metadata_interpretation_remains_external": true,
+  "grammar_parameter_derivation_remains_external": true,
+  "negative_controls_rejected": [
+    "WrongProgramFamily",
+    "WrongOperationId",
+    "BooleanProgramGeneration",
+    "ProgramVariantOutOfBounds",
+    "ProgramParameterOutOfBounds",
+    "WrongProgramGeneration",
+    "WrongPublicNonce",
+    "MissingInheritedProgram",
+    "DuplicateRegistryProgram",
+    "ActiveCandidate",
+    "WrongHistoricalGeneration",
+    "ChangedMetadataKey"
+  ],
+  "new_named_audits": 15,
+  "old_proof_campaigns_rerun": false,
+  "packet_sha256": "f239d1b713117e5ae02182ddb8ce3c7e55a3580683767b938056c7dff5ca2161",
+  "program_metadata_from_json_checked": true,
+  "program_registry_projection_checked": true,
+  "public_hash_computation_remains_external": true,
+  "python_execution_remains_external": true,
+  "schema": "rcp-rclm.phase17v.program-metadata-lean.v1",
+  "selected_program_metadata_interpretation_checked": true,
+  "source_sha256": {
+    "ActiveCandidate": "adb48c63ebd8fd2065588a6e63e3705a4ec276e74a0252db796d524347ef84f1",
+    "BooleanProgramGeneration": "a58eb94254bd9ffc8672c7fce440c8a3ff6cc40da89c5d2fcb799c0d6022da37",
+    "ChangedMetadataKey": "1f75c84bb00031b73a6d5264ac0dc747a18f628cca1f757baf71e5aacca2469a",
+    "DuplicateRegistryProgram": "fff38f3441b75f439dacb5b6dd80b7efe3b4e5aafbc496985a839feb7fe89e0e",
+    "MissingInheritedProgram": "fcd5dac1588d9796b63acfcf9d3305423142e6ea7c82e3b216614326269c61ca",
+    "Phase17QDependency": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+    "Phase17RDependency": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+    "Phase17SDependency": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e",
+    "Phase17TDependency": "b6f64b0c9db47421756cf298163f7a849e214273b436c27d29bceffd470d911e",
+    "Phase17UDependency": "b5c9945529e14c1e99ffd0a1b54390dbe2aedd8a8840bfc82ed2d912d8c9792a",
+    "ProgramMetadata": "efb57b5c15137d0d255e2f66e9e6bb4d9bfa8289b11f23c6e9d6b320c8b87216",
+    "ProgramParameterOutOfBounds": "812660d77e646279a1072d1cff0b8870d71e7566a902b6651761eeb61101e660",
+    "ProgramVariantOutOfBounds": "0b138e0c14721e3e32b91c19dae7f48e415ce145bb374782de970c0a23a81528",
+    "WrongHistoricalGeneration": "49c850a3456dba539eca252f2b1a107248f51da905ab79e18a852db11de53f88",
+    "WrongOperationId": "18e4dbaf2b15b16f48f52eb04788427c531755ef7abdcb1bf03cafdb9343e225",
+    "WrongProgramFamily": "a48464c6d28395914183ab729a6b7034488419ddcffaec5f6c902f15df83d7cf",
+    "WrongProgramGeneration": "20fa00e697ecb808f3f1ee5d070f5d36f255534a7d1cbb515eae4e3e6c02d102",
+    "WrongPublicNonce": "1e0112065786c595dc28609140fd0e7154c65e69738d605510d93007e4c65652"
+  },
+  "status": "passed",
+  "theorem_axioms": {
+    "Phase17Metadata.metadata_context_transport": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.metadata_rows_compose": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.program_decode_unique": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.registry_counts_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.registry_inventory_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_candidate_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_candidate_separation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_context_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_decoder_edges": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_descriptor_decodes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_inherited_counts": [
+      "propext",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_learned_acceptance_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_metadata_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_registry_images": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Metadata.selected_registry_inventory": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "trusted_import_cache_assumption": true
+}

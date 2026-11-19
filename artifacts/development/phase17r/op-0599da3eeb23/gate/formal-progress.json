@@ -1,0 +1,375 @@
+{
+  "byte_capture_remains_external": true,
+  "claims": {
+    "active_store_written": false,
+    "campaign_budget_authority_integrated": false,
+    "complete_learned_kernel_constructed": false,
+    "complete_resource_accounting": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "full_autonomous_step_instantiated": false,
+    "full_frontier_recertified": false,
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "physical_execution_attested": false,
+    "physical_projection_formally_verified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--version"
+      ],
+      "elapsed_ns": 1618996100,
+      "returncode": 0,
+      "started_at_utc": "2026-11-08T04:38:41.384059+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+      "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\Phase17QDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\Phase17QDependency.lean"
+      ],
+      "elapsed_ns": 626788677100,
+      "label": "Phase17QDependency",
+      "output_artifacts_sha256": {
+        "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+      },
+      "returncode": 0,
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+      "started_at_utc": "2026-11-08T04:38:43.008233+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\SparseRefinement.lean"
+      ],
+      "elapsed_ns": 38881299700,
+      "label": "dependency_resolution",
+      "returncode": 0,
+      "source_sha256": "335f3fbcf95e9e2f6f8abe6ccc93ac97385cc872954c9454dabdc0209801e808",
+      "started_at_utc": "2026-11-08T04:49:09.806482+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\Phase17QDependency.olean\n",
+      "stdout_sha256": "5492c7e979fa62f8c95c0622bc4feb9e70fc9c3217a8d1ceb079245511082e64"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\SparseRefinement.lean"
+      ],
+      "elapsed_ns": 462168598100,
+      "label": "SparseRefinement",
+      "returncode": 0,
+      "source_sha256": "335f3fbcf95e9e2f6f8abe6ccc93ac97385cc872954c9454dabdc0209801e808",
+      "started_at_utc": "2026-11-08T04:49:48.688436+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "'Phase17Sparse.signed16_range' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.clipped_score_range' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.dyadic_weight_positive' depends on axioms: [propext]\n'Phase17Sparse.row_probability_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.mass_binding_sound' depends on axioms: [propext, Quot.sound]\n'Phase17Sparse.distribution_binding_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.information_binding_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.selected_byte_images' does not depend on any axioms\n'Phase17Sparse.selected_score_projection' depends on axioms: [propext, Quot.sound]\n'Phase17Sparse.selected_mass_projection' depends on axioms: [propext, Quot.sound]\n'Phase17Sparse.selected_goal_decode' does not depend on any axioms\n'Phase17Sparse.selected_information_transport' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.selected_learned_acceptance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.selected_codec_edges' depends on axioms: [propext]\n'Phase17Sparse.selected_decoder_edges' does not depend on any axioms\n",
+      "stdout_sha256": "811535bcc8057f2de7575442671f94f8e4e6aebbe4273dbba0b6d86ce67df22e"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\ChangedTensorByte.lean"
+      ],
+      "elapsed_ns": 20620936700,
+      "label": "ChangedTensorByte",
+      "returncode": 1,
+      "source_sha256": "eeab56c214e4666d96dc853a951a5c43b3a77f68ee73fba23adf65aa8435eaf8",
+      "started_at_utc": "2026-11-08T04:57:30.946855+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\ChangedTensorByte.lean:261:117: error: Tactic `decide` proved that the proposition\n  decodedRow afterImage 22 = Phase17Protected.rowAt Phase17Protected.observedAfter 22\nis false\n",
+      "stdout_sha256": "d30ba2fda735754bcb8f5d14150d0c1db9875c080080878d0d52a8b9bb5e7a95"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\TransposedTensor.lean"
+      ],
+      "elapsed_ns": 20504273800,
+      "label": "TransposedTensor",
+      "returncode": 1,
+      "source_sha256": "e30a5c286be90b935df0964590292a0ea1dbc274adc602f773f8b830b5d40c54",
+      "started_at_utc": "2026-11-08T04:57:51.577063+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\TransposedTensor.lean:261:117: error: Tactic `decide` proved that the proposition\n  decodedRow afterImage 22 = Phase17Protected.rowAt Phase17Protected.observedAfter 22\nis false\n",
+      "stdout_sha256": "ef657f4a91be91f1c03bb31196d980ffa7eb37bcb60db13a86450c1b9587bef1"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\AlteredProbability.lean"
+      ],
+      "elapsed_ns": 20666470200,
+      "label": "AlteredProbability",
+      "returncode": 1,
+      "source_sha256": "05688041e1a281921028feb969dda02ae32ef8c10949a805a66ff6089d4d81e5",
+      "started_at_utc": "2026-11-08T04:58:12.090209+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\AlteredProbability.lean:262:81: error: Tactic `decide` proved that the proposition\n  decodedRow afterImage 0 = changedProbabilityRow\nis false\n",
+      "stdout_sha256": "a5da33dee07b50a23c34764f04aeb9612bba53c596fa9b0793299baf02c6beff"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongMarker.lean"
+      ],
+      "elapsed_ns": 20524165400,
+      "label": "WrongMarker",
+      "returncode": 1,
+      "source_sha256": "0bdb8b3f569c4c6612e3203236f2274926ca32d5bfb7f93a8d35ac8c7f020290",
+      "started_at_utc": "2026-11-08T04:58:32.765621+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongMarker.lean:263:2: error: Tactic `decide` proved that the proposition\n  selectedMarkers.length = 11 \u2227\n    selectedTargets.length = 11 \u2227\n      ((selectedMarkers.zip selectedTargets).all fun pair =>\n          decide (decode afterImage pair.1 = { tokens := pair.2, termination := Termination.eos })) =\n        true\nis false\n",
+      "stdout_sha256": "0856655273ed9d230cb2de3f217786919f9bb631da7d399a7ab1983457981cea"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\MissingEOS.lean"
+      ],
+      "elapsed_ns": 23234631500,
+      "label": "MissingEOS",
+      "returncode": 1,
+      "source_sha256": "03a02056ecb6ddb3265ebddd49d5e91b6b2571bf7f6bd98b0d89d5c34cd0c2c6",
+      "started_at_utc": "2026-11-08T04:58:53.300865+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\MissingEOS.lean:263:2: error: Tactic `decide` proved that the proposition\n  selectedMarkers.length = 11 \u2227\n    selectedTargets.length = 11 \u2227\n      ((selectedMarkers.zip selectedTargets).all fun pair =>\n          decide (decode afterImage pair.1 = { tokens := pair.2, termination := Termination.eos })) =\n        true\nis false\n",
+      "stdout_sha256": "82696bcf9b40831033a057193b0f14b8baca0a3fd3e46d5de51bbf5dd159baa8"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\InvalidByteRange.lean"
+      ],
+      "elapsed_ns": 21643579300,
+      "label": "InvalidByteRange",
+      "returncode": 1,
+      "source_sha256": "cd193c9976fbf953a10de15799d3a29d428aefe657e5353737acda1b20176b55",
+      "started_at_utc": "2026-11-08T04:59:16.544303+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\InvalidByteRange.lean:263:2: error: Tactic `decide` proved that the proposition\n  afterImage.byteLength = 204800 \u2227\n    List.Pairwise (fun x1 x2 => x1 < x2) (List.map Prod.fst (entries afterImage.support)) \u2227\n      \u2200 entry \u2208 entries afterImage.support, entry.1 < afterImage.byteLength \u2227 0 < entry.2 \u2227 entry.2 < 256\nis false\n",
+      "stdout_sha256": "f497233209c56c4d7d49cc0697ec795c4cf9df239618d63a5ff6ae9e01d9fee8"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongSignedBoundary.lean"
+      ],
+      "elapsed_ns": 19839764200,
+      "label": "WrongSignedBoundary",
+      "returncode": 1,
+      "source_sha256": "a32786d2f465894f76fb242948a99b8be54c1497c350771b1c4ddd96c64d6db2",
+      "started_at_utc": "2026-11-08T04:59:38.197005+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongSignedBoundary.lean:261:56: error: Tactic `decide` proved that the proposition\n  signed16 0 128 = 32768\nis false\n",
+      "stdout_sha256": "bd79a6d061f6eee5ed3d8eec691dfa754633edcc38968e696c2e212fb5078336"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongGreedyTie.lean"
+      ],
+      "elapsed_ns": 20042353800,
+      "label": "WrongGreedyTie",
+      "returncode": 1,
+      "source_sha256": "67e0831df6d0ea2a688a70b02ae96caefabd44a4a7b479d7e47882cbc520757d",
+      "started_at_utc": "2026-11-08T04:59:58.045752+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongGreedyTie.lean:261:85: error: Tactic `decide` proved that the proposition\n  greedyToken ([7, 7, 3] ++ List.replicate 257 0) = 1\nis false\n",
+      "stdout_sha256": "b8eaa5881b96cf08d3af273478e7e830087e92e8c726a125d391f64af5011ef8"
+    }
+  ],
+  "dependency_module": {
+    "artifacts_sha256": {
+      "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+    },
+    "compiled_in_this_run": true,
+    "name": "Phase17QDependency",
+    "prior_success_report_used_as_proof": false,
+    "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\Phase17QDependency.olean",
+    "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682"
+  },
+  "executable_sha256": {
+    "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+  },
+  "full_transformer_equivalence": false,
+  "negative_controls_rejected": [
+    "ChangedTensorByte",
+    "TransposedTensor",
+    "AlteredProbability",
+    "WrongMarker",
+    "MissingEOS",
+    "InvalidByteRange",
+    "WrongSignedBoundary",
+    "WrongGreedyTie"
+  ],
+  "new_named_audits": 15,
+  "old_proof_campaigns_rerun": false,
+  "packet_sha256": "505d704bbab6d1f72d22dd36f5f75ea128057ffb48b11000937728abaabb07ad",
+  "prompt_routing_remains_external": true,
+  "protected_sparse_decoder_checked": true,
+  "schema": "rcp-rclm.phase17r.sparse-byte-refinement-lean.v1",
+  "source_sha256": {
+    "AlteredProbability": "05688041e1a281921028feb969dda02ae32ef8c10949a805a66ff6089d4d81e5",
+    "ChangedTensorByte": "eeab56c214e4666d96dc853a951a5c43b3a77f68ee73fba23adf65aa8435eaf8",
+    "InvalidByteRange": "cd193c9976fbf953a10de15799d3a29d428aefe657e5353737acda1b20176b55",
+    "MissingEOS": "03a02056ecb6ddb3265ebddd49d5e91b6b2571bf7f6bd98b0d89d5c34cd0c2c6",
+    "Phase17QDependency": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+    "SparseRefinement": "335f3fbcf95e9e2f6f8abe6ccc93ac97385cc872954c9454dabdc0209801e808",
+    "TransposedTensor": "e30a5c286be90b935df0964590292a0ea1dbc274adc602f773f8b830b5d40c54",
+    "WrongGreedyTie": "67e0831df6d0ea2a688a70b02ae96caefabd44a4a7b479d7e47882cbc520757d",
+    "WrongMarker": "0bdb8b3f569c4c6612e3203236f2274926ca32d5bfb7f93a8d35ac8c7f020290",
+    "WrongSignedBoundary": "a32786d2f465894f76fb242948a99b8be54c1497c350771b1c4ddd96c64d6db2"
+  },
+  "sparse_tensor_projection_checked": true,
+  "status": "passed",
+  "theorem_axioms": {
+    "Phase17Sparse.clipped_score_range": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Sparse.distribution_binding_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Sparse.dyadic_weight_positive": [
+      "propext"
+    ],
+    "Phase17Sparse.information_binding_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Sparse.mass_binding_sound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "Phase17Sparse.row_probability_normalized": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Sparse.selected_byte_images": [],
+    "Phase17Sparse.selected_codec_edges": [
+      "propext"
+    ],
+    "Phase17Sparse.selected_decoder_edges": [],
+    "Phase17Sparse.selected_goal_decode": [],
+    "Phase17Sparse.selected_information_transport": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Sparse.selected_learned_acceptance_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Sparse.selected_mass_projection": [
+      "propext",
+      "Quot.sound"
+    ],
+    "Phase17Sparse.selected_score_projection": [
+      "propext",
+      "Quot.sound"
+    ],
+    "Phase17Sparse.signed16_range": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "trusted_import_cache_assumption": true
+}

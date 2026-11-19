@@ -1,0 +1,1667 @@
+lean-version: exit 0
+lake-version: exit 0
+positive-kernel-probe: exit 0
+negative-kernel-probe: exit 1
+init-mathlib: exit 0
+config-mathlib: exit 0
+config-mathlib: exit 0
+config-mathlib: exit 0
+remote-mathlib: exit 0
+fetch-mathlib: exit 0
+checkout-mathlib: exit 0
+init-plausible: exit 0
+config-plausible: exit 0
+config-plausible: exit 0
+config-plausible: exit 0
+remote-plausible: exit 0
+fetch-plausible: exit 0
+checkout-plausible: exit 0
+init-leansearchclient: exit 0
+config-leansearchclient: exit 0
+config-leansearchclient: exit 0
+config-leansearchclient: exit 0
+remote-leansearchclient: exit 0
+fetch-leansearchclient: exit 0
+checkout-leansearchclient: exit 0
+init-importgraph: exit 0
+config-importgraph: exit 0
+config-importgraph: exit 0
+config-importgraph: exit 0
+remote-importgraph: exit 0
+fetch-importgraph: exit 0
+checkout-importgraph: exit 0
+init-proofwidgets: exit 0
+config-proofwidgets: exit 0
+config-proofwidgets: exit 0
+config-proofwidgets: exit 0
+remote-proofwidgets: exit 0
+fetch-proofwidgets: exit 0
+checkout-proofwidgets: exit 0
+init-aesop: exit 0
+config-aesop: exit 0
+config-aesop: exit 0
+config-aesop: exit 0
+remote-aesop: exit 0
+fetch-aesop: exit 0
+checkout-aesop: exit 0
+init-qq: exit 0
+config-qq: exit 0
+config-qq: exit 0
+config-qq: exit 0
+remote-qq: exit 0
+fetch-qq: exit 0
+checkout-qq: exit 0
+init-batteries: exit 0
+config-batteries: exit 0
+config-batteries: exit 0
+config-batteries: exit 0
+remote-batteries: exit 0
+fetch-batteries: exit 0
+checkout-batteries: exit 0
+init-cli: exit 0
+config-cli: exit 0
+config-cli: exit 0
+config-cli: exit 0
+remote-cli: exit 0
+fetch-cli: exit 0
+checkout-cli: exit 0
+mathlib-cache-get: exit 0
+build-pinned-formal-core: exit 0
+root-axiom-audit: exit 0
+capability-gate: exit 2
+{
+  "schema": "rcp-rclm.phase17e.real-lean-execution.v1",
+  "status": "incomplete_or_rejected",
+  "started_at_utc": "2026-11-01T00:34:52.442478+00:00",
+  "actual_lean_capability_verification": false,
+  "conditional_root_theorems_rebuilt": true,
+  "commands": [
+    {
+      "label": "lean-version",
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:34:53.190279+00:00",
+      "finished_at_utc": "2026-11-01T00:34:55.006424+00:00",
+      "elapsed_ns": 1816150000,
+      "stdout_path": "commands/000-lean-version.stdout.txt",
+      "stderr_path": "commands/000-lean-version.stderr.txt",
+      "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "lake-version",
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:34:55.015350+00:00",
+      "finished_at_utc": "2026-11-01T00:34:55.555670+00:00",
+      "elapsed_ns": 540323900,
+      "stdout_path": "commands/001-lake-version.stdout.txt",
+      "stderr_path": "commands/001-lake-version.stderr.txt",
+      "stdout_sha256": "505c28438dd7c4f3782bcf74a5be56648cb3b682ca60cfaeac71b569a2b89985",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "positive-kernel-probe",
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\20261101T003246Z-f25e1271\\evidence\\formal\\compiler-probes\\Positive.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:34:55.568908+00:00",
+      "finished_at_utc": "2026-11-01T00:35:06.226257+00:00",
+      "elapsed_ns": 10657352100,
+      "stdout_path": "commands/002-positive-kernel-probe.stdout.txt",
+      "stderr_path": "commands/002-positive-kernel-probe.stderr.txt",
+      "stdout_sha256": "5c4df9faf62ff980aef9d70b504d7feaf8c5f286cb317d4530d080de5576811e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "negative-kernel-probe",
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\20261101T003246Z-f25e1271\\evidence\\formal\\compiler-probes\\Negative.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 1,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:06.228323+00:00",
+      "finished_at_utc": "2026-11-01T00:35:06.583060+00:00",
+      "elapsed_ns": 354743200,
+      "stdout_path": "commands/003-negative-kernel-probe.stdout.txt",
+      "stderr_path": "commands/003-negative-kernel-probe.stderr.txt",
+      "stdout_sha256": "37b9bfe386c506a3ef2bf637da7503014ddd67aea4d986d5757d665a081c7c6d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "init-mathlib",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "init",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:06.590382+00:00",
+      "finished_at_utc": "2026-11-01T00:35:06.623918+00:00",
+      "elapsed_ns": 33540400,
+      "stdout_path": "commands/004-init-mathlib.stdout.txt",
+      "stderr_path": "commands/004-init-mathlib.stderr.txt",
+      "stdout_sha256": "422c79a1fe348840cccdf0063d5139e4d68943ead1f0f2196720b0b000b2f1ad",
+      "stderr_sha256": "80971547c9b16697fc7a8e05595d9c1eb193a2b6abfa8c18f4d1ddff003e935c"
+    },
+    {
+      "label": "config-mathlib",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:06.688922+00:00",
+      "finished_at_utc": "2026-11-01T00:35:06.746457+00:00",
+      "elapsed_ns": 57531600,
+      "stdout_path": "commands/005-config-mathlib.stdout.txt",
+      "stderr_path": "commands/005-config-mathlib.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-mathlib",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib",
+        "config",
+        "core.longpaths",
+        "true"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:06.747071+00:00",
+      "finished_at_utc": "2026-11-01T00:35:06.769008+00:00",
+      "elapsed_ns": 21943600,
+      "stdout_path": "commands/006-config-mathlib.stdout.txt",
+      "stderr_path": "commands/006-config-mathlib.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-mathlib",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib",
+        "config",
+        "core.hooksPath",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\empty-hooks"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:06.769621+00:00",
+      "finished_at_utc": "2026-11-01T00:35:06.790374+00:00",
+      "elapsed_ns": 20759300,
+      "stdout_path": "commands/007-config-mathlib.stdout.txt",
+      "stderr_path": "commands/007-config-mathlib.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remote-mathlib",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/leanprover-community/mathlib4.git"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:06.790978+00:00",
+      "finished_at_utc": "2026-11-01T00:35:06.813078+00:00",
+      "elapsed_ns": 22106300,
+      "stdout_path": "commands/008-remote-mathlib.stdout.txt",
+      "stderr_path": "commands/008-remote-mathlib.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fetch-mathlib",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:06.813686+00:00",
+      "finished_at_utc": "2026-11-01T00:35:15.143982+00:00",
+      "elapsed_ns": 8330305100,
+      "stdout_path": "commands/009-fetch-mathlib.stdout.txt",
+      "stderr_path": "commands/009-fetch-mathlib.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ddca247f1ee5da33bee135792a8eddd17bef2b1c884a72b0ddaef798088a4561"
+    },
+    {
+      "label": "checkout-mathlib",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib",
+        "checkout",
+        "--detach",
+        "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:15.185264+00:00",
+      "finished_at_utc": "2026-11-01T00:35:17.825495+00:00",
+      "elapsed_ns": 2640211300,
+      "stdout_path": "commands/010-checkout-mathlib.stdout.txt",
+      "stderr_path": "commands/010-checkout-mathlib.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "8c13ce4c42d0635fc8d0112c9048ed254e9ad70911336cd52f02139bed5f7da6"
+    },
+    {
+      "label": "init-plausible",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "init",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:17.833632+00:00",
+      "finished_at_utc": "2026-11-01T00:35:17.862372+00:00",
+      "elapsed_ns": 28744500,
+      "stdout_path": "commands/011-init-plausible.stdout.txt",
+      "stderr_path": "commands/011-init-plausible.stderr.txt",
+      "stdout_sha256": "a3557f4653ef334fb204551a2993be098d4a3861fa2e7e2776bb5c64fd9d528e",
+      "stderr_sha256": "80971547c9b16697fc7a8e05595d9c1eb193a2b6abfa8c18f4d1ddff003e935c"
+    },
+    {
+      "label": "config-plausible",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:17.869507+00:00",
+      "finished_at_utc": "2026-11-01T00:35:17.890418+00:00",
+      "elapsed_ns": 20915400,
+      "stdout_path": "commands/012-config-plausible.stdout.txt",
+      "stderr_path": "commands/012-config-plausible.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-plausible",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible",
+        "config",
+        "core.longpaths",
+        "true"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:17.891039+00:00",
+      "finished_at_utc": "2026-11-01T00:35:17.911386+00:00",
+      "elapsed_ns": 20353200,
+      "stdout_path": "commands/013-config-plausible.stdout.txt",
+      "stderr_path": "commands/013-config-plausible.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-plausible",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible",
+        "config",
+        "core.hooksPath",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\empty-hooks"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:17.912010+00:00",
+      "finished_at_utc": "2026-11-01T00:35:17.934037+00:00",
+      "elapsed_ns": 22033800,
+      "stdout_path": "commands/014-config-plausible.stdout.txt",
+      "stderr_path": "commands/014-config-plausible.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remote-plausible",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/leanprover-community/plausible"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:17.934664+00:00",
+      "finished_at_utc": "2026-11-01T00:35:17.959693+00:00",
+      "elapsed_ns": 25035400,
+      "stdout_path": "commands/015-remote-plausible.stdout.txt",
+      "stderr_path": "commands/015-remote-plausible.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fetch-plausible",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "63045536fe95024e6c18fc7b48e03f506701c5bc"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:17.960325+00:00",
+      "finished_at_utc": "2026-11-01T00:35:18.571804+00:00",
+      "elapsed_ns": 611486800,
+      "stdout_path": "commands/016-fetch-plausible.stdout.txt",
+      "stderr_path": "commands/016-fetch-plausible.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a8df935ca8b96db8a4693fb0db3e8fe0e6b9f0eb09a02e648bd95510ff936ae8"
+    },
+    {
+      "label": "checkout-plausible",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible",
+        "checkout",
+        "--detach",
+        "63045536fe95024e6c18fc7b48e03f506701c5bc"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:18.583260+00:00",
+      "finished_at_utc": "2026-11-01T00:35:18.626188+00:00",
+      "elapsed_ns": 42925800,
+      "stdout_path": "commands/017-checkout-plausible.stdout.txt",
+      "stderr_path": "commands/017-checkout-plausible.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "087692676691aea039cbf207c7f541e6a97284411802908ff728d264153ca94c"
+    },
+    {
+      "label": "init-leansearchclient",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "init",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:18.636833+00:00",
+      "finished_at_utc": "2026-11-01T00:35:18.665405+00:00",
+      "elapsed_ns": 28576500,
+      "stdout_path": "commands/018-init-leansearchclient.stdout.txt",
+      "stderr_path": "commands/018-init-leansearchclient.stderr.txt",
+      "stdout_sha256": "9ac7b1636a4ae10026ec2cbf4a4173157d69b01d7c300af4fe03dda975da0ae5",
+      "stderr_sha256": "80971547c9b16697fc7a8e05595d9c1eb193a2b6abfa8c18f4d1ddff003e935c"
+    },
+    {
+      "label": "config-leansearchclient",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:18.673587+00:00",
+      "finished_at_utc": "2026-11-01T00:35:18.694869+00:00",
+      "elapsed_ns": 21286500,
+      "stdout_path": "commands/019-config-leansearchclient.stdout.txt",
+      "stderr_path": "commands/019-config-leansearchclient.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-leansearchclient",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient",
+        "config",
+        "core.longpaths",
+        "true"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:18.695499+00:00",
+      "finished_at_utc": "2026-11-01T00:35:18.716714+00:00",
+      "elapsed_ns": 21222700,
+      "stdout_path": "commands/020-config-leansearchclient.stdout.txt",
+      "stderr_path": "commands/020-config-leansearchclient.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-leansearchclient",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient",
+        "config",
+        "core.hooksPath",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\empty-hooks"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:18.717350+00:00",
+      "finished_at_utc": "2026-11-01T00:35:18.738939+00:00",
+      "elapsed_ns": 21595000,
+      "stdout_path": "commands/021-config-leansearchclient.stdout.txt",
+      "stderr_path": "commands/021-config-leansearchclient.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remote-leansearchclient",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/leanprover-community/LeanSearchClient"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:18.739677+00:00",
+      "finished_at_utc": "2026-11-01T00:35:18.763675+00:00",
+      "elapsed_ns": 24003700,
+      "stdout_path": "commands/022-remote-leansearchclient.stdout.txt",
+      "stderr_path": "commands/022-remote-leansearchclient.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fetch-leansearchclient",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "c5d5b8fe6e5158def25cd28eb94e4141ad97c843"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:18.764288+00:00",
+      "finished_at_utc": "2026-11-01T00:35:19.223215+00:00",
+      "elapsed_ns": 458937200,
+      "stdout_path": "commands/023-fetch-leansearchclient.stdout.txt",
+      "stderr_path": "commands/023-fetch-leansearchclient.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a30c137da7add82c2364ecc3315e242d6a385e85bd0c3de04f2ca9884ade9d2f"
+    },
+    {
+      "label": "checkout-leansearchclient",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient",
+        "checkout",
+        "--detach",
+        "c5d5b8fe6e5158def25cd28eb94e4141ad97c843"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:19.232600+00:00",
+      "finished_at_utc": "2026-11-01T00:35:19.272899+00:00",
+      "elapsed_ns": 40302300,
+      "stdout_path": "commands/024-checkout-leansearchclient.stdout.txt",
+      "stderr_path": "commands/024-checkout-leansearchclient.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "218d48879abee781db75c9b0c91aa3e431c5bab7b4219f30333da0d048baa5be"
+    },
+    {
+      "label": "init-importgraph",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "init",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:19.280522+00:00",
+      "finished_at_utc": "2026-11-01T00:35:19.311331+00:00",
+      "elapsed_ns": 30814100,
+      "stdout_path": "commands/025-init-importgraph.stdout.txt",
+      "stderr_path": "commands/025-init-importgraph.stderr.txt",
+      "stdout_sha256": "8e1cf94ba4ccc6042748d326714264ea34d28268610515d984753ddbbc84ff4f",
+      "stderr_sha256": "80971547c9b16697fc7a8e05595d9c1eb193a2b6abfa8c18f4d1ddff003e935c"
+    },
+    {
+      "label": "config-importgraph",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:19.319207+00:00",
+      "finished_at_utc": "2026-11-01T00:35:19.340446+00:00",
+      "elapsed_ns": 21243900,
+      "stdout_path": "commands/026-config-importgraph.stdout.txt",
+      "stderr_path": "commands/026-config-importgraph.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-importgraph",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph",
+        "config",
+        "core.longpaths",
+        "true"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:19.341176+00:00",
+      "finished_at_utc": "2026-11-01T00:35:19.363546+00:00",
+      "elapsed_ns": 22376100,
+      "stdout_path": "commands/027-config-importgraph.stdout.txt",
+      "stderr_path": "commands/027-config-importgraph.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-importgraph",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph",
+        "config",
+        "core.hooksPath",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\empty-hooks"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:19.364229+00:00",
+      "finished_at_utc": "2026-11-01T00:35:19.385571+00:00",
+      "elapsed_ns": 21347300,
+      "stdout_path": "commands/028-config-importgraph.stdout.txt",
+      "stderr_path": "commands/028-config-importgraph.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remote-importgraph",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/leanprover-community/import-graph"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:19.386187+00:00",
+      "finished_at_utc": "2026-11-01T00:35:19.427134+00:00",
+      "elapsed_ns": 40955500,
+      "stdout_path": "commands/029-remote-importgraph.stdout.txt",
+      "stderr_path": "commands/029-remote-importgraph.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fetch-importgraph",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "5c7542ed018c78194f1e2b903eaf6a792b74c03d"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:19.427746+00:00",
+      "finished_at_utc": "2026-11-01T00:35:20.069774+00:00",
+      "elapsed_ns": 642036900,
+      "stdout_path": "commands/030-fetch-importgraph.stdout.txt",
+      "stderr_path": "commands/030-fetch-importgraph.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "42c9b8e4c86b7f1318a353cf4078ce81c227fe91c6a123961a3208100efdee4e"
+    },
+    {
+      "label": "checkout-importgraph",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph",
+        "checkout",
+        "--detach",
+        "5c7542ed018c78194f1e2b903eaf6a792b74c03d"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:20.077531+00:00",
+      "finished_at_utc": "2026-11-01T00:35:20.131929+00:00",
+      "elapsed_ns": 54403400,
+      "stdout_path": "commands/031-checkout-importgraph.stdout.txt",
+      "stderr_path": "commands/031-checkout-importgraph.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c0248e4cef271c6e39f287e8a6d653c57e373ee8837e727ee2a131ac0aaa386a"
+    },
+    {
+      "label": "init-proofwidgets",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "init",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:20.144578+00:00",
+      "finished_at_utc": "2026-11-01T00:35:20.174785+00:00",
+      "elapsed_ns": 30211800,
+      "stdout_path": "commands/032-init-proofwidgets.stdout.txt",
+      "stderr_path": "commands/032-init-proofwidgets.stderr.txt",
+      "stdout_sha256": "8cef94d8fc30762e7d8aa8e546618e39ededac70ede13501f707f17fbe1a066e",
+      "stderr_sha256": "80971547c9b16697fc7a8e05595d9c1eb193a2b6abfa8c18f4d1ddff003e935c"
+    },
+    {
+      "label": "config-proofwidgets",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:20.184185+00:00",
+      "finished_at_utc": "2026-11-01T00:35:20.206120+00:00",
+      "elapsed_ns": 21940600,
+      "stdout_path": "commands/033-config-proofwidgets.stdout.txt",
+      "stderr_path": "commands/033-config-proofwidgets.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-proofwidgets",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets",
+        "config",
+        "core.longpaths",
+        "true"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:20.206796+00:00",
+      "finished_at_utc": "2026-11-01T00:35:20.228405+00:00",
+      "elapsed_ns": 21615800,
+      "stdout_path": "commands/034-config-proofwidgets.stdout.txt",
+      "stderr_path": "commands/034-config-proofwidgets.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-proofwidgets",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets",
+        "config",
+        "core.hooksPath",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\empty-hooks"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:20.229014+00:00",
+      "finished_at_utc": "2026-11-01T00:35:20.251576+00:00",
+      "elapsed_ns": 22567300,
+      "stdout_path": "commands/035-config-proofwidgets.stdout.txt",
+      "stderr_path": "commands/035-config-proofwidgets.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remote-proofwidgets",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/leanprover-community/ProofWidgets4"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:20.252170+00:00",
+      "finished_at_utc": "2026-11-01T00:35:20.274673+00:00",
+      "elapsed_ns": 22511200,
+      "stdout_path": "commands/036-remote-proofwidgets.stdout.txt",
+      "stderr_path": "commands/036-remote-proofwidgets.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fetch-proofwidgets",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "24b0d9dc081c5423f8eec7e866c441e5184f29d9"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:20.275268+00:00",
+      "finished_at_utc": "2026-11-01T00:35:21.024248+00:00",
+      "elapsed_ns": 748987500,
+      "stdout_path": "commands/037-fetch-proofwidgets.stdout.txt",
+      "stderr_path": "commands/037-fetch-proofwidgets.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "987dd23b357fbf4f46c0ac1980c4d0215a1f82e139b7504544f59f744458f02f"
+    },
+    {
+      "label": "checkout-proofwidgets",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets",
+        "checkout",
+        "--detach",
+        "24b0d9dc081c5423f8eec7e866c441e5184f29d9"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:21.034556+00:00",
+      "finished_at_utc": "2026-11-01T00:35:21.113188+00:00",
+      "elapsed_ns": 78635400,
+      "stdout_path": "commands/038-checkout-proofwidgets.stdout.txt",
+      "stderr_path": "commands/038-checkout-proofwidgets.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4b9f3d36c591e65dffcd8ecebafe42d51d00228670c41ad53adc77fcaed6e11a"
+    },
+    {
+      "label": "init-aesop",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "init",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:21.121499+00:00",
+      "finished_at_utc": "2026-11-01T00:35:21.152851+00:00",
+      "elapsed_ns": 31356500,
+      "stdout_path": "commands/039-init-aesop.stdout.txt",
+      "stderr_path": "commands/039-init-aesop.stderr.txt",
+      "stdout_sha256": "92d836fa426ec6e647f5436018831414ed27bd6ceac899876eb93dc63ed931dc",
+      "stderr_sha256": "80971547c9b16697fc7a8e05595d9c1eb193a2b6abfa8c18f4d1ddff003e935c"
+    },
+    {
+      "label": "config-aesop",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:21.161167+00:00",
+      "finished_at_utc": "2026-11-01T00:35:21.183568+00:00",
+      "elapsed_ns": 22403500,
+      "stdout_path": "commands/040-config-aesop.stdout.txt",
+      "stderr_path": "commands/040-config-aesop.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-aesop",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop",
+        "config",
+        "core.longpaths",
+        "true"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:21.184211+00:00",
+      "finished_at_utc": "2026-11-01T00:35:21.206440+00:00",
+      "elapsed_ns": 22236500,
+      "stdout_path": "commands/041-config-aesop.stdout.txt",
+      "stderr_path": "commands/041-config-aesop.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-aesop",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop",
+        "config",
+        "core.hooksPath",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\empty-hooks"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:21.207104+00:00",
+      "finished_at_utc": "2026-11-01T00:35:21.230962+00:00",
+      "elapsed_ns": 23865900,
+      "stdout_path": "commands/042-config-aesop.stdout.txt",
+      "stderr_path": "commands/042-config-aesop.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remote-aesop",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/leanprover-community/aesop"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:21.231643+00:00",
+      "finished_at_utc": "2026-11-01T00:35:21.259367+00:00",
+      "elapsed_ns": 27730100,
+      "stdout_path": "commands/043-remote-aesop.stdout.txt",
+      "stderr_path": "commands/043-remote-aesop.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fetch-aesop",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "e3cb2f741431ce31bf73549fb52316a57368b06f"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:21.260021+00:00",
+      "finished_at_utc": "2026-11-01T00:35:21.876175+00:00",
+      "elapsed_ns": 616160700,
+      "stdout_path": "commands/044-fetch-aesop.stdout.txt",
+      "stderr_path": "commands/044-fetch-aesop.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "74e97bfcaaa1a39ac5742a87ef2149e0d2a558b6580e4bb34d99faacb49b3793"
+    },
+    {
+      "label": "checkout-aesop",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop",
+        "checkout",
+        "--detach",
+        "e3cb2f741431ce31bf73549fb52316a57368b06f"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:21.889271+00:00",
+      "finished_at_utc": "2026-11-01T00:35:21.992313+00:00",
+      "elapsed_ns": 103041900,
+      "stdout_path": "commands/045-checkout-aesop.stdout.txt",
+      "stderr_path": "commands/045-checkout-aesop.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c8a2edccc1a8ee80e5632c4c99c8f5e0b7a68bb15cd9948e95ef4e6233035997"
+    },
+    {
+      "label": "init-qq",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "init",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.001891+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.032883+00:00",
+      "elapsed_ns": 30996800,
+      "stdout_path": "commands/046-init-qq.stdout.txt",
+      "stderr_path": "commands/046-init-qq.stderr.txt",
+      "stdout_sha256": "04e844a63cfac159270a57f5bce8d850a48b1c938adde3365985cba08a6c78cc",
+      "stderr_sha256": "80971547c9b16697fc7a8e05595d9c1eb193a2b6abfa8c18f4d1ddff003e935c"
+    },
+    {
+      "label": "config-qq",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.040628+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.062431+00:00",
+      "elapsed_ns": 21807800,
+      "stdout_path": "commands/047-config-qq.stdout.txt",
+      "stderr_path": "commands/047-config-qq.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-qq",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq",
+        "config",
+        "core.longpaths",
+        "true"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.063019+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.084100+00:00",
+      "elapsed_ns": 21087600,
+      "stdout_path": "commands/048-config-qq.stdout.txt",
+      "stderr_path": "commands/048-config-qq.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-qq",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq",
+        "config",
+        "core.hooksPath",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\empty-hooks"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.084686+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.105584+00:00",
+      "elapsed_ns": 20904600,
+      "stdout_path": "commands/049-config-qq.stdout.txt",
+      "stderr_path": "commands/049-config-qq.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remote-qq",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/leanprover-community/quote4"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.106210+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.129110+00:00",
+      "elapsed_ns": 22908200,
+      "stdout_path": "commands/050-remote-qq.stdout.txt",
+      "stderr_path": "commands/050-remote-qq.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fetch-qq",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "f46324995fca5f0483b742e4eb4daec7f4ee50d2"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.129730+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.690885+00:00",
+      "elapsed_ns": 561163100,
+      "stdout_path": "commands/051-fetch-qq.stdout.txt",
+      "stderr_path": "commands/051-fetch-qq.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b5ec4175e9942a83f7cba5b20dcaeac74d8c1585ce192c544b8ff6320af76867"
+    },
+    {
+      "label": "checkout-qq",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq",
+        "checkout",
+        "--detach",
+        "f46324995fca5f0483b742e4eb4daec7f4ee50d2"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.698922+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.742564+00:00",
+      "elapsed_ns": 43646600,
+      "stdout_path": "commands/052-checkout-qq.stdout.txt",
+      "stderr_path": "commands/052-checkout-qq.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b57e94a2e13c451118d23272ba7d654083f9bdf54a4fc2227bfab08ef89b3226"
+    },
+    {
+      "label": "init-batteries",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "init",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.749142+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.778525+00:00",
+      "elapsed_ns": 29388100,
+      "stdout_path": "commands/053-init-batteries.stdout.txt",
+      "stderr_path": "commands/053-init-batteries.stderr.txt",
+      "stdout_sha256": "a33e0477138854b274b139402957a706fecc792771c9da4a26af1370d2b92d5d",
+      "stderr_sha256": "80971547c9b16697fc7a8e05595d9c1eb193a2b6abfa8c18f4d1ddff003e935c"
+    },
+    {
+      "label": "config-batteries",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.786290+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.808722+00:00",
+      "elapsed_ns": 22436200,
+      "stdout_path": "commands/054-config-batteries.stdout.txt",
+      "stderr_path": "commands/054-config-batteries.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-batteries",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries",
+        "config",
+        "core.longpaths",
+        "true"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.809343+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.830356+00:00",
+      "elapsed_ns": 21019900,
+      "stdout_path": "commands/055-config-batteries.stdout.txt",
+      "stderr_path": "commands/055-config-batteries.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-batteries",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries",
+        "config",
+        "core.hooksPath",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\empty-hooks"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.830984+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.852411+00:00",
+      "elapsed_ns": 21434200,
+      "stdout_path": "commands/056-config-batteries.stdout.txt",
+      "stderr_path": "commands/056-config-batteries.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remote-batteries",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/leanprover-community/batteries"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.853043+00:00",
+      "finished_at_utc": "2026-11-01T00:35:22.879904+00:00",
+      "elapsed_ns": 26866600,
+      "stdout_path": "commands/057-remote-batteries.stdout.txt",
+      "stderr_path": "commands/057-remote-batteries.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fetch-batteries",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "fa08db58b30eb033edcdab331bba000827f9f785"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:22.880535+00:00",
+      "finished_at_utc": "2026-11-01T00:35:23.579573+00:00",
+      "elapsed_ns": 699045800,
+      "stdout_path": "commands/058-fetch-batteries.stdout.txt",
+      "stderr_path": "commands/058-fetch-batteries.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "111eba297daf88e8e58ea3233d3c5c0d7d61e996f48c9d5d016051d5d910c30a"
+    },
+    {
+      "label": "checkout-batteries",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries",
+        "checkout",
+        "--detach",
+        "fa08db58b30eb033edcdab331bba000827f9f785"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:23.589070+00:00",
+      "finished_at_utc": "2026-11-01T00:35:23.695363+00:00",
+      "elapsed_ns": 106298100,
+      "stdout_path": "commands/059-checkout-batteries.stdout.txt",
+      "stderr_path": "commands/059-checkout-batteries.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "111ec9ad2f7a0d5931d688ef31d9c6a6046bdceb2dc6dbffc70d154e33c4526d"
+    },
+    {
+      "label": "init-cli",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "init",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:23.703939+00:00",
+      "finished_at_utc": "2026-11-01T00:35:23.734429+00:00",
+      "elapsed_ns": 30493500,
+      "stdout_path": "commands/060-init-cli.stdout.txt",
+      "stderr_path": "commands/060-init-cli.stderr.txt",
+      "stdout_sha256": "c67e44c902e1989df86f18be07940900421f2d3e42bd3e3eb68da6fc659541c1",
+      "stderr_sha256": "80971547c9b16697fc7a8e05595d9c1eb193a2b6abfa8c18f4d1ddff003e935c"
+    },
+    {
+      "label": "config-cli",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:23.746377+00:00",
+      "finished_at_utc": "2026-11-01T00:35:23.768536+00:00",
+      "elapsed_ns": 22163300,
+      "stdout_path": "commands/061-config-cli.stdout.txt",
+      "stderr_path": "commands/061-config-cli.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-cli",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli",
+        "config",
+        "core.longpaths",
+        "true"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:23.769146+00:00",
+      "finished_at_utc": "2026-11-01T00:35:23.790437+00:00",
+      "elapsed_ns": 21297700,
+      "stdout_path": "commands/062-config-cli.stdout.txt",
+      "stderr_path": "commands/062-config-cli.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "config-cli",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli",
+        "config",
+        "core.hooksPath",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\empty-hooks"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:23.791054+00:00",
+      "finished_at_utc": "2026-11-01T00:35:23.811662+00:00",
+      "elapsed_ns": 20615100,
+      "stdout_path": "commands/063-config-cli.stdout.txt",
+      "stderr_path": "commands/063-config-cli.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "remote-cli",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/leanprover/lean4-cli"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:23.812293+00:00",
+      "finished_at_utc": "2026-11-01T00:35:23.835074+00:00",
+      "elapsed_ns": 22787600,
+      "stdout_path": "commands/064-remote-cli.stdout.txt",
+      "stderr_path": "commands/064-remote-cli.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "fetch-cli",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "92564e5770e4d09f2d86dfbf8ada1e9c715b384c"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:23.835707+00:00",
+      "finished_at_utc": "2026-11-01T00:35:24.342062+00:00",
+      "elapsed_ns": 506362400,
+      "stdout_path": "commands/065-fetch-cli.stdout.txt",
+      "stderr_path": "commands/065-fetch-cli.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6adf59a8b42fa8a95c88abdffcf628e91cd074dfa7d1993f6491adbe9eb14ce5"
+    },
+    {
+      "label": "checkout-cli",
+      "argv": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-C",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli",
+        "checkout",
+        "--detach",
+        "92564e5770e4d09f2d86dfbf8ada1e9c715b384c"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:24.352014+00:00",
+      "finished_at_utc": "2026-11-01T00:35:24.388789+00:00",
+      "elapsed_ns": 36777500,
+      "stdout_path": "commands/066-checkout-cli.stdout.txt",
+      "stderr_path": "commands/066-checkout-cli.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4e2873f5cd46028d1345d86b9bacbdc0deb150f1e483637af1a7a348d332ef74"
+    },
+    {
+      "label": "mathlib-cache-get",
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "exe",
+        "cache",
+        "get"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:35:27.116670+00:00",
+      "finished_at_utc": "2026-11-01T00:40:40.676123+00:00",
+      "elapsed_ns": 313559469800,
+      "stdout_path": "commands/067-mathlib-cache-get.stdout.txt",
+      "stderr_path": "commands/067-mathlib-cache-get.stderr.txt",
+      "stdout_sha256": "ccb15918d00958f50fb6803ed47b65ac3291e31ce32d465b3392aabdfa2ede53",
+      "stderr_sha256": "e13781a9f83623b1cbe349fcf05477f5eb5292d321e303a3143972646cc37adb"
+    },
+    {
+      "label": "build-pinned-formal-core",
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "RcpRclmFormalCoreV4"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:40:45.767758+00:00",
+      "finished_at_utc": "2026-11-01T00:44:41.070472+00:00",
+      "elapsed_ns": 235302727000,
+      "stdout_path": "commands/068-build-pinned-formal-core.stdout.txt",
+      "stderr_path": "commands/068-build-pinned-formal-core.stderr.txt",
+      "stdout_sha256": "8277458db0bc2a1478102c9bf23b5afd03368747f82c7e01b5080b3803b4fdfa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "root-axiom-audit",
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\20261101T003246Z-f25e1271\\evidence\\formal\\RootAxiomAudit.lean"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4",
+      "returncode": 0,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:44:41.077969+00:00",
+      "finished_at_utc": "2026-11-01T00:44:55.121775+00:00",
+      "elapsed_ns": 14043811700,
+      "stdout_path": "commands/069-root-axiom-audit.stdout.txt",
+      "stderr_path": "commands/069-root-axiom-audit.stderr.txt",
+      "stdout_sha256": "1b1a94ed3232aa40ac24201331d6930b387232d558a58408ead066f5a0aef387",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "capability-gate",
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\20261101T003246Z-f25e1271\\checkout\\scripts\\run_phase17_package_gate.py",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\20261101T003246Z-f25e1271\\evidence\\formal\\package-run",
+        "--require-lean",
+        "--toolchain-root",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root"
+      ],
+      "cwd": "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\20261101T003246Z-f25e1271\\checkout",
+      "returncode": 2,
+      "problem": null,
+      "started_at_utc": "2026-11-01T00:45:00.103181+00:00",
+      "finished_at_utc": "2026-11-01T00:45:18.278955+00:00",
+      "elapsed_ns": 18175781100,
+      "stdout_path": "commands/070-capability-gate.stdout.txt",
+      "stderr_path": "commands/070-capability-gate.stderr.txt",
+      "stdout_sha256": "bcee80368e51610eb607186f87c0395a1e0e67aac48387f72b7ac05087ea4578",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "network_setup_authorized": true,
+  "environment": {
+    "os": "Windows",
+    "python": "3.13.3"
+  },
+  "claims": {
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "github_hosted_ci_passed": false,
+    "cross_platform_validation": false
+  },
+  "source_commit": "40c243efb3c6f7ab33e310cc7fb6d0d60ff5feac",
+  "source_tree": "f28a7c5bdc7ad6c9b1fe8b7e6deb14d1408e3cdd",
+  "formal_root_pins_sha256": "ec2226ce520783d965a8e8370dcccce550751e90935fb79ba76ebc137bfc658f",
+  "tools": {
+    "lean": {
+      "path": "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+      "sha256": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f",
+      "version": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)"
+    },
+    "lake": {
+      "path": "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+      "sha256": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+      "version": "Lake version 5.0.0-src+68218e8 (Lean version 4.31.0)"
+    }
+  },
+  "root_build": {
+    "conditional_root_theorems_rebuilt": true,
+    "theorem_axioms": {
+      "RcpRclmFormalCoreV4.Autonomous.autonomous_accepted_step_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "RcpRclmFormalCoreV4.Autonomous.recursive_productivity_retained": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "RcpRclmFormalCoreV4.Autonomous.recursive_productivity_strictly_expands_when_witnessed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "modules": {
+      "lean/rcp_rclm_formal_core_v4/.lake/build/lib/lean/RcpRclmFormalCoreV4.olean": "06a9aa57a55b491c6cc5999f419171e211794a9785e19584a69eaeba442fbb48"
+    },
+    "mathlib_root_olean_sha256": "45522115b8ff55410b8bcf3f48c8872302eacce07dec01c09ffe2c6f64062807",
+    "dependencies": {
+      "mathlib": {
+        "revision": "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f",
+        "tree": "1b8fcc589cb2eeb1258449f844eed7924edc9a04",
+        "url": "https://github.com/leanprover-community/mathlib4.git",
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\mathlib"
+      },
+      "plausible": {
+        "revision": "63045536fe95024e6c18fc7b48e03f506701c5bc",
+        "tree": "19a07a6a4ce1eaa48c5ff480bf8c040829e52657",
+        "url": "https://github.com/leanprover-community/plausible",
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\plausible"
+      },
+      "LeanSearchClient": {
+        "revision": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+        "tree": "d0224b6df6c90cc0b4ed2db6218037d31bfd6f52",
+        "url": "https://github.com/leanprover-community/LeanSearchClient",
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\LeanSearchClient"
+      },
+      "importGraph": {
+        "revision": "5c7542ed018c78194f1e2b903eaf6a792b74c03d",
+        "tree": "fd246b0ab3af2e9f66b71b041438d3b5afc6b0e3",
+        "url": "https://github.com/leanprover-community/import-graph",
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\importGraph"
+      },
+      "proofwidgets": {
+        "revision": "24b0d9dc081c5423f8eec7e866c441e5184f29d9",
+        "tree": "041e31bf91e3dd5032921f618de8acffe333b783",
+        "url": "https://github.com/leanprover-community/ProofWidgets4",
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\proofwidgets"
+      },
+      "aesop": {
+        "revision": "e3cb2f741431ce31bf73549fb52316a57368b06f",
+        "tree": "366e5c46b71252ebe7be10ed65fe4e7b5e837aff",
+        "url": "https://github.com/leanprover-community/aesop",
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\aesop"
+      },
+      "Qq": {
+        "revision": "f46324995fca5f0483b742e4eb4daec7f4ee50d2",
+        "tree": "47d0a089e7bd378581b0f978e7cabdfb3e0345d0",
+        "url": "https://github.com/leanprover-community/quote4",
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Qq"
+      },
+      "batteries": {
+        "revision": "fa08db58b30eb033edcdab331bba000827f9f785",
+        "tree": "01494ad63f97095e17e2c512e02e98dd6ee62777",
+        "url": "https://github.com/leanprover-community/batteries",
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\batteries"
+      },
+      "Cli": {
+        "revision": "92564e5770e4d09f2d86dfbf8ada1e9c715b384c",
+        "tree": "6a5b2d2f0d92bddcd096c36be79a2eb1a83bc2fe",
+        "url": "https://github.com/leanprover/lean4-cli",
+        "path": "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake\\packages\\Cli"
+      }
+    },
+    "root_transition_verified": false,
+    "trusted_toolchain_and_import_cache_assumption": true
+  },
+  "failure": {
+    "type": "VerificationBlocked",
+    "reason": "capability-gate failed; see C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\20261101T003246Z-f25e1271\\evidence\\formal\\commands"
+  },
+  "finished_at_utc": "2026-11-01T00:45:18.298470+00:00"
+}

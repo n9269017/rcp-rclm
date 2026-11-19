@@ -1,0 +1,56 @@
+test_always_successful_fake_compiler_rejected (test_pinned_lean.MockCompilerControlTests.test_always_successful_fake_compiler_rejected) ... ok
+test_negative_probe_timeout_not_rejection (test_pinned_lean.MockCompilerControlTests.test_negative_probe_timeout_not_rejection) ... ok
+test_positive_probe_false_axiom_rejected (test_pinned_lean.MockCompilerControlTests.test_positive_probe_false_axiom_rejected) ... ok
+test_probe_mutation_rejected (test_pinned_lean.MockCompilerControlTests.test_probe_mutation_rejected) ... ok
+test_version_and_probes_controlled_success (test_pinned_lean.MockCompilerControlTests.test_version_and_probes_controlled_success) ... ok
+test_wrong_version_rejected (test_pinned_lean.MockCompilerControlTests.test_wrong_version_rejected) ... ok
+test_actual_72_pinned_sources (test_pinned_lean.RootSourceTests.test_actual_72_pinned_sources) ... ok
+test_changed_source_rejected (test_pinned_lean.RootSourceTests.test_changed_source_rejected) ... ok
+test_crlf_checkout_allowed_without_changing_pin (test_pinned_lean.RootSourceTests.test_crlf_checkout_allowed_without_changing_pin) ... ok
+test_extra_root_source_rejected (test_pinned_lean.RootSourceTests.test_extra_root_source_rejected) ... ok
+test_lake_override_rejected (test_pinned_lean.RootSourceTests.test_lake_override_rejected) ... ok
+test_missing_deps_refuse_offline_fetch (test_pinned_lean.RootSourceTests.test_missing_deps_refuse_offline_fetch) ... ok
+test_nine_dependencies_all_commit_locked (test_pinned_lean.RootSourceTests.test_nine_dependencies_all_commit_locked) ... ok
+test_pinned_source_copy_round_trip (test_pinned_lean.RootSourceTests.test_pinned_source_copy_round_trip) ... ok
+test_axiom_names_and_order_bound (test_pinned_lean.SafetyTests.test_axiom_names_and_order_bound) ... ok
+test_blocked_receipt_written_for_missing_pins (test_pinned_lean.SafetyTests.test_blocked_receipt_written_for_missing_pins) ... ok
+test_bounded_extraction_success_fixture (test_pinned_lean.SafetyTests.test_bounded_extraction_success_fixture) ... ok
+test_changed_lock_is_not_deleted (test_pinned_lean.SafetyTests.test_changed_lock_is_not_deleted) ... ok
+test_changed_pin_table_rejected (test_pinned_lean.SafetyTests.test_changed_pin_table_rejected) ... ok
+test_environment_does_not_forward_injection (test_pinned_lean.SafetyTests.test_environment_does_not_forward_injection) ... ok
+test_exact_axiom_audit (test_pinned_lean.SafetyTests.test_exact_axiom_audit) ... ok
+test_exclusive_lock_cleanup (test_pinned_lean.SafetyTests.test_exclusive_lock_cleanup) ... ok
+test_existing_download_wrong_hash_rejected (test_pinned_lean.SafetyTests.test_existing_download_wrong_hash_rejected) ... ok
+test_existing_output_not_overwritten (test_pinned_lean.SafetyTests.test_existing_output_not_overwritten) ... ok
+test_extra_audit_output_rejected (test_pinned_lean.SafetyTests.test_extra_audit_output_rejected) ... ok
+test_extraction_duplicate_rejected (test_pinned_lean.SafetyTests.test_extraction_duplicate_rejected) ... ok
+test_extraction_traversal_rejected (test_pinned_lean.SafetyTests.test_extraction_traversal_rejected) ... ok
+test_incomplete_extraction_not_overwritten (test_pinned_lean.SafetyTests.test_incomplete_extraction_not_overwritten) ... ok
+test_json_nan_rejects (test_pinned_lean.SafetyTests.test_json_nan_rejects) ... ok
+test_lock_cleanup_after_exception (test_pinned_lean.SafetyTests.test_lock_cleanup_after_exception) ... ok
+test_missing_audit_rejected (test_pinned_lean.SafetyTests.test_missing_audit_rejected) ... ok
+test_no_automatic_linux_tool_install (test_pinned_lean.SafetyTests.test_no_automatic_linux_tool_install) ... ok
+test_no_closure_flags_in_template (test_pinned_lean.SafetyTests.test_no_closure_flags_in_template) ... ok
+test_no_download_without_permission (test_pinned_lean.SafetyTests.test_no_download_without_permission) ... ok
+test_non_string_path_rejects (test_pinned_lean.SafetyTests.test_non_string_path_rejects) ... ok
+test_output_in_repo_rejected (test_pinned_lean.SafetyTests.test_output_in_repo_rejected) ... ok
+test_output_json_exclusive (test_pinned_lean.SafetyTests.test_output_json_exclusive) ... ok
+test_partial_download_preserved (test_pinned_lean.SafetyTests.test_partial_download_preserved) ... ok
+test_recorder_executes_real_subprocess_once (test_pinned_lean.SafetyTests.test_recorder_executes_real_subprocess_once) ... ok
+test_recorder_failure_preserved (test_pinned_lean.SafetyTests.test_recorder_failure_preserved) ... ok
+test_recorder_missing_executable_not_success (test_pinned_lean.SafetyTests.test_recorder_missing_executable_not_success) ... ok
+test_recorder_timeout_preserved (test_pinned_lean.SafetyTests.test_recorder_timeout_preserved) ... ok
+test_regular_file_required (test_pinned_lean.SafetyTests.test_regular_file_required) ... ok
+test_safe_relative_accepts (test_pinned_lean.SafetyTests.test_safe_relative_accepts) ... ok
+test_second_lock_refused_without_deleting_first (test_pinned_lean.SafetyTests.test_second_lock_refused_without_deleting_first) ... ok
+test_sorry_axiom_rejected (test_pinned_lean.SafetyTests.test_sorry_axiom_rejected) ... ok
+test_supplied_tool_must_contain_both_executables (test_pinned_lean.SafetyTests.test_supplied_tool_must_contain_both_executables) ... ok
+test_symlink_rejects (test_pinned_lean.SafetyTests.test_symlink_rejects) ... ok
+test_traversal_and_windows_paths_reject (test_pinned_lean.SafetyTests.test_traversal_and_windows_paths_reject) ... ok
+test_unapproved_and_duplicate_axioms (test_pinned_lean.SafetyTests.test_unapproved_and_duplicate_axioms) ... ok
+test_valid_crlf_audit (test_pinned_lean.SafetyTests.test_valid_crlf_audit) ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 7.116s
+
+OK

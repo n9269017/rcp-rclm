@@ -1,0 +1,8 @@
+test_remote_move (test_apply_phase17k.InstallerFlow.test_remote_move) ... Stopped; workspace and logs retained: /tmp/tmpthmdkkde/work/k-b515e5df
+Original checkout advanced: False
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.564s
+
+OK

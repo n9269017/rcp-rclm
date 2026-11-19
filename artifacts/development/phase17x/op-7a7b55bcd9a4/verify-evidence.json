@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_producer_sha256_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\x-8d4fa0ae\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-09T04:19:59.102654+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-09T04:18:18.853498+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "9086c1ea6f19382e9573a25e9a3ce7b57b06bf35dd28d0536caec3efe55e3ad0"
+}

@@ -1,0 +1,1 @@
+PASS: complete registry images and program metadata inputs and retained Q/R/S/T/U/V proof inputs reconstructed; no workers, challenges, or compiler runs

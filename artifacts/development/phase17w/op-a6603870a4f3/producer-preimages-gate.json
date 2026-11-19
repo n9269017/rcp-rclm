@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_producer_preimages_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\w-3c07eea2\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-09T00:48:46.992744+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-09T00:17:51.277829+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "803e3b2b5fd03cd7080e6c763b7e31df3d916db606f4c477de0bca2a4b619338"
+}

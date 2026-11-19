@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_campaign_tests.py"
+  ],
+  "finished_at_utc": "2026-11-07T20:17:30.891043+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-07T20:16:48.076983+00:00",
+  "stderr_sha256": "b84091901c8fd274da3e036417413f0b7a584856c5600bdbcaba7f9aa223ce61",
+  "stdout_sha256": "e9505dfbac413dd6f27b28664f8c5f0401ec8b0e647cd5e49c753e09168f7567"
+}

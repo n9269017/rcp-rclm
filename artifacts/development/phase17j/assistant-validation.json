@@ -1,0 +1,91 @@
+{
+  "schema": "rcp-rclm.phase17j.assistant-validation.v1",
+  "target_commit": "97bd7b334be7b91aa87f9965180e5522dce14a3b",
+  "remote_changed": false,
+  "python_version": "3.13.5",
+  "os": "Linux",
+  "source_scope": "reconstructed Phase15 dependency checkout plus retained Phase17 overlays; not a full current public Git checkout",
+  "current_phase17_module_identities_checked": 20,
+  "immutable_root_file_pins_checked": 72,
+  "new_tests": {
+    "count": 62,
+    "passed": true,
+    "failures": 0,
+    "skips": 0,
+    "log": "new-tests.err.txt",
+    "includes_mock_compiler_control_tests": true
+  },
+  "phase17f_regressions": {
+    "count": 36,
+    "passed": true,
+    "log": "successor-regressions.err.txt"
+  },
+  "application_helper_tests": {
+    "count": 43,
+    "passed": true,
+    "full_git_flows": 6,
+    "formal_result_fixtures": true,
+    "log": "installer-tests.err.txt"
+  },
+  "actual_preparation": {
+    "passed": true,
+    "physical_packages_reexecuted": true,
+    "predecessor_selected_tasks": 21,
+    "candidate_selected_tasks": 22,
+    "proof_tasks": 13,
+    "historical_single_input_vector_tasks": 8,
+    "new_eight_probe_tasks": 1,
+    "packet_sha256": "0e31d56ea5c44be47e5ad3b3319efdc0e82e5eccf58fe56f98995ca5a1bcaa89",
+    "historical_task_meanings_pinned": true,
+    "runner_source_guard_base_override": "local reconstruction Git snapshot only; actual evaluator and archive/proof paths unmocked"
+  },
+  "actual_formal_request": {
+    "status": "blocked",
+    "reason": "pinned dependency not installed: mathlib",
+    "compiler_processes_executed": 0,
+    "new_real_lean_passed": false
+  },
+  "initial_attempts_preserved": [
+    {
+      "log": "initial-prior-i-tests.err.txt",
+      "scope": "exploratory prior Phase17I suite, not a new Phase17J test",
+      "result": "5 errors from unavailable exact retained Phase17H execution.json in reconstructed checkout; no pass claimed"
+    },
+    {
+      "log": "initial-preparation.txt",
+      "scope": "new theorem source parser",
+      "result": "initial closed-result colon parser rejected a valid pinned theorem; top-level-colon parser corrected and tested; not accepted as a pass"
+    }
+  ],
+  "limitations": [
+    "no native Windows or macOS run here",
+    "new Lean source is not compiler-validated here",
+    "template/helper tests are not kernel proofs",
+    "remaining complete root witnesses and acceptance not implemented",
+    "synthetic known-answer fixture, not a live hidden-challenge result"
+  ],
+  "source_files": {
+    "lean/phase17_bridge/TaskFrontier.lean": "fcc5cdfcbc87f3a0d5aeed901e685ecb5191aee293afc23f22d054291a99c114",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/frontier_meanings.py": "ce810cd57f7811dcfe541f2187ad9d93fedc1c88c944e0942eb7c3631deb00ac",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/frontier_meaning_lean.py": "1d1ee3e4ce492dddad2be8feadffe73bcd19c6b29ce4c03ee99f62cf513c608f",
+    "python/rcp_rclm_runtime_v5/tests_phase17j/test_frontier_meanings.py": "5f39eb96f068387acbbfbea54698c7443a734d2b087bdc35a617f31339e55370",
+    "scripts/run_phase17_frontier_meaning_tests.py": "d2b9dfabdf5ffdfb60eab86653de873f58f244b5e8817ce90cd92e32fc7ded4b",
+    "scripts/run_phase17_frontier_meaning_gate.py": "d22d2ae7f819622b0165dfe513987b98be5cb58243a858199e6bd822c4ae6f74"
+  },
+  "claims": {
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "full_learned_semantic_refinement": false,
+    "neural_decoder_formally_verified": false,
+    "complete_resource_accounting": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "live_capability_gain_demonstrated": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "github_hosted_ci_passed": false,
+    "cross_platform_validation": false
+  }
+}

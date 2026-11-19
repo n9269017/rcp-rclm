@@ -1,0 +1,22 @@
+test_dirty_source_stops_before_any_run (test_apply_phase17k.InstallerFlow.test_dirty_source_stops_before_any_run) ... ok
+test_doc_extra_edit_rejected (test_apply_phase17k.InstallerFlow.test_doc_extra_edit_rejected) ... ok
+test_failed_actual_gate (test_apply_phase17k.InstallerFlow.test_failed_actual_gate) ... Stopped; workspace and logs retained: /tmp/tmpxwt3lu1f/work/k-893d8434
+Original checkout advanced: False
+ok
+test_failed_new_tests (test_apply_phase17k.InstallerFlow.test_failed_new_tests) ... Stopped; workspace and logs retained: /tmp/tmptaithc5w/work/k-3c912915
+Original checkout advanced: False
+ok
+test_full_flow_push (test_apply_phase17k.InstallerFlow.test_full_flow_push) ... To /tmp/tmp4jv7shv3/remote.git
+   2879433..d07a57a  d07a57a1d0ab085f34f14b8563df3d42f562808f -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_invalid_formal_evidence (test_apply_phase17k.InstallerFlow.test_invalid_formal_evidence) ... Stopped; workspace and logs retained: /tmp/tmp636gdb6j/work/k-3acb26be
+Original checkout advanced: False
+ok
+test_no_push_mode (test_apply_phase17k.InstallerFlow.test_no_push_mode) ... ok
+test_rejected_push_preserves_commit (test_apply_phase17k.InstallerFlow.test_rejected_push_preserves_commit) ... To /tmp/tmpts32q9f4/remote.git
+ ! [remote rejected] f816e5f628d420bb557c4831b0bbb3a5dd073556 -> agent/rcp-rclm-v5-phase-17-controller (pre-receive hook declined)
+error: failed to push some refs to '/tmp/tmpts32q9f4/remote.git'
+Stopped; workspace and logs retained: /tmp/tmpts32q9f4/work/k-6c716816
+Original checkout advanced: True
+ok
+test_remote_move (test_apply_phase17k.InstallerFlow.test_remote_move) ... 

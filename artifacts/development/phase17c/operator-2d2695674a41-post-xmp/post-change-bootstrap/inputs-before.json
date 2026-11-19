@@ -1,0 +1,46 @@
+{
+  "alternate_backend": "_sha2.sha256",
+  "anomaly": false,
+  "archives": {
+    "capture": {
+      "alternate_matches_expected": true,
+      "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+      "anomaly": false,
+      "backends_agree": true,
+      "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+      "native_matches_expected": true,
+      "native_repeat_equal": true,
+      "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+      "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+      "size": 6524813,
+      "size_matches_reference": true
+    },
+    "closure": {
+      "alternate_matches_expected": true,
+      "alternate_sha256": "ce7f1de4654306d5280970dfc92453a8743cf1e02fe98963f1e940c0077582f9",
+      "anomaly": false,
+      "backends_agree": true,
+      "expected_sha256": "ce7f1de4654306d5280970dfc92453a8743cf1e02fe98963f1e940c0077582f9",
+      "native_matches_expected": true,
+      "native_repeat_equal": true,
+      "native_sha256_first": "ce7f1de4654306d5280970dfc92453a8743cf1e02fe98963f1e940c0077582f9",
+      "native_sha256_second": "ce7f1de4654306d5280970dfc92453a8743cf1e02fe98963f1e940c0077582f9",
+      "size": 3767,
+      "size_matches_reference": true
+    },
+    "m9": {
+      "alternate_matches_expected": true,
+      "alternate_sha256": "56003f95ded054be21dd3f743c2145fdf6e92543af28bb350f64ec8f4fee00b5",
+      "anomaly": false,
+      "backends_agree": true,
+      "expected_sha256": "56003f95ded054be21dd3f743c2145fdf6e92543af28bb350f64ec8f4fee00b5",
+      "native_matches_expected": true,
+      "native_repeat_equal": true,
+      "native_sha256_first": "56003f95ded054be21dd3f743c2145fdf6e92543af28bb350f64ec8f4fee00b5",
+      "native_sha256_second": "56003f95ded054be21dd3f743c2145fdf6e92543af28bb350f64ec8f4fee00b5",
+      "size": 5310668,
+      "size_matches_reference": true
+    }
+  },
+  "backend_self_test_failed": false
+}

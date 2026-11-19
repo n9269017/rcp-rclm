@@ -1,0 +1,78 @@
+{
+  "repository_base": "45dc3e1613f74357bf25e57ae67beb4f598ebf06",
+  "records": [
+    {
+      "path": "__init__.py",
+      "expected_git_blob": "6f3e353dd154970d0723b0abe0f0fde9ee0916be",
+      "observed_git_blob": "6f3e353dd154970d0723b0abe0f0fde9ee0916be",
+      "matched": true
+    },
+    {
+      "path": "bootstrap.py",
+      "expected_git_blob": "0572ac52d965a32fab58ad39010e61b6d660f63f",
+      "observed_git_blob": "0572ac52d965a32fab58ad39010e61b6d660f63f",
+      "matched": true
+    },
+    {
+      "path": "challenge_client.py",
+      "expected_git_blob": "f3c86895fa0a4944e028b1e85130655d872f0bc3",
+      "observed_git_blob": "f3c86895fa0a4944e028b1e85130655d872f0bc3",
+      "matched": true
+    },
+    {
+      "path": "challenge_protocol.py",
+      "expected_git_blob": "8b2496e863702dd67eb259760950f938705bef23",
+      "observed_git_blob": "8b2496e863702dd67eb259760950f938705bef23",
+      "matched": true
+    },
+    {
+      "path": "challenge_transaction.py",
+      "expected_git_blob": "ed1b947f509cf1e5e96713a714a38ed12f7e0671",
+      "observed_git_blob": "ed1b947f509cf1e5e96713a714a38ed12f7e0671",
+      "matched": true
+    },
+    {
+      "path": "controller.py",
+      "expected_git_blob": "1d122fd51e39cb68d397c598bec6318469db3012",
+      "observed_git_blob": "1d122fd51e39cb68d397c598bec6318469db3012",
+      "matched": true
+    },
+    {
+      "path": "frontier_recertification.py",
+      "expected_git_blob": "fb8345a9eddf79071d57e9e9b6c81bb2a3ca81b9",
+      "observed_git_blob": "fb8345a9eddf79071d57e9e9b6c81bb2a3ca81b9",
+      "matched": true
+    },
+    {
+      "path": "lean_frontier_gate.py",
+      "expected_git_blob": "4abc1f7535d29ac1d1a5774a25225ecaba578a0f",
+      "observed_git_blob": "4abc1f7535d29ac1d1a5774a25225ecaba578a0f",
+      "matched": true
+    },
+    {
+      "path": "lean_root_pins.json",
+      "expected_git_blob": "92b6994354c5d71d39a4cae993a47bcc4c42f02c",
+      "observed_git_blob": "92b6994354c5d71d39a4cae993a47bcc4c42f02c",
+      "matched": true
+    },
+    {
+      "path": "materialized.py",
+      "expected_git_blob": "c8024c27d1a6f7dffe80bdd95a4193ae37c7ad01",
+      "observed_git_blob": "c8024c27d1a6f7dffe80bdd95a4193ae37c7ad01",
+      "matched": true
+    },
+    {
+      "path": "objectives.py",
+      "expected_git_blob": "9c99680c9fb79c0acc848a95140a6fc713c7d257",
+      "observed_git_blob": "9c99680c9fb79c0acc848a95140a6fc713c7d257",
+      "matched": true
+    },
+    {
+      "path": "phase16_adapter.py",
+      "expected_git_blob": "fd2a824c61f3fc13a3ddfb0dd771873858ac252d",
+      "observed_git_blob": "fd2a824c61f3fc13a3ddfb0dd771873858ac252d",
+      "matched": true
+    }
+  ],
+  "all_matched": true
+}

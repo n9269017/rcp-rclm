@@ -1,0 +1,286 @@
+{
+  "authoritative_base": "a60eee75b3c4b9797fe362ffed7773d2eb6bdc85",
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "full_learned_semantic_refinement": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "neural_decoder_formally_verified": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "environment": {
+    "normal_phase16_eager_initializer_exercised": false,
+    "os": "Linux",
+    "python": "3.13.5",
+    "scope": "reconstructed historical dependencies plus current Phase17 overlay; not full current remote checkout"
+  },
+  "identities": {
+    "candidate": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+    "joint_packet": "035c570a3e4b7f1ed2fd43085d9cd6357b2596a169eebcd621c0ff5d0fe274ac",
+    "packet": "a720bdaeac1b316d6e50b9a640cddfad52baff44c09a44a4fdeda2b977e4da67",
+    "predecessor": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+    "task_contract": "af34fb682a920122318f001bf2b76e826244f38202d0377f99f65515e4a14e28",
+    "transcript": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+  },
+  "limitations": [
+    "New Lean source is authored but not compiler-validated here; operator must run actual pinned gate.",
+    "Compiler-control and installer-flow tests use controlled results; they are not proofs.",
+    "Command-line smoke overrides base to an explicit local reconstruction commit, not authoritative ancestry.",
+    "Protected sparse scope excludes full transformer, Phase15 planner and vector-task information semantics.",
+    "Physical extraction, canonical hashing, observation refinement and literal binding plus toolchain/cache trust remain explicit.",
+    "No resource/accounting/recursive-productivity, complete learned step, promotion, phase closure, EGC or cross-platform claim."
+  ],
+  "new_source_sha256": {
+    "docs/executable_core_v5/PHASE_17_PROTECTED_SEMANTICS.md": "76b0eb2803be216ca92547cd76a890c171804498bea626f1804035965e8d3471",
+    "lean/phase17_bridge/ProtectedSemantics.lean": "5b8f5bbf3806bd32659b60ce29e28c0d6b994c28ad7de5cd38a6317bab872c4b",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/protected_semantics.py": "283240db07a0ddaa207850b506f4e3a3b8d549bd62e4432646270fe59a81f3cd",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/protected_semantics_lean.py": "63f1f8c30254ac6744dcf29669d292a0b344d65c88563111c5e0218d15acbf65",
+    "python/rcp_rclm_runtime_v5/tests_phase17m/test_protected_semantics.py": "15eeb2f16911c7ad37f2bbdfc1b5fb5617a2c9d101f11e56e5aa3ab0da85a468",
+    "scripts/run_phase17_protected_semantics_gate.py": "21f97e729103f4511f005b894e0503b91cc42dfe5a242000225def921bb270b9",
+    "scripts/run_phase17_protected_semantics_tests.py": "fa4b7cb52fa0c18fa4fea92b45a05000aa45a473bc21390830b7017995a03b9b"
+  },
+  "pr_merged": false,
+  "preserved_development_failures": [
+    {
+      "failed": 1,
+      "reason": "uppercase mutation did not alter the original digit-only tensor encoding; corrected test now inserts uppercase hexadecimal; no production change",
+      "run": "runtime-first",
+      "tests": 83
+    },
+    {
+      "reason": "outer tool limits interrupted initial baseline test launches; not counted as completed passes; successful baseline and regression results retained separately",
+      "run": "baseline initial aggregation"
+    }
+  ],
+  "producer_sources": [
+    {
+      "git_blob": "f6c011174dd76fddba5d2f4257a985795e82a706",
+      "path": "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/codec.py",
+      "sha256": "5f766ac8e2b0af2318bcb2f1a1da508f793bffd81324e2a498bb7b19ce9cf6d1",
+      "size": 4525
+    },
+    {
+      "git_blob": "6ec1117cb715b060ad46b4f56dd6bd727423c949",
+      "path": "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/constants.py",
+      "sha256": "410cd947b0c911bf19405387d5f032f209f78cc9fb879f118d1c8f3d37b97798",
+      "size": 8713
+    },
+    {
+      "git_blob": "bcc24b9797d7adf2bab501893c939b2d0270d3a1",
+      "path": "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/grammar.py",
+      "sha256": "c083af338d42e80da84e7585dfde8fce0f0d460702781d9f8993ea8f95a5dca7",
+      "size": 4498
+    },
+    {
+      "git_blob": "192ff699763e854a7290a8c4b153d4cc34379889",
+      "path": "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/ranking.py",
+      "sha256": "27638b8f3a6f24a1b4e2d8a24b01c6541a59974fbfd77805ec045a9fdb3009a8",
+      "size": 4540
+    },
+    {
+      "git_blob": "4fabef0768090d96e0b8157ee7ba1d1ff2b85d1b",
+      "path": "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase16/records.py",
+      "sha256": "4ac34024d66f39b1150ab4e2279e3beb44b88ac44472839325901561d6754d13",
+      "size": 11074
+    },
+    {
+      "git_blob": "1d122fd51e39cb68d397c598bec6318469db3012",
+      "path": "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/controller.py",
+      "sha256": "a6d6dadf7fbe33a28017d4b6b2d690ea0ff8fd68133aa2423c5a8b7bf4b1ed0a",
+      "size": 16968
+    },
+    {
+      "git_blob": "9c99680c9fb79c0acc848a95140a6fc713c7d257",
+      "path": "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/objectives.py",
+      "sha256": "25d3f10b15c74da1a3b0f9a2f4716ddbbc59b008428a63a25b74b9f8edae3a2d",
+      "size": 8042
+    },
+    {
+      "git_blob": "fd2a824c61f3fc13a3ddfb0dd771873858ac252d",
+      "path": "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/phase16_adapter.py",
+      "sha256": "df528e8d944b005ebaeaada3b38b95939463c82a839aaabe013bac90e4722069",
+      "size": 3938
+    }
+  ],
+  "proof_inventory": {
+    "historical_joint_43_proofs_rerun": false,
+    "named_audits": [
+      "Phase17Protected.mass_distribution_normalized",
+      "Phase17Protected.diagonal_density_sound",
+      "Phase17Protected.diagonal_information_is_kl",
+      "Phase17Protected.information_sum_nonnegative",
+      "Phase17Protected.goal_distance_self",
+      "Phase17Protected.unrelated_root_fields_unchanged",
+      "Phase17Protected.attached_protected_bounds",
+      "Phase17Protected.selected_wellformed",
+      "Phase17Protected.selected_targets_bound",
+      "Phase17Protected.selected_observation_retained",
+      "Phase17Protected.selected_goal_bound",
+      "Phase17Protected.selected_information_bound",
+      "Phase17Protected.selected_distribution_entropy_retention",
+      "Phase17Protected.selected_transaction_binding"
+    ],
+    "negative_controls": [
+      "ChangedProbability",
+      "ChangedGoal",
+      "ChangedTarget",
+      "MixedCandidate"
+    ],
+    "phase17h_172_proofs_rerun": false,
+    "source_sha256": {
+      "ChangedGoal": "e1ac5cfeeedc1148a9cba60df4a40546890e59bc66c0543d49dd4d40f0291328",
+      "ChangedProbability": "a18242ee88e8cdbbaf3b6bc9e4bdd5aea9701b15b3afa911537d24054a18d8ce",
+      "ChangedTarget": "56ba1af290255b3c620ac5aab811b1e7be2ebdcb55cf93a6930e57b7c3ee0775",
+      "MixedCandidate": "50c548a84ff91059aa633d2a911367748ca161522627cfac3f14bf10035e79f5",
+      "Protected": "cfc2e922fa86a93e7eba3df8c4cda2371f71e04e332e9f2d05fc086867d1966e"
+    },
+    "template_sha256": "5b8f5bbf3806bd32659b60ce29e28c0d6b994c28ad7de5cd38a6317bab872c4b"
+  },
+  "recorded_at_utc": "2026-11-07T05:16:21.940700+00:00",
+  "recorded_commands": {
+    "installer-first": {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/mnt/data/rcp-rclm-phase17m-kit/tests",
+        "-p",
+        "test_apply_phase17m.py",
+        "-v"
+      ],
+      "elapsed_seconds": 49.49659204483032,
+      "returncode": 0
+    },
+    "joint-regression-final": {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "scripts/run_phase17_joint_tests.py"
+      ],
+      "elapsed_seconds": 47.10703158378601,
+      "returncode": 0
+    },
+    "runner-smoke-final": {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "/mnt/data/phase17m-work/runner_smoke.py"
+      ],
+      "elapsed_seconds": 70.69670629501343,
+      "returncode": 0
+    },
+    "runtime-final": {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "scripts/run_phase17_protected_semantics_tests.py"
+      ],
+      "elapsed_seconds": 103.66023659706116,
+      "returncode": 0
+    },
+    "runtime-first": {
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "-B",
+        "scripts/run_phase17_protected_semantics_tests.py"
+      ],
+      "elapsed_seconds": 94.50448560714722,
+      "returncode": 1
+    }
+  },
+  "remote_source_changed": false,
+  "results": {
+    "actual_physical_preparation_passed": true,
+    "conditional_rows_per_package": 260,
+    "distinct_conditional_rows": 37,
+    "installer_git_flow_tests": 8,
+    "installer_unit_tests": 37,
+    "missing_pinned_dependency": "mathlib",
+    "native_windows_run": false,
+    "new_lean_processes": 0,
+    "new_lean_status": "blocked",
+    "new_proofs_compiler_validated_here": false,
+    "production_reference_row_comparisons": 520,
+    "protected_positions": 28,
+    "protected_tasks": 11,
+    "root_source_pins_verified": 72,
+    "runner_preparation_smoke_passed": true,
+    "runtime_failures": 0,
+    "runtime_skipped": 0,
+    "runtime_tests": 83,
+    "selected_goal_drift": 0,
+    "unchanged_joint_regressions": 66
+  },
+  "schema": "rcp-rclm.phase17m.assistant-validation.v1",
+  "source_bindings": [
+    {
+      "git_blob": "0f1d9e9e24f4186a20f6f0ae545d368c464a82fe",
+      "path": "python/rcp_rclm_runtime_v2/rcp_rclm_runtime/mathematics/intervals.py",
+      "sha256": "f5ad340271f6cde73f8cd350c4252d9accea364e0161a37ebe8687343edb5d1c",
+      "size": 8856
+    },
+    {
+      "git_blob": "9f74af0f31189253da3b71b6eda6097ed9dd8558",
+      "path": "python/rcp_rclm_runtime_v2/rcp_rclm_runtime/mathematics/rational.py",
+      "sha256": "dc8d5a4f1f3934a86f64cde059b4909e0b5bec1d3bedf145f767634a4883abde",
+      "size": 8240
+    },
+    {
+      "git_blob": "363cd0c808d959f1efc8f7bbf98e33e4b06b0257",
+      "path": "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/constants.py",
+      "sha256": "a2254372ee5b0268085a919d428accd9b82826f48beea3efdcd95cbe346d0b43",
+      "size": 4155
+    },
+    {
+      "git_blob": "146343ec8e0589fb5c9782880b8305c571af0fef",
+      "path": "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/information.py",
+      "sha256": "75ca2571d564715d8d75ee3b07c83f042cbc5bfab3f3b1803cc20739942d3fe9",
+      "size": 10260
+    },
+    {
+      "git_blob": "a525bbd8a4ed8b354eb10418aeacee19265cd01c",
+      "path": "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/learned_data.py",
+      "sha256": "cbd602b233c2bbc24b23ed30a4b5dcef28f6081e34964c2cc92f96402044bade",
+      "size": 9685
+    },
+    {
+      "git_blob": "977b5bd604646330a139af44b608fd6bb2d5c692",
+      "path": "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/package.py",
+      "sha256": "4dde7fcc5418474fb517785fc6e77e09918ddaf717d0630e934e10a900604d6d",
+      "size": 22403
+    },
+    {
+      "git_blob": "cb78f7439634948d912c3ecef067c4af138a8abc",
+      "path": "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/sparse_profile.py",
+      "sha256": "ccc4215a9fbe3520078da7179271513da6b90cd5fd8568bcf5f29858380d44a1",
+      "size": 13139
+    },
+    {
+      "git_blob": "89762217478436013fb14fcf9c74909814599f42",
+      "path": "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/tensors.py",
+      "sha256": "73131f0996ef03104ece560442f94a90851a8dbf0bba93bd87ef92d33cc6c8df",
+      "size": 15922
+    },
+    {
+      "git_blob": "e80a2c79f8343d94967ae5f2c9e071059f6a483f",
+      "path": "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase14/challenges.py",
+      "sha256": "4ebcacf07ea4000267bafd6ba0de9f89f55718c7bd09f252745d4f383920d014",
+      "size": 11000
+    },
+    {
+      "git_blob": "93c9cf0c9ab04c8f1128073f5cd1b09392fd9654",
+      "path": "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase14/tasks.py",
+      "sha256": "73ed9cc123142f5cc03828f8be98b0fa523867b986a587ed55aee36d405d2d5a",
+      "size": 25439
+    }
+  ]
+}

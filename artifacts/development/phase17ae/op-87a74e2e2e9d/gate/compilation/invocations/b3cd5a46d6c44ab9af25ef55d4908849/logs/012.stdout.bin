@@ -1,0 +1,54 @@
+'Phase17TaskInterpretation.execute_adapter' depends on axioms: [propext, Quot.sound]
+'Phase17TaskInterpretation.normal_form_iff_realizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.two_probe_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.affine_check_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.affine_behaviors_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.palette_index_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.reference_bounded' depends on axioms: [propext, Quot.sound]
+'Phase17TaskInterpretation.reference_realizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.reference_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.affine_rename_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.catalog_legacy_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.names_legacy_preserved' depends on axioms: [propext]
+'Phase17TaskInterpretation.catalog_outside_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.frontier_legacy_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.admissible_legacy_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.facts_legacy_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.catalog_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.base' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.learned' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.base_obligations_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.learned_obligations_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.accepted_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.accepted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.already_solved_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.accepted_semantic_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretation.guarded_two_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretationExamples.selected_legacy_complete' depends on axioms: [propext, Quot.sound]
+'Phase17TaskInterpretationExamples.selected_catalog_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretationExamples.selected_names_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretationExamples.selected_old_frontiers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretationExamples.selected_rich_facts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretationExamples.selected_local_configuration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17TaskInterpretationExamples.selected_first_accepted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17TaskInterpretationExamples.selected_before_availability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17TaskInterpretationExamples.selected_after_availability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17TaskInterpretationExamples.selected_missing_contracts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17TaskInterpretationExamples.selected_already_solved_undeclared' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17TaskInterpretationExamples.selected_existing_behavior_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17TaskInterpretationExamples.selected_unavailable_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17TaskInterpretationExamples.selected_fixed_catalog' depends on axioms: [propext, Classical.choice, Quot.sound]

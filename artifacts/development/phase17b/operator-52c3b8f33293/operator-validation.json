@@ -1,0 +1,75 @@
+{
+  "bootstrap_manifest_sha256": "702579ef2e7e6cd1a0f7d1cf2163eb9eb7e099d806740e5b2d7cf7f751636794",
+  "commands": [
+    {
+      "duration_ms": 53158,
+      "finished_at_utc": "2026-10-31T08:04:02.347564+00:00",
+      "name": "foundation-capture",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T08:03:09.188945+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "1afdca05a11324679a2caad25c6a55bd8a04f7360ca0de1cfbe447074de5a77b"
+    },
+    {
+      "duration_ms": 89,
+      "finished_at_utc": "2026-10-31T08:04:02.446767+00:00",
+      "name": "foundation-verify",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T08:04:02.357033+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "1fa6e3418f20cc7e39c5f46f6a930b097923f290917837f8ce800cd3e206aac4"
+    },
+    {
+      "duration_ms": 2301,
+      "finished_at_utc": "2026-10-31T08:04:04.802051+00:00",
+      "name": "historical-archive-tests",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T08:04:02.500646+00:00",
+      "stderr_sha256": "2fa5219a4dec0012ad1a45e16f17a6792ee45466a7e4eca547898047edfaa1b1",
+      "stdout_sha256": "64d758557c4d837168e39b35a8128a3342df6f2f701116b942ef38864d3ad5d3"
+    },
+    {
+      "duration_ms": 2171,
+      "finished_at_utc": "2026-10-31T08:04:06.983617+00:00",
+      "name": "bootstrap-command",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T08:04:04.811858+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "8291be6388b8fa0a24bc8639a2517c1725ba8d8db51038dabfcf5a51a01dffa2"
+    }
+  ],
+  "cross_platform_validation": false,
+  "egc0_started": false,
+  "environment": {
+    "machine": "AMD64",
+    "os": "Windows",
+    "os_release": "11",
+    "python_version": "3.13.3"
+  },
+  "failures": 0,
+  "foundation_manifest_sha256": "b0aa1c15cb5bade039fff39cc4a52e9d6c397eb8f5d1adf0bee83830c25ffa9c",
+  "foundation_tests": 70,
+  "fresh_lean_verification": false,
+  "gate_e_closed": false,
+  "github_hosted_ci_passed": false,
+  "historical_archive_tests": 10,
+  "independent_worker_free_replay": false,
+  "limitations": [
+    "Single-platform local execution is not a cross-platform result.",
+    "Historical reopening is not fresh root/Lean verification.",
+    "The evidence-only commit is not a new source-test execution."
+  ],
+  "main_merge_authorized": false,
+  "phase16_constructor_round_trip": true,
+  "phase17_exit_closed": false,
+  "previous_base": "0c72b00560f4164a3b044302b9b93f7d08ac170f",
+  "prior_failed_code_commit": "89b8296c4973f7fa425518e4d407356766f7b6c9",
+  "prior_failed_manifest_sha256": "f52f049221562bf2dfec6d68b18389c186072c8e11a261b37405a740f2f357a1",
+  "prior_failure_preserved": true,
+  "promotion_performed": false,
+  "recorded_at_utc": "2026-10-31T08:04:07.233900+00:00",
+  "schema": "rcp-rclm.phase17b.operator-validation.v2",
+  "skipped": 0,
+  "tested_code_commit": "52c3b8f33293fc1a52a88c7ae73cc81d35e149c7",
+  "tested_code_tree": "f892f6af55de524a4ae1f34bdd68fa6331275e0b"
+}

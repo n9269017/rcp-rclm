@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_successor_tests.py"
+  ],
+  "finished_at_utc": "2026-11-01T03:34:06.722618+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-01T03:33:56.455030+00:00",
+  "stderr_sha256": "df32793178edae77f30f6f88b8cc41d48929ed83ed0d443593c4752d84f78e88",
+  "stdout_sha256": "91f4a67e4ad55c06123e4ce67adfe956fcdd0f5b79fc977424ea3a19321886cc"
+}

@@ -1,0 +1,3 @@
+{"op":"read","protocol":"phase17al.reference-authority-stdio.v1"}
+{"credits":2,"expected_cursor":{"epoch":2,"journal_sha256":"399f39884f1153870aa5fc1c3113b1eab809de3fa680a2f6fa3b1d3eab82bfca","root_head":"ea727c30360c5f6c62bf3160ce072d261ea718381f67d1c9e1837f607c9b393f","root_provision_sha256":"9dce8d456d78d907611c8e4e68d4ebb5d6f025c2392d2d34b7d87dd021360ded","serial":5,"snapshot_sha256":"acabaf3e6075c837bfe1515a1629a9047f8e8b927ec7c79bdc46dc7f565ce632"},"op":"run","protocol":"phase17al.reference-authority-stdio.v1","request_nonce":"5ec67ac0595c0170a6178866f406c8f9c71f521520a10ba0e02a716982cbb8ff"}
+{"op":"finish","protocol":"phase17al.reference-authority-stdio.v1"}

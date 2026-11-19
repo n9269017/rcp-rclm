@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_protected_authority_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\an-7f271da5\\e\\gate",
+    "--toolchain-root",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0"
+  ],
+  "finished_at_utc": "2026-11-19T04:08:39.300174+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-19T03:34:00.692467+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "c4d583c8a01716bb5d6887e599e942a1ca6d9ec7b4afdfb94fd1b9d863206cab"
+}

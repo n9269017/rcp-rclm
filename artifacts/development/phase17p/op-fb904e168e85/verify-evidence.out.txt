@@ -1,0 +1,1 @@
+PASS: inactive handoff evidence and physical candidates reconstructed; no workers, new entropy or proofs

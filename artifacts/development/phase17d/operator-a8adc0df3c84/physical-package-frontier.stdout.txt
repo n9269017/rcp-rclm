@@ -1,0 +1,19 @@
+{
+  "source_commit": "a8adc0df3c841559633965be0c402188c65ef5e2",
+  "package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "capability_tasks_evaluated": 21,
+  "lean_obligations_prepared": 13,
+  "lean_gate": {
+    "status": "not_requested",
+    "toolchain": "leanprover/lean4:v4.31.0",
+    "fresh_lean_verified": false,
+    "capability_frontier_recertified": false,
+    "root_transition_verified": false,
+    "promotion_authorized": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false
+  },
+  "promotion_performed": false,
+  "phase17_exit_closed": false,
+  "gate_e_closed": false
+}

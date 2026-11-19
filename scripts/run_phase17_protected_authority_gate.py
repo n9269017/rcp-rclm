@@ -1,0 +1,335 @@
+"""Phase17AN protected broker, confined reference workers and accounting admission.
+
+Run one stage with --one-stage, or run the remaining sequence. A resumed
+invocation requires the retained plan hash and the exact completed parent hash.
+Unfinished invocation directories remain separate evidence. This does not resume
+a Python/Lean process, relaunch a worker, or reinterpret completed AM evidence.
+"""
+from __future__ import annotations
+
+import argparse
+from datetime import datetime, timezone
+import json
+from pathlib import Path
+import platform
+import subprocess
+import sys
+import uuid
+import tempfile
+
+sys.dont_write_bytecode = True
+ROOT = Path(__file__).resolve().parents[1]
+sys.path[:0] = [str(ROOT / 'python' / f'rcp_rclm_runtime_v{v}') for v in (2, 3, 4, 5)]
+from rcp_rclm_runtime_v5.phase17 import compilation_checkpoint as checkpoints
+from rcp_rclm_runtime_v5.phase17 import protected_authority_check as checker
+from rcp_rclm_runtime.canonical.json import load_json_strict
+from rcp_rclm_runtime_v5.phase17.protected_authority_capture import (
+    BASE, FALSE_CLAIMS, prepare_protected_authority, PreparedProtectedAuthority,
+    canonical, sha, require, evidence_images, verify_all_native,
+    MAX_BYTES as PACKET_MAX_BYTES, SCHEMA as PACKET_SCHEMA, POLICY as PACKET_POLICY,
+)
+
+from rcp_rclm_runtime_v5.phase17.protected_authority_lean import sources, NAMES, NEGATIVES
+
+PLAN_SCHEMA = 'rcp-rclm.phase17an.protected-authority-plan.v1'
+SCHEMA = 'rcp-rclm.phase17an.protected-authority-execution.v1'
+
+
+def false_claims(value):
+    return (type(value) is dict and set(value) == set(FALSE_CLAIMS) and
+            all(value[name] is False for name in FALSE_CLAIMS))
+
+
+def git(*args):
+    return subprocess.check_output(['git', '--no-optional-locks', '-C', str(ROOT), *args]).decode().strip()
+
+
+def source_identity():
+    require(not git('status', '--porcelain'), 'clean committed AN source required')
+    head, tree = git('rev-parse', 'HEAD'), git('rev-parse', 'HEAD^{tree}')
+    subprocess.run(['git', '-C', str(ROOT), 'merge-base', '--is-ancestor', BASE, head], check=True)
+    require(not git('diff', '--name-only', '--diff-filter=MDRTUXB', BASE, head, '--', 'python', 'lean', 'scripts'),
+            'preexisting execution/formal source changed')
+    return head, tree, checker.source_snapshot(ROOT)
+
+
+def prepared_files(out, prepared, proof_sources):
+    checkpoints._new_bytes(out / 'packet.json', prepared.packet_bytes)
+    for label, raw in proof_sources.items():
+        checkpoints._new_bytes(out / 'prepared' / (label + '.lean'), raw)
+
+
+def load_retained_packet(path, expected_sha256):
+    """Read the pinned CJSON-V2 packet, not the distinct manifest JSON format."""
+    raw = checkpoints._read(path, PACKET_MAX_BYTES)
+    require(type(expected_sha256) is str and sha(raw) == expected_sha256,
+            'AN retained packet hash differs')
+    packet = load_json_strict(raw, require_canonical=True)
+    require(type(packet) is dict and packet.get('schema') == PACKET_SCHEMA and
+            packet.get('policy') == PACKET_POLICY and packet.get('base_commit') == BASE,
+            'AN retained packet identity differs')
+    return packet
+
+
+def retained_authority_images(packet):
+    images = evidence_images(packet)
+    require(type(images) is dict and len(images) == 1, 'one exact authenticated campaign image required')
+    for name, raw in images.items():
+        require(type(name) is str and checkpoints._relative(name) == name and '/' not in name and
+                name.endswith('.json') and type(raw) is bytes and raw, 'bounded durable export required')
+    return images
+
+
+def retain_authority_evidence(out, packet):
+    for name, raw in retained_authority_images(packet).items():
+        checkpoints._new_bytes(out / 'campaign-evidence' / name, raw)
+    return verify_authority_evidence(out, packet)
+
+
+def verify_authority_evidence(out, packet):
+    images = retained_authority_images(packet)
+    directory = out / 'campaign-evidence'
+    require(directory.is_dir() and {p.name for p in directory.iterdir()} == set(images),
+            'retained durable evidence inventory differs')
+    for name, raw in images.items():
+        require(checkpoints._read(directory / name, PACKET_MAX_BYTES) == raw, 'retained durable export differs')
+    return {name: sha(raw) for name, raw in images.items()}
+
+
+def verify_authority_native(out, packet):
+    hashes = verify_all_native(out / 'campaign-native', packet, ROOT)
+    require(type(hashes) is dict and hashes, 'original durable native evidence required')
+    starts = [load_json_strict(checkpoints._read(out / 'campaign-native' / 'authority' / name / 'start.json'))
+              for name in packet['cases'][0]['native_boots']]
+    require(len(starts) == 2 and len({start['invocation_id'] for start in starts}) == 2,
+            'two original authority lifetimes required')
+    require(len({start['python_sha256'] for start in starts}) == 1,
+            'authority interpreter identities differ')
+    return hashes
+
+
+def retain_authority_native(out, packet, packages):
+    original = packages / 'campaign-native'
+    expected = verify_all_native(original, packet, ROOT)
+    for name, digest in expected.items():
+        raw = checkpoints._read(original / checkpoints._relative(name), PACKET_MAX_BYTES)
+        require(sha(raw) == digest, 'original durable native file changed during capture')
+        checkpoints._new_bytes(out / 'campaign-native' / name, raw)
+    require(verify_all_native(original, packet, ROOT) == expected and
+            verify_authority_native(out, packet) == expected, 'durable native copy differs')
+    return expected
+
+
+def setup(out, args):
+    require(not out.exists(), 'new AN output required; preserve previous attempts')
+    require(args.test_fixture and args.require_lean and args.lean_workspace is not None,
+            'explicit bounded local-reference campaign mode and prepared pinned Lean workspace required')
+    head, tree, hashes = source_identity()
+    out.mkdir(parents=True)
+    packages = out.parent.parent / (out.parent.name + "-" + out.name + "-physical")
+    prepared = prepare_protected_authority(ROOT, packages)
+    proof_sources = sources(prepared, ROOT)
+    prepared_files(out, prepared, proof_sources)
+    journal_hashes = retain_authority_evidence(out, prepared.packet)
+    native_hashes = retain_authority_native(out, prepared.packet, packages)
+    environment = checker.capture_environment(out / 'compiler', source_root=ROOT,
+        lean_workspace=checkpoints._path(args.lean_workspace.absolute()),
+        toolchain_root=args.toolchain_root.absolute() if args.toolchain_root else None)
+    environment_hash = sha(checkpoints._read(out / 'compiler/environment.json'))
+    plan = {'schema': PLAN_SCHEMA, 'base': BASE, 'source_commit': head, 'source_tree': tree,
+            'source_sha256': hashes, 'packet_sha256': sha(prepared.packet_bytes),
+            'proof_source_sha256': {n: sha(b) for n, b in proof_sources.items()},
+            'campaign_evidence_sha256': journal_hashes,
+            'campaign_native_sha256': native_hashes,
+            'environment_sha256': environment_hash,
+            'selected_protected_campaign': prepared.packet['summary'], 'theorem_names': list(NAMES),
+            'negative_controls': list(NEGATIVES), 'claims': {n: False for n in FALSE_CLAIMS},
+            'fresh_worker_sessions': 2, 'fresh_live_challenges': 2,
+            'old_proof_campaigns_rerun': False, 'old_acceptance_reinterpreted': False}
+    require(source_identity() == (head, tree, hashes), 'source changed during AN preparation')
+    checkpoints._new_json(out / 'plan.json', plan)
+    digest = sha(checkpoints._read(out / 'plan.json'))
+    print(json.dumps({'prepared': True, 'plan_path': str(out / 'plan.json'),
+                      'plan_sha256': digest, 'formal_acceptance': False}), flush=True)
+    return plan, digest, environment, proof_sources
+
+
+def reconstruct(out, expected_plan_hash):
+    plan = checkpoints._load(out / 'plan.json', expected_plan_hash)
+    require(plan['schema'] == PLAN_SCHEMA and plan['base'] == BASE, 'AN plan schema/base differs')
+    head, tree, hashes = source_identity()
+    require((plan['source_commit'], plan['source_tree'], plan['source_sha256']) == (head, tree, hashes),
+            'continuation requires the original clean tested source')
+    require(false_claims(plan['claims']) and
+            plan['fresh_worker_sessions'] == 2 and type(plan['fresh_worker_sessions']) is int and
+            plan['fresh_live_challenges'] == 2 and type(plan['fresh_live_challenges']) is int and
+            plan['old_proof_campaigns_rerun'] is False and plan['old_acceptance_reinterpreted'] is False,
+            'AN scope differs')
+    raw = checkpoints._read(out / 'packet.json', PACKET_MAX_BYTES)
+    require(sha(raw) == plan['packet_sha256'], 'durable retained packet hash differs')
+    prepared = PreparedProtectedAuthority(raw, ROOT)
+    require(verify_authority_evidence(out, prepared.packet) == plan['campaign_evidence_sha256'],
+            'AN original authority journal bindings differ')
+    require(verify_authority_native(out, prepared.packet) == plan['campaign_native_sha256'],
+            'AN original native authority bindings differ')
+    proof_sources = sources(prepared, ROOT)
+    require(plan['proof_source_sha256'] == {n: sha(b) for n, b in proof_sources.items()} and
+            plan['selected_protected_campaign'] == prepared.packet['summary'] and
+            plan['theorem_names'] == list(NAMES) and plan['negative_controls'] == list(NEGATIVES),
+            'AN deterministic reconstruction differs')
+    require({p.name for p in (out / 'prepared').iterdir()} == {n + '.lean' for n in proof_sources},
+            'AN prepared-source inventory differs')
+    for label, raw in proof_sources.items():
+        require(checkpoints._read(out / 'prepared' / (label + '.lean')) == raw, 'generated Lean source changed')
+    raw = checkpoints._read(out / 'compiler/environment.json')
+    require(sha(raw) == plan['environment_sha256'], 'compiler environment record changed')
+    environment = json.loads(raw)
+    checker.verify_environment(environment, ROOT)
+    require(source_identity() == (head, tree, hashes), 'source changed during reconstruction')
+    return plan, expected_plan_hash, environment, proof_sources
+
+
+def configuration(plan, environment, proof_sources):
+    return checker.configuration(source_root=ROOT, environment=environment,
+        source_commit=plan['source_commit'], source_tree=plan['source_tree'],
+        source_hashes=plan['source_sha256'], packet_sha256=plan['packet_sha256'],
+        proof_sources=proof_sources)
+
+
+def complete(out, plan, plan_hash, result, config):
+    manifest = checkpoints.verify_manifest(result['manifest_path'], result['manifest_sha256'], **config)
+    formal = checker.validate_lineage(manifest, config)
+    packet = load_retained_packet(out / 'packet.json', plan['packet_sha256'])
+    require(verify_authority_evidence(out, packet) == plan['campaign_evidence_sha256'],
+            'AN original authority journals changed during compilation')
+    require(verify_authority_native(out, packet) == plan['campaign_native_sha256'],
+            'AN original native authority records changed during compilation')
+    require(source_identity() == (plan['source_commit'], plan['source_tree'], plan['source_sha256']),
+            'source changed during selected compilation lineage')
+    record = {'schema': SCHEMA, 'completed': True, 'status': 'passed',
+              'completed_at_utc': datetime.now(timezone.utc).isoformat(),
+              'platform': platform.system(), 'python_version': platform.python_version(),
+              'plan_sha256': plan_hash, 'source_commit': plan['source_commit'],
+              'source_tree': plan['source_tree'], 'source_sha256': plan['source_sha256'],
+              'selected_manifest': Path(result['manifest_path']).relative_to(out).as_posix(),
+              'selected_manifest_sha256': result['manifest_sha256'], 'formal': formal,
+              'protected_broker_dispatch_checked': True, 'campaign_boundary_admission_checked': True,
+              'proof_mode': 'real_pinned_lean_completed_stage_lineage',
+              'claims': {n: False for n in FALSE_CLAIMS},
+              'physical_execution_attested': False, 'saved_evidence_reconstruction_required': True,
+              'fresh_worker_sessions': 2, 'fresh_live_challenges': 2,
+              'independently_protected_deployment_established': False,
+              'selected_protected_campaign': packet['summary']}
+    checkpoints._new_json(out / 'execution.json', record)
+    digest = sha(checkpoints._read(out / 'execution.json'))
+    print(json.dumps({'completed': True, 'execution_path': str(out / 'execution.json'),
+                      'execution_sha256': digest, 'formal': formal}), flush=True)
+    return digest
+
+
+def verify_only(out, expected_execution_hash):
+    report = checkpoints._load(out / 'execution.json', expected_execution_hash)
+    require(report['schema'] == SCHEMA and report['completed'] is True and report['status'] == 'passed' and
+            report['proof_mode'] == 'real_pinned_lean_completed_stage_lineage' and
+            report['protected_broker_dispatch_checked'] is True and report['campaign_boundary_admission_checked'] is True and
+            false_claims(report['claims']) and report['physical_execution_attested'] is False and
+            report['saved_evidence_reconstruction_required'] is True and
+            report['independently_protected_deployment_established'] is False and
+            type(report['fresh_worker_sessions']) is int and report['fresh_worker_sessions'] == 2 and
+            type(report['fresh_live_challenges']) is int and report['fresh_live_challenges'] == 2,
+            'AN completion scope differs')
+    plan, _, environment, proof_sources = reconstruct(out, report['plan_sha256'])
+    require(all(report[k] == plan[k] for k in ('source_commit', 'source_tree', 'source_sha256')),
+            'execution source identity differs')
+    require(report['selected_protected_campaign'] == plan['selected_protected_campaign'],
+            'execution selected campaign summary differs')
+    config = configuration(plan, environment, proof_sources)
+    manifest_path = out / checkpoints._relative(report['selected_manifest'])
+    manifest = checkpoints.verify_manifest(manifest_path, report['selected_manifest_sha256'], **config)
+    require(checker.validate_lineage(manifest, config) == report['formal'], 'reconstructed formal result differs')
+    require(checkpoints._load(out / 'execution.json', expected_execution_hash) == report,
+            'execution changed during reconstruction')
+    print('PASS: AN protected broker dispatch and campaign boundary admission, original TLS/process records and durable worker evidence, generated proofs, compiled artifacts, exact stage lineage, named audits and designated rejections reconstructed; no compiler, authority subprocess or task-worker process runs', flush=True)
+    return 0
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--test-fixture', action='store_true')
+    parser.add_argument('--require-lean', action='store_true')
+    parser.add_argument('--lean-workspace', type=Path)
+    parser.add_argument('--toolchain-root', type=Path)
+    parser.add_argument('--prepare-only', action='store_true')
+    parser.add_argument('--one-stage', action='store_true')
+    parser.add_argument('--resume-from', type=Path)
+    parser.add_argument('--expected-parent-sha256')
+    parser.add_argument('--expected-plan-sha256')
+    parser.add_argument('--unresolved-invocation', action='append', default=[])
+    parser.add_argument('--verify-only', action='store_true')
+    parser.add_argument('--expected-execution-sha256')
+    args = parser.parse_args(argv)
+    out = checkpoints._path(args.output.absolute())
+    require(out != ROOT and ROOT not in out.parents, 'external AN output required')
+    if args.verify_only:
+        require(args.expected_execution_sha256 and not any((args.test_fixture, args.require_lean,
+            args.lean_workspace, args.toolchain_root, args.prepare_only, args.one_stage, args.resume_from,
+            args.expected_parent_sha256, args.expected_plan_sha256, args.unresolved_invocation)),
+            'verify-only requires only output and independently retained execution hash')
+        return verify_only(out, args.expected_execution_sha256)
+    require(args.expected_execution_sha256 is None, 'unused execution hash')
+    require(bool(args.resume_from) == bool(args.expected_parent_sha256), 'explicit parent path and hash required together')
+    require(not (args.prepare_only and (args.one_stage or args.resume_from)), 'prepare-only cannot execute or continue a stage')
+    if args.expected_plan_sha256:
+        require(not any((args.test_fixture, args.require_lean, args.lean_workspace, args.toolchain_root, args.prepare_only)),
+                'existing plan defines immutable execution inputs')
+        plan, plan_hash, environment, proof_sources = reconstruct(out, args.expected_plan_sha256)
+    else:
+        require(args.resume_from is None and not args.unresolved_invocation, 'continuation needs independently retained plan hash')
+        plan, plan_hash, environment, proof_sources = setup(out, args)
+    require(not (out / 'execution.json').exists(), 'completed gate must be verified, not continued')
+    if args.prepare_only:
+        return 0
+    config = configuration(plan, environment, proof_sources)
+    parent = checkpoints._path(args.resume_from.absolute()) if args.resume_from else None
+    parent_hash = args.expected_parent_sha256
+    unresolved = tuple(args.unresolved_invocation)
+    if parent:
+        existing = checkpoints.verify_manifest(parent, parent_hash, **config)
+        checker.validate_lineage(existing, config, require_complete=False)
+        if len(existing['steps']) == len(config['stages']):
+            # A connection can disappear after the last atomic stage publication
+            # but before the aggregate record. Preserve that completed lineage;
+            # finalization performs verification and no further compilation.
+            require(set(unresolved) <= set(existing['unresolved_invocations']),
+                    'completed lineage cannot add unresolved invocation references during aggregation')
+            require(out in parent.parents, 'aggregate finalization requires the retained local invocation copy')
+            complete(out, plan, plan_hash,
+                     {'manifest_path': parent, 'manifest_sha256': parent_hash}, config)
+            return 0
+    while True:
+        result = checkpoints.run_stage(out / 'compilation', **config,
+            parent_manifest=parent, expected_parent_sha256=parent_hash,
+            restore_validator=checker.restore_validator(config), unresolved_invocations=unresolved)
+        formal = checker.validate_lineage(result['manifest'], config, require_complete=False)
+        receipt = {'schema': 'rcp-rclm.phase17an.progress.v1', 'plan_sha256': plan_hash,
+                   'manifest_path': str(result['manifest_path']), 'manifest_sha256': result['manifest_sha256'],
+                   'completed_stages': result['completed_stage_count'], 'formal': formal}
+        checkpoints._new_json(out / 'progress' / (result['manifest']['invocation_id'] + '.json'), receipt)
+        print(json.dumps(receipt), flush=True)
+        if result['all_stages_completed']:
+            complete(out, plan, plan_hash, result, config)
+            return 0
+        if args.one_stage:
+            return 0
+        parent, parent_hash = result['manifest_path'], result['manifest_sha256']
+        unresolved = ()
+
+
+if __name__ == '__main__':
+    try:
+        raise SystemExit(main())
+    except checkpoints.StageFailure as error:
+        print(json.dumps({'completed': False, 'failure': str(error),
+                          'preserved_invocation': str(error.invocation)}), file=sys.stderr, flush=True)
+        raise SystemExit(1)

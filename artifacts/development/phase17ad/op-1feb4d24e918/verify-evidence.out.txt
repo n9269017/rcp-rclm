@@ -1,0 +1,1 @@
+PASS: AD prospective context, generated proofs, compiled artifacts, exact stage lineage, named audits and designated rejections reconstructed; no compiler or worker runs

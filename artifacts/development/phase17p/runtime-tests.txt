@@ -1,0 +1,81 @@
+test_abandon_flag_not_integer (test_handoff.JournalTests.test_abandon_flag_not_integer) ... ok
+test_abandon_without_pending_rejected (test_handoff.JournalTests.test_abandon_without_pending_rejected) ... ok
+test_actual_process_exit_retains_consumption (test_handoff.JournalTests.test_actual_process_exit_retains_consumption) ... ok
+test_begin_consumes_before_result (test_handoff.JournalTests.test_begin_consumes_before_result) ... ok
+test_binding_detached (test_handoff.JournalTests.test_binding_detached) ... ok
+test_changed_external_binding_rejected (test_handoff.JournalTests.test_changed_external_binding_rejected) ... ok
+test_changed_external_head_rejected (test_handoff.JournalTests.test_changed_external_head_rejected) ... ok
+test_closed_journal_refuses (test_handoff.JournalTests.test_closed_journal_refuses) ... ok
+test_competing_writer_refused (test_handoff.JournalTests.test_competing_writer_refused) ... ok
+test_complete_without_begin_rejected (test_handoff.JournalTests.test_complete_without_begin_rejected) ... ok
+test_crlf_rejected (test_handoff.JournalTests.test_crlf_rejected) ... ok
+test_exhausted_cannot_claim_staged_candidate (test_handoff.JournalTests.test_exhausted_cannot_claim_staged_candidate) ... ok
+test_explicit_abandon_retains_consumption (test_handoff.JournalTests.test_explicit_abandon_retains_consumption) ... ok
+test_external_mutation_blocks (test_handoff.JournalTests.test_external_mutation_blocks) ... ok
+test_fsync_failure_poisons_before_caller_proceeds (test_handoff.JournalTests.test_fsync_failure_poisons_before_caller_proceeds) ... ok
+test_header_replays (test_handoff.JournalTests.test_header_replays) ... ok
+test_invalid_boolean_index_rejected (test_handoff.JournalTests.test_invalid_boolean_index_rejected) ... ok
+test_missing_consume_even_rehashed (test_handoff.JournalTests.test_missing_consume_even_rehashed) ... ok
+test_no_candidate_is_completed_consumption (test_handoff.JournalTests.test_no_candidate_is_completed_consumption) ... ok
+test_no_refund_event (test_handoff.JournalTests.test_no_refund_event) ... ok
+test_pass_is_not_authorization (test_handoff.JournalTests.test_pass_is_not_authorization) ... ok
+test_pending_cannot_consume (test_handoff.JournalTests.test_pending_cannot_consume) ... ok
+test_pending_cannot_stop (test_handoff.JournalTests.test_pending_cannot_stop) ... ok
+test_reopen_completed_preserves_consumption (test_handoff.JournalTests.test_reopen_completed_preserves_consumption) ... ok
+test_reopen_pending_no_auto_resume (test_handoff.JournalTests.test_reopen_pending_no_auto_resume) ... ok
+test_reopen_requires_external_head (test_handoff.JournalTests.test_reopen_requires_external_head) ... ok
+test_same_challenge_different_source_rejected (test_handoff.JournalTests.test_same_challenge_different_source_rejected) ... ok
+test_same_source_different_challenge_rejected (test_handoff.JournalTests.test_same_source_different_challenge_rejected) ... ok
+test_source_hash_is_strict (test_handoff.JournalTests.test_source_hash_is_strict) ... ok
+test_stopped_prefix_cannot_continue (test_handoff.JournalTests.test_stopped_prefix_cannot_continue) ... ok
+test_successful_stage_still_blocked (test_handoff.JournalTests.test_successful_stage_still_blocked) ... ok
+test_truncated_line_rejected (test_handoff.JournalTests.test_truncated_line_rejected) ... ok
+test_unknown_event_rejected_even_rehashed (test_handoff.JournalTests.test_unknown_event_rejected_even_rehashed) ... ok
+test_unknown_fields_even_rehashed (test_handoff.JournalTests.test_unknown_fields_even_rehashed) ... ok
+test_wrong_completion_id_rejected (test_handoff.JournalTests.test_wrong_completion_id_rejected) ... ok
+test_actual_worker_source_verified (test_handoff.SourceTests.test_actual_worker_source_verified) ... ok
+test_changed_context_rejected (test_handoff.SourceTests.test_changed_context_rejected) ... ok
+test_changed_policy_rejected (test_handoff.SourceTests.test_changed_policy_rejected) ... ok
+test_duplicate_json_fields_rejected (test_handoff.SourceTests.test_duplicate_json_fields_rejected) ... ok
+test_external_source_anchor_required (test_handoff.SourceTests.test_external_source_anchor_required) ... ok
+test_extra_source_field_rejected (test_handoff.SourceTests.test_extra_source_field_rejected) ... ok
+test_fixture_bytes_cannot_change (test_handoff.SourceTests.test_fixture_bytes_cannot_change) ... ok
+test_fixture_cannot_relabel_online (test_handoff.SourceTests.test_fixture_cannot_relabel_online) ... ok
+test_fixture_is_explicit_not_live (test_handoff.SourceTests.test_fixture_is_explicit_not_live) ... ok
+test_missing_session_rejected (test_handoff.SourceTests.test_missing_session_rejected) ... ok
+test_mutable_input_refused (test_handoff.SourceTests.test_mutable_input_refused) ... ok
+test_noncanonical_source_rejected (test_handoff.SourceTests.test_noncanonical_source_rejected) ... ok
+test_online_cannot_relabel_fixture (test_handoff.SourceTests.test_online_cannot_relabel_fixture) ... ok
+test_record_access_detached (test_handoff.SourceTests.test_record_access_detached) ... ok
+test_uppercase_hex_rejected (test_handoff.SourceTests.test_uppercase_hex_rejected) ... ok
+test_wrong_campaign_head_rejected (test_handoff.SourceTests.test_wrong_campaign_head_rejected) ... ok
+test_wrong_selected_grant_rejected (test_handoff.SourceTests.test_wrong_selected_grant_rejected) ... ok
+test_wrong_session_checkpoint_rejected (test_handoff.SourceTests.test_wrong_session_checkpoint_rejected) ... ok
+test_all_nonclaims_false (test_handoff.StagingTests.test_all_nonclaims_false) ... ok
+test_consume_fsync_precedes_materialization (test_handoff.StagingTests.test_consume_fsync_precedes_materialization) ... ok
+test_duplicate_handoff_no_new_consumption (test_handoff.StagingTests.test_duplicate_handoff_no_new_consumption) ... ok
+test_exact_dossier_inventory (test_handoff.StagingTests.test_exact_dossier_inventory) ... ok
+test_extra_dossier_file_fails (test_handoff.StagingTests.test_extra_dossier_file_fails) ... ok
+test_failure_after_consume_keeps_challenge (test_handoff.StagingTests.test_failure_after_consume_keeps_challenge) ... ok
+test_fixture_refused_by_online_binding (test_handoff.StagingTests.test_fixture_refused_by_online_binding) ... ok
+test_missing_dossier_blocks_next_staging (test_handoff.StagingTests.test_missing_dossier_blocks_next_staging) ... ok
+test_no_arbitrary_acceptance_callback (test_handoff.StagingTests.test_no_arbitrary_acceptance_callback) ... ok
+test_package_workspace_cannot_be_source (test_handoff.StagingTests.test_package_workspace_cannot_be_source) ... ok
+test_physical_and_logical_hashes_not_conflated (test_handoff.StagingTests.test_physical_and_logical_hashes_not_conflated) ... ok
+test_physical_positive_candidate_inactive (test_handoff.StagingTests.test_physical_positive_candidate_inactive) ... ok
+test_replay_without_worker_or_new_entropy (test_handoff.StagingTests.test_replay_without_worker_or_new_entropy) ... ok
+test_report_tamper_fails (test_handoff.StagingTests.test_report_tamper_fails) ... ok
+test_root_blockers_not_hidden (test_handoff.StagingTests.test_root_blockers_not_hidden) ... ok
+test_unmeasured_materialization_not_zeroed (test_handoff.StagingTests.test_unmeasured_materialization_not_zeroed) ... ok
+test_wrong_physical_parent_before_consume (test_handoff.StagingTests.test_wrong_physical_parent_before_consume) ... ok
+
+----------------------------------------------------------------------
+Ran 70 tests in 94.025s
+
+OK
+
+STDOUT
+Phase17P inactive handoff tests only. Root acceptance, promotion, Phase17 and EGC-0 remain false.
+
+SEPARATE VERIFY-ONLY
+PASS: inactive handoff evidence and physical candidates reconstructed; no workers, new entropy or proofs

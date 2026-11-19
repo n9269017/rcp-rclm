@@ -1,0 +1,9 @@
+{
+  "duration_ms": 2171,
+  "finished_at_utc": "2026-10-31T08:04:06.983617+00:00",
+  "name": "bootstrap-command",
+  "returncode": 0,
+  "started_at_utc": "2026-10-31T08:04:04.811858+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "8291be6388b8fa0a24bc8639a2517c1725ba8d8db51038dabfcf5a51a01dffa2"
+}

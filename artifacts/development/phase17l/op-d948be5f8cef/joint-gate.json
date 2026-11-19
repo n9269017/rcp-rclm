@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_joint_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\l-167de16f\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-02T02:15:56.917722+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-02T01:59:20.306378+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "11a16f01a43fc1a9c76ba2bc5d1eb4fe32890211b0521b99ee5c6d19eb23c929"
+}

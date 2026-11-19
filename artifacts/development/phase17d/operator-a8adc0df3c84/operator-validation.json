@@ -1,0 +1,77 @@
+{
+  "candidate_fixture_is_synthetic": true,
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_tests.py"
+      ],
+      "finished_at_utc": "2026-10-31T23:52:20.644917+00:00",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T23:52:11.274076+00:00",
+      "stderr_sha256": "17f3f90007df8061b8f020b30bb004acef665b09c544a265eae64d40a7e7c287",
+      "stdout_sha256": "c50a39a89ec6d37eecc0d3312f13b0cc0533e96569061ffad37840d30446904e"
+    },
+    {
+      "command": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_bootstrap_tests.py"
+      ],
+      "finished_at_utc": "2026-10-31T23:52:23.015711+00:00",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T23:52:20.663121+00:00",
+      "stderr_sha256": "7df1c56bdd3472c2b80a9981cc114937500e1c59de7d02f15121718af7c25bd5",
+      "stdout_sha256": "64d758557c4d837168e39b35a8128a3342df6f2f701116b942ef38864d3ad5d3"
+    },
+    {
+      "command": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_package_tests.py"
+      ],
+      "finished_at_utc": "2026-10-31T23:52:35.650751+00:00",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T23:52:23.025324+00:00",
+      "stderr_sha256": "3b62e2aa0bcfd18e9ad942f63b921a53d6ac33676d13c449e058d4b67d3f55d8",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_package_gate.py",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17d-kit\\runs\\20261031T235013Z-e847087e\\evidence\\package-run"
+      ],
+      "finished_at_utc": "2026-10-31T23:52:41.459424+00:00",
+      "returncode": 0,
+      "started_at_utc": "2026-10-31T23:52:35.691400+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "ec9fea960e702501384b1b947f0ae373defa1eb23dec5dee1f488aff4b68aacb"
+    }
+  ],
+  "cross_platform_validation": false,
+  "egc0_started": false,
+  "foundation_tests": 110,
+  "gate_e_closed": false,
+  "github_hosted_ci_passed": false,
+  "historical_archive_tests": 10,
+  "lean_gate": {
+    "capability_frontier_recertified": false,
+    "fresh_lean_verified": false,
+    "gate_e_closed": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "root_transition_verified": false,
+    "status": "not_requested",
+    "toolchain": "leanprover/lean4:v4.31.0"
+  },
+  "lean_obligations": 13,
+  "live_successor_improvement_demonstrated": false,
+  "new_live_challenge_requested": false,
+  "new_package_gate_tests": 35,
+  "phase17_exit_closed": false,
+  "physical_capability_tasks": 21,
+  "promotion_performed": false,
+  "schema": "rcp-rclm.phase17d.operator-validation.v1",
+  "source_commit": "a8adc0df3c841559633965be0c402188c65ef5e2",
+  "source_tree": "edcfd89cf8358f2964b2795cbdcfe3a07f260d0a"
+}

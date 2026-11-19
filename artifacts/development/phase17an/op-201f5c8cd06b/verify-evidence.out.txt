@@ -1,0 +1,1 @@
+PASS: AN protected broker dispatch and campaign boundary admission, original TLS/process records and durable worker evidence, generated proofs, compiled artifacts, exact stage lineage, named audits and designated rejections reconstructed; no compiler, authority subprocess or task-worker process runs

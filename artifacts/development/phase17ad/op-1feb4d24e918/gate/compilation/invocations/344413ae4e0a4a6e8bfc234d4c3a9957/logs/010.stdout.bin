@@ -1,0 +1,46 @@
+'Phase17SuccessorContext.base' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.learned' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.configuration_semantics_fixed' depends on axioms: [propext, Quot.sound]
+'Phase17SuccessorContext.base_semantics_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.learned_semantics_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.packet_uses_source_context' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.base_obligations_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.learned_obligations_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.accepted_iff_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.accepted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.facts_require_parent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.accepted_requires_parent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.accepted_context_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.accepted_source_charges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.stale_parent_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.facts_change_package' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.successor_context_must_change' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.stale_successor_context_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.present_configuration_congruence' depends on axioms: [propext, Quot.sound]
+'Phase17SuccessorContext.present_acceptance_congruence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.successor_controller_available' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContext.two_step_continuation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContextExamples.selected_local_configuration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17SuccessorContextExamples.selected_first_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContextExamples.selected_next_context' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContextExamples.selected_next_parent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContextExamples.selected_next_valid' does not depend on any axioms
+'Phase17SuccessorContextExamples.selected_context_changes' depends on axioms: [propext, Quot.sound]
+'Phase17SuccessorContextExamples.selected_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContextExamples.selected_next_decision' depends on axioms: [propext]
+'Phase17SuccessorContextExamples.selected_projected_bindings' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContextExamples.selected_stale_context_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17SuccessorContextExamples.selected_frontier_retention' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContextExamples.selected_catalog_rejects_above' depends on axioms: [propext, Quot.sound]
+'Phase17SuccessorContextExamples.selected_frontier_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContextExamples.selected_frontier_card_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17SuccessorContextExamples.selected_after_saturated' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17SuccessorContextExamples.selected_no_further_strict_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

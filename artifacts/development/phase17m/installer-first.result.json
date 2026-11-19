@@ -1,0 +1,16 @@
+{
+  "returncode": 0,
+  "elapsed_seconds": 49.49659204483032,
+  "argv": [
+    "/opt/pyvenv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "/mnt/data/rcp-rclm-phase17m-kit/tests",
+    "-p",
+    "test_apply_phase17m.py",
+    "-v"
+  ]
+}

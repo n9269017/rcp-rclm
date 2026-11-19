@@ -1,0 +1,11 @@
+test_client_timeout_profile_validated (test_process_boundary.ProcessBoundaryTests.test_client_timeout_profile_validated) ... ok
+test_environment_does_not_forward_credentials_or_pythonpath (test_process_boundary.ProcessBoundaryTests.test_environment_does_not_forward_credentials_or_pythonpath) ... ok
+test_fresh_worker_commitments_differ (test_process_boundary.ProcessBoundaryTests.test_fresh_worker_commitments_differ) ... ok
+test_live_worker_bad_freeze_rejected (test_process_boundary.ProcessBoundaryTests.test_live_worker_bad_freeze_rejected) ... ok
+test_live_worker_no_caller_path_or_executable (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_caller_path_or_executable) ... ok
+test_live_worker_no_early_reveal (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_early_reveal) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 18.085s
+
+OK

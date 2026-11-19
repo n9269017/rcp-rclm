@@ -1,0 +1,1 @@
+PASS: complete producer SHA-256 inputs, block traces and retained Q/R/S/T/U/V/W/X proof inputs reconstructed; no workers, challenges, or compiler runs

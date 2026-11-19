@@ -1,0 +1,76 @@
+'Phase17ControllerAuthority.issued_spec' depends on axioms: [propext]
+'Phase17ControllerAuthority.issued_construct' depends on axioms: [propext]
+'Phase17ControllerAuthority.self_policy_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.stale_head_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.unpermitted_source_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.outstanding_lease_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.consumed_source_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.insufficient_pool_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.issued_grant_scope' does not depend on any axioms
+'Phase17ControllerAuthority.issued_semantics_fixed' depends on axioms: [propext]
+'Phase17ControllerAuthority.issued_initial_checkpoint' depends on axioms: [propext]
+'Phase17ControllerAuthority.issued_exact_reservation' depends on axioms: [propext]
+'Phase17ControllerAuthority.issued_within_pool' depends on axioms: [propext]
+'Phase17ControllerAuthority.issued_cost_not_refunded' depends on axioms: [propext]
+'Phase17ControllerAuthority.issued_vector_exact' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_spec' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_construct' depends on axioms: [propext]
+'Phase17ControllerAuthority.unissued_completion_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_exact_retention' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_cost_not_refunded' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_vector_not_refunded' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_source_consumed' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_no_replay' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_truthful_controller' depends on axioms: [propext, Quot.sound]
+'Phase17ControllerAuthority.completed_controller_projection' depends on axioms: [propext, Quot.sound]
+'Phase17ControllerAuthority.completed_controller_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ControllerAuthority.completed_exact_work' depends on axioms: [propext, Quot.sound]
+'Phase17ControllerAuthority.completed_within_issued_envelope' depends on axioms: [propext, Quot.sound]
+'Phase17ControllerAuthority.completed_actual_cost_bound' depends on axioms: [propext, Quot.sound]
+'Phase17ControllerAuthority.stop_retains_accounting' does not depend on any axioms
+'Phase17ControllerAuthority.pending_stop_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.denied_spec' depends on axioms: [propext]
+'Phase17ControllerAuthority.denied_no_new_reservation' depends on axioms: [propext]
+'Phase17ControllerAuthority.denied_is_insufficient' depends on axioms: [propext]
+'Phase17ControllerAuthority.reopened_state_retains_charges' does not depend on any axioms
+'Phase17ControllerAuthority.reopened_pending_no_completion' depends on axioms: [propext]
+'Phase17ControllerAuthority.interrupted_pending_retained' does not depend on any axioms
+'Phase17ControllerAuthority.interrupted_issuance_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.interrupted_completion_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_stale_head_refused' depends on axioms: [propext]
+'Phase17ControllerAuthority.completed_stopped' depends on axioms: [propext]
+'Phase17ControllerAuthority.reachable_debit_exact' depends on axioms: [propext]
+'Phase17ControllerAuthority.reachable_within_pool' depends on axioms: [propext]
+'Phase17ControllerAuthority.reachable_pending_issued' depends on axioms: [propext]
+'Phase17ControllerAuthority.reachable_completed_sources' depends on axioms: [propext]
+'Phase17ControllerAuthority.reachable_no_duplicate_sources' depends on axioms: [propext, Quot.sound]
+'Phase17ControllerAuthority.reachable_actual_cost_reserved' depends on axioms: [propext, Quot.sound]
+'Phase17ControllerAuthority.reachable_actual_cost_within_pool' depends on axioms: [propext, Quot.sound]
+'Phase17ControllerAuthorityExamples.case_shared_two_sources' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ControllerAuthorityExamples.case_aggregate_denial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ControllerAuthorityExamples.case_reference_stop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ControllerAuthorityExamples.case_credit_stop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17ControllerAuthorityExamples.case_interrupted_reservation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ControllerAuthorityExamples.main_issued_grants' does not depend on any axioms
+'Phase17ControllerAuthorityExamples.main_exact_reservation' does not depend on any axioms
+'Phase17ControllerAuthorityExamples.main_actual_reference_work' depends on axioms: [propext]
+'Phase17ControllerAuthorityExamples.main_unused_envelope_retained' depends on axioms: [propext]
+'Phase17ControllerAuthorityExamples.main_checkpoints_updated' does not depend on any axioms
+'Phase17ControllerAuthorityExamples.main_reopen_preserves_budget' does not depend on any axioms
+'Phase17ControllerAuthorityExamples.main_sources_consumed_once' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ControllerAuthorityExamples.first_completed_acceptance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ControllerAuthorityExamples.second_completed_acceptance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17ControllerAuthorityExamples.fixed_policy_meanings' does not depend on any axioms
+'Phase17ControllerAuthorityExamples.aggregate_denial_no_new_lease' does not depend on any axioms
+'Phase17ControllerAuthorityExamples.reference_stop_is_not_exhaustion' depends on axioms: [propext]
+'Phase17ControllerAuthorityExamples.credit_stop_is_not_exhaustion' depends on axioms: [propext]
+'Phase17ControllerAuthorityExamples.pending_reopen_cannot_complete' does not depend on any axioms
+'Phase17ControllerAuthorityExamples.pending_stop_is_refused' does not depend on any axioms

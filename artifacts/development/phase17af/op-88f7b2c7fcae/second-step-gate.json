@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_second_step_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\af-34376783\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-14T19:54:16.568854+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-14T19:03:42.371046+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "ab0b088b3bee00436e8beba50b3da53d90f9801c3d6d09fd59085789ca0af337"
+}

@@ -1,0 +1,71 @@
+'Phase17DurableAuthority.committed_spec' depends on axioms: [propext]
+'Phase17DurableAuthority.committed_construct' depends on axioms: [propext]
+'Phase17DurableAuthority.committed_witness_exact' depends on axioms: [propext]
+'Phase17DurableAuthority.committed_serial' depends on axioms: [propext]
+'Phase17DurableAuthority.committed_epoch' depends on axioms: [propext]
+'Phase17DurableAuthority.committed_epoch_nondecreasing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17DurableAuthority.committed_identity' depends on axioms: [propext]
+'Phase17DurableAuthority.committed_image' depends on axioms: [propext]
+'Phase17DurableAuthority.committed_image_fields_change' depends on axioms: [propext]
+'Phase17DurableAuthority.committed_witness_revision' depends on axioms: [propext]
+'Phase17DurableAuthority.wrong_root_refused' depends on axioms: [propext]
+'Phase17DurableAuthority.wrong_stored_root_refused' depends on axioms: [propext]
+'Phase17DurableAuthority.stale_epoch_refused' depends on axioms: [propext]
+'Phase17DurableAuthority.stale_cursor_refused' depends on axioms: [propext]
+'Phase17DurableAuthority.unchanged_image_refused' depends on axioms: [propext]
+'Phase17DurableAuthority.predecessor_cursor_consumed_once' depends on axioms: [propext, Quot.sound]
+'Phase17DurableAuthority.reopened_epoch_strict' depends on axioms: [propext]
+'Phase17DurableAuthority.reopened_old_handle_refused' depends on axioms: [propext, Quot.sound]
+'Phase17DurableAuthority.reopened_pending_charges_retained' depends on axioms: [propext]
+'Phase17DurableAuthority.reopened_owner_cannot_execute' depends on axioms: [propext]
+'Phase17DurableAuthority.accepted_receipt_exact' does not depend on any axioms
+'Phase17DurableAuthority.wrong_request_receipt_refused' does not depend on any axioms
+'Phase17DurableAuthority.precommit_receipt_refused' depends on axioms: [propext, Quot.sound]
+'Phase17DurableAuthority.precommit_crash_retains_root' does not depend on any axioms
+'Phase17DurableAuthority.lost_acknowledgement_retains_root' does not depend on any axioms
+'Phase17DurableAuthority.crash_retains_pending_charges' does not depend on any axioms
+'Phase17DurableAuthority.reachable_witness' depends on axioms: [propext]
+'Phase17DurableAuthority.reachable_serial_matches_witness' depends on axioms: [propext]
+'Phase17DurableAuthority.reachable_epoch_bounded_by_commits' depends on axioms: [propext, Quot.sound]
+'Phase17DurableAuthority.reachable_sources_consumed_once' depends on axioms: [propext, Quot.sound]
+'Phase17DurableAuthority.reachable_within_authorized_pool' depends on axioms: [propext]
+'Phase17DurableAuthority.reachable_completed_and_pending_accounted' depends on axioms: [propext, Quot.sound]
+'Phase17DurableAuthority.identical_root_copies_accept_identically' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.case_shared_two_sources' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17DurableAuthorityExamples.case_interrupted_reservation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17DurableAuthorityExamples.case_aggregate_denial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17DurableAuthorityExamples.main_exact_witness_projection' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.main_exact_reservation' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.main_actual_reference_work' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.main_completed_and_pending_accounted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17DurableAuthorityExamples.main_sources_consumed_once' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17DurableAuthorityExamples.main_serial_and_epoch' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.first_committed_reservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17DurableAuthorityExamples.competing_former_cursor_refused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17DurableAuthorityExamples.reopened_former_handle_refused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17DurableAuthorityExamples.first_reservation_not_acknowledged_before_commit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17DurableAuthorityExamples.first_committed_receipt_bound' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.old_receipt_is_not_current' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.pending_reopen_retains_charge' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.pending_reopen_cannot_execute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17DurableAuthorityExamples.precommit_crash_keeps_pending_reservation' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.lost_ack_keeps_committed_reservation' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.aggregate_denial_keeps_charge' depends on axioms: [propext]
+'Phase17DurableAuthorityExamples.joint_root_rollback_is_outside_guarantee' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17DurableAuthorityExamples.root_cloning_is_outside_guarantee' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

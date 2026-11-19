@@ -1,0 +1,11 @@
+test_live_worker_no_seed_override (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_seed_override) ... ok
+test_real_worker_freeze_and_evaluate (test_process_boundary.ProcessBoundaryTests.test_real_worker_freeze_and_evaluate) ... ok
+test_real_worker_has_distinct_pid_and_sealed_recomputation (test_process_boundary.ProcessBoundaryTests.test_real_worker_has_distinct_pid_and_sealed_recomputation) ... ok
+test_seal_prevents_more_requests (test_process_boundary.ProcessBoundaryTests.test_seal_prevents_more_requests) ... ok
+test_timeout_kills_worker_without_success (test_process_boundary.ProcessBoundaryTests.test_timeout_kills_worker_without_success) ... ok
+test_worker_death_fails_closed (test_process_boundary.ProcessBoundaryTests.test_worker_death_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 21.032s
+
+OK

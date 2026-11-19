@@ -1,0 +1,123 @@
+INSTALLER UNITS: controlled compiler records, NOT Lean proofs
+test_claim_escalation (test_apply_phase17n.InstallerUnits.test_claim_escalation) ... ok
+test_command_substitution (test_apply_phase17n.InstallerUnits.test_command_substitution) ... ok
+test_denied_callback_execution (test_apply_phase17n.InstallerUnits.test_denied_callback_execution) ... ok
+test_document_preimage_is_pinned (test_apply_phase17n.InstallerUnits.test_document_preimage_is_pinned) ... ok
+test_duplicate_manifest_paths (test_apply_phase17n.InstallerUnits.test_duplicate_manifest_paths) ... ok
+test_exact_crlf_preservation (test_apply_phase17n.InstallerUnits.test_exact_crlf_preservation) ... ok
+test_existing_code_edit_forbidden (test_apply_phase17n.InstallerUnits.test_existing_code_edit_forbidden) ... ok
+test_existing_new_path_forbidden (test_apply_phase17n.InstallerUnits.test_existing_new_path_forbidden) ... ok
+test_extra_payload (test_apply_phase17n.InstallerUnits.test_extra_payload) ... ok
+test_failure_refund (test_apply_phase17n.InstallerUnits.test_failure_refund) ... ok
+test_false_integer_rejected (test_apply_phase17n.InstallerUnits.test_false_integer_rejected) ... ok
+test_forged_total (test_apply_phase17n.InstallerUnits.test_forged_total) ... ok
+test_gate_files_and_tamper (test_apply_phase17n.InstallerUnits.test_gate_files_and_tamper) ... ok
+test_ignored_logs_not_forced (test_apply_phase17n.InstallerUnits.test_ignored_logs_not_forced) ... ok
+test_journal_tamper (test_apply_phase17n.InstallerUnits.test_journal_tamper) ... ok
+test_link_rejection (test_apply_phase17n.InstallerUnits.test_link_rejection) ... ok
+test_literal_path_staging (test_apply_phase17n.InstallerUnits.test_literal_path_staging) ... ok
+test_lock_files_not_retained (test_apply_phase17n.InstallerUnits.test_lock_files_not_retained) ... ok
+test_log_tamper (test_apply_phase17n.InstallerUnits.test_log_tamper) ... ok
+test_manifest_hash (test_apply_phase17n.InstallerUnits.test_manifest_hash) ... ok
+test_manifest_omission (test_apply_phase17n.InstallerUnits.test_manifest_omission) ... ok
+test_missing_audit (test_apply_phase17n.InstallerUnits.test_missing_audit) ... ok
+test_missing_negative (test_apply_phase17n.InstallerUnits.test_missing_negative) ... ok
+test_missing_operation (test_apply_phase17n.InstallerUnits.test_missing_operation) ... ok
+test_negative_acceptance (test_apply_phase17n.InstallerUnits.test_negative_acceptance) ... ok
+test_negative_timeout (test_apply_phase17n.InstallerUnits.test_negative_timeout) ... ok
+test_old_proof_not_relabelled (test_apply_phase17n.InstallerUnits.test_old_proof_not_relabelled) ... ok
+test_pending_refund (test_apply_phase17n.InstallerUnits.test_pending_refund) ... ok
+test_positive_compiler_failure (test_apply_phase17n.InstallerUnits.test_positive_compiler_failure) ... ok
+test_positive_stderr (test_apply_phase17n.InstallerUnits.test_positive_stderr) ... ok
+test_preparation_not_formal_success (test_apply_phase17n.InstallerUnits.test_preparation_not_formal_success) ... ok
+test_resource_scope_not_hidden (test_apply_phase17n.InstallerUnits.test_resource_scope_not_hidden) ... ok
+test_test_count_and_skip_guard (test_apply_phase17n.InstallerUnits.test_test_count_and_skip_guard) ... ok
+test_unapproved_axiom (test_apply_phase17n.InstallerUnits.test_unapproved_axiom) ... ok
+test_unsafe_paths (test_apply_phase17n.InstallerUnits.test_unsafe_paths) ... ok
+test_valid_execution (test_apply_phase17n.InstallerUnits.test_valid_execution) ... ok
+test_wrong_candidate (test_apply_phase17n.InstallerUnits.test_wrong_candidate) ... ok
+test_wrong_negative_reason (test_apply_phase17n.InstallerUnits.test_wrong_negative_reason) ... ok
+test_wrong_policy (test_apply_phase17n.InstallerUnits.test_wrong_policy) ... ok
+test_wrong_source (test_apply_phase17n.InstallerUnits.test_wrong_source) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 0.095s
+
+OK
+
+TEMPORARY GIT FLOWS: controlled test/compiler outcomes
+test_changed_proof_no_advancement (test_apply_phase17n.InstallerFlow.test_changed_proof_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmp0uaphdbk/work/n-3a380298
+Original checkout advanced: False
+ok
+test_dirty_original_refused (test_apply_phase17n.InstallerFlow.test_dirty_original_refused) ... ok
+test_failed_tests_no_advancement (test_apply_phase17n.InstallerFlow.test_failed_tests_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpyyl9zlnx/work/n-69f58cf4
+Original checkout advanced: False
+ok
+test_formal_failure_no_advancement (test_apply_phase17n.InstallerFlow.test_formal_failure_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpchr9zf1a/work/n-62bd44eb
+Original checkout advanced: False
+ok
+test_full_flow_normal_push (test_apply_phase17n.InstallerFlow.test_full_flow_normal_push) ... To /tmp/tmplrzeqy6b/remote.git
+   f3183ed..6900027  69000278d2f7526559f51b0d131dcfb938f37ddf -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_no_push_retains_validated_local_commits (test_apply_phase17n.InstallerFlow.test_no_push_retains_validated_local_commits) ... ok
+test_rejected_push_keeps_validated_local_head (test_apply_phase17n.InstallerFlow.test_rejected_push_keeps_validated_local_head) ... To /tmp/tmp0_9h0508/remote.git
+ ! [remote rejected] d44354c17173fe6344b5856f2faf866ee1221f1e -> agent/rcp-rclm-v5-phase-17-controller (pre-receive hook declined)
+error: failed to push some refs to '/tmp/tmp0_9h0508/remote.git'
+Stopped; workspace and logs retained: /tmp/tmp0_9h0508/work/n-2cbc36e5
+Original checkout advanced: True
+ok
+test_remote_movement_no_advancement (test_apply_phase17n.InstallerFlow.test_remote_movement_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpff0tdwop/work/n-553e08c8
+Original checkout advanced: False
+ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 33.325s
+
+OK
+
+FLOW COMMAND OUTPUT
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 31 entries; not committed
+PASS: 31 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 31 entries; not committed
+PASS: 31 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 31 entries; not committed
+PASS: 31 canonical index checksum entries
+Updated canonical manifest: 5 entries; not committed
+PASS: 5 canonical index checksum entries
+PASS: 5 canonical index checksum entries
+Updated canonical manifest: 7 entries; not committed
+PASS: 7 canonical index checksum entries
+Updated canonical manifest: 31 entries; not committed
+PASS: 31 canonical index checksum entries

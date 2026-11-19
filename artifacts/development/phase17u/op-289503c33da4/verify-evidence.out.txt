@@ -1,0 +1,1 @@
+PASS: captured planner bytes and score inputs and retained Q/R/S/T/U proof inputs reconstructed; no workers, challenges, or compiler runs

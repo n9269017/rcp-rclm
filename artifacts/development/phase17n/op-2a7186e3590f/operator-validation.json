@@ -1,0 +1,94 @@
+{
+  "automatic_retries": 0,
+  "binding": {
+    "candidate_package_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+    "fixed_verifier_hash": "fc4cf15ec370547b14fc67ae360269cea71cbc10d773536d1a77891acbe3bf7e",
+    "predecessor_package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+    "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+  },
+  "campaign_budget_authority_integrated": false,
+  "charged_cost": 4032,
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_resource_tests.py"
+      ],
+      "finished_at_utc": "2026-11-07T18:37:54.952130+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-07T18:37:40.852576+00:00",
+      "stderr_sha256": "a0d819de7e34784581fb9e7a978799405f728ac387f6dd86926e8743df9c9ea6",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_resource_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\n-004f220e\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-07T18:43:43.323735+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-07T18:37:54.954034+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "47b1306853cc80fff39d06c84bacd01ae3dcf730b3d5b09f7697d1ee36bb80a5"
+    }
+  ],
+  "complete_learned_kernel_constructed": false,
+  "complete_resource_accounting": false,
+  "cost_limit": 9920,
+  "cross_platform_validation": false,
+  "denied_operation_calls": 0,
+  "egc0_started": false,
+  "event_count": 308,
+  "failed_work_charge_retained": 24,
+  "full_frontier_recertified": false,
+  "full_goal_interpretation_supplied": false,
+  "full_information_interpretation_supplied": false,
+  "full_learned_step_instantiated": false,
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "gate_e_closed": false,
+  "gate_execution_sha256": "169f05f56749401bc1a348243468493ecc8bbb543fbd8a1e78844f6cea42d4db",
+  "github_hosted_ci_passed": false,
+  "historical_cost_recovered": false,
+  "interrupted_work_charge_retained": 24,
+  "live_capability_gain_demonstrated": false,
+  "live_challenge_generated": false,
+  "new_named_audits": 12,
+  "new_tests": 79,
+  "old_proofs_rerun": false,
+  "old_suites_rerun": false,
+  "operation_count": 153,
+  "os_resource_containment": false,
+  "phase17_exit_closed": false,
+  "physical_execution_attested": false,
+  "physical_projection_formally_verified": false,
+  "promotion_authorized": false,
+  "promotion_performed": false,
+  "recursive_productivity_recertified": false,
+  "retained_phase17m": {
+    "path": "artifacts/development/phase17m/op-f39cc8c31d52-proof/gate/execution.json",
+    "proofs_rerun": false,
+    "sha256": "58991d82335214500d9c8b2d721d90444b1b9812f90edbbffae7b6cea899a922",
+    "tested_source": "f39cc8c31d52030c3b07c28a024b38ab12090362"
+  },
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17n.operator-validation.v1",
+  "scoped_resource_gate": "passed",
+  "source_commit": "2a7186e3590fb7f77dc217f90587ec6511fb5d72",
+  "source_tree": "b30ef41063366a67b287c7b1fa370490e207d03f",
+  "spent": [
+    9,
+    144,
+    576,
+    576
+  ],
+  "synthetic_fixture": true,
+  "training_performed": false
+}

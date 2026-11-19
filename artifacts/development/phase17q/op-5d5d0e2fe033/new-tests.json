@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_finite_kernel_tests.py"
+  ],
+  "finished_at_utc": "2026-11-08T01:55:34.272750+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T01:54:47.891977+00:00",
+  "stderr_sha256": "e9c612f39026cd6c40eec55bc4dfe386fbb237c01831d3122c5ff23d3acb4eb5",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

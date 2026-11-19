@@ -1,0 +1,65 @@
+test_changed_proof_no_advancement (test_apply_phase17l.InstallerFlow.test_changed_proof_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpa0d91ux2/work/l-e9de658f
+Original checkout advanced: False
+ok
+test_dirty_original_refused (test_apply_phase17l.InstallerFlow.test_dirty_original_refused) ... ok
+test_failed_tests_no_advancement (test_apply_phase17l.InstallerFlow.test_failed_tests_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpb0958wrr/work/l-c5f4f6e9
+Original checkout advanced: False
+ok
+test_formal_failure_no_advancement (test_apply_phase17l.InstallerFlow.test_formal_failure_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpthrb536u/work/l-342f6aa4
+Original checkout advanced: False
+ok
+test_full_flow_normal_push (test_apply_phase17l.InstallerFlow.test_full_flow_normal_push) ... To /tmp/tmp759ljwy0/remote.git
+   4e00d04..2584ee8  2584ee8304bab297ea26353e713ae180cc0274cc -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_no_push_retains_validated_local_commits (test_apply_phase17l.InstallerFlow.test_no_push_retains_validated_local_commits) ... ok
+test_rejected_push_keeps_validated_local_head (test_apply_phase17l.InstallerFlow.test_rejected_push_keeps_validated_local_head) ... To /tmp/tmpy3v1e9pe/remote.git
+ ! [remote rejected] efda4b82480ea574df350b58c85878ee00d37b08 -> agent/rcp-rclm-v5-phase-17-controller (pre-receive hook declined)
+error: failed to push some refs to '/tmp/tmpy3v1e9pe/remote.git'
+Stopped; workspace and logs retained: /tmp/tmpy3v1e9pe/work/l-0ea7337a
+Original checkout advanced: True
+ok
+test_remote_movement_no_advancement (test_apply_phase17l.InstallerFlow.test_remote_movement_no_advancement) ... Stopped; workspace and logs retained: /tmp/tmpzuzgd5dz/work/l-9f881699
+Original checkout advanced: False
+ok
+test_claim_escalation (test_apply_phase17l.InstallerUnits.test_claim_escalation) ... ok
+test_command_substitution (test_apply_phase17l.InstallerUnits.test_command_substitution) ... ok
+test_conditional_not_instantiated (test_apply_phase17l.InstallerUnits.test_conditional_not_instantiated) ... ok
+test_duplicate_manifest_paths (test_apply_phase17l.InstallerUnits.test_duplicate_manifest_paths) ... ok
+test_exact_crlf_preservation (test_apply_phase17l.InstallerUnits.test_exact_crlf_preservation) ... ok
+test_existing_code_edit_forbidden (test_apply_phase17l.InstallerUnits.test_existing_code_edit_forbidden) ... ok
+test_extra_payload (test_apply_phase17l.InstallerUnits.test_extra_payload) ... ok
+test_gate_files_and_tamper (test_apply_phase17l.InstallerUnits.test_gate_files_and_tamper) ... ok
+test_ignored_logs_not_forced (test_apply_phase17l.InstallerUnits.test_ignored_logs_not_forced) ... ok
+test_integer_false_rejected (test_apply_phase17l.InstallerUnits.test_integer_false_rejected) ... ok
+test_link_rejection (test_apply_phase17l.InstallerUnits.test_link_rejection) ... ok
+test_literal_long_paths (test_apply_phase17l.InstallerUnits.test_literal_long_paths) ... ok
+test_log_tamper (test_apply_phase17l.InstallerUnits.test_log_tamper) ... ok
+test_manifest_hash (test_apply_phase17l.InstallerUnits.test_manifest_hash) ... ok
+test_manifest_omission (test_apply_phase17l.InstallerUnits.test_manifest_omission) ... ok
+test_missing_audit (test_apply_phase17l.InstallerUnits.test_missing_audit) ... ok
+test_missing_negative (test_apply_phase17l.InstallerUnits.test_missing_negative) ... ok
+test_mixed_joint_binding (test_apply_phase17l.InstallerUnits.test_mixed_joint_binding) ... ok
+test_models_excluded_from_evidence_copy (test_apply_phase17l.InstallerUnits.test_models_excluded_from_evidence_copy) ... ok
+test_negative_acceptance (test_apply_phase17l.InstallerUnits.test_negative_acceptance) ... ok
+test_negative_timeout (test_apply_phase17l.InstallerUnits.test_negative_timeout) ... ok
+test_positive_compiler_failure (test_apply_phase17l.InstallerUnits.test_positive_compiler_failure) ... ok
+test_positive_stderr (test_apply_phase17l.InstallerUnits.test_positive_stderr) ... ok
+test_preparation_not_formal_success (test_apply_phase17l.InstallerUnits.test_preparation_not_formal_success) ... ok
+test_promotion_claim_from_gate (test_apply_phase17l.InstallerUnits.test_promotion_claim_from_gate) ... ok
+test_remaining_premise_not_hidden (test_apply_phase17l.InstallerUnits.test_remaining_premise_not_hidden) ... ok
+test_report_reassignment_rejected (test_apply_phase17l.InstallerUnits.test_report_reassignment_rejected) ... ok
+test_subpacket_tamper (test_apply_phase17l.InstallerUnits.test_subpacket_tamper) ... ok
+test_test_count_and_skip_guard (test_apply_phase17l.InstallerUnits.test_test_count_and_skip_guard) ... ok
+test_unapproved_axiom (test_apply_phase17l.InstallerUnits.test_unapproved_axiom) ... ok
+test_unsafe_paths (test_apply_phase17l.InstallerUnits.test_unsafe_paths) ... ok
+test_valid_execution (test_apply_phase17l.InstallerUnits.test_valid_execution) ... ok
+test_wrong_candidate (test_apply_phase17l.InstallerUnits.test_wrong_candidate) ... ok
+test_wrong_counts (test_apply_phase17l.InstallerUnits.test_wrong_counts) ... ok
+test_wrong_negative_reason (test_apply_phase17l.InstallerUnits.test_wrong_negative_reason) ... ok
+test_wrong_source (test_apply_phase17l.InstallerUnits.test_wrong_source) ... ok
+test_wrong_transcript (test_apply_phase17l.InstallerUnits.test_wrong_transcript) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 36.881s
+
+OK

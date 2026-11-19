@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\al-65c5862d\e\gate\compilation\invocations\d866a4253cbb4e28893ba50211887b3d\workspace/CampaignCompletionBeforeLaunch.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

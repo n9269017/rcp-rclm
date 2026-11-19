@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_sparse_refinement_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\r-c63c42f4\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-08T05:00:31.501365+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T04:37:31.398704+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "15d3578c5714b10c4234c8d73d12bb16072e58b143cb4645c22b4ed47856419e"
+}

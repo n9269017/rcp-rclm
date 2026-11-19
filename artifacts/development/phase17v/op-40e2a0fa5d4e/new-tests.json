@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_program_metadata_tests.py"
+  ],
+  "finished_at_utc": "2026-11-08T20:55:26.675981+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T20:54:00.626341+00:00",
+  "stderr_sha256": "167c2c0b2416fc93c0b28b16afa687696c7828625a0def23103accfaecfcb070",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

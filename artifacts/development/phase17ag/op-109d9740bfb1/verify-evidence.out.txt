@@ -1,0 +1,1 @@
+PASS: AG truthful successor interface under the fixed interpretation guard, generated proofs, compiled artifacts, exact stage lineage, named audits and designated rejections reconstructed; no compiler or worker runs

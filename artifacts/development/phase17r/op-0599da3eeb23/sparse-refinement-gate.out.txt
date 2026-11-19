@@ -1,0 +1,595 @@
+{
+  "automatic_retries": 0,
+  "bindings": {
+    "candidate_physical_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+    "challenge_commitment_hash": "478d7884588779bca1483fb65d06d2a4b4d430960c47a6fdfd8036fb8a39c2ab",
+    "historical_state_hash": "7d2b823c05e4e4cef7566a89d3d440dba60a6417c6a3401f1248e59f89e91567",
+    "objective_hash": "e6a40e7a55002356e5a5c35262b35a7e98f54e9aa1153db60945215d56e941d3",
+    "predecessor_physical_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+    "program_hash": "a4f37fb8f2f7d3a90829340f2f02b2f19dbc5dfa5caf7a7633e9092837265c0e",
+    "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f"
+  },
+  "claims": {
+    "active_store_written": false,
+    "campaign_budget_authority_integrated": false,
+    "complete_learned_kernel_constructed": false,
+    "complete_resource_accounting": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "full_autonomous_step_instantiated": false,
+    "full_frontier_recertified": false,
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "physical_execution_attested": false,
+    "physical_projection_formally_verified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "conditional_rows_per_package": 260,
+  "finished_at_utc": "2026-11-08T05:00:31.468341+00:00",
+  "finite_packet_sha256": "b6dd8df26fb7efc25c6fed6cc7832bf65a42b933fd2d1276346695bd8451c9e5",
+  "fixture_is_live_result": false,
+  "formal_progress_sha256": "a4b65030e3eb47902ac2a24daba9be7aa5ed5f7aeabdc967481438e40acc0da1",
+  "fresh_live_challenges": 0,
+  "fresh_worker_sessions": 0,
+  "full_root_assessment": "blocked_missing_physical_and_full_semantic_witnesses",
+  "greedy_continuation_comparisons": 22,
+  "historical_success_reports_reassigned": false,
+  "local_increment_checks_passed": true,
+  "negative_controls": [
+    "ChangedTensorByte",
+    "TransposedTensor",
+    "AlteredProbability",
+    "WrongMarker",
+    "MissingEOS",
+    "InvalidByteRange",
+    "WrongSignedBoundary",
+    "WrongGreedyTie"
+  ],
+  "new_frontier_gain_demonstrated": false,
+  "new_named_audits": [
+    "Phase17Sparse.signed16_range",
+    "Phase17Sparse.clipped_score_range",
+    "Phase17Sparse.dyadic_weight_positive",
+    "Phase17Sparse.row_probability_normalized",
+    "Phase17Sparse.mass_binding_sound",
+    "Phase17Sparse.distribution_binding_sound",
+    "Phase17Sparse.information_binding_sound",
+    "Phase17Sparse.selected_byte_images",
+    "Phase17Sparse.selected_score_projection",
+    "Phase17Sparse.selected_mass_projection",
+    "Phase17Sparse.selected_goal_decode",
+    "Phase17Sparse.selected_information_transport",
+    "Phase17Sparse.selected_learned_acceptance_bound",
+    "Phase17Sparse.selected_codec_edges",
+    "Phase17Sparse.selected_decoder_edges"
+  ],
+  "nonzero_bytes_per_package": {
+    "after": 178,
+    "before": 178
+  },
+  "old_proof_campaigns_rerun": false,
+  "os": "Windows",
+  "packet_sha256": "505d704bbab6d1f72d22dd36f5f75ea128057ffb48b11000937728abaabb07ad",
+  "preparation_checks_passed": true,
+  "preparation_only": false,
+  "production_row_comparisons": 520,
+  "proof_mode": "real_pinned_lean",
+  "proof_source_sha256": {
+    "AlteredProbability": "05688041e1a281921028feb969dda02ae32ef8c10949a805a66ff6089d4d81e5",
+    "ChangedTensorByte": "eeab56c214e4666d96dc853a951a5c43b3a77f68ee73fba23adf65aa8435eaf8",
+    "InvalidByteRange": "cd193c9976fbf953a10de15799d3a29d428aefe657e5353737acda1b20176b55",
+    "MissingEOS": "03a02056ecb6ddb3265ebddd49d5e91b6b2571bf7f6bd98b0d89d5c34cd0c2c6",
+    "Phase17QDependency": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+    "SparseRefinement": "335f3fbcf95e9e2f6f8abe6ccc93ac97385cc872954c9454dabdc0209801e808",
+    "TransposedTensor": "e30a5c286be90b935df0964590292a0ea1dbc274adc602f773f8b830b5d40c54",
+    "WrongGreedyTie": "67e0831df6d0ea2a688a70b02ae96caefabd44a4a7b479d7e47882cbc520757d",
+    "WrongMarker": "0bdb8b3f569c4c6612e3203236f2274926ca32d5bfb7f93a8d35ac8c7f020290",
+    "WrongSignedBoundary": "a32786d2f465894f76fb242948a99b8be54c1497c350771b1c4ddd96c64d6db2"
+  },
+  "protected_sparse_decoder_checked": true,
+  "protected_target_positions": 28,
+  "protected_task_count": 11,
+  "python_version": "3.13.3",
+  "retained_phase17q": {
+    "path": "artifacts/development/phase17q/op-5d5d0e2fe033/gate/execution.json",
+    "sessions_rerun": false,
+    "sha256": "cfc8ea42284efe018cdf6abb675db1969d5a2e35b052314197fdcac1004e55a1"
+  },
+  "retained_sha256": {
+    "artifacts/development/phase17q/op-5d5d0e2fe033/gate/FiniteKernel.lean": "7da29c3aebf34671927e13ff781853b792e61ebda46b1744686a2548e42baf80",
+    "artifacts/development/phase17q/op-5d5d0e2fe033/gate/execution.json": "cfc8ea42284efe018cdf6abb675db1969d5a2e35b052314197fdcac1004e55a1",
+    "artifacts/development/phase17q/op-5d5d0e2fe033/gate/packet.json": "b6dd8df26fb7efc25c6fed6cc7832bf65a42b933fd2d1276346695bd8451c9e5",
+    "artifacts/development/phase17q/op-5d5d0e2fe033/operator-validation.json": "2512a13dd8600755eec122240d88a831987e62101bd761c53efa5181eb0bb26b"
+  },
+  "same_run_dependency_compilations": 1,
+  "schema": "rcp-rclm.phase17r.sparse-byte-refinement-execution.v1",
+  "score_cells_per_package": 67600,
+  "selected_frontier": [
+    21,
+    22
+  ],
+  "source_commit": "0599da3eeb2361fe13769b9ffb24cc0561b806c9",
+  "source_sha256": {
+    "lean/phase17_bridge/ConservativeRegistry.lean": "a6b4b24d6f5b783ec12617608098bd6aafa2ae99262b87a2044626b5e4801098",
+    "lean/phase17_bridge/FiniteObservationKernel.lean": "81e6371015b8f10c83312f0733a9df7b3b4a75bbbe36348e5b187dd564a60879",
+    "lean/phase17_bridge/JointEvidence.lean": "fb2c7b1dc21a73ae6bcf1b2d554236d2f0569dc84568618b645a6f32cb61428d",
+    "lean/phase17_bridge/LearnedStateBinding.lean": "2184da4d22db9d9d55f5978968f7ba4e4d769b07d22f86a81cef678cb730f8ab",
+    "lean/phase17_bridge/ProposalProvenance.lean": "3cae873ff4dba673c926ac4ecf214d349c2ec6a635bf0ead44547bebc76056a4",
+    "lean/phase17_bridge/ProtectedSemantics.lean": "2e7a34d2a61e5772c4f738f125ec93738c7f5a2a87b6c1b4783a039a1ca5ae4a",
+    "lean/phase17_bridge/ResourceAccounting.lean": "0dedb05591770f67e8ede705930d3c850edc0ff4ada0bb6768033def975b3ca5",
+    "lean/phase17_bridge/SparseByteRefinement.lean": "cc312ee118b7939e0bf61a12df8611c5e8cfae3e78ae94890ad6f49668a04202",
+    "lean/phase17_bridge/SuccessorEvidence.lean": "a947147a280df0de68186549752fb1d180d73a587d790eee364b347ce3fe44e7",
+    "lean/phase17_bridge/TaskFrontier.lean": "fcc5cdfcbc87f3a0d5aeed901e685ecb5191aee293afc23f22d054291a99c114",
+    "python/rcp_rclm_runtime_v2/rcp_rclm_runtime/mathematics/intervals.py": "f5ad340271f6cde73f8cd350c4252d9accea364e0161a37ebe8687343edb5d1c",
+    "python/rcp_rclm_runtime_v2/rcp_rclm_runtime/mathematics/rational.py": "dc8d5a4f1f3934a86f64cde059b4909e0b5bec1d3bedf145f767634a4883abde",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/constants.py": "a2254372ee5b0268085a919d428accd9b82826f48beea3efdcd95cbe346d0b43",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/information.py": "75ca2571d564715d8d75ee3b07c83f042cbc5bfab3f3b1803cc20739942d3fe9",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/learned_data.py": "cbd602b233c2bbc24b23ed30a4b5dcef28f6081e34964c2cc92f96402044bade",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/package.py": "4dde7fcc5418474fb517785fc6e77e09918ddaf717d0630e934e10a900604d6d",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/sparse_profile.py": "ccc4215a9fbe3520078da7179271513da6b90cd5fd8568bcf5f29858380d44a1",
+    "python/rcp_rclm_runtime_v3/rcp_rclm_runtime_v3/phase10/tensors.py": "73131f0996ef03104ece560442f94a90851a8dbf0bba93bd87ef92d33cc6c8df",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase14/challenges.py": "4ebcacf07ea4000267bafd6ba0de9f89f55718c7bd09f252745d4f383920d014",
+    "python/rcp_rclm_runtime_v4/rcp_rclm_runtime_v4/phase14/tasks.py": "73ed9cc123142f5cc03828f8be98b0fa523867b986a587ed55aee36d405d2d5a",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/__init__.py": "7fb233fdb2ddd898f9f10cb5ee4828b765c5c9b5cafa9a1b6e0b3651b1ad29d7",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/bootstrap.py": "c95e37240101e94de540300f23a977d0492449e3890c2a5b928c142fd622389e",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_budget.py": "f9b58a8be32654173300ad4316c742e7f10e408ad7cb8aad97c018c00543e722",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_client.py": "df5443dfc0c6cf699d85187e96363da8149f11a461f6f7f8006fc63895c41837",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_transaction.py": "62a8130de8db0c30d7a9b4a60170fb374a06dc5f1560d3de28ba4b75871e8b7b",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/campaign_validation.py": "9f0645474d02e22bc400d50c38f805638f65639e07110122397882e48094b4da",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_client.py": "aec1d7ff74dec85987b1fbfeb195f3c807078e9742a3a70ec74c31a3377ac560",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_protocol.py": "fd45a59eafacc8528ce3865dc8601b017b340e3dd59047701b8fe77204bdecfb",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/challenge_transaction.py": "39de2c46849c7a2605522c0c88d25a83820d178252d23a2454e33e84efb12f04",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/conservative_extension.py": "bbf8fc5327e6086790cfa523e56e6a296b1a3fd633c2f4c6f60b643ffd178fc1",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/conservative_lean.py": "b54d77510e8c6f5e41fe225240d9d336a6d3a57745e1ee8749494cad97adeb45",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/controller.py": "a6d6dadf7fbe33a28017d4b6b2d690ea0ff8fd68133aa2423c5a8b7bf4b1ed0a",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/finite_kernel.py": "c7a983b05ab758bb13104a4630d64d0edac9a072393f36826b667c557571555a",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/finite_kernel_check.py": "b6bb453e145d8dfc27ab041016f3ee42807ab170177465ecb3400cf6acf83f62",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/finite_kernel_lean.py": "82105b8da6dda677e34cfb03499089d3ca2dedd0f16b88c54245495b798709f2",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/frontier_meaning_lean.py": "fc129fd6fcc394db95a8527009c30b13053752755bbaeaabedcabfbdccabcd86",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/frontier_meanings.py": "ce810cd57f7811dcfe541f2187ad9d93fedc1c88c944e0942eb7c3631deb00ac",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/frontier_recertification.py": "46ec2b1f477c6f2fcb17fd7f8ac2211e86dadb4ddce4042dea137980e74b4bdc",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/handoff_source.py": "e1ebf688efa9541182f60852b9befc4e66b137ff92c7a16210a27d4323f6b0e4",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/handoff_validation.py": "3156a0c853d226fb47864fd85b95a1aa7d1483e8e7065d147c466cdd72064cb9",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/joint_evidence.py": "066c34f4a131ad77ef8b76cdf1af27c77ed79d56124dfcaa2074cba8d6304928",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/joint_lean.py": "68f46698ddbd022b99b9d417dc4f6ca9d9e05ca6073ee6508bac63982bcdb4ea",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/lean_frontier_gate.py": "4591ee0e11b788c1f73371327c1882e45ecb74b11e427f897a038b371ee84da1",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/lean_root_pins.json": "ec2226ce520783d965a8e8370dcccce550751e90935fb79ba76ebc137bfc658f",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/learned_binding_lean.py": "b0f02d8e4f5b21f8be66b6e8feea2885d9d1b3d56a42bc10240fecbd0652142d",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/learned_state_binding.py": "bd88e43a04ee1f4d53819836e18966fe4834c711117d6fa4a3e5b22a42e8e2da",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/materialized.py": "215c9673c609164d5538507c7e3a883f4b7298a3c70d79776aff0ccb92981b97",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/metered_evaluation.py": "e9973fc598ac016dbef08f5fb8cc522d60db5b98a72f928d91ed74d0c725098c",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/metered_worker.py": "3e1e745812fcf4736e8e1b4be5e695c479421fb0d101f0862e88006c26522c4d",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/objectives.py": "25d3f10b15c74da1a3b0f9a2f4716ddbbc59b008428a63a25b74b9f8edae3a2d",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/operational_lean.py": "244fe60d6d54ecc64aaac016ec9e686caf355e3ed6688a5cd980dc972527aa55",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/operational_witnesses.py": "27c6866a532ddaa3c1aa7e8cce8ff28df9b511d90a25c4ec64f91a0116ba9417",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/phase16_adapter.py": "df528e8d944b005ebaeaada3b38b95939463c82a839aaabe013bac90e4722069",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/proposal_provenance.py": "8b04ee24e6d5f61ef2b2b2748bcd383960983d58be14bf606de6db0e4b1f3a7c",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/protected_semantics.py": "283240db07a0ddaa207850b506f4e3a3b8d549bd62e4432646270fe59a81f3cd",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/protected_semantics_lean.py": "92b0cd8a18437f875a0926fe1563183cf02bcc9152be0aabcf188810907a33bb",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/provenance_lean.py": "c2c84d13e3b3e3244cb430ceb53199cf239f0b5af8094a0fe76f350bea1fd3c9",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/resource_lean.py": "34c1174f079b0378df6fe88cf35af6167e0ab2f40beff1e18a94ec49de64169e",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/resource_ledger.py": "4c7decc2b69dacad1a56a505529094cea5e7fcf2888cbfafa8e137333f882b0e",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/sparse_refinement.py": "5ccb7f16f05e572cef462dc5909503e60bde6ff53c77f7cc6d647b364cdbe5fd",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/sparse_refinement_check.py": "88c5729bd0f4cfb03d417cf736cc247345b6fada0c01dbde8ed51cc49d1df5de",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/sparse_refinement_lean.py": "7e01a82bfadacc27c77958724e0c0c6d5a4d1556be9354a5d288d0543f8a3983",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/successor_evidence.py": "96db65af4060e7b391e0259aee7e9bc0b69c56403dc10b3ddd378cf7a24db434",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/successor_lean.py": "69c87dc52985ce1ac1f7ad33fc406328e85889a34d3339df251a737c8e09e35d",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/successor_staging.py": "6b50d052df6faad3214980f484204478414282e33c154bba2069904a8b883a47",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/transition_journal.py": "80ef1ce4d1469baefd97e10445e391f99e6c5d5ac0ff112bfe576981f29e241d",
+    "python/rcp_rclm_runtime_v5/tests_phase17q/test_finite_kernel.py": "48e4a903b807504c8620b55fc23daf974f27a08ff33cee6f0ffd1081acd5b08d",
+    "python/rcp_rclm_runtime_v5/tests_phase17r/test_sparse_refinement.py": "ac650e93d2adf44399619b20a5bea6094e159b9c857b4dc8daeb4ad96da7d971",
+    "scripts/run_phase17_finite_kernel_gate.py": "c883310d949e17db781386161df53fc93e28cfda1aeb8c19ab6d6cf135c1a5d0",
+    "scripts/run_phase17_finite_kernel_tests.py": "b34941ef2c7997bd501e643c348e381797acd496d185eba20e81ad1db20cf8a8",
+    "scripts/run_phase17_sparse_refinement_gate.py": "fcd61d5bd0004082ac59dbcc48be8fa84e57be77b3303707263b2d952046ca28",
+    "scripts/run_phase17_sparse_refinement_tests.py": "c6982df0e4e75d22155421a234e5ae3dcc521bc73c918822c2197c967a252ed3"
+  },
+  "source_tree": "63ad9d543b08d5a8d8c4099ad0942d9f905687fe",
+  "source_unchanged": true,
+  "sparse_refinement_gate": {
+    "byte_capture_remains_external": true,
+    "claims": {
+      "active_store_written": false,
+      "campaign_budget_authority_integrated": false,
+      "complete_learned_kernel_constructed": false,
+      "complete_resource_accounting": false,
+      "cross_platform_validation": false,
+      "egc0_started": false,
+      "full_autonomous_step_instantiated": false,
+      "full_frontier_recertified": false,
+      "full_goal_interpretation_supplied": false,
+      "full_information_interpretation_supplied": false,
+      "full_learned_step_instantiated": false,
+      "gate_e_closed": false,
+      "github_hosted_ci_passed": false,
+      "historical_cost_recovered": false,
+      "live_capability_gain_demonstrated": false,
+      "os_resource_containment": false,
+      "phase17_exit_closed": false,
+      "phase18_independent_replay": false,
+      "physical_execution_attested": false,
+      "physical_projection_formally_verified": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "recursive_productivity_recertified": false,
+      "root_transition_verified": false
+    },
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "elapsed_ns": 1618996100,
+        "returncode": 0,
+        "started_at_utc": "2026-11-08T04:38:41.384059+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "-o",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\Phase17QDependency.olean",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\Phase17QDependency.lean"
+        ],
+        "elapsed_ns": 626788677100,
+        "label": "Phase17QDependency",
+        "output_artifacts_sha256": {
+          "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+        },
+        "returncode": 0,
+        "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+        "started_at_utc": "2026-11-08T04:38:43.008233+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "--deps",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\SparseRefinement.lean"
+        ],
+        "elapsed_ns": 38881299700,
+        "label": "dependency_resolution",
+        "returncode": 0,
+        "source_sha256": "335f3fbcf95e9e2f6f8abe6ccc93ac97385cc872954c9454dabdc0209801e808",
+        "started_at_utc": "2026-11-08T04:49:09.806482+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\Phase17QDependency.olean\n",
+        "stdout_sha256": "5492c7e979fa62f8c95c0622bc4feb9e70fc9c3217a8d1ceb079245511082e64"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\SparseRefinement.lean"
+        ],
+        "elapsed_ns": 462168598100,
+        "label": "SparseRefinement",
+        "returncode": 0,
+        "source_sha256": "335f3fbcf95e9e2f6f8abe6ccc93ac97385cc872954c9454dabdc0209801e808",
+        "started_at_utc": "2026-11-08T04:49:48.688436+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "'Phase17Sparse.signed16_range' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.clipped_score_range' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.dyadic_weight_positive' depends on axioms: [propext]\n'Phase17Sparse.row_probability_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.mass_binding_sound' depends on axioms: [propext, Quot.sound]\n'Phase17Sparse.distribution_binding_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.information_binding_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.selected_byte_images' does not depend on any axioms\n'Phase17Sparse.selected_score_projection' depends on axioms: [propext, Quot.sound]\n'Phase17Sparse.selected_mass_projection' depends on axioms: [propext, Quot.sound]\n'Phase17Sparse.selected_goal_decode' does not depend on any axioms\n'Phase17Sparse.selected_information_transport' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.selected_learned_acceptance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Sparse.selected_codec_edges' depends on axioms: [propext]\n'Phase17Sparse.selected_decoder_edges' does not depend on any axioms\n",
+        "stdout_sha256": "811535bcc8057f2de7575442671f94f8e4e6aebbe4273dbba0b6d86ce67df22e"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\ChangedTensorByte.lean"
+        ],
+        "elapsed_ns": 20620936700,
+        "label": "ChangedTensorByte",
+        "returncode": 1,
+        "source_sha256": "eeab56c214e4666d96dc853a951a5c43b3a77f68ee73fba23adf65aa8435eaf8",
+        "started_at_utc": "2026-11-08T04:57:30.946855+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\ChangedTensorByte.lean:261:117: error: Tactic `decide` proved that the proposition\n  decodedRow afterImage 22 = Phase17Protected.rowAt Phase17Protected.observedAfter 22\nis false\n",
+        "stdout_sha256": "d30ba2fda735754bcb8f5d14150d0c1db9875c080080878d0d52a8b9bb5e7a95"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\TransposedTensor.lean"
+        ],
+        "elapsed_ns": 20504273800,
+        "label": "TransposedTensor",
+        "returncode": 1,
+        "source_sha256": "e30a5c286be90b935df0964590292a0ea1dbc274adc602f773f8b830b5d40c54",
+        "started_at_utc": "2026-11-08T04:57:51.577063+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\TransposedTensor.lean:261:117: error: Tactic `decide` proved that the proposition\n  decodedRow afterImage 22 = Phase17Protected.rowAt Phase17Protected.observedAfter 22\nis false\n",
+        "stdout_sha256": "ef657f4a91be91f1c03bb31196d980ffa7eb37bcb60db13a86450c1b9587bef1"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\AlteredProbability.lean"
+        ],
+        "elapsed_ns": 20666470200,
+        "label": "AlteredProbability",
+        "returncode": 1,
+        "source_sha256": "05688041e1a281921028feb969dda02ae32ef8c10949a805a66ff6089d4d81e5",
+        "started_at_utc": "2026-11-08T04:58:12.090209+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\AlteredProbability.lean:262:81: error: Tactic `decide` proved that the proposition\n  decodedRow afterImage 0 = changedProbabilityRow\nis false\n",
+        "stdout_sha256": "a5da33dee07b50a23c34764f04aeb9612bba53c596fa9b0793299baf02c6beff"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongMarker.lean"
+        ],
+        "elapsed_ns": 20524165400,
+        "label": "WrongMarker",
+        "returncode": 1,
+        "source_sha256": "0bdb8b3f569c4c6612e3203236f2274926ca32d5bfb7f93a8d35ac8c7f020290",
+        "started_at_utc": "2026-11-08T04:58:32.765621+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongMarker.lean:263:2: error: Tactic `decide` proved that the proposition\n  selectedMarkers.length = 11 \u2227\n    selectedTargets.length = 11 \u2227\n      ((selectedMarkers.zip selectedTargets).all fun pair =>\n          decide (decode afterImage pair.1 = { tokens := pair.2, termination := Termination.eos })) =\n        true\nis false\n",
+        "stdout_sha256": "0856655273ed9d230cb2de3f217786919f9bb631da7d399a7ab1983457981cea"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\MissingEOS.lean"
+        ],
+        "elapsed_ns": 23234631500,
+        "label": "MissingEOS",
+        "returncode": 1,
+        "source_sha256": "03a02056ecb6ddb3265ebddd49d5e91b6b2571bf7f6bd98b0d89d5c34cd0c2c6",
+        "started_at_utc": "2026-11-08T04:58:53.300865+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\MissingEOS.lean:263:2: error: Tactic `decide` proved that the proposition\n  selectedMarkers.length = 11 \u2227\n    selectedTargets.length = 11 \u2227\n      ((selectedMarkers.zip selectedTargets).all fun pair =>\n          decide (decode afterImage pair.1 = { tokens := pair.2, termination := Termination.eos })) =\n        true\nis false\n",
+        "stdout_sha256": "82696bcf9b40831033a057193b0f14b8baca0a3fd3e46d5de51bbf5dd159baa8"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\InvalidByteRange.lean"
+        ],
+        "elapsed_ns": 21643579300,
+        "label": "InvalidByteRange",
+        "returncode": 1,
+        "source_sha256": "cd193c9976fbf953a10de15799d3a29d428aefe657e5353737acda1b20176b55",
+        "started_at_utc": "2026-11-08T04:59:16.544303+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\InvalidByteRange.lean:263:2: error: Tactic `decide` proved that the proposition\n  afterImage.byteLength = 204800 \u2227\n    List.Pairwise (fun x1 x2 => x1 < x2) (List.map Prod.fst (entries afterImage.support)) \u2227\n      \u2200 entry \u2208 entries afterImage.support, entry.1 < afterImage.byteLength \u2227 0 < entry.2 \u2227 entry.2 < 256\nis false\n",
+        "stdout_sha256": "f497233209c56c4d7d49cc0697ec795c4cf9df239618d63a5ff6ae9e01d9fee8"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongSignedBoundary.lean"
+        ],
+        "elapsed_ns": 19839764200,
+        "label": "WrongSignedBoundary",
+        "returncode": 1,
+        "source_sha256": "a32786d2f465894f76fb242948a99b8be54c1497c350771b1c4ddd96c64d6db2",
+        "started_at_utc": "2026-11-08T04:59:38.197005+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongSignedBoundary.lean:261:56: error: Tactic `decide` proved that the proposition\n  signed16 0 128 = 32768\nis false\n",
+        "stdout_sha256": "bd79a6d061f6eee5ed3d8eec691dfa754633edcc38968e696c2e212fb5078336"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongGreedyTie.lean"
+        ],
+        "elapsed_ns": 20042353800,
+        "label": "WrongGreedyTie",
+        "returncode": 1,
+        "source_sha256": "67e0831df6d0ea2a688a70b02ae96caefabd44a4a7b479d7e47882cbc520757d",
+        "started_at_utc": "2026-11-08T04:59:58.045752+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\WrongGreedyTie.lean:261:85: error: Tactic `decide` proved that the proposition\n  greedyToken ([7, 7, 3] ++ List.replicate 257 0) = 1\nis false\n",
+        "stdout_sha256": "b8eaa5881b96cf08d3af273478e7e830087e92e8c726a125d391f64af5011ef8"
+      }
+    ],
+    "dependency_module": {
+      "artifacts_sha256": {
+        "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17QDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17r-mme022z6\\Phase17QDependency.olean",
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682"
+    },
+    "executable_sha256": {
+      "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+      "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+    },
+    "full_transformer_equivalence": false,
+    "negative_controls_rejected": [
+      "ChangedTensorByte",
+      "TransposedTensor",
+      "AlteredProbability",
+      "WrongMarker",
+      "MissingEOS",
+      "InvalidByteRange",
+      "WrongSignedBoundary",
+      "WrongGreedyTie"
+    ],
+    "new_named_audits": 15,
+    "old_proof_campaigns_rerun": false,
+    "packet_sha256": "505d704bbab6d1f72d22dd36f5f75ea128057ffb48b11000937728abaabb07ad",
+    "prompt_routing_remains_external": true,
+    "protected_sparse_decoder_checked": true,
+    "schema": "rcp-rclm.phase17r.sparse-byte-refinement-lean.v1",
+    "source_sha256": {
+      "AlteredProbability": "05688041e1a281921028feb969dda02ae32ef8c10949a805a66ff6089d4d81e5",
+      "ChangedTensorByte": "eeab56c214e4666d96dc853a951a5c43b3a77f68ee73fba23adf65aa8435eaf8",
+      "InvalidByteRange": "cd193c9976fbf953a10de15799d3a29d428aefe657e5353737acda1b20176b55",
+      "MissingEOS": "03a02056ecb6ddb3265ebddd49d5e91b6b2571bf7f6bd98b0d89d5c34cd0c2c6",
+      "Phase17QDependency": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+      "SparseRefinement": "335f3fbcf95e9e2f6f8abe6ccc93ac97385cc872954c9454dabdc0209801e808",
+      "TransposedTensor": "e30a5c286be90b935df0964590292a0ea1dbc274adc602f773f8b830b5d40c54",
+      "WrongGreedyTie": "67e0831df6d0ea2a688a70b02ae96caefabd44a4a7b479d7e47882cbc520757d",
+      "WrongMarker": "0bdb8b3f569c4c6612e3203236f2274926ca32d5bfb7f93a8d35ac8c7f020290",
+      "WrongSignedBoundary": "a32786d2f465894f76fb242948a99b8be54c1497c350771b1c4ddd96c64d6db2"
+    },
+    "sparse_tensor_projection_checked": true,
+    "status": "passed",
+    "theorem_axioms": {
+      "Phase17Sparse.clipped_score_range": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Sparse.distribution_binding_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Sparse.dyadic_weight_positive": [
+        "propext"
+      ],
+      "Phase17Sparse.information_binding_sound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Sparse.mass_binding_sound": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17Sparse.row_probability_normalized": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Sparse.selected_byte_images": [],
+      "Phase17Sparse.selected_codec_edges": [
+        "propext"
+      ],
+      "Phase17Sparse.selected_decoder_edges": [],
+      "Phase17Sparse.selected_goal_decode": [],
+      "Phase17Sparse.selected_information_transport": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Sparse.selected_learned_acceptance_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Phase17Sparse.selected_mass_projection": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17Sparse.selected_score_projection": [
+        "propext",
+        "Quot.sound"
+      ],
+      "Phase17Sparse.signed16_range": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "trusted_import_cache_assumption": true
+  },
+  "sparse_tensor_projection_checked": true,
+  "started_at_utc": "2026-11-08T04:37:32.201450+00:00",
+  "synthetic_fixture": true,
+  "tensor_bytes_per_package": 204800,
+  "tensor_sha256": {
+    "after": "63dd072a4aa0579d17890848d0b9948aabad4d6f9a47fa58868f4572b5e91c7c",
+    "before": "63dd072a4aa0579d17890848d0b9948aabad4d6f9a47fa58868f4572b5e91c7c"
+  },
+  "unmeasured": [
+    "R preparation, byte extraction and proof checking",
+    "bootstrap and archive validation",
+    "physical staging and observation",
+    "hashing and canonical parsing",
+    "Python overhead and journal I/O",
+    "CPU time",
+    "accelerator time",
+    "memory",
+    "storage",
+    "energy",
+    "active promotion and rollback"
+  ]
+}

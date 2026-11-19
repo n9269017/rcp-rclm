@@ -1,0 +1,1 @@
+PASS: AL durable campaign reservations and fixed live-worker authorization, original authority and worker records, generated proofs, compiled artifacts, exact stage lineage, named audits and designated rejections reconstructed; no compiler, authority subprocess or task-worker process runs

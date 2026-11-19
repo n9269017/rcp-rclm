@@ -1,0 +1,122 @@
+{
+  "acceptance_functions_unchanged": true,
+  "automatic_retries": 0,
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_conservative_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T05:21:30.152137+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T05:21:19.654805+00:00",
+      "stderr_sha256": "d34ad809d4f22616286e3bb13fcbecca678032799715d75b301c1400edb5265a",
+      "stdout_sha256": "0bdfbbb24ab2a34dea3f4466fa0a7a0672d2bfec8512be3a11308ed276739c99"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_conservative_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\gp-8dfee5cc\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T05:22:49.896466+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T05:21:30.153181+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "c8616053d434c56c60d5ca57a972f631c45f68b6c1fefca5642cc4f526a146e1"
+    }
+  ],
+  "complete_resource_accounting": false,
+  "corrected_source_sha256": {
+    "lean/phase17_bridge/ConservativeRegistry.lean": "a6b4b24d6f5b783ec12617608098bd6aafa2ae99262b87a2044626b5e4801098",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/conservative_lean.py": "b54d77510e8c6f5e41fe225240d9d336a6d3a57745e1ee8749494cad97adeb45"
+  },
+  "cross_platform_validation": false,
+  "egc0_started": false,
+  "fresh_new_tests": 47,
+  "full_frontier_recertified": false,
+  "gate_e_closed": false,
+  "gate_execution_sha256": "be1b1bb4e55ca9882ba2c9e2408bb2c40054b785b54394cff6e8d9d0aa9f4d69",
+  "github_hosted_ci_passed": false,
+  "immutable_root_unchanged": true,
+  "inherited_lean_obligations_retained_not_rerun": 13,
+  "inherited_recursive_labels": 19,
+  "live_capability_gain_demonstrated": false,
+  "negative_shadowed_key_rejected": true,
+  "network_setup_requested": false,
+  "new_proof_template_and_renderer_corrected": true,
+  "new_semantic_audits": 6,
+  "operational_recursive_tasks_recertified": [],
+  "original_failure_preserved": true,
+  "phase17_exit_closed": false,
+  "prior_failure": {
+    "compiler_stdout_sha256": "da6b3f6d09dcf9724218b9bfa5d0339b60acfb563eb6ffe725bbaa68a43fc091",
+    "failed_execution_sha256": "4ed8fb6d6ebd6bac7b9fe467b2c8919d629b6958908f040046410757cd7c82e4",
+    "failure_category": "three_lean_proof_elaboration_errors_and_unused_instance_warnings",
+    "prior_gate_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_conservative_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\g-b1a0983c\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T04:50:28.409900+00:00",
+      "problem": null,
+      "returncode": 2,
+      "started_at_utc": "2026-11-01T04:43:58.931664+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "8721bf86e3bdf01dadff5eca0a9ca0fbf89d8824a8638d193ffbffd7b8f04a47"
+    },
+    "prior_new_tests_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_conservative_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T04:43:49.757754+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T04:43:37.339485+00:00",
+      "stderr_sha256": "24ad2434741f492a679d61dfaf495a2f8e46adf592ab86f21b8cb4ef68f390c7",
+      "stdout_sha256": "0bdfbbb24ab2a34dea3f4466fa0a7a0672d2bfec8512be3a11308ed276739c99"
+    },
+    "prior_new_tests_passed": 47,
+    "prior_regression_tests_passed": 36,
+    "retained_regression_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_successor_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T04:43:58.930970+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T04:43:49.758539+00:00",
+      "stderr_sha256": "0c7d9c24daa31698fdca65c0d8cc257358e0a2e1fbe7600d458fb96bcef45a5e",
+      "stdout_sha256": "91f4a67e4ad55c06123e4ce67adfe956fcdd0f5b79fc977424ea3a19321886cc"
+    },
+    "source_commit": "3d62b64679151dc6c0eda036214d97cee6c1b1d8",
+    "source_tree": "fcd7210639767b62df16ad76c495e4284cac509a"
+  },
+  "prior_four_finite_audits_retained_not_rerun": 4,
+  "promotion_authorized": false,
+  "promotion_performed": false,
+  "recovery_script_sha256": "6e2411db272db94a5abe4b1fef1ae061f0ad59e714ad9dbcba2329fd7cfd0a7f",
+  "recursive_productivity_recertified": false,
+  "regression_tests_retained_not_rerun": 36,
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17g.lean-proof-repair.v1",
+  "scoped_base_obligation_count": 11,
+  "source_commit": "165856541b2a73bc0b39391af9895636f4db7e4d",
+  "source_tree": "9c7dd6c07e28dddaf385224b08679f4b2479eb93",
+  "synthetic_fixture": true
+}

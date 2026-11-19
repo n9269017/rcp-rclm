@@ -1,0 +1,40 @@
+test_actual_root_source_fingerprint (test_materialized_gate.PhysicalPackageTests.test_actual_root_source_fingerprint) ... ok
+test_axiom_audit_rejects_missing_or_unsafe_axioms (test_materialized_gate.PhysicalPackageTests.test_axiom_audit_rejects_missing_or_unsafe_axioms) ... ok
+test_candidate_requires_external_transcript_anchor (test_materialized_gate.PhysicalPackageTests.test_candidate_requires_external_transcript_anchor) ... ok
+test_candidate_retains_all_original_capability_outputs (test_materialized_gate.PhysicalPackageTests.test_candidate_retains_all_original_capability_outputs) ... ok
+test_case_colliding_paths_rejected (test_materialized_gate.PhysicalPackageTests.test_case_colliding_paths_rejected) ... ok
+test_complete_actual_capability_frontier_prepared (test_materialized_gate.PhysicalPackageTests.test_complete_actual_capability_frontier_prepared) ... ok
+test_decoded_integer_program_has_real_exhaustive_cases (test_materialized_gate.PhysicalPackageTests.test_decoded_integer_program_has_real_exhaustive_cases) ... ok
+test_each_lean_source_has_named_axiom_audit (test_materialized_gate.PhysicalPackageTests.test_each_lean_source_has_named_axiom_audit) ... ok
+test_exhaustion_does_not_create_candidate (test_materialized_gate.PhysicalPackageTests.test_exhaustion_does_not_create_candidate) ... ok
+test_existing_destination_never_overwritten (test_materialized_gate.PhysicalPackageTests.test_existing_destination_never_overwritten) ... ok
+test_extra_file_rejected (test_materialized_gate.PhysicalPackageTests.test_extra_file_rejected) ... ok
+test_gate_rejects_axiom_escape (test_materialized_gate.PhysicalPackageTests.test_gate_rejects_axiom_escape) ... ok
+test_gate_rejects_stderr (test_materialized_gate.PhysicalPackageTests.test_gate_rejects_stderr) ... ok
+test_gate_requires_exact_toolchain (test_materialized_gate.PhysicalPackageTests.test_gate_requires_exact_toolchain) ... ok
+test_gate_requires_successful_process (test_materialized_gate.PhysicalPackageTests.test_gate_requires_successful_process) ... ok
+test_hardlink_metadata_rejected (test_materialized_gate.PhysicalPackageTests.test_hardlink_metadata_rejected) ... ok
+test_installed_integer_semantics_matches_independent_reference (test_materialized_gate.PhysicalPackageTests.test_installed_integer_semantics_matches_independent_reference) ... ok
+test_known_pass_fixture_is_not_a_live_campaign (test_materialized_gate.PhysicalPackageTests.test_known_pass_fixture_is_not_a_live_campaign) ... ok
+test_matrix_executor_matches_all_32_grammar_programs (test_materialized_gate.PhysicalPackageTests.test_matrix_executor_matches_all_32_grammar_programs) ... ok
+test_missing_file_rejected (test_materialized_gate.PhysicalPackageTests.test_missing_file_rejected) ... ok
+test_missing_pinned_toolchain_never_passes (test_materialized_gate.PhysicalPackageTests.test_missing_pinned_toolchain_never_passes) ... ok
+test_mocked_success_does_not_authorize_promotion (test_materialized_gate.PhysicalPackageTests.test_mocked_success_does_not_authorize_promotion) ... ok
+test_modified_root_pin_table_rejected (test_materialized_gate.PhysicalPackageTests.test_modified_root_pin_table_rejected) ... ok
+test_no_answers_or_candidate_executables_installed (test_materialized_gate.PhysicalPackageTests.test_no_answers_or_candidate_executables_installed) ... ok
+test_omitted_or_substituted_proof_rejected (test_materialized_gate.PhysicalPackageTests.test_omitted_or_substituted_proof_rejected) ... ok
+test_package_identity_is_deterministic (test_materialized_gate.PhysicalPackageTests.test_package_identity_is_deterministic) ... ok
+test_physical_candidate_evaluation (test_materialized_gate.PhysicalPackageTests.test_physical_candidate_evaluation) ... ok
+test_physical_model_is_not_only_planner_metadata (test_materialized_gate.PhysicalPackageTests.test_physical_model_is_not_only_planner_metadata) ... ok
+test_rehashed_manifest_cannot_replace_base (test_materialized_gate.PhysicalPackageTests.test_rehashed_manifest_cannot_replace_base) ... ok
+test_size_and_count_bounds (test_materialized_gate.PhysicalPackageTests.test_size_and_count_bounds) ... ok
+test_symlink_input_rejected_without_needing_windows_link_privilege (test_materialized_gate.PhysicalPackageTests.test_symlink_input_rejected_without_needing_windows_link_privilege) ... ok
+test_tensor_mutation_rejected (test_materialized_gate.PhysicalPackageTests.test_tensor_mutation_rejected) ... ok
+test_unknown_program_and_boolean_probe_rejected (test_materialized_gate.PhysicalPackageTests.test_unknown_program_and_boolean_probe_rejected) ... ok
+test_unsafe_paths_and_reserved_windows_names_rejected (test_materialized_gate.PhysicalPackageTests.test_unsafe_paths_and_reserved_windows_names_rejected) ... ok
+test_untrusted_expected_hash_rejected (test_materialized_gate.PhysicalPackageTests.test_untrusted_expected_hash_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 8.554s
+
+OK

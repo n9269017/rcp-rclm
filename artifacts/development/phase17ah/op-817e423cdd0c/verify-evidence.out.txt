@@ -1,0 +1,1 @@
+PASS: AH source-bound producer domain with truthful controller evaluation guard, generated proofs, compiled artifacts, exact stage lineage, named audits and designated rejections reconstructed; no compiler or worker runs

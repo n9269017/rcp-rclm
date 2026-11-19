@@ -1,0 +1,1 @@
+Historical archive integration only; fresh Lean: false; Phase17 exit: false; Gate E: false

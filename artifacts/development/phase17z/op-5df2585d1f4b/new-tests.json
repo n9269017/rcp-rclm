@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_evaluation_trace_tests.py"
+  ],
+  "finished_at_utc": "2026-11-10T05:41:17.023145+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-10T05:39:10.245351+00:00",
+  "stderr_sha256": "af665ffddc4ca0f59e8fa486e152e83bf4f92756b08c02bf029385a4d60e988c",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

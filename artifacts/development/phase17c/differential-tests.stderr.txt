@@ -1,0 +1,11 @@
+test_complete_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_complete_controller_service_transaction) ... ok
+test_exact_grammar_for_eight_current_nonces (test_reference_differential.ReferenceDifferentialTests.test_exact_grammar_for_eight_current_nonces) ... ok
+test_partial_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_partial_controller_service_transaction) ... ok
+test_reference_matches_actual_executor_all_families_and_variants (test_reference_differential.ReferenceDifferentialTests.test_reference_matches_actual_executor_all_families_and_variants) ... ok
+test_reference_matches_installed_predecessor_programs (test_reference_differential.ReferenceDifferentialTests.test_reference_matches_installed_predecessor_programs) ... ok
+test_zero_credit_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_zero_credit_controller_service_transaction) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 12.874s
+
+OK

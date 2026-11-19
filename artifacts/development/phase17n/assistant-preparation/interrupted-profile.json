@@ -1,0 +1,13 @@
+{
+  "charged_cost": 24,
+  "journal_head": "09814728ac0594ec021d656282e3d9718b77db2190ab009853b97e196f3862b1",
+  "journal_sha256": "fc3ac44217ca1e232eeadc8d4a9d39ebeb82985b40d67c7efb0d1ffe59c569cd",
+  "simulation_not_process_crash": true,
+  "spent": [
+    0,
+    1,
+    4,
+    4
+  ],
+  "status": "safety_halt"
+}

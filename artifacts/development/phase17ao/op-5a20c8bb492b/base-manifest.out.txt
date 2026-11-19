@@ -1,0 +1,2 @@
+PASS: 28813 canonical index checksum entries
+{"batch_bytes": 483010560, "git_batch_processes": 1, "git_batch_returncode": 0, "git_object_identities_recomputed": true, "index_snapshot_sha256": "76f63fff12adb117f4a4db3c213e6a836e7822ca9e11f9a8f8924c725151da76", "index_unchanged": true, "manifest_entries": 28813, "manifest_sha256": "3409a1dbf7097283d0496b424e27a9ffd226de03b33a15050efc7cd1483234e7", "schema": "phase17ao.canonical-index-batch.v1", "tracked_entries": 28814, "unique_blob_objects": 5944}

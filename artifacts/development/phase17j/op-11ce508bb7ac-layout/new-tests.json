@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_frontier_meaning_tests.py"
+  ],
+  "finished_at_utc": "2026-11-01T20:23:25.403607+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-01T20:22:58.301671+00:00",
+  "stderr_sha256": "5c1b99c2be22d5235a1b1eb64ce00dee3923d26f7b651c49e903221f2af22600",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

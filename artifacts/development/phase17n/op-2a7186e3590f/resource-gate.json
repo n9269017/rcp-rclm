@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_resource_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\n-004f220e\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-07T18:43:43.323735+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-07T18:37:54.954034+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "47b1306853cc80fff39d06c84bacd01ae3dcf730b3d5b09f7697d1ee36bb80a5"
+}

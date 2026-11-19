@@ -1,0 +1,146 @@
+{
+  "acceptance_functions_changed": false,
+  "automatic_retries": 0,
+  "candidate_facts_changed": false,
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_frontier_meaning_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T20:23:25.403607+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T20:22:58.301671+00:00",
+      "stderr_sha256": "5c1b99c2be22d5235a1b1eb64ce00dee3923d26f7b651c49e903221f2af22600",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_frontier_meaning_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\jl-46de0780\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T20:24:51.040645+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T20:23:25.404876+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "8d86c4faad0d5586545fcfce652565eb37b8746d236ba1ec73def6cea6384869"
+    }
+  ],
+  "complete_learned_kernel_constructed": false,
+  "complete_resource_accounting": false,
+  "continuation_sha256": "823a6e8b77fd35e6630b9a446adce958b89cf5a68fbef8410e23b9d310c1dde2",
+  "cross_platform_validation": false,
+  "egc0_started": false,
+  "full_frontier_recertified": false,
+  "full_learned_semantic_refinement": false,
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "gate_e_closed": false,
+  "gate_execution_sha256": "4ae344fef5ee5e8e9acded536561c8035aa00587b0cd805e7ac12f1af85a0f13",
+  "github_hosted_ci_passed": false,
+  "historical_catalog_sha256": "3c3a412d4cc1c6eb9a0882ecaa94aa0519b5f2e8007f56d9501c434e03cf41c0",
+  "historical_proof_tasks": 13,
+  "historical_single_input_vector_tasks": 8,
+  "immutable_root_changed": false,
+  "inherited_theorem_propositions_rechecked": 13,
+  "legacy_full_recursive_tasks_recertified": [],
+  "live_capability_gain_demonstrated": false,
+  "network_setup_requested": false,
+  "neural_decoder_formally_verified": false,
+  "new_eight_probe_tasks": 1,
+  "new_named_audits": 8,
+  "new_operational_contracts_certified": [],
+  "new_proofs_kernel_executed": true,
+  "new_renderer_regressions": 8,
+  "new_tests": 70,
+  "phase17_exit_closed": false,
+  "phase17h_proofs_rerun": false,
+  "previous_failed_source_preserved": "baea8cc670328a4a6d8e45d7fc41c65246ce701d",
+  "prior_failure": {
+    "compiler_stdout_sha256": "3c4c216eedcb5a6c2650ce2ec740522255005d7c5404d198c22681e4cd61b7fd",
+    "failed_gate_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_frontier_meaning_gate.py",
+        "--test-fixture",
+        "--require-lean",
+        "--lean-workspace",
+        "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+        "--output",
+        "C:\\Users\\Nicolas.n926\\.r17\\j-841b4de7\\e\\gate"
+      ],
+      "finished_at_utc": "2026-11-01T20:02:19.551721+00:00",
+      "problem": null,
+      "returncode": 2,
+      "started_at_utc": "2026-11-01T19:54:32.570372+00:00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "06e1fac62d18e53723375ffae53cf2f0a2c52dcbedb950f830778c6feb59d983"
+    },
+    "failure": {
+      "reason": "task-meaning certificate rejected",
+      "type": "ControlError"
+    },
+    "new_tests_previously_passed": 62,
+    "old_failure_relabelled_as_success": false,
+    "prior_execution_sha256": "be9fc78241cc164ce2d3670b294731276949fb335fc44f5e9c54b61a2cdee602",
+    "prior_test_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_frontier_meaning_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T19:54:23.084717+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T19:53:55.144160+00:00",
+      "stderr_sha256": "f93c07ca112b2415a35c2828389f45af3f8e91fb92e9d996e49ea0915eae7112",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "regression_source": "baea8cc670328a4a6d8e45d7fc41c65246ce701d",
+    "retained_regression_command": {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "scripts/run_phase17_successor_tests.py"
+      ],
+      "finished_at_utc": "2026-11-01T19:54:32.568665+00:00",
+      "problem": null,
+      "returncode": 0,
+      "started_at_utc": "2026-11-01T19:54:23.085549+00:00",
+      "stderr_sha256": "1b13f0e979846c7b0082b2ddbe354d7c419f4829fac5ab8a77ded7f4300078c2",
+      "stdout_sha256": "91f4a67e4ad55c06123e4ce67adfe956fcdd0f5b79fc977424ea3a19321886cc"
+    },
+    "source_commit": "baea8cc670328a4a6d8e45d7fc41c65246ce701d",
+    "source_tree": "abb3194516b9eec73893820767d7dc9663daf0ef",
+    "successor_regressions_retained_not_rerun": 36
+  },
+  "prior_history_bytes_rewritten": false,
+  "promotion_authorized": false,
+  "promotion_performed": false,
+  "recursive_productivity_recertified": false,
+  "renderer_whitespace_only": true,
+  "root_fields": [
+    "frontier",
+    "solves",
+    "frontierSound"
+  ],
+  "root_observation_projection_formally_verified": false,
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17j.layout-recovery.v1",
+  "selected_task_coverage": [
+    21,
+    22
+  ],
+  "source_commit": "11ce508bb7acb3c1f91fc9777345e4ab63eee13e",
+  "source_tree": "040a0645013bf4809fe1e77847823437bb5be8f3",
+  "successor_regression_source": "baea8cc670328a4a6d8e45d7fc41c65246ce701d",
+  "successor_regressions_retained_not_rerun": 36,
+  "synthetic_fixture": true,
+  "theorem_statements_changed": false,
+  "universal_vector_semantics_claimed": false
+}

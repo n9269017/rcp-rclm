@@ -159,6 +159,7 @@ jobs:
           ]:
               raise SystemExit("EGC order mismatch")
 
+          # These flags describe the archived roadmap object, not later source work.
           status = manifest.get("status", {})
           required_false = {
               "phase17_plus_implementation_published",
@@ -227,7 +228,7 @@ jobs:
                       "roadmap_files": len(files),
                       "roadmap_checksum_entries": len(actual),
                       "root_checksum_entries": len(root_actual),
-                      "phase17_plus_implementation_published": False,
+                      "archived_roadmap_includes_phase17_implementation": False,
                       "future_result_claimed": False,
                       "egc0_baseline_completed": False,
                       "gate_e_closed": False,
@@ -277,6 +278,13 @@ jobs:
                   ["git", "diff", "--name-only", base, "HEAD"], text=True
               ).splitlines()
           )
+          # Source development is now public. Apply the publication-only diff
+          # restriction only when this PR actually changes the roadmap payload.
+          # The independent roadmap/root checksum audit above still runs.
+          if not any(path.startswith("docs/roadmaps/") for path in changed):
+              print("PASS: no roadmap payload changed; phase-specific source audits apply")
+              raise SystemExit(0)
+
           exact_root = {
               ".github/workflows/v45-results-only-audit.yml",
               ".github/workflows/v5-trajectory-audit.yml",

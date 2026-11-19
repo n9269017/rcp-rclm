@@ -1,0 +1,2 @@
+{"commission_sha256":"0000000000000000000000000000000000000000000000000000000000000000","credits":2,"nonce":"347ff6c9ec4350030a4cf09cdb236a9fa3020ed17134b7f6e28a3e5c9356b53e","operation":"run","schema":"phase17an.frontend-intent.v1"}
+{"intent_sha256":"0d0f711e2960af382eb55619b69f14c79f3ca313fef25e75a143df4fc25c475d","reason":"broker_refused","refused":true,"schema":"phase17an.frontend-refusal.v1"}

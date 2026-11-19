@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_durable_authority_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ak-090ce48a\\e\\gate",
+    "--expected-execution-sha256",
+    "200a218f58066f6ac8b63be8be96e659b09bb2f4dc2fcb941462bb92ac0c3781"
+  ],
+  "finished_at_utc": "2026-11-18T15:07:57.600682+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-18T15:04:22.404386+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2ab1634e1ae059e1b149a7f45b478fb8b951643ddfcca847c199171dbc6348c6"
+}

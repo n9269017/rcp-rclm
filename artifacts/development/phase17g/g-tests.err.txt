@@ -1,0 +1,52 @@
+test_48_old_program_execution_checks (test_conservative_extension.ConservativeTests.test_48_old_program_execution_checks) ... ok
+test_actual_physical_fixture (test_conservative_extension.ConservativeTests.test_actual_physical_fixture) ... ok
+test_boolean_credits (test_conservative_extension.ConservativeTests.test_boolean_credits) ... ok
+test_boolean_vector (test_conservative_extension.ConservativeTests.test_boolean_vector) ... ok
+test_claim_escalation (test_conservative_extension.ConservativeTests.test_claim_escalation) ... ok
+test_crlf_template (test_conservative_extension.ConservativeTests.test_crlf_template) ... ok
+test_duplicate_programs_reject (test_conservative_extension.ConservativeTests.test_duplicate_programs_reject) ... ok
+test_eight_actual_candidate_dispatches (test_conservative_extension.ConservativeTests.test_eight_actual_candidate_dispatches) ... ok
+test_extend_rejects_shadow (test_conservative_extension.ConservativeTests.test_extend_rejects_shadow) ... ok
+test_extension_inverse (test_conservative_extension.ConservativeTests.test_extension_inverse) ... ok
+test_extra_physical_registry_file_reject (test_conservative_extension.ConservativeTests.test_extra_physical_registry_file_reject) ... ok
+test_framing_is_unambiguous (test_conservative_extension.ConservativeTests.test_framing_is_unambiguous) ... ok
+test_framing_rejects_reordered_names (test_conservative_extension.ConservativeTests.test_framing_rejects_reordered_names) ... ok
+test_injection_literal (test_conservative_extension.ConservativeTests.test_injection_literal) ... ok
+test_inverse_rejects_arbitrary_undo_files (test_conservative_extension.ConservativeTests.test_inverse_rejects_arbitrary_undo_files) ... ok
+test_inverse_uses_candidate_not_old_tensors (test_conservative_extension.ConservativeTests.test_inverse_uses_candidate_not_old_tensors) ... ok
+test_manifest_order_is_explicit_not_directory_order (test_conservative_extension.ConservativeTests.test_manifest_order_is_explicit_not_directory_order) ... ok
+test_mapping_substitution (test_conservative_extension.ConservativeTests.test_mapping_substitution) ... ok
+test_missing_environment_never_passes (test_conservative_extension.ConservativeTests.test_missing_environment_never_passes) ... ok
+test_missing_physical_registry_file_reject (test_conservative_extension.ConservativeTests.test_missing_physical_registry_file_reject) ... ok
+test_mock_false_accept_rejects (test_conservative_extension.ConservativeTests.test_mock_false_accept_rejects) ... ok
+test_mock_gate_accepts_only_all_obligations (test_conservative_extension.ConservativeTests.test_mock_gate_accepts_only_all_obligations) ... ok
+test_mock_negative_timeout_rejects (test_conservative_extension.ConservativeTests.test_mock_negative_timeout_rejects) ... ok
+test_mock_positive_before_negative (test_conservative_extension.ConservativeTests.test_mock_positive_before_negative) ... ok
+test_mock_positive_failure_stops (test_conservative_extension.ConservativeTests.test_mock_positive_failure_stops) ... ok
+test_mock_stderr_rejects (test_conservative_extension.ConservativeTests.test_mock_stderr_rejects) ... ok
+test_mock_unapproved_axiom_rejects (test_conservative_extension.ConservativeTests.test_mock_unapproved_axiom_rejects) ... ok
+test_mutable_buffer_reject (test_conservative_extension.ConservativeTests.test_mutable_buffer_reject) ... ok
+test_negative_shadows_key_without_mutating_packet (test_conservative_extension.ConservativeTests.test_negative_shadows_key_without_mutating_packet) ... ok
+test_no_placeholder_in_generated_source (test_conservative_extension.ConservativeTests.test_no_placeholder_in_generated_source) ... ok
+test_no_recursive_recertification_by_labels (test_conservative_extension.ConservativeTests.test_no_recursive_recertification_by_labels) ... ok
+test_noncanonical_json_reject (test_conservative_extension.ConservativeTests.test_noncanonical_json_reject) ... ok
+test_out_of_range_vector (test_conservative_extension.ConservativeTests.test_out_of_range_vector) ... ok
+test_packet_detached (test_conservative_extension.ConservativeTests.test_packet_detached) ... ok
+test_parser_all_six (test_conservative_extension.ConservativeTests.test_parser_all_six) ... ok
+test_parser_rejects_extra_output (test_conservative_extension.ConservativeTests.test_parser_rejects_extra_output) ... ok
+test_parser_rejects_sorry (test_conservative_extension.ConservativeTests.test_parser_rejects_sorry) ... ok
+test_parser_rejects_unrelated_theorem (test_conservative_extension.ConservativeTests.test_parser_rejects_unrelated_theorem) ... ok
+test_physical_tamper_before_preparation (test_conservative_extension.ConservativeTests.test_physical_tamper_before_preparation) ... ok
+test_protected_image_real_bytes (test_conservative_extension.ConservativeTests.test_protected_image_real_bytes) ... ok
+test_retract_absent (test_conservative_extension.ConservativeTests.test_retract_absent) ... ok
+test_six_exact_audit_targets (test_conservative_extension.ConservativeTests.test_six_exact_audit_targets) ... ok
+test_template_pin (test_conservative_extension.ConservativeTests.test_template_pin) ... ok
+test_unknown_program_not_identity_fallback (test_conservative_extension.ConservativeTests.test_unknown_program_not_identity_fallback) ... ok
+test_wrong_external_transcript_anchor (test_conservative_extension.ConservativeTests.test_wrong_external_transcript_anchor) ... ok
+test_wrong_program_hash_reject (test_conservative_extension.ConservativeTests.test_wrong_program_hash_reject) ... ok
+test_wrong_vector_length (test_conservative_extension.ConservativeTests.test_wrong_vector_length) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 8.640s
+
+OK

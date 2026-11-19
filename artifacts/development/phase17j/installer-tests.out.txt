@@ -1,0 +1,35 @@
+Updated canonical manifest: 4 entries; not committed
+PASS: 4 canonical index checksum entries
+Updated canonical manifest: 4 entries; not committed
+PASS: 4 canonical index checksum entries
+PASS: 4 canonical index checksum entries
+Updated canonical manifest: 6 entries; not committed
+PASS: 6 canonical index checksum entries
+Updated canonical manifest: 24 entries; not committed
+PASS: 24 canonical index checksum entries
+Updated canonical manifest: 4 entries; not committed
+PASS: 4 canonical index checksum entries
+PASS: 4 canonical index checksum entries
+Updated canonical manifest: 6 entries; not committed
+PASS: 6 canonical index checksum entries
+Updated canonical manifest: 24 entries; not committed
+PASS: 24 canonical index checksum entries
+Updated canonical manifest: 4 entries; not committed
+PASS: 4 canonical index checksum entries
+PASS: 4 canonical index checksum entries
+Updated canonical manifest: 6 entries; not committed
+PASS: 6 canonical index checksum entries
+Updated canonical manifest: 24 entries; not committed
+PASS: 24 canonical index checksum entries
+Updated canonical manifest: 4 entries; not committed
+PASS: 4 canonical index checksum entries
+PASS: 4 canonical index checksum entries
+Updated canonical manifest: 6 entries; not committed
+PASS: 6 canonical index checksum entries
+Updated canonical manifest: 24 entries; not committed
+PASS: 24 canonical index checksum entries
+Updated canonical manifest: 4 entries; not committed
+PASS: 4 canonical index checksum entries
+PASS: 4 canonical index checksum entries
+Updated canonical manifest: 6 entries; not committed
+PASS: 6 canonical index checksum entries

@@ -1,0 +1,28 @@
+{
+  "schema_id": "runtime.v5.phase17.finite-successor-lean.v1",
+  "status": "blocked",
+  "packet_sha256": "753b0114d1a6d0b0817f4d7692cc165a94c4acff9e3ac400ebc262cbeb20854e",
+  "commands": [],
+  "theorem_axioms": {},
+  "measurement_binding_is_callers_obligation": true,
+  "dsl_regression_cases": 128,
+  "finite_successor_facts_verified": false,
+  "conditional_root_binding_checked": false,
+  "negative_certificate_rejected": false,
+  "claims": {
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "live_capability_gain_demonstrated": false,
+    "complete_resource_accounting": false
+  },
+  "failure": {
+    "type": "ControlError",
+    "reason": "pinned dependency not installed: mathlib"
+  }
+}

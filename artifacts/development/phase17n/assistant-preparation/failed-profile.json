@@ -1,0 +1,17 @@
+{
+  "charge_sequence": [
+    "vector"
+  ],
+  "charged_cost": 24,
+  "injected_failure": true,
+  "journal_head": "41e9bc3be214f3691790c583c7f1a7a684782a2a681d6c0d33884ce5cf15a37e",
+  "journal_sha256": "f551dee4ca3fb963ec732d1d06f1c0bbafcb154e823d99f99fc4c407801ab20f",
+  "operation_calls": 1,
+  "spent": [
+    0,
+    1,
+    4,
+    4
+  ],
+  "status": "safety_halt"
+}

@@ -1,0 +1,363 @@
+{
+  "schema": "rcp-rclm.phase17i.typed-learned-binding-run.v1",
+  "source_commit": "f61af85eafb46592e6dc49c10d724f3796e2d90b",
+  "source_tree": "edca6a8b7c83667db4ec5a585a451b2009c7e159",
+  "started_at_utc": "2026-11-01T18:15:54.454479+00:00",
+  "os": "Windows",
+  "python_version": "3.13.3",
+  "synthetic_fixture": true,
+  "automatic_retries": 0,
+  "local_increment_checks_passed": false,
+  "claims": {
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "live_capability_gain_demonstrated": false,
+    "complete_resource_accounting": false,
+    "full_learned_semantic_refinement": false,
+    "neural_decoder_formally_verified": false
+  },
+  "packet_sha256": "6003c7a60df20dddfbf8e005160773586ab4426e13bbfb98de33e38fe961bbc3",
+  "operational_packet_sha256": "0fa20dcff8b51b3a2ca45e8993d023db3eec7a8567fd3ac337d21a7597a8ee14",
+  "candidate_package_hash": "67a97c6d16b6097fd8f1c5e09a941d5b813dfd403e98a508491645d6aea18b65",
+  "predecessor_package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "learned_component_groups": 12,
+  "base_files_mapped": 164,
+  "root_type": "RcpRclmFormalCoreV3.Learned.PackageState",
+  "root_admission": {
+    "authorization_issued": false,
+    "missing_witness_classes": [
+      "full_base_kernel_semantic_refinement",
+      "kernel_frontier_soundness_and_task_meaning_binding",
+      "generator_production_and_package_provenance_refinement",
+      "full_goal_and_information_semantic_binding",
+      "complete_resource_measurement_and_enforcement",
+      "complete_operational_recursive_frontier_and_root_binding",
+      "durable_fresh_challenge_and_history_consumption",
+      "active_atomic_promotion_and_rollback"
+    ],
+    "obligations": [
+      {
+        "complete_root_premise_discharged": false,
+        "field": "typedSuccessor",
+        "layer": "base",
+        "support": "exact_prospective_package_delta_only; no active typed successor"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "residualsNonpositive",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedNonLoss",
+        "layer": "base",
+        "support": "exact retained file bytes; no complete information-semantics refinement"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "constructiveRecovery",
+        "layer": "base",
+        "support": "exact physical predecessor projection; no active-store rollback"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "invariantPreserved",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "progressNondecreasing",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "strictProgressWhenWitness",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "trustValid",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "resourceValid",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "realityContained",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "successorAdmissible",
+        "layer": "base",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedFrontierCertified",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedFrontierRetained",
+        "layer": "learned",
+        "support": "fresh 21-task Python candidate checks; Lean gate separate"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "strictFrontierExpansion",
+        "layer": "learned",
+        "support": "one new finite-probe capability in a PROSPECTIVE frontier"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "generatorIsActive",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "generatorBound",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "proposalProduced",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "proposalBindsCandidate",
+        "layer": "learned",
+        "support": "anchored transcript and independently reconstructed physical program"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "packageHashIsActive",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "packageHashBound",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "goalDriftWithinBudget",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "resourceWithinBudget",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "informationNonRegression",
+        "layer": "learned",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "objectiveSelectedEndogenously",
+        "layer": "autonomous",
+        "support": "current package-conditioned objective recomputed"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "programProducedEndogenously",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "hiddenChallengeFresh",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "historyIsBound",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "routeHintsAbsent",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "programCandidateBinding",
+        "layer": "autonomous",
+        "support": "frozen descriptor matched to physical installed bytes"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "programCertificateBinding",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedRecursiveFrontierCertified",
+        "layer": "autonomous",
+        "support": "historical labels bound; operational semantics pending"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "protectedRecursiveFrontierRetained",
+        "layer": "autonomous",
+        "support": "finite label inclusion; operational semantics pending"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "recursiveFrontierRetained",
+        "layer": "autonomous",
+        "support": "finite label inclusion plus three scoped probes; not all 19 abilities"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "recursiveWitnessValid",
+        "layer": "autonomous",
+        "support": "no complete concrete witness in this increment"
+      },
+      {
+        "complete_root_premise_discharged": false,
+        "field": "searchWithinBudget",
+        "layer": "autonomous",
+        "support": "candidate credits only; not complete runtime resource accounting"
+      }
+    ],
+    "reason": "typed preservation and bounded operational proofs are not a complete root accepted-step proof",
+    "root_acceptance_evaluated": false,
+    "root_obligation_count": 35,
+    "status": "blocked_missing_semantic_witnesses"
+  },
+  "named_audits": [
+    "Phase17LearnedBinding.frozen_view_preserved",
+    "Phase17LearnedBinding.fixed_interpretation_retained",
+    "Phase17LearnedBinding.information_value_retained",
+    "Phase17LearnedBinding.root_information_bound",
+    "Phase17LearnedBinding.frontier_retained",
+    "Phase17LearnedBinding.frontier_grows",
+    "Phase17LearnedBinding.selected_typed_binding",
+    "Phase17LearnedBinding.selected_interpretation_retention"
+  ],
+  "reused_phase17h": {
+    "retained_report_sha256": "6cfacc08015a8e2ace156c3ddb3de68e380c9e840d2e19f83b01fffd2981fdac",
+    "original_source_commit": "eb78c099106d1d9e5b6523646a5139a0c5c8dff5",
+    "packet_sha256": "0fa20dcff8b51b3a2ca45e8993d023db3eec7a8567fd3ac337d21a7597a8ee14",
+    "proofs_retained_not_rerun": 172,
+    "bounded_contracts": [
+      "phase17.recursive.multi-token-plan.exhaustive-v1",
+      "phase17.recursive.affine-tool.exhaustive-v1"
+    ],
+    "original_execution_authenticated_by_this_check": false
+  },
+  "existing_execution_source_unchanged": true,
+  "prospective_registry_sizes": [
+    8,
+    9
+  ],
+  "prospective_frontier_sizes": [
+    21,
+    22
+  ],
+  "legacy_full_recursive_tasks_recertified": [],
+  "new_operational_contracts_certified": [],
+  "plan_queries_recomputed_per_package": 172,
+  "integer_tool_executions_recomputed_per_package": 4488,
+  "prior_proofs_rerun": false,
+  "training_performed": false,
+  "public_recertification_not_hidden_evaluation": true,
+  "typed_binding_gate": {
+    "schema_id": "runtime.v5.phase17.typed-learned-binding-lean.v1",
+    "status": "rejected",
+    "packet_sha256": "6003c7a60df20dddfbf8e005160773586ab4426e13bbfb98de33e38fe961bbc3",
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stderr": "",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T18:16:17.245023+00:00",
+        "elapsed_ns": 1933090700
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17i-arwxozj6\\Binding.lean"
+        ],
+        "returncode": 1,
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17i-arwxozj6\\Binding.lean:85:6: error(lean.unknownIdentifier): Unknown constant `Finset.card_insert_of_not_mem`\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17i-arwxozj6\\Binding.lean:83:107: error: unsolved goals\ns : BoundState\nkey task packageHash : String\nfresh : task \u2209 s.package.capabilityFrontier\n\u22a2 s.package.capabilityFrontier.card < (insert task s.package.capabilityFrontier).card\n'Phase17LearnedBinding.frozen_view_preserved' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.fixed_interpretation_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.information_value_retained' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.root_information_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.frontier_retained' depends on axioms: [propext, Quot.sound]\n'Phase17LearnedBinding.frontier_grows' depends on axioms: [propext, sorryAx, Quot.sound]\n'Phase17LearnedBinding.selected_typed_binding' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17LearnedBinding.selected_interpretation_retention' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+        "stderr": "",
+        "stdout_sha256": "0321675a2e9bd6aa6cd955ecc5273d5411a4fb2768e261c00a29aca69ed3c89c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T18:16:19.180895+00:00",
+        "elapsed_ns": 716758657300
+      }
+    ],
+    "theorem_axioms": {},
+    "typed_learned_state_binding_checked": false,
+    "fixed_interpretation_preservation_checked": false,
+    "root_information_connection": "conditional_on_explicit_semantic_binding",
+    "negative_component_substitution_rejected": false,
+    "claims": {
+      "root_transition_verified": false,
+      "recursive_productivity_recertified": false,
+      "full_frontier_recertified": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "phase17_exit_closed": false,
+      "gate_e_closed": false,
+      "egc0_started": false,
+      "live_capability_gain_demonstrated": false,
+      "complete_resource_accounting": false,
+      "full_learned_semantic_refinement": false,
+      "neural_decoder_formally_verified": false
+    },
+    "failure": {
+      "type": "ControlError",
+      "reason": "typed learned binding rejected"
+    }
+  },
+  "failure": {
+    "type": "ControlError",
+    "reason": "new typed learned-state gate failed"
+  },
+  "finished_at_utc": "2026-11-01T18:28:15.949731+00:00"
+}

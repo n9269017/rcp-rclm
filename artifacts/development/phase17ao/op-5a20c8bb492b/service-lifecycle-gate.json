@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_service_lifecycle_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ao-86ffc3b7\\e\\gate",
+    "--toolchain-root",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0"
+  ],
+  "finished_at_utc": "2026-11-19T19:33:29.716514+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-19T18:50:22.154981+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "25caa0ee2decb056885cf721eb8db7b14b8a144a644927834d94cce73ee88302"
+}

@@ -1,0 +1,1 @@
+PASS: complete selected evaluator outputs, verdict prefix, reference work and retained Q/R/S/T/U/V/W/X/Y/Z proof inputs reconstructed; no workers, challenges, or compiler runs

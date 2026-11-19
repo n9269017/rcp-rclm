@@ -1,0 +1,1 @@
+Bounded public planner/tool contracts only; full root/promotion/Phase17 closure false.

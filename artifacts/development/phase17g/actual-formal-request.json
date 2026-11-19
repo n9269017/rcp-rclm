@@ -1,0 +1,27 @@
+{
+  "schema_id": "runtime.v5.phase17.conservative-kernel-check.v1",
+  "status": "blocked",
+  "packet_sha256": "57e61a3f656684621e3d70c680d53b92e7d4cfa0fb41162a2e89c52c0ef90c99",
+  "commands": [],
+  "theorem_axioms": {},
+  "scoped_base_obligations_checked": false,
+  "universal_registry_preservation_checked": false,
+  "negative_shadowing_rejected": false,
+  "base_obligation_count": 11,
+  "claims": {
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "live_capability_gain_demonstrated": false,
+    "complete_resource_accounting": false
+  },
+  "failure": {
+    "type": "ControlError",
+    "reason": "pinned dependency not installed: mathlib"
+  }
+}

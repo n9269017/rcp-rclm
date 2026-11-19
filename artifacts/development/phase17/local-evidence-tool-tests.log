@@ -1,0 +1,46 @@
+# Recorder unit tests only: synthetic temporary Git repositories, not Phase 17 campaigns.
+# Run in three batches to fit execution limits; no skipped tests.
+
+## Batch 1
+test_caller_cannot_replace_expected_source (test_local_evidence.LocalEvidenceTests.test_caller_cannot_replace_expected_source) ... ok
+test_capture_verify_round_trip_and_no_closure (test_local_evidence.LocalEvidenceTests.test_capture_verify_round_trip_and_no_closure) ... ok
+test_compile_failure_stops_remaining_commands (test_local_evidence.LocalEvidenceTests.test_compile_failure_stops_remaining_commands) ... ok
+test_dirty_checkout_rejected (test_local_evidence.LocalEvidenceTests.test_dirty_checkout_rejected) ... ok
+test_duplicate_json_key_rejected (test_local_evidence.LocalEvidenceTests.test_duplicate_json_key_rejected) ... ok
+test_existing_output_not_overwritten (test_local_evidence.LocalEvidenceTests.test_existing_output_not_overwritten) ... ok
+test_extra_file_rejected_even_if_rehashed (test_local_evidence.LocalEvidenceTests.test_extra_file_rejected_even_if_rehashed) ... ok
+test_log_tampering_rejected (test_local_evidence.LocalEvidenceTests.test_log_tampering_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 17.365s
+
+OK
+
+## Batch 2
+test_manifest_traversal_rejected (test_local_evidence.LocalEvidenceTests.test_manifest_traversal_rejected) ... ok
+test_output_inside_checkout_rejected (test_local_evidence.LocalEvidenceTests.test_output_inside_checkout_rejected) ... ok
+test_rehashed_bundle_rejected_against_prior_anchor (test_local_evidence.LocalEvidenceTests.test_rehashed_bundle_rejected_against_prior_anchor) ... ok
+test_rehashed_closure_claim_rejected (test_local_evidence.LocalEvidenceTests.test_rehashed_closure_claim_rejected) ... ok
+test_rehashed_command_substitution_rejected (test_local_evidence.LocalEvidenceTests.test_rehashed_command_substitution_rejected) ... ok
+test_rehashed_false_exit_code_rejected (test_local_evidence.LocalEvidenceTests.test_rehashed_false_exit_code_rejected) ... ok
+test_rehashed_forged_test_count_rejected (test_local_evidence.LocalEvidenceTests.test_rehashed_forged_test_count_rejected) ... ok
+test_rehashed_omitted_command_rejected (test_local_evidence.LocalEvidenceTests.test_rehashed_omitted_command_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 20.264s
+
+OK
+
+## Batch 3
+test_skipped_tests_do_not_pass (test_local_evidence.LocalEvidenceTests.test_skipped_tests_do_not_pass) ... ok
+test_timeout_retained_not_success (test_local_evidence.LocalEvidenceTests.test_timeout_retained_not_success) ... ok
+test_too_few_tests_do_not_pass (test_local_evidence.LocalEvidenceTests.test_too_few_tests_do_not_pass) ... ok
+test_unknown_report_field_rejected (test_local_evidence.LocalEvidenceTests.test_unknown_report_field_rejected) ... ok
+test_unsupported_float_in_report_rejected (test_local_evidence.LocalEvidenceTests.test_unsupported_float_in_report_rejected) ... ok
+test_wrong_expected_head_rejected_before_creation (test_local_evidence.LocalEvidenceTests.test_wrong_expected_head_rejected_before_creation) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 14.396s
+
+OK
+

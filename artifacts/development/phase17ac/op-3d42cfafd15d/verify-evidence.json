@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_continuation_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ac-8c929440\\e\\gate",
+    "--expected-execution-sha256",
+    "66805f5e3780bbc5eb0cf458cee39f00bbef0f2fb6a167b700ed3f65d1f4e65f"
+  ],
+  "finished_at_utc": "2026-11-13T21:46:10.508617+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-13T21:44:22.993676+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "13ed366c39e829ad5a9d4b50dff57228c2a46cadfa0a2f0a78ed1315d6d0f656"
+}

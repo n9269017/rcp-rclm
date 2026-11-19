@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_captured_json_tests.py"
+  ],
+  "finished_at_utc": "2026-11-08T08:29:06.690966+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T08:28:09.258566+00:00",
+  "stderr_sha256": "67661763f7fe8fd2308c2cee4667247aa97c066f91648a72818f39dc1ec8165f",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

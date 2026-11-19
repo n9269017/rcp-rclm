@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_durable_authority_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ak-090ce48a\\e\\gate",
+    "--toolchain-root",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0"
+  ],
+  "finished_at_utc": "2026-11-18T15:04:19.007631+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-18T13:30:15.612212+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "a575d795e378ae0e801b5d60af306d142b3d7ac66d3bbfdc773b489ce22909e4"
+}

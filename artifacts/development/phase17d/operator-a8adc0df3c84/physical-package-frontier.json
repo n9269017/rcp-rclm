@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_package_gate.py",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17d-kit\\runs\\20261031T235013Z-e847087e\\evidence\\package-run"
+  ],
+  "finished_at_utc": "2026-10-31T23:52:41.459424+00:00",
+  "returncode": 0,
+  "started_at_utc": "2026-10-31T23:52:35.691400+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "ec9fea960e702501384b1b947f0ae373defa1eb23dec5dee1f488aff4b68aacb"
+}

@@ -1,0 +1,1667 @@
+{
+  "automatic_retries": 0,
+  "claims": {
+    "diagnostic_only": true,
+    "egc0_started": false,
+    "full_phase_validation_passed": false,
+    "gate_e_closed": false,
+    "hardware_diagnosis_established": false,
+    "installation_authorized": false,
+    "original_failure_resolved": false,
+    "phase17_exit_closed": false,
+    "production_code_instrumented": false,
+    "project_code_imported": false,
+    "promotion_authorized": false,
+    "repair_applied": false
+  },
+  "finished_at_utc": "2026-10-31T19:10:50.020978+00:00",
+  "hardware_inventory": {
+    "data": {
+      "bios": [
+        {
+          "Manufacturer": "American Megatrends International, LLC.",
+          "ReleaseDate": "/Date(1668729600000)/",
+          "SMBIOSBIOSVersion": "8.02"
+        }
+      ],
+      "board": [
+        {
+          "Manufacturer": "ASRock",
+          "Product": "Z690M PG Riptide/D5"
+        }
+      ],
+      "cpu": [
+        {
+          "Manufacturer": "GenuineIntel",
+          "Name": "12th Gen Intel(R) Core(TM) i7-12700K",
+          "NumberOfCores": 12,
+          "NumberOfLogicalProcessors": 20
+        }
+      ],
+      "memory": [
+        {
+          "Capacity": 34359738368,
+          "ConfiguredClockSpeed": 6000,
+          "Speed": 4800
+        },
+        {
+          "Capacity": 34359738368,
+          "ConfiguredClockSpeed": 6000,
+          "Speed": 4800
+        }
+      ]
+    },
+    "firmware_or_settings_changed": false,
+    "overclock_state_inferred": false,
+    "serial_numbers_requested": false,
+    "status": "read_only_inventory"
+  },
+  "input_after": {
+    "alternate_sha256": null,
+    "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+    "expected_size": 6524813,
+    "matches_reference": true,
+    "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+    "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+    "size": 6524813
+  },
+  "input_and_script_identity_retained": true,
+  "input_before": {
+    "alternate_sha256": null,
+    "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+    "expected_size": 6524813,
+    "matches_reference": true,
+    "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+    "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+    "size": 6524813
+  },
+  "limitations": [
+    "Diagnostic helpers can themselves be defective; this is not hardware attestation.",
+    "Both ZIP paths use zlib; they are not independent decompressor implementations.",
+    "Passing finite observations do not repair or supersede earlier failures.",
+    "Another interpreter on the same machine is not an independent hardware platform."
+  ],
+  "observations_per_runtime": 12,
+  "runtime_inventory": {
+    "errors": [],
+    "installed": [
+      {
+        "bits": 64,
+        "executable": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "implementation": "CPython",
+        "os": "Windows",
+        "os_release": "11",
+        "version": [
+          3,
+          13,
+          3
+        ],
+        "zlib": "1.3.1"
+      }
+    ],
+    "launcher_available": true,
+    "launcher_exit": 0,
+    "no_runtime_installed_or_updated": true,
+    "second_runtime_selected": false
+  },
+  "runtime_results": [
+    {
+      "nonpassing": 0,
+      "observations": [
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:32.529695+00:00",
+          "observation": 1,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:31.031708+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:34.118548+00:00",
+          "observation": 2,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:32.602985+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:35.713208+00:00",
+          "observation": 3,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:34.191661+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:37.299150+00:00",
+          "observation": 4,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:35.791582+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:38.879408+00:00",
+          "observation": 5,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:37.372116+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:40.488131+00:00",
+          "observation": 6,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:38.983814+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:42.080166+00:00",
+          "observation": 7,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:40.561338+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:43.655850+00:00",
+          "observation": 8,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:42.152331+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:45.223281+00:00",
+          "observation": 9,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:43.725909+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:46.825106+00:00",
+          "observation": 10,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:45.296164+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:48.410772+00:00",
+          "observation": 11,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:46.901869+00:00",
+          "zlib_version": "1.3.1"
+        },
+        {
+          "alternate_known_answer_passed": true,
+          "alternate_sha256_backend": "_sha2.sha256",
+          "automatic_retries": 0,
+          "checks": [
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "zipfile_read_with_crc",
+              "crc32": 2041791256,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "check": "direct_deflate_with_explicit_hash_and_crc",
+              "crc32": 2041791256,
+              "equals_zipfile_result": true,
+              "expected_crc32": 2041791256,
+              "expected_sha256": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "expected_size": 50929889,
+              "matches_reference": true,
+              "native_sha256_first": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "native_sha256_second": "fad1ef726a5c7385e8f4ee8f4c93960005eb5a91fbf268fcd6f9451bc6caf9b3",
+              "size": 50929889
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "stdlib_json_canonical_bytes",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_memoryview_no_copy",
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "check": "suffix_bytes_copy",
+              "equals_memoryview": true,
+              "equals_original_canonical": true,
+              "expected_sha256": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "expected_size": 38104201,
+              "first_difference_from_original": null,
+              "matches_reference": true,
+              "native_sha256_first": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "native_sha256_second": "440379d187507c5f671531699a2805a0529cdfe05bf56f9cbd663dccfaaae6b5",
+              "size": 38104201
+            },
+            {
+              "alternate_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "check": "domain_prefixed_bytes_after_copy",
+              "expected_sha256": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "expected_size": 38104227,
+              "matches_reference": true,
+              "native_sha256_first": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "native_sha256_second": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+              "size": 38104227
+            },
+            {
+              "alternate_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "check": "compressed_archive_after_operations",
+              "expected_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "expected_size": 6524813,
+              "matches_reference": true,
+              "native_sha256_first": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "native_sha256_second": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+              "size": 6524813
+            }
+          ],
+          "claims": {
+            "diagnostic_only": true,
+            "egc0_started": false,
+            "full_phase_validation_passed": false,
+            "gate_e_closed": false,
+            "hardware_diagnosis_established": false,
+            "installation_authorized": false,
+            "original_failure_resolved": false,
+            "phase17_exit_closed": false,
+            "production_code_instrumented": false,
+            "project_code_imported": false,
+            "promotion_authorized": false,
+            "repair_applied": false
+          },
+          "finished_at_utc": "2026-10-31T19:10:49.994793+00:00",
+          "observation": 12,
+          "observation_passed": true,
+          "passed_with_normal_exit": true,
+          "process_exit": 0,
+          "python_implementation": "CPython",
+          "python_version": "3.13.3",
+          "started_at_utc": "2026-10-31T19:10:48.482064+00:00",
+          "zlib_version": "1.3.1"
+        }
+      ],
+      "passed": 12,
+      "runtime": {
+        "bits": 64,
+        "executable": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "implementation": "CPython",
+        "os": "Windows",
+        "os_release": "11",
+        "version": [
+          3,
+          13,
+          3
+        ],
+        "zlib": "1.3.1"
+      }
+    }
+  ],
+  "schema": "rcp-rclm.phase17c.stdlib-runtime-comparison.v1",
+  "script_sha256": "479755281654df319bf6afcc0c87e5678ff3033f20214efc9e2f627cbd06cf1c",
+  "second_runtime_available": false
+}

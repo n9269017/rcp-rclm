@@ -1,0 +1,16 @@
+{
+  "command_line_runner_main_executed": false,
+  "complete_resource_accounting": false,
+  "created_at_utc": "2026-11-07T08:50:50.102769+00:00",
+  "egc0_started": false,
+  "formal_commands": 0,
+  "formal_status": "blocked",
+  "fresh_metered_reference_execution": true,
+  "gate_e_closed": false,
+  "os": "Linux",
+  "phase17_exit_closed": false,
+  "python": "3.13.5",
+  "real_historical_bootstrap_used": true,
+  "retained_current_M_report_read_here": false,
+  "scope": "reconstructed_historical_dependencies_and_phase17_overlay_not_complete_current_checkout"
+}

@@ -1,0 +1,130 @@
+{
+  "target_commit": "97bd7b334be7b91aa87f9965180e5522dce14a3b",
+  "source_scope": "reconstructed historical dependency checkout, not complete current checkout",
+  "phase17_files": [
+    {
+      "path": "__init__.py",
+      "expected_git_blob": "6f3e353dd154970d0723b0abe0f0fde9ee0916be",
+      "observed_git_blob": "6f3e353dd154970d0723b0abe0f0fde9ee0916be",
+      "matches": true
+    },
+    {
+      "path": "bootstrap.py",
+      "expected_git_blob": "0572ac52d965a32fab58ad39010e61b6d660f63f",
+      "observed_git_blob": "0572ac52d965a32fab58ad39010e61b6d660f63f",
+      "matches": true
+    },
+    {
+      "path": "challenge_client.py",
+      "expected_git_blob": "f3c86895fa0a4944e028b1e85130655d872f0bc3",
+      "observed_git_blob": "f3c86895fa0a4944e028b1e85130655d872f0bc3",
+      "matches": true
+    },
+    {
+      "path": "challenge_protocol.py",
+      "expected_git_blob": "8b2496e863702dd67eb259760950f938705bef23",
+      "observed_git_blob": "8b2496e863702dd67eb259760950f938705bef23",
+      "matches": true
+    },
+    {
+      "path": "challenge_transaction.py",
+      "expected_git_blob": "ed1b947f509cf1e5e96713a714a38ed12f7e0671",
+      "observed_git_blob": "ed1b947f509cf1e5e96713a714a38ed12f7e0671",
+      "matches": true
+    },
+    {
+      "path": "conservative_extension.py",
+      "expected_git_blob": "29172e97236f2229422fd82f7990c5fe2fe5eaf4",
+      "observed_git_blob": "29172e97236f2229422fd82f7990c5fe2fe5eaf4",
+      "matches": true
+    },
+    {
+      "path": "conservative_lean.py",
+      "expected_git_blob": "bc8fdef32539c70560ed25ecba190d920d891f4e",
+      "observed_git_blob": "bc8fdef32539c70560ed25ecba190d920d891f4e",
+      "matches": true
+    },
+    {
+      "path": "controller.py",
+      "expected_git_blob": "1d122fd51e39cb68d397c598bec6318469db3012",
+      "observed_git_blob": "1d122fd51e39cb68d397c598bec6318469db3012",
+      "matches": true
+    },
+    {
+      "path": "frontier_recertification.py",
+      "expected_git_blob": "fb8345a9eddf79071d57e9e9b6c81bb2a3ca81b9",
+      "observed_git_blob": "fb8345a9eddf79071d57e9e9b6c81bb2a3ca81b9",
+      "matches": true
+    },
+    {
+      "path": "lean_frontier_gate.py",
+      "expected_git_blob": "4abc1f7535d29ac1d1a5774a25225ecaba578a0f",
+      "observed_git_blob": "4abc1f7535d29ac1d1a5774a25225ecaba578a0f",
+      "matches": true
+    },
+    {
+      "path": "lean_root_pins.json",
+      "expected_git_blob": "92b6994354c5d71d39a4cae993a47bcc4c42f02c",
+      "observed_git_blob": "92b6994354c5d71d39a4cae993a47bcc4c42f02c",
+      "matches": true
+    },
+    {
+      "path": "materialized.py",
+      "expected_git_blob": "c8024c27d1a6f7dffe80bdd95a4193ae37c7ad01",
+      "observed_git_blob": "c8024c27d1a6f7dffe80bdd95a4193ae37c7ad01",
+      "matches": true
+    },
+    {
+      "path": "objectives.py",
+      "expected_git_blob": "9c99680c9fb79c0acc848a95140a6fc713c7d257",
+      "observed_git_blob": "9c99680c9fb79c0acc848a95140a6fc713c7d257",
+      "matches": true
+    },
+    {
+      "path": "operational_lean.py",
+      "expected_git_blob": "0e1b80c6783b28b69b9adce54f223c3c97256305",
+      "observed_git_blob": "0e1b80c6783b28b69b9adce54f223c3c97256305",
+      "matches": true
+    },
+    {
+      "path": "operational_witnesses.py",
+      "expected_git_blob": "d8f3ec0344a16987ad99cea206325483ac5ef657",
+      "observed_git_blob": "d8f3ec0344a16987ad99cea206325483ac5ef657",
+      "matches": true
+    },
+    {
+      "path": "phase16_adapter.py",
+      "expected_git_blob": "fd2a824c61f3fc13a3ddfb0dd771873858ac252d",
+      "observed_git_blob": "fd2a824c61f3fc13a3ddfb0dd771873858ac252d",
+      "matches": true
+    },
+    {
+      "path": "successor_evidence.py",
+      "expected_git_blob": "b97db46a52127e470866e965c7861cc73a8c916d",
+      "observed_git_blob": "b97db46a52127e470866e965c7861cc73a8c916d",
+      "matches": true
+    },
+    {
+      "path": "successor_lean.py",
+      "expected_git_blob": "3865f87e936afbf77894a4098669a0202f96976b",
+      "observed_git_blob": "3865f87e936afbf77894a4098669a0202f96976b",
+      "matches": true
+    },
+    {
+      "path": "learned_binding_lean.py",
+      "expected_git_blob": "d8c43f2a480265667375d46edd99ea31ef054fe2",
+      "observed_git_blob": "d8c43f2a480265667375d46edd99ea31ef054fe2",
+      "matches": true
+    },
+    {
+      "path": "learned_state_binding.py",
+      "expected_git_blob": "234d5aca77642396425bbb366d27de49b496abca",
+      "observed_git_blob": "234d5aca77642396425bbb366d27de49b496abca",
+      "matches": true
+    }
+  ],
+  "old_eighteen_identity_source": "retained Phase17I dependency manifest; directory entries visible in current connector read also match",
+  "new_two_identity_source": "live exact-commit fetch_file returned blob identities",
+  "immutable_root_files": 72,
+  "immutable_root_matches_pins": true
+}

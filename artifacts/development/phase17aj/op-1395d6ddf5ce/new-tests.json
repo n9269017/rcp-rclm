@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_witness_tests.py"
+  ],
+  "finished_at_utc": "2026-11-17T06:25:39.233122+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-17T06:15:42.626695+00:00",
+  "stderr_sha256": "49da47425d6f47dfca8d51598bfc126637200e1306ceeaa29760b9b9adecee95",
+  "stdout_sha256": "a90a45548c60b340dcab2cd90d63f738219ad92c89b32f11228dbaf44b199162"
+}

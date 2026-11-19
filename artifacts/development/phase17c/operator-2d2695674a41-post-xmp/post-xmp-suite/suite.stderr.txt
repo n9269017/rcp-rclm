@@ -1,0 +1,23 @@
+test_client_timeout_profile_validated (test_process_boundary.ProcessBoundaryTests.test_client_timeout_profile_validated) ... ok
+test_environment_does_not_forward_credentials_or_pythonpath (test_process_boundary.ProcessBoundaryTests.test_environment_does_not_forward_credentials_or_pythonpath) ... ok
+test_fresh_worker_commitments_differ (test_process_boundary.ProcessBoundaryTests.test_fresh_worker_commitments_differ) ... ok
+test_live_worker_bad_freeze_rejected (test_process_boundary.ProcessBoundaryTests.test_live_worker_bad_freeze_rejected) ... ok
+test_live_worker_no_caller_path_or_executable (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_caller_path_or_executable) ... ok
+test_live_worker_no_early_reveal (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_early_reveal) ... ok
+test_live_worker_no_seed_override (test_process_boundary.ProcessBoundaryTests.test_live_worker_no_seed_override) ... ok
+test_real_worker_freeze_and_evaluate (test_process_boundary.ProcessBoundaryTests.test_real_worker_freeze_and_evaluate) ... ok
+test_real_worker_has_distinct_pid_and_sealed_recomputation (test_process_boundary.ProcessBoundaryTests.test_real_worker_has_distinct_pid_and_sealed_recomputation) ... ok
+test_seal_prevents_more_requests (test_process_boundary.ProcessBoundaryTests.test_seal_prevents_more_requests) ... ok
+test_timeout_kills_worker_without_success (test_process_boundary.ProcessBoundaryTests.test_timeout_kills_worker_without_success) ... ok
+test_worker_death_fails_closed (test_process_boundary.ProcessBoundaryTests.test_worker_death_fails_closed) ... ok
+test_complete_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_complete_controller_service_transaction) ... ok
+test_exact_grammar_for_eight_current_nonces (test_reference_differential.ReferenceDifferentialTests.test_exact_grammar_for_eight_current_nonces) ... ok
+test_partial_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_partial_controller_service_transaction) ... ok
+test_reference_matches_actual_executor_all_families_and_variants (test_reference_differential.ReferenceDifferentialTests.test_reference_matches_actual_executor_all_families_and_variants) ... ok
+test_reference_matches_installed_predecessor_programs (test_reference_differential.ReferenceDifferentialTests.test_reference_matches_installed_predecessor_programs) ... ok
+test_zero_credit_controller_service_transaction (test_reference_differential.ReferenceDifferentialTests.test_zero_credit_controller_service_transaction) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 34.125s
+
+OK

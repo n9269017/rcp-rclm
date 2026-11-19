@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_successor_interface_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ag-cd36f36f\\e\\gate",
+    "--expected-execution-sha256",
+    "d32c30f47b9e1d084d0cba479a5365248e62cd4ba9e9d52c0ccaf30a5fc72dad"
+  ],
+  "finished_at_utc": "2026-11-15T02:16:56.073138+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-15T02:13:42.642659+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "834f3a4560ee7f52aefb25abe70ea419ebb3a0b744ade743dee2ff197d51d270"
+}

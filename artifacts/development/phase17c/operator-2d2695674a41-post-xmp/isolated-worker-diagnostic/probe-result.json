@@ -1,0 +1,13 @@
+{
+  "diagnostic_instrumentation": true,
+  "errors": 0,
+  "failures": 0,
+  "production_worker_source_modified": false,
+  "retries": 0,
+  "skipped": 0,
+  "test": "ProcessBoundaryTests.test_seal_prevents_more_requests",
+  "test_passed": true,
+  "tests_run": 1,
+  "worker_launches": 1,
+  "worker_timeout_seconds": 30
+}

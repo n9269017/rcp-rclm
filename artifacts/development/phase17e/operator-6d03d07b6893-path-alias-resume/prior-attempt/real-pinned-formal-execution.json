@@ -1,0 +1,18 @@
+{
+  "command": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/phase17_pinned_lean.py",
+    "--repository",
+    "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\20261101T003246Z-f25e1271\\checkout",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17e-kit\\runs\\20261101T003246Z-f25e1271\\evidence\\formal",
+    "--cache",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431",
+    "--allow-network"
+  ],
+  "finished_at_utc": "2026-11-01T00:45:18.417508+00:00",
+  "returncode": 2,
+  "started_at_utc": "2026-11-01T00:34:52.302848+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "3d3012dd0319ef5fba526e1115f15d72b0ccc8ed5eb4b2a375cc91a773169761"
+}

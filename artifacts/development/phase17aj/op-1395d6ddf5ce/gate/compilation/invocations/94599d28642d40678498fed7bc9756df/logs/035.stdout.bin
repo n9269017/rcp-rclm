@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\aj-2d879ce8\e\gate\compilation\invocations\fca7daa07780482b9440ed8a88b7eac8\workspace/WrongSourceRegistry.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

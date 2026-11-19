@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ag-cd36f36f\e\gate\compilation\invocations\d875413095834bbcaed8f8f769eca23a\workspace/FalseContextAcceptance.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

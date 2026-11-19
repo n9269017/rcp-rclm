@@ -1,0 +1,54 @@
+{
+  "actual_formal_execution_attempt": {
+    "reason": "pinned Lean missing; explicit --allow-network is required for download",
+    "source_scope": "local snapshot of the 72 exact pinned formal root files and pin table; not a full project checkout",
+    "status": "blocked",
+    "tool_processes": 0
+  },
+  "application_helper_tests": {
+    "errors": 0,
+    "failures": 0,
+    "run": 26,
+    "scope": "temporary synthetic Git repositories and controlled formal-command fixtures; NOT live project or Lean execution",
+    "skipped": 0
+  },
+  "base_commit": "e4e6852dd3e3a5d890a81d4c47e4c15cdaac3d28",
+  "claims": {
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "fresh_lean_verified": false,
+    "full_frontier_recertified": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "phase17_exit_closed": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "environment": {
+    "os": "Linux",
+    "python": "3.13.5"
+  },
+  "execution_control_tests": {
+    "errors": 0,
+    "failures": 0,
+    "run": 51,
+    "scope": "stdlib execution controls, exact 72-file formal root source pins, controlled fake compiler tests, real Python subprocess tests; NOT actual Lean proofs",
+    "skipped": 0
+  },
+  "installer_sha256": "0da2f8da60ea5cc4e510e72c41982be0de90c30c587686fecb1232513047ace2",
+  "limitations": [
+    "No native Windows execution of the new kit has occurred in the assistant environment.",
+    "The official tool download, nine remote dependency fetches, Mathlib cache setup and full root build were not exercised end-to-end here.",
+    "Direct container network access could not resolve github.com; attempted external asset retrieval did not supply the Lean binary.",
+    "All real Lean obligations remain pending until an actual operator run passes.",
+    "No current full-checkout Python regression campaign was run here; existing Phase17D results remain historical.",
+    "Compiled imports and operator environment remain trusted premises; this is not hostile same-user isolation."
+  ],
+  "schema": "rcp-rclm.phase17e.assistant-validation.v1",
+  "source_sha256": {
+    "scripts/phase17_pinned_lean.py": "b9c2a3f53b8f50d468374a1330eb7214ce079f9806704a4ef8dc29602049ba7d",
+    "scripts/run_phase17_formal_execution_tests.py": "fbf218a76d18a522383146548857720c2ab1621f48e6ae2634ca0f552ec6e3a2",
+    "scripts/tests_phase17e/test_pinned_lean.py": "82de4452c27edebe52e6eedb1ca71a82174e2cdd490b46438a65a0b3911b1906"
+  }
+}

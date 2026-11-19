@@ -1,0 +1,24 @@
+{
+  "changes": [
+    {
+      "new_sha256": "c95e37240101e94de540300f23a977d0492449e3890c2a5b928c142fd622389e",
+      "old_sha256": "b2eee9fc68e621501338d0aca9c7f3361407317812ccd8046829d360c4f0e672",
+      "path": "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/bootstrap.py"
+    },
+    {
+      "new_sha256": "d74289167929f095bd03b4fe9e0d5afcf3c7855d126a747b71ce78f1a94f9ee0",
+      "old_sha256": "8741fb5f15e2c1fdf6a53ce52d114210a3366b5b164e30a1826045897850f236",
+      "path": "python/rcp_rclm_runtime_v5/tests_phase17/test_bootstrap_objectives.py"
+    }
+  ],
+  "egc0_started": false,
+  "explanation": "Use raw ZIP-header names in fixtures and validate ZipInfo.orig_filename before normalized filename.",
+  "failed_code_commit": "89b8296c4973f7fa425518e4d407356766f7b6c9",
+  "failed_code_tree": "2cfd9c3a11153495c89e35f1ea8e1067407118c6",
+  "failed_foundation_manifest_sha256": "f52f049221562bf2dfec6d68b18389c186072c8e11a261b37405a740f2f357a1",
+  "failure_preserved_as_failure": true,
+  "gate_e_closed": false,
+  "phase17_exit_closed": false,
+  "schema": "rcp-rclm.phase17b.zipname-repair.v1",
+  "tests_skipped_or_weakened": false
+}

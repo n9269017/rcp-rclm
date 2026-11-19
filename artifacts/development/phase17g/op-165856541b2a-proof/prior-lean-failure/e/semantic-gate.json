@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_conservative_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\g-b1a0983c\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-01T04:50:28.409900+00:00",
+  "problem": null,
+  "returncode": 2,
+  "started_at_utc": "2026-11-01T04:43:58.931664+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "8721bf86e3bdf01dadff5eca0a9ca0fbf89d8824a8638d193ffbffd7b8f04a47"
+}

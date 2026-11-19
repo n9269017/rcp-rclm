@@ -1,0 +1,16 @@
+positive-kernel-probe: exit 0
+negative-kernel-probe: exit 0
+positive-kernel-probe: exit 0
+negative-kernel-probe: exit -999
+positive-kernel-probe: exit 0
+positive-kernel-probe: exit 0
+negative-kernel-probe: exit 1
+lean-version: exit 0
+lake-version: exit 0
+positive-kernel-probe: exit 0
+negative-kernel-probe: exit 1
+lean-version: exit 0
+actual-python: exit 0
+intentional-failure: exit 7
+absent-tool: exit -998
+intentional-timeout: exit -999

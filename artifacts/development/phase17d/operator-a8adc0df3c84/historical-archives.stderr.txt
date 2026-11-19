@@ -1,0 +1,15 @@
+test_fixture_matches_real_reopening (__main__.main.<locals>.HistoricalArchiveIntegration.test_fixture_matches_real_reopening) ... ok
+test_real_objective_freeze (__main__.main.<locals>.HistoricalArchiveIntegration.test_real_objective_freeze) ... ok
+test_real_program_registry_reconstruction (__main__.main.<locals>.HistoricalArchiveIntegration.test_real_program_registry_reconstruction) ... ok
+test_rehashed_archive_parent_substitution (__main__.main.<locals>.HistoricalArchiveIntegration.test_rehashed_archive_parent_substitution) ... ok
+test_rehashed_archive_record_mutation (__main__.main.<locals>.HistoricalArchiveIntegration.test_rehashed_archive_record_mutation) ... ok
+test_rehashed_archive_suffix (__main__.main.<locals>.HistoricalArchiveIntegration.test_rehashed_archive_suffix) ... ok
+test_rehashed_terminal_substitution (__main__.main.<locals>.HistoricalArchiveIntegration.test_rehashed_terminal_substitution) ... ok
+test_rehashed_transition_order (__main__.main.<locals>.HistoricalArchiveIntegration.test_rehashed_transition_order) ... ok
+test_rehashed_transition_payload_substitution (__main__.main.<locals>.HistoricalArchiveIntegration.test_rehashed_transition_payload_substitution) ... ok
+test_reopen_real_archives (__main__.main.<locals>.HistoricalArchiveIntegration.test_reopen_real_archives) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 2.182s
+
+OK

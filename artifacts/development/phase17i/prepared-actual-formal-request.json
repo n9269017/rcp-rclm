@@ -1,0 +1,29 @@
+{
+  "schema_id": "runtime.v5.phase17.typed-learned-binding-lean.v1",
+  "status": "blocked",
+  "packet_sha256": "6003c7a60df20dddfbf8e005160773586ab4426e13bbfb98de33e38fe961bbc3",
+  "commands": [],
+  "theorem_axioms": {},
+  "typed_learned_state_binding_checked": false,
+  "fixed_interpretation_preservation_checked": false,
+  "root_information_connection": "conditional_on_explicit_semantic_binding",
+  "negative_component_substitution_rejected": false,
+  "claims": {
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "live_capability_gain_demonstrated": false,
+    "complete_resource_accounting": false,
+    "full_learned_semantic_refinement": false,
+    "neural_decoder_formally_verified": false
+  },
+  "failure": {
+    "type": "ControlError",
+    "reason": "pinned dependency not installed: mathlib"
+  }
+}

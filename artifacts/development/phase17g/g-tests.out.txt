@@ -1,0 +1,1 @@
+Scoped append-only semantics; full root/promotion/Phase17 closure false.

@@ -1,0 +1,9 @@
+'RcpRclmFormalCoreV4.Autonomous.autonomous_accepted_step_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RcpRclmFormalCoreV4.Autonomous.recursive_productivity_retained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RcpRclmFormalCoreV4.Autonomous.recursive_productivity_strictly_expands_when_witnessed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

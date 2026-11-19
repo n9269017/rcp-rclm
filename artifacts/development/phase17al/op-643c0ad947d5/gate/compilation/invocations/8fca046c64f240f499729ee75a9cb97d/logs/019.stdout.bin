@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\al-65c5862d\e\gate\compilation\invocations\e1b08c3fd70c49fbb4bb748c357125ff\workspace/ReopenedCampaignOwner.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

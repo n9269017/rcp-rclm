@@ -1,0 +1,1 @@
+PASS: finite snapshot and retained inputs reconstructed; no workers, fresh challenges, or compiler runs

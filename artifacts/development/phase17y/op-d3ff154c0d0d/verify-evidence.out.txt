@@ -1,0 +1,1 @@
+PASS: complete objective policy, state and challenge inputs, block traces and retained Q/R/S/T/U/V/W/X/Y proof inputs reconstructed; no workers, challenges, or compiler runs

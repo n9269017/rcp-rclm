@@ -1,0 +1,136 @@
+{
+  "schema": "rcp-rclm.phase17k.provenance-run.v1",
+  "source_commit": "2741e10cabd809a182bc5332e98261fb0bbe5507",
+  "source_tree": "2dcea1413df98d954306a738df66d0dacb88b508",
+  "started_at_utc": "2026-11-01T22:05:08.896645+00:00",
+  "os": "Windows",
+  "python_version": "3.13.3",
+  "synthetic_fixture": true,
+  "automatic_retries": 0,
+  "local_increment_checks_passed": false,
+  "claims": {
+    "root_transition_verified": false,
+    "recursive_productivity_recertified": false,
+    "full_frontier_recertified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "phase17_exit_closed": false,
+    "gate_e_closed": false,
+    "egc0_started": false,
+    "live_capability_gain_demonstrated": false,
+    "complete_resource_accounting": false,
+    "full_learned_semantic_refinement": false,
+    "neural_decoder_formally_verified": false
+  },
+  "packet_sha256": "6668900a9ec4dadb06e51489ea7a3751b801cab7ff9657a80bb44d74337cf2f6",
+  "transcript_sha256": "16aee43b8b4f211f15917980d0d573e90a0d642427724271dd32e61ddeae1c0f",
+  "predecessor_package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "candidate_package_hash": "b4036b3e31a6608e30b421c08906b1e58c3e7d61fef6eb6730881c597656434e",
+  "generator_id": "9cd3e747c0e1a93a02ac5bff1d3a07fa7706172ae4a75a0a373629260a675dc5",
+  "producer_kind": "fixed_external_controller_with_package_bound_rank_projection",
+  "declared_generator_source_files": 8,
+  "physical_planner_nonzero_parameters": 84,
+  "grammar_size": 32,
+  "proposal_count": 9,
+  "rejection_count": 8,
+  "ranked_prefix_proposals": 4,
+  "fair_fallback_proposals": 5,
+  "terminal_action": "await_root_verification",
+  "old_shortcut": {
+    "old_evaluator_fixture_valid": true,
+    "producer_conformance": false,
+    "reason": "proposal is not the current controller choice",
+    "old_transcript_sha256": "369c30c469090fa357633aca596cb0c7ad3de31f2ecf16ca78e7699e79c79e6e",
+    "historical_evidence_modified": false
+  },
+  "new_named_audits": [
+    "Phase17Provenance.trace_no_repeat",
+    "Phase17Provenance.attached_generator_bound",
+    "Phase17Provenance.attached_package_bound",
+    "Phase17Provenance.attached_proposal_produced",
+    "Phase17Provenance.attached_candidate_bound",
+    "Phase17Provenance.selected_provenance",
+    "Phase17Provenance.selected_candidate_binding",
+    "Phase17Provenance.selected_rejection_prefix"
+  ],
+  "complete_learned_kernel_constructed": false,
+  "historical_execution_attested": false,
+  "self_hosted_neural_generator": false,
+  "prior_capability_proofs_reused_for_new_transcript": false,
+  "old_proofs_rerun": false,
+  "selection_input_policy": "current_public_view_and_verified_prior_rejections_only",
+  "full_root_assessment": "blocked_missing_semantic_witnesses",
+  "training_performed": false,
+  "live_challenge_generated": false,
+  "source_sha256": {
+    "Provenance": "4f57e1508ac1e2bc00076c485ca02fc298359a4a6b2821b1c7e0437fe75f36e1",
+    "SkippedPrefix": "b8cc93f657dfba71d4b1270ca2dd69cc5ea286bbf5e5e260a9bf0c3d0f9a164c",
+    "WrongParent": "9f84a82f8327f4612a4adf552a9d81baa90d19de0a5bea6928100dd40723de5a",
+    "WrongProgram": "110283e434ccc09a75420b54291e32f1e6fef02129e993b6806977ef3d873238"
+  },
+  "provenance_gate": {
+    "schema_id": "runtime.v5.phase17.proposal-provenance-lean.v1",
+    "status": "rejected",
+    "packet_sha256": "6668900a9ec4dadb06e51489ea7a3751b801cab7ff9657a80bb44d74337cf2f6",
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stderr": "",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T22:05:21.034859+00:00",
+        "elapsed_ns": 55861500
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "--keep-toolchain",
+          "--no-cache",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-0jar06ja\\Provenance.lean"
+        ],
+        "returncode": 1,
+        "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-0jar06ja\\Provenance.lean:173:78: error: failed to synthesize\n  Decidable (Produced selectedContext selectedProposal)\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17k-0jar06ja\\Provenance.lean:176:78: error: failed to synthesize\n  Decidable (CandidateMatches selectedContext selectedProposal selectedCandidate)\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\n'Phase17Provenance.trace_no_repeat' depends on axioms: [propext]\n'Phase17Provenance.attached_generator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_package_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_proposal_produced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.attached_candidate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Provenance.selected_provenance' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_candidate_binding' depends on axioms: [propext, sorryAx]\n'Phase17Provenance.selected_rejection_prefix' does not depend on any axioms\n",
+        "stderr": "",
+        "stdout_sha256": "74a63cb314f92d4ab9c0d2923436c5a28c29d7ae9ae50606f564397314e45285",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "started_at_utc": "2026-11-01T22:05:21.093467+00:00",
+        "elapsed_ns": 15591458500
+      }
+    ],
+    "theorem_axioms": {},
+    "finite_producer_replay_checked": false,
+    "root_provenance_fields_checked": false,
+    "negative_controls_rejected": [],
+    "new_named_audits": 8,
+    "claims": {
+      "root_transition_verified": false,
+      "recursive_productivity_recertified": false,
+      "full_frontier_recertified": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "phase17_exit_closed": false,
+      "gate_e_closed": false,
+      "egc0_started": false,
+      "live_capability_gain_demonstrated": false,
+      "complete_resource_accounting": false,
+      "full_learned_semantic_refinement": false,
+      "neural_decoder_formally_verified": false
+    },
+    "failure": {
+      "type": "ControlError",
+      "reason": "producer certificate rejected"
+    }
+  },
+  "failure": {
+    "type": "ControlError",
+    "reason": "new provenance Lean gate failed"
+  },
+  "finished_at_utc": "2026-11-01T22:05:36.685476+00:00"
+}

@@ -1,0 +1,47 @@
+{
+  "bootstrap.py": {
+    "expected_git_blob": "0572ac52d965a32fab58ad39010e61b6d660f63f",
+    "actual_git_blob": "0572ac52d965a32fab58ad39010e61b6d660f63f",
+    "match": true
+  },
+  "campaign_budget.py": {
+    "expected_git_blob": "3c95a1e7c29da40efa9b67ac91e93ae425260625",
+    "actual_git_blob": "3c95a1e7c29da40efa9b67ac91e93ae425260625",
+    "match": true
+  },
+  "campaign_client.py": {
+    "expected_git_blob": "d63bad7b3bfd82c20cf7f63bd1a19cc0d9d7622e",
+    "actual_git_blob": "d63bad7b3bfd82c20cf7f63bd1a19cc0d9d7622e",
+    "match": true
+  },
+  "campaign_transaction.py": {
+    "expected_git_blob": "37ad0431e16232a61f59b52326ab3788bed7ee97",
+    "actual_git_blob": "37ad0431e16232a61f59b52326ab3788bed7ee97",
+    "match": true
+  },
+  "campaign_validation.py": {
+    "expected_git_blob": "aea064a45d254fc942cc3adcec7638f7e1e599d7",
+    "actual_git_blob": "aea064a45d254fc942cc3adcec7638f7e1e599d7",
+    "match": true
+  },
+  "challenge_client.py": {
+    "expected_git_blob": "f3c86895fa0a4944e028b1e85130655d872f0bc3",
+    "actual_git_blob": "f3c86895fa0a4944e028b1e85130655d872f0bc3",
+    "match": true
+  },
+  "challenge_protocol.py": {
+    "expected_git_blob": "8b2496e863702dd67eb259760950f938705bef23",
+    "actual_git_blob": "8b2496e863702dd67eb259760950f938705bef23",
+    "match": true
+  },
+  "materialized.py": {
+    "expected_git_blob": "c8024c27d1a6f7dffe80bdd95a4193ae37c7ad01",
+    "actual_git_blob": "c8024c27d1a6f7dffe80bdd95a4193ae37c7ad01",
+    "match": true
+  },
+  "joint_evidence.py": {
+    "expected_git_blob": "ebf3676b093a803cb022206ca6f000b07a8e152e",
+    "actual_git_blob": "ebf3676b093a803cb022206ca6f000b07a8e152e",
+    "match": true
+  }
+}

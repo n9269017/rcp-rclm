@@ -1,0 +1,35 @@
+{
+  "anomalies": [],
+  "automatic_retries": 0,
+  "bootstrap_calls": 1,
+  "bootstrap_passed": true,
+  "challenge_generation_calls": 0,
+  "claims": {
+    "diagnostic_only": true,
+    "egc0_started": false,
+    "full_validation_passed": false,
+    "gate_e_closed": false,
+    "original_failure_resolved": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "repair_applied": false
+  },
+  "diagnostic_instrumentation": true,
+  "environment": {
+    "alternate_sha256_backend": "_sha2.sha256",
+    "isolated": true,
+    "native_sha256_backend": "_hashlib",
+    "no_site": true,
+    "os": "Windows",
+    "python_implementation": "CPython",
+    "python_version": "3.13.3",
+    "zlib_compile_version": "1.3.1",
+    "zlib_runtime_version": "1.3.1"
+  },
+  "event_count": 51,
+  "finished_at_utc": "2026-10-31T18:50:21.517124+00:00",
+  "observation": 7,
+  "production_source_modified": false,
+  "receipt_hash": "c2872b3a27781b0289f92e4d76f0a154032a706a560c9255412cf3ef73d33103",
+  "started_at_utc": "2026-10-31T18:50:18.662843+00:00"
+}

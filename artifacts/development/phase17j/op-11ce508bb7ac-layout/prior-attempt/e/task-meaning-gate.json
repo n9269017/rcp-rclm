@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_frontier_meaning_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\j-841b4de7\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-01T20:02:19.551721+00:00",
+  "problem": null,
+  "returncode": 2,
+  "started_at_utc": "2026-11-01T19:54:32.570372+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "06e1fac62d18e53723375ffae53cf2f0a2c52dcbedb950f830778c6feb59d983"
+}

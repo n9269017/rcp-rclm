@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_finite_kernel_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\q-640de93d\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-08T02:21:18.879166+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T01:55:35.658758+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "ccdfaf63f2762380a8992c87a085840600f2e1225bcf9b579f86340d847722e3"
+}

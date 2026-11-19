@@ -1,0 +1,1 @@
+PASS: 3502 canonical index checksum entries

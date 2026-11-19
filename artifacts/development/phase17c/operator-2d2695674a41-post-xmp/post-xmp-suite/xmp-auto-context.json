@@ -1,0 +1,24 @@
+﻿{
+    "recorded_at_utc":  "2026-10-31T21:59:55.8729693Z",
+    "bios_setting_operator_reported":  "Load XMP Setting changed from XMP 3.0 Profile 1 to Auto",
+    "persisted_after_reboot_operator_reported":  true,
+    "python_executable":  "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "python_version_verified":  "3.13.3",
+    "memory_firmware_report":  [
+                                   {
+                                       "DeviceLocator":  "Controller0-ChannelA-DIMM1",
+                                       "Capacity":  34359738368,
+                                       "Speed":  4800,
+                                       "ConfiguredClockSpeed":  4400
+                                   },
+                                   {
+                                       "DeviceLocator":  "Controller1-ChannelA-DIMM1",
+                                       "Capacity":  34359738368,
+                                       "Speed":  4800,
+                                       "ConfiguredClockSpeed":  4400
+                                   }
+                               ],
+    "diagnostic_sha256":  "d1df4669b198923e761956af12ff8e93dd92161c1a3ab08a7f66c52ce0295ae0",
+    "prior_failed_run":  "C:\\Users\\Nicolas.n926\\Downloads\\rcp-rclm-phase17c-kit\\runs\\20261031T091211Z-f7555bd2",
+    "stability_established":  false
+}

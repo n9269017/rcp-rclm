@@ -1,0 +1,26 @@
+test_corrupt_payload (__main__.InstallerTests.test_corrupt_payload) ... ok
+test_duplicate_test_summary (__main__.InstallerTests.test_duplicate_test_summary) ... ok
+test_exact_test_summary (__main__.InstallerTests.test_exact_test_summary) ... ok
+test_extra_payload (__main__.InstallerTests.test_extra_payload) ... ok
+test_ignored_existing_payload_is_not_overwritten (__main__.InstallerTests.test_ignored_existing_payload_is_not_overwritten) ... ok
+test_no_failed_suite (__main__.InstallerTests.test_no_failed_suite) ... ok
+test_no_skips (__main__.InstallerTests.test_no_skips) ... ok
+test_no_zero_tests (__main__.InstallerTests.test_no_zero_tests) ... ok
+test_remote_head_ambiguous_rejects (__main__.InstallerTests.test_remote_head_ambiguous_rejects) ... ok
+test_retention_excludes_duplicated_model_only (__main__.InstallerTests.test_retention_excludes_duplicated_model_only) ... ok
+test_safe_relative (__main__.InstallerTests.test_safe_relative) ... ok
+test_status_cannot_close_phase (__main__.InstallerTests.test_status_cannot_close_phase) ... ok
+test_successful_two_commit_fast_forward_and_normal_push (__main__.InstallerTests.test_successful_two_commit_fast_forward_and_normal_push) ... To /tmp/tmp18e6st3q/remote.git
+   48f5b81..769e200  769e2008e8e69a9e1b266a6de6d9b50da33f225e -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_symlink_rejected (__main__.InstallerTests.test_symlink_rejected) ... ok
+test_unsafe_path (__main__.InstallerTests.test_unsafe_path) ... ok
+test_valid_payload (__main__.InstallerTests.test_valid_payload) ... ok
+test_validation_failure_never_advances_original (__main__.InstallerTests.test_validation_failure_never_advances_original) ... ok
+test_wrong_base (__main__.InstallerTests.test_wrong_base) ... ok
+test_wrong_branch (__main__.InstallerTests.test_wrong_branch) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.644s
+
+OK

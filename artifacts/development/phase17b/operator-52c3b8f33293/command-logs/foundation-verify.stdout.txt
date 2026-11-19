@@ -1,0 +1,1 @@
+{"author_authenticated": false, "gate_e_closed": false, "integrity_checked": true, "local_checks_passed": true, "phase17_exit_closed": false}

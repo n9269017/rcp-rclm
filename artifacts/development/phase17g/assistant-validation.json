@@ -1,0 +1,153 @@
+{
+  "schema": "rcp-rclm.phase17g.assistant-validation.v1",
+  "generated_at_utc": "2026-11-01T04:24:30.925459+00:00",
+  "target_base_commit": "7de254018946dd4a782f758dc21913d0796273c1",
+  "platform": "Linux",
+  "python": "3.13.5",
+  "source_scope": "reconstructed historical dependency checkout plus exact Phase17 overlay; not full current remote checkout",
+  "normal_package_imports_used": true,
+  "phase16_initializer_stub_used": false,
+  "existing_phase17_modules_measured": 14,
+  "immutable_root_files_verified": 72,
+  "new_tests": {
+    "passed": 47,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "formal_control_cases": "mocked; not Lean proofs"
+  },
+  "previous_phase17f_regressions": {
+    "passed": 36,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "installer_tests": {
+    "passed": 36,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "full_flows": 6,
+    "scope": "temporary repositories and controlled validation results; not proof execution"
+  },
+  "local_development_failure_preserved": {
+    "initial_new_suite": "46 passed, 1 exception-type boundary error",
+    "fix": "wrap strict canonical parser ValueError as ControlError in the new registry constructor; no assertions removed"
+  },
+  "actual_preparation": {
+    "automatic_retries": 0,
+    "base_obligation_count": 11,
+    "candidate_execution_checks": 8,
+    "candidate_package_hash": "67a97c6d16b6097fd8f1c5e09a941d5b813dfd403e98a508491645d6aea18b65",
+    "claims": {
+      "complete_resource_accounting": false,
+      "egc0_started": false,
+      "full_frontier_recertified": false,
+      "gate_e_closed": false,
+      "live_capability_gain_demonstrated": false,
+      "phase17_exit_closed": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "recursive_productivity_recertified": false,
+      "root_transition_verified": false
+    },
+    "finished_at_utc": "2026-11-01T04:22:51.278139+00:00",
+    "inherited_execution_checks": 48,
+    "local_increment_checks_passed": true,
+    "named_audits": [
+      "Phase17Registry.base_step_sound",
+      "Phase17Registry.dispatch_retained",
+      "Phase17Registry.solved_task_retained",
+      "Phase17Registry.exact_recovery",
+      "Phase17Registry.selected_base_step",
+      "Phase17Registry.selected_registry_mapping"
+    ],
+    "operational_recursive_tasks_recertified": [],
+    "os": "Linux",
+    "packet_sha256": "57e61a3f656684621e3d70c680d53b92e7d4cfa0fb41162a2e89c52c0ef90c99",
+    "physical_inverse_exact": true,
+    "proof_mode": "preparation_only",
+    "protected_file_count": 173,
+    "python_version": "3.13.5",
+    "resource_scope": "candidate evaluation credits only",
+    "schema": "rcp-rclm.phase17g.conservative-run.v1",
+    "semantic_gate": {
+      "scoped_base_obligations_checked": false,
+      "status": "not_requested"
+    },
+    "source_commit": "a0b46088a22ab5cf1250362408056fc33ac84fb2",
+    "source_tree": "141687e43f8f06008b3b1e578eb39979175d5d3e",
+    "source_unchanged": true,
+    "started_at_utc": "2026-11-01T04:22:42.956012+00:00",
+    "synthetic_fixture": true
+  },
+  "actual_new_formal_request": {
+    "schema_id": "runtime.v5.phase17.conservative-kernel-check.v1",
+    "status": "blocked",
+    "packet_sha256": "57e61a3f656684621e3d70c680d53b92e7d4cfa0fb41162a2e89c52c0ef90c99",
+    "commands": [],
+    "theorem_axioms": {},
+    "scoped_base_obligations_checked": false,
+    "universal_registry_preservation_checked": false,
+    "negative_shadowing_rejected": false,
+    "base_obligation_count": 11,
+    "claims": {
+      "root_transition_verified": false,
+      "recursive_productivity_recertified": false,
+      "full_frontier_recertified": false,
+      "promotion_authorized": false,
+      "promotion_performed": false,
+      "phase17_exit_closed": false,
+      "gate_e_closed": false,
+      "egc0_started": false,
+      "live_capability_gain_demonstrated": false,
+      "complete_resource_accounting": false
+    },
+    "failure": {
+      "type": "ControlError",
+      "reason": "pinned dependency not installed: mathlib"
+    }
+  },
+  "current_candidate_package_matches_phase17f": true,
+  "fresh_phase17f_packet_matches": true,
+  "prior_13_obligation_compilers_rerun": false,
+  "actual_new_lean_processes": 0,
+  "lean_source_compiled_here": false,
+  "native_windows_validation": false,
+  "cross_platform_validation": false,
+  "repository_files_pushed": false,
+  "github_hosted_ci_passed": false,
+  "phase17_exit_closed": false,
+  "gate_e_closed": false,
+  "egc0_started": false,
+  "runtime_sources": {
+    "lean/phase17_bridge/ConservativeRegistry.lean": "9875e7b6f2484d4573fe73cd536744cce398c7cf4bae1cab53d087da457ec3c8",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/conservative_extension.py": "bbf8fc5327e6086790cfa523e56e6a296b1a3fd633c2f4c6f60b643ffd178fc1",
+    "python/rcp_rclm_runtime_v5/rcp_rclm_runtime_v5/phase17/conservative_lean.py": "21d6067c17376e30158e31fbd849629a15bc7f69cd44014f7d5d7437cffae12e",
+    "python/rcp_rclm_runtime_v5/tests_phase17g/test_conservative_extension.py": "9895fb3832e0d496bd23d9610226ad4d499c75a78606c9e2f61ccb366fd4863a",
+    "scripts/run_phase17_conservative_tests.py": "139586d06ebfa8cffec2ab1f4e09024bf7871178b96d4b1b82d3a6e42e24a249",
+    "scripts/run_phase17_conservative_gate.py": "f04b69e9311aeecd840868433207a9f203565460f622cbfa73c71748bf512429",
+    "docs/executable_core_v5/PHASE_17_CONSERVATIVE_SEMANTICS.md": "5aee5887a12b3dff93f66329d0a441342634716baca6084dab59ea5e0db8c5ba"
+  },
+  "log_sha256": {
+    "g-tests.err.txt": "9ba138668b8b5ea473fe8660baa4dea208606c166f1ff1fa69ba19c6bcba5355",
+    "g-tests.out.txt": "9627e05c87edbd4f0709fb737ac16916b595c8e0038cbcacf59bb7195d931975",
+    "g-tests.initial.err.txt": "7efa84c581505211e55a0fd279b6bb55024c1c942adb45478729575d45c175ea",
+    "g-tests.initial.out.txt": "9627e05c87edbd4f0709fb737ac16916b595c8e0038cbcacf59bb7195d931975",
+    "f-regressions.err.txt": "782bd204a36a3dcd10371967a45f09fade0f13560a2f467aec737b28bf4f67d3",
+    "f-regressions.out.txt": "c56456a804bced461a73834db5946fe1b39018c42e7c1a4088f5698d1a47acdb",
+    "installer-tests.err.txt": "44a144ee7058e75b3621ec7feea2c7daee8fc7718d3c6c9b5ab9a55364db2c68",
+    "installer-tests.out.txt": "8ccfde5bcd0631398ace4ce9d88f1cc119887d6d8e2d0e48181d3772d8dcb27e",
+    "preparation.out.txt": "9fa37d67666131cfc953f487d8715af817be1e274d5cf0cf263ca643afc32075",
+    "preparation.err.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual-formal-request.json": "a7d2bd84ab2e09e6479e0e0bb799e62e005110573a74c39ac8bf164e81784f39",
+    "retained-module-identities.json": "1de19ae9e6341d57ed5e4c909ccefbe9ccf9d10a8998f66885b0d6f8737adcfa"
+  },
+  "limitations": [
+    "New semantic Lean source is authored but not compiler-validated in this environment.",
+    "Universal dispatch preservation is for a fixed deterministic interpreter and exact append-only registry.",
+    "The new RCP instance models protected byte-image observations, registry length, and candidate credits only; it is not the full RCLM kernel.",
+    "No full operational recursive-productivity task is newly recertified.",
+    "Byte-to-literal and external-anchor bindings and trusted toolchain/import-cache assumptions remain explicit."
+  ]
+}

@@ -1,0 +1,1 @@
+PASS: AJ separate current-head witness and controller issuance, original native witness records, generated proofs, compiled artifacts, exact stage lineage, named audits and designated rejections reconstructed; no compiler, witness subprocess or task-worker process runs

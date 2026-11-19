@@ -1,0 +1,52 @@
+{
+  "automatic_retries": 0,
+  "candidate_package_hash": "67a97c6d16b6097fd8f1c5e09a941d5b813dfd403e98a508491645d6aea18b65",
+  "capability_tasks_evaluated": 21,
+  "claims": {
+    "complete_resource_accounting": false,
+    "egc0_started": false,
+    "full_frontier_recertified": false,
+    "gate_e_closed": false,
+    "live_capability_gain_demonstrated": false,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "dsl_regression_cases_prepared": 128,
+  "finished_at_utc": "2026-11-01T02:54:49.690949+00:00",
+  "finite_successor_gate": {
+    "finite_successor_facts_verified": false,
+    "status": "not_requested"
+  },
+  "inherited_capability_gate": {
+    "fresh_lean_verified": false,
+    "status": "not_requested"
+  },
+  "inherited_recursive_labels": 19,
+  "local_increment_checks_passed": true,
+  "new_lean_audit_names": [
+    "Phase17Evidence.selected_facts",
+    "Phase17Evidence.protected_interpretation",
+    "Phase17Evidence.root_recursive_frontier_fields",
+    "Phase17Evidence.selected_dsl_regression"
+  ],
+  "os": "Linux",
+  "packet_sha256": "753b0114d1a6d0b0817f4d7692cc165a94c4acff9e3ac400ebc262cbeb20854e",
+  "physical_protected_files": 173,
+  "predecessor_package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "proof_mode": "preparation_only",
+  "prospective_capability_count": 22,
+  "python_version": "3.13.5",
+  "root_obligation_fields": 35,
+  "runtime_promotion_requested": false,
+  "runtime_source_instrumented": false,
+  "schema": "rcp-rclm.phase17f.prospective-successor-run.v1",
+  "scoped_recursive_probes": 3,
+  "source_commit": "2560c44807714f1a4f176a2d182ac9df12668aab",
+  "source_tree": "608473bb2e3d3af3e8b94c2084d9c04ced43d673",
+  "source_unchanged": true,
+  "started_at_utc": "2026-11-01T02:54:41.520742+00:00",
+  "synthetic_fixture": true
+}

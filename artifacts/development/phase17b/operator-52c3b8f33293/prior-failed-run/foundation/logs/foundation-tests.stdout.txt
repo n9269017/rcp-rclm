@@ -1,0 +1,1 @@
+Phase17 exit closed: false; Gate E closed: false; EGC-0 started: false

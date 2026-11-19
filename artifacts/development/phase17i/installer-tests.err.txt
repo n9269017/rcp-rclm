@@ -1,0 +1,62 @@
+test_dirty_original_stops_before_execution (test_apply_phase17i.InstallerFlow.test_dirty_original_stops_before_execution) ... ok
+test_full_flow_normal_push_and_evidence_only_commit (test_apply_phase17i.InstallerFlow.test_full_flow_normal_push_and_evidence_only_commit) ... To /tmp/tmpo2d2a3r3/remote.git
+   92c1d8d..29da1ad  29da1ada722e47f7e25ece1935a7d7a63277c277 -> agent/rcp-rclm-v5-phase-17-controller
+ok
+test_moved_remote_prevents_advancement (test_apply_phase17i.InstallerFlow.test_moved_remote_prevents_advancement) ... Stopped; workspace and logs retained: /tmp/tmpdbmmmo5c/work/i-597e1a56
+Original checkout advanced: False
+ok
+test_no_push_mode_keeps_remote_at_base (test_apply_phase17i.InstallerFlow.test_no_push_mode_keeps_remote_at_base) ... ok
+test_rejected_push_keeps_validated_local_commit (test_apply_phase17i.InstallerFlow.test_rejected_push_keeps_validated_local_commit) ... To /tmp/tmpdzt0n6gm/remote.git
+ ! [remote rejected] 741ac8ed87920bb211628116995155fbd0f7155a -> agent/rcp-rclm-v5-phase-17-controller (pre-receive hook declined)
+error: failed to push some refs to '/tmp/tmpdzt0n6gm/remote.git'
+Stopped; workspace and logs retained: /tmp/tmpdzt0n6gm/work/i-31318e4e
+Original checkout advanced: True
+ok
+test_validation_failure_leaves_original_unchanged (test_apply_phase17i.InstallerFlow.test_validation_failure_leaves_original_unchanged) ... Stopped; workspace and logs retained: /tmp/tmpmq6rfb7z/work/i-28b7a31e
+Original checkout advanced: False
+ok
+test_all_root_premises_must_remain_accounted (test_apply_phase17i.InstallerUnits.test_all_root_premises_must_remain_accounted) ... ok
+test_axiom_rejection (test_apply_phase17i.InstallerUnits.test_axiom_rejection) ... ok
+test_command_failure_keeps_logs (test_apply_phase17i.InstallerUnits.test_command_failure_keeps_logs) ... ok
+test_command_timeout_keeps_failure (test_apply_phase17i.InstallerUnits.test_command_timeout_keeps_failure) ... ok
+test_compiler_failure_cannot_pass (test_apply_phase17i.InstallerUnits.test_compiler_failure_cannot_pass) ... ok
+test_conditional_information_premise_cannot_disappear (test_apply_phase17i.InstallerUnits.test_conditional_information_premise_cannot_disappear) ... ok
+test_exact_named_audits_not_count_only (test_apply_phase17i.InstallerUnits.test_exact_named_audits_not_count_only) ... ok
+test_exact_test_count_and_no_skips (test_apply_phase17i.InstallerUnits.test_exact_test_count_and_no_skips) ... ok
+test_formal_contract_binding_must_match (test_apply_phase17i.InstallerUnits.test_formal_contract_binding_must_match) ... ok
+test_full_root_admission_cannot_pass_as_complete (test_apply_phase17i.InstallerUnits.test_full_root_admission_cannot_pass_as_complete) ... ok
+test_git_error_retains_stderr (test_apply_phase17i.InstallerUnits.test_git_error_retains_stderr) ... ok
+test_ignored_file_not_forced (test_apply_phase17i.InstallerUnits.test_ignored_file_not_forced) ... ok
+test_legacy_task_claim_rejects (test_apply_phase17i.InstallerUnits.test_legacy_task_claim_rejects) ... ok
+test_links_are_rejected (test_apply_phase17i.InstallerUnits.test_links_are_rejected) ... ok
+test_manifest_hash_and_duplicate_checked (test_apply_phase17i.InstallerUnits.test_manifest_hash_and_duplicate_checked) ... ok
+test_missing_operational_checks_rejects (test_apply_phase17i.InstallerUnits.test_missing_operational_checks_rejects) ... ok
+test_missing_profile_not_certified (test_apply_phase17i.InstallerUnits.test_missing_profile_not_certified) ... ok
+test_missing_proof_not_certified (test_apply_phase17i.InstallerUnits.test_missing_proof_not_certified) ... ok
+test_model_bytes_excluded_evidence_retained (test_apply_phase17i.InstallerUnits.test_model_bytes_excluded_evidence_retained) ... ok
+test_negative_compiler_success_rejected (test_apply_phase17i.InstallerUnits.test_negative_compiler_success_rejected) ... ok
+test_new_log_bytes_are_checked (test_apply_phase17i.InstallerUnits.test_new_log_bytes_are_checked) ... ok
+test_no_claim_escalation (test_apply_phase17i.InstallerUnits.test_no_claim_escalation) ... ok
+test_no_false_integer_claim (test_apply_phase17i.InstallerUnits.test_no_false_integer_claim) ... ok
+test_no_neural_proof_or_training_claim (test_apply_phase17i.InstallerUnits.test_no_neural_proof_or_training_claim) ... ok
+test_no_preparation_mode_pass (test_apply_phase17i.InstallerUnits.test_no_preparation_mode_pass) ... ok
+test_nul_staging_literal_long_list (test_apply_phase17i.InstallerUnits.test_nul_staging_literal_long_list) ... ok
+test_old_report_source_binding (test_apply_phase17i.InstallerUnits.test_old_report_source_binding) ... ok
+test_paths_require_canonical_relative_form (test_apply_phase17i.InstallerUnits.test_paths_require_canonical_relative_form) ... ok
+test_proof_bound_to_same_packet (test_apply_phase17i.InstallerUnits.test_proof_bound_to_same_packet) ... ok
+test_public_report_does_not_authenticate_execution (test_apply_phase17i.InstallerUnits.test_public_report_does_not_authenticate_execution) ... ok
+test_retained_symlink_rejected (test_apply_phase17i.InstallerUnits.test_retained_symlink_rejected) ... ok
+test_retention_required (test_apply_phase17i.InstallerUnits.test_retention_required) ... ok
+test_runtime_claim_stays_false (test_apply_phase17i.InstallerUnits.test_runtime_claim_stays_false) ... ok
+test_source_binding (test_apply_phase17i.InstallerUnits.test_source_binding) ... ok
+test_staging_preserves_crlf_evidence (test_apply_phase17i.InstallerUnits.test_staging_preserves_crlf_evidence) ... ok
+test_success_requires_synthetic_fixture_label (test_apply_phase17i.InstallerUnits.test_success_requires_synthetic_fixture_label) ... ok
+test_timeout_not_negative_proof (test_apply_phase17i.InstallerUnits.test_timeout_not_negative_proof) ... ok
+test_unexpected_payload_rejected (test_apply_phase17i.InstallerUnits.test_unexpected_payload_rejected) ... ok
+test_unrelated_staged_file_is_visible (test_apply_phase17i.InstallerUnits.test_unrelated_staged_file_is_visible) ... ok
+test_valid_scoped_report (test_apply_phase17i.InstallerUnits.test_valid_scoped_report) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 27.819s
+
+OK

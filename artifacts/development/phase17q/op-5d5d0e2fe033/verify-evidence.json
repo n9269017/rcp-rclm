@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_finite_kernel_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\q-640de93d\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-08T02:22:32.903697+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T02:21:18.897294+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "d06a4863baf12347be54b07a59fec88b418a5cf7aef91650e840d583854f3a9f"
+}

@@ -1,0 +1,39 @@
+test_archive_duplicate_member_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_archive_duplicate_member_rejected) ... ok
+test_archive_ingestion_bound (test_bootstrap_objectives.HistoricalBootstrapTests.test_archive_ingestion_bound) ... ok
+test_archive_path_traversal_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_archive_path_traversal_rejected) ... ok
+test_archive_symlink_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_archive_symlink_rejected) ... ok
+test_catalog_preserves_all_terminal_identities (test_bootstrap_objectives.HistoricalBootstrapTests.test_catalog_preserves_all_terminal_identities) ... ok
+test_changed_archive_rejected_before_zip_parsing (test_bootstrap_objectives.HistoricalBootstrapTests.test_changed_archive_rejected_before_zip_parsing) ... ok
+test_duplicate_and_float_json_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_duplicate_and_float_json_rejected) ... ok
+test_exact_anchored_state_and_weights (test_bootstrap_objectives.HistoricalBootstrapTests.test_exact_anchored_state_and_weights) ... ok
+test_mutable_buffers_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_mutable_buffers_rejected) ... ok
+test_no_fresh_verification_or_promotion_claim (test_bootstrap_objectives.HistoricalBootstrapTests.test_no_fresh_verification_or_promotion_claim) ... ok
+test_noncanonical_catalog_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_noncanonical_catalog_rejected) ... ok
+test_noncanonical_receipt_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_noncanonical_receipt_rejected) ... ok
+test_noncanonical_state_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_noncanonical_state_rejected) ... ok
+test_rehashed_catalog_substitution_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_rehashed_catalog_substitution_rejected) ... ok
+test_rehashed_closure_claim_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_rehashed_closure_claim_rejected) ... ok
+test_rehashed_source_identity_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_rehashed_source_identity_rejected) ... ok
+test_reopen_interface_has_no_caller_trust_override (test_bootstrap_objectives.HistoricalBootstrapTests.test_reopen_interface_has_no_caller_trust_override) ... ok
+test_reordered_installed_programs_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_reordered_installed_programs_rejected) ... ok
+test_state_is_detached_on_access (test_bootstrap_objectives.HistoricalBootstrapTests.test_state_is_detached_on_access) ... ok
+test_state_shape_and_bool_counts_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_state_shape_and_bool_counts_rejected) ... ok
+test_substituted_planner_bytes_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_substituted_planner_bytes_rejected) ... ok
+test_substituted_terminal_state_rejected (test_bootstrap_objectives.HistoricalBootstrapTests.test_substituted_terminal_state_rejected) ... ok
+test_current_nonce_and_turn_are_bound (test_bootstrap_objectives.ObjectiveTests.test_current_nonce_and_turn_are_bound) ... ok
+test_forged_objective_winner_rejected (test_bootstrap_objectives.ObjectiveTests.test_forged_objective_winner_rejected) ... ok
+test_forged_promotion_authority_rejected (test_bootstrap_objectives.ObjectiveTests.test_forged_promotion_authority_rejected) ... ok
+test_forged_rank_rejected_by_recomputation (test_bootstrap_objectives.ObjectiveTests.test_forged_rank_rejected_by_recomputation) ... ok
+test_freeze_binds_exact_decision_without_challenge_claim (test_bootstrap_objectives.ObjectiveTests.test_freeze_binds_exact_decision_without_challenge_claim) ... ok
+test_future_field_smuggling_rejected (test_bootstrap_objectives.ObjectiveTests.test_future_field_smuggling_rejected) ... ok
+test_hash_seed_does_not_change_objective (test_bootstrap_objectives.ObjectiveTests.test_hash_seed_does_not_change_objective) ... ok
+test_no_horizon_route_seed_or_score_inputs (test_bootstrap_objectives.ObjectiveTests.test_no_horizon_route_seed_or_score_inputs) ... ok
+test_present_index_and_nonce_validation (test_bootstrap_objectives.ObjectiveTests.test_present_index_and_nonce_validation) ... ok
+test_repeatable_complete_eight_family_ranking (test_bootstrap_objectives.ObjectiveTests.test_repeatable_complete_eight_family_ranking) ... ok
+test_serialized_payload_has_no_hidden_answer_or_future_route (test_bootstrap_objectives.ObjectiveTests.test_serialized_payload_has_no_hidden_answer_or_future_route) ... ok
+test_unverified_state_dict_is_not_a_bootstrap (test_bootstrap_objectives.ObjectiveTests.test_unverified_state_dict_is_not_a_bootstrap) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 2.154s
+
+OK

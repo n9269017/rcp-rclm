@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_resource_digests_gate.py",
+    "--test-fixture",
+    "--require-lean",
+    "--lean-workspace",
+    "C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\ab-15f7c6ad\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-13T04:40:54.547385+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-13T03:14:08.124512+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2b8765b67a9c7c9f9e67a5c525ab4579612236fe2d2f72d291236ae73ea30438"
+}

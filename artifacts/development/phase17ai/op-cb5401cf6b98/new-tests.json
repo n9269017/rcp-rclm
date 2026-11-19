@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_authority_tests.py"
+  ],
+  "finished_at_utc": "2026-11-16T21:01:01.685463+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-16T20:57:36.937139+00:00",
+  "stderr_sha256": "772f7c9de7128e9e0ff5d87c464e6c0eb9e1d10ac6e74b40b7967a8f39fdb3fc",
+  "stdout_sha256": "99e53f1d7d4d89add705f301bfb148467fcc8d7212195727f1891e0634781144"
+}

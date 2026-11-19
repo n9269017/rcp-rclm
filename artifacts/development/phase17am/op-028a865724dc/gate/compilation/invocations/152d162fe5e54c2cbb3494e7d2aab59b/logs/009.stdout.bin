@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\am-c577334a\e\gate\compilation\invocations\7be0406607d64e2da06da453aafd2bd1\workspace/StaleAuthenticatedCursor.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

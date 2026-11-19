@@ -1,0 +1,71 @@
+{
+  "base_parameter_count": 13625920,
+  "candidate_evaluation": null,
+  "capability_tasks_evaluated": 21,
+  "egc0_started": false,
+  "full_frontier_recertified": false,
+  "full_transformer_inference": false,
+  "gate_e_closed": false,
+  "lean_gate": {
+    "capability_frontier_recertified": false,
+    "capability_frontier_report_hash": "b337a26ff91da168c426df29cb935854646912f5b5cf750a2d4464ab8f45ef80",
+    "commands": [
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "--version"
+        ],
+        "elapsed_ns": 52908400,
+        "returncode": 0,
+        "started_at_utc": "2026-11-01T00:45:17.654869+00:00",
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+        "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+      },
+      {
+        "argv": [
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+          "env",
+          "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+          "C:\\Users\\NICOLA~1.N92\\AppData\\Local\\Temp\\phase17-frontier-lean-yspms86o\\phase17_40d58c7bcb7e075de355931f.lean"
+        ],
+        "elapsed_ns": 56673800,
+        "returncode": 1,
+        "started_at_utc": "2026-11-01T00:45:17.711577+00:00",
+        "stderr": "info: mathlib: URL has changed; you might need to delete 'C:\\Users\\Nicolas.n926\\.rcp-rclm-tools\\lean431\\formal-root\\lean\\rcp_rclm_formal_core_v4\\.lake/packages\\mathlib' manually\nerror: failed to execute 'git': the system cannot find the file specified. (error code: 2)\n",
+        "stderr_sha256": "5d543fd0e0016f49f060f22dcf6fd51e19914c74eccccd10d4b101e25715c0af",
+        "stdout": "",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "failure": {
+      "reason": "pinned Lean task rejected",
+      "type": "ControlError"
+    },
+    "fresh_lean_verified": false,
+    "gate_e_closed": false,
+    "obligation_count": 13,
+    "phase17_exit_closed": false,
+    "promotion_authorized": false,
+    "proofs": [],
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false,
+    "schema_id": "runtime.v5.phase17.lean-capability-check.v1",
+    "status": "rejected",
+    "toolchain": "leanprover/lean4:v4.31.0"
+  },
+  "lean_obligations_prepared": 13,
+  "os": "Windows",
+  "package_hash": "6759cc828b5b8cb4af041e32dcba7b136849591e793802ab7f1f1cc2f2bcd535",
+  "phase17_exit_closed": false,
+  "promotion_performed": false,
+  "python_frontier_evaluation_passed": true,
+  "python_version": "3.13.3",
+  "recursive_productivity_recertified": false,
+  "root_transition_verified": false,
+  "schema": "rcp-rclm.phase17d.package-gate-run.v1",
+  "source_commit": "40c243efb3c6f7ab33e310cc7fb6d0d60ff5feac",
+  "source_tree": "f28a7c5bdc7ad6c9b1fe8b7e6deb14d1408e3cdd",
+  "source_unchanged": true
+}

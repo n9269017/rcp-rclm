@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ao-86ffc3b7\e\gate\compilation\invocations\181d8e6eaa174d9280fc2e77b469158d\workspace/InterruptedLifetimeRefunded.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

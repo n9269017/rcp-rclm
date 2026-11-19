@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_program_metadata_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\v-ddab4a7d\\e\\gate"
+  ],
+  "finished_at_utc": "2026-11-08T21:23:49.405554+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-08T21:22:38.246792+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "cb31fcdc7114d5e4b0785f085e28feb0eb53d8545f931df8830ecdf06e76834e"
+}

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_bootstrap_tests.py"
+  ],
+  "finished_at_utc": "2026-10-31T23:52:23.015711+00:00",
+  "returncode": 0,
+  "started_at_utc": "2026-10-31T23:52:20.663121+00:00",
+  "stderr_sha256": "7df1c56bdd3472c2b80a9981cc114937500e1c59de7d02f15121718af7c25bd5",
+  "stdout_sha256": "64d758557c4d837168e39b35a8128a3342df6f2f701116b942ef38864d3ad5d3"
+}

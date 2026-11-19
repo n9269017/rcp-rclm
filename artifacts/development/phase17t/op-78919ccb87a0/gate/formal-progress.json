@@ -1,0 +1,596 @@
+{
+  "byte_capture_remains_external": true,
+  "canonical_json_projection_checked": true,
+  "claims": {
+    "active_store_written": false,
+    "campaign_budget_authority_integrated": false,
+    "complete_learned_kernel_constructed": false,
+    "complete_resource_accounting": false,
+    "cross_platform_validation": false,
+    "egc0_started": false,
+    "full_autonomous_step_instantiated": false,
+    "full_frontier_recertified": false,
+    "full_goal_interpretation_supplied": false,
+    "full_information_interpretation_supplied": false,
+    "full_learned_step_instantiated": false,
+    "gate_e_closed": false,
+    "github_hosted_ci_passed": false,
+    "historical_cost_recovered": false,
+    "live_capability_gain_demonstrated": false,
+    "os_resource_containment": false,
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "physical_execution_attested": false,
+    "physical_projection_formally_verified": false,
+    "promotion_authorized": false,
+    "promotion_performed": false,
+    "recursive_productivity_recertified": false,
+    "root_transition_verified": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--version"
+      ],
+      "elapsed_ns": 1862916600,
+      "returncode": 0,
+      "started_at_utc": "2026-11-08T08:30:35.520142+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)\n",
+      "stdout_sha256": "3786e94dc241478d2e13cd024164e380820ad3c4b1f8312aa3ea432eb5df0d0a"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17QDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17QDependency.lean"
+      ],
+      "elapsed_ns": 723957688500,
+      "label": "Phase17QDependency",
+      "output_artifacts_sha256": {
+        "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+      },
+      "returncode": 0,
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+      "started_at_utc": "2026-11-08T08:30:37.390224+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17RDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17RDependency.lean"
+      ],
+      "elapsed_ns": 120722729100,
+      "label": "Phase17RDependency",
+      "output_artifacts_sha256": {
+        "Phase17RDependency.olean": "640f8c1b66693184b858de520ceb9af2cbc329a7190e430fe509f3a2e203335f"
+      },
+      "returncode": 0,
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+      "started_at_utc": "2026-11-08T08:42:41.489114+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "-o",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17SDependency.olean",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17SDependency.lean"
+      ],
+      "elapsed_ns": 26289763200,
+      "label": "Phase17SDependency",
+      "output_artifacts_sha256": {
+        "Phase17SDependency.olean": "076ef38811d5487b6faf8558dd5e1488be5f86245780689ee6289ccf639fcba9"
+      },
+      "returncode": 0,
+      "source_sha256": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e",
+      "started_at_utc": "2026-11-08T08:44:42.231974+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17RDependency.lean"
+      ],
+      "elapsed_ns": 1395192600,
+      "label": "Phase17QDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+      "started_at_utc": "2026-11-08T08:45:08.544952+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17QDependency.olean\n",
+      "stdout_sha256": "6f66974d3c5402709e916fbae54e304da93119aa72f28bf231a74cd2d2d54f3b"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17SDependency.lean"
+      ],
+      "elapsed_ns": 1446408200,
+      "label": "Phase17RDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e",
+      "started_at_utc": "2026-11-08T08:45:09.958343+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17RDependency.olean\n",
+      "stdout_sha256": "58251b5ee5d7ad27375411bf72703c1a2aed39b5ae003205a906151b70f184d3"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "--deps",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\CapturedJson.lean"
+      ],
+      "elapsed_ns": 1423189100,
+      "label": "Phase17SDependency_resolution",
+      "returncode": 0,
+      "source_sha256": "1f26cd1828a2a84fc408f42e787e3b44d398496ebd3d081bd7c38396884431f7",
+      "started_at_utc": "2026-11-08T08:45:11.423766+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "c:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nc:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\lib\\lean\\Init.olean\nC:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17SDependency.olean\n",
+      "stdout_sha256": "6f7157db2dd904fd85ebdd93c085fa41d2d24c5bd1b2b49b228dfc24c9ca0f54"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\CapturedJson.lean"
+      ],
+      "elapsed_ns": 100675570300,
+      "label": "CapturedJson",
+      "returncode": 0,
+      "source_sha256": "1f26cd1828a2a84fc408f42e787e3b44d398496ebd3d081bd7c38396884431f7",
+      "started_at_utc": "2026-11-08T08:45:12.866284+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "'Phase17Json.decode_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.decode_byte_domain' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.decode_consumes_all' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.images_binding_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.decoded_package_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.selected_image_inventory' does not depend on any axioms\n'Phase17Json.selected_before_decode' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.selected_after_decode' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.selected_package_reconstruction' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.selected_original_prompt_routing' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.selected_routed_goals' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.selected_information_contexts' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.selected_learned_acceptance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.selected_canonical_edge_cases' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Phase17Json.selected_rejection_controls' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stdout_sha256": "9c6209ecbca2209cea0c590efda3bc822c7448016a67ac6e705113d01f6926c8"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\ChangedJsonByte.lean"
+      ],
+      "elapsed_ns": 19668746300,
+      "label": "ChangedJsonByte",
+      "returncode": 1,
+      "source_sha256": "04091e47dbccab5e67e39cd389a0233e8776e618f4ae310e5d6eea1863b2fff4",
+      "started_at_utc": "2026-11-08T08:46:53.565968+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\ChangedJsonByte.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "a71ae3f006e6b97c4784e87288a36a0f6e9383f80d9aa7b1f532e33b71aa173d"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\TruncatedJson.lean"
+      ],
+      "elapsed_ns": 18704127600,
+      "label": "TruncatedJson",
+      "returncode": 1,
+      "source_sha256": "5b10c3c3eb3bc48396a61fc78b0a1df178b69d8445f254f021e16aab7197f92c",
+      "started_at_utc": "2026-11-08T08:47:13.253442+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\TruncatedJson.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "4fd5706c30bbc84192362e6b62d790f66d36dd53fa77b5d06c683c49efc974cc"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\TrailingJsonByte.lean"
+      ],
+      "elapsed_ns": 18920618900,
+      "label": "TrailingJsonByte",
+      "returncode": 1,
+      "source_sha256": "f9073a6eee2a0c50947a8d8c9619d999680bf4abdd59c5905ab420c350a16a03",
+      "started_at_utc": "2026-11-08T08:47:31.977084+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\TrailingJsonByte.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "f1d41825e9eacbbda4c15debc4ff97888e3daa700064795ffc4fe97486bda2a0"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\DuplicateJsonKey.lean"
+      ],
+      "elapsed_ns": 17421835200,
+      "label": "DuplicateJsonKey",
+      "returncode": 1,
+      "source_sha256": "bb7a94854bf00fdc07bb4cc53db93e2ba451b1af143eabdf9a6da11fdd110234",
+      "started_at_utc": "2026-11-08T08:47:50.917191+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\DuplicateJsonKey.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "a6ab3fc6cc294bdad3b7c137da1f39bca6c0963668c1ea4abcecdebbf1f4b150"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\UnsortedJsonKeys.lean"
+      ],
+      "elapsed_ns": 17984844400,
+      "label": "UnsortedJsonKeys",
+      "returncode": 1,
+      "source_sha256": "2eda78b223261951804edc0c3d0f71668eadc89ee4412176c7cf872e5352bbb1",
+      "started_at_utc": "2026-11-08T08:48:08.358354+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\UnsortedJsonKeys.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "c21440e494c6b5a7e9afa3cc7b37e40c0b9f62e0ad244bfcb5b786863206dcb5"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\NonCanonicalInteger.lean"
+      ],
+      "elapsed_ns": 18020424300,
+      "label": "NonCanonicalInteger",
+      "returncode": 1,
+      "source_sha256": "a464e08d44bf8e665da270509b95176aa9410329ee0904f3fdad066c7f11d498",
+      "started_at_utc": "2026-11-08T08:48:26.362194+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\NonCanonicalInteger.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "28ffa43612eb5b5a37f534c6d8115522cfb8917f41e5fbb326534175be0792bc"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\BooleanIntegerSubstitution.lean"
+      ],
+      "elapsed_ns": 19968528600,
+      "label": "BooleanIntegerSubstitution",
+      "returncode": 1,
+      "source_sha256": "6687f78a88567f8e7901b2468db60246a7de2b1775d9a532fef91d02abe63ce7",
+      "started_at_utc": "2026-11-08T08:48:44.402494+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\BooleanIntegerSubstitution.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "e909b80494d6ac6fb19a9a8652981e98b6079760d2bcf3b256d6ff9a13f3206b"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\EscapedJsonString.lean"
+      ],
+      "elapsed_ns": 17122353100,
+      "label": "EscapedJsonString",
+      "returncode": 1,
+      "source_sha256": "27f751e1453d01c99d2fb33dc8c97f02a5dc6932485b0edefd59a97303a7b332",
+      "started_at_utc": "2026-11-08T08:49:04.389421+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\EscapedJsonString.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "a0b7e5b9e38688c609c754d6dc89e3bee444dda0c767bf9c6c62d5daa934f277"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\NonAsciiJsonByte.lean"
+      ],
+      "elapsed_ns": 17245877400,
+      "label": "NonAsciiJsonByte",
+      "returncode": 1,
+      "source_sha256": "0860491d854f55173a9e34f78261897822d2b77405a7f7af22578be1e1d777cb",
+      "started_at_utc": "2026-11-08T08:49:21.530336+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\NonAsciiJsonByte.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "6f852399ec55e1908b29179de4505fcba45e678792edfe45ac096ce94f412f0f"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\WrongJsonDocument.lean"
+      ],
+      "elapsed_ns": 19733828000,
+      "label": "WrongJsonDocument",
+      "returncode": 1,
+      "source_sha256": "024a8e46463ca7c5fc1bd0165771ae8aa9b31c20d64a9e440450c64152d4d6d8",
+      "started_at_utc": "2026-11-08T08:49:38.794597+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\WrongJsonDocument.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "0004a204c507727cb236ed40f37b53c071aba414cb8ffc456bcc2d3f56d11ffb"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\LeadingJsonWhitespace.lean"
+      ],
+      "elapsed_ns": 17135316300,
+      "label": "LeadingJsonWhitespace",
+      "returncode": 1,
+      "source_sha256": "f1c9f9787b4d9682d2dcf31e9d58d11638ba0ce3c1433f653e9950a80291337d",
+      "started_at_utc": "2026-11-08T08:49:58.547088+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\LeadingJsonWhitespace.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "129c524a977a154fdc9536edb713fff05206b9a0a817cdf4f66ad3b376703015"
+    },
+    {
+      "argv": [
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe",
+        "--keep-toolchain",
+        "--no-cache",
+        "env",
+        "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe",
+        "--root=C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu",
+        "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\OutOfByteRange.lean"
+      ],
+      "elapsed_ns": 17202357600,
+      "label": "OutOfByteRange",
+      "returncode": 1,
+      "source_sha256": "2d9028a9ebf0425184782ed68dd562b16a4064d8eec7a8b0ee548bd53c3411eb",
+      "started_at_utc": "2026-11-08T08:50:15.700981+00:00",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\OutOfByteRange.lean:302:2: error: Tactic `decide` proved that the proposition\n  False\nis false\n",
+      "stdout_sha256": "75f21aa9d16a7c7688b631dec09f39c800010bef19b638ace9f412181c80ae2a"
+    }
+  ],
+  "dependency_modules": {
+    "Phase17QDependency": {
+      "artifacts_sha256": {
+        "Phase17QDependency.olean": "b5436f79c78061c2170f34e25ad051afa8d2c50351f8f4097de385c48a88fd60"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17QDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17QDependency.olean",
+      "source_sha256": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682"
+    },
+    "Phase17RDependency": {
+      "artifacts_sha256": {
+        "Phase17RDependency.olean": "640f8c1b66693184b858de520ceb9af2cbc329a7190e430fe509f3a2e203335f"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17RDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17RDependency.olean",
+      "source_sha256": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104"
+    },
+    "Phase17SDependency": {
+      "artifacts_sha256": {
+        "Phase17SDependency.olean": "076ef38811d5487b6faf8558dd5e1488be5f86245780689ee6289ccf639fcba9"
+      },
+      "compiled_in_this_run": true,
+      "name": "Phase17SDependency",
+      "prior_success_report_used_as_proof": false,
+      "resolved_module_path": "C:\\Users\\Nicolas.n926\\AppData\\Local\\Temp\\r17t-veit_0tu\\Phase17SDependency.olean",
+      "source_sha256": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e"
+    }
+  },
+  "digest_authenticity_remains_external": true,
+  "executable_sha256": {
+    "C:\\Program Files\\Git\\cmd\\git.exe": "5385ff9ae361ca41e7a31b335fc0d81f2de9c35fc62a165c5e34850d837b59cc",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lake.exe": "a5be0113af1c08ba678c1fad07594e1c5de6b871fe0c4144da2998488eba88a1",
+    "C:\\Users\\Nicolas.n926\\.elan\\toolchains\\leanprover--lean4---v4.31.0\\bin\\lean.exe": "9b216deb50d37c32c829d1efaaa5bafd5560417d382df35a815489e31a31593f"
+  },
+  "full_transformer_equivalence": false,
+  "general_json_parser_equivalence": false,
+  "negative_controls_rejected": [
+    "ChangedJsonByte",
+    "TruncatedJson",
+    "TrailingJsonByte",
+    "DuplicateJsonKey",
+    "UnsortedJsonKeys",
+    "NonCanonicalInteger",
+    "BooleanIntegerSubstitution",
+    "EscapedJsonString",
+    "NonAsciiJsonByte",
+    "WrongJsonDocument",
+    "LeadingJsonWhitespace",
+    "OutOfByteRange"
+  ],
+  "new_named_audits": 15,
+  "old_proof_campaigns_rerun": false,
+  "packet_sha256": "1c1706cf77fd7cef65f9bbded78ff63796624c27cb1932032c5d7459e70c8410",
+  "protected_execution_from_json_checked": true,
+  "python_execution_remains_external": true,
+  "schema": "rcp-rclm.phase17t.captured-json-lean.v1",
+  "source_sha256": {
+    "BooleanIntegerSubstitution": "6687f78a88567f8e7901b2468db60246a7de2b1775d9a532fef91d02abe63ce7",
+    "CapturedJson": "1f26cd1828a2a84fc408f42e787e3b44d398496ebd3d081bd7c38396884431f7",
+    "ChangedJsonByte": "04091e47dbccab5e67e39cd389a0233e8776e618f4ae310e5d6eea1863b2fff4",
+    "DuplicateJsonKey": "bb7a94854bf00fdc07bb4cc53db93e2ba451b1af143eabdf9a6da11fdd110234",
+    "EscapedJsonString": "27f751e1453d01c99d2fb33dc8c97f02a5dc6932485b0edefd59a97303a7b332",
+    "LeadingJsonWhitespace": "f1c9f9787b4d9682d2dcf31e9d58d11638ba0ce3c1433f653e9950a80291337d",
+    "NonAsciiJsonByte": "0860491d854f55173a9e34f78261897822d2b77405a7f7af22578be1e1d777cb",
+    "NonCanonicalInteger": "a464e08d44bf8e665da270509b95176aa9410329ee0904f3fdad066c7f11d498",
+    "OutOfByteRange": "2d9028a9ebf0425184782ed68dd562b16a4064d8eec7a8b0ee548bd53c3411eb",
+    "Phase17QDependency": "8267d8a77c40d213fc71ab3fc9c6f278c1ef32d0e5af9031adc6ea0c296e2682",
+    "Phase17RDependency": "c4172830404a757bb93fd76a9b9e6ce567a62550b4b5da21fa765e38eb4b5104",
+    "Phase17SDependency": "81f6aa2b86fa48c1cb761682b1d912cb3edd6f2f0874af0f5e4283c5f45f128e",
+    "TrailingJsonByte": "f9073a6eee2a0c50947a8d8c9619d999680bf4abdd59c5905ab420c350a16a03",
+    "TruncatedJson": "5b10c3c3eb3bc48396a61fc78b0a1df178b69d8445f254f021e16aab7197f92c",
+    "UnsortedJsonKeys": "2eda78b223261951804edc0c3d0f71668eadc89ee4412176c7cf872e5352bbb1",
+    "WrongJsonDocument": "024a8e46463ca7c5fc1bd0165771ae8aa9b31c20d64a9e440450c64152d4d6d8"
+  },
+  "status": "passed",
+  "theorem_axioms": {
+    "Phase17Json.decode_byte_domain": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.decode_consumes_all": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.decode_unique": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.decoded_package_unique": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.images_binding_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.selected_after_decode": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.selected_before_decode": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.selected_canonical_edge_cases": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.selected_image_inventory": [],
+    "Phase17Json.selected_information_contexts": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.selected_learned_acceptance_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.selected_original_prompt_routing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.selected_package_reconstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.selected_rejection_controls": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Phase17Json.selected_routed_goals": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "trusted_import_cache_assumption": true
+}

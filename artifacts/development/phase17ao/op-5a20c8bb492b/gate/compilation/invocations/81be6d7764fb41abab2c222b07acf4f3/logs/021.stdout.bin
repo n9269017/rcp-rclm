@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ao-86ffc3b7\e\gate\compilation\invocations\0798ebfe15f647fcb555d744c2e6db0e\workspace/SubstitutedReceiptSource.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_durable_campaign_tests.py"
+  ],
+  "finished_at_utc": "2026-11-18T18:33:19.404624+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-18T18:32:39.194472+00:00",
+  "stderr_sha256": "86bf0a59f515037a2b43bdfb3f2999a8b4ec8fff7bb59271489a77f4d14cc511",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

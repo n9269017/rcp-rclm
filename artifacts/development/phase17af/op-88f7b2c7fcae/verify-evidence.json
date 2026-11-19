@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_second_step_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\af-34376783\\e\\gate",
+    "--expected-execution-sha256",
+    "05fe3c1461cb476a94a955a4a024e2a14d29e409b7e4fa395d27e3275ce67226"
+  ],
+  "finished_at_utc": "2026-11-14T19:57:04.422682+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-14T19:54:18.237020+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "fdfc506c1c59fb778109ec129bb7b8c40faaec296c5ad3b813a84af100c1cee1"
+}

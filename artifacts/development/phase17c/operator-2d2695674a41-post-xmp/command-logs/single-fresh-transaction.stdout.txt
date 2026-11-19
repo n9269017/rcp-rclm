@@ -1,0 +1,2 @@
+PASS: 2012 canonical index checksum entries
+{"candidate_evaluations": 32, "egc0_started": false, "gate_e_closed": false, "local_transaction_verified": true, "manifest_sha256": "0b49dd8f05973d1ecfa09767bea7a13020a05445fdd1db0a630daa33c9bea327", "phase17_exit_closed": false, "terminal_action": "search_exhausted"}

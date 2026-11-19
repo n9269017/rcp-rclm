@@ -1,0 +1,675 @@
+{
+  "catalog": {
+    "egc0_evaluation_performed": false,
+    "schema_id": "runtime.v5.phase17.phase16_terminal_catalog.v1",
+    "selection_policy": "phase17.minimum-rung-then-utf8-seed-stream.v1",
+    "terminals": [
+      {
+        "active_package_hash": "9a519919e2289cb5a568039b0d36f07c49570d07ccb92fca22ace408e4367c30",
+        "challenge_stream": "dynamic-stream-a",
+        "final_state_hash": "7d2b823c05e4e4cef7566a89d3d440dba60a6417c6a3401f1248e59f89e91567",
+        "report_hash": "e4e68386d2896d843bd741c0de93897ceeda7eecef503ec4a396b6d235dcb170",
+        "seed": "phase16-seed-alpha",
+        "target_promotions": 8
+      },
+      {
+        "active_package_hash": "a471fd5c8598818155da46ba04413fc8e279e66dc9e66ef6c43c396df438f331",
+        "challenge_stream": "dynamic-stream-b",
+        "final_state_hash": "e17adc59d17fd65c66cc4a16353bf764541a0388056dab360385c043f5e2932f",
+        "report_hash": "20b1ed589f2dcc1f085fd0aaa11859a1e9bdf0a43eb9063497574983747a1e3d",
+        "seed": "phase16-seed-alpha",
+        "target_promotions": 8
+      },
+      {
+        "active_package_hash": "48e59464b9cd085363fae3615b812b27fe9f499a9227ea6bce7e222f072b995a",
+        "challenge_stream": "dynamic-stream-a",
+        "final_state_hash": "2f48485b01c453398a23c4cd67c25280ae5082ef71defd52dd9259ccca402140",
+        "report_hash": "e979bb0fe58b7c36921a90f4fe51fdbbeb05a732ebf0ebf856681f9706c0de19",
+        "seed": "phase16-seed-beta",
+        "target_promotions": 8
+      },
+      {
+        "active_package_hash": "5591e5a726ee852873b6e284572181feab7471a860a11247f706f16a51a29f9c",
+        "challenge_stream": "dynamic-stream-b",
+        "final_state_hash": "721d9e09a09f27f1c2b62e2b89fca7b17332eb6a20a3a07fe643e428820e5cd1",
+        "report_hash": "a4d8d0b5be7f798d2b31d9f0301a4f3a92f065bf8a9c16ed30144c607fdaea1e",
+        "seed": "phase16-seed-beta",
+        "target_promotions": 8
+      },
+      {
+        "active_package_hash": "bb0d2bc2d98f12ec2c6c2f94921ce3dfeb32d95f86713059e1601cf0553905c6",
+        "challenge_stream": "dynamic-stream-a",
+        "final_state_hash": "23d0a3d3782f1354d5c33709736612c60641c08ca626387737ab12c2b51f1a25",
+        "report_hash": "6e82e9ed115464b540858a9fa5fe3c1a91615af7408291cad44110efad949631",
+        "seed": "phase16-seed-alpha",
+        "target_promotions": 16
+      },
+      {
+        "active_package_hash": "5d9213913ab9918a86f5b5c5ed39cbf89546080d9c9d4703b4f5ea36fa265bd8",
+        "challenge_stream": "dynamic-stream-b",
+        "final_state_hash": "8c9c8046af4ebfb135b3d8cae09d499a9823d75a5371ad90f59c754b4f7ba4c0",
+        "report_hash": "589c36ce9627a16d0f5fa5aabe3f4e2d77f3828e56e3dc0dafc6a66cb3af3a36",
+        "seed": "phase16-seed-alpha",
+        "target_promotions": 16
+      },
+      {
+        "active_package_hash": "4876ddb823fdc0140d0b04ce622b4507dc2f26289f05b1f0c702fd2a8c31307b",
+        "challenge_stream": "dynamic-stream-a",
+        "final_state_hash": "3cceed45c86687ebb8e02034837e84f6cbdf8f79ebb5852177d161cc25d21449",
+        "report_hash": "f8fb09dda71c35ac7f6771c9a72c1d021c2a24d9151787e3ad16f01618b8515e",
+        "seed": "phase16-seed-beta",
+        "target_promotions": 16
+      },
+      {
+        "active_package_hash": "4b202b15793e8f17243e46ffadf617d060973957d86688829ac68e92168a5e5c",
+        "challenge_stream": "dynamic-stream-b",
+        "final_state_hash": "5c83cbb8a1719f923be57ec0d89606b5d5fcee5ed2e443ce10543300bca159e1",
+        "report_hash": "1e8dcc237dd60e9633465fdd927875a10e11d80f405ba8583a30904ea5d9350d",
+        "seed": "phase16-seed-beta",
+        "target_promotions": 16
+      },
+      {
+        "active_package_hash": "401f9c73ecb99787bb5eb2fa33ad4b1a6b3d06bab284da7c67ddbb444d803c2a",
+        "challenge_stream": "dynamic-stream-a",
+        "final_state_hash": "80c2d4c6912b1ccc5c695cc2cfc1df68aacc14cf2bfc92b457779e1eebcb7309",
+        "report_hash": "839d590a28b34ca2cedb43c6d5444eaa652cd413cc820978ceba8d6ecbc84f21",
+        "seed": "phase16-seed-alpha",
+        "target_promotions": 32
+      },
+      {
+        "active_package_hash": "17d66dd9d57a057c2e397be0558cdce9c73e5adba777a4402cd5c91682a8c690",
+        "challenge_stream": "dynamic-stream-b",
+        "final_state_hash": "3558653fcb3b6d339b04d4b644840d367c7099360abfcb1e5573aa31ee3dfd79",
+        "report_hash": "aee5b4e7997a95e877838cb70d2a8eede92617864410436ca6db647f7167fb62",
+        "seed": "phase16-seed-alpha",
+        "target_promotions": 32
+      },
+      {
+        "active_package_hash": "25063e2a44fd7dc39f27991e8f1d9a675ac8e9bffb4035e40c372793b75e2063",
+        "challenge_stream": "dynamic-stream-a",
+        "final_state_hash": "427f738b1f736a10004e74ba2154076b48ff1d3b1656ccc8bb9c4e49870e3904",
+        "report_hash": "a648f3d7aaea082cbe5f1c945df3a787d1d49688199176cdf116782a5a332f77",
+        "seed": "phase16-seed-beta",
+        "target_promotions": 32
+      },
+      {
+        "active_package_hash": "792823c1095b11144f453a0546ae2cf41c76a31500c4c08eec4902360e2b5851",
+        "challenge_stream": "dynamic-stream-b",
+        "final_state_hash": "9dcec9841bef90b1b806b7ec7fab5f07323165c4c42c33e74e32730739e28ac7",
+        "report_hash": "6c795e198d14e4c41a83f7e5de97ffef018d35d30dd3b02cc1c7adf7898a188e",
+        "seed": "phase16-seed-beta",
+        "target_promotions": 32
+      },
+      {
+        "active_package_hash": "6c4c24f0e19cba67cef0606c558329f1e16c4aa113480e736916861673175d7f",
+        "challenge_stream": "dynamic-stream-a",
+        "final_state_hash": "19fa3e0e061feafd004edc28a09ef45a0d9e471ed3c8b9f07959c30baac979d8",
+        "report_hash": "8d5e7b70372023bc4e7dfc8dcba33fb0874844ebf8e4abf1733d84f99b15f56c",
+        "seed": "phase16-seed-alpha",
+        "target_promotions": 64
+      },
+      {
+        "active_package_hash": "e4664ab00736cac32e96419ccc2ef17a622917a4fabba685c431db5ea7e9d150",
+        "challenge_stream": "dynamic-stream-b",
+        "final_state_hash": "299d4db9a812926d09a4d3a53a0efe43aeb76a32f0eca9dbe57a6cd3e50654a2",
+        "report_hash": "a640cdcbca7bfa7e7c334b7c045f11a4e9dcb01e4993deeece6c1067cdff1dac",
+        "seed": "phase16-seed-alpha",
+        "target_promotions": 64
+      },
+      {
+        "active_package_hash": "2d9308676dda5ba5b824950e124ffc5eb886ff4d98ce24cff45bcf761a28ca29",
+        "challenge_stream": "dynamic-stream-a",
+        "final_state_hash": "1b7c3eea42dfd3734724379db0ee722578ecb2129a9367506ab44c1644a37fbd",
+        "report_hash": "68ae85f8c9a196e35360379145a0ae2e3c369e0feec8378ed789ceedd0634a26",
+        "seed": "phase16-seed-beta",
+        "target_promotions": 64
+      },
+      {
+        "active_package_hash": "cd596ab424c528d2221b102bc756d4af60a2247a21042bcf8556851a068d1bb3",
+        "challenge_stream": "dynamic-stream-b",
+        "final_state_hash": "173a3d331973a47fa94325b9ff5bef8d4c210c86aca685e97f43d73a6d6ee5a2",
+        "report_hash": "58996b3874f81b9b1604bc9ecd82acfa9c465f6f86ccc1345aa0c0edc968c78a",
+        "seed": "phase16-seed-beta",
+        "target_promotions": 64
+      },
+      {
+        "active_package_hash": "0085d031966673a8d2fec52592b6acfdaba1ae7c9c7a7b219b711841526c2401",
+        "challenge_stream": "dynamic-stream-a-stretch",
+        "final_state_hash": "3ef2602e78c0e794f9d223a934d1cfb9d7328a05e18deb4f930484c3e52a7011",
+        "report_hash": "6a47aff091b3568012b61643bb9df94b17e6dbcc9de47c453465f973ec07ee90",
+        "seed": "phase16-seed-alpha",
+        "target_promotions": 100
+      }
+    ]
+  },
+  "planner_projection": [
+    [
+      0,
+      -1
+    ],
+    [
+      17,
+      -1
+    ],
+    [
+      33,
+      -1
+    ],
+    [
+      65,
+      -1
+    ],
+    [
+      66,
+      -1
+    ],
+    [
+      67,
+      -1
+    ],
+    [
+      68,
+      -1
+    ],
+    [
+      69,
+      -1
+    ],
+    [
+      70,
+      -1
+    ],
+    [
+      71,
+      -1
+    ],
+    [
+      72,
+      -1
+    ],
+    [
+      73,
+      -1
+    ],
+    [
+      74,
+      -1
+    ],
+    [
+      75,
+      -1
+    ],
+    [
+      76,
+      -1
+    ],
+    [
+      77,
+      -1
+    ],
+    [
+      78,
+      -1
+    ],
+    [
+      79,
+      -1
+    ],
+    [
+      80,
+      -1
+    ],
+    [
+      81,
+      -1
+    ],
+    [
+      1027,
+      -1
+    ],
+    [
+      1031,
+      1
+    ],
+    [
+      1044,
+      -1
+    ],
+    [
+      1047,
+      1
+    ],
+    [
+      1062,
+      1
+    ],
+    [
+      1066,
+      1
+    ],
+    [
+      1076,
+      -1
+    ],
+    [
+      1081,
+      -1
+    ],
+    [
+      2049,
+      -1
+    ],
+    [
+      2065,
+      2
+    ],
+    [
+      2068,
+      -1
+    ],
+    [
+      2081,
+      1
+    ],
+    [
+      2103,
+      -1
+    ],
+    [
+      3075,
+      -1
+    ],
+    [
+      3077,
+      -1
+    ],
+    [
+      3092,
+      3
+    ],
+    [
+      3093,
+      -1
+    ],
+    [
+      3108,
+      -1
+    ],
+    [
+      3124,
+      -1
+    ],
+    [
+      3127,
+      1
+    ],
+    [
+      3129,
+      1
+    ],
+    [
+      4117,
+      1
+    ],
+    [
+      4118,
+      -1
+    ],
+    [
+      4132,
+      1
+    ],
+    [
+      4133,
+      -1
+    ],
+    [
+      5142,
+      1
+    ],
+    [
+      5143,
+      -1
+    ],
+    [
+      5157,
+      1
+    ],
+    [
+      5158,
+      -1
+    ],
+    [
+      6145,
+      2
+    ],
+    [
+      6150,
+      -1
+    ],
+    [
+      6161,
+      -1
+    ],
+    [
+      6177,
+      1
+    ],
+    [
+      6185,
+      -1
+    ],
+    [
+      7169,
+      -1
+    ],
+    [
+      7171,
+      2
+    ],
+    [
+      7173,
+      -1
+    ],
+    [
+      7201,
+      -1
+    ],
+    [
+      7220,
+      1
+    ],
+    [
+      8197,
+      2
+    ],
+    [
+      8199,
+      -1
+    ],
+    [
+      8212,
+      -1
+    ],
+    [
+      8234,
+      -1
+    ],
+    [
+      8244,
+      1
+    ],
+    [
+      9216,
+      1
+    ],
+    [
+      9222,
+      1
+    ],
+    [
+      9257,
+      1
+    ],
+    [
+      12353,
+      1
+    ],
+    [
+      13378,
+      1
+    ],
+    [
+      14403,
+      1
+    ],
+    [
+      15428,
+      1
+    ],
+    [
+      16453,
+      1
+    ],
+    [
+      17478,
+      1
+    ],
+    [
+      18503,
+      1
+    ],
+    [
+      19528,
+      1
+    ],
+    [
+      20553,
+      1
+    ],
+    [
+      21578,
+      1
+    ],
+    [
+      22603,
+      1
+    ],
+    [
+      23628,
+      1
+    ],
+    [
+      24653,
+      1
+    ],
+    [
+      25678,
+      1
+    ],
+    [
+      26703,
+      1
+    ],
+    [
+      27728,
+      1
+    ],
+    [
+      28753,
+      1
+    ]
+  ],
+  "programs": [
+    {
+      "family": "architecture_policy",
+      "generation": 1,
+      "operation_id": "install_bounded_execution_route",
+      "parameter_a": -5,
+      "parameter_b": -5,
+      "promotion_index": 0,
+      "public_nonce_hash": "90c8521cbefb4912adde553650a13bdd94ab9ca4165a77689541f14abf2e4c54",
+      "schema_id": "runtime.v4.phase16.mutation_program.v1",
+      "variant": 1
+    },
+    {
+      "family": "tool_policy",
+      "generation": 1,
+      "operation_id": "install_package_bound_tool_chain",
+      "parameter_a": 0,
+      "parameter_b": -12,
+      "promotion_index": 1,
+      "public_nonce_hash": "3eadfb23d3d408b49f0cc0554ddcefcd5ab18c6a395add082c1f3b56cd70609d",
+      "schema_id": "runtime.v4.phase16.mutation_program.v1",
+      "variant": 2
+    },
+    {
+      "family": "optimizer_policy",
+      "generation": 1,
+      "operation_id": "install_expanding_resource_schedule",
+      "parameter_a": -11,
+      "parameter_b": -13,
+      "promotion_index": 2,
+      "public_nonce_hash": "2dd5d6a4ba4f7b7f97613ec229ef35567ad68b1b5c101f37a319e0c86c3e3018",
+      "schema_id": "runtime.v4.phase16.mutation_program.v1",
+      "variant": 0
+    },
+    {
+      "family": "adapter_policy",
+      "generation": 1,
+      "operation_id": "install_transfer_adapter_motif",
+      "parameter_a": 11,
+      "parameter_b": 1,
+      "promotion_index": 3,
+      "public_nonce_hash": "3fcabe4b75c6ac66d6c72c91265ff98374c6a8eaa9984569be8894dd84177a83",
+      "schema_id": "runtime.v4.phase16.mutation_program.v1",
+      "variant": 3
+    },
+    {
+      "family": "retrieval_policy",
+      "generation": 1,
+      "operation_id": "install_rejection_conditioned_retrieval_route",
+      "parameter_a": 12,
+      "parameter_b": -7,
+      "promotion_index": 4,
+      "public_nonce_hash": "a5e3c88f1a974ccd87b9543fc4d2beacc7830c293abbffac822aa65aaaf16673",
+      "schema_id": "runtime.v4.phase16.mutation_program.v1",
+      "variant": 1
+    },
+    {
+      "family": "memory_policy",
+      "generation": 1,
+      "operation_id": "install_content_addressed_memory_motif",
+      "parameter_a": -15,
+      "parameter_b": -3,
+      "promotion_index": 5,
+      "public_nonce_hash": "013c1d5f062431f990b2abeb3b40be59991046a010369c7d52e1a51a844cd09e",
+      "schema_id": "runtime.v4.phase16.mutation_program.v1",
+      "variant": 3
+    },
+    {
+      "family": "verification_automation_policy",
+      "generation": 1,
+      "operation_id": "install_untrusted_proof_search_policy",
+      "parameter_a": -13,
+      "parameter_b": -2,
+      "promotion_index": 6,
+      "public_nonce_hash": "34b1a9e23cc3061091b07580f47b0f2164c3e72b267bfd661b13453c7b47b483",
+      "schema_id": "runtime.v4.phase16.mutation_program.v1",
+      "variant": 1
+    },
+    {
+      "family": "planner_policy",
+      "generation": 1,
+      "operation_id": "install_fair_search_planning_rule",
+      "parameter_a": 7,
+      "parameter_b": 2,
+      "promotion_index": 7,
+      "public_nonce_hash": "ba06a98486729268c074b860ac3c3a5d0b213a4834b9970fb7ad5bbd38451a32",
+      "schema_id": "runtime.v4.phase16.mutation_program.v1",
+      "variant": 1
+    }
+  ],
+  "receipt": {
+    "accepted_for_historical_handoff": true,
+    "active_package_hash": "9a519919e2289cb5a568039b0d36f07c49570d07ccb92fca22ace408e4367c30",
+    "capture_archive_sha256": "7337079801916ecccce0e3a292d5379cea17b571acc6f31b9b38cb21f9f63dde",
+    "capture_report_hash": "ad6d25e453840cefb7240de7854d2a53572c7af0a6b38851efd76654fb84bbb6",
+    "catalog_hash": "8a14b55b6ca8d751e250e86cfd21958cd5715702fd0fd62997d71f0a77b23cd9",
+    "catalog_terminal_count": 17,
+    "closure_archive_sha256": "ce7f1de4654306d5280970dfc92453a8743cf1e02fe98963f1e940c0077582f9",
+    "closure_report_hash": "f5c4943647c3a54ab4e1686a45c64926844fb97a99f7eafe054679a34ba896ee",
+    "egc0_started": false,
+    "evidence_scope": "pinned_historical_identity_and_selected_lineage_only",
+    "fresh_full_tensor_execution": false,
+    "fresh_lean_verification": false,
+    "gate_e_closed": false,
+    "inherited_planner_manifest_hash": "67045ba2da9dd897b851bba31f05ed0e9faf93fa665245f87803904cfa5fe6d7",
+    "inherited_planner_weights_sha256": "19869eac5b0da770505214a6c5817b94dfda05730f97598bf2f855aff82d6c8d",
+    "phase15_bundle_sha256": "56003f95ded054be21dd3f743c2145fdf6e92543af28bb350f64ec8f4fee00b5",
+    "phase17_exit_closed": false,
+    "phase18_independent_replay": false,
+    "promotion_authorized": false,
+    "report_hash": "c2872b3a27781b0289f92e4d76f0a154032a706a560c9255412cf3ef73d33103",
+    "schema_id": "runtime.v5.phase17.historical_bootstrap.v1",
+    "selected_campaign_hash": "e4e68386d2896d843bd741c0de93897ceeda7eecef503ec4a396b6d235dcb170",
+    "selected_historical_promotions": 8,
+    "selection_policy": "phase17.minimum-rung-then-utf8-seed-stream.v1",
+    "source_head": "b870b3cff8ae5c7fe5e26c2308279bea357bc99c",
+    "source_tree": "4cba347fc51480e67402ba176643c2e985f45bd0",
+    "terminal_state_hash": "7d2b823c05e4e4cef7566a89d3d440dba60a6417c6a3401f1248e59f89e91567"
+  },
+  "scope": "Exact historical handoff fixture; does not substitute for reading the three pinned source archives.",
+  "state": {
+    "active_package_hash": "9a519919e2289cb5a568039b0d36f07c49570d07ccb92fca22ace408e4367c30",
+    "archive_root_hash": "d5866274ced15c1ae74d5c332a80f238f1f62b63e5d36085a4fd21190b91eab4",
+    "capability_frontier": [
+      "lean.phase10.heldout.linear_gap",
+      "lean.phase10.protected.reflexive_seven",
+      "lean.phase11.heldout.add_zero_macro",
+      "lean.phase12.generation1.le_refl_macro",
+      "lean.phase12.generation2.zero_le_macro",
+      "lean.phase12.generation3.lt_succ_planner_macro",
+      "lean.phase12.generation4.lt_add_two_adapter_macro",
+      "lean.phase14.generation5_zero_lt_succ",
+      "lean.phase14.generation6_lt_add_five",
+      "lean.phase14.generation7_succ_le_add_two",
+      "lean.phase14.generation8_le_add_four",
+      "lean.phase15.dynamic.multistep.4a7a415bcd169bb8",
+      "phase16.dynamic.adapter_policy.2624594ed996371dbea9",
+      "phase16.dynamic.architecture_policy.c3cd1f252d113cb41ebc",
+      "phase16.dynamic.memory_policy.f9734b7e402fa0a0e992",
+      "phase16.dynamic.optimizer_policy.10a54f6a7c3503fa7430",
+      "phase16.dynamic.planner_policy.e8a5ef052b4885132a71",
+      "phase16.dynamic.retrieval_policy.376f6d7a4130a978e1e6",
+      "phase16.dynamic.tool_policy.231b912e39ff91bade12",
+      "phase16.dynamic.verification_automation_policy.4290be408ad83beccf87",
+      "program.phase15.dynamic.affine.beb80dc125251a70"
+    ],
+    "component_generations": {
+      "adapter_policy": 1,
+      "architecture_policy": 1,
+      "memory_policy": 1,
+      "optimizer_policy": 1,
+      "planner_policy": 1,
+      "retrieval_policy": 1,
+      "tool_policy": 1,
+      "verification_automation_policy": 1
+    },
+    "fixed_verifier_hash": "fc4cf15ec370547b14fc67ae360269cea71cbc10d773536d1a77891acbe3bf7e",
+    "installed_program_hashes": [
+      "1b3e59ea732ae920aa4d272bf89d3cd3acb7930ff3d921459efda0f2888e0fc3",
+      "40ddd0f569709b232e4d769b2b288d694705a4561ef039aae2781deca29581d6",
+      "5dd1421b9968b2619b62416177c38a29898d05514db22440c2229ccd51679649",
+      "7d98001be0bd64487cb44f7db6f741b3e0436eec4cc0c4b0d74f5e6f774f2c1a",
+      "aedc8351d94932d37506d4d7b44fac9b1b40baf95d35f52bee726af598e7a5c2",
+      "b1e1738eecfb2e51693f8aea51ff14a49d38787a26ea62ef81078b326a9a197f",
+      "b558b30a69cfed7c0faa2157402ed7910269e29212cbb0d3354f02fe5e0c1aad",
+      "ebb887e9009fdd02f1fc999cc900c47dee131970826c19bdc55a74b9c7cccd7e"
+    ],
+    "model_index": 17,
+    "recursive_productivity_frontier": [
+      "recursive.archive_rejection_context",
+      "recursive.bind_hidden_commitment",
+      "recursive.bind_post_freeze_dynamic_challenge",
+      "recursive.choose_update_family",
+      "recursive.expand_resource_envelope",
+      "recursive.generate_multi_token_plan",
+      "recursive.generate_valid_program",
+      "recursive.install_adapter_route",
+      "recursive.install_weight_route",
+      "recursive.invoke_package_bound_search_tool",
+      "recursive.invoke_package_bound_tool",
+      "recursive.persist_search_route",
+      "recursive.plan_fair_search_prefix",
+      "recursive.produce_root_checked_proof_attempt",
+      "recursive.recover_after_rejection",
+      "recursive.retrieve_mutation_motifs",
+      "recursive.select_bounded_execution_route",
+      "recursive.self_modify_generator_planner",
+      "recursive.transfer_verified_mutation_motif"
+    ],
+    "schema_id": "runtime.v4.phase16.model_state.v1",
+    "semantics_id": "gate-c-diagonal-qre-kl-fixed-semantics-v1"
+  }
+}

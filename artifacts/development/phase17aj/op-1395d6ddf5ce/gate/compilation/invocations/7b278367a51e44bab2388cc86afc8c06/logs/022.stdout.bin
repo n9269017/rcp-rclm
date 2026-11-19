@@ -1,0 +1,84 @@
+'Phase17AuthorityWitness.accepted_read_exact' does not depend on any axioms
+'Phase17AuthorityWitness.unauthenticated_read_refused' does not depend on any axioms
+'Phase17AuthorityWitness.wrong_nonce_read_refused' does not depend on any axioms
+'Phase17AuthorityWitness.wrong_head_read_refused' does not depend on any axioms
+'Phase17AuthorityWitness.read_does_not_supply_owner' does not depend on any axioms
+'Phase17AuthorityWitness.advanced_spec' depends on axioms: [propext]
+'Phase17AuthorityWitness.advanced_construct' depends on axioms: [propext]
+'Phase17AuthorityWitness.authorized_advance_exact' depends on axioms: [propext]
+'Phase17AuthorityWitness.unauthenticated_mutation_refused' depends on axioms: [propext]
+'Phase17AuthorityWitness.authorized_advance_recomputes' depends on axioms: [propext]
+'Phase17AuthorityWitness.advanced_revision' depends on axioms: [propext]
+'Phase17AuthorityWitness.advanced_fixed_provision' depends on axioms: [propext]
+'Phase17AuthorityWitness.advanced_heads' depends on axioms: [propext]
+'Phase17AuthorityWitness.advanced_nonce_consumed' depends on axioms: [propext]
+'Phase17AuthorityWitness.wrong_provision_refused' depends on axioms: [propext]
+'Phase17AuthorityWitness.stale_revision_refused' depends on axioms: [propext]
+'Phase17AuthorityWitness.stale_head_refused' depends on axioms: [propext]
+'Phase17AuthorityWitness.reused_nonce_refused' depends on axioms: [propext]
+'Phase17AuthorityWitness.stale_authority_head_refused' depends on axioms: [propext]
+'Phase17AuthorityWitness.unchanged_head_refused' depends on axioms: [propext]
+'Phase17AuthorityWitness.predecessor_consumed_once' depends on axioms: [propext, Quot.sound]
+'Phase17AuthorityWitness.successful_request_cannot_replay' depends on axioms: [propext]
+'Phase17AuthorityWitness.reserve_recomputes_issued_lease' depends on axioms: [propext]
+'Phase17AuthorityWitness.reserve_construct' depends on axioms: [propext]
+'Phase17AuthorityWitness.execute_requires_owner' depends on axioms: [propext]
+'Phase17AuthorityWitness.execute_construct' depends on axioms: [propext]
+'Phase17AuthorityWitness.missing_owner_execution_refused' depends on axioms: [propext]
+'Phase17AuthorityWitness.wrong_owner_execution_refused' depends on axioms: [propext]
+'Phase17AuthorityWitness.reserve_semantics_fixed' depends on axioms: [propext]
+'Phase17AuthorityWitness.reserve_exact_charge' depends on axioms: [propext]
+'Phase17AuthorityWitness.execution_recomputes_truthful_controller' depends on axioms: [propext]
+'Phase17AuthorityWitness.execution_never_refunds' depends on axioms: [propext]
+'Phase17AuthorityWitness.reopen_exact' depends on axioms: [propext]
+'Phase17AuthorityWitness.reopened_owner_cannot_execute' depends on axioms: [propext]
+'Phase17AuthorityWitness.reopened_pending_retained' depends on axioms: [propext]
+'Phase17AuthorityWitness.perform_preserves_authority_reachability' depends on axioms: [propext]
+'Phase17AuthorityWitness.reachable_authority' depends on axioms: [propext]
+'Phase17AuthorityWitness.reachable_nonces_unique' depends on axioms: [propext, Quot.sound]
+'Phase17AuthorityWitness.reachable_revision_exact' depends on axioms: [propext]
+'Phase17AuthorityWitness.reachable_sources_consumed_once' depends on axioms: [propext, Quot.sound]
+'Phase17AuthorityWitness.reachable_exact_debit' depends on axioms: [propext]
+'Phase17AuthorityWitness.reachable_within_pool' depends on axioms: [propext]
+'Phase17AuthorityWitness.reachable_completed_and_pending_accounted' depends on axioms: [propext, Quot.sound]
+'Phase17AuthorityWitness.reachable_completed_work_within_pool' depends on axioms: [propext, Quot.sound]
+'Phase17AuthorityWitnessExamples.case_shared_two_sources' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17AuthorityWitnessExamples.case_interrupted_reservation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17AuthorityWitnessExamples.case_aggregate_denial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17AuthorityWitnessExamples.main_exact_reservation' depends on axioms: [propext]
+'Phase17AuthorityWitnessExamples.main_actual_reference_work' depends on axioms: [propext]
+'Phase17AuthorityWitnessExamples.main_accounted_reservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17AuthorityWitnessExamples.main_fixed_policy_meanings' does not depend on any axioms
+'Phase17AuthorityWitnessExamples.main_reopen_retains_completed_state' depends on axioms: [propext]
+'Phase17AuthorityWitnessExamples.main_consumed_sources_once' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17AuthorityWitnessExamples.main_requests_consumed_once' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17AuthorityWitnessExamples.main_revision_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17AuthorityWitnessExamples.first_lease_recomputes_authority' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17AuthorityWitnessExamples.second_lease_recomputes_authority' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17AuthorityWitnessExamples.first_completion_recomputes_controller' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17AuthorityWitnessExamples.second_completion_recomputes_controller' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17AuthorityWitnessExamples.cloned_controller_cursor_refused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17AuthorityWitnessExamples.old_read_nonce_refused' depends on axioms: [propext]
+'Phase17AuthorityWitnessExamples.old_read_after_advance_is_not_current' depends on axioms: [propext]
+'Phase17AuthorityWitnessExamples.pending_reopen_preserves_charges' depends on axioms: [propext]
+'Phase17AuthorityWitnessExamples.pending_reopen_cannot_execute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Phase17AuthorityWitnessExamples.pending_reopen_cannot_issue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17AuthorityWitnessExamples.pending_reopen_cannot_stop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Phase17AuthorityWitnessExamples.aggregate_denial_preserves_charges' depends on axioms: [propext]
+'Phase17AuthorityWitnessExamples.witness_rollback_is_outside_guarantee' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

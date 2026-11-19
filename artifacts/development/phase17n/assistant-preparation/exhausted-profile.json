@@ -1,0 +1,13 @@
+{
+  "complete_search_exhaustion": false,
+  "journal_head": "2f9591786536c02efd2bdea4374d7be861388540c6dd605defa13a015886b047",
+  "journal_sha256": "d17580dbce0cb462a6c4a8c47172e7e163a4e0b57f2adb7788e536940d437892",
+  "operation_calls": 0,
+  "spent": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "status": "resource_exhausted"
+}

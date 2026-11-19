@@ -1,0 +1,133 @@
+test_dirty_original_refused (test_installer_flow.InstallerFlow.test_dirty_original_refused) ... ERROR
+test_evidence_mutation_no_advancement (test_installer_flow.InstallerFlow.test_evidence_mutation_no_advancement) ... ERROR
+test_failed_gate_no_advancement (test_installer_flow.InstallerFlow.test_failed_gate_no_advancement) ... ERROR
+test_failed_tests_no_advancement (test_installer_flow.InstallerFlow.test_failed_tests_no_advancement) ... ERROR
+test_full_flow_normal_push (test_installer_flow.InstallerFlow.test_full_flow_normal_push) ... ERROR
+test_no_push_preserves_validated_local_commit (test_installer_flow.InstallerFlow.test_no_push_preserves_validated_local_commit) ... ERROR
+test_rejected_push_keeps_local_validated_commits (test_installer_flow.InstallerFlow.test_rejected_push_keeps_local_validated_commits) ... ERROR
+test_remote_movement_no_advancement (test_installer_flow.InstallerFlow.test_remote_movement_no_advancement) ... ERROR
+
+======================================================================
+ERROR: test_dirty_original_refused (test_installer_flow.InstallerFlow.test_dirty_original_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/test_installer_flow.py", line 32, in setUp
+    (scripts/'phase17_refresh_checksums.py').write_bytes((Path(__file__).with_name('phase17_refresh_checksums.py')).read_bytes())
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/phase17_refresh_checksums.py'
+
+======================================================================
+ERROR: test_evidence_mutation_no_advancement (test_installer_flow.InstallerFlow.test_evidence_mutation_no_advancement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/test_installer_flow.py", line 32, in setUp
+    (scripts/'phase17_refresh_checksums.py').write_bytes((Path(__file__).with_name('phase17_refresh_checksums.py')).read_bytes())
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/phase17_refresh_checksums.py'
+
+======================================================================
+ERROR: test_failed_gate_no_advancement (test_installer_flow.InstallerFlow.test_failed_gate_no_advancement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/test_installer_flow.py", line 32, in setUp
+    (scripts/'phase17_refresh_checksums.py').write_bytes((Path(__file__).with_name('phase17_refresh_checksums.py')).read_bytes())
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/phase17_refresh_checksums.py'
+
+======================================================================
+ERROR: test_failed_tests_no_advancement (test_installer_flow.InstallerFlow.test_failed_tests_no_advancement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/test_installer_flow.py", line 32, in setUp
+    (scripts/'phase17_refresh_checksums.py').write_bytes((Path(__file__).with_name('phase17_refresh_checksums.py')).read_bytes())
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/phase17_refresh_checksums.py'
+
+======================================================================
+ERROR: test_full_flow_normal_push (test_installer_flow.InstallerFlow.test_full_flow_normal_push)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/test_installer_flow.py", line 32, in setUp
+    (scripts/'phase17_refresh_checksums.py').write_bytes((Path(__file__).with_name('phase17_refresh_checksums.py')).read_bytes())
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/phase17_refresh_checksums.py'
+
+======================================================================
+ERROR: test_no_push_preserves_validated_local_commit (test_installer_flow.InstallerFlow.test_no_push_preserves_validated_local_commit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/test_installer_flow.py", line 32, in setUp
+    (scripts/'phase17_refresh_checksums.py').write_bytes((Path(__file__).with_name('phase17_refresh_checksums.py')).read_bytes())
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/phase17_refresh_checksums.py'
+
+======================================================================
+ERROR: test_rejected_push_keeps_local_validated_commits (test_installer_flow.InstallerFlow.test_rejected_push_keeps_local_validated_commits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/test_installer_flow.py", line 32, in setUp
+    (scripts/'phase17_refresh_checksums.py').write_bytes((Path(__file__).with_name('phase17_refresh_checksums.py')).read_bytes())
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/phase17_refresh_checksums.py'
+
+======================================================================
+ERROR: test_remote_movement_no_advancement (test_installer_flow.InstallerFlow.test_remote_movement_no_advancement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/test_installer_flow.py", line 32, in setUp
+    (scripts/'phase17_refresh_checksums.py').write_bytes((Path(__file__).with_name('phase17_refresh_checksums.py')).read_bytes())
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/phase17o-work/kit/rcp-rclm-phase17o-kit/tests/phase17_refresh_checksums.py'
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.109s
+
+FAILED (errors=8)

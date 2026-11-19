@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_controller_witness_gate.py",
+    "--verify-only",
+    "--output",
+    "C:\\Users\\Nicolas.n926\\.r17\\aj-2d879ce8\\e\\gate",
+    "--expected-execution-sha256",
+    "e53bc075dd97d2ea0c005bb0ffbb28014e7a5bae73c867452f991cfa454e9ef4"
+  ],
+  "finished_at_utc": "2026-11-17T07:50:55.304682+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-17T07:44:20.421312+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "2c2ddfe6f9ddeae74c91c24fdffaf0492892d4a633e39c659fd070dab9637956"
+}

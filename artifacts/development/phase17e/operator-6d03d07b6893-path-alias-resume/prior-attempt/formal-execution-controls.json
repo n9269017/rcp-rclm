@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_formal_execution_tests.py"
+  ],
+  "finished_at_utc": "2026-11-01T00:34:52.249193+00:00",
+  "returncode": 0,
+  "started_at_utc": "2026-11-01T00:34:44.910803+00:00",
+  "stderr_sha256": "1034d2fcc7e754d23ab623a5805b12545074cf0b1ed6159e08415a248b409a6e",
+  "stdout_sha256": "c8448211e05d2ecd8824b641d0dbf7c5af603af3e2b734d8f1c27ed323111f32"
+}

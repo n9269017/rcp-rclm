@@ -1,0 +1,1 @@
+{"gate_e_closed": false, "local_checks_passed": true, "manifest_sha256": "242be273be85f9077f47c79b0bd56b73a5c6b6383243b612a83c65d9d5a14d55", "phase17_exit_closed": false, "source_commit": "2d2695674a417cea04947400fa617ac6b34b9d5b"}

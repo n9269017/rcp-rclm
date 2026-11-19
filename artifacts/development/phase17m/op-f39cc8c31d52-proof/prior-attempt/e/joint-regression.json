@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/run_phase17_joint_tests.py"
+  ],
+  "finished_at_utc": "2026-11-07T07:15:57.348670+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-07T07:15:31.306695+00:00",
+  "stderr_sha256": "19ec417c609becb74f887958f4513583ff5076db6879cd9483d4c8cb432d7a7b",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

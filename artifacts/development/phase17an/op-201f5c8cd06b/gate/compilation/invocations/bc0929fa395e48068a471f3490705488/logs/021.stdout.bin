@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\an-7f271da5\e\gate\compilation\invocations\e1c0ff64909e4532b66cc3326eda9d57\workspace/ExhaustedBrokerIntentCapacity.lean:10:2: error: Tactic `decide` proved that the proposition
+  False
+is false

@@ -1,0 +1,3 @@
+C:\Users\Nicolas.n926\.r17\ad-e0b7b79f\e\gate\compilation\invocations\6e1f9529956645a395ce7684663c1b58\workspace/WrongNextChoice.lean:40:2: error: Tactic `decide` proved that the proposition
+  False
+is false
