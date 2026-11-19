@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Nicolas.n926\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-B",
+    "scripts/run_phase17_authenticated_authority_tests.py"
+  ],
+  "finished_at_utc": "2026-11-19T00:46:46.738549+00:00",
+  "problem": null,
+  "returncode": 0,
+  "started_at_utc": "2026-11-19T00:46:26.237981+00:00",
+  "stderr_sha256": "2472d0b41e7312036d3407b0e54da8b1d3c58cbe551e42ea8bbd8a896b8d142b",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

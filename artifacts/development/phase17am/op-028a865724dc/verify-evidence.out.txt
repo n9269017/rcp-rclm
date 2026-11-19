@@ -1,0 +1,1 @@
+PASS: AM authenticated authority transport and pinned client continuity, original TLS/process records and durable worker evidence, generated proofs, compiled artifacts, exact stage lineage, named audits and designated rejections reconstructed; no compiler, authority subprocess or task-worker process runs
